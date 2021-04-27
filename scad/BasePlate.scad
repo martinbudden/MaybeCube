@@ -16,7 +16,7 @@ use <vitamins/nuts.scad>
 include <Parameters_Main.scad>
 
 
-AL3 = ["AL3", "Aluminium plate", 3, [0.9, 0.9, 0.9, 1], false];
+AL3 = ["AL3", "Aluminium sheet", 3, [0.9, 0.9, 0.9, 1], false];
 
 basePlateSize = [eX + 2*eSize, eY + 2*eSize, _basePlateThickness];
 function pcbType() = BTT_SKR_V1_4_TURBO;
