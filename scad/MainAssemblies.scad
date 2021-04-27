@@ -154,9 +154,11 @@ staged_assembly("Stage_6", big=true, ngb=true) {
 
 module FinalAssembly() {
     // does not use assembly(""), since made into an assembly in Main.scad
-    no_explode()
-        Stage_6_assembly();
-    faceRightSpool();
-    backPanelAssembly();
-    Left_Side_Panel_assembly();
+    translate([-(2*eSize + eX)/2, -(2*eSize + eY)/2, basePlateHeight() - eZ/2]) {
+        no_explode()
+            Stage_6_assembly();
+        faceRightSpool();
+        backPanelAssembly();
+        Left_Side_Panel_assembly();
+    }
 }
