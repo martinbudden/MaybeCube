@@ -68,8 +68,8 @@ MC350/*.html
 !MC350/assemblies/main_assembled.png
 #!MC350/dxfs/*.dxf
 #!MC350/dxfs/*.png
-#!MC350/stls/*.stl
-#!MC350/stls/*.png
+!MC350/stls/*.stl
+!MC350/stls/*.png
 
 MC400/assemblies/*
 MC400/bom/
