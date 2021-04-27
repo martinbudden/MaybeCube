@@ -20,4 +20,4 @@ _printBed4PointSupport = !true;
 
 _blower_type = 30;
 
-_useMotorIdler20 = true;
+//_useMotorIdler20 = true;
