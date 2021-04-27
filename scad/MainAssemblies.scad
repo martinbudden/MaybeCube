@@ -158,7 +158,6 @@ module FinalAssembly() {
         no_explode()
             Stage_6_assembly();
         faceRightSpool();
-        backPanelAssembly();
         Left_Side_Panel_assembly();
     }
 }
