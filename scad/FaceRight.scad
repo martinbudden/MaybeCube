@@ -3,18 +3,16 @@ include <global_defs.scad>
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
-
-include <Parameters_Main.scad>
-include <Parameters_Positions.scad>
-use <Parameters_CoreXY.scad>
+use <printed/extruderBracket.scad>
 
 use <utils/FrameBolts.scad>
 use <utils/Z_Rods.scad>
 
 use <vitamins/extrusion.scad>
 
-use <printed/extruderBracket.scad>
-
+use <Parameters_CoreXY.scad>
+use <Parameters_Positions.scad>
+include <Parameters_Main.scad>
 
 
 faceRightLowerMiddleExtrusionZ = eSize + 40;

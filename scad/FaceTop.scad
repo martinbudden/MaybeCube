@@ -4,6 +4,11 @@ include <NopSCADlib/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
+use <printed/PrintheadAssemblies.scad>
+use <printed/XY_MotorMount.scad>
+use <printed/XY_Idler.scad>
+use <printed/Y_CarriageAssemblies.scad>
+
 use <utils/FrameBolts.scad>
 use <utils/carriageTypes.scad>
 use <utils/RailNutsAndBolts.scad>
@@ -13,14 +18,8 @@ use <utils/X_Rail.scad>
 use <vitamins/bolts.scad>
 use <vitamins/extrusion.scad>
 
-use <printed/PrintheadAssemblies.scad>
-use <printed/XY_MotorMount.scad>
-use <printed/XY_Idler.scad>
-use <printed/Y_CarriageAssemblies.scad>
-
-
+use <Parameters_Positions.scad>
 include <Parameters_Main.scad>
-include <Parameters_Positions.scad>
 
 
 module Face_Top_Stage_1_assembly()
@@ -56,7 +55,7 @@ assembly("Face_Top", big=true) {
         }
     fullPrinthead();
     explode(200, true)
-        xyBelts(carriagePosition);
+        xyBelts(carriagePosition());
 }
 
 module faceTopFront() {
@@ -116,11 +115,11 @@ assembly("Face_Left_Upper_Extrusion", big=true, ngb=true) {
         explode(-40, true) translate([1.5*eSize, _yRailLength/2, 0]) {
             rotate([180, 0, 90]) {
                 if (is_undef($hide_rails) || $hide_rails == false) {
-                    rail_assembly(yCarriageType(), _yRailLength, carriagePosition.y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
+                    rail_assembly(yCarriageType(), _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
                     railBoltsAndNuts(yRailType(), _yRailLength, 5);
                 }
                 explode(30, true)
-                    translate([carriagePosition.y - eSize - _yRailLength/2, 0, carriage_height(yCarriageType())])
+                    translate([carriagePosition().y - eSize - _yRailLength/2, 0, carriage_height(yCarriageType())])
                         Y_Carriage_Left_assembly();
             }
         }
@@ -142,11 +141,11 @@ assembly("Face_Right_Upper_Extrusion", big=true, ngb=true) {
             explode(-40, true)
                 rotate([180, 0, 90]) {
                     if (is_undef($hide_rails) || $hide_rails == false) {
-                        rail_assembly(yCarriageType(), _yRailLength, carriagePosition.y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
+                        rail_assembly(yCarriageType(), _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
                         railBoltsAndNuts(yRailType(), _yRailLength, 5);
                     }
                     explode(30, true)
-                        translate([carriagePosition.y - eSize - _yRailLength/2, 0, carriage_height(yCarriageType())])
+                        translate([carriagePosition().y - eSize - _yRailLength/2, 0, carriage_height(yCarriageType())])
                             Y_Carriage_Right_assembly();
                 }
     }

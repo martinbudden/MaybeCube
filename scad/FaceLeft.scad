@@ -3,15 +3,15 @@ include <global_defs.scad>
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
-include <Parameters_Main.scad>
-include <Parameters_Positions.scad>
-use <Parameters_CoreXY.scad>
-
 use <utils/FrameBolts.scad>
 use <utils/Z_Rods.scad>
 
 use <vitamins/extrusion.scad>
 use <vitamins/antiBacklashNut.scad>
+
+use <Parameters_CoreXY.scad>
+use <Parameters_Positions.scad>
+include <Parameters_Main.scad>
 
 
 //!1. On a flat surface, bolt the top, middle and lower extrusions into the left and right uprights as shown. Note

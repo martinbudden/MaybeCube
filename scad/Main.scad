@@ -17,6 +17,8 @@ include <NopSCADlib/core.scad>
 
 use <MainAssemblies.scad>
 
+include <Parameters_Main.scad>
+
 
 //!1. Attach the extruder and the spoolholder to the right face.
 //!
@@ -25,7 +27,8 @@ use <MainAssemblies.scad>
 //!3. Attach the polycarbonate sheet to the back of the print. Make sure everything is square before tightening the bolts.
 //!
 module main_assembly() assembly("main") {
-    FinalAssembly();
+    translate([-(2*eSize + eX)/2, -(2*eSize + eY)/2, basePlateHeight() - eZ/2])
+        FinalAssembly();
 }
 
 if ($preview) {

@@ -10,15 +10,15 @@ use <NopSCADlib/utils/tube.scad>
 use <NopSCADlib/vitamins/iec.scad>
 include <NopSCADlib/vitamins/spools.scad>
 
-include <Parameters_Main.scad>
-include <Parameters_Positions.scad>
-
-use <printed/SpoolHolder.scad>
-use <printed/IEC_Housing.scad>
 use <printed/ExtruderBracket.scad>
+use <printed/IEC_Housing.scad>
 use <utils/printheadOffsets.scad>
+use <printed/SpoolHolder.scad>
 
 use <vitamins/SidePanels.scad>
+
+use <Parameters_Positions.scad>
+include <Parameters_Main.scad>
 
 
 spoolHolderPosition = [eX + 2*eSize, eY/2, spoolHeight() + eSize];
@@ -49,7 +49,7 @@ module faceRightExtras() {
     // add the extruder, place it in the middle of the top right edge
     //startPos = [eX+2*eSize, eSize+eY/2, eZ] + Extruder_Bracket_assembly_bowdenOffset();
     //startPos = [eX + 2*eSize, eY-50, eZ-95] + Extruder_Bracket_assembly_bowdenOffset();
-    carriagePos = [carriagePosition.x, carriagePosition.y, eZ];
+    carriagePos = [carriagePosition().x, carriagePosition().y, eZ];
 
     explode([0, 200, 0])
         ptfeTube(extruderPosition() + Extruder_Bracket_assembly_bowdenOffset(),

@@ -3,20 +3,18 @@ include <global_defs.scad>
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
-include <Parameters_Main.scad>
-include <Parameters_Positions.scad>
+use <printed/X_CarriageAssemblies.scad>
+use <printed/Z_MotorMount.scad>
 
 use <utils/printParameters.scad>
 use <utils/xyBelts.scad>
 use <utils/X_Rail.scad>
 use <utils/Z_Rods.scad>
 
-use <printed/X_CarriageAssemblies.scad>
-use <printed/Z_MotorMount.scad>
-
-use <vitamins/PrintHeadBIQU_B1.scad>
 use <vitamins/AntiBacklashNut.scad>
 use <vitamins/extrusion.scad>
+use <vitamins/PrintHeadBIQU_B1.scad>
+use <vitamins/SidePanels.scad>
 
 use <BackFace.scad>
 use <BasePlate.scad>
@@ -26,7 +24,9 @@ use <FaceRightExtras.scad>
 use <FaceTop.scad>
 use <PrintBed.scad>
 
-include <vitamins/SidePanels.scad>
+use <Parameters_Positions.scad>
+include <Parameters_Main.scad>
+
 
 _poseMainAssembly = [90-15, 0, 90+15];
 
@@ -75,12 +75,12 @@ module staged_assembly(name, big, ngb) {
 //!
 module Stage_1_assembly() pose(a=_poseMainAssembly)
 staged_assembly("Stage_1", big=true, ngb=true) {
+
     Face_Left_assembly();
     zRods();
-    translate_z(_bedHeight) {
+    translate_z(bedHeight())
         explode([300, 0, 0])
             Printbed_assembly();
-    }
 }
 
 //!1. Slide the left face into the bottom plate assembly.
@@ -88,6 +88,7 @@ staged_assembly("Stage_1", big=true, ngb=true) {
 //!
 module Stage_2_assembly() pose(a=_poseMainAssembly)
 staged_assembly("Stage_2", big=true, ngb=true) {
+
     Stage_1_assembly();
     Base_Plate_assembly();
 }
@@ -97,6 +98,7 @@ staged_assembly("Stage_2", big=true, ngb=true) {
 //!
 module Stage_3_assembly() pose(a=_poseMainAssembly)
 staged_assembly("Stage_3", big=true, ngb=true) {
+
     Stage_2_assembly();
 
     explode([100, 0, 100], true) {
@@ -110,6 +112,7 @@ staged_assembly("Stage_3", big=true, ngb=true) {
 //!
 module Stage_4_assembly() pose(a=_poseMainAssembly)
 staged_assembly("Stage_4", big=true, ngb=true) {
+
     Stage_3_assembly();
     Back_Panel_assembly();
 }
@@ -120,6 +123,7 @@ staged_assembly("Stage_4", big=true, ngb=true) {
 //!
 module Stage_5_assembly()
 staged_assembly("Stage_5", big=true, ngb=true) {
+
     Stage_4_assembly();
     Face_Top_assembly();
 
@@ -129,6 +133,7 @@ staged_assembly("Stage_5", big=true, ngb=true) {
 //!
 module Stage_6_assembly()
 staged_assembly("Stage_6", big=true, ngb=true) {
+
     Stage_5_assembly();
 
     /*translate_z(eZ) {
@@ -149,11 +154,9 @@ staged_assembly("Stage_6", big=true, ngb=true) {
 
 module FinalAssembly() {
     // does not use assembly(""), since made into an assembly in Main.scad
-    translate([-(2*eSize + eX)/2, -(2*eSize + eY)/2, basePlateHeight() - eZ/2]) {
-        no_explode()
-            Stage_6_assembly();
-        faceRightSpool();
-        backPanelAssembly();
-        Left_Side_Panel_assembly();
-    }
+    no_explode()
+        Stage_6_assembly();
+    faceRightSpool();
+    backPanelAssembly();
+    Left_Side_Panel_assembly();
 }

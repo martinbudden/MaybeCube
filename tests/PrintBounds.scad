@@ -67,7 +67,7 @@ module PrintBounds_test() {
 
     PSUPosition()
         PSU();
-    *translate_z(_bedHeight)
+    *translate_z(bedHeight())
         Printbed_assembly();
     //zRods();
 

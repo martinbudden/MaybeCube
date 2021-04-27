@@ -27,13 +27,13 @@ module Y_Carriage_test0() {
         xyBelts(carriagePosition, x_gap = 20, show_pulleys = [1,0,0]);
     translate([coreXYPosBL().x, eSize + _yRailLength/2, 0]) {
         rotate([180, 0, 90]) {
-            translate([carriagePosition.y - eSize - _yRailLength/2, 0, carriage_height(yCarriageType)])
+            translate([carriagePosition().y - eSize - _yRailLength/2, 0, carriage_height(yCarriageType)])
                 Y_Carriage_Left_assembly();
         }
     }
     translate([eSize/2 + eX, eSize + _yRailLength/2, 0]) {
         rotate([180, 0, 90]) {
-            translate([carriagePosition.y - eSize - _yRailLength/2, 0, carriage_height(yCarriageType)])
+            translate([carriagePosition().y - eSize - _yRailLength/2, 0, carriage_height(yCarriageType)])
                 Y_Carriage_Right_assembly();
         }
     }

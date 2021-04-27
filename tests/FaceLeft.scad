@@ -27,7 +27,7 @@ module Face_Left_test() {
     Face_Left_assembly(); zRods();
     //Face_Right_assembly(); zRods(left=false);
     //Extruder_Bracket_assembly();
-    //translate_z(_bedHeight) Printbed_assembly();
+    //translate_z(bedHeight()) Printbed_assembly();
     //let($hide_corexy=true)
     //let($hide_extrusions=true)
     //Face_Top_assembly();

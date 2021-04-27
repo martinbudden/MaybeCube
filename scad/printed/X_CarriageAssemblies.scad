@@ -6,19 +6,20 @@ include <NopSCADlib/vitamins/belts.scad>
 include <NopSCADlib/vitamins/blowers.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
-use <../Parameters_CoreXY.scad>
-include <../Parameters_Main.scad>
-include <../Parameters_Positions.scad>
-
-use <../vitamins/bolts.scad>
-
 use <../utils/carriageTypes.scad>
 use <../utils/X_rail.scad>
+
+use <../vitamins/bolts.scad>
 
 //use <X_Carriage.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
 use <Printhead.scad>
 use <PrintheadAssemblies.scad>
+
+use <../Parameters_CoreXY.scad>
+use <../Parameters_Positions.scad>
+include <../Parameters_Main.scad>
+
 
 function blower_type() = is_undef(_blower_type) || _blower_type == 30 ? BL30x10 : BL40x10;
 
