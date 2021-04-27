@@ -7,23 +7,23 @@ use <NopSCADlib/printed/psu_shroud.scad>
 
 include <../Parameters_Main.scad>
 
-PSUtype = [for (i =[0 : len(S_300_12) - 1]) i==1 ? "Switching Power Supply 24V 15A 360W" : S_300_12[i] ];
+//PSUtype = [for (i =[0 : len(S_300_12) - 1]) i==1 ? "Switching Power Supply 24V 15A 360W" : S_300_12[i] ];
 
-function PSUtype() = PSUtype;
+function PSUtype() = S_300_12;//PSUtype;
 function PSUstandoffHeight() = 0;
 function psuShroudCableDiameter() = 8;
 function psuOffset(PSUtype) = [eSize + psu_width(PSUtype)/2, eY + 2*eSize, psu_length(PSUtype)/2 + 2*eSize + 15];
 
 module PSUBoltPositions() {//! Position children at the bolt positions on the bottom face
     rotate(180)
-        for (pos = psu_face_holes(psu_faces(PSUtype)[f_bottom]))
-            translate([pos.x, pos.y + psu_right_bay(PSUtype), 0])
+        for (pos = psu_face_holes(psu_faces(PSUtype())[f_bottom]))
+            translate([pos.x, pos.y + psu_right_bay(PSUtype()), 0])
                 children();
 }
 
 module PSUPosition(psuOnBase=false) {
     type = PSUtype();
-    psuSize = [psu_length(type), psu_width(type), psu_height(type)];
+    psuSize = psu_size(type);
     psuShroudWall = 1.8;
     psuOffsetZ = 2*eSize + psuShroudWall;
 
@@ -49,7 +49,8 @@ module PSU() {
     translate_z(PSUstandoffHeight())
         rotate(180)
             if (is_undef($hide_psu) || $hide_psu == false) {
-                not_on_reduced_bom() psu(PSUtype());
+                not_on_reduced_bom()  vitamin(str(": LED Switching Power Supply 24V 15A 360W"));
+                not_on_bom() psu(PSUtype());
                 thickness = 3.5;
                 *mirror([0, 1, 0])
                     psu_shroud_assembly(PSUtype(), psuShroudCableDiameter(), PSUtype()[0], inserts=false);
