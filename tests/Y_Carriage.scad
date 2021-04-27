@@ -6,15 +6,13 @@ include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
 use <../scad/printed/Y_CarriageAssemblies.scad>
+
 use <../scad/utils/xyBelts.scad>
 use <../scad/utils/X_Rail.scad>
 
-include <../scad/Parameters_Main.scad>
-include <../scad/Parameters_Positions.scad>
-
 use <../scad/Parameters_CoreXY.scad>
-
-
+use <../scad/Parameters_Positions.scad>
+include <../scad/Parameters_Main.scad>
 
 
 yCarriageType = MGN12H_carriage;
@@ -24,7 +22,7 @@ rail_type = MGN12;
 //$pose = 1;
 module Y_Carriage_test0() {
     translate_z(-eZ + eSize)
-        xyBelts(carriagePosition, x_gap = 20, show_pulleys = [1,0,0]);
+        xyBelts(carriagePosition(), x_gap = 20, show_pulleys = [1,0,0]);
     translate([coreXYPosBL().x, eSize + _yRailLength/2, 0]) {
         rotate([180, 0, 90]) {
             translate([carriagePosition().y - eSize - _yRailLength/2, 0, carriage_height(yCarriageType)])

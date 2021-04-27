@@ -2,19 +2,22 @@
 
 include <NopSCADlib/core.scad>
 
-include <../scad/Parameters_Main.scad>
-include <../scad/Parameters_Positions.scad>
+use <../scad/printed/extruderBracket.scad>
+use <../scad/printed/IEC_Housing.scad>
 
 use <../scad/utils/Z_Rods.scad>
 use <../scad/utils/xyBelts.scad>
+
 use <../scad/vitamins/SidePanels.scad>
 
 use <../scad/FaceRight.scad>
 use <../scad/FaceRightExtras.scad>
 use <../scad/FaceLeft.scad>
 use <../scad/FaceTop.scad>
-use <../scad/printed/extruderBracket.scad>
-use <../scad/printed/IEC_Housing.scad>
+
+use <../scad/Parameters_Positions.scad>
+include <../scad/Parameters_Main.scad>
+
 
 //$explode = 1;
 //$pose = 1;

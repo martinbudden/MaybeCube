@@ -2,17 +2,20 @@
 
 include <NopSCADlib/core.scad>
 
-use <../scad/FaceTop.scad>
 use <../scad/printed/extruderBracket.scad>
+
 use <../scad/utils/xyBelts.scad>
 
+use <../scad/FaceTop.scad>
+
+use <../scad/Parameters_Positions.scad>
 include <../scad/Parameters_Main.scad>
-include <../scad/Parameters_Positions.scad>
+
 
 //$explode = 1;
 //$pose = 1;
 module Face_Top_test() {
-    xyBelts(carriagePosition, show_pulleys=[1, 0, 0]);
+    xyBelts(carriagePosition(), show_pulleys=[1, 0, 0]);
 
     //let($hide_extrusions=true)
     //let($hide_rails=true)

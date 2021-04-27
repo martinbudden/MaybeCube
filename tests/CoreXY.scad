@@ -21,9 +21,9 @@ use <../scad/utils/X_Rail.scad>
 use <../scad/vitamins/extrusion.scad>
 use <../scad/vitamins/bolts.scad>
 
-include <../scad/Parameters_Main.scad>
-include <../scad/Parameters_Positions.scad>
 use <../scad/Parameters_CoreXY.scad>
+use <../scad/Parameters_Positions.scad>
+include <../scad/Parameters_Main.scad>
 
 
 //use <../scad/vitamins/PrintHeadBIQU_B1.scad>
@@ -41,7 +41,7 @@ module CoreXY_test() {
 
     NEMA_width = _xyNemaType == "14" ? 35.2 : 42.3;
     coreXYSize = coreXYPosTR(NEMA_width) - coreXYPosBL();
-    xyBelts(carriagePosition, x_gap = 20, show_pulleys = [1, 0, 0]);
+    xyBelts(carriagePosition(), x_gap = 20, show_pulleys = [1, 0, 0]);
     fullPrinthead();
 
 //    translate_z(eZ-eSize)

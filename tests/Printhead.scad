@@ -3,12 +3,13 @@
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
-use <../scad/printed/X_CarriageAssemblies.scad>
 use <../scad/printed/PrintheadAssemblies.scad>
+use <../scad/printed/X_CarriageAssemblies.scad>
 
-include <../scad/Parameters_Main.scad>
-include <../scad/Parameters_Positions.scad>
 use <../scad/Parameters_CoreXY.scad>
+use <../scad/Parameters_Positions.scad>
+include <../scad/Parameters_Main.scad>
+
 
 function  blzX(yCarriageType) = coreXYSeparation().z + yRailSupportThickness() + yCarriageThickness() + carriage_height(yCarriageType);
 function  blz(yCarriageType) = yCarriageThickness() + carriage_height(yCarriageType);

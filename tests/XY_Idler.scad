@@ -1,8 +1,11 @@
 //!Display the left and right idlers.
 
 include <NopSCADlib/core.scad>
+
 use <../scad/printed/XY_Idler.scad>
+
 include <../scad/Parameters_Main.scad>
+
 
 //$pose = 1;
 //$explode = 1;

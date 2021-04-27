@@ -32,21 +32,23 @@ move motors to back, ie swap left and right face arrangement
 
 include <NopSCADlib/core.scad>
 
-include <../scad/Parameters_Main.scad>
-include <../scad/Parameters_Positions.scad>
-use <../scad/Parameters_CoreXY.scad>
+use <../scad/printed/PSU.scad>
 
 use <../scad/utils/printParameters.scad>
 use <../scad/utils/xyBelts.scad>
 use <../scad/utils/X_Rail.scad>
 
-use <../scad/printed/PSU.scad>
 use <../scad/vitamins/PrintHeadBIQU_B1.scad>
 
 use <../scad/BasePlate.scad>
 use <../scad/FaceLeft.scad>
 use <../scad/FaceRight.scad>
 use <../scad/PrintBed.scad>
+
+use <../scad/Parameters_CoreXY.scad>
+use <../scad/Parameters_Positions.scad>
+include <../scad/Parameters_Main.scad>
+
 
 //$explode = 1;
 //$pose = 1;
@@ -71,7 +73,7 @@ module PrintBounds_test() {
         Printbed_assembly();
     //zRods();
 
-    xyBelts(carriagePosition, x_gap = 0, show_pulleys = !false);
+    xyBelts(carriagePosition(), x_gap = 0, show_pulleys = !false);
     translate_z(eZ) {
         xRail();
         //xRailCarriagePosition()

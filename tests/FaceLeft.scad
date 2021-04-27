@@ -13,8 +13,9 @@ use <../scad/FaceRight.scad>
 use <../scad/FaceTop.scad>
 use <../scad/PrintBed.scad>
 
+use <../scad/Parameters_Positions.scad>
 include <../scad/Parameters_Main.scad>
-include <../scad/Parameters_Positions.scad>
+
 
 //$explode = 1;
 //$pose = 1;

@@ -4,13 +4,15 @@ include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/d_connectors.scad>
 include <NopSCADlib/vitamins/pcbs.scad>
 
+use <../scad/printed/BaseFoot.scad>
+use <../scad/printed/ControlPanel.scad>
+use <../scad/printed/PSU.scad>
+
 use <../scad/BasePlate.scad>
 use <../scad/FaceLeft.scad>
 use <../scad/FaceRight.scad>
 use <../scad/FaceRightExtras.scad>
-use <../scad/printed/ControlPanel.scad>
-use <../scad/printed/PSU.scad>
-use <../scad/printed/BaseFoot.scad>
+
 include <../scad/vitamins/pcbs.scad>
 
 

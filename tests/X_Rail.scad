@@ -1,8 +1,11 @@
 //!Display the x axis linear rail.
 
-use <../scad/utils/X_Rail.scad>
 include <../scad/global_defs.scad>
+
+use <../scad/utils/X_Rail.scad>
+
 include <../scad/Parameters_Main.scad>
+
 
 //$explode = 1;
 module xRail_test() {

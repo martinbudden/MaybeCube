@@ -6,8 +6,9 @@ use <../scad/MainAssemblies.scad>
 use <../scad/utils/printParameters.scad>
 use <../scad/utils/xyBelts.scad>
 
+use <../scad/Parameters_Positions.scad>
 include <../scad/Parameters_Main.scad>
-include <../scad/Parameters_Positions.scad>
+
 
 //$pose = 1;
 //$explode = 1;

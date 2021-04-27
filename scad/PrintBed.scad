@@ -12,13 +12,11 @@ use <printed/Z_Carriage.scad>
 use <vitamins/AntiBacklashNut.scad>
 use <vitamins/bolts.scad>
 use <vitamins/extrusion.scad>
+use <vitamins/extrusionBracket.scad>
 use <vitamins/HeatedBedLevelingKnob.scad>
 use <vitamins/nuts.scad>
 
 include <Parameters_Main.scad>
-
-use <vitamins/extrusionBracket.scad>
-
 
 
 springDiameter = 8;
