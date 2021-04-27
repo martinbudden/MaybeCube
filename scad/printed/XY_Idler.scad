@@ -215,7 +215,7 @@ module XY_Idler_Right_stl() {
 }
 
 module XY_Idler_Left_assembly() pose(a=[70, 0, -180+60])
-assembly("XY_Idler_Left, ngb=true") {
+assembly("XY_Idler_Left", ngb=true) {
 
     translate([eSize, 0, 0]) {
         rotate([0, 90, 90])
