@@ -1,0 +1,109 @@
+include <../global_defs.scad>
+
+include <NopSCADlib/core.scad>
+
+use <../../../BabyCube/scad/printed/SpoolHolder.scad>
+
+function spoolOffset() = [17.5 + 3, 0, 7];
+
+module Spool_Holder_stl() {
+    eSize = 20;
+
+    stl("Spool_Holder")
+        color(pp1_colour)
+            spoolHolder(bracketSize = [eSize, 2*eSize, 20], offsetX = spoolOffset().x);
+}
+
+//use <NopSCADlib/utils/fillet.scad>
+//include <NopSCADlib/vitamins/spools.scad>
+
+//include <../vitamins/nuts.scad>
+//include <../vitamins/bolts.scad>
+
+//include <../Parameters_Main.scad>
+
+/*module spoolHolderCap(eSize, length=80) {
+    radius = eSize*sin(45);
+    x = radius*sin(45);
+    translate([0, -x, 0])
+        linear_extrude(length)
+            difference() {
+                circle(r=radius);
+                translate([-eSize, -2*x])
+                    square([2*eSize, 3*x]);
+            }
+}
+//function spoolHolderSize() = [20, 40, 115];
+
+
+module spoolHolderBracket(eSize, bracketThickness) {
+    topThickness = bracketThickness + 2;
+    difference() {
+        cube([eSize, eSize, bracketThickness]);
+        translate([eSize, 0, 0])
+            rotate([0, -90, 0])
+                fillet(1, eSize);
+        translate([0, 0, bracketThickness])
+            rotate([0, 90, 0])
+                fillet(1, eSize);
+    }
+    translate([0, 0, eSize+bracketThickness])
+        difference() {
+            cube([eSize, eSize, bracketThickness]);
+            translate([eSize, 0, 0])
+                rotate([0, -90, 0])
+                    fillet(1, eSize);
+    }
+    translate([0, eSize, 0])
+        difference() {
+            cube([eSize, topThickness, eSize+2*bracketThickness]);
+            //translate([eSize/2, topThickness+eps, eSize/2+bracketThickness])
+                //rotate([90, -90, 0])
+                    //boltHoleM4(bracketThickness);
+                    //vertical_tearslot(bracketThickness+2+2*eps, M4_clearance_radius, center=false, chamfer=0.5);
+            translate([0, topThickness, 0])
+                rotate([0, -90, 180])
+                    fillet(1, eSize);
+        }
+    translate([0, eSize+topThickness, eSize+bracketThickness])
+        rotate([0, 90, 0])
+            fillet(2, eSize);
+}
+
+module Spool_Holder_stl() {
+    stl("Spool_Holder");
+
+    bracketThickness = 5;
+    color(pp1_colour) rotate([0, 90, 0]) {
+        spoolHolderBracket(eSize, bracketThickness);
+        translate_z(eSize + bracketThickness) {
+            length = 90;
+            translate([0, eSize, 0])
+                cube([eSize, bracketThickness, length]);
+            translate([eSize/2, eSize+bracketThickness, 0])
+                spoolHolderCap(eSize, length);
+            translate([0, eSize, bracketThickness])
+                rotate([0, -90, 180])
+                    //rightTriangle3d([length-bracketThickness, eSize, eSize]);
+                    right_triangle(length - bracketThickness, eSize, eSize, center=false);
+            endHeight = 15;
+            for (z=[0, length-bracketThickness])
+                translate([0, eSize+bracketThickness, z])
+                    cube([eSize, endHeight, bracketThickness]);
+            for (z=[0, length-bracketThickness])
+                translate([eSize/2, eSize+bracketThickness+endHeight, z])
+                    spoolHolderCap(eSize, bracketThickness);
+        }
+    }
+    thumbScrewLength = 12;
+    *if ($preview)
+        translate([15, eSize+bracketThickness+2, -spoolHolderSize().x/2])
+            rotate([90, 0, 0]) {
+                explode(-40)
+                    boltM4Thumbscrew(thumbScrewLength);
+                explode(10)
+                    translate_z(thumbScrewLength-5)
+                        nutM4Hammer();
+            }
+}
+*/
