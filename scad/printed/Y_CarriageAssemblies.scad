@@ -57,8 +57,8 @@ assembly("Y_Carriage_Left", ngb=true) {
     rotate(90) {
         stl_colour(pp2_colour)
             Y_Carriage_Left_stl();
-        stl_colour(pp1_colour)
-            translate_z(yCarriageThickness() + pulleyStackHeight())
+        translate_z(yCarriageThickness() + pulleyStackHeight())
+            stl_colour(pp1_colour)
                 Y_Carriage_Brace_Left_stl();
         Y_Carriage_hardware(yCarriageType, yCarriageThickness(), yCarriageBraceThickness(), left=true, pulleyOffset=pulleyOffset());
     }
@@ -70,8 +70,8 @@ assembly("Y_Carriage_Right", ngb=true) {
     rotate(-90) {
         stl_colour(pp2_colour)
             Y_Carriage_Right_stl();
-        stl_colour(pp1_colour)
-            translate_z(yCarriageThickness() + pulleyStackHeight())
+        translate_z(yCarriageThickness() + pulleyStackHeight())
+            stl_colour(pp1_colour)
                 Y_Carriage_Brace_Right_stl();
         Y_Carriage_hardware(yCarriageType, yCarriageThickness(), yCarriageBraceThickness(), left=false, pulleyOffset=pulleyOffset());
     }

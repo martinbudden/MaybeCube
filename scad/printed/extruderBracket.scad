@@ -147,7 +147,7 @@ assembly("Extruder_Bracket", ngb=true) {
 
     Extruder_Bracket_hardware(_corkDamperThickness);
 
-    stl_colour(pp1_colour)
-        rotate([0, 90, 0])
+    rotate([0, 90, 0])
+        stl_colour(pp1_colour)
             Extruder_Bracket_stl();
 }

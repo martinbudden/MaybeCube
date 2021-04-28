@@ -18,7 +18,6 @@ module IEC_Housing_stl() {
     size = iecHousingSize();
     fillet = 2;
     cutoutSize = [size.x - 10, 27.5];
-    iec = iec320c14FusedSwitchedType();
     baseThickness = 3;
 
     stl("IEC_Housing")
@@ -42,7 +41,7 @@ module IEC_Housing_stl() {
                         }
                     rotate(90)
                         translate_z(size.z)
-                            iec_screw_positions(iec)
+                            iec_screw_positions(iecType())
                                 vflip()
                                     boltHoleM4Tap(10);
                     cableCutoutSize = [8, (size.y-cutoutSize.y)/2 + 2*eps, 8];
@@ -52,20 +51,18 @@ module IEC_Housing_stl() {
         }
 }
 
-module IEC_assembly()
-assembly("IEC", ngb=true) {
-    iec = iec320c14FusedSwitchedType();
+module IEC_housing() {
     iecHousingSize = iecHousingSize();
     sidePanelSizeZ = 3;
 
-    stl_colour(pp1_colour)
-        translate([eX + 2*eSize - iecHousingSize.z, eY + eSize - iecHousingSize.x, 2*eSize])
-            rotate([90, 0, 90])
+    translate([eX + 2*eSize - iecHousingSize.z, eY + eSize - iecHousingSize.x, 2*eSize])
+        rotate([90, 0, 90])
+            stl_colour(pp1_colour)
                 IEC_Housing_stl();
     translate([eX + 2*eSize + sidePanelSizeZ + 2*eps, eY + eSize - iecHousingSize.x/2, 2*eSize + iecHousingSize.y/2])
         rotate([0, 90, 0]) {
             iec320c14FusedSwitched();
-                iec_screw_positions(iec)
+                iec_screw_positions(iecType())
                     translate_z(sidePanelSizeZ)
                         boltM4Buttonhead(12);
         }
@@ -108,9 +105,9 @@ module IEC_Housing_Mount_stl() {
 module IEC_Housing_Mount_assembly()
 assembly("IEC_Housing_Mount") {
 
-    stl_colour(pp2_colour)
-        translate([eX + 2*eSize, eY + eSize - iecHousingSize().x, 2*eSize])
-            rotate([90, 0, 90])
+    translate([eX + 2*eSize, eY + eSize - iecHousingSize().x, 2*eSize])
+        rotate([90, 0, 90])
+            stl_colour(pp2_colour)
                 IEC_Housing_Mount_stl();
 }
 
