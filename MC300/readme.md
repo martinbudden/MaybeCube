@@ -2,6 +2,10 @@
 
 # MaybeCube Assembly Instructions
 
+These are the assembly instructions for the MaybeCube. These instructions are not fully comprehensive, that is they do
+not show every small detail of the construction and in particular they do not show the wiring. However there is sufficient
+detail that someone with a good understanding of 3D printers can build the MaybeCube.
+
 ![Main Assembly](assemblies/main_assembled.png)
 ## Part substitutions - read this before you order parts
 
@@ -13,7 +17,6 @@
   350mm extrusions. However the y-axis linear rails can be the same length as the extrusions, so 350mm linear rails could be
   used with 350mm extrusions. There is no such flexibility in the x-axis, however.
 
-
 <span></span>
 
 ---
@@ -23,7 +26,6 @@
 1. [Parts list](#Parts_list)
 
 1. [Left_Side_Panel assembly](#Left_Side_Panel_assembly)
-1. [IEC assembly](#IEC_assembly)
 1. [Right_Side_Panel assembly](#Right_Side_Panel_assembly)
 1. [X_Carriage assembly](#X_Carriage_assembly)
 1. [Printhead assembly](#Printhead_assembly)
@@ -33,13 +35,13 @@
 1. [XY_Motor_Mount_Left assembly](#XY_Motor_Mount_Left_assembly)
 1. [XY_Idler_Left assembly](#XY_Idler_Left_assembly)
 1. [Y_Carriage_Right assembly](#Y_Carriage_Right_assembly)
-1. [Face_Right_Upper_Extrusion assembly](#Face_Right_Upper_Extrusion_assembly)
+1. [Right_Side_Upper_Extrusion assembly](#Right_Side_Upper_Extrusion_assembly)
 1. [Y_Carriage_Left assembly](#Y_Carriage_Left_assembly)
-1. [Face_Left_Upper_Extrusion assembly](#Face_Left_Upper_Extrusion_assembly)
+1. [Left_Side_Upper_Extrusion assembly](#Left_Side_Upper_Extrusion_assembly)
 1. [Face_Top_Stage_1 assembly](#Face_Top_Stage_1_assembly)
 1. [Face_Top assembly](#Face_Top_assembly)
 1. [Back_Panel assembly](#Back_Panel_assembly)
-1. [Face_Right assembly](#Face_Right_assembly)
+1. [Right_Side assembly](#Right_Side_assembly)
 1. [Display_Cover_TFT35_E3 assembly](#Display_Cover_TFT35_E3_assembly)
 1. [Display_Housing_TFT35_E3 assembly](#Display_Housing_TFT35_E3_assembly)
 1. [Base_Plate assembly](#Base_Plate_assembly)
@@ -49,7 +51,7 @@
 1. [Printbed_Frame_with_Z_Carriages assembly](#Printbed_Frame_with_Z_Carriages_assembly)
 1. [Printbed assembly](#Printbed_assembly)
 1. [Z_Motor_Mount assembly](#Z_Motor_Mount_assembly)
-1. [Face_Left assembly](#Face_Left_assembly)
+1. [Left_Side assembly](#Left_Side_assembly)
 1. [Main assembly](#main_assembly)
 
 <span></span>
@@ -61,7 +63,7 @@
 ## Parts list
 
 
-| <span style="writing-mode: vertical-rl; text-orientation: mixed;">Printhead</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">X Carriage Front</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Face Top</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Back Panel</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Face Right</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Display Housing TFT35 E3</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Printbed</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Face Left</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Main</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">TOTALS</span> |  |
+| <span style="writing-mode: vertical-rl; text-orientation: mixed;">Printhead</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">X Carriage Front</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Face Top</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Back Panel</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Right Side</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Display Housing TFT35 E3</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Printbed</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Left Side</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Main</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">TOTALS</span> |  |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|:---|
 |  |  |  |  |  |  |  |  |  | | **Vitamins** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |    Aluminium sheet 340mm x 340mm x 3mm |
@@ -204,36 +206,6 @@
 [Top](#TOP)
 
 ---
-<a name="IEC_assembly"></a>
-
-## IEC assembly
-
-### Vitamins
-
-|Qty|Description|
-|---:|:----------|
-|2| Bolt M4 buttonhead x 12mm|
-|1| IEC320 C14 switched fused inlet module|
-
-
-### 3D Printed parts
-
-| 1 x IEC_Housing.stl |
-|---|
-| ![IEC_Housing.stl](stls/IEC_Housing.png) 
-
-
-
-### Assembly instructions
-
-![IEC_assembly](assemblies/IEC_assembly_tn.png)
-
-![IEC_assembled](assemblies/IEC_assembled_tn.png)
-
-<span></span>
-[Top](#TOP)
-
----
 <a name="Right_Side_Panel_assembly"></a>
 
 ## Right_Side_Panel assembly
@@ -245,7 +217,9 @@
 |2| Bolt M3 buttonhead x  8mm|
 |2| Bolt M3 buttonhead x 16mm|
 |16| Bolt M4 buttonhead x  8mm|
+|2| Bolt M4 buttonhead x 12mm|
 |1| Cork damper NEMA 17|
+|1| IEC320 C14 switched fused inlet module|
 |1| MK10 Dual Pulley Extruder|
 |16| Nut M4 hammer|
 |2| Pillar hex nylon F/F M3x12|
@@ -255,19 +229,19 @@
 |1| filament sensor|
 
 
+### 3D Printed parts
+
+| 1 x IEC_Housing.stl |
+|---|
+| ![IEC_Housing.stl](stls/IEC_Housing.png) 
+
+
+
 ### CNC Routed parts
 
 | 1 x Right_Side_Panel.dxf |
 |---|
 | ![Right_Side_Panel.dxf](dxfs/Right_Side_Panel.png) 
-
-
-
-### Sub-assemblies
-
-| 1 x IEC_assembly |
-|---|
-| ![IEC_assembled](assemblies/IEC_assembled_tn.png) 
 
 
 
@@ -572,9 +546,9 @@
 [Top](#TOP)
 
 ---
-<a name="Face_Right_Upper_Extrusion_assembly"></a>
+<a name="Right_Side_Upper_Extrusion_assembly"></a>
 
-## Face_Right_Upper_Extrusion assembly
+## Right_Side_Upper_Extrusion assembly
 
 ### Vitamins
 
@@ -598,9 +572,9 @@
 
 ### Assembly instructions
 
-![Face_Right_Upper_Extrusion_assembly](assemblies/Face_Right_Upper_Extrusion_assembly.png)
+![Right_Side_Upper_Extrusion_assembly](assemblies/Right_Side_Upper_Extrusion_assembly.png)
 
-![Face_Right_Upper_Extrusion_assembled](assemblies/Face_Right_Upper_Extrusion_assembled.png)
+![Right_Side_Upper_Extrusion_assembled](assemblies/Right_Side_Upper_Extrusion_assembled.png)
 
 <span></span>
 [Top](#TOP)
@@ -640,9 +614,9 @@
 [Top](#TOP)
 
 ---
-<a name="Face_Left_Upper_Extrusion_assembly"></a>
+<a name="Left_Side_Upper_Extrusion_assembly"></a>
 
-## Face_Left_Upper_Extrusion assembly
+## Left_Side_Upper_Extrusion assembly
 
 ### Vitamins
 
@@ -666,9 +640,9 @@
 
 ### Assembly instructions
 
-![Face_Left_Upper_Extrusion_assembly](assemblies/Face_Left_Upper_Extrusion_assembly.png)
+![Left_Side_Upper_Extrusion_assembly](assemblies/Left_Side_Upper_Extrusion_assembly.png)
 
-![Face_Left_Upper_Extrusion_assembled](assemblies/Face_Left_Upper_Extrusion_assembled.png)
+![Left_Side_Upper_Extrusion_assembled](assemblies/Left_Side_Upper_Extrusion_assembled.png)
 
 <span></span>
 [Top](#TOP)
@@ -690,9 +664,9 @@
 
 ### Sub-assemblies
 
-| 1 x Face_Left_Upper_Extrusion_assembly | 1 x Face_Right_Upper_Extrusion_assembly | 1 x XY_Idler_Left_assembly |
+| 1 x Left_Side_Upper_Extrusion_assembly | 1 x Right_Side_Upper_Extrusion_assembly | 1 x XY_Idler_Left_assembly |
 |---|---|---|
-| ![Face_Left_Upper_Extrusion_assembled](assemblies/Face_Left_Upper_Extrusion_assembled_tn.png) | ![Face_Right_Upper_Extrusion_assembled](assemblies/Face_Right_Upper_Extrusion_assembled_tn.png) | ![XY_Idler_Left_assembled](assemblies/XY_Idler_Left_assembled_tn.png) 
+| ![Left_Side_Upper_Extrusion_assembled](assemblies/Left_Side_Upper_Extrusion_assembled_tn.png) | ![Right_Side_Upper_Extrusion_assembled](assemblies/Right_Side_Upper_Extrusion_assembled_tn.png) | ![XY_Idler_Left_assembled](assemblies/XY_Idler_Left_assembled_tn.png) 
 
 
 | 1 x XY_Idler_Right_assembly | 1 x XY_Motor_Mount_Left_assembly | 1 x XY_Motor_Mount_Right_assembly |
@@ -788,9 +762,9 @@
 [Top](#TOP)
 
 ---
-<a name="Face_Right_assembly"></a>
+<a name="Right_Side_assembly"></a>
 
-## Face_Right assembly
+## Right_Side assembly
 
 ### Vitamins
 
@@ -803,7 +777,7 @@
 
 ### Assembly instructions
 
-![Face_Right_assembly](assemblies/Face_Right_assembly.png)
+![Right_Side_assembly](assemblies/Right_Side_assembly.png)
 
 1. On a flat surface, bolt the top, middle and lower extrusions into the left and right uprights as shown.
 
@@ -813,8 +787,7 @@ and move on to the next bolt, making several circuits of the frame to get all th
 
 3. Once the frame is square and tightened, align the motor mount and idler with the top extrusion and tighten them in place.
 
-
-![Face_Right_assembled](assemblies/Face_Right_assembled.png)
+![Right_Side_assembled](assemblies/Right_Side_assembled.png)
 
 <span></span>
 [Top](#TOP)
@@ -1049,7 +1022,6 @@ zCarriageLeft assembly instructions.
 
 2. Ensure the Z carriages are square and aligned with the end of the frame and then tighten the bolts.
 
-
 ![Printbed_Frame_with_Z_Carriages_assembled](assemblies/Printbed_Frame_with_Z_Carriages_assembled.png)
 
 <span></span>
@@ -1082,7 +1054,6 @@ zCarriageLeft assembly instructions.
 1. With the heatbed upside down, place the bolts through the heatbed and place the springs over the bolts.
 
 2. Thread the bolts through the frame and add the adjusting wheels, tightening them to mid position, to allow later adjustments.
-
 
 ![Printbed_assembled](assemblies/Printbed_assembled.png)
 
@@ -1126,9 +1097,9 @@ zCarriageLeft assembly instructions.
 [Top](#TOP)
 
 ---
-<a name="Face_Left_assembly"></a>
+<a name="Left_Side_assembly"></a>
 
-## Face_Left assembly
+## Left_Side assembly
 
 ### Vitamins
 
@@ -1160,7 +1131,7 @@ zCarriageLeft assembly instructions.
 
 ### Assembly instructions
 
-![Face_Left_assembly](assemblies/Face_Left_assembly.png)
+![Left_Side_assembly](assemblies/Left_Side_assembly.png)
 
 1. On a flat surface, bolt the top, middle and lower extrusions into the left and right uprights as shown. Note
 that the lower extrusion is 2020 extrusion, this is to allow access to the power supply and mainboard.
@@ -1171,8 +1142,7 @@ and move on to the next bolt, making several circuits of the frame to get all th
 
 3. Once the frame is square and tightened, align the motor mount and idler with the top extrusion and tighten them in place.
 
-
-![Face_Left_assembled](assemblies/Face_Left_assembled.png)
+![Left_Side_assembled](assemblies/Left_Side_assembled.png)
 
 <span></span>
 [Top](#TOP)
@@ -1199,19 +1169,19 @@ and move on to the next bolt, making several circuits of the frame to get all th
 
 ### Sub-assemblies
 
-| 1 x Back_Panel_assembly | 1 x Base_Plate_assembly | 1 x Face_Left_assembly |
+| 1 x Back_Panel_assembly | 1 x Base_Plate_assembly | 1 x Face_Top_assembly |
 |---|---|---|
-| ![Back_Panel_assembled](assemblies/Back_Panel_assembled_tn.png) | ![Base_Plate_assembled](assemblies/Base_Plate_assembled_tn.png) | ![Face_Left_assembled](assemblies/Face_Left_assembled_tn.png) 
+| ![Back_Panel_assembled](assemblies/Back_Panel_assembled_tn.png) | ![Base_Plate_assembled](assemblies/Base_Plate_assembled_tn.png) | ![Face_Top_assembled](assemblies/Face_Top_assembled_tn.png) 
 
 
-| 1 x Face_Right_assembly | 1 x Face_Top_assembly | 1 x Left_Side_Panel_assembly |
+| 1 x Left_Side_Panel_assembly | 1 x Left_Side_assembly | 1 x Printbed_assembly |
 |---|---|---|
-| ![Face_Right_assembled](assemblies/Face_Right_assembled_tn.png) | ![Face_Top_assembled](assemblies/Face_Top_assembled_tn.png) | ![Left_Side_Panel_assembled](assemblies/Left_Side_Panel_assembled_tn.png) 
+| ![Left_Side_Panel_assembled](assemblies/Left_Side_Panel_assembled_tn.png) | ![Left_Side_assembled](assemblies/Left_Side_assembled_tn.png) | ![Printbed_assembled](assemblies/Printbed_assembled_tn.png) 
 
 
-| 1 x Printbed_assembly | 1 x Right_Side_Panel_assembly |
+| 1 x Right_Side_Panel_assembly | 1 x Right_Side_assembly |
 |---|---|
-| ![Printbed_assembled](assemblies/Printbed_assembled_tn.png) | ![Right_Side_Panel_assembled](assemblies/Right_Side_Panel_assembled_tn.png) 
+| ![Right_Side_Panel_assembled](assemblies/Right_Side_Panel_assembled_tn.png) | ![Right_Side_assembled](assemblies/Right_Side_assembled_tn.png) 
 
 
 
@@ -1224,7 +1194,6 @@ and move on to the next bolt, making several circuits of the frame to get all th
 2. Connect the Bowden tube between the extruder and the printhead.
 
 3. Attach the polycarbonate sheet to the back of the print. Make sure everything is square before tightening the bolts.
-
 
 ![main_assembled](assemblies/main_assembled.png)
 
