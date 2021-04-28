@@ -83,7 +83,7 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |    Bolt M3 caphead x 20mm |
 |   .  |   .  |   2  |   .  |   .  |   4  |   .  |   .  |   .  |    6  |    Bolt M3 caphead x 25mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |    Bolt M3 caphead x 30mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   40  |    40  |    Bolt M4 buttonhead x  8mm |
+|   .  |   .  |   .  |   20  |   .  |   .  |   .  |   .  |   40  |    60  |    Bolt M4 buttonhead x  8mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |    Bolt M4 buttonhead x 10mm |
 |   .  |   .  |   12  |   .  |   .  |   .  |   4  |   12  |   10  |    38  |    Bolt M4 buttonhead x 12mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |    Bolt M5 buttonhead x 10mm |
@@ -111,7 +111,7 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |    M3 self tapping screw x 16mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |    MK10 Dual Pulley Extruder |
 |   .  |   .  |   16  |   .  |   .  |   .  |   .  |   .  |   .  |    16  |    Nut M3 hammer |
-|   .  |   .  |   12  |   .  |   .  |   .  |   .  |   .  |   48  |    60  |    Nut M4 hammer |
+|   .  |   .  |   12  |   16  |   .  |   .  |   .  |   .  |   48  |    76  |    Nut M4 hammer |
 |   .  |   .  |   .  |   .  |   .  |   .  |   4  |   12  |   .  |    16  |    Nut M4 sliding T |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |    Pillar hex nylon F/F M3x12 |
 |   .  |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |    Pillar hex nylon F/F M3x20 |
@@ -133,7 +133,7 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |    Washer  M4 |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |    Ziptie 2.5mm x 100mm min length |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |    filament sensor |
-|   19  |   6  |   168  |   15  |   12  |   9  |   24  |   49  |   129  |   431  |   Total vitamins count |
+|   19  |   6  |   168  |   51  |   12  |   9  |   24  |   49  |   129  |   467  |   Total vitamins count |
 |  |  |  |  |  |  |  |  |  | | **3D printed parts** |
 |   2  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |   Belt_Clamp.stl |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |   Belt_Tensioner.stl |
@@ -731,7 +731,9 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |1| BigTreeTech SKR v1.4 Turbo|
 |4| Bolt M3 buttonhead x 10mm|
 |4| Bolt M3 caphead x  6mm|
+|20| Bolt M4 buttonhead x  8mm|
 |1| LED Switching Power Supply 24V 15A 360W|
+|16| Nut M4 hammer|
 |4| Pillar hex nylon F/F M3x20|
 |1| Sheet polycarbonate 340mm x 400mm x 3mm|
 
