@@ -321,7 +321,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
 //!1. Slide the Z carriages onto the frame as shown.
 //!
 //!2. Ensure the Z carriages are square and aligned with the end of the frame and then tighten the bolts.
-//!
+//
 module Printbed_Frame_with_Z_Carriages_assembly()
 assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
 
@@ -353,7 +353,7 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
 //!1. With the heatbed upside down, place the bolts through the heatbed and place the springs over the bolts.
 //!
 //!2. Thread the bolts through the frame and add the adjusting wheels, tightening them to mid position, to allow later adjustments.
-//!
+//
 module Printbed_assembly()  pose(a=[210, 0, 320])
 assembly("Printbed", big=true) {
 

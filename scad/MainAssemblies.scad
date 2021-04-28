@@ -72,7 +72,7 @@ module staged_assembly(name, big, ngb) {
 //!
 //!7. Turn the lead screw to raise the print bed to the top of the rods and tighten the bolts on the upper middle bearing.
 //!Taking these steps will ensure the print bed can run freely on the rods.
-//!
+//
 module Stage_1_assembly() pose(a=_poseMainAssembly)
 staged_assembly("Stage_1", big=true, ngb=true) {
 
@@ -84,8 +84,7 @@ staged_assembly("Stage_1", big=true, ngb=true) {
 }
 
 //!1. Slide the left face into the bottom plate assembly.
-//!
-//!
+//
 module Stage_2_assembly() pose(a=_poseMainAssembly)
 staged_assembly("Stage_2", big=true, ngb=true) {
 
@@ -94,8 +93,7 @@ staged_assembly("Stage_2", big=true, ngb=true) {
 }
 
 //!1. Slide the right face into the rest of the assembly.
-//!
-//!
+//
 module Stage_3_assembly() pose(a=_poseMainAssembly)
 staged_assembly("Stage_3", big=true, ngb=true) {
 
@@ -109,7 +107,6 @@ staged_assembly("Stage_3", big=true, ngb=true) {
     }
 }
 
-//!
 module Stage_4_assembly() pose(a=_poseMainAssembly)
 staged_assembly("Stage_4", big=true, ngb=true) {
 
@@ -120,7 +117,7 @@ staged_assembly("Stage_4", big=true, ngb=true) {
 //!1. Thread the belts as shown.
 //!
 //!2. Attach the belts to the x-carriage and use the adjustment bolts to ensure a good tension.
-//!
+//
 module Stage_5_assembly()
 staged_assembly("Stage_5", big=true, ngb=true) {
 
@@ -130,7 +127,7 @@ staged_assembly("Stage_5", big=true, ngb=true) {
 }
 
 //!Attach the print head to the x-carriage.
-//!
+//
 module Stage_6_assembly()
 staged_assembly("Stage_6", big=true, ngb=true) {
 

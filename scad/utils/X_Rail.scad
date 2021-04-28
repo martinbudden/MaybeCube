@@ -40,7 +40,7 @@ module xRailCarriagePosition() {
 //!
 //!1. Bolt the X carriage to the carriage on the linear rail.
 //!2. Bolt on the bottom of the X carriage.
-//!
+//
 module X_Rail_with_X_Carriage_assembly()
 assembly("X_Rail_with_X_Carriage") {
     xRail();
