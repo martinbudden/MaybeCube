@@ -19,29 +19,31 @@ PC3 = ["PC3", "Sheet polycarbonate", 3, [1,   1,   1,   0.25], false];
 function sidePanelSize() = [eY + 2*eSize, eZ, 3];
 
 
-module sidePanelAccessHolePositions(size) {
+module sidePanelAccessHolePositions(size, left) {
+    for (x = [-size.x/2 + eSize/2, size.x/2 - eSize/2], y = [-size.y/2 + eSize/2, size.y/2 - eSize/2])
+        translate([x, y])
+            children();
+    for (y = [3*eSize/2, 5*eSize/2, 7*eSize/2])
+        translate([left ? size.x/2 - eSize/2 : -size.x/2 + eSize/2, y - size.y/2])
+            children();
+    for (y = [3*eSize/2, size.y - 3*eSize/2])
+        translate([left ? -size.x/2 + eSize/2 : size.x/2 - eSize/2, y - size.y/2])
+            children();
 }
 
-module sidePanelBoltHolePositions(size) {
-    cornerOffsets = false;
-    for (x = [1.5*eSize - size.x/2, -(size.x - eSize)/6, (size.x - eSize)/6, size.x/2 - 1.5*eSize], y = [(-size.y + eSize)/2, (size.y - eSize)/2])
+module sidePanelBoltHolePositions(size, left) {
+    for (x = [-size.x/2 + 1.5*eSize, -(size.x - eSize)/6, (size.x - eSize)/6, size.x/2 - 1.5*eSize], y = [(-size.y + eSize)/2, (size.y - eSize)/2])
         translate([x, y])
-            rotate(90)
+            rotate(exploded() ? 90 : 0)
                 children();
-    if (cornerOffsets)
-        for (x = [eSize/2 - size.x/2, size.x/2 - eSize/2], y = [-size.y/2 + 3*eSize/2, size.y/2 - 3*eSize/2])
-            translate([x, y])
+    for (x = [-size.x/2 + eSize/2, size.x/2 - eSize/2], y = [-size.y/2 + eSize, size.y/2 - eSize])
+        translate([x, y])
+            rotate(exploded() ? 0 : 90)
                 children();
-    else
-        for (x = [eSize/2 - size.x/2, size.x/2 - eSize/2], y = [(-size.y + eSize)/2, (size.y - eSize)/2])
-            translate([x, y])
+    for (x = [-size.x/2 + eSize/2, size.x/2 - eSize/2], y = [(size.y - eSize)/6, -(size.y - eSize)/6])
+        translate([x, y])
+            rotate(exploded() ? 0 : 90)
                 children();
-    for (y = cornerOffsets ? [0] : [(size.y - eSize)/6, -(size.y - eSize)/6])
-        translate([(-size.x + eSize)/2, y])
-            children();
-    for (y = [(size.y - eSize)/6, -(size.y - eSize)/6])
-        translate([(size.x - eSize)/2, y])
-            children();
 }
 
 module Left_Side_Panel_dxf() {
@@ -53,9 +55,9 @@ module Left_Side_Panel_dxf() {
         color(sheet_colour(sheet))
             difference() {
                 sheet_2D(sheet, size.x, size.y, fillet);
-                sidePanelAccessHolePositions(size)
+                sidePanelAccessHolePositions(size, left=true)
                     circle(r = M4_clearance_radius);
-                sidePanelBoltHolePositions(size)
+                sidePanelBoltHolePositions(size, left=true)
                     circle(r = M4_clearance_radius);
             }
 }
@@ -68,7 +70,7 @@ module leftSidePanelPC(addBolts=true) {
             render_2D_sheet(PC3, w=size.x, d=size.y)
                 Left_Side_Panel_dxf();
             if (addBolts)
-                sidePanelBoltHolePositions(size)
+                sidePanelBoltHolePositions(size, left=true)
                     translate_z(size.z/2)
                         boltM4ButtonheadHammerNut(_sideBoltLength);
         }
@@ -90,9 +92,9 @@ module Right_Side_Panel_dxf() {
         color(sheet_colour(sheet))
             difference() {
                 sheet_2D(sheet, size.x, size.y, fillet);
-                sidePanelAccessHolePositions(size)
+                sidePanelAccessHolePositions(size, left=false)
                     circle(r = M4_clearance_radius);
-                sidePanelBoltHolePositions(size)
+                sidePanelBoltHolePositions(size, left=false)
                     circle(r = M4_clearance_radius);
                 translate([-size.x/2, -size.y/2]) {
                     translate([extruderPosition().y, extruderPosition().z]) {
@@ -123,7 +125,7 @@ module rightSidePanelPC(addBolts=true) {
             render_2D_sheet(PC3, w=size.x, d=size.y)
                 Right_Side_Panel_dxf();
             if (addBolts)
-                sidePanelBoltHolePositions(size)
+                sidePanelBoltHolePositions(size, left=false)
                     translate_z(size.z/2)
                         boltM4ButtonheadHammerNut(_sideBoltLength);
         }
