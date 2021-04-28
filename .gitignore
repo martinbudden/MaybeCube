@@ -37,10 +37,13 @@ MC250/*.html
 !MC250/readme.md
 !MC250/assemblies/main_assembled.png
 #!MC250/assemblies/*.png
+MC250/assemblies/*_diff.png
 #!MC250/dxfs/*.dxf
 #!MC250/dxfs/*.png
+MC250/dxfs/*_diff.png
 #!MC250/stls/*.stl
 #!MC250/stls/*.png
+MC250/stls/*_diff.png
 
 MC300/assemblies/*
 MC300/bom/
@@ -51,10 +54,14 @@ MC300/*.html
 # change to ! once released
 !MC300/readme.md
 !MC300/assemblies/main_assembled.png
+#!MC300/assemblies/*.png
+MC300/assemblies/*_diff.png
 #!MC300/dxfs/*.dxf
 #!MC300/dxfs/*.png
+MC300/dxfs/*_diff.png
 #!MC300/stls/*.stl
 #!MC300/stls/*.png
+MC300/stls/*_diff.png
 
 MC350/assemblies/*
 MC350/bom/
@@ -66,10 +73,13 @@ MC350/*.html
 !MC350/readme.md
 #!MC350/assemblies/*.png
 !MC350/assemblies/main_assembled.png
+MC350/assemblies/*_diff.png
 #!MC350/dxfs/*.dxf
 #!MC350/dxfs/*.png
+MC350/dxfs/*_diff.png
 !MC350/stls/*.stl
 !MC350/stls/*.png
+MC350/stls/*_diff.png
 
 MC400/assemblies/*
 MC400/bom/
@@ -81,7 +91,10 @@ MC400/*.html
 !MC400/readme.md
 !MC400/assemblies/main_assembled.png
 #!MC400/assemblies/*.png
+MC400/assemblies/*_diff.png
 #!MC400/dxfs/*.dxf
 #!MC400/dxfs/*.png
+MC400/dxfs/*_diff.png
 #!MC400/stls/*.stl
 #!MC400/stls/*.png
+MC400/stls/*_diff.png
