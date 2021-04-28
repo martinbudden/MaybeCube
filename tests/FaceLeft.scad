@@ -19,14 +19,14 @@ include <../scad/Parameters_Main.scad>
 
 //$explode = 1;
 //$pose = 1;
-module Face_Left_test() {
+module Left_Side_test() {
     echoPrintSize();
     //xyBelts(carriagePosition, show_pulleys=[1, 0, 0]);
 
     //let($hide_extrusions=true)
     //let($hide_rails=true)
-    Face_Left_assembly(); zRods();
-    //Face_Right_assembly(); zRods(left=false);
+    Left_Side_assembly(); zRods();
+    //Right_Side_assembly(); zRods(left=false);
     //Extruder_Bracket_assembly();
     //translate_z(bedHeight()) Printbed_assembly();
     //let($hide_corexy=true)
@@ -38,4 +38,4 @@ module Face_Left_test() {
 }
 
 if ($preview)
-    Face_Left_test();
+    Left_Side_test();

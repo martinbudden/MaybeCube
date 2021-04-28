@@ -42,7 +42,7 @@ module faceRightSpool() {
 }
 
 module faceRightExtras() {
-    IEC_assembly();
+    IEC_housing();
     IEC_Housing_Mount_assembly();
 
  

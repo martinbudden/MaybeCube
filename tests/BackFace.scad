@@ -19,8 +19,8 @@ module BackFace_test() {
     //PCB_Mount_stl();
     //let($hide_pcb=true)
     //Base_Plate_assembly();
-    //Face_Left_assembly();
-    //Face_Right_assembly();
+    //Left_Side_assembly();
+    //Right_Side_assembly();
     //faceRightExtras();
     Back_Panel_assembly();
 }

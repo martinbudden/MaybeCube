@@ -26,8 +26,8 @@ lowerMiddleExtrusion = false;
 //!
 //!3. Once the frame is square and tightened, align the motor mount and idler with the top extrusion and tighten them in place.
 //
-module Face_Right_assembly() pose(a=[55, 0, 25 - 90])
-assembly("Face_Right", big=true) {
+module Right_Side_assembly() pose(a=[55, 0, 25 - 90])
+assembly("Right_Side", big=true) {
 
     translate([eX + eSize, eSize, 0]) {
 

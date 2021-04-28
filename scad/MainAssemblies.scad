@@ -76,7 +76,7 @@ module staged_assembly(name, big, ngb) {
 module Stage_1_assembly() pose(a=_poseMainAssembly)
 staged_assembly("Stage_1", big=true, ngb=true) {
 
-    Face_Left_assembly();
+    Left_Side_assembly();
     zRods();
     translate_z(bedHeight())
         explode([300, 0, 0])
@@ -100,7 +100,7 @@ staged_assembly("Stage_3", big=true, ngb=true) {
     Stage_2_assembly();
 
     explode([100, 0, 100], true) {
-        Face_Right_assembly();
+        Right_Side_assembly();
         // add the right side Z rods if using dual Z rods
         if (useDualZRods())
             zRods(left=false);

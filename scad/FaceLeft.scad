@@ -23,8 +23,8 @@ include <Parameters_Main.scad>
 //!
 //!3. Once the frame is square and tightened, align the motor mount and idler with the top extrusion and tighten them in place.
 //
-module Face_Left_assembly() pose(a=[55, 0, 25 + 90])
-assembly("Face_Left", big=true) {
+module Left_Side_assembly() pose(a=[55, 0, 25 + 90])
+assembly("Left_Side", big=true) {
     faceLeftMiddleExtrusion();
     faceLeftLowerExtrusion();
 

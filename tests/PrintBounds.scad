@@ -61,10 +61,10 @@ module PrintBounds_test() {
             Base_Plate_assembly();
 
         let($hide_extrusions=true)
-            Face_Left_assembly();
+            Left_Side_assembly();
 
         let($hide_extrusions=true)
-            Face_Right_assembly();
+            Right_Side_assembly();
     }
 
     PSUPosition()

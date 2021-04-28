@@ -21,16 +21,16 @@ include <../scad/Parameters_Main.scad>
 
 //$explode = 1;
 //$pose = 1;
-module Face_Right_test() {
+module Right_Side_test() {
     //xyBelts(carriagePosition, show_pulleys=!true);
-    Face_Right_assembly();
-    //Face_Left_assembly();
+    Right_Side_assembly();
+    //Left_Side_assembly();
     //Face_Top_assembly();
     //faceRightSpoolHolder();
     //faceRightSpool();
     //zRods(left=false);
     Extruder_Bracket_assembly();
-    //IEC_assembly();
+    //IEC_housing();
     //IEC_Housing_stl();
     //IEC_Housing_Mount_stl();
     IEC_Housing_Mount_assembly();
@@ -45,4 +45,4 @@ module Face_Right_test() {
 
 if ($preview)
     translate([-eX - 2*eSize, 0, 0])
-        Face_Right_test();
+        Right_Side_test();

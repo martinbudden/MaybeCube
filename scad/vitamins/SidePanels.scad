@@ -75,7 +75,7 @@ module leftSidePanelPC(addBolts=true) {
 }
 
 module Left_Side_Panel_assembly()
-assembly("Left_Side_Panel", ngb = true, big = true) {
+assembly("Left_Side_Panel", ngb = true) {
     size = sidePanelSize();
 
     leftSidePanelPC();
@@ -130,11 +130,11 @@ module rightSidePanelPC(addBolts=true) {
 }
 
 module Right_Side_Panel_assembly()
-assembly("Right_Side_Panel", ngb = true, big = true) {
+assembly("Right_Side_Panel", ngb = true) {
     size = sidePanelSize();
 
     Extruder_Bracket_hardware(_corkDamperThickness);
-    IEC_assembly();
+    IEC_housing();
 
     rightSidePanelPC();
 }

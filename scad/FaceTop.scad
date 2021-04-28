@@ -24,8 +24,8 @@ include <Parameters_Main.scad>
 
 module Face_Top_Stage_1_assembly()
 assembly("Face_Top_Stage_1", big=true, ngb=true) {
-    Face_Left_Upper_Extrusion_assembly();
-    Face_Right_Upper_Extrusion_assembly();
+    Left_Side_Upper_Extrusion_assembly();
+    Right_Side_Upper_Extrusion_assembly();
 
     if (is_undef($hide_corexy) || !$hide_corexy) {
         explode(120)
@@ -108,8 +108,8 @@ module faceTopBack() {
 }
 
 
-module Face_Left_Upper_Extrusion_assembly() pose(a = [180 + 55, 0, 25 + 90])
-assembly("Face_Left_Upper_Extrusion", big=true, ngb=true) {
+module Left_Side_Upper_Extrusion_assembly() pose(a = [180 + 55, 0, 25 + 90])
+assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
     translate([0, eSize, eZ - eSize]) {
         extrusionOY2040HEndBolts(eY);
         explode(-40, true) translate([1.5*eSize, _yRailLength/2, 0]) {
@@ -126,8 +126,8 @@ assembly("Face_Left_Upper_Extrusion", big=true, ngb=true) {
     }
 }
 
-module Face_Right_Upper_Extrusion_assembly() pose(a = [180+55, 0, 25-90])
-assembly("Face_Right_Upper_Extrusion", big=true, ngb=true) {
+module Right_Side_Upper_Extrusion_assembly() pose(a = [180+55, 0, 25-90])
+assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
 
     translate([eX + eSize, eSize, eZ - eSize]) {
         translate([-eSize, 0, 0]) {
