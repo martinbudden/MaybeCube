@@ -13,6 +13,7 @@ use <printed/PSU.scad>
 use <utils/FrameBolts.scad>
 
 use <vitamins/bolts.scad>
+use <vitamins/nuts.scad>
 
 include <Parameters_Main.scad>
 
@@ -57,10 +58,50 @@ module backPanelAssembly() {
     size = backPanelSize();
 
     translate([0, eY + 2*eSize, 0])
-        rotate([90, 0, 0])
+        rotate([90, 0, 0]) {
+            backPanelBoltHolePositions(size)
+                translate_z(-size.z/2)
+                    vflip()
+                        boltM4ButtonheadHammerNut(_sideBoltLength);
+            translate([psuOffset(PSUtype()).x, psuOffset(PSUtype()).z])
+                rotate(-90)
+                    PSUBoltPositions()
+                        vflip()
+                            boltM4Buttonhead(_sideBoltLength);
             translate([size.x/2, size.y/2, -size.z/2])
                 render_2D_sheet(PC3, w=size.x, d=size.y)
                     Back_Panel_dxf();
+        }
+}
+
+module backPanelAccessHolePositions(size) {
+    for (x = [eSize/2, eX + 3*eSize/2], y = [eSize/2, 3*eSize/2, size.y - eSize/2])
+        translate([x, y])
+            children();
+    for (x = [3*eSize/2, size.x - 3*eSize/2])
+        translate([x, size.y -eSize/2])
+            children();
+    for (y = [spoolHeight() - eSize/2, spoolHeight() + eSize/2])
+        translate([size.x - eSize/2, y])
+            children();
+    for (y = [middleExtrusionOffsetZ() - eSize/2, middleExtrusionOffsetZ() + eSize/2])
+        translate([eSize/2, y])
+            children();
+}
+
+module backPanelBoltHolePositions(size) {
+    for (x = [3*eSize/2, size.x/3 - eSize/6, 2*size.x/3 - eSize/6, size.x - 3*eSize/2], y = [eSize/2, size.y - eSize/2])
+        translate([x, y])
+            rotate(exploded() ? 90 : 0)
+                children();
+    for (x = [eSize/2, size.x - eSize/2], y = [eSize, size.y - eSize])
+        translate([x, y])
+            rotate(exploded() ? 0 : 90)
+                children();
+    for (x = [eSize/2, size.x - eSize/2], y = [2*size.y/3 - eSize/6, size.y/3 - eSize/6])
+        translate([x, y])
+            rotate(exploded() ? 0 : 90)
+                children();
 }
 
 module backFaceCutouts(PSUtype, pcbType, cncSides = undef) {
@@ -99,20 +140,10 @@ module backFaceCutouts(PSUtype, pcbType, cncSides = undef) {
                         pcb_screw_positions(pcbType)
                         poly_circle(r = M3_clearance_radius, sides=cncSides);
             }
-        // bolt access holes
-        for (x = [eSize/2, eX + 3*eSize/2], y = [eSize/2, 3*eSize/2, size.y - eSize/2])
-            translate([x, y])
-                poly_circle(r = M4_clearance_radius, sides=cncSides);
-        for (x = [3*eSize/2, size.x - 3*eSize/2])
-            translate([x, size.y -eSize/2])
-                poly_circle(r = M4_clearance_radius, sides=cncSides);
-        for (y = [spoolHeight() - eSize/2, spoolHeight() + eSize/2])
-            translate([size.x - eSize/2, y])
-                poly_circle(r = M4_clearance_radius, sides=cncSides);
-        for (y = [middleExtrusionOffsetZ() - eSize/2, middleExtrusionOffsetZ() + eSize/2])
-            translate([eSize/2, y])
-                poly_circle(r = M4_clearance_radius, sides=cncSides);
-        // frame bolt holes
+        backPanelAccessHolePositions(size)
+            poly_circle(r = M4_clearance_radius, sides=cncSides);
+        backPanelBoltHolePositions(size)
+            poly_circle(r = M4_clearance_radius, sides=cncSides);
     }
 }
 

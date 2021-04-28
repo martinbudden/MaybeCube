@@ -31,7 +31,7 @@ module sidePanelAccessHolePositions(size, left) {
             children();
 }
 
-module sidePanelBoltHolePositions(size, left) {
+module sidePanelBoltHolePositions(size) {
     for (x = [-size.x/2 + 1.5*eSize, -(size.x - eSize)/6, (size.x - eSize)/6, size.x/2 - 1.5*eSize], y = [(-size.y + eSize)/2, (size.y - eSize)/2])
         translate([x, y])
             rotate(exploded() ? 90 : 0)
@@ -57,7 +57,7 @@ module Left_Side_Panel_dxf() {
                 sheet_2D(sheet, size.x, size.y, fillet);
                 sidePanelAccessHolePositions(size, left=true)
                     circle(r = M4_clearance_radius);
-                sidePanelBoltHolePositions(size, left=true)
+                sidePanelBoltHolePositions(size)
                     circle(r = M4_clearance_radius);
             }
 }
@@ -70,7 +70,7 @@ module leftSidePanelPC(addBolts=true) {
             render_2D_sheet(PC3, w=size.x, d=size.y)
                 Left_Side_Panel_dxf();
             if (addBolts)
-                sidePanelBoltHolePositions(size, left=true)
+                sidePanelBoltHolePositions(size)
                     translate_z(size.z/2)
                         boltM4ButtonheadHammerNut(_sideBoltLength);
         }
@@ -94,7 +94,7 @@ module Right_Side_Panel_dxf() {
                 sheet_2D(sheet, size.x, size.y, fillet);
                 sidePanelAccessHolePositions(size, left=false)
                     circle(r = M4_clearance_radius);
-                sidePanelBoltHolePositions(size, left=false)
+                sidePanelBoltHolePositions(size)
                     circle(r = M4_clearance_radius);
                 translate([-size.x/2, -size.y/2]) {
                     translate([extruderPosition().y, extruderPosition().z]) {
@@ -125,7 +125,7 @@ module rightSidePanelPC(addBolts=true) {
             render_2D_sheet(PC3, w=size.x, d=size.y)
                 Right_Side_Panel_dxf();
             if (addBolts)
-                sidePanelBoltHolePositions(size, left=false)
+                sidePanelBoltHolePositions(size)
                     translate_z(size.z/2)
                         boltM4ButtonheadHammerNut(_sideBoltLength);
         }
