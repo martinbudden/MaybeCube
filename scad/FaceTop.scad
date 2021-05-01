@@ -107,7 +107,6 @@ module faceTopBack() {
     }
 }
 
-
 module Left_Side_Upper_Extrusion_assembly() pose(a = [180 + 55, 0, 25 + 90])
 assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
     translate([0, eSize, eZ - eSize])
@@ -144,66 +143,7 @@ assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
         Y_Carriage_Right_assembly();
 }
 
-
-
-module cornerExtrusionPiece() {
-    h = 20;
-
-    render(convexity=8)
-    difference() {
-        union() {
-            fillet = 0.5;
-            linear_extrude(h, center=true)
-                offset(fillet) offset(-fillet)
-                    extrusion_cross_section(E2020);
-            cylinder(h=h, d=6, center=true);
-        }
-        translate([0, h/2, 0])
-            rotate([90, 0, 0])
-                boltHoleM4(h, horizontal=true);
-        translate([-h/2, 0, 0])
-            rotate([90, 0, 90])
-                boltHoleM4(h, horizontal=true);
-    }
-}
-
-
 module topCornerPiece() {
-    size = [2*eSize, 3*eSize, 5];
-    fillet = 1.5;
-
-    difference() {
-        union() {
-            rounded_cube_xy([size.x, size.x, size.z], fillet);
-            rounded_cube_xy([eSize, size.y, size.z], fillet);
-            translate([eSize, size.x, 0])
-                fillet(2, size.z);
-        }
-        for (i = [ [eSize/2, 3*eSize/2], [eSize/2, 5*eSize/2], [3*eSize/2, eSize/2], [3*eSize/2, 3*eSize/2]])
-            translate(i)
-                boltHoleM4(size.z);
-    }
-}
-
-module topCornerPiece2() {
-    size = [2*eSize, 3*eSize, 5];
-    fillet = 2;
-
-    difference() {
-        linear_extrude(size.z)
-            offset(r=fillet)
-                offset(delta=-fillet)
-                    hull()
-                        polygon([
-                            [eSize, 0], [size.x, 0], [size.x, size.y - eSize], [size.x - eSize, size.y], [0, size.y], [0, eSize]
-                        ]);
-        for (i = [ [eSize/2, 3*eSize/2], [eSize/2, 5*eSize/2], [3*eSize/2, eSize/2], [3*eSize/2, 3*eSize/2]])
-            translate(i)
-                boltPolyholeM4Countersunk(size.z);
-    }
-}
-
-module topCornerPiece3() {
     size = [3*eSize, 3*eSize, 5];
     fillet = 2;
 
