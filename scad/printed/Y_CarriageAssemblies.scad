@@ -5,19 +5,20 @@ include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/pulleys.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
+use <../utils/carriageTypes.scad>
+
 use <Y_Carriage.scad>
 
-use <../utils/carriageTypes.scad>
-use <../vitamins/bolts.scad>
-
-include <../Parameters_Main.scad>
 use <../Parameters_CoreXY.scad>
+use <../Parameters_Positions.scad>
+include <../Parameters_Main.scad>
+
 
 function pulleyOffset() = [-yRailShiftX(), 0, yCarriageThickness() + pulleyStackHeight()/2];
 function tongueOffset() = (eX + 2*eSize - _xRailLength - 2*yRailOffset().z)/2;
 
+topInset = 0;
 
-yCarriageType = MGN12H_carriage;
 
 module Y_Carriage_Left_stl() {
     tongueOffset = tongueOffset();
@@ -26,7 +27,7 @@ module Y_Carriage_Left_stl() {
 
     stl("Y_Carriage_Left")
         color(pp2_colour)
-            Y_Carriage(yCarriageType, xRailType(), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), endStopOffsetX, tongueOffset, left=true, pulleyOffset=pulleyOffset(), cnc=false);
+            Y_Carriage(yCarriageType(), xRailType(), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), endStopOffsetX, tongueOffset, pulleyOffset(), left=true, cnc=false);
 }
 
 module Y_Carriage_Right_stl() {
@@ -36,43 +37,53 @@ module Y_Carriage_Right_stl() {
 
     stl("Y_Carriage_Right")
         color(pp2_colour)
-            Y_Carriage(yCarriageType, xRailType(), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), endStopOffsetX, tongueOffset, left=false, pulleyOffset=pulleyOffset(), cnc=false);
+            Y_Carriage(yCarriageType(), xRailType(), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), endStopOffsetX, tongueOffset, pulleyOffset(), left=false, cnc=false);
 }
 
 module Y_Carriage_Brace_Left_stl() {
     stl("Y_Carriage_Brace_Left")
         color(pp1_colour)
-            yCarriageBrace(yCarriageType, yCarriageBraceThickness(), left=true);
+            yCarriageBrace(yCarriageType(), yCarriageBraceThickness(), pulleyOffset(), left=true);
 }
 
 module Y_Carriage_Brace_Right_stl() {
     stl("Y_Carriage_Brace_Right")
         color(pp1_colour)
-            yCarriageBrace(yCarriageType, yCarriageBraceThickness(), left=false);
+            yCarriageBrace(yCarriageType(), yCarriageBraceThickness(), pulleyOffset(), left=false);
 }
 
 module Y_Carriage_Left_assembly()
 assembly("Y_Carriage_Left", ngb=true) {
 
-    rotate(90) {
-        stl_colour(pp2_colour)
-            Y_Carriage_Left_stl();
-        translate_z(yCarriageThickness() + pulleyStackHeight())
-            stl_colour(pp1_colour)
-                Y_Carriage_Brace_Left_stl();
-        Y_Carriage_hardware(yCarriageType, yCarriageThickness(), yCarriageBraceThickness(), left=true, pulleyOffset=pulleyOffset());
-    }
+    railOffset = [1.5*eSize, 0, eZ - eSize];
+
+    translate([railOffset.x, carriagePosition().y, railOffset.z - carriage_height(yCarriageType())])
+        rotate([180, 0, 0]) {
+            stl_colour(pp2_colour)
+                Y_Carriage_Left_stl();
+            if (yCarriageBraceThickness())
+                translate_z(yCarriageThickness() + pulleyStackHeight() + eps)
+                    explode(4*yCarriageExplodeFactor())
+                        stl_colour(pp1_colour)
+                            Y_Carriage_Brace_Left_stl();
+            Y_Carriage_hardware(yCarriageType(), yCarriageThickness(), yCarriageBraceThickness(), pulleyOffset(), left=true);
+        }
 }
 
 module Y_Carriage_Right_assembly()
 assembly("Y_Carriage_Right", ngb=true) {
 
-    rotate(-90) {
-        stl_colour(pp2_colour)
-            Y_Carriage_Right_stl();
-        translate_z(yCarriageThickness() + pulleyStackHeight())
-            stl_colour(pp1_colour)
-                Y_Carriage_Brace_Right_stl();
-        Y_Carriage_hardware(yCarriageType, yCarriageThickness(), yCarriageBraceThickness(), left=false, pulleyOffset=pulleyOffset());
-    }
+    railOffset = [1.5*eSize, 0, eZ - eSize];
+
+    translate([eX + 2*eSize - railOffset.x, carriagePosition().y, railOffset.z - carriage_height(yCarriageType())])
+        rotate([180, 0, 180]) {
+            stl_colour(pp2_colour)
+                Y_Carriage_Right_stl();
+            if (yCarriageBraceThickness())
+                translate_z(yCarriageThickness() + pulleyStackHeight() + 2*eps)
+                    explode(4*yCarriageExplodeFactor())
+                        stl_colour(pp1_colour)
+                            Y_Carriage_Brace_Right_stl();
+            Y_Carriage_hardware(yCarriageType(), yCarriageThickness(), yCarriageBraceThickness(), pulleyOffset(), left=false);
+        }
 }

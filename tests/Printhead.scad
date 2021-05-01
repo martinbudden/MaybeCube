@@ -6,6 +6,9 @@ include <NopSCADlib/vitamins/rails.scad>
 use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/X_CarriageAssemblies.scad>
 
+use <../scad/utils/xyBelts.scad>
+use <../scad/utils/X_Rail.scad>
+
 use <../scad/Parameters_CoreXY.scad>
 use <../scad/Parameters_Positions.scad>
 include <../scad/Parameters_Main.scad>
@@ -21,7 +24,11 @@ module Printhead_test() {
     echo(blz=blz(MGN12H_carriage));
     echo(coreXYPosBL=coreXYPosBL());
     echo(coreXYSeparation=coreXYSeparation());
-    translate_z(-eZ) fullPrinthead();
+    translate_z(-eZ) {
+        fullPrinthead();
+        xyBelts(carriagePosition(), x_gap = 20, show_pulleys = [1, 0, 0]);
+    }
+    xRail(carriagePosition());
     //Printhead_assembly();
     //X_Carriage_Front_assembly();
     //X_Carriage_assembly();

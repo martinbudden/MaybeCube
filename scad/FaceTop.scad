@@ -110,45 +110,38 @@ module faceTopBack() {
 
 module Left_Side_Upper_Extrusion_assembly() pose(a = [180 + 55, 0, 25 + 90])
 assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
-    translate([0, eSize, eZ - eSize]) {
+    translate([0, eSize, eZ - eSize])
         extrusionOY2040HEndBolts(eY);
-        explode(-40, true) translate([1.5*eSize, _yRailLength/2, 0]) {
-            rotate([180, 0, 90]) {
+    explode(-40, true)
+        translate([1.5*eSize, eSize + _yRailLength/2, eZ - eSize])
+            rotate([180, 0, 90])
                 if (is_undef($hide_rails) || $hide_rails == false) {
                     rail_assembly(yCarriageType(), _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
                     railBoltsAndNuts(yRailType(), _yRailLength, 5);
                 }
-                explode(30, true)
-                    translate([carriagePosition().y - eSize - _yRailLength/2, 0, carriage_height(yCarriageType())])
-                        Y_Carriage_Left_assembly();
-            }
-        }
-    }
+    explode(-10, true)
+        Y_Carriage_Left_assembly();
 }
 
 module Right_Side_Upper_Extrusion_assembly() pose(a = [180+55, 0, 25-90])
 assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
 
-    translate([eX + eSize, eSize, eZ - eSize]) {
-        translate([-eSize, 0, 0]) {
-            extrusionOY2040H(eY);
-            if (_useBlindJoints)
-                extrusionOY2040HEndBoltPositions(eY, -eSize/2)
-                    boltM5Buttonhead(_endBoltLength);
-        }
-
-        translate([-eSize/2, _yRailLength/2, 0])
-            explode(-40, true)
-                rotate([180, 0, 90]) {
-                    if (is_undef($hide_rails) || $hide_rails == false) {
-                        rail_assembly(yCarriageType(), _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
-                        railBoltsAndNuts(yRailType(), _yRailLength, 5);
-                    }
-                    explode(30, true)
-                        translate([carriagePosition().y - eSize - _yRailLength/2, 0, carriage_height(yCarriageType())])
-                            Y_Carriage_Right_assembly();
-                }
+    translate([eX, eSize, eZ - eSize]) {
+        extrusionOY2040H(eY);
+        if (_useBlindJoints)
+            extrusionOY2040HEndBoltPositions(eY, -eSize/2)
+                boltM5Buttonhead(_endBoltLength);
     }
+
+    translate([eX + eSize/2, eSize + _yRailLength/2, eZ - eSize])
+        explode(-40, true)
+            rotate([180, 0, 90])
+                if (is_undef($hide_rails) || $hide_rails == false) {
+                    rail_assembly(yCarriageType(), _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
+                    railBoltsAndNuts(yRailType(), _yRailLength, 5);
+                }
+    explode(-10, true)
+        Y_Carriage_Right_assembly();
 }
 
 

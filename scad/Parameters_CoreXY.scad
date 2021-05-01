@@ -18,7 +18,7 @@ function yCarriageThickness() = 9;// allows 8mm high tongue to insert into 10mm 
 function yCarriageBraceThickness() = 1; // brace to support cantilevered pulleys on yCarriage
 
 // offset to midpoint between the two belts
-function beltOffsetZ() = yCarriageThickness() - coreXYSeparation().z - 30.5;
+function beltOffsetZ() = yCarriageThickness() - coreXYSeparation().z - 31.5;
 //function beltOffsetZ() = yCarriageThickness() + carriage_height(MGN12H_carriage) + coreXYSeparation().z - 55;
 
 function leftDrivePulleyOffset() = [!is_undef(_useMotorIdler20) && _useMotorIdler20 ? 38 : 34, 0];

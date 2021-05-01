@@ -8,8 +8,8 @@ include <NopSCADlib/vitamins/pulleys.scad>
 include <NopSCADlib/vitamins/rails.scad>
 include <NopSCADlib/vitamins/screws.scad>
 
-
 use <../vitamins/bolts.scad>
+
 
 function pulleyStackHeight() = 2*washer_thickness(M3_washer) + pulley_height(GT2x16_plain_idler);// runs better without top washer
 function plainPulleyPos(left, pulleyOffset, thickness, yCarriageBraceThickness) = [pulleyOffset.x + 12.25, 0, thickness + pulleyStackHeight()/2 + (left ? pulleyStackHeight() + yCarriageBraceThickness : 0)];
@@ -21,8 +21,10 @@ function railFirstHoleOffset(type, length) = (length - (rail_holes(type, length)
 function counterBore(thickness) = screw_head_height(M3_cap_screw) + max(thickness - 9, 0);
 function yCarriageBlockSizeX(yCarriageType) = carriage_width(yCarriageType) + 4;
 
+function yCarriageExplodeFactor() = 5;
 
-module Y_Carriage(yCarriageType, xRailType, xRailLength, thickness, chamfer, yCarriageBraceThickness, endStopOffsetX, tongueOffset, left, pulleyOffset, topInset=0, cnc=false) {
+
+module Y_Carriage(yCarriageType, xRailType, xRailLength, thickness, chamfer, yCarriageBraceThickness, endStopOffsetX, tongueOffset, pulleyOffset, topInset=0, left, cnc=false) {
     assert(is_list(yCarriageType));
     assert(is_list(xRailType));
 
@@ -132,6 +134,9 @@ module Y_Carriage(yCarriageType, xRailType, xRailLength, thickness, chamfer, yCa
                     size = [8.5, 15, h];
                     translate([toothedPulleyPos.x - 3.25, -size.y/2, 0])
                         rounded_cube_xy(size, 1.5);
+                    size2 = [11, 9.5, h];
+                    translate([11.75 + 14 + 4.75 -size2.x, 3.5 - size.y/2, 0])
+                        rounded_cube_xy(size2, 1.5);
                 } else {
                     size = [8.5, tongueSize.y, h];
                     translate([toothedPulleyPos.x - 3.25, -size.y/2, 0])
@@ -174,7 +179,7 @@ module Y_Carriage(yCarriageType, xRailType, xRailLength, thickness, chamfer, yCa
     } // end difference
 }
 
-module yCarriageBrace(yCarriageType, yCarriageBraceThickness, left, pulleyOffset) {
+module yCarriageBrace(yCarriageType, yCarriageBraceThickness, pulleyOffset, left) {
     blockSizeX = yCarriageBlockSizeX(yCarriageType);
     size = left ? [45, 10 + 3.25/2, yCarriageBraceThickness] : [46.75, 14, yCarriageBraceThickness];
     difference() {
@@ -201,18 +206,19 @@ module yCarriageBolts(yCarriageType, thickness) {
                 boltM3Caphead(boltLength);
 }
 
-module pulleyStack(pulley, washer=M3_washer) {
-    translate_z(-washer_thickness(washer) - pulley_height(pulley)/2)
-        explode(-10)
-            washer(washer)
+module pulleyStack(pulley, explode=0) {
+    translate_z(-washer_thickness(M3_washer) - pulley_height(pulley)/2)
+        washer(M3_washer)
+            explode(explode)
                 pulley(pulley);
     if ($children)
         translate_z(pulley_height(pulley)/2)
             children();
 }
 
-module yCarriagePulleys(yCarriageType, thickness, yCarriageBraceThickness, left, pulleyOffset, inset) {
+module yCarriagePulleys(yCarriageType, thickness, yCarriageBraceThickness, pulleyOffset, left) {
     blockSizeX = yCarriageBlockSizeX(yCarriageType);
+    explode = yCarriageExplodeFactor();
 
     explode(30, true) {
         translate(plainPulleyPos(left, pulleyOffset, thickness, yCarriageBraceThickness))
@@ -234,10 +240,10 @@ module yCarriagePulleys(yCarriageType, thickness, yCarriageBraceThickness, left,
     }
 }
 
-module Y_Carriage_hardware(yCarriageType, thickness, yCarriageBraceThickness, left, pulleyOffset, inset=0) {
+module Y_Carriage_hardware(yCarriageType, thickness, yCarriageBraceThickness, pulleyOffset, left) {
     assert(is_list(yCarriageType));
 
-    yCarriagePulleys(yCarriageType, thickness, yCarriageBraceThickness, left, pulleyOffset, inset);
+    yCarriagePulleys(yCarriageType, thickness, yCarriageBraceThickness, pulleyOffset, left);
     explode(15)
         yCarriageBolts(yCarriageType, thickness);
 }
