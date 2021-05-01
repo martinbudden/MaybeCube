@@ -8,9 +8,10 @@ include <NopSCADlib/vitamins/pin_headers.scad>
 include <NopSCADlib/vitamins/shaft_couplings.scad>
 use <NopSCADlib/utils/rounded_triangle.scad>
 
+use <../../../BabyCube/scad/vitamins/CorkDamper.scad>
+
 use <../vitamins/bolts.scad>
 use <../vitamins/cables.scad>
-use <../vitamins/CorkDamper.scad>
 use <../vitamins/leadscrew.scad>
 use <../vitamins/nuts.scad>
 
