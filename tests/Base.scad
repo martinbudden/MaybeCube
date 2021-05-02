@@ -1,7 +1,6 @@
 //!Displays the baseplate.
 
 include <NopSCADlib/core.scad>
-include <NopSCADlib/vitamins/d_connectors.scad>
 include <NopSCADlib/vitamins/pcbs.scad>
 
 use <../scad/printed/BaseFoot.scad>

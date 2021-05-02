@@ -26,11 +26,6 @@ use <../scad/Parameters_Positions.scad>
 include <../scad/Parameters_Main.scad>
 
 
-//use <../scad/vitamins/PrintHeadBIQU_B1.scad>
-//use <HIG/scad/printed/PrintHeadTK.scad>
-//use <HIG/scad/printed/PrintHead.scad>
-
-
 yCarriageType = MGN12H_carriage;
 rail_type = MGN12;
 
