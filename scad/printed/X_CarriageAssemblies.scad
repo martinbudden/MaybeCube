@@ -2,22 +2,20 @@ include <../global_defs.scad>
 
 include <NopSCADlib/core.scad>
 use <NopSCADlib/utils/fillet.scad>
-include <NopSCADlib/vitamins/belts.scad>
 include <NopSCADlib/vitamins/blowers.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
 use <../utils/carriageTypes.scad>
-use <../utils/X_rail.scad>
+use <../utils/PrintheadOffsets.scad>
 
 use <../vitamins/bolts.scad>
 
-//use <X_Carriage.scad>
+use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
-use <Printhead.scad>
-use <PrintheadAssemblies.scad>
+include <../../../BabyCube/scad/printed/X_CarriageBeltClamps.scad> //breaks if this is use
+include <../../../BabyCube/scad/printed/X_CarriageFanDuct.scad>
 
 use <../Parameters_CoreXY.scad>
-use <../Parameters_Positions.scad>
 include <../Parameters_Main.scad>
 
 
@@ -33,6 +31,8 @@ module X_Carriage_Front_stl() {
                 xCarriageFront(xCarriageType, beltOffsetZ(), coreXYSeparation().z);
 }
 
+//!1. Bolt the Belt_Clamps to the X_Carriage_Front, leaving them loose for later insertion of the belts.
+//!2. Insert the Belt_tensioners into the X_Carriage_Front, and use the 20mm bolts to secure them in place.
 module X_Carriage_Front_assembly()
 assembly("X_Carriage_Front", big=true) {
 
@@ -139,13 +139,15 @@ module X_Carriage_stl() {
             }
 }
 
-module X_Carriage_assembly()
+//!1. Bolt the belt clamps to the sides of the X_Carriage. Leave the clamps loose to allow later insertion of the belts.
+//!2. Bolt the fan onto the side of the X_Carriage, secure the fan wire with a ziptie.
+//!3. Ensure a good fit between the fan and the fan duct and bolt the fan duct to the X_Carriage.
+module X_Carriage_assembly()  pose(a=[55, 0, 25 + 290])
 assembly("X_Carriage", big=true, ngb=true) {
 
     xCarriageType = xCarriageType();
     blower_type = blower_type();
     hotend_type = 0;
-
 
     rotate([0, 90, 0])
         stl_colour(pp1_colour)
@@ -164,6 +166,7 @@ assembly("X_Carriage", big=true, ngb=true) {
             }
 }
 
+/*
 beltTidySize = [tidyHoleSpacing() + 8, 7, 2];
 
 module Belt_Tidy_stl() {
@@ -241,3 +244,83 @@ module Belt_Tensioner_hardware() {
         rotate([0, -90, 0])
             boltM3Caphead(boltLength);
 }
+*/
+/*
+fanDuctTabThickness = 2;
+
+module Fan_Duct_stl() {
+    blower_type = BL30x10;
+    blowerSize = blower_size(blower_type);
+
+    exit = blower_exit(blower_type);
+    wallLeft = blower_wall_left(blower_type);
+    wallRight = blower_wall_right(blower_type);
+    base = blower_base(blower_type);
+    top = blower_top(blower_type);
+
+    stl("Fan_Duct")
+        color(pp2_colour) {
+            difference() {
+                fillet = 2;
+                offsetX = 1;
+                chimneySize = [exit + wallLeft + wallRight - offsetX, blowerSize.z, 14];
+                chimneyTopSize = [exit, blowerSize.z - base - top, chimneySize.z + 2];
+                union() {
+                    translate([0, -chimneySize.y, -chimneySize.z]) {
+                        translate([offsetX, 0, 0])
+                            rounded_cube_xy(chimneySize, fillet);
+                        translate([wallLeft, top, 0])
+                            rounded_cube_xy(chimneyTopSize, fillet);
+                        translate([offsetX, 0, -3]) {
+                            // the foot
+                            hull() {
+                                rounded_cube_xy([chimneySize.x, chimneySize.y, 5], fillet);
+                                translate([0, 11, 0])
+                                    rounded_cube_xy([chimneySize.x, 5, 3], fillet);
+                            }
+                        }
+                    }
+                    tabTopSize = [34, fanDuctTabThickness, 5];
+                    tabBottomSize = [chimneySize.x, tabTopSize.y, 1];
+                    hull() {
+                        translate([offsetX, -fanDuctTabThickness, -chimneySize.z+0.5])
+                            rounded_cube_xy(tabBottomSize, 0.5);
+                        translate([30 - tabTopSize.x, -fanDuctTabThickness, -tabTopSize.z])
+                            rounded_cube_xy(tabTopSize, 0.5);
+                    }
+                }
+                fanDuctHolePositions(-fanDuctTabThickness)
+                    rotate([-90, 180, 0])
+                        boltHoleM2(fanDuctTabThickness, horizontal=true);
+
+                flueSize = chimneyTopSize - [1.5, 1.5, 0];
+                translate([wallLeft + 1.5/2, -chimneySize.y + top+1.5/2, -chimneySize.z + eps])
+                    rounded_cube_xy(flueSize, 1);
+
+                jetEndSize = [5, 2, 2];
+                jetStartSize = [16, 2, 2];
+                translate([14, -8, 0])
+                    #hull() {
+                        translate([-jetEndSize.x/2, 6+printHeadHotendOffset().x, -21])
+                            cube(jetEndSize);
+                        translate([-jetStartSize.x/2, 0, -13])
+                            cube(jetStartSize);
+                    }
+            }
+        }
+}
+
+module Fan_Duct_hardware(xCarriageType, hotend_type) {
+    fanDuctHolePositions(-fanDuctTabThickness)
+        rotate([90, 0, 0])
+            boltM2Caphead(6);
+}
+*/
+/*module fanDuctTranslate(xCarriageType, hotend_type) {
+    hotendOffset = hotendOffset(xCarriageType);
+    grooveMountSize = grooveMountSize(xCarriageType, hotend_type, blower_type);
+
+    translate([hotendOffset.x - grooveMountSize.x, hotendOffset.y + grooveMountOffsetX(hotend_type), 3 - grooveMountSize.z/2 - 38])
+        rotate([90, 0, 90])
+            children();
+}*/
