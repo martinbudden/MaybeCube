@@ -13,16 +13,16 @@ use <../scad/FaceRightExtras.scad>
 //$pose = 1;
 module BackFace_test() {
     //PSU();
-    //backPanel();
     //PSU_Top_Mount_stl();
     //PSU_Left_Mount_stl();
     //PCB_Mount_stl();
     //let($hide_pcb=true)
-    //Base_Plate_assembly();
+    Base_Plate_assembly();
     //Left_Side_assembly();
     //Right_Side_assembly();
     //faceRightExtras();
     Back_Panel_assembly();
+    //Back_Panel_dxf();
 }
 
 if ($preview)

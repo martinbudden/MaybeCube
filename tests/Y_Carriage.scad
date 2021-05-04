@@ -29,12 +29,15 @@ module Y_Carriage_test0() {
 }
 
 module Y_Carriage_test1() {
-    *Y_Carriage_Left_stl();
-    *translate([150, 0, 0])
-        rotate(180)
+    Y_Carriage_Left_stl();
+    //Y_Carriage_Left_AL_dxf();
+    translate([150, 0, 0])
+        rotate(180) {
             Y_Carriage_Right_stl();
-    Y_Carriage_Left_assembly();
-    translate([100, 0, 0])
+            //Y_Carriage_Right_AL_dxf();
+        }
+    *Y_Carriage_Left_assembly();
+    *translate([100, 0, 0])
         Y_Carriage_Right_assembly();
 }
 
