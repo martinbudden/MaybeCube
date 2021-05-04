@@ -1,3 +1,4 @@
+//!! This is a copy of the BabyCube file
 include <../global_defs.scad>
 
 include <NopSCADlib/core.scad>
