@@ -45,8 +45,8 @@ module Face_Top_assembly()
 assembly("Face_Top", big=true) {
 
     Face_Top_Stage_1_assembly();
-    hidden() Y_Carriage_Left_AL_dxf();
-    hidden() Y_Carriage_Right_AL_dxf();
+    //hidden() Y_Carriage_Left_AL_dxf();
+    //hidden() Y_Carriage_Right_AL_dxf();
 
     explode(100, true)
         translate_z(eZ) {
