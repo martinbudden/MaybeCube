@@ -89,7 +89,6 @@ assembly("Y_Carriage_Left", ngb=true) {
                             Y_Carriage_Brace_Left_stl();
             Y_Carriage_hardware(yCarriageType(), yCarriageThickness(), yCarriageBraceThickness(), pulleyOffset(), left=true);
         }
-    hidden() Y_Carriage_Left_AL_dxf();
 }
 
 module Y_Carriage_Right_assembly()
@@ -108,5 +107,4 @@ assembly("Y_Carriage_Right", ngb=true) {
                             Y_Carriage_Brace_Right_stl();
             Y_Carriage_hardware(yCarriageType(), yCarriageThickness(), yCarriageBraceThickness(), pulleyOffset(), left=false);
         }
-    hidden() Y_Carriage_Right_AL_dxf();
 }
