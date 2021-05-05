@@ -12,8 +12,7 @@ function coreXY_type() = coreXY_GT2_20_16;
 
 function yRailSupportThickness() = 3;
 function yRailShiftX() = 0; // limit it this to [-0.5, +1.25] avoid problems with yCarriage bolt interference
-//function yRailOffset() = [_yRailLength/2 + eSize - (_yRailLength == eY ? eSize : 0), eZ - yRailSupportThickness(), coreXYPosBL().x - coreXYSeparation().x + yRailShiftX()];
-function yRailOffsetXYZ() = [coreXYPosBL().x - coreXYSeparation().x + yRailShiftX(), _yRailLength/2 + eSize - (_yRailLength == eY ? eSize : 0), eZ - yRailSupportThickness()];
+function yRailOffset() = [coreXYPosBL().x - coreXYSeparation().x + yRailShiftX(), _yRailLength/2 + eSize - (_yRailLength == eY ? eSize : 0), eZ - yRailSupportThickness()];
 
 function yCarriageThickness() = 9;// allows 8mm high tongue to insert into 10mm square carbon fiber tube along X rail
 function yCarriageBraceThickness() = 1; // brace to support cantilevered pulleys on yCarriage

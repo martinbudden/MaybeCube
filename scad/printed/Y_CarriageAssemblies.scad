@@ -16,7 +16,7 @@ include <../Parameters_Main.scad>
 
 
 function pulleyOffset() = [-yRailShiftX(), 0, yCarriageThickness() + pulleyStackHeight()/2];
-function tongueOffset() = (eX + 2*eSize - _xRailLength - 2*yRailOffsetXYZ().x)/2;
+function tongueOffset() = (eX + 2*eSize - _xRailLength - 2*yRailOffset().x)/2;
 
 topInset = 0;
 

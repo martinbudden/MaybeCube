@@ -26,7 +26,7 @@ module Printhead_test() {
     echo(coreXYPosBL=coreXYPosBL());
     echo(coreXYSeparation=coreXYSeparation());
 
-    translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffsetXYZ().x - carriage_clearance(xCarriageType())]) {
+    translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
         fullPrinthead();
         xyBelts(carriagePosition(), x_gap = 20, show_pulleys = [1, 0, 0]);
         translate_z(eZ)
