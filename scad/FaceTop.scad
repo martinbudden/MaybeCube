@@ -12,7 +12,7 @@ use <printed/Y_CarriageAssemblies.scad>
 use <utils/FrameBolts.scad>
 use <utils/carriageTypes.scad>
 use <utils/RailNutsAndBolts.scad>
-use <utils/xyBelts.scad>
+use <utils/CoreXYBelts.scad>
 use <utils/X_Rail.scad>
 
 use <vitamins/bolts.scad>
@@ -57,7 +57,7 @@ assembly("Face_Top", big=true) {
         }
     fullPrinthead();
     explode(200, true)
-        xyBelts(carriagePosition());
+        CoreXYBelts(carriagePosition());
 }
 
 module faceTopFront() {

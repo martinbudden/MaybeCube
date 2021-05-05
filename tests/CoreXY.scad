@@ -15,7 +15,7 @@ use <../scad/printed/XY_Idler.scad>
 use <../scad/printed/XY_MotorMount.scad>
 
 use <../scad/utils/printParameters.scad>
-use <../scad/utils/xyBelts.scad>
+use <../scad/utils/CoreXYBelts.scad>
 use <../scad/utils/X_Rail.scad>
 
 use <../scad/vitamins/extrusion.scad>
@@ -36,7 +36,7 @@ module CoreXY_test() {
 
     NEMA_width = _xyNemaType == "14" ? 35.2 : 42.3;
     coreXYSize = coreXYPosTR(NEMA_width) - coreXYPosBL();
-    xyBelts(carriagePosition(), x_gap = 20, show_pulleys = [1, 0, 0]);
+    CoreXYBelts(carriagePosition(), x_gap = 20, show_pulleys = [1, 0, 0]);
     fullPrinthead();
 
 //    translate_z(eZ-eSize)

@@ -5,7 +5,8 @@ use <NopSCADlib/utils/core_xy.scad>
 
 include <../Parameters_CoreXY.scad>
 
-module xyBelts(carriagePosition, x_gap=20, show_pulleys=false) {
+
+module CoreXYBelts(carriagePosition, x_gap=20, show_pulleys=false) {
     assert(is_list(carriagePosition));
 
     NEMA_width = _xyNemaType == "14" ? 35.2 : 42.3;

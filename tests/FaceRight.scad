@@ -6,7 +6,7 @@ use <../scad/printed/extruderBracket.scad>
 use <../scad/printed/IEC_Housing.scad>
 
 use <../scad/utils/Z_Rods.scad>
-use <../scad/utils/xyBelts.scad>
+use <../scad/utils/CoreXYBelts.scad>
 
 use <../scad/vitamins/SidePanels.scad>
 
@@ -22,7 +22,7 @@ include <../scad/Parameters_Main.scad>
 //$explode = 1;
 //$pose = 1;
 module Right_Side_test() {
-    //xyBelts(carriagePosition, show_pulleys=!true);
+    //CoreXYBelts(carriagePosition, show_pulleys=!true);
     Right_Side_assembly();
     //Left_Side_assembly();
     //Face_Top_assembly();

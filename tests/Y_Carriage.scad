@@ -7,7 +7,7 @@ include <NopSCADlib/vitamins/rails.scad>
 
 use <../scad/printed/Y_CarriageAssemblies.scad>
 
-use <../scad/utils/xyBelts.scad>
+use <../scad/utils/CoreXYBelts.scad>
 use <../scad/utils/X_Rail.scad>
 
 use <../scad/Parameters_CoreXY.scad>
@@ -22,7 +22,7 @@ rail_type = MGN12;
 //$pose = 1;
 module Y_Carriage_test0() {
     translate_z(-eZ + eSize) {
-        xyBelts(carriagePosition(), x_gap = 20, show_pulleys = [1,0,0]);
+        CoreXYBelts(carriagePosition(), x_gap = 20, show_pulleys = [1,0,0]);
         Y_Carriage_Left_assembly();
         Y_Carriage_Right_assembly();
     }

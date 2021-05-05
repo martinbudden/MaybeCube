@@ -7,7 +7,7 @@ use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/X_CarriageAssemblies.scad>
 
 use <../scad/utils/carriageTypes.scad>
-use <../scad/utils/xyBelts.scad>
+use <../scad/utils/CoreXYBelts.scad>
 use <../scad/utils/X_Rail.scad>
 
 use <../scad/Parameters_CoreXY.scad>
@@ -28,7 +28,7 @@ module Printhead_test() {
 
     translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
         fullPrinthead();
-        xyBelts(carriagePosition(), x_gap = 20, show_pulleys = [1, 0, 0]);
+        CoreXYBelts(carriagePosition(), x_gap = 20, show_pulleys = [1, 0, 0]);
         translate_z(eZ)
             xRail(carriagePosition());
     }

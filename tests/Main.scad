@@ -4,7 +4,7 @@ use <../scad/Main.scad>
 use <../scad/MainAssemblies.scad>
 
 use <../scad/utils/printParameters.scad>
-use <../scad/utils/xyBelts.scad>
+use <../scad/utils/CoreXYBelts.scad>
 
 use <../scad/Parameters_Positions.scad>
 include <../scad/Parameters_Main.scad>
@@ -16,7 +16,7 @@ module main_test() {
     echoPrintSize();
     echoParameters();
 
-    //xyBelts(carriagePosition, show_pulleys=false);
+    //CoreXYBelts(carriagePosition, show_pulleys=false);
     //Stage_1_assembly();
     //Stage_2_assembly();
     //Stage_3_assembly();

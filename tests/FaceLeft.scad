@@ -3,7 +3,7 @@
 include <NopSCADlib/core.scad>
 
 use <../scad/printed/extruderBracket.scad>
-use <../scad/utils/xyBelts.scad>
+use <../scad/utils/CoreXYBelts.scad>
 use <../scad/utils/printParameters.scad>
 use <../scad/utils/Z_Rods.scad>
 use <../scad/vitamins/SidePanels.scad>
@@ -21,7 +21,7 @@ include <../scad/Parameters_Main.scad>
 //$pose = 1;
 module Left_Side_test() {
     echoPrintSize();
-    //xyBelts(carriagePosition, show_pulleys=[1, 0, 0]);
+    //CoreXYBelts(carriagePosition, show_pulleys=[1, 0, 0]);
 
     //let($hide_extrusions=true)
     //let($hide_rails=true)

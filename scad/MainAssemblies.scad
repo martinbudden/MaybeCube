@@ -7,7 +7,7 @@ use <printed/X_CarriageAssemblies.scad>
 use <printed/Z_MotorMount.scad>
 
 use <utils/printParameters.scad>
-use <utils/xyBelts.scad>
+use <utils/CoreXYBelts.scad>
 use <utils/X_Rail.scad>
 use <utils/Z_Rods.scad>
 

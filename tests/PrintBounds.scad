@@ -35,7 +35,7 @@ include <NopSCADlib/core.scad>
 use <../scad/printed/PSU.scad>
 
 use <../scad/utils/printParameters.scad>
-use <../scad/utils/xyBelts.scad>
+use <../scad/utils/CoreXYBelts.scad>
 use <../scad/utils/X_Rail.scad>
 
 use <../scad/vitamins/PrintHeadBIQU_B1.scad>
@@ -73,7 +73,7 @@ module PrintBounds_test() {
         Printbed_assembly();
     //zRods();
 
-    xyBelts(carriagePosition(), x_gap = 0, show_pulleys = !false);
+    CoreXYBelts(carriagePosition(), x_gap = 0, show_pulleys = !false);
     translate_z(eZ) {
         xRail();
         //xRailCarriagePosition()
