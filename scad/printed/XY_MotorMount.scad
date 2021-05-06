@@ -95,6 +95,8 @@ module xyMotorMountBase(left, size, offset, sideSupportSizeY, cnc=false) {
     coreXYPosBL = coreXYPosBL();
     coreXYPosTR = coreXYPosTR(NEMA_width);
     coreXY_type = coreXY_type();
+    pP = coreXY_drive_plain_idler_offset(coreXY_type) + (left ? leftDrivePlainIdlerOffset : rightDrivePlainIdlerOffset);
+    pT = coreXY_drive_toothed_idler_offset(coreXY_type);
 
     difference() {
         linear_extrude(size.z, convexity=2) {
@@ -109,12 +111,40 @@ module xyMotorMountBase(left, size, offset, sideSupportSizeY, cnc=false) {
                 translate([coreXY_drive_pulley_x_alignment(coreXY_type) + offset.x, 0])
                     NEMA_screw_positions(NEMA_type)
                         boltHoleM3(basePlateThickness, twist=5);
-                translate(coreXY_drive_plain_idler_offset(coreXY_type) + (left ? leftDrivePlainIdlerOffset : rightDrivePlainIdlerOffset))
+                translate(pP)
                     boltHoleM3Tap(basePlateThickness);
-                translate(coreXY_drive_toothed_idler_offset(coreXY_type))
+                translate(pT)
+                    boltHoleM3Tap(basePlateThickness);
+                translate([pP.x, pT.y])
+                    boltHoleM3Tap(basePlateThickness);
+                translate([pT.x, pP.y])
                     boltHoleM3Tap(basePlateThickness);
             }
     }
+    if (!cnc)
+        translate([coreXYPosBL.x + separation.x/2, coreXYPosTR.y + offset.y]) {
+            pulleyStackHeight = 2*washer_thickness(M3_washer) + pulley_height(GT2x16_plain_idler);
+            translate([pP.x, pT.y, size.z])
+                difference() {
+                    if (left)
+                        translate([0, leftDrivePlainIdlerOffset.y/2 - 1, 0])
+                            rounded_cube_xy([9, 8.5 - leftDrivePlainIdlerOffset.y, pulleyStackHeight], 1, xy_center=true);
+                    else
+                        translate([0, rightDrivePlainIdlerOffset.y/2 - 1, 0])
+                            rounded_cube_xy([9, 8.5 - rightDrivePlainIdlerOffset.y, pulleyStackHeight], 1, xy_center=true);
+                    boltHoleM3Tap(pulleyStackHeight);
+                }
+            translate([pT.x, pP.y, size.z])
+                difference() {
+                    if (left)
+                        translate([1, -leftDrivePlainIdlerOffset.y, 0])
+                            rounded_cube_xy([8.5, 9, pulleyStackHeight], 1, xy_center=true);
+                    else
+                        translate([1, 0, 0])
+                            rounded_cube_xy([8.5, 9, pulleyStackHeight], 1, xy_center=true);
+                    boltHoleM3Tap(pulleyStackHeight);
+                }
+        }
 }
 
 module xyMotorMountBlock(size, bracketHeight, basePlateThickness, offset=[0, 0], sideSupportSizeY, blockHeightExtra=0) {
@@ -133,30 +163,32 @@ module xyMotorMountBlock(size, bracketHeight, basePlateThickness, offset=[0, 0],
 
     difference() {
         union() {
-            translate([eSize, eY + eSize, 0])
-                rounded_cube_xy([size.x - eSize, eSize, height], fillet);
+            linear_extrude(height)
+                difference() {
+                    translate([eSize, eY + eSize])
+                        rounded_square([size.x - eSize, eSize], fillet, center=false);
+                    translate([coreXYPosBL.x + separation.x/2 + coreXY_drive_pulley_x_alignment(coreXY_type) + offset.x, coreXYPosTR.y + offset.y])
+                        NEMA_screw_positions(NEMA_type) {
+                            cutout = 6.5;
+                            circle(d = cutout);
+                            translate([-cutout/2, -cutout])
+                                square([cutout, cutout]);
+                            translate([cutout/2, motorClearance().y - 14.35])
+                                fillet(1);
+                            translate([-cutout/2, motorClearance().y - 14.35])
+                                rotate(90)
+                                    fillet(1);
+                        }
+                    translate([size.x, eY + 2*eSize])
+                        rotate(180)
+                            fillet(baseFillet);
+                }
             if (sideSupportSizeY)
                 translate([0, eY + eSize - (sideSupportSizeY < 0 ? size.y - eSize : sideSupportSizeY), 0])
                     rounded_cube_xy([eSize, (sideSupportSizeY < 0 ? size.y - eSize : sideSupportSizeY), tabHeight + eSize], fillet);
         }
-        translate([coreXYPosBL.x + separation.x/2, coreXYPosTR.y + offset.y, 0])
-            translate([coreXY_drive_pulley_x_alignment(coreXY_type) + offset.x, 0])
-                NEMA_screw_positions(NEMA_type) {
-                    cutout = 6.5;
-                    cylinder(d = cutout, h = height + eps);
-                    translate([-cutout/2, -cutout, 0])
-                        cube([cutout, cutout, height + eps]);
-                    translate([cutout/2, motorClearance().y - 14.35, 0])
-                        fillet(1, height + eps);
-                    translate([-cutout/2, motorClearance().y - 14.35, 0])
-                        rotate(90)
-                            fillet(1, height + eps);
-                }
         translate([0, eY + 2*eSize - size.y - eps, -eps])
             fillet(yFillet, tabHeight + eSize + 2*eps);
-        translate([size.x, eY + 2*eSize, -eps])
-            rotate(180)
-                fillet(baseFillet, tabHeight + 2*eps);
         for (x = upperBoltPositions(size.x))
             translate([x + eSize, eY + 3*eSize/2, -eps])
                 boltHoleM4HangingCounterboreButtonhead(5 + 2*eps, boreDepth=height - 5, boltHeadTolerance=boltHeadTolerance);
