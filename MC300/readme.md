@@ -73,7 +73,7 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  BigTreeTech TFT35 E3 v3.0 |
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Bolt M3 buttonhead x  8mm |
-|   4  |   4  |   6  |   4  |   .  |   .  |   .  |   .  |   .  |   18  |  Bolt M3 buttonhead x 10mm |
+|   4  |   6  |   6  |   4  |   .  |   .  |   .  |   .  |   .  |   20  |  Bolt M3 buttonhead x 10mm |
 |   2  |   .  |  10  |   .  |   .  |   .  |   .  |   4  |   .  |   16  |  Bolt M3 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Bolt M3 buttonhead x 16mm |
 |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 25mm |
@@ -129,11 +129,11 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Stepper motor cable, 650mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  |  Stepper motor cable, 750mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Stepper motor cable, 900mm |
-|   .  |   .  |  24  |   .  |   .  |   .  |   .  |   .  |   .  |   24  |  Washer  M3 |
+|   .  |   .  |  22  |   .  |   .  |   .  |   .  |   .  |   .  |   22  |  Washer  M3 |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer  M4 |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Ziptie 2.5mm x 100mm min length |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  filament sensor |
-|  19  |   6  | 168  |  51  |  12  |   9  |  24  |  49  | 129  |  467  | Total vitamins count |
+|  19  |   8  | 166  |  51  |  12  |   9  |  24  |  49  | 129  |  467  | Total vitamins count |
 |      |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   2  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  | Belt_Clamp.stl |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  | Belt_Tensioner.stl |
@@ -345,7 +345,7 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 
 |Qty|Description|
 |---:|:----------|
-|4| Bolt M3 buttonhead x 10mm|
+|6| Bolt M3 buttonhead x 10mm|
 |2| Bolt M3 caphead x 20mm|
 
 
@@ -536,7 +536,7 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |1| Bolt M3 caphead x 25mm|
 |1| Pulley GT2 idler 16 teeth|
 |1| Pulley GT2 idler smooth 9.63mm|
-|4| Washer  M3|
+|3| Washer  M3|
 
 
 ### 3D Printed parts
@@ -604,7 +604,7 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |1| Bolt M3 caphead x 25mm|
 |1| Pulley GT2 idler 16 teeth|
 |1| Pulley GT2 idler smooth 9.63mm|
-|4| Washer  M3|
+|3| Washer  M3|
 
 
 ### 3D Printed parts
