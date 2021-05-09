@@ -85,8 +85,8 @@ module faceTopBack() {
         use2020 = is_undef(_use2020TopExtrusion) || _use2020TopExtrusion == false ? false : true;
 
         explode([0, 120, 0], true) {
-                extrusionOXEndBoltPositions(eX)
-                    boltM5Buttonhead(_endBoltShortLength);
+            extrusionOXEndBoltPositions(eX)
+                boltM5Buttonhead(_endBoltShortLength);
             if (!use2020)
                 translate_z(-eSize)
                     extrusionOXEndBoltPositions(eX)
@@ -127,12 +127,8 @@ assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
 module Right_Side_Upper_Extrusion_assembly() pose(a = [180+55, 0, 25-90])
 assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
 
-    translate([eX, eSize, eZ - eSize]) {
-        extrusionOY2040H(eY);
-        if (_useBlindJoints)
-            extrusionOY2040HEndBoltPositions(eY, -eSize/2)
-                boltM5Buttonhead(_endBoltLength);
-    }
+    translate([eX, eSize, eZ - eSize])
+        extrusionOY2040HEndBolts(eY);
 
     translate([eX + eSize/2, eSize + _yRailLength/2, eZ - eSize])
         explode(-40, true)

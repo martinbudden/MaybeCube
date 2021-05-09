@@ -45,10 +45,10 @@ module extrusionOX2080VEndBolts(eX) {
             boltM5Buttonhead(_endBoltLength);
 }
 
-module extrusionOY2040HEndBolts(eY, offset = eSize/2) {
+module extrusionOY2040HEndBolts(eY) {
     extrusionOY2040H(eY);
     if (_useBlindJoints)
-        extrusionOY2040HEndBoltPositions(eY, offset)
+        extrusionOY2040HEndBoltPositions(eY)
             boltM5Buttonhead(_endBoltLength);
 }
 
