@@ -87,7 +87,7 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M4 buttonhead x 10mm |
 |   .  |   .  |  12  |   .  |   .  |   .  |   4  |  12  |  10  |   38  |  Bolt M4 buttonhead x 12mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M5 buttonhead x 10mm |
-|   .  |   .  |   6  |   .  |   8  |   .  |   .  |   8  |  12  |   34  |  Bolt M5 buttonhead x 12mm |
+|   .  |   .  |  10  |   .  |   8  |   .  |   .  |   8  |  12  |   38  |  Bolt M5 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   8  |   .  |   .  |    8  |  Bolt M5 countersunk x 12mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   1  |   1  |    4  |  Cork damper NEMA 17 |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  E3D V6 Fan Duct |
@@ -133,7 +133,7 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer  M4 |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Ziptie 2.5mm x 100mm min length |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  filament sensor |
-|  19  |   8  | 166  |  51  |  12  |   9  |  24  |  49  | 129  |  467  | Total vitamins count |
+|  19  |   8  | 170  |  51  |  12  |   9  |  24  |  49  | 129  |  471  | Total vitamins count |
 |      |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   2  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  | Belt_Clamp.stl |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  | Belt_Tensioner.stl |
@@ -566,7 +566,7 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |Qty|Description|
 |---:|:----------|
 |8| Bolt M3 caphead x 10mm|
-|2| Bolt M5 buttonhead x 12mm|
+|4| Bolt M5 buttonhead x 12mm|
 |1| Extrusion E2040 x 300mm|
 |1| Linear rail MGN12 x 300mm|
 |1| Linear rail carriage MGN12H|
@@ -634,7 +634,7 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |Qty|Description|
 |---:|:----------|
 |8| Bolt M3 caphead x 10mm|
-|2| Bolt M5 buttonhead x 12mm|
+|4| Bolt M5 buttonhead x 12mm|
 |1| Extrusion E2040 x 300mm|
 |1| Linear rail MGN12 x 300mm|
 |1| Linear rail carriage MGN12H|
