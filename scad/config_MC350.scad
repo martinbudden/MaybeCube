@@ -14,6 +14,8 @@ _yRailLength = eY;
 _xCarriageType = "12H";
 _yCarriageType = "12H";
 
+_beltWidth = 6;
+
 _printBedSize = 235;
 _printBedArmSeparation = 150;
 _printBed4PointSupport = true;

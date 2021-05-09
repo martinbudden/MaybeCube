@@ -123,7 +123,7 @@ module xyMotorMountBase(left, size, offset, sideSupportSizeY, cnc=false) {
     }
     if (!cnc)
         translate([coreXYPosBL.x + separation.x/2, coreXYPosTR.y + offset.y]) {
-            pulleyStackHeight = 2*washer_thickness(M3_washer) + pulley_height(GT2x16_plain_idler);
+            pulleyStackHeight = 2*washer_thickness(M3_washer) + pulley_height(coreXY_plain_idler(coreXY_type()));
             translate([pP.x, pT.y, size.z])
                 difference() {
                     if (left)
