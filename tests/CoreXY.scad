@@ -53,22 +53,14 @@ for (x=[0, eX+eSize], y=[0, eY+eSize])
         translate([x, eSize, eZ-eSize])
             extrusionOY2040H(eY);
 
-    translate([1.5*eSize, eSize+_yRailLength/2, eZ - eSize]) {
-        rotate([180, 0, 90]) {
+    translate([1.5*eSize, eSize+_yRailLength/2, eZ - eSize])
+        rotate([180, 0, 90])
             rail_assembly(yCarriageType, _yRailLength, carriagePosition().y-eSize-_yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
-            explode(30, true)
-                translate([carriagePosition().y-eSize-_yRailLength/2, 0, carriage_height(yCarriageType)])
-                    Y_Carriage_Left_assembly();
-        }
-    }
-    translate([eSize/2+eX, eSize+_yRailLength/2, eZ - eSize]) {
-        rotate([180, 0, 90]) {
+    Y_Carriage_Left_assembly();
+    translate([eSize/2+eX, eSize+_yRailLength/2, eZ - eSize])
+        rotate([180, 0, 90])
             rail_assembly(yCarriageType, _yRailLength, carriagePosition().y-eSize-_yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
-            explode(30, true)
-                translate([carriagePosition().y-eSize-_yRailLength/2, 0, carriage_height(yCarriageType)])
-                    Y_Carriage_Right_assembly();
-        }
-    }
+    Y_Carriage_Right_assembly();
 
     //XY_Idler_Left_assembly();
     //XY_Idler_Right_assembly();
