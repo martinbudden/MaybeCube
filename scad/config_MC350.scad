@@ -6,7 +6,7 @@ eY = __extrusionLengths.y;
 eZ = __extrusionLengths.z;
 
 _xyNemaType = "17_48";
-_zNemaType = "17_40L300";
+_zNemaType = "17_40L280";
 _corkDamperThickness = 3;
 
 _xRailLength = eX - 50;
