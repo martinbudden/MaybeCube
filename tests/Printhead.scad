@@ -26,15 +26,18 @@ module Printhead_test() {
     echo(coreXYPosBL=coreXYPosBL());
     echo(coreXYSeparation=coreXYSeparation());
 
-    translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
+    *translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
         fullPrinthead();
         CoreXYBelts(carriagePosition(), x_gap = 20, show_pulleys = [1, 0, 0]);
         translate_z(eZ)
             xRail(carriagePosition());
     }
-    //Printhead_assembly();
-    //X_Carriage_Front_assembly();
-    //X_Carriage_assembly();
+    translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())])
+        xRailCarriagePosition() {
+            //Printhead_assembly();
+            //X_Carriage_Front_assembly();
+            X_Carriage_assembly();
+        }
     //X_Carriage_stl();
     //Fan_Duct_stl();
     //Hotend_Clamp_stl();
