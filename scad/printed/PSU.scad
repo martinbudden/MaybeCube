@@ -2,7 +2,7 @@ include <../global_defs.scad>
 
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/psus.scad>
-use <NopSCADlib/printed/psu_shroud.scad>
+//use <NopSCADlib/printed/psu_shroud.scad>
 
 
 include <../Parameters_Main.scad>
@@ -12,13 +12,12 @@ include <../Parameters_Main.scad>
 function PSUtype() = S_300_12;//PSUtype;
 function PSUstandoffHeight() = 0;
 function psuShroudCableDiameter() = 8;
-function psuOffset(PSUtype) = [eSize + psu_width(PSUtype)/2, eY + 2*eSize, psu_length(PSUtype)/2 + 2*eSize + 15];
+function psuOffset(PSUtype) = [eSize + 3 + psu_width(PSUtype)/2, eY + 2*eSize, psu_length(PSUtype)/2 + 2*eSize + 15];
 
 module PSUBoltPositions() {//! Position children at the bolt positions on the bottom face
-    rotate(180)
-        for (pos = psu_face_holes(psu_faces(PSUtype())[f_bottom]))
-            translate([pos.x, pos.y + psu_right_bay(PSUtype()), 0])
-                children();
+    for (pos = psu_face_holes(psu_faces(PSUtype())[f_bottom]))
+        translate([pos.x, pos.y + psu_right_bay(PSUtype()), 0])
+            children();
 }
 
 module PSUPosition(psuOnBase=false) {
@@ -52,13 +51,45 @@ module PSU() {
                 not_on_reduced_bom()  vitamin(str(": LED Switching Power Supply 24V 15A 360W"));
                 not_on_bom() psu(PSUtype());
                 thickness = 3.5;
-                *mirror([0, 1, 0])
-                    psu_shroud_assembly(PSUtype(), psuShroudCableDiameter(), PSUtype()[0], inserts=false);
-                    //psu_shroud_fastened_assembly(PSUtype(), psuShroudCableDiameter, thickness, PSUtype()[0], inserts=false);
+                //mirror([0, 1, 0])
+                    //psu_shroud_assembly(PSUtype(), psuShroudCableDiameter(), PSUtype()[0], inserts=false);
             }
 }
 
 module psu_shroud_S_300_12_stl() {
     mirror([0, 1, 0])
         psu_shroud(PSUtype(), psuShroudCableDiameter(), PSUtype()[0], inserts=false);
+}
+
+module PSU_Shroud_stl() {
+    psuSize = psu_size(PSUtype());
+    wallThickness = 3;
+    baseSize = [2*eSize + 35, psuSize.y + 2*wallThickness, wallThickness];
+    fillet = 1;
+
+    color(pp1_colour)
+        stl("PSU_Shroud")
+            translate([0, -baseSize.y/2, -wallThickness]) {
+                rounded_cube_xy(baseSize, fillet);
+                rounded_cube_xy([baseSize.x, wallThickness, psuSize.z + wallThickness - eSize], fillet);
+                translate([eSize, 0, 0])
+                    rounded_cube_xy([baseSize.x - eSize, wallThickness, psuSize.z + wallThickness], fillet);
+                rounded_cube_xy([wallThickness, baseSize.y, psuSize.z + wallThickness - eSize], fillet);
+                translate([0, baseSize.y - wallThickness, 0]) {
+                    rounded_cube_xy([2*eSize, wallThickness, psuSize.z + wallThickness - eSize], fillet);
+                    translate([eSize, 0, 0])
+                        rounded_cube_xy([baseSize.x - eSize, wallThickness, psuSize.z + wallThickness], fillet);
+                }
+            }
+}
+
+module PSU_Shroud_assembly()
+assembly("PSU_Shroud") {
+
+    psuSize = psu_size(PSUtype());
+    PSUPosition()
+        translate([psuSize.x/2 + eSize + 15, 0, psuSize.z])
+            hflip()
+                stl_colour(pp1_colour)
+                    PSU_Shroud_stl();
 }
