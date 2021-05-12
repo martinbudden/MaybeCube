@@ -18,16 +18,18 @@ use <../vitamins/nuts.scad>
 include <../Parameters_Main.scad>
 
 
-NEMA17_40L300 = ["NEMA17_40L300", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [250, 8, 2], 31,    [8,     8]];
-NEMA17_40L350 = ["NEMA17_40L350", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [300, 8, 2], 31,    [8,     8]];
+NEMA17_40L230 = ["NEMA17_40L230", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [230, 8, 2], 31,    [8,     8]];
+NEMA17_40L280 = ["NEMA17_40L280", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [280, 8, 2], 31,    [8,     8]];
+NEMA17_40L330 = ["NEMA17_40L330", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [330, 8, 2], 31,    [8,     8]];
 
 
 NEMA_motorWidth = _zNemaType == "14" ? 36 : 43; // not part of standard, may vary, so give some clearance
 NEMA_type =
     _zNemaType == "14" ? NEMA14 :
     _zNemaType == "17_40" ? NEMA17M :
-    _zNemaType == "17_40L300" ? NEMA17_40L300 :
-    _zNemaType == "17_40L350" ? NEMA17_40L350 :
+    _zNemaType == "17_40L230" ? NEMA17_40L230 :
+    _zNemaType == "17_40L280" ? NEMA17_40L280 :
+    _zNemaType == "17_40L330" ? NEMA17_40L330 :
     undef;
 
 
@@ -106,7 +108,7 @@ module Z_Motor_MountBrace(size) {
 module zMotorMount(eHeight=40) {
     size = Z_Motor_MountSize();
 
-    blockSizeZ = Z_Motor_MountSize().z - eHeight;
+    blockSizeZ = size.z - eHeight;
     offset = (motorBracketSizeX - NEMA_hole_pitch(NEMA_type))/2;
 
     color(pp1_colour)
@@ -119,16 +121,20 @@ module zMotorMount(eHeight=40) {
             *translate([0, 5, -size.z+motorBracketSizeZ+4]) rotate([0, 0, 90]) fillet(2, size.z-4);
             *translate([motorBracketSizeX, 5, -size.z+motorBracketSizeZ+4]) fillet(2, size.z-4);
             // add the braces
-            braceSize = [motorBracketSizeY-motorBracketSizeZ, Z_Motor_MountSize().z-motorBracketSizeZ-7, motorBracketSizeZ - reduce];
+            braceSize = [motorBracketSizeY - motorBracketSizeZ, size.z - motorBracketSizeZ-7, motorBracketSizeZ - reduce];
             translate([braceSize.z+reduce, motorBracketSizeZ, 0]) rotate([0, 180, 0]) Z_Motor_MountBrace(braceSize);
             translate([motorBracketSizeX-reduce, motorBracketSizeZ, 0]) rotate([0, 180, 0]) Z_Motor_MountBrace(braceSize);
 
-            wingSizeZ = Z_Motor_MountSize().z-2*eSize;
-            translate([0, 0, motorBracketSizeZ-wingSizeZ]) {
-                translate([-wingSizeX, 0, 0]) cube([wingSizeX+motorBracketSizeZ, motorBracketSizeZ, wingSizeZ]);
-                translate([-wingSizeX, 0, -2*eSize]) cube([wingSizeX+motorBracketSizeZ, motorBracketSizeZ, 2*eSize]);
-                translate([motorBracketSizeX-motorBracketSizeZ, , 0]) cube([wingSizeX+motorBracketSizeZ, motorBracketSizeZ, wingSizeZ]);
-                translate([motorBracketSizeX-motorBracketSizeZ, 0, -2*eSize]) cube([wingSizeX+motorBracketSizeZ, motorBracketSizeZ, 2*eSize]);
+            wingSizeZ = size.z-2*eSize;
+            translate_z(motorBracketSizeZ - wingSizeZ) {
+                translate([-wingSizeX, 0, 0])
+                    cube([wingSizeX + motorBracketSizeZ, motorBracketSizeZ, wingSizeZ]);
+                translate([-wingSizeX, 0, -2*eSize])
+                    cube([wingSizeX + motorBracketSizeZ, motorBracketSizeZ, 2*eSize]);
+                translate([motorBracketSizeX - motorBracketSizeZ, , 0])
+                    cube([wingSizeX+motorBracketSizeZ, motorBracketSizeZ, wingSizeZ]);
+                translate([motorBracketSizeX - motorBracketSizeZ, 0, -2*eSize])
+                    cube([wingSizeX+motorBracketSizeZ, motorBracketSizeZ, 2*eSize]);
             }
 
             // add the block
@@ -136,12 +142,12 @@ module zMotorMount(eHeight=40) {
                 rotate([90, 0, 90]) {
                         difference() {
                             fillet = 1;
-                            rounded_cube_xz([eSize + fillet, blockSizeZ, Z_Motor_MountSize().x], fillet);
+                            rounded_cube_xz([eSize + fillet, blockSizeZ, size.x], fillet);
                             cutSize = eSize;//min(eSize, blockSizeZ);
                             if (eHeight == 20)
-                                translate([-eps, blockSizeZ+eps, -eps])
+                                translate([-eps, blockSizeZ + eps, -eps])
                                     rotate(-90)
-                                        linear_extrude(Z_Motor_MountSize().x + 2*eps)
+                                        linear_extrude(size.x + 2*eps)
                                             right_triangle(cutSize, cutSize);
                         }
                     }
@@ -167,7 +173,7 @@ module zMotorMount(eHeight=40) {
             }
         }
         // add the boltholes on the wings
-    for (x = [wingSizeX/2 + 0.75, Z_Motor_MountSize().x - wingSizeX/2 - 0.75])
+    for (x = [wingSizeX/2 + 0.75, size.x - wingSizeX/2 - 0.75])
             translate([x - wingSizeX, 0, -size.z + eSize - motorBracketSizeZ]) {
                  rotate([-90, 0, 0])
                     boltHoleM4(motorBracketSizeZ, horizontal=true);
@@ -180,7 +186,7 @@ module zMotorMount(eHeight=40) {
             boltM4ButtonheadTNut(eHeight==40 ? 12 : _frameBoltLength);
 
     // add the bolts on the wings
-    for (x = [wingSizeX/2 + 0.75, Z_Motor_MountSize().x - wingSizeX/2 - 0.75])
+    for (x = [wingSizeX/2 + 0.75, size.x - wingSizeX/2 - 0.75])
         translate([x, eSize + motorBracketSizeZ, eSize - 2*motorBracketSizeZ])
             rotate([90, 0, 180])
                 boltM4ButtonheadTNut(_frameBoltLength);
