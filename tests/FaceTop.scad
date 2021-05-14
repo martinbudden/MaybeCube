@@ -21,6 +21,9 @@ module Face_Top_test() {
     //let($hide_rails=true)
     //let($hide_corexy=true)
     Face_Top_assembly();
+    //Top_Corner_Piece_stl();
+    //Top_Corner_Piece_hardware();
+    //Top_Corner_Piece_assembly();
     //faceTopBack();
     //Left_Side_Upper_Extrusion_assembly();
     //Right_Side_Upper_Extrusion_assembly();
