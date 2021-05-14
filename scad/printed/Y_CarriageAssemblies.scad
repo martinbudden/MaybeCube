@@ -69,15 +69,19 @@ module Y_Carriage_Right_AL_dxf() {
 }
 
 module Y_Carriage_Brace_Left_stl() {
+    holeRadius = coreXYIdlerBore() == 3 ? M3_tap_radius : M5_tap_radius;
+
     stl("Y_Carriage_Brace_Left")
         color(pp1_colour)
-            yCarriageBrace(yCarriageType(), yCarriageBraceThickness(), pulleyOffset(), left=true);
+            yCarriageBrace(yCarriageType(), yCarriageBraceThickness(), pulleyOffset(), holeRadius, left=true);
 }
 
 module Y_Carriage_Brace_Right_stl() {
+    holeRadius = coreXYIdlerBore() == 3 ? M3_tap_radius : M5_tap_radius;
+
     stl("Y_Carriage_Brace_Right")
         color(pp1_colour)
-            yCarriageBrace(yCarriageType(), yCarriageBraceThickness(), pulleyOffset(), left=false);
+            yCarriageBrace(yCarriageType(), yCarriageBraceThickness(), pulleyOffset(), holeRadius, left=false);
 }
 
 module Y_Carriage_Left_assembly()

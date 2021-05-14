@@ -153,6 +153,17 @@ module xyIdler() {
 }
 
 module XY_Idler_hardware() {
+
+    module doubleWasher() {
+        if (coreXYIdlerBore() == 3)
+            washer(M3_washer)
+                washer(M3_washer)
+                    children();
+        else
+            washer(M5_washer)
+                children();
+    }
+
     size = xyIdlerSize();
     coreXY_type = coreXY_type();
     toothed_idler = coreXY_toothed_idler(coreXY_type);
@@ -173,25 +184,24 @@ module XY_Idler_hardware() {
                 }
         }
 
+        washer = coreXYIdlerBore() == 3 ? M3_washer : M5_washer;
         translate([eSize/2, coreXYPosBL().z - coreXYSeparation().z + yCarriageBraceThickness()/2, axisOffset])
             rotate([-90, 0, 0]) {
                 vflip()
                     translate_z(armSize.y + eps)
                         boltM3Caphead(30);
-                washer(M3_washer) {
+                washer(washer) {
                     pulley(toothed_idler);
                     translate_z(pulley_height(toothed_idler)) {
-                        washer(M3_washer)
-                            washer(M3_washer)
-                                if (yCarriageBraceThickness() == 0) {
+                        doubleWasher()
+                            if (yCarriageBraceThickness() == 0) {
+                                pulley(toothed_idler)
+                                    washer(washer);
+                            } else {
+                                doubleWasher()
                                     pulley(toothed_idler)
-                                        washer(M3_washer);
-                                } else {
-                                    washer(M3_washer)
-                                        washer(M3_washer)
-                                            pulley(toothed_idler)
-                                                washer(M3_washer);
-                                }
+                                        washer(washer);
+                            }
                     }
                 }
             }
