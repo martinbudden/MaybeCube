@@ -5,12 +5,16 @@ use <../scad/printed/Z_Carriage.scad>
 
 //$explode = 1;
 module Z_Carriage_test() {
-    Z_Carriage_Left_assembly();
-    translate([0, 100, 0])
+    translate([-50, 0, 0])
+        Z_Carriage_Left_assembly();
+    translate([50, 00, 0])
         Z_Carriage_Right_assembly();
     *Z_Carriage_Left_stl();
     *translate([0, 100, 0])
         Z_Carriage_Right_stl();
+    Z_Carriage_Center_assembly();
+    //Z_Carriage_Center_stl();
+    //Z_Carriage_Center_hardware();
 }
 
 if ($preview) {
