@@ -61,14 +61,14 @@ module psu_shroud_S_300_12_stl() {
         psu_shroud(PSUtype(), psuShroudCableDiameter(), PSUtype()[0], inserts=false);
 }
 
-module PSU_Shroud_stl() {
+module PSU_Cover_stl() {
     psuSize = psu_size(PSUtype());
     wallThickness = 3;
     baseSize = [2*eSize + 35, psuSize.y + 2*wallThickness, wallThickness];
     fillet = 1;
 
     color(pp1_colour)
-        stl("PSU_Shroud")
+        stl("PSU_Cover")
             translate([0, -baseSize.y/2, -wallThickness]) {
                 rounded_cube_xy(baseSize, fillet);
                 rounded_cube_xy([baseSize.x, wallThickness, psuSize.z + wallThickness - eSize], fillet);
@@ -83,13 +83,13 @@ module PSU_Shroud_stl() {
             }
 }
 
-module PSU_Shroud_assembly()
-assembly("PSU_Shroud") {
+module PSU_Cover_assembly()
+assembly("PSU_Cover") {
 
     psuSize = psu_size(PSUtype());
     PSUPosition()
         translate([psuSize.x/2 + eSize + 15, 0, psuSize.z])
             hflip()
                 stl_colour(pp1_colour)
-                    PSU_Shroud_stl();
+                    PSU_Cover_stl();
 }

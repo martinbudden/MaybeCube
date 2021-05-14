@@ -4,7 +4,6 @@ include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/pillar.scad>
 include <NopSCADlib/vitamins/psus.scad>
 include <NopSCADlib/vitamins/pcbs.scad>
-use <NopSCADlib/printed/psu_shroud.scad>
 use <NopSCADlib/vitamins/sheet.scad>
 
 use <printed/extruderBracket.scad>
@@ -112,7 +111,7 @@ module backPanelCutouts(PSUtype, pcbType, cncSides = undef) {
             rotate(-90) {
                 PSUBoltPositions()
                     poly_circle(r = M4_clearance_radius, sides=cncSides);
-                *mirror([0, 1, 0])
+                /*mirror([0, 1, 0])
                     rotate(180) {
                         psu_shroud_hole_positions(PSUtype)
                             circle(r = M3_clearance_radius);
@@ -121,7 +120,7 @@ module backPanelCutouts(PSUtype, pcbType, cncSides = undef) {
                             for (y = [-psuShroudCableDiameter()/2 - cutoutWidth/2, psuShroudCableDiameter()/2 + cutoutWidth/2])
                                 translate([0, y])
                                     rounded_square([4, cutoutWidth], 0.25, center=true);
-                    }
+                    }*/
                 }
 
         pcbOffsetZ = 100;
@@ -367,7 +366,7 @@ module psuAsssembly(psuOnBase=false) {
         explode(50)
             PSU();
     if (eX >= 300)
-        PSU_Shroud_assembly();
+        PSU_Cover_assembly();
     if (psuOnBase) {
         PSUPosition(psuOnBase)
             PSUBoltPositions() {
