@@ -15,8 +15,8 @@ use <../scad/FaceTop.scad>
 //$pose = 1;
 module BackFace_test() {
     //PSUPosition() PSU();
-    //PSU_Shroud_assembly();
-    //PSU_Shroud_stl();
+    //PSU_Cover_assembly();
+    //PSU_Cover_stl();
     //PSU_Top_Mount_stl();
     //PSU_Left_Mount_stl();
     //PCB_Mount_stl();

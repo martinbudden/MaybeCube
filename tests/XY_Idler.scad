@@ -13,12 +13,12 @@ module XY_Idler_test() {
     //XY_Idler_Left_assembly();
     //XY_Idler_Right_assembly();
 
-translate(-[0,eZ - eSize - 60,0])
-    xyIdler();
-    *translate([0, -eZ, eZ]) {
-        XY_Idler_Left_stl();
-        XY_Idler_hardware();
-    }
+    translate(-[0, eZ - eSize - 60, 0])
+        xyIdler();
+        *translate([0, -eZ, eZ]) {
+            XY_Idler_Left_stl();
+            XY_Idler_hardware();
+        }
     *translate([-120, -eZ, eZ]) {
         XY_Idler_Right_stl();
         translate([0, 0, eSize])
