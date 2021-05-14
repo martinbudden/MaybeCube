@@ -129,13 +129,13 @@ module Z_Carriage_Left_assembly() pose(a=[55+40, 0, 25 + 180])
 assembly("Z_Carriage_Left", ngb=true) {
 
     translate_z(-scs_screw_separation_z(scsType)/2) {
-        rotate([-90, 0, 0]) {
+        rotate([-90, 0, 90]) {
             stl_colour(pp1_colour)
                 Z_Carriage_Left_stl();
             mirror([0, 1, 0])
                 zCarriageSCS_hardware();
         }
-        rotate(180)
+        rotate(-90)
             scs_bearing_block(scsType);
     }
 }
@@ -144,12 +144,13 @@ module Z_Carriage_Right_assembly()
 assembly("Z_Carriage_Right", ngb=true) {
 
     translate_z(-scs_screw_separation_z(scsType)/2) {
-        rotate([90, 0, 0]) {
+        rotate([90, 0, 90]) {
             stl_colour(pp1_colour)
                 Z_Carriage_Right_stl();
             zCarriageSCS_hardware();
         }
-        scs_bearing_block(scsType);
+        rotate(90)
+            scs_bearing_block(scsType);
     }
 }
 
@@ -158,7 +159,7 @@ module zCarriageCenter() {
     fillet = 2;
 
     difference() {
-        translate([-size.x/2, printBedFrameCrossPieceOffset() - size.y, 0])
+        translate([-size.x/2, printBedFrameCrossPieceOffset() - size.y, -size.z/2])
             rounded_cube_xy(size, fillet);
         leadnut_screw_positions(leadnut)
             boltHoleM3Tap(size.z);
@@ -168,7 +169,7 @@ module zCarriageCenter() {
         }
     }
     tabSize = [size.x + 20, 5, size.z];
-    translate([-tabSize.x/2, printBedFrameCrossPieceOffset() - tabSize.y, 0])
+    translate([-tabSize.x/2, printBedFrameCrossPieceOffset() - tabSize.y, -tabSize.z/2])
         difference() {
             rounded_cube_xy(tabSize, 1);
             for (x = [5, tabSize.x -5])
@@ -178,31 +179,32 @@ module zCarriageCenter() {
         }
 }
 
-module zCarriageCenter_hardware() {
-    translate_z(leadnutInset - eps)
-        vflip() {
-            leadnut(leadnut);
-            leadnut_screw_positions(leadnut)
-                screw(leadnut_screw(leadnut), 8);
-        }
+module Z_Carriage_Center_hardware() {
+    translate_z(eSize/2 - leadnutInset + eps) {
+        leadnut(leadnut);
+        leadnut_screw_positions(leadnut)
+            screw(leadnut_screw(leadnut), 8);
+    }
     tabSize = [50, 5, eSize];
-    translate([-tabSize.x/2, printBedFrameCrossPieceOffset() - tabSize.y, 0])
-        for (x = [5, tabSize.x -5])
-            translate([x, 0, tabSize.z/2])
-                rotate([90, 0, 0])
-                    boltM4ButtonheadTNut(_frameBoltLength);
+    for (x = [5, tabSize.x -5])
+        translate([x - tabSize.x/2, tabSize.y - printBedFrameCrossPieceOffset(), 0])
+            rotate([-90, 0, 0])
+                boltM4ButtonheadTNut(_frameBoltLength);
 }
 
 module Z_Carriage_Center_stl() {
-    stl("Z_Carriage_Right")
+    stl("Z_Carriage_Center")
         color(pp1_colour)
-            zCarriageCenter();
+            vflip()
+                zCarriageCenter();
 }
 
 module Z_Carriage_Center_assembly()
 assembly("Z_Carriage_Center", ngb=true) {
 
+    vflip() {
         stl_colour(pp1_colour)
             Z_Carriage_Center_stl();
-        zCarriageCenter_hardware();
+        Z_Carriage_Center_hardware();
+    }
 }

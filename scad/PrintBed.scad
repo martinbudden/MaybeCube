@@ -27,7 +27,7 @@ sk12HoleOffsetFromTop = 37.5 - 23; // 14.5
 
 heatedBedOffset = _printBed4PointSupport
     ? [0, 20, _printBedExtrusionSize/2 + 1 + springLength]
-    : [0, sk12HoleOffsetFromTop + 0.5, _printBedExtrusionSize];
+    : [0, sk12HoleOffsetFromTop + 0.5, _printBedExtrusionSize/2];
 
 
 _heatedBedSize = _printBedSize == 100 ? [100, 100, 1.6] : // Openbuilds mini heated bed size
@@ -262,7 +262,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
     yOffset = scs_size(scs_type).x/2;
     //yOffset = 28;
 
-    translate([-_printBedArmSeparation/2, 0, 0]) {
+    translate([-_printBedArmSeparation/2, 0, -fSize/2]) {
         for (x = [-fSize/2, _printBedArmSeparation + fSize/2])
             explode([0, 100, 0])
                 color(frameColor()) render(convexity=2) difference() {
@@ -328,24 +328,22 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
     Printbed_Frame_assembly();
 
     yOffset = 0;
-    translate([-zRodSeparation()/2, 0, eSize/2]) {
+    translate([-zRodSeparation()/2, 0, 0]) {
         explode([0, -100, 0])
             translate([0, -yOffset, 0])
-                rotate(90)
-                    Z_Carriage_Left_assembly();
+                Z_Carriage_Left_assembly();
         if (useDualZRods)
             translate([0, eY - 2*eSize - 2*yOffset, 0])
-                rotate(-90)
+                rotate(180)
                     Z_Carriage_Right_assembly();
     }
-    translate([zRodSeparation()/2, 0, eSize/2]) {
+    translate([zRodSeparation()/2, 0, 0]) {
         explode([0, -100, 0])
             translate([0, -yOffset, 0])
-                rotate(90)
-                    Z_Carriage_Right_assembly();
+                Z_Carriage_Right_assembly();
         if (useDualZRods)
             translate([0, eY - 2*eSize - 2*yOffset, 0])
-                rotate(-90)
+                rotate(180)
                     Z_Carriage_Left_assembly();
     }
     Z_Carriage_Center_assembly();
@@ -358,7 +356,7 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
 module Printbed_assembly()  pose(a=[210, 0, 320])
 assembly("Printbed", big=true) {
 
-    translate([eSize + _zRodOffsetX, eSize + zRodSeparation()/2 + _zRodOffsetY, -_printBedExtrusionSize/2])
+    translate([eSize + _zRodOffsetX, eSize + zRodSeparation()/2 + _zRodOffsetY, 0])
         rotate(-90) {
             Printbed_Frame_with_Z_Carriages_assembly();
             // add the heated bed
