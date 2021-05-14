@@ -147,7 +147,7 @@ staged_assembly("Stage_6", big=true, ngb=true) {
     }*/
     stl_colour(pp1_colour)
         faceRightSpoolHolder();
-    //Right_Side_Panel_assembly();
+    Right_Side_Panel_assembly();
 }
 
 module FinalAssembly() {
@@ -156,6 +156,6 @@ module FinalAssembly() {
         no_explode()
             Stage_6_assembly();
         faceRightSpool();
-        //Left_Side_Panel_assembly();
+        Left_Side_Panel_assembly();
     }
 }
