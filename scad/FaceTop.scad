@@ -16,6 +16,7 @@ use <utils/CoreXYBelts.scad>
 use <utils/X_Rail.scad>
 
 use <vitamins/bolts.scad>
+use <vitamins/nuts.scad>
 use <vitamins/extrusion.scad>
 
 use <Parameters_Positions.scad>
@@ -58,6 +59,16 @@ assembly("Face_Top", big=true) {
     fullPrinthead();
     explode(200, true)
         CoreXYBelts(carriagePosition());
+    Top_Corner_Piece_assembly();
+    translate([eX + 2*eSize, 0, 0])
+        rotate(90)
+            Top_Corner_Piece_assembly();
+    translate([0, eY + 2*eSize, 0])
+        rotate(270)
+            Top_Corner_Piece_assembly();
+    translate([eX + 2*eSize, eY + 2*eSize, 0])
+        rotate(180)
+            Top_Corner_Piece_assembly();
 }
 
 module faceTopFront() {
@@ -141,6 +152,8 @@ assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
         Y_Carriage_Right_assembly();
 }
 
+topCornerPieceHoles = [ [eSize/2, 3*eSize/2], [eSize/2, 5*eSize/2], [3*eSize/2, eSize/2], [3*eSize/2, 3*eSize/2], [5*eSize/2, eSize/2] ];
+
 module topCornerPiece() {
     size = [3*eSize, 3*eSize, 5];
     fillet = 2;
@@ -153,7 +166,7 @@ module topCornerPiece() {
                         polygon([
                             [eSize, 0], [size.x, 0], [size.x, size.y - 2*eSize], [size.x - 2*eSize, size.y], [0, size.y], [0, eSize]
                         ]);
-        for (i = [ [eSize/2, 3*eSize/2], [eSize/2, 5*eSize/2], [3*eSize/2, eSize/2], [3*eSize/2, 3*eSize/2], [5*eSize/2, eSize/2] ])
+        for (i = topCornerPieceHoles)
             translate(i)
                 boltPolyholeM4Countersunk(size.z);
     }
@@ -161,6 +174,26 @@ module topCornerPiece() {
 
 module Top_Corner_Piece_stl() {
     stl("Top_Corner_Piece")
-        vflip()
-            topCornerPiece3();
+        color(pp1_colour)
+            vflip()
+                topCornerPiece();
+}
+
+module Top_Corner_Piece_hardware() {
+    vflip()
+        for (i = topCornerPieceHoles)
+            translate(i)
+                vflip()
+                    boltM4CountersunkTNut(10);
+}
+
+module Top_Corner_Piece_assembly()
+assembly("Top_Corner_Piece", ngb=true) {
+
+    translate_z(eZ + 5)
+        rotate(90) {
+            stl_colour(pp1_colour)
+                Top_Corner_Piece_stl();
+            Top_Corner_Piece_hardware();
+        }
 }

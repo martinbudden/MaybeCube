@@ -133,3 +133,14 @@ module boltM4ButtonheadHammerNut(length, nutOffset = 2.98, rotate = 0, nutExplod
                         nutM4Hammer();
     }
 }
+
+module boltM4CountersunkTNut(length, nutOffset = 2.98, rotate = 0, nutExplode = 20) {
+    if ($preview && (is_undef($hide_bolts) || $hide_bolts == false)) {
+        boltM4Countersunk(length);
+        vflip()
+            translate_z(length - nutOffset)
+                rotate(rotate)
+                    explode(nutExplode)
+                        nutM4SlidingT();
+    }
+}
