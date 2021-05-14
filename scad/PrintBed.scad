@@ -90,7 +90,7 @@ useDualZRods = !is_undef(_useDualZRods) && _useDualZRods;
 //function printBedSize() = [heatedBedSize.x+20, hyperCubeExtrusionLengths.x-2*(_zRodOffsetX+zCarriageSize().y), 30];
 function printBedSize() = [
     _heatedBedSize.x,
-    useDualZRods ? eY -3: eY <= 250 ? 225 : eY <= 300 ? 260 : eY <= 350 ? 275 : 375,
+    useDualZRods ? eY - 3 : eY <= 250 ? 225 : eY <= 300 ? 260 : eY <= 350 ? 275 : 375,
     _printBedExtrusionSize + _heatedBedSize.z
 ];
 
@@ -152,8 +152,8 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
     vitamin(str("heatedBed(", size, ", ", holeOffset, ", ", underlayThickness, "): Heated Bed ", size.x, "mm x ", size.y, "mm"));
 
     boltHoles = _printBed4PointSupport
-        ? [ [holeOffset, holeOffset, 0], [size.x-holeOffset, holeOffset, 0], [size.x-holeOffset, size.y-holeOffset, 0], [holeOffset, size.y-holeOffset, 0] ]
-        : [ [size.x/2, holeOffset, 0], [size.x-holeOffset, size.y-holeOffset, 0], [holeOffset, size.y-holeOffset, 0] ];
+        ? [ [holeOffset, holeOffset, 0], [size.x - holeOffset, holeOffset, 0], [size.x - holeOffset, size.y - holeOffset, 0], [holeOffset, size.y - holeOffset, 0] ]
+        : [ [size.x/2, holeOffset, 0], [size.x - holeOffset, size.y - holeOffset, 0], [holeOffset, size.y - holeOffset, 0] ];
     translate([-_heatedBedSize.y/2, 0, 0]) {
         if (size.x == 235)
             translate([_heatedBedSize.x - 20, 0, 1])
@@ -274,7 +274,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                             boltHoleM3(eSize);
                     if (_printBed4PointSupport)
                         for (y = [_heatedBedHoleOffset, _heatedBedSize.y - _heatedBedHoleOffset])
-                            translate([x, y+heatedBedOffset.y, 0]) {
+                            translate([x, y + heatedBedOffset.y, 0]) {
                                 // hole for bolt
                                 cylinder(h=eSize, r=M4_clearance_radius);
                                 //cutout for spring
@@ -289,7 +289,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
             translate([0, printBedFrameCrossPieceOffset()])
                 printbedFrameCrossPiece();
             if (useDualZRods)
-                translate([0, eY-2*eSize - 6 - printBedFrameCrossPieceOffset(), 0])
+                translate([0, eY - 2*eSize - 6 - printBedFrameCrossPieceOffset(), 0])
                     rotate(180)
                         printbedFrameCrossPiece();
         }
@@ -348,6 +348,7 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
                 rotate(-90)
                     Z_Carriage_Left_assembly();
     }
+    Z_Carriage_Center_assembly();
 }
 
 //!1. With the heatbed upside down, place the bolts through the heatbed and place the springs over the bolts.
