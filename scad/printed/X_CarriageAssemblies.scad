@@ -13,7 +13,7 @@ use <../vitamins/bolts.scad>
 
 use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
-include <../../../BabyCube/scad/printed/X_CarriageBeltClamps.scad> //breaks if this is use
+include <../../../BabyCube/scad/printed/X_CarriageBeltClamps.scad> //breaks if this is use rather than include
 include <../../../BabyCube/scad/printed/X_CarriageFanDuct.scad>
 
 use <../Parameters_CoreXY.scad>
@@ -135,7 +135,8 @@ module X_Carriage_stl() {
         color(pp1_colour)
             rotate([0, -90, 0]) {
                 xCarriageBack(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z);
-                hotEndHolder(xCarriageType, hotend_type, blower_type);
+                mirror([1,0,0])
+                    hotEndHolder(xCarriageType, hotend_type, blower_type, hotendOffsetZ());
             }
 }
 
@@ -154,16 +155,21 @@ assembly("X_Carriage", big=true, ngb=true) {
             X_Carriage_stl();
 
     xCarriageAssembly(xCarriageType, beltOffsetZ(), coreXYSeparation().z);
-    explode([-20, 0, 10], true)
-        hotEndPartCoolingFan(xCarriageType, hotend_type, blower_type);
 
-    explode([-20, 0, -10], true)
-        blowerTranslate(xCarriageType, hotend_type, blower_type)
-            rotate([-90, 0, 0]) {
-                stl_colour(pp2_colour)
-                    Fan_Duct_stl();
-                Fan_Duct_hardware(xCarriageType, hotend_type);
-            }
+    mirror([1, 0, 0])
+        translate_z(hotendOffsetZ()) {
+            explode([-20, 0, 10], true)
+                hotEndPartCoolingFan(xCarriageType, hotend_type, blower_type);
+
+            explode([-20, 0, -10], true)
+                blowerTranslate(xCarriageType, hotend_type, blower_type)
+                    rotate([-90, 0, 0]) {
+                        stl_colour(pp2_colour)
+                            mirror([1, 0, 0]) // reverse enclosing mirror
+                                Fan_Duct_Right_stl();
+                        Fan_Duct_hardware(xCarriageType, hotend_type);
+                    }
+        }
 }
 
 module Belt_Tidy_stl() {
