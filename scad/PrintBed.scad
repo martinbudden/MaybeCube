@@ -87,7 +87,6 @@ supportLengthCenter = heatedBedOffsetY+insetY-braceY()+printBedHoleOffset+heated
 scs_type = _zRodDiameter == 8 ? SCS8LUU : _zRodDiameter == 10 ? SCS10LUU : SCS12LUU;
 useDualZRods = !is_undef(_useDualZRods) && _useDualZRods;
 
-//function printBedSize() = [heatedBedSize.x+20, hyperCubeExtrusionLengths.x-2*(_zRodOffsetX+zCarriageSize().y), 30];
 function printBedSize() = [
     _heatedBedSize.x,
     useDualZRods ? eY - 3 : eY <= 250 ? 225 : eY <= 300 ? 260 : eY <= 350 ? 275 : 375,
