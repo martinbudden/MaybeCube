@@ -9,17 +9,17 @@ _useAsserts = is_undef(_useAsserts) ? false : _useAsserts;
 
 module Z_RodMountGuide_40mm_stl() {
     stl("Z_RodMountGuide_40mm")
-        E2020Cover(40, 40);
+        E2020Cover(40);
 }
 
 module Z_RodMountGuide_50mm_stl() {
     stl("Z_RodMountGuide_50mm")
-        E2020Cover(50, 50);
+        E2020Cover(50);
 }
 
 module Z_RodMountGuide_60mm_stl() {
     stl("Z_RodMountGuide_60mm")
-        E2020Cover(60, 60);
+        E2020Cover(60);
 }
 
 module zRodMountGuide(length) {
@@ -40,6 +40,11 @@ module zRodMountGuide(length) {
             if (_useAsserts) assert(false, "Unsupported zRodMountGuide length");
         }
     }
+}
+
+module Z_Motor_MountGuide_19mm_stl() {
+    stl("Z_Motor_MountGuide_19mm")
+        E2020Cover(19);
 }
 
 module Z_Motor_MountGuide_25mm_stl() {
@@ -64,6 +69,9 @@ module Z_Motor_MountGuide(length) {
         rotate([-90, 0, 0]) {
             if (length==0) {
                 // do nothing
+            } else if (length==19) {
+                color(pp2_colour)
+                    Z_Motor_MountGuide_19mm_stl();
             } else if (length==25) {
                 color(pp2_colour)
                     Z_Motor_MountGuide_25mm_stl();
