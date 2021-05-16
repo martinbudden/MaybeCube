@@ -34,7 +34,7 @@ NEMA_type =
 
 
 //wingSizeX = 13; // so overall X size is 79, so Z_Motor_MountGuide_length is an integer
-wingSizeX = eX <= 250 ? 7 : 8;
+wingSizeX = 7;
 motorBracketSizeZ = 5;
 motorBracketSizeX = NEMA_motorWidth + 2*motorBracketSizeZ;
 motorBracketSizeY = _zLeadScrewOffset + NEMA_motorWidth/2 - 1;
