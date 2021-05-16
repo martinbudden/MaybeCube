@@ -42,7 +42,7 @@ __skBracketWidth = 42; // same for SK8, SK10, and SK12
 _zRodOffsetY = eX <= 250 ? __skBracketWidth/2 + 40 : eX <= 300 ? __skBracketWidth/2 + 50 : __skBracketWidth/2 + 60;
 
 // Bolts
-_frameBoltLength = 12;
+_frameBoltLength = 10;
 _sideBoltLength = 8;
 _endBoltLength = 12;
 _endBoltShortLength = 10;
