@@ -29,17 +29,29 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
     Right_Side_Upper_Extrusion_assembly();
 
     if (is_undef($hide_corexy) || !$hide_corexy) {
-        explode(120)
+        explode(-120)
             XY_Idler_Left_assembly();
-        explode(100)
+        explode(-100)
             XY_Motor_Mount_Left_assembly();
-        explode(120)
+        explode(-120)
             XY_Idler_Right_assembly();
-        explode(100)
+        explode(-100)
             XY_Motor_Mount_Right_assembly();
     }
     faceTopFront();
     faceTopBack();
+    explode(50, true) {
+        Top_Corner_Piece_assembly();
+        translate([eX + 2*eSize, 0, 0])
+            rotate(90)
+                Top_Corner_Piece_assembly();
+        translate([0, eY + 2*eSize, 0])
+            rotate(270)
+                Top_Corner_Piece_assembly();
+        translate([eX + 2*eSize, eY + 2*eSize, 0])
+            rotate(180)
+                Top_Corner_Piece_assembly();
+    }
 }
 
 module Face_Top_assembly()
@@ -59,16 +71,6 @@ assembly("Face_Top", big=true) {
     fullPrinthead();
     explode(200, true)
         CoreXYBelts(carriagePosition());
-    Top_Corner_Piece_assembly();
-    translate([eX + 2*eSize, 0, 0])
-        rotate(90)
-            Top_Corner_Piece_assembly();
-    translate([0, eY + 2*eSize, 0])
-        rotate(270)
-            Top_Corner_Piece_assembly();
-    translate([eX + 2*eSize, eY + 2*eSize, 0])
-        rotate(180)
-            Top_Corner_Piece_assembly();
 }
 
 module faceTopFront() {
