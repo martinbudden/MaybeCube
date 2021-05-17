@@ -33,7 +33,7 @@ module Y_Carriage(yCarriageType, idlerHeight, beltWidth, xRailType, xRailLength,
     toothedIdlerHeight = idlerHeight;
 
     fillet = 1.5;
-    blockOffset = [0, 1];//!!was 1.5
+    blockOffset = [0, 0.5];//!!was 1.5
     assert(blockOffset.x == 0);
 
     blockSize = [yCarriageBlockSizeX(yCarriageType) + 2*blockOffset.x, carriage_length(yCarriageType) + 1 + 2*blockOffset.y, thickness];

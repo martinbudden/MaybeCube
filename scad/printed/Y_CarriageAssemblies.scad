@@ -27,7 +27,7 @@ module Y_Carriage_Left_stl() {
     assert(pulleyStackHeight + yCarriageBraceThickness() == coreXYSeparation().z);
 
     tongueOffset = tongueOffset();
-    endStopOffsetX = 12;
+    endStopOffsetX = 0;
     chamfer = _xCarriageType == "9C" || _xCarriageType == "9H" ? 1 : 0;
 
     stl("Y_Carriage_Left")
@@ -38,7 +38,7 @@ module Y_Carriage_Left_stl() {
 module Y_Carriage_Right_stl() {
     idlerHeight = pulley_height(coreXY_toothed_idler(coreXY_type()));
     tongueOffset = tongueOffset();
-    endStopOffsetX = 2;
+    endStopOffsetX = 0;
     chamfer = _xCarriageType == "9C" || _xCarriageType == "9H" ? 1 : 0;
 
     stl("Y_Carriage_Right")
