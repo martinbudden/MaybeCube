@@ -33,7 +33,7 @@ module PSUPosition(psuOnBase=false) {
             translate([-psuSize.x/2, -psuSize.y/2, 0])
                 children();
     } else {
-        if (eX >= 300)
+        if (eX == 300)
             translate(psuOffset(type))
                 rotate([90, 90, 0])
                     children();
