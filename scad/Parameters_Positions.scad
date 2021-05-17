@@ -6,14 +6,13 @@ include <Parameters_main.scad>
 $t = 2;
 
 // print size is approx eX-134, eY-115, eZ-219
-_xMin = eSize + 60; // limited by printhead fan hitting Y_Carriage, does not hit SK brackets
-_xMax = eX + 2*eSize - _xMin + 9;
-_yMin = 45;
-_yMax = eY - 71; // motor limits this, get and extra 3 with MGN9 X rail
+_xMin = eSize + 48.5; // does not hit SK brackets
+_xMax = eX + 2*eSize - 79; // limited by printhead fan hitting Y_Carriage
+_yMin = 44.5;
+_yMax = eY - 71; // motor limits this, get an extra 3 with MGN9 X rail
 _yMaxCenter = eY - 33; // used for tool changing
-_zMin = 97; // limited by z carriage hitting sk bracket// PSU limits this for _variant>250, limited by leadscrew coupling for _variant=250
-//zMax = eZ - eSize - 112;
-_zMax = eZ - eSize - 82;
+_zMin = 97; // limited by z carriage hitting sk bracket, limited by leadscrew coupling for _variant=250
+_zMax = eZ - eSize - (eX >= 350 ? 105 : 82);
 
 // note values of _zRodOffsetY (in Parameters_Main.scad) and heatedBedOffset (in Printbed.scad)
 

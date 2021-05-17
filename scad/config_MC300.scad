@@ -23,3 +23,8 @@ _printBed4PointSupport = !true;
 _blower_type = 30;
 
 //_useMotorIdler20 = true;
+
+// set this so the zRod brackets clear the xy motors
+// limited by printbed frame hitting XY motors and possibly extruder motor
+__skBracketWidth = 42; // same for SK8, SK10, and SK12
+_zRodOffsetY = __skBracketWidth/2 + 50;
