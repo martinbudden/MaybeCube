@@ -163,26 +163,50 @@ module backPanelCutouts3D(size, PSUtype, pcbType) {
 }
 */
 module PSU_Left_Mount_stl() {
-    psuShroudWall = 1.8;
-    size = [eSize + psuShroudWall + psu_width(PSUtype()), 120, 3];
+    coverThickness = 3;
+
+    size = [eSize + 2*coverThickness + psu_width(PSUtype()), 95, 3];
     fillet = 3;
+    counterSunk = true;
 
     stl("PSU_Left_Mount")
         color(pp2_colour)
-            translate_z(-size.z)
-                linear_extrude(size.z)
+            vflip()
+                translate_z(-size.z)
                     difference() {
-                        rounded_square([size.x, size.y], fillet, center=false);
-                        for (x = [eSize/2, eSize + 5, size.x - 5], y = [eSize/2])
-                            translate([x, y, 0])
-                                poly_circle(r = M4_clearance_radius);
-                        for (y = [3*eSize/2, 2*eSize + 5, size.y - eSize/2])
-                            translate([eSize/2, y])
-                                poly_circle(r = M4_clearance_radius);
-                        translate([backPanelSize().x/2, backPanelSize().y/2])
-                            backPanelCutouts(PSUtype(), pcbType());
+                        linear_extrude(size.z)
+                            difference() {
+                                rounded_square([size.x, size.y], fillet, center=false);
+                                *for (x = [eSize/2, eSize + 5, size.x - 5], y = [eSize/2])
+                                    translate([x, y, 0])
+                                        poly_circle(r = M4_clearance_radius);
+                                *for (y = [3*eSize/2, 2*eSize + 5, size.y - 8])
+                                    translate([eSize/2, y])
+                                        poly_circle(r = M4_clearance_radius);
+                                backPanelAccessHolePositions(backPanelSize())
+                                    poly_circle(r = M4_clearance_radius);
+                                if (counterSunk) {
+                                    backPanelBoltHolePositions(backPanelSize())
+                                        poly_circle(r = M4_clearance_radius);
+                                } else {
+                                    translate([backPanelSize().x/2, backPanelSize().y/2])
+                                        backPanelCutouts(PSUtype(), pcbType());
+                                    translate([eSize/2, size.y - eSize/2])
+                                        poly_circle(r = M4_clearance_radius);
+                                }
+                            }
+                        if (counterSunk) {
+                            backPanelBoltHolePositions(backPanelSize())
+                                boltPolyholeM4Countersunk(size.z);
+                            translate([eSize/2, size.y - 8])
+                                boltPolyholeM4Countersunk(size.z);
+                            translate([psuOffset(PSUtype()).x, psuOffset(PSUtype()).z])
+                                rotate(-90)
+                                    PSUBoltPositions()
+                                        boltPolyholeM4Countersunk(size.z);
+                        }
                     }
-}
+    }
 
 module PSU_Left_Mount_assembly()
 assembly("PSU_Left_Mount") {
@@ -190,28 +214,45 @@ assembly("PSU_Left_Mount") {
     translate([0, eY + 2*eSize + 2*eps, 0])
         rotate([90, 0, 0]) {
             stl_colour(pp2_colour)
-                PSU_Left_Mount_stl();
+                vflip()
+                    PSU_Left_Mount_stl();
         }
 }
 
 module PSU_Top_Mount_stl() {
     size = [110, 30, 3];
     fillet = 3;
+    offsetY = psuOffset(PSUtype()).z + 75;
+    counterSunk = true;
 
     stl("PSU_Top_Mount")
         color(pp2_colour)
-            translate_z(-size.z)
-                linear_extrude(size.z)
+            vflip()
+                translate_z(-size.z)
                     difference() {
-                        offsetY = psuOffset(PSUtype()).z + 75;
-                        translate([0, offsetY - size.y/2])
-                            rounded_square([size.x, size.y], fillet, center=false);
-                        translate([0, offsetY - size.y/2])
-                            for (y = [6, size.y - 6])
-                                translate([eSize/2, y])
-                                    poly_circle(r = M4_clearance_radius);
-                        translate([backPanelSize().x/2, backPanelSize().y/2])
-                            backPanelCutouts(PSUtype(), pcbType());
+                        linear_extrude(size.z)
+                            difference() {
+                                translate([0, offsetY - size.y/2])
+                                    rounded_square([size.x, size.y], fillet, center=false);
+                                if (!counterSunk) {
+                                    translate([0, offsetY - size.y/2])
+                                        for (y = [6, size.y - 6])
+                                            translate([eSize/2, y])
+                                                poly_circle(r = M4_clearance_radius);
+                                    translate([backPanelSize().x/2, backPanelSize().y/2])
+                                        backPanelCutouts(PSUtype(), pcbType());
+                                }
+                            }
+                        if (counterSunk) {
+                            translate([0, offsetY - size.y/2])
+                                for (y = [6, size.y - 6])
+                                    translate([eSize/2, y])
+                                        boltPolyholeM4Countersunk(size.z);
+                            translate([psuOffset(PSUtype()).x, psuOffset(PSUtype()).z])
+                                rotate(-90)
+                                    PSUBoltPositions()
+                                        boltPolyholeM4Countersunk(size.z);
+                        }
                     }
 }
 
@@ -221,7 +262,8 @@ assembly("PSU_Top_Mount") {
     translate([0, eY + 2*eSize, 0])
         rotate([90, 0, 0]) {
             stl_colour(pp2_colour)
-                PSU_Top_Mount_stl();
+                vflip()
+                    PSU_Top_Mount_stl();
         }
 }
 
@@ -425,7 +467,7 @@ module partitionCutouts(cncSides) {
         translate([0, size.y - leftTop.y])
             square(leftTop);
         centerTopOffsetX = 86;
-        centerTop = [leftTop.x - centerTopOffsetX, 35];
+        centerTop = [leftTop.x - centerTopOffsetX, 40];
         translate([centerTopOffsetX, size.y - centerTop.y])
             square(centerTop);
     }
