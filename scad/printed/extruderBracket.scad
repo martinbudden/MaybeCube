@@ -39,8 +39,8 @@ module extruderBoltPositions() {
         //for (y = [10, size.y - eSize/2], z = [eSize/2, size.z - eSize/2])
         //    translate([0, y, z])
         for (i = [
-                [0, 5, eSize/2],
-                [0, 5, size.z - eSize/2],
+                [0, 7.5, eSize/2],
+                [0, 7.5, size.z - eSize/2],
                 //[0, size.y - 3*eSize/2, size.z - eSize/2],
                 [0, size.y - eSize/2, eSize/2],
                 [0, size.y - eSize/2, size.z - eSize]
@@ -56,9 +56,10 @@ module extruderCutouts() {
     extruderBoltPositions()
         boltHoleM4(size.x);
 
+    // access holes
     translate([eX + 2*eSize, eY + 2*eSize - size.y, spoolHeight()])
-        for (i = [ [0, size.y - eSize/2, size.z - eSize/2], [0, size.y - eSize/2, size.z - 3*eSize/2] ])
-            translate(i)
+        for (z = [size.z - eSize/2, size.z - 3*eSize/2])
+            translate([0, size.y - eSize/2, z])
                 rotate([0, 90, 0])
                     boltHoleM4(size.x);
 
@@ -68,10 +69,11 @@ module extruderCutouts() {
                 boltHoleM3(size.x);
             translate_z(-eps)
                 poly_cylinder(r=NEMA_boss_radius(extruderNEMAType), h=size.x + 2*eps);
-            }
-        translate(filamentSensorOffset())
-            rotate([0, 90, 0])
-                filament_sensor_hole_positions(-filamentSensorOffset().x)
+        }
+        clearance = 3.5;
+        rotate([90, 0, 90])
+            translate([extruderFilamentOffset().x, -extruderFilamentOffset().y - clearance, 0])
+                filament_sensor_hole_positions()
                     if (counterSunk)
                         boltPolyholeM3Countersunk(size.x);
                     else
@@ -95,51 +97,50 @@ module Extruder_Bracket_stl() {
     //echo(filamentSensorOffset=filamentSensorOffset());
     stl("Extruder_Bracket")
         color(pp1_colour)
-            rotate([0, -90, 0])
+            rotate([0, 90, 0])
                 extruderBracket();
 }
 
+M3x10_nylon_hex_pillar = ["M3x10_nylon_hex_pillar", "hex nylon", 3, 10, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -5, -5+eps];
 M3x12_nylon_hex_pillar = ["M3x12_nylon_hex_pillar", "hex nylon", 3, 12, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -6, -6+eps];
+M3x14_nylon_hex_pillar = ["M3x14_nylon_hex_pillar", "hex nylon", 3, 14, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -7, -7+eps];
 
 module Extruder_Bracket_hardware(corkDamperThickness, addM4Bolts=false) {
     stepper_motor_cable(eZ + eY + 200); // extruder motor
 
     size = extruderBracketSize();
 
-    pillarHeight = extruderBowdenOffset().x - filament_sensor_size().z/2;
-    assert(pillarHeight == 12); // so M3x12 pillar fits
+    pillarHeight = extruderFilamentOffset().z - filament_sensor_offset().z;
+    //assert(pillarHeight == 12); // so M3x12 pillar fits
 
     if (addM4Bolts)
         extruderBoltPositions()
             translate_z(size.x)
                 boltM4ButtonheadHammerNut(8);
 
-    translate(extruderPosition()) {
+    translate(extruderPosition())
         rotate([90, 0, 90]) {
             translate_z(size.x)
                 Extruder_MK10_Dual_Pulley(extruderNEMAType, motorOffsetZ=size.x + corkDamperThickness, motorRotate=180);
             translate_z(-corkDamperThickness)
                 corkDamper(extruderNEMAType, corkDamperThickness);
-        }
-        translate(filamentSensorOffset())
-            rotate([0, 90, 0]) {
+            clearance = 3.5;
+            translate([extruderFilamentOffset().x, -extruderFilamentOffset().y - clearance, pillarHeight + size.x]) {
                 filament_sensor();
                 filament_sensor_hole_positions() {
-                    translate_z(filament_sensor_size().z/2)
+                    translate_z(filament_sensor_size().z)
                         boltM3Buttonhead(16);
-                    translate_z(-filament_sensor_size().z/2) {
+                    vflip()
+                        pillar(M3x14_nylon_hex_pillar);
+                    translate_z(-pillarHeight - size.x - eps)
                         vflip()
-                            pillar(M3x12_nylon_hex_pillar);
-                        translate_z(-pillarHeight - size.x-eps)
-                            vflip()
-                                if (counterSunk)
-                                    boltM3Countersunk(8);
-                                else
-                                    boltM3Buttonhead(8);
-                    }
+                            if (counterSunk)
+                                boltM3Countersunk(8);
+                            else
+                                boltM3Buttonhead(8);
                 }
             }
-    }
+        }
 }
 
 module Extruder_Bracket_assembly() pose(a=[55, 0, 25 + 180])
@@ -147,7 +148,7 @@ assembly("Extruder_Bracket", ngb=true) {
 
     Extruder_Bracket_hardware(_corkDamperThickness);
 
-    rotate([0, 90, 0])
+    rotate([0, -90, 0])
         stl_colour(pp1_colour)
             Extruder_Bracket_stl();
 }
