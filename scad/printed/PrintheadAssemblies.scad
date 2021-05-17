@@ -31,26 +31,29 @@ assembly("Printhead", big=true) {
 
     X_Carriage_assembly();
 
-    explode([20, 0, 0])
-        hotEndHolderHardware(xCarriageType, hotend_type);
+    hotEndHolderToRight(xCarriageType, hotend_type, left=false)
+        translate_z(hotendOffsetZ()) {
+            explode([20, 0, 0])
+                hotEndHolderHardware(xCarriageType, hotend_type);
 
-    translate(hotendClampOffset(xCarriageType, hotend_type))
-        rotate([90, 0, -90]) {
-            explode(-40, true) {
-                stl_colour(pp2_colour)
-                    if (_blower_type == 30)
-                        Hotend_Clamp_stl();
-                    else
-                        Hotend_Clamp_40_stl();
-                Hotend_Clamp_hardware(xCarriageType, hotend_type, blower_type);
-            }
-            explode(-60, true)
-                translate([0, grooveMountClampStrainReliefOffset(), -grooveMountClampSize(xCarriageType, hotend_type, blower_type).z - 5])
-                    vflip() {
-                        stl_colour(pp1_colour)
-                            Hotend_Strain_Relief_Clamp_stl();
-                        Hotend_Strain_Relief_Clamp_hardware();
+            translate(hotendClampOffset(xCarriageType, hotend_type))
+                rotate([90, 0, -90]) {
+                    explode(-40, true) {
+                        stl_colour(pp2_colour)
+                            if (_blower_type == 30)
+                                Hotend_Clamp_stl();
+                            else
+                                Hotend_Clamp_40_stl();
+                        Hotend_Clamp_hardware(xCarriageType, hotend_type, blower_type);
                     }
+                    explode(-60, true)
+                        translate([0, grooveMountClampStrainReliefOffset(), -grooveMountClampSize(xCarriageType, hotend_type, blower_type).z - 5])
+                            vflip() {
+                                stl_colour(pp1_colour)
+                                    Hotend_Strain_Relief_Clamp_stl();
+                                Hotend_Strain_Relief_Clamp_hardware();
+                            }
+                }
         }
 }
 
@@ -104,7 +107,8 @@ module Hotend_Clamp_stl() {
 
     stl("Hotend_Clamp")
         color(pp2_colour)
-            grooveMountClamp(MGN9C_carriage, 0, blower_type);
+            mirror([1, 0, 0])
+                grooveMountClamp(MGN9C_carriage, 0, blower_type);
 }
 
 module Hotend_Clamp_40_stl() {
@@ -112,7 +116,8 @@ module Hotend_Clamp_40_stl() {
 
     stl("Hotend_Clamp")
         color(pp2_colour)
-            grooveMountClamp(MGN9C_carriage, 0, blower_type);
+            mirror([1, 0, 0])
+                grooveMountClamp(MGN9C_carriage, 0, blower_type);
 }
 
 module Hotend_Clamp_hardware(xCarriageType, hotend_type, blower_type) {

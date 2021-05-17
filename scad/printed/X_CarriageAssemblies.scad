@@ -135,8 +135,7 @@ module X_Carriage_stl() {
         color(pp1_colour)
             rotate([0, -90, 0]) {
                 xCarriageBack(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z);
-                mirror([1,0,0])
-                    hotEndHolder(xCarriageType, hotend_type, blower_type, hotendOffsetZ());
+                hotEndHolder(xCarriageType, hotend_type, blower_type, hotendOffsetZ(), left=false);
             }
 }
 
@@ -156,20 +155,19 @@ assembly("X_Carriage", big=true, ngb=true) {
 
     xCarriageAssembly(xCarriageType, beltOffsetZ(), coreXYSeparation().z);
 
-    mirror([1, 0, 0])
-        translate_z(hotendOffsetZ()) {
-            explode([-20, 0, 10], true)
-                hotEndPartCoolingFan(xCarriageType, hotend_type, blower_type);
+    translate_z(hotendOffsetZ()) {
+        explode([-20, 0, 10], true)
+            hotEndPartCoolingFan(xCarriageType, hotend_type, blower_type, left=false);
 
-            explode([-20, 0, -10], true)
-                blowerTranslate(xCarriageType, hotend_type, blower_type)
-                    rotate([-90, 0, 0]) {
-                        stl_colour(pp2_colour)
-                            mirror([1, 0, 0]) // reverse enclosing mirror
-                                Fan_Duct_Right_stl();
-                        Fan_Duct_hardware(xCarriageType, hotend_type);
-                    }
-        }
+        explode([-20, 0, -10], true)
+        hotEndHolderToRight(xCarriageType, hotend_type, left=false)
+            blowerTranslate(xCarriageType, hotend_type, blower_type, left=false)
+                rotate([-90, 0, 0]) {
+                    stl_colour(pp2_colour)
+                        Fan_Duct_Right_stl();
+                    Fan_Duct_hardware(xCarriageType, hotend_type);
+                }
+    }
 }
 
 module Belt_Tidy_stl() {
