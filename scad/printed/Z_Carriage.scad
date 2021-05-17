@@ -155,56 +155,73 @@ assembly("Z_Carriage_Right", ngb=true) {
 }
 
 module zCarriageCenter() {
-    size = [30, printBedFrameCrossPieceOffset() + 15, eSize];
+    baseThickness = 5;
+    size = [30, printBedFrameCrossPieceOffset() + 15, eSize + baseThickness];
+    tabSize = [size.x + 20, 5, size.z];
     fillet = 2;
 
-    difference() {
-        translate([-size.x/2, printBedFrameCrossPieceOffset() - size.y, -size.z/2])
-            rounded_cube_xy(size, fillet);
-        leadnut_screw_positions(leadnut)
-            boltHoleM3Tap(size.z);
-        translate_z(-eps) {
-            poly_cylinder(r=leadnut_od(leadnut)/2, h=size.z + 2*eps);
-            poly_cylinder(r=leadnut_flange_dia(leadnut)/2, h=leadnutInset + eps);
-        }
-    }
-    tabSize = [size.x + 20, 5, size.z];
-    translate([-tabSize.x/2, printBedFrameCrossPieceOffset() - tabSize.y, -tabSize.z/2])
+    translate_z(-eSize/2 - baseThickness)
         difference() {
-            rounded_cube_xy(tabSize, 1);
+            translate([-size.x/2, printBedFrameCrossPieceOffset() - size.y, 0])
+                rounded_cube_xy(size, fillet);
+            translate_z(-leadnut_flange_t(leadnut))
+                leadnut_screw_positions(leadnut)
+                    boltHoleM3Tap(size.z);
+            translate_z(-eps) {
+                poly_cylinder(r=leadnut_od(leadnut)/2, h=size.z + 2*eps);
+                if (baseThickness == 0)
+                    poly_cylinder(r=leadnut_flange_dia(leadnut)/2, h=leadnutInset + eps);
+            }
+        }
+    translate([-tabSize.x/2, printBedFrameCrossPieceOffset() - tabSize.y, 0]) {
+        difference() {
+            translate_z(-eSize/2 - baseThickness)
+                rounded_cube_xy(tabSize, 1);
             for (x = [5, tabSize.x -5])
-                translate([x, 0, tabSize.z/2])
-                    rotate([-90, 0, 0])
+                translate([x, 0, 0])
+                    rotate([90, 0, 180])
                         boltHoleM4(tabSize.y, horizontal=true);
         }
+        difference() {
+            translate_z(-eSize/2 - baseThickness)
+                rounded_cube_xy([tabSize.x, eSize + 5, baseThickness], 1);
+            for (x = [5, tabSize.x -5])
+                translate([x, eSize/2 + 5, -eSize/2 - baseThickness])
+                    boltHoleM4(tabSize.y);
+        }
+    }
 }
 
 module Z_Carriage_Center_hardware() {
-    translate_z(eSize/2 - leadnutInset + eps) {
-        leadnut(leadnut);
-        leadnut_screw_positions(leadnut)
-            screw(leadnut_screw(leadnut), 8);
-    }
+    baseThickness = 5;
     tabSize = [50, 5, eSize];
-    for (x = [5, tabSize.x -5])
-        translate([x - tabSize.x/2, tabSize.y - printBedFrameCrossPieceOffset(), 0])
-            rotate([-90, 0, 0])
-                boltM4ButtonheadTNut(_frameBoltLength);
+
+    vflip() {
+        translate_z(eSize/2 + baseThickness + eps) {
+            leadnut(leadnut);
+            leadnut_screw_positions(leadnut)
+                screw(leadnut_screw(leadnut), 8);
+        }
+        for (x = [5, tabSize.x -5])
+            translate([x - tabSize.x/2, tabSize.y - printBedFrameCrossPieceOffset(), 0]) {
+                rotate([-90, 0, 0])
+                    boltM4ButtonheadTNut(_frameBoltLength);
+                translate([0, -eSize/2 - 5, eSize/2 + baseThickness])
+                    boltM4ButtonheadTNut(_frameBoltLength);
+            }
+    }
 }
 
 module Z_Carriage_Center_stl() {
     stl("Z_Carriage_Center")
         color(pp1_colour)
-            vflip()
-                zCarriageCenter();
+            zCarriageCenter();
 }
 
 module Z_Carriage_Center_assembly()
 assembly("Z_Carriage_Center", ngb=true) {
 
-    vflip() {
-        stl_colour(pp1_colour)
-            Z_Carriage_Center_stl();
-        Z_Carriage_Center_hardware();
-    }
+    stl_colour(pp1_colour)
+        Z_Carriage_Center_stl();
+    Z_Carriage_Center_hardware();
 }
