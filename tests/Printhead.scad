@@ -34,9 +34,10 @@ module Printhead_test() {
     }
     translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())])
         xRailCarriagePosition() {
-            //Printhead_assembly();
+            Printhead_assembly();
             //X_Carriage_Front_assembly();
-            X_Carriage_assembly();
+            //X_Carriage_assembly();
+            //fullPrinthead();
         }
     //X_Carriage_stl();
     //Fan_Duct_stl();

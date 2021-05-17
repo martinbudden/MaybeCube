@@ -3,6 +3,7 @@
 include <NopSCADlib/core.scad>
 
 use <../scad/printed/extruderBracket.scad>
+use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/utils/CoreXYBelts.scad>
 use <../scad/utils/printParameters.scad>
 use <../scad/utils/Z_Rods.scad>
@@ -32,6 +33,7 @@ module Left_Side_test() {
     //let($hide_corexy=true)
     //let($hide_extrusions=true)
     //Face_Top_assembly();
+    //fullPrinthead();
 
     // always add the side panel last, so it is transparent to other items
     Left_Side_Panel_assembly();
