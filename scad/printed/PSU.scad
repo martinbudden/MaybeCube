@@ -23,7 +23,7 @@ module PSUBoltPositions() {//! Position children at the bolt positions on the bo
 module PSUPosition(psuOnBase=false) {
     type = PSUtype();
     psuSize = psu_size(type);
-    psuShroudWall = 1.8;
+    psuShroudWall = 3;
     psuOffsetZ = 2*eSize + psuShroudWall;
 
 
