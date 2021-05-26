@@ -15,6 +15,7 @@ include <../Parameters_Main.scad>
 
 
 PC3 = ["PC3", "Sheet polycarbonate", 3, [1,   1,   1,   0.25], false];
+accessHoleRadius = 2.5;
 
 function sidePanelSize() = [eY + 2*eSize, eZ, 3];
 
@@ -31,16 +32,25 @@ module sidePanelAccessHolePositions(size, left) {
             children();
 }
 
-module sidePanelBoltHolePositions(size) {
-    for (x = [-size.x/2 + 1.5*eSize, -(size.x - eSize)/6, (size.x - eSize)/6, size.x/2 - 1.5*eSize], y = [(-size.y + eSize)/2, (size.y - eSize)/2])
+module sidePanelBoltHolePositionsX(size) {
+    xPositions = size.x == 300 + 2*eSize
+    ? [-size.x/2 + eSize + 50, 100, 0, size.x/2 - eSize - 50]
+    : [-size.x/2 + 1.5*eSize, -(size.x - eSize)/6, (size.x - eSize)/6, size.x/2 - 1.5*eSize];
+    for (x = xPositions, y = [(-size.y + eSize)/2, (size.y - eSize)/2])
         translate([x, y])
             rotate(exploded() ? 90 : 0)
                 children();
+}
+
+module sidePanelBoltHolePositions(size) {
     for (x = [-size.x/2 + eSize/2, size.x/2 - eSize/2], y = [-size.y/2 + eSize, size.y/2 - eSize])
         translate([x, y])
             rotate(exploded() ? 0 : 90)
                 children();
-    for (x = [-size.x/2 + eSize/2, size.x/2 - eSize/2], y = [(size.y - eSize)/6, -(size.y - eSize)/6])
+    sidePanelBoltHolePositionsX(size)
+        children();
+    //for (x = [-size.x/2 + eSize/2, size.x/2 - eSize/2], y = [(size.y - eSize)/6, -(size.y - eSize)/6])
+    for (x = [-size.x/2 + eSize/2, size.x/2 - eSize/2], y = [size.y/2 - eSize - (size.y - 2*eSize)/3, -size.y/2 + eSize + (size.y - 2*eSize)/3])
         translate([x, y])
             rotate(exploded() ? 0 : 90)
                 children();
@@ -56,7 +66,7 @@ module Left_Side_Panel_dxf() {
             difference() {
                 sheet_2D(sheet, size.x, size.y, fillet);
                 sidePanelAccessHolePositions(size, left=true)
-                    circle(r = M4_clearance_radius);
+                    circle(r = accessHoleRadius);
                 sidePanelBoltHolePositions(size)
                     circle(r = M4_clearance_radius);
             }
@@ -93,7 +103,7 @@ module Right_Side_Panel_dxf() {
             difference() {
                 sheet_2D(sheet, size.x, size.y, fillet);
                 sidePanelAccessHolePositions(size, left=false)
-                    circle(r = M4_clearance_radius);
+                    circle(r = accessHoleRadius);
                 sidePanelBoltHolePositions(size)
                     circle(r = M4_clearance_radius);
                 translate([-size.x/2, -size.y/2]) {
