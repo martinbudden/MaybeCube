@@ -20,6 +20,11 @@ module Face_Top_test() {
     //let($hide_extrusions=true)
     //let($hide_rails=true)
     //let($hide_corexy=true)
+    //faceTopBack();
+    *translate_z(eZ) {
+        Wiring_Guide_stl();
+        Wiring_Guide_Clamp_stl();
+    }
     //Face_Top_Stage_1_assembly();
     Face_Top_assembly();
     //Top_Corner_Piece_stl();

@@ -29,6 +29,7 @@ module Left_Side_test() {
     Left_Side_assembly(); zRods();
     //Right_Side_assembly(); zRods(left=false);
     //Extruder_Bracket_assembly();
+    //let($hide_extrusions=true)
     //translate_z(bedHeight()) Printbed_assembly();
     //let($hide_corexy=true)
     //let($hide_extrusions=true)

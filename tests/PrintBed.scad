@@ -10,6 +10,8 @@ module Printbed_test() {
     //heatedBed();
     //Printbed_Frame_with_Z_Carriages_assembly();
     //Printbed_Frame_assembly();
+    //Printbed_Strain_Relief_stl();
+    //Printbed_Strain_Relief_assembly();
 }
 
 if ($preview)

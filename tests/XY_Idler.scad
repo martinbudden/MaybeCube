@@ -10,10 +10,10 @@ include <../scad/Parameters_Main.scad>
 //$pose = 1;
 //$explode = 1;
 module XY_Idler_test() {
-    //XY_Idler_Left_assembly();
-    //XY_Idler_Right_assembly();
+    XY_Idler_Left_assembly();
+    XY_Idler_Right_assembly();
 
-    translate(-[0, eZ - eSize - 60, 0])
+    *translate(-[0, eZ - eSize - 60, 0])
         xyIdler();
         *translate([0, -eZ, eZ]) {
             XY_Idler_Left_stl();

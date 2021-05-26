@@ -6,6 +6,7 @@ include <NopSCADlib/vitamins/nuts.scad>
 
 use <../scad/printed/extrusionChannels.scad>
 
+eSize = 20;
 
 //$explode = 1;
 //$pose = 1;
@@ -23,6 +24,16 @@ module ExtrusionCover_test() {
         extrusion(E2020, 50);
 }
 
-extrusionChannel(50);
+//extrusionChannel(90, [10, 20, 80], sliding=false);
+//extrusionChannel(100, [50], sliding=false, narrow=true);
+//extrusionChannel(100, [42.5, 50], sliding=false, channelWidth=4.95);
+//extrusionChannel(200, [50, 150], sliding=false, channelWidth=4.95);
+//extrusionChannel(100, [10, 50], sliding=false);
+//extrusionChannel(100, [50, 150], sliding=false);
+//extrusionChannel(200, [eSize, eSize+120], sliding=false);
+//extrusionChannel(200, [eSize/2, eSize, eSize+120], sliding=false);
+//rotate(90) extrusionChannel(120, [10, 60, 110], sliding=false, channelWidth=3.8, boltDiameter=3);
+rotate(90) extrusionChannel(120, [10, 35, 60, 85, 110], sliding=false, channelWidth=4.8, boltDiameter=3);
+//rounded_cube_xy([20, 20, 10],1.5);
 *if ($preview)
     ExtrusionCover_test();
