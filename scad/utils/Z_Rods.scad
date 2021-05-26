@@ -26,7 +26,8 @@ module sk_bracket_with_bolts(type) {
     for (i = [-screw_separation / 2, screw_separation / 2])
         translate([i, sk_base_height(type) - sk_hole_offset(type), 0])
             rotate([90, 0, 180])
-                boltM4ButtonheadTNut(_frameBoltLength);
+                translate_z(0.5)
+                    boltM4CountersunkTNut(_frameBoltLength);
 }
 
 module KP_PillowBlockSpacer_stl() {
