@@ -17,13 +17,13 @@ _useSCSBearingBlocksForZAxis = true;
 scsType = _zRodDiameter == 8 ? SCS8LUU : _zRodDiameter == 10 ? SCS10LUU : SCS12LUU;
 baseSize = [scs_size(scsType).x + 1, scs_size(scsType).z, _zCarriageSCS_sizeZ];
 shelfThickness = 5;
-//tabRightLength = 9.5;
-tabRightLength = 20.5; // use 20.5 for alignment with internal corner bracket
+tabRightLength = 9.5;
+//tabRightLength = 20.5; // use 20.5 for alignment with internal corner bracket
 boltOffset = 26;
 leadnut = LSN8x2;
 leadnutInset = leadnut_flange_t(leadnut);
 
-function printBedFrameCrossPieceOffset() = baseSize.x/2 + tabRightLength;
+function printBedFrameCrossPieceOffset() = baseSize.x/2 + tabRightLength + 9.75;
 
 holes = [for (i=[ [-1, 1], [1, 1], [-1, -1], [1, -1] ]) [i.x*scs_screw_separation_x(scsType)/2, i.y*scs_screw_separation_z(scsType)/2, baseSize.z] ];
 
