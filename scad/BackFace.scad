@@ -20,6 +20,7 @@ include <Parameters_Main.scad>
 
 PC3 = ["PC3", "Sheet polycarbonate", 3, [1,   1,   1,   0.25], false];
 //PC3 = ["PC3", "Sheet polycarbonate", 3, "red", false];
+accessHoleRadius = 2.5;
 
 function backPanelSize() = [eX + 2*eSize, eZ, 3];
 function partitionSize() = [eX + 2*eSize, eZ-51.5, 3];
@@ -95,36 +96,47 @@ module backPanelAccessHolePositions(size) {
             children();
 }
 
-module backPanelBoltHolePositions(size) {
-    for (x = [3*eSize/2, size.x/3 - eSize/6, 2*size.x/3 - eSize/6, size.x - 3*eSize/2], y = [eSize/2, size.y - eSize/2])
+module backPanelBoltHolePositionsX(size) {
+    xPositions = size.x == 300 + 2*eSize
+    ? [eSize + 50, size.x/2, size.x - eSize - 50]
+    : [-size.x/2 + 1.5*eSize, -(size.x - eSize)/6, (size.x - eSize)/6, size.x/2 - 1.5*eSize];
+    for (x = xPositions, y = [eSize/2, size.y - eSize/2])
         translate([x, y])
             rotate(exploded() ? 90 : 0)
                 children();
+}
+
+module backPanelBoltHolePositions(size) {
     for (x = [eSize/2, size.x - eSize/2], y = [eSize, size.y - eSize])
         translate([x, y])
             rotate(exploded() ? 0 : 90)
                 children();
-    for (x = [eSize/2, size.x - eSize/2], y = [2*size.y/3 - eSize/6, size.y/3 - eSize/6])
+    *for (x = [3*eSize/2, size.x/3 - eSize/6, 2*size.x/3 - eSize/6, size.x - 3*eSize/2], y = [eSize/2, size.y - eSize/2])
+        translate([x, y])
+            rotate(exploded() ? 90 : 0)
+                children();
+    backPanelBoltHolePositionsX(size)
+        children();
+    for (x = [eSize/2, size.x - eSize/2], y = [size.y - eSize - (size.y - 2*eSize)/3, eSize + (size.y - 2*eSize)/3])
+    //for (x = [eSize/2, size.x - eSize/2], y = [2*size.y/3 - eSize/6, size.y/3 - eSize/6])
         translate([x, y])
             rotate(exploded() ? 0 : 90)
                 children();
 }
 
-module backPanelCutouts(PSUtype, pcbType, cncSides = undef) {
+module backPanelCutouts(PSUtype, pcbType, cncSides = undef, radius = undef) {
     size = backPanelSize();
-    psuSize = [psu_length(PSUtype), psu_width(PSUtype), psu_height(PSUtype)];
 
     translate([-size.x/2, -size.y/2]) {
-        //translate([eSize + psuSize.y/2, psuSize.x/2 + 2*eSize + 20])
         if (eX == 300)
             translate([psuOffset(PSUtype).x, psuOffset(PSUtype).z])
                 rotate(-90)
                     PSUBoltPositions()
-                        poly_circle(r = M4_clearance_radius, sides=cncSides);
+                        poly_circle(r = is_undef(radius) ? M4_clearance_radius : radius, sides=cncSides);
         else
             translate([eSize + psu_length(PSUtype)/2, 2*eSize + 3 + psu_width(PSUtype)/2])
                 PSUBoltPositions()
-                    poly_circle(r = M4_clearance_radius, sides=cncSides);
+                    poly_circle(r = is_undef(radius) ? M4_clearance_radius : radius, sides=cncSides);
                 /*mirror([0, 1, 0])
                     rotate(180) {
                         psu_shroud_hole_positions(PSUtype)
@@ -142,16 +154,16 @@ module backPanelCutouts(PSUtype, pcbType, cncSides = undef) {
                 pcbSize = pcb_size(BTT_SKR_E3_TURBO);
                 translate([-pcbSize.x/2, pcbSize.y/2])
                     pcb_screw_positions(pcbType)
-                        poly_circle(r = M3_clearance_radius, sides=cncSides);
+                        poly_circle(r = is_undef(radius) ? M3_clearance_radius : radius, sides=cncSides);
             } else {
                 pcbSize = pcb_size(pcbType);
                 rotate(90)
                     translate([pcbSize.x/2, pcbSize.y/2])
                         pcb_screw_positions(pcbType)
-                        poly_circle(r = M3_clearance_radius, sides=cncSides);
+                        poly_circle(r = is_undef(radius) ? M3_clearance_radius : radius, sides=cncSides);
             }
         backPanelAccessHolePositions(size)
-            poly_circle(r = M4_clearance_radius, sides=cncSides);
+            poly_circle(r = accessHoleRadius, sides=cncSides);
         backPanelBoltHolePositions(size)
             poly_circle(r = M4_clearance_radius, sides=cncSides);
     }
@@ -193,7 +205,7 @@ module psuLowerMount(size, counterSunk, offsetX=0) {
                             translate([eSize/2, y])
                                 poly_circle(r = M4_clearance_radius);
                         backPanelAccessHolePositions(backPanelSize())
-                            poly_circle(r = M4_clearance_radius);
+                            poly_circle(r = accessHoleRadius);
                         if (counterSunk) {
                             backPanelBoltHolePositions(backPanelSize())
                                 poly_circle(r = M4_clearance_radius);
@@ -254,7 +266,7 @@ module PSU_Lower_Mount_stl() {
                                     translate([eSize/2, y])
                                         poly_circle(r = M4_clearance_radius);
                                 backPanelAccessHolePositions(backPanelSize())
-                                    poly_circle(r = M4_clearance_radius);
+                                    poly_circle(r = accessHoleRadius);
                                 if (counterSunk) {
                                     backPanelBoltHolePositions(backPanelSize())
                                         poly_circle(r = M4_clearance_radius);
@@ -382,6 +394,40 @@ assembly("PSU_Upper_Mount") {
         }
 }
 
+module PSU_Hole_Jig_stl() {
+    size = [115, 20, 1];
+    fillet = 3;
+    offsetY = psuOffset(PSUtype()).z;
+    counterSunk = true;
+
+    stl("PSU_Hole_Jig")
+        color(pp2_colour)
+            translate_z(-size.z)
+                linear_extrude(size.z)
+                    difference() {
+                        union() {
+                            translate([0, 80]) {
+                                rounded_square([size.x, size.y], fillet, center=false);
+                                rounded_square([20, 160], fillet, center=false);
+                            }
+                            translate([0, offsetY + 75 - size.y/2])
+                                rounded_square([size.x, size.y], fillet, center=false);
+                        }
+                        translate([backPanelSize().x/2, backPanelSize().y/2])
+                            backPanelCutouts(PSUtype(), pcbType(), radius=1);
+                    }
+}
+
+module PSU_Hole_Jig_assembly()
+assembly("PSU_Hole_Jig") {
+
+    translate([0, eY + 2*eSize, 0])
+        rotate([90, 0, 0]) {
+            stl_colour(pp2_colour)
+                PSU_Hole_Jig_stl();
+        }
+}
+
 module PCB_Mount_stl() {
     size = [110, 120, 3];
     fillet = 1;
@@ -427,6 +473,45 @@ assembly("PCB_Mounting_Plate") {
         rotate([90, 0, 0]) {
             stl_colour(pp2_colour)
                 PCB_Mount_stl();
+        }
+}
+
+module PCB_Hole_Jig_stl() {
+    size = [110, 20, 1];
+    fillet = 3;
+    offsetY = 155;
+
+    stl("PCB_Hole_Jig")
+        color(pp2_colour)
+            translate_z(-size.z) {
+                difference() {
+                    linear_extrude(size.z)
+                        difference() {
+                            translate([eX + 2*eSize - size.x, offsetY - size.y/2])
+                                union() {
+                                    translate([size.x - eSize, -offsetY+size.y/2])
+                                    rounded_square([eSize, 200], fillet, center=false);
+                                    for (y = [50, -50])
+                                        translate([0, y])
+                                            rounded_square([size.x, size.y], fillet, center=false);
+                                }
+                                *for (y = [6, size.y/2, size.y - 6])
+                                    translate([eX + 3*eSize/2, y + offsetY -size.y/2])
+                                        poly_circle(r = M4_clearance_radius);
+                                translate([backPanelSize().x/2, backPanelSize().y/2])
+                                    backPanelCutouts(PSUtype(), pcbType(), radius=1);
+                        }
+                }
+            }
+}
+
+module PCB_Hole_Jig_assembly()
+assembly("PCB_Hole_Jig") {
+
+    translate([0, eY + 2*eSize, 0])
+        rotate([90, 0, 0]) {
+            stl_colour(pp2_colour)
+                PCB_Hole_Jig_stl();
         }
 }
 
