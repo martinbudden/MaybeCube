@@ -26,7 +26,7 @@ function extruderPosition() = [eX + 2*eSize, eY + 2*eSize - 45, eZ - 90];
 //function extruderBowdenOffset() = [17.5, 4.5, 30];
 function Extruder_Bracket_assembly_bowdenOffset() = [20.5, 5, 10];
 
-function extruderBracketSize() = [3, 70, eZ - spoolHeight()];
+function extruderBracketSize() = [3, 77.5, eZ - spoolHeight()];
 //filamentSensorOffset = [20.5, 4.5, -45];
 function filamentSensorOffset() = [extruderFilamentOffset().z + extruderBracketSize().x, extruderFilamentOffset().x, -extruderFilamentOffset().y - filament_sensor_size().x/2-4];
 
