@@ -146,7 +146,7 @@ module Y_Carriage(yCarriageType, idlerHeight, beltWidth, xRailType, xRailLength,
                     translate([toothedPulleyPos.x - 3.25, -size.y/2, 0])
                         rounded_cube_xy(size, 1.5);
                     if (yCarriageBraceThickness) {
-                        size3 = [12.1, 10.25, h];
+                        size3 = [9.1, 10.25, h];
                         translate([plainPulleyPos.x + 7, -3.25, 0])
                             rounded_cube_xy(size3, 1.5);
                         size2 = [8.5, size.y, h];
@@ -186,7 +186,7 @@ module Y_Carriage(yCarriageType, idlerHeight, beltWidth, xRailType, xRailLength,
 
 module yCarriageBrace(yCarriageType, yCarriageBraceThickness, pulleyOffset, holeRadius, left) {
     blockSizeX = yCarriageBlockSizeX(yCarriageType);
-    size = left ? [44.75, 10 + 3.25/2, yCarriageBraceThickness] : [46.75, 14, yCarriageBraceThickness];
+    size = left ? [44.75, 10 + 3.25/2, yCarriageBraceThickness] : [46.75 - 3, 14, yCarriageBraceThickness];
     difference() {
         translate([-blockSizeX/2, left ? -5 : -size.y/2, 0])
             rounded_cube_xy(size, 1.5);
