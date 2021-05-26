@@ -9,6 +9,9 @@ use <../scad/printed/X_CarriageAssemblies.scad>
 use <../scad/utils/carriageTypes.scad>
 use <../scad/utils/CoreXYBelts.scad>
 use <../scad/utils/X_Rail.scad>
+use <../scad/vitamins/bolts.scad>
+
+use <../../BabyCube/scad/printed/X_Carriage.scad>
 
 use <../scad/Parameters_CoreXY.scad>
 use <../scad/Parameters_Positions.scad>
@@ -45,6 +48,37 @@ module Printhead_test() {
     //Hotend_Clamp_hardware();
     //Hotend_Strain_Relief_Clamp_stl();
 }
+
+module xCarriageTop() {
+    xCarriageType = MGN12H_carriage;
+    topThickness = xCarriageTopThickness();
+    fillet = 1;
+
+    extraY = xCarriageFrontOffsetY(xCarriageType) - carriage_size(xCarriageType).y/2 - xCarriageFrontSize(xCarriageType).y;
+    carriageSize = carriage_size(xCarriageType);
+    carriageOffsetY = carriageSize.y/2;
+    size =  [xCarriageBackSize(xCarriageType).x/2, extraY + carriageSize.y + xCarriageBackSize(xCarriageType).y, 4];
+
+    difference() {
+        translate([-size.x/2, 10.5 - extraY - carriageSize.y, 0]) {
+            rounded_cube_xy(size, fillet);
+            difference() {
+                tabSize = [15, 5, 25];
+                rounded_cube_xy(tabSize, fillet);
+                for (x = [tabSize.x/2 - 4, tabSize.x/2 + 4], z = [5+2, 15+2])
+                    translate([x-1, -eps, z])
+                        cube([2, tabSize.y + 2*eps, 4]);
+            }
+        }
+        // bolt holes to connect to to the rail carriage
+        translate([size.x/2, 0, -carriage_height(xCarriageType)])
+            carriage_hole_positions(xCarriageType)
+                boltHoleM3(size.z);
+    }
+}
+
+translate([-16.6, 0, 13+8])
+    xCarriageTop();
 
 if ($preview)
     Printhead_test();
