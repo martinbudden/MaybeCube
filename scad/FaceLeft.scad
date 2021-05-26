@@ -3,6 +3,8 @@ include <global_defs.scad>
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
+use <printed/extrusionDrillJig.scad>
+
 use <utils/FrameBolts.scad>
 use <utils/Z_Rods.scad>
 
@@ -32,6 +34,8 @@ assembly("Left_Side", big=true) {
         faceLeftMotorUpright();
     explode([0, -70, 0], true)
         faceLeftIdlerUpright();
+    hidden() Extrusion_Drill_Jig_120_2_stl();
+    hidden() Extrusion_Drill_Jig_120_4_stl();
 }
 
 module faceLeftMiddleExtrusion() {

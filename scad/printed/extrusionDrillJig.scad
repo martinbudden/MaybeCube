@@ -19,7 +19,7 @@ function extrusionDrillJigHoles(length) =
 
 
 
-module extrusionDrillJig(length, holeSize, holes, fixingHoles) {
+module extrusionDrillJig(length, holeSize, holes, fixingHoles, endStop=true) {
     eSize = 20;
     sideThickness = 5;
     baseThickness = 15;
@@ -34,30 +34,32 @@ module extrusionDrillJig(length, holeSize, holes, fixingHoles) {
             rounded_cube_xy([size.x, size.y, baseThickness], fillet);
             translate([0, sideThickness + eSize/2 - centerWidth/2, 0])
                 rounded_cube_xy([size.x, centerWidth, baseThickness + centerHeight], fillet);
-            rounded_cube_xy([sideThickness, size.y, size.z], fillet);
+            if (endStop)
+                rounded_cube_xy([sideThickness, size.y, size.z], fillet);
             rounded_cube_xy([size.x, sideThickness, size.z], fillet);
             tNutWidth = 10.25;
             cubeHeight = 1.5;
             triangleHeight = 4;
-            if (size.x != 120)
-            translate([size.x - fillet, sideThickness, baseThickness + (eSize + triangleHeight - cubeHeight)/2])
-                rotate([-90, 0, 90]) {
-                    length = size.x - holes[len(holes) - 1] - fillet - sideThickness - tNutWidth/2;
-                    right_triangle(triangleHeight, triangleHeight, length, center=false);
-                    translate([0, -cubeHeight, 0])
-                        cube([triangleHeight, cubeHeight, length]);
-                    for (i = [1 : len(holes2) - 1]) {
-                        length = holes2[i] -holes2[i - 1] - tNutWidth;
-                        translate([0, 0, size.x - fillet - sideThickness - i*eSize - length/2]) {
-                            right_triangle(triangleHeight, triangleHeight, length, center=false);
-                            translate([0, -cubeHeight, 0])
-                                cube([triangleHeight, cubeHeight, length]);
+            if (size.x != 120 && endStop == true)
+                translate([size.x - fillet, sideThickness, baseThickness + (eSize + triangleHeight - cubeHeight)/2])
+                    rotate([-90, 0, 90]) {
+                        length = size.x - holes[len(holes) - 1] - fillet - sideThickness - tNutWidth/2;
+                        right_triangle(triangleHeight, triangleHeight, length, center=false);
+                        translate([0, -cubeHeight, 0])
+                            cube([triangleHeight, cubeHeight, length]);
+                        for (i = [1 : len(holes2) - 1]) {
+                            length = holes2[i] -holes2[i - 1] - tNutWidth;
+                            translate([0, 0, size.x - fillet - sideThickness - i*eSize - length/2]) {
+                                right_triangle(triangleHeight, triangleHeight, length, center=false);
+                                translate([0, -cubeHeight, 0])
+                                    cube([triangleHeight, cubeHeight, length]);
+                            }
                         }
                     }
-                }
         }
-        translate([sideThickness, sideThickness, 0])
-            boltHoleM4(size.z);
+        if (endStop)
+            translate([sideThickness, sideThickness, 0])
+                boltHoleM4(size.z);
         for (x = holes)
             translate([sideThickness + x, sideThickness + eSize/2, 0])
                 if (holeSize==2)
@@ -66,7 +68,7 @@ module extrusionDrillJig(length, holeSize, holes, fixingHoles) {
                     translate_z(-eps)
                         poly_cylinder(r=holeSize/2, h=baseThickness + centerHeight + 2*eps);
         for (x = holes2)
-            #translate([sideThickness + x, 0, baseThickness + eSize/2])
+            translate([sideThickness + x, 0, baseThickness + eSize/2])
                 rotate([-90, 180, 0])
                     boltHoleM4(sideThickness, horizontal=true);
     }
@@ -81,6 +83,13 @@ module extrusionDrillJig_hardware(length, holes) {
         translate([sideThickness + x, 0, baseThickness + eSize/2])
             rotate([90, 180, 0])
                 boltM4ButtonheadHammerNut(10);
+}
+
+module Extrusion_Drill_Jig_Extension_stl() {
+    holes = [5, 25];
+    stl("Extrusion_Drill_Jig_Extension")
+        extrusionDrillJig(40, 5, holes, endStop=false);
+    extrusionDrillJig_hardware(50, holes);
 }
 
 module Extrusion_Drill_Jig_50_2_stl() {
