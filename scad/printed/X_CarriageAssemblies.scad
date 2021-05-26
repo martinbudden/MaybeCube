@@ -109,7 +109,7 @@ module xCarriageAssembly(xCarriageType, beltOffsetZ, coreXYSeparationZ) {
 
     //translate([-size.x/2-eps, carriage_size(xCarriageType).y/2-beltInsetBack()+xCarriageBackSize(xCarriageType).y, beltOffsetZ + coreXYSeparationZ/2]) {
     //!!TODO fix magic number 5
-    translate([-size.x/2 - 1, carriage_size(xCarriageType).y/2 - beltInsetBack() + xCarriageBackSize(xCarriageType).y, beltOffsetZ - 5]) {
+    translate([-size.x/2 - 1, carriage_size(xCarriageType).y/2 - beltInsetBack(undef) + xCarriageBackSize(xCarriageType).y, beltOffsetZ - 5]) {
         rotate([0, 90, 180])
             explode(10, true) {
                 stl_colour(pp2_colour)
@@ -133,7 +133,7 @@ module X_Carriage_stl() {
 
     stl("X_Carriage")
         color(pp1_colour)
-            rotate([0, -90, 0]) {
+            rotate([0, 90, 0]) {
                 xCarriageBack(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z);
                 hotEndHolder(xCarriageType, hotend_type, blower_type, hotendOffsetZ(), left=false);
             }
@@ -149,7 +149,7 @@ assembly("X_Carriage", big=true, ngb=true) {
     blower_type = blower_type();
     hotend_type = 0;
 
-    rotate([0, 90, 0])
+    rotate([0, -90, 0])
         stl_colour(pp1_colour)
             X_Carriage_stl();
 
