@@ -1,4 +1,6 @@
 include <NopSCADlib/core.scad>
+include <../vitamins/bolts.scad>
+
 
 e2020CoverSizeX = 15;
 e2020CoverSizeY = 1.5;
@@ -7,9 +9,6 @@ e2020CoverSizeZ = 10;
 e2020ChannelWidth = 6.2;
 e2020ChannelDepth = 1.8;
 
-//E2020Cover(18.5);
-//E2020Cover(50);
-//E2020Cover(70);
 
 module _E2020Base(coverSizeX, coverSizeY) {
     translate([-coverSizeX/2, 0])
@@ -46,11 +45,11 @@ module E2020Clip2d(channelWidth=6.0, channelDepth=1.9, lipOverhang = 0.3) {
             square([cutX, taperY + lipY + 2*eps]);
     }
 }
+
 module E2020Clip(size, channelWidth=6.0, channelDepth=1.9, lipOverhang=0.3) {
     linear_extrude(size)
         E2020Clip2d(channelWidth, channelDepth);
 }
-
 
 //_E2020Stripe(6.2, 1.8);
 module _E2020Stripe(channelWidth, channelDepth, lipOverhang=0.3) {
@@ -68,8 +67,6 @@ module _E2020Stripe(channelWidth, channelDepth, lipOverhang=0.3) {
     }
 }
 
-//translate([20, 0, 0]) rotate([90, 0, 0]) E2020Cover(15);
-//translate([40, 0, 0]) rotate([90, 0, 0]) E2020Cover(15, coverSizeX=10);
 module E2020Cover(length, topOnlyLength=0, channelWidth=6.0, channelDepth=1.8, coverSizeX=e2020CoverSizeX) {
     assert(length > 0);
 
@@ -85,7 +82,6 @@ module E2020Cover(length, topOnlyLength=0, channelWidth=6.0, channelDepth=1.8, c
 
 function E2020CoverSizeFn(length) = [e2020CoverSizeX, e2020CoverSizeY, length];
 
-//rotate([90, 0, 0]) extrusionPiping(18);
 module extrusionPiping(length, channelWidth=6.2, channelDepth=1.8) {
     linear_extrude(length) {
         stripeSizeY = 1.0;
@@ -95,19 +91,31 @@ module extrusionPiping(length, channelWidth=6.2, channelDepth=1.8) {
     }
 }
 
-module extrusionChannel(length) {
-    channelDepth = 2;
-    size1 = [5.9, 5.4 - channelDepth];
-    size2 = [10, 1];
+module extrusionChannel(length, bolts, sliding=false, channelWidth=5.8, boltDiameter=4) {
+    channelDepth = sliding ? 2.5 : boltDiameter == 4 ? 2 : 1.5;
+    size1 = [channelWidth, channelDepth + eps];
+    size2 = [5.8, 3.4];
+    size3 = [9, 1];
+
     rotate([-90, 0, 0])
-        linear_extrude(length) {
-            translate([-size1.x/2, 0])
-                square(size1);
-            hull() {
-                translate([-size1.x/2, channelDepth])
+        difference() {
+            linear_extrude(length) {
+                translate([-size1.x/2, 0])
                     square(size1);
-                translate([-size2.x/2, channelDepth])
-                    square(size2);
+                hull() {
+                    translate([-size2.x/2, channelDepth])
+                        square(size2);
+                    translate([-size3.x/2, channelDepth])
+                        square(size3);
+                }
             }
-    }
+            if (is_list(bolts))
+                for (z = bolts)
+                    translate_z(z)
+                        rotate([-90, 0, 0])
+                            if (boltDiameter == 4)
+                                boltHoleM4Tap(size1.y + size2.y, twist=3);
+                            else
+                                boltHoleM3Tap(size1.y + size2.y, twist=3);
+        }
 }
