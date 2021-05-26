@@ -222,13 +222,13 @@ module printbedFrameCrossPiece() {
                 rotate([0, 180, -90])
                     extrusionInnerCornerBracket();
         }
-        /*translate([0, 0, fSize/2]) {
+        translate([0, 0, fSize/2]) {
             translate([_printBedArmSeparation, 0, 0])
                 rotate([180, 0, -90])
                     extrusionInnerCornerBracket(1);
             rotate([0, 0, -90])
                 extrusionInnerCornerBracket(1);
-        }*/
+        }
     }
 
     *translate_z(fSize/2) {
@@ -346,6 +346,7 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
                     Z_Carriage_Left_assembly();
     }
     Z_Carriage_Center_assembly();
+    Printbed_Strain_Relief_assembly();
 }
 
 //!1. With the heatbed upside down, place the bolts through the heatbed and place the springs over the bolts.
@@ -362,5 +363,59 @@ assembly("Printbed", big=true) {
             explode(120, true)
                 translate(heatedBedOffset)
                     not_on_reduced_bom() heatedBed(_heatedBedSize, _heatedBedHoleOffset, 3);
+        }
+}
+
+wiringDiameter = 6.5;
+sideThickness = 6.5;
+
+module Printbed_Strain_Relief_stl() {
+    size = [40, eSize, 5];
+    fillet = 1.5;
+
+    stl("Printbed_Strain_Relief")
+        color(pp1_colour)
+            translate([-size.x/2, 0, 0])
+                difference() {
+                    union() {
+                        rounded_cube_xy(size, fillet);
+                        for (y = [0, size.y - sideThickness])
+                            translate([(size.x - eSize)/2, y, 0])
+                                rounded_cube_xy([eSize, sideThickness, wiringDiameter + 2], fillet);
+                    }
+                    for (x = [5, size.x - 5])
+                        translate([x, size.y/2, size.z])
+                            vflip()
+                                boltPolyholeM3Countersunk(size.z);
+                    for (y = [sideThickness/2, size.y - sideThickness/2])
+                        translate([size.x/2, y, 0])
+                            boltHoleM3Tap(size.z + wiringDiameter);
+                }
+}
+
+module Printbed_Strain_Relief_Clamp_stl() {
+    size = [eSize, eSize, 2.5];
+    fillet = 1.5;
+
+    stl("Printbed_Strain_Relief_Clamp")
+        color(pp2_colour)
+            translate([-size.x/2, 0, 0])
+                difference() {
+                    rounded_cube_xy(size, fillet);
+                    for (y = [sideThickness/2, size.y - sideThickness/2])
+                        translate([size.x/2, y, 0])
+                            boltHoleM3(size.z, twist=5);
+                }
+ }
+
+module Printbed_Strain_Relief_assembly()
+assembly("Printbed_Strain_Relief") {
+    translate([eSize + _zRodOffsetX + 150, 2*eSize + zRodSeparation() + _zRodOffsetY, -eSize/2])
+        rotate([90, 0, 0]) {
+            stl_colour(pp1_colour)
+                Printbed_Strain_Relief_stl();
+            stl_colour(pp2_colour)
+                translate_z(wiringDiameter + 2)
+                    Printbed_Strain_Relief_Clamp_stl();
         }
 }
