@@ -57,7 +57,7 @@ function upperBoltPositions(sizeX) = [eSize/2 + 3, sizeX - 3*eSize/2 - 3];
 
 //leftDrivePlainIdlerOffset = [0, useMotorIdler20 ? 0 : eX >=300 ? 2 : 5, 0];
 //rightDrivePlainIdlerOffset = [0, eX >=300 ? 0 : 5, 0];
-leftDrivePlainIdlerOffset = [0, useMotorIdler20 ? 0 : 2, 0];
+leftDrivePlainIdlerOffset = [0, 0, 0]; // was [0, useMotorIdler20 ? 0 : 2, 0]
 rightDrivePlainIdlerOffset = [0, 0, 0];
 frameBoltOffsetZ = 12.5; // this allows an inner corner bracket to be used
 blockHeightExtra = is_undef(_use2020TopExtrusion) || _use2020TopExtrusion == false ? 0 : eSize;
