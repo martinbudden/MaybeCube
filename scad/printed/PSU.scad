@@ -20,9 +20,9 @@ module PSUBoltPositions() {//! Position children at the bolt positions on the bo
             children();
 }
 
-module PSUPosition(psuOnBase=false) {
-    type = PSUtype();
-    psuSize = psu_size(type);
+module PSUPosition(psuVertical=false, psuOnBase=false) {
+    psuType = PSUtype();
+    psuSize = psu_size(psuType);
     psuShroudWall = 3;
     psuOffsetZ = 2*eSize + psuShroudWall;
 
@@ -33,8 +33,8 @@ module PSUPosition(psuOnBase=false) {
             translate([-psuSize.x/2, -psuSize.y/2, 0])
                 children();
     } else {
-        if (eX == 300)
-            translate(psuOffset(type))
+        if (psuVertical)
+            translate(psuOffset(psuType))
                 rotate([90, 90, 0])
                     children();
         else
@@ -87,7 +87,7 @@ module PSU_Cover_assembly()
 assembly("PSU_Cover") {
 
     psuSize = psu_size(PSUtype());
-    PSUPosition()
+    PSUPosition(psuVertical=true)
         translate([psuSize.x/2 + eSize + 15, 0, psuSize.z])
             hflip()
                 stl_colour(pp1_colour)

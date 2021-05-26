@@ -21,11 +21,12 @@ include <Parameters_Main.scad>
 PC3 = ["PC3", "Sheet polycarbonate", 3, [1,   1,   1,   0.25], false];
 //PC3 = ["PC3", "Sheet polycarbonate", 3, "red", false];
 accessHoleRadius = 2.5;
+psuVertical = eX == 300;
 
 function backPanelSize() = [eX + 2*eSize, eZ, 3];
 function partitionSize() = [eX + 2*eSize, eZ-51.5, 3];
-function pcbType() = BTT_SKR_V1_4_TURBO;
-//function pcbType() = BTT_SKR_E3_TURBO;
+//function pcbType() = BTT_SKR_V1_4_TURBO;
+function pcbType() = BTT_SKR_E3_TURBO;
 //function pcbType() = BTT_SKR_MINI_E3_V2_0;
 
 
@@ -51,13 +52,13 @@ assembly("Back_Panel") {
     pcbAssembly(pcbType());
     hidden() PCB_Mount_stl();
 
-    psuAsssembly();
+    psuAsssembly(psuVertical);
     hidden() PSU_Lower_Mount_stl();
     hidden() PSU_Upper_Mount_stl();
 
     size = backPanelSize();
 
-    PSUPosition()
+    PSUPosition(psuVertical)
         PSUBoltPositions()
             translate_z(-size.z)
                 vflip()
@@ -169,25 +170,6 @@ module backPanelCutouts(PSUtype, pcbType, cncSides = undef, radius = undef) {
     }
 }
 
-/*
-module backPanelCutouts3D(size, PSUtype, pcbType) {
-    PSUPosition(psuOnBase=false) {
-        PSUBoltPositions()
-            boltHoleM4(size.z);
-        mirror([0, 1, 0])
-            rotate(180) {
-                psu_shroud_hole_positions(PSUtype)
-                    boltHoleM3(size.z);
-                cutoutWidth = 1.5;
-                psu_shroud_cable_positions(PSUtype, psuShroudCableDiameter())
-                    for (y = [-psuShroudCableDiameter()/2 - cutoutWidth/2, psuShroudCableDiameter()/2 + cutoutWidth/2])
-                        translate([0, y, -eps])
-                            rounded_cube_xy([4, cutoutWidth, size.z + 2*eps], 0.25, xy_center=true);
-            }
-        }
-}
-*/
-
 module psuLowerMount(size, counterSunk, offsetX=0) {
     fillet = 3;
 
@@ -234,7 +216,7 @@ module psuLowerMount(size, counterSunk, offsetX=0) {
                     }
                     rotate([-90, 0, 0])
                         translate([0, -eY - 2*eSize - 2*eps, 0])
-                            PSUPosition()
+                            PSUPosition(psuVertical)
                                 PSUBoltPositions()
                                     boltPolyholeM4Countersunk(3);
                 }
@@ -535,7 +517,7 @@ module PSU_Right_Mount_stl() {
                 }
                 rotate([-90, 0, 0])
                     translate([0, -eY - 2*eSize, 0])
-                        PSUPosition(psuOnBase=false) {
+                        PSUPosition(psuVertical) {
                             PSUBoltPositions()
                                 boltHoleM4(size.z);
                             rotate(180) {
@@ -620,30 +602,20 @@ module pcbPosition(pcbType, z=0) {
     }
 }
 
-module psuAsssembly(psuOnBase=false) {
-    PSUPosition(psuOnBase)
+module psuAsssembly(psuVertical) {
+    PSUPosition(psuVertical)
         explode(50)
             PSU();
-    if (eX >= 300)
+    if (psuVertical)
         PSU_Cover_assembly();
-    if (psuOnBase) {
-        PSUPosition(psuOnBase)
-            PSUBoltPositions() {
-                //Standoff_6mm_stl();
-                translate_z(-_basePlateThickness)
-                    vflip()
-                        boltM4Buttonhead(8);
-            }
+    if (eX == 300) {
+        PSU_Upper_Mount_assembly();
+        PSU_Lower_Mount_assembly();
     } else {
-        if (eX == 300) {
-            PSU_Upper_Mount_assembly();
-            PSU_Lower_Mount_assembly();
-        } else {
-            PSU_Left_Mount_assembly();
-            PSU_Right_Mount_assembly();
-        }
-        PCB_Mounting_Plate_assembly();
+        PSU_Left_Mount_assembly();
+        PSU_Right_Mount_assembly();
     }
+    PCB_Mounting_Plate_assembly();
 }
 
 module Partition_dxf() {
