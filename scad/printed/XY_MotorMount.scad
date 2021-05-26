@@ -30,6 +30,22 @@ NEMA_type =
 NEMA_width = NEMA_width(NEMA_type);
 NEMA_hole_depth = 5;
 
+//
+//                                               n       t   o      b         w    h  h    b     f    f  s   s    s              s
+//                                               a       e   d      e         i    u  u    o     l    l  c   c    c              c
+//                                               m       e          l         d    b  b    r     a    a  r   r    r              r
+//                                               e       t          t         t            e     n    n  e   e    e              e
+//                                                       h                    h    d  l          g    g  w   w    w              w
+//                                                                                               e    e                          s
+//                                                                                                       l   z
+//                                                                                               d    t
+//
+GT2x40_pulley        = ["GT2x40_pulley",        "GT2",   40, 24.95, GT2x6,  7.1,  18, 7.0, 5, 28.15,1.5, 6, 3.5,  M4_grub_screw, 2];
+//GT2x20um_pulley    = ["GT2x20um_pulley",      "GT2UM", 20, 12.22, GT2x6,  7.5,  18, 6.5, 5, 18.0, 1.0, 6, 3.75, M3_grub_screw, 2]; //Ultimaker
+//GT2x20ob_pulley    = ["GT2x20ob_pulley",      "GT2OB", 20, 12.22, GT2x6,  7.5,  16, 5.5, 5, 16.0, 1.0, 6, 3.25, M3_grub_screw, 2]; //Openbuilds
+
+
+
 useMotorIdler20 = !is_undef(_useMotorIdler20) && _useMotorIdler20;
 
 bracketThickness = 5;
@@ -383,14 +399,16 @@ module XY_Motor_Mount_hardware(sideSupportSizeY=0, corkDamperThickness=0, blockH
                        : [-coreXY_drive_plain_idler_offset(coreXY_type).x, coreXY_drive_plain_idler_offset(coreXY_type).y + rightDrivePlainIdlerOffset.y, 0]) {
             translate_z(pulley_height(coreXY_toothed_idler(coreXY_type)))
                 screw(screw, 16);
-                washer(washer)
-                    pulley(useMotorIdler20 ? GT2x20_plain_idler : coreXY_plain_idler(coreXY_type));
+            washer(washer)
+                pulley(useMotorIdler20 ? GT2x20_plain_idler : coreXY_plain_idler(coreXY_type));
         }
         translate(coreXY_drive_toothed_idler_offset(coreXY_type)) {
             translate_z(pulley_height(coreXY_toothed_idler(coreXY_type)))
                 screw(screw, 16);
             washer(washer)
                 pulley(coreXY_toothed_idler(coreXY_type));
+            //translate_z(30) vflip() pulley(GT2x40_pulley);
+
         }
     }
 
