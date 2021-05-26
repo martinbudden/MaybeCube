@@ -16,7 +16,8 @@ use <../Parameters_CoreXY.scad>
 axisOffset = coreXYPosBL().x - eSize;
 upperBoltOffset = 11;
 lowerBoltOffset = 6;
-function xyIdlerSize() = [eSize - 1, 60, 5]; // eSize -1 to allow for imprecisely cut Y rails
+frontOffset = 1; // so idler does not interfere with sliding front panel
+function xyIdlerSize() = [eSize - 1 - frontOffset, 60, 5]; // eSize -1 to allow for imprecisely cut Y rails
 armSize = [xyIdlerSize().x, 5.5, 17.5]; // 5.5 y size so 30mm bolt fits exactly
 tabLength = xyIdlerSize().y - armSize.z; //was 27
 tabThickness = 5;
@@ -75,41 +76,42 @@ module xyIdler() {
     fillet = 0.5;
     translate([0, eZ - eSize - size.y, 0]) {
         difference() {
-            union() {
-                sideThickness = 2;
-                rounded_cube_yz([size.x, size.y, baseThickness], fillet);
-                rounded_cube_yz([size.x, sizeY1, size.z], fillet);
-                translate([0, size.y - sizeY2, 0])
-                    rounded_cube_yz([size.x, sizeY2, armSize.z], fillet);
-                translate([0, size.y - tabThickness, 0])
-                    rounded_cube_yz([size.x, tabThickness, armSize.z + tabLength], fillet);
-                *translate([0, sizeY1- armSize.y, 0])
-                    rounded_cube_yz([sideThickness, size.y - sizeY1 + armSize.y, armSize.z], fillet);
-                rotate([0, -90, 0])
-                    translate_z(-sideThickness)
-                        linear_extrude(sideThickness)
-                            offset(fillet) offset(-fillet)
-                                //polygon([ [0, 0], [0, size.y], [armSize.z + tabLength, size.y], [armSize.z + tabLength, size.y-tabThickness], [armSize.z, sizeY1 - armSize.y], [size.z, 0] ]);
-                                polygon([ [0, 0], [0, size.y], [armSize.z + tabLength, size.y], [armSize.z + tabLength, size.y-tabThickness], [size.z, 0] ]);
-                translate([sideThickness, size.y-sizeY2, baseThickness])
-                    rotate([90, 0, 0])
-                        fillet(5, size.y - sizeY1 -sizeY2);
-                translate([0, size.y-sizeY2, baseThickness])
-                    rotate([90, -90, 90])
-                        fillet(1, size.x);
-                translate([0, size.y - tabThickness, armSize.z])
-                    rotate([90, -90, 90])
-                        fillet(1, size.x);
-                tNutWidth = 10.25;
-                cubeHeight = 1.5;
-                triangleHeight = 4;
-                translate([(size.x + triangleHeight - cubeHeight)/2, lowerBoltOffset + tNutWidth/2, 0])
-                    rotate([-90, 90, 0]) {
-                        right_triangle(triangleHeight, triangleHeight, size.y - lowerBoltOffset - upperBoltOffset - tNutWidth, center=false);
-                        translate([0, -cubeHeight, 0])
-                            cube([triangleHeight, cubeHeight, size.y - lowerBoltOffset - upperBoltOffset - tNutWidth]);
-                    }
-            }
+            translate([frontOffset, 0, 0])
+                union() {
+                    sideThickness = 2;
+                    rounded_cube_yz([size.x, size.y, baseThickness], fillet);
+                    rounded_cube_yz([size.x, sizeY1, size.z], fillet);
+                    translate([0, size.y - sizeY2, 0])
+                        rounded_cube_yz([size.x, sizeY2, armSize.z], fillet);
+                    translate([0, size.y - tabThickness, 0])
+                        rounded_cube_yz([size.x, tabThickness, armSize.z + tabLength], fillet);
+                    *translate([0, sizeY1- armSize.y, 0])
+                        rounded_cube_yz([sideThickness, size.y - sizeY1 + armSize.y, armSize.z], fillet);
+                    rotate([0, -90, 0])
+                        translate_z(-sideThickness)
+                            linear_extrude(sideThickness)
+                                offset(fillet) offset(-fillet)
+                                    //polygon([ [0, 0], [0, size.y], [armSize.z + tabLength, size.y], [armSize.z + tabLength, size.y-tabThickness], [armSize.z, sizeY1 - armSize.y], [size.z, 0] ]);
+                                    polygon([ [0, 0], [0, size.y], [armSize.z + tabLength, size.y], [armSize.z + tabLength, size.y-tabThickness], [size.z, 0] ]);
+                    translate([sideThickness, size.y-sizeY2, baseThickness])
+                        rotate([90, 0, 0])
+                            fillet(6, size.y - sizeY1 -sizeY2);
+                    translate([0, size.y-sizeY2, baseThickness])
+                        rotate([90, -90, 90])
+                            fillet(1, size.x);
+                    translate([0, size.y - tabThickness, armSize.z])
+                        rotate([90, -90, 90])
+                            fillet(1, size.x);
+                    tNutWidth = 10.25;
+                    cubeHeight = 1.5;
+                    triangleHeight = 4;
+                    *translate([(size.x + triangleHeight - cubeHeight)/2, lowerBoltOffset + tNutWidth/2, 0])
+                        rotate([-90, 90, 0]) {
+                            right_triangle(triangleHeight, triangleHeight, size.y - lowerBoltOffset - upperBoltOffset - tNutWidth, center=false);
+                            translate([0, -cubeHeight, 0])
+                                cube([triangleHeight, cubeHeight, size.y - lowerBoltOffset - upperBoltOffset - tNutWidth]);
+                        }
+                }
             translate([eSize/2, 0, 0]) {
                 translate([0, lowerBoltOffset, 0])
                     boltHoleM4(size.z, horizontal=true, rotate=-90);
@@ -129,10 +131,10 @@ module xyIdler() {
             }
         }
     }
-    translate([0, coreXYPosBL().z - coreXYSeparation().z - armSize.y + yCarriageBraceThickness()/2, 0]) {
+    translate([frontOffset, coreXYPosBL().z - coreXYSeparation().z - armSize.y + yCarriageBraceThickness()/2, 0]) {
         difference() {
             rounded_cube_yz(armSize, fillet);
-            translate([eSize/2, 0, axisOffset])
+            translate([eSize/2 - frontOffset, 0, axisOffset])
                 rotate([-90, -90, 0])
                     boltHoleM3(armSize.y, horizontal=true);
         }
