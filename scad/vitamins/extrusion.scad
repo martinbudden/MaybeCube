@@ -1,6 +1,5 @@
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/extrusions.scad>
-include <NopSCADlib/vitamins/screws.scad>
 
 function extrusionChannelWidth() = 8;
 function extrusionChannelDepth() = 6;
