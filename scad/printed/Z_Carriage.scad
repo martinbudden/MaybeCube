@@ -73,12 +73,12 @@ module zCarriageSCS(cnc=false) {
             translate(holes[0])
                 vflip() {
                     //boltHoleM5(baseSize.z);
-                    boltPolyholeM5Countersunk(baseSize.z);
+                    boltPolyholeM5Countersunk(baseSize.z, sink=0.25);
                 }
             for (i = [1, 2, 3])
                 translate(holes[i])
                     vflip()
-                        boltPolyholeM5Countersunk(baseSize.z);
+                        boltPolyholeM5Countersunk(baseSize.z, sink=0.25);
         }
         // add the shelf
         if (!cnc)
