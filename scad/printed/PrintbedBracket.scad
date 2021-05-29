@@ -41,13 +41,12 @@ module printBedBracket() {
 }
 
 module Printbed_Corner_Bracket_stl() {
-    stl("Printbed_Corner_Bracket");
-
     fillet = 1;
     firstBracketSizeX = braceY-(eSize+1);
 
-    color(pp2_colour)
-        extrusionCornerBracket(holeOffsetFromTop=7, holeLength=0, size=[eSize, firstBracketSizeX, 30], fillet=fillet);
+    stl("Printbed_Corner_Bracket")
+        color(pp2_colour)
+            extrusionCornerBracket(holeOffsetFromTop=7, holeLength=0, size=[eSize, firstBracketSizeX, 30], fillet=fillet);
     extrusionCornerBracketTNutsAndBolts(size=[eSize, firstBracketSizeX, 30], holeOffsetFromTop=7, holeOffsetFromSide=10);
 }
 
