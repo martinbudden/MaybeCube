@@ -29,7 +29,7 @@ holes = [for (i=[ [-1, 1], [1, 1], [-1, -1], [1, -1] ]) [i.x*scs_screw_separatio
 
 
 module zCarriageSCS(cnc=false) {
-    shelfExtension = 5;
+    shelfExtension = tabRightLength; //!! was 5
 
     translate_z(scs_hole_offset(scsType)) {
         fillet = 2;
@@ -37,14 +37,15 @@ module zCarriageSCS(cnc=false) {
         // the base
         difference() {
             linear_extrude(baseSize.z, convexity=2) {
-                rounded_square([baseSize.x, baseSize.y], fillet, center=true);
+                translate([-baseSize.x/2, -baseSize.y/2])
+                    rounded_square([baseSize.x + 1, baseSize.y], fillet, center=false);
                 difference() {
                     union() {
                         if (tabRightLength > shelfExtension + 1)
-                            translate([baseSize.x/2 + shelfExtension, baseSize.y/2-eSize])
+                            translate([baseSize.x/2 + shelfExtension, baseSize.y/2 - eSize])
                                 rotate(-90)
                                     fillet(1);
-                        translate([baseSize.x/2-2*fillet, baseSize.y/2-eSize])
+                        translate([baseSize.x/2 - 2*fillet, baseSize.y/2 - eSize])
                             rounded_square([tabRightLength + 2*fillet, eSize], fillet, center=false);
                         hull() {
                             translate([baseSize.x/2 - 2*fillet, baseSize.y/2 - eSize - shelfThickness]) {
