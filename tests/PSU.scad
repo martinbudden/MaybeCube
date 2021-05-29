@@ -1,7 +1,7 @@
-//!Displayes the PSU.
+//!Displays the PSU.
+
 use <../scad/printed/PSU.scad>
 include <NopSCADlib/core.scad>
-include <NopSCADlib/vitamins/screws.scad>
 include <NopSCADlib/vitamins/psus.scad>
 
 
