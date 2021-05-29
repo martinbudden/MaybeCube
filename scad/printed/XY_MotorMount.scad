@@ -14,6 +14,8 @@ use <../vitamins/cables.scad>
 use <../vitamins/extrusionBracket.scad>
 use <../vitamins/nuts.scad>
 
+include <../vitamins/bldc_motors.scad>
+
 include <../Parameters_Main.scad>
 use <../Parameters_CoreXY.scad>
 
@@ -29,6 +31,8 @@ NEMA_type =
 
 NEMA_width = NEMA_width(NEMA_type);
 NEMA_hole_depth = 5;
+
+BLDC_type = BLDC4250;
 
 //
 //                                               n       t   o      b         w    h  h    b     f    f  s   s    s              s
@@ -54,6 +58,7 @@ bracketHeightRight = eZ - eSize - (coreXYPosBL().z + washer_thickness(M3_washer)
 bracketHeightLeft = bracketHeightRight + coreXYSeparation().z;
 
 function upperBoltPositions(sizeX) = [eSize/2 + 3, sizeX - 3*eSize/2 - 3];
+function is_NEMA(motor_type) = motor_type[0][0] == "N";
 
 //leftDrivePlainIdlerOffset = [0, useMotorIdler20 ? 0 : eX >=300 ? 2 : 5, 0];
 //rightDrivePlainIdlerOffset = [0, eX >=300 ? 0 : 5, 0];
@@ -85,16 +90,20 @@ module xyMotorMountBaseCutouts(left, size, offset, sideSupportSizeY = 0, cnc=fal
     for (x = upperBoltPositions(size.x))
         translate([x + eSize, eY + 3*eSize/2])
             poly_circle(r = screw_head_radius(M4_dome_screw) + boltHeadTolerance);
-    if (sideSupportSizeY!=0)
+    if (sideSupportSizeY != 0)
         translate([eSize/2, eY + 3*eSize/2 - (sideSupportSizeY < 0 ? size.y - eSize : sideSupportSizeY)])
             poly_circle(r = screw_head_radius(M4_dome_screw) + boltHeadTolerance);
 
     translate([coreXYPosBL().x + separation.x/2, coreXYPosTR(NEMA_width).y + offset.y]) {
         translate([coreXY_drive_pulley_x_alignment(coreXY_type) + offset.x, 0]) {
-            poly_circle(r = NEMA_boss_radius(NEMA_type));
-            if (cnc)
+            poly_circle(r = BLDC_type ? 6 : NEMA_boss_radius(NEMA_type));
+            if (cnc) {
                 NEMA_screw_positions(NEMA_type)
                     poly_circle(r = M3_clearance_radius);
+                if (BLDC_type)
+                    BLDC_screw_positions(BLDC_type)
+                        poly_circle(r = M3_clearance_radius);
+            }
         }
         if (cnc) {
             translate(coreXY_drive_plain_idler_offset(coreXY_type) + (left ? leftDrivePlainIdlerOffset : rightDrivePlainIdlerOffset))
@@ -124,9 +133,14 @@ module xyMotorMountBase(left, size, offset, sideSupportSizeY, cnc=false) {
         }
         if (!cnc)
             translate([coreXYPosBL.x + separation.x/2, coreXYPosTR.y + offset.y]) {
-                translate([coreXY_drive_pulley_x_alignment(coreXY_type) + offset.x, 0])
+                translate([coreXY_drive_pulley_x_alignment(coreXY_type) + offset.x, 0]) {
                     NEMA_screw_positions(NEMA_type)
                         boltHoleM3(basePlateThickness, twist=5);
+                    if (BLDC_type)
+                        BLDC_base_screw_positions(BLDC_type)
+                            translate_z(basePlateThickness)
+                                boltPolyholeM3Countersunk(basePlateThickness, sink=0.25);
+                }
                 translate(pP)
                     boltHoleM3Tap(basePlateThickness);
                 translate(pT)
@@ -369,7 +383,7 @@ module xyMotorMountRight(bracketHeight, basePlateThickness, offset=[0, 0], block
 }
 */
 
-module XY_Motor_Mount_hardware(sideSupportSizeY=0, corkDamperThickness=0, blockHeightExtra=0, left=true) {
+module XY_Motor_Mount_hardware(motorType, sideSupportSizeY=sideSupportSizeY, corkDamperThickness=0, blockHeightExtra=0, left=true) {
 
     offset = left ? leftDrivePulleyOffset() : rightDrivePulleyOffset();
     coreXYPosBL = coreXYPosBL();
@@ -381,16 +395,27 @@ module XY_Motor_Mount_hardware(sideSupportSizeY=0, corkDamperThickness=0, blockH
     translate([left ? coreXYPosBL.x + separation.x/2 : coreXYPosTR.x - separation.x/2, coreXYPosTR.y + offset.y, eZ - eSize - (left ? bracketHeightLeft : bracketHeightRight)]) {
         translate([offset.x + (left ? coreXY_drive_pulley_x_alignment(coreXY_type) : -coreXY_drive_pulley_x_alignment(coreXY_type)), 0, 0]) {
             translate_z(-basePlateThickness - corkDamperThickness) {
-                rotate(left ? -90 : 90)
-                    NEMA(NEMA_type, jst_connector = true);
-                corkDamper(NEMA_type, corkDamperThickness);
+                if (is_NEMA(motorType)) {
+                    rotate(left ? -90 : 90)
+                        NEMA(motorType, jst_connector = true);
+                    corkDamper(motorType, corkDamperThickness);
+                } else {
+                    vflip()
+                        translate_z(2*eps)
+                            rotate(left ? 0 : 180)
+                                BLDC(BLDC_type);
+                }
             }
             vflip()
                 translate_z(-pulley_height(coreXY_drive_pulley(coreXY_type)))
                     pulley(coreXY_drive_pulley(coreXY_type()));
             boltLength = screw_shorter_than(NEMA_hole_depth + basePlateThickness + corkDamperThickness);
-            NEMA_screw_positions(NEMA_type)
-                boltM3Buttonhead(boltLength);
+            if (is_NEMA(motorType))
+                NEMA_screw_positions(NEMA_type)
+                    boltM3Buttonhead(boltLength);
+            else
+                BLDC_base_screw_positions(BLDC_type)
+                    boltM3Countersunk(boltLength);
         }
 
         washer = coreXYIdlerBore() == 3 ? M3_washer : M5_washer;
@@ -505,7 +530,7 @@ assembly("XY_Motor_Mount_Left", ngb=true) {
 
     stl_colour(pp1_colour)
         XY_Motor_Mount_Left_stl();
-    XY_Motor_Mount_hardware(sideSupportSizeY, _corkDamperThickness, blockHeightExtra, left=true);
+    XY_Motor_Mount_hardware(NEMA_type, sideSupportSizeY, _corkDamperThickness, blockHeightExtra, left=true);
 }
 
 module XY_Motor_Mount_Right_stl() {
@@ -529,5 +554,5 @@ assembly("XY_Motor_Mount_Right", ngb=true) {
     stl_colour(pp1_colour)
         XY_Motor_Mount_Right_stl();
     //XY_Motor_Mount_Right_hardware(corkDamperThickness=_corkDamperThickness, blockHeightExtra=blockHeightExtra);
-    XY_Motor_Mount_hardware(sideSupportSizeY, _corkDamperThickness, blockHeightExtra, left=false);
+    XY_Motor_Mount_hardware(NEMA_type, sideSupportSizeY, _corkDamperThickness, blockHeightExtra, left=false);
 }
