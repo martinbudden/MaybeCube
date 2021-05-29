@@ -386,7 +386,7 @@ module Printbed_Strain_Relief_stl() {
                     for (x = [5, size.x - 5])
                         translate([x, size.y/2, size.z])
                             vflip()
-                                boltPolyholeM3Countersunk(size.z);
+                                boltPolyholeM3Countersunk(size.z, sink=0.25);
                     for (y = [sideThickness/2, size.y - sideThickness/2])
                         translate([size.x/2, y, 0])
                             boltHoleM3Tap(size.z + wiringDiameter);
