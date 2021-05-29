@@ -193,19 +193,19 @@ module zMotorMount(eHeight=40) {
 }
 
 module Z_Motor_Mount_stl() {
-    stl("Z_Motor_Mount");
     // invert Z_Motor_Mount so it can be printed without support
-    translate([0, -Z_Motor_MountSize().x/2, 0])
-        rotate([180, 0, 90])
-            zMotorMount();
+    stl("Z_Motor_Mount")
+        translate([0, -Z_Motor_MountSize().x/2, 0])
+            rotate([180, 0, 90])
+                zMotorMount();
 }
 
 module Z_Motor_Mount_Right_stl() {
-    stl("Z_Motor_Mount_Right");
     // invert Z_Motor_Mount so it can be printed without support
-    translate([0, -Z_Motor_MountSize().x/2, 0])
-        rotate([180, 0, 90])
-            zMotorMount(eHeight=20);
+    stl("Z_Motor_Mount_Right")
+        translate([0, -Z_Motor_MountSize().x/2, 0])
+            rotate([180, 0, 90])
+                zMotorMount(eHeight=20);
 }
 
 module zMotorLeadscrew(zLeadScrewLength) {

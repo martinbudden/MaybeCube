@@ -31,8 +31,8 @@ module sk_bracket_with_bolts(type) {
 }
 
 module KP_PillowBlockSpacer_stl() {
-    stl("KP_PillowBlockSpacer");
-    kp_pillow_block_spacer(KP08_18);
+    stl("KP_PillowBlockSpacer")
+        kp_pillow_block_spacer(KP08_18);
 }
 
 module kp_pillow_block_spacer(type) {
