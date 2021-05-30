@@ -8,8 +8,8 @@ use <NopSCADlib/utils/thread.scad>
 use <NopSCADlib/utils/tube.scad>
 
 
-function BLDC_diameter(type)                    = type[1]; //! Diameter
-function BLDC_height(type)                      = type[2]; //! Body length
+function BLDC_diameter(type)                    = type[1]; //! Diameter of motor
+function BLDC_height(type)                      = type[2]; //! Height of motor including boss, if any, but excluding prop shaft
 function BLDC_shaft_diameter(type)              = type[3]; //! Shaft diameter
 function BLDC_shaft_length(type)                = type[4]; //! Total shaft length
 function BLDC_shaft_offset(type)                = type[5]; //! Shaft offset from base
@@ -28,12 +28,12 @@ function BLDC_bell_height_2(type)               = type[17]; //! Bell height 2
 function BLDC_bell_hole_diameter(type)          = type[18]; //! Bell hole diameter
 function BLDC_bell_holes(type)                  = type[19]; //! Bell holes
 function BLDC_bell_spokes(type)                 = type[20]; //! Bell spoke count
-function BLDC_boss_radius(type)                 = type[21]; //! Boss radius
+function BLDC_boss_diameter(type)               = type[21]; //! Boss diameter
 function BLDC_boss_height(type)                 = type[22]; //! Boss height
-function BLDC_propshaft_diameter(type)          = type[23]; //! Propshaft diameter
-function BLDC_propshaft_length(type)            = type[24]; //! Propshaft length
-function BLDC_propshaft_thread_diameter(type)   = type[25]; //! Propshaft thread diameter
-function BLDC_propshaft_thread_length(type)     = type[26]; //! Propshaft thread length
+function BLDC_prop_shaft_length(type)           = type[23]; //! Prop shaft length, including threaded section
+function BLDC_prop_shaft_diameter(type)         = type[24]; //! Diameter of unthreaded portion of prop shaft
+function BLDC_prop_shaft_thread_length(type)    = type[25]; //! Length of threaded section of prop shaft
+function BLDC_prop_shaft_thread_diameter(type)  = type[26]; //! Diameter of threaded section of prop shaft
 
 bldc_cap_colour  = grey(50);
 bldc_shaft_colour = grey(90);
@@ -47,7 +47,7 @@ module BLDC(type) { //! Draw specified BLDC motor
     body_diameter = BLDC_diameter(type);
     wall_thickness = 1;
 
-    height = BLDC_height(type);
+    height = BLDC_height(type) - BLDC_boss_height(type);
 
     module feet(base_diameter) {
         holes = BLDC_base_holes(type);
@@ -74,13 +74,16 @@ module BLDC(type) { //! Draw specified BLDC motor
         h2 = BLDC_base_height_2(type);
         color(body_colour)
             if (BLDC_base_open(type)) {
-                difference() {
-                    linear_extrude(h1)
-                        feet(base_diameter);
+                linear_extrude(h1)
+                    difference() {
+                        union() {
+                            feet(base_diameter);
+                            circle(d = 3*BLDC_shaft_diameter(type));
+                        }
                         circle(d = 2*BLDC_shaft_diameter(type));
-                }
+                    }
                 translate_z(h1)
-                    cylinder(d = 2 * BLDC_shaft_diameter(type), h = h2);
+                    cylinder(d = 3 * BLDC_shaft_diameter(type), h = h2);
             } else {
                 difference() {
                     union() {
@@ -88,9 +91,9 @@ module BLDC(type) { //! Draw specified BLDC motor
                             linear_extrude(h1)
                                 difference() {
                                     circle(d = base_diameter);
-                                    circle(d = 2*BLDC_shaft_diameter(type));
+                                    circle(d = 2 * BLDC_shaft_diameter(type));
                                     BLDC_base_screw_positions(type)
-                                        circle(d=BLDC_base_hole_diameter(type));
+                                        circle(d = BLDC_base_hole_diameter(type));
                                 }
                         rotate_extrude()
                             polygon([ [base_diameter/2, 0], [body_diameter/2, h1], [body_diameter/2, h1+h2], [body_diameter/2 - wall_thickness, h1+h2], [body_diameter/2 - wall_thickness, h1], [base_diameter/2, h1] ]);
@@ -100,7 +103,7 @@ module BLDC(type) { //! Draw specified BLDC motor
                     rotate(a)
                         hull() {
                             translate([base_diameter/2, 0,  -eps])
-                                cylinder(r=r, h=h1 + 2*eps);
+                                cylinder(r = r, h = h1 + 2*eps);
                             translate([body_diameter/2, -r, -eps])
                                 cube([eps, 2*r, h1 + 2*eps]);
                         }
@@ -143,18 +146,18 @@ module BLDC(type) { //! Draw specified BLDC motor
 
     module bell() {
         bell_diameter = BLDC_bell_diameter(type);
-        h1 = BLDC_bell_height_1(type);
-        h2 = BLDC_bell_height_2(type);
+        hb = BLDC_bell_height_1(type);
+        ha = BLDC_bell_height_2(type);
         gap = BLDC_base_open(type) ? - 0.25 : height > 20 ? 0.5 : 0.25;
-        side_length = height - h1 -h2 - gap - BLDC_base_height_1(type) - BLDC_base_height_2(type);
+        side_length = height - ha - hb - gap - BLDC_base_height_1(type) - BLDC_base_height_2(type);
 
         color(body_colour) {
-            translate_z(height - h1) {
+            translate_z(height - ha) {
                 difference() {
                     union() {
-                        top_thickness = min(h1, 2);
+                        top_thickness = min(ha, 2);
                         render(convexity = 8)
-                            translate_z(h1 - top_thickness)
+                            translate_z(ha - top_thickness)
                                 linear_extrude(top_thickness)
                                     difference() {
                                         circle(d = bell_diameter);
@@ -164,7 +167,7 @@ module BLDC(type) { //! Draw specified BLDC motor
                                             circle(d = BLDC_bell_hole_diameter(type));
                                     }
                         rotate_extrude()
-                            polygon([ [bell_diameter/2, h1], [body_diameter/2, 0], [body_diameter/2, -h2], [body_diameter/2 - wall_thickness, -h2], [body_diameter/2 - wall_thickness, 0], [bell_diameter/2, h1 - top_thickness] ]);
+                            polygon([ [bell_diameter/2, ha], [body_diameter/2, 0], [body_diameter/2, -hb], [body_diameter/2 - wall_thickness, -hb], [body_diameter/2 - wall_thickness, 0], [bell_diameter/2, ha - top_thickness] ]);
                     }
                     spoke_count = BLDC_bell_spokes(type);
                     if (spoke_count % 4 == 0) {
@@ -173,16 +176,16 @@ module BLDC(type) { //! Draw specified BLDC motor
                             rotate(a) {
                                 hull() {
                                     translate([bell_diameter/2 + r, 0, -eps])
-                                        cylinder(r=r, h=h1 + 2*eps);
+                                        cylinder(r=r, h = ha + 2*eps);
                                     translate([body_diameter/2, -r, -eps])
-                                        cube([eps, 2*r, h1 + 2*eps]);
+                                        cube([eps, 2*r, ha + 2*eps]);
                                 }
                                 rotate(45)
                                     hull() {
                                         translate([bell_diameter/2, 0, -eps])
-                                            cylinder(r=r, h=h1 + 2*eps);
+                                            cylinder(r=r, h=ha + 2*eps);
                                         translate([body_diameter/2, -r, -eps])
-                                            cube([eps, 2*r, h1 + 2*eps]);
+                                            cube([eps, 2*r, ha + 2*eps]);
                                     }
                             }
                     } else {
@@ -192,38 +195,40 @@ module BLDC(type) { //! Draw specified BLDC motor
                             rotate(i * 360 / spoke_count)
                                 hull() {
                                     translate([bell_diameter/2, 0, -eps])
-                                        cylinder(r=r1, h=h1 + 2*eps);
+                                        cylinder(r=r1, h=ha + 2*eps);
                                     translate([body_diameter/2, 0, -eps])
-                                        cylinder(r=r2, h=h1 + 2*eps);
+                                        cylinder(r=r2, h=ha + 2*eps);
                                 }
                     }
                 } // end difference
-                if (BLDC_boss_height(type))
-                    translate_z(h1)
-                        tube(or = BLDC_boss_radius(type), ir = BLDC_shaft_diameter(type)/2, h = BLDC_boss_height(type));
-
             } // end translate
-            if (BLDC_propshaft_diameter(type))
-                translate_z(height) {
-                    cylinder(d=BLDC_propshaft_diameter(type), h=BLDC_propshaft_length(type));
-                    thread_diameter = BLDC_propshaft_thread_diameter(type);
-                    translate_z(BLDC_propshaft_length(type))
+
+            if (BLDC_boss_height(type))
+                translate_z(height)
+                    tube(or = BLDC_boss_diameter(type)/2, ir = BLDC_shaft_diameter(type)/2, h = BLDC_boss_height(type), center=false);
+
+            if (BLDC_prop_shaft_diameter(type))
+                translate_z(height + BLDC_boss_height(type)) {
+                    thread_diameter = BLDC_prop_shaft_thread_diameter(type);
+                    unthreaded_length = BLDC_prop_shaft_length(type) - BLDC_prop_shaft_thread_length(type);
+                    cylinder(d=BLDC_prop_shaft_diameter(type), h=unthreaded_length);
+                    translate_z(unthreaded_length)
                         if (show_threads)
-                            male_metric_thread(thread_diameter, metric_coarse_pitch(thread_diameter), BLDC_propshaft_thread_length(type), center=false);
+                            male_metric_thread(thread_diameter, metric_coarse_pitch(thread_diameter), BLDC_prop_shaft_thread_length(type), center=false);
                         else
-                            cylinder(d=thread_diameter, h=BLDC_propshaft_thread_length(type));
+                            cylinder(d=thread_diameter, h=BLDC_prop_shaft_thread_length(type));
                 }
         } // end colour
 
         color(side_colour)
-            translate_z(height - h1 - h2  -side_length)
+            translate_z(height - ha - hb  -side_length)
                 tube(body_diameter/2, body_diameter/2 - wall_thickness, side_length, center=false);
 
         if (show_threads)
             translate_z(height)
                 BLDC_bell_screw_positions(type)
                     vflip()
-                        female_metric_thread(BLDC_bell_hole_diameter(type), metric_coarse_pitch(BLDC_bell_hole_diameter(type)), h1, center = false, colour = body_colour);
+                        female_metric_thread(BLDC_bell_hole_diameter(type), metric_coarse_pitch(BLDC_bell_hole_diameter(type)), ha, center = false, colour = body_colour);
     } // end module bell
 
     base();
