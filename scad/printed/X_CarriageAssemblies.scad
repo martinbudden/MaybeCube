@@ -20,7 +20,7 @@ use <../Parameters_CoreXY.scad>
 include <../Parameters_Main.scad>
 
 
-function blower_type() = is_undef(_blower_type) || _blower_type == 30 ? BL30x10 : BL40x10;
+function blower_type() = is_undef(_blowerDescriptor) || _blowerDescriptor == "BL30x10" ? BL30x10 : BL40x10;
 
 module X_Carriage_Front_stl() {
     xCarriageType = xCarriageType();
@@ -83,7 +83,7 @@ assembly("X_Carriage_Front", big=true) {
 }
 
 module xCarriageFrontAssemblyBolts(xCarriageType, beltWidth) {
-    assert(is_list(xCarriageType));
+    assert(isCarriageType(xCarriageType));
 
     size = xCarriageFrontSize(xCarriageType, beltWidth);
 

@@ -9,10 +9,10 @@ include <../Parameters_Main.scad>
 
 module xRailBoltPositions() {
     xCarriageType = xCarriageType();
-    rail_type = xRailType();
-    translate([eSize + eX/2, carriagePosition().y, -eSize - rail_height(xRailType()) - rail_height(yRailType()) + carriage_clearance(xCarriageType)])
-        for (x = [1, 3], s = [-_xRailLength/2, _xRailLength/2 - 2*rail_pitch(rail_type)])
-            translate([s + x*rail_pitch(rail_type)/2, 0, rail_height(rail_type) - rail_bore_depth(rail_type)])
+    xRailType = xRailType();
+    translate([eSize + eX/2, carriagePosition().y, -eSize - rail_height(xRailType) - rail_height(yRailType()) + carriage_clearance(xCarriageType)])
+        for (x = [1, 3], s = [-_xRailLength/2, _xRailLength/2 - 2*rail_pitch(xRailType)])
+            translate([s + x*rail_pitch(xRailType)/2, 0, rail_height(xRailType) - rail_bore_depth(xRailType)])
                 children();
 }
 

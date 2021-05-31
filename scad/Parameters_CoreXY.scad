@@ -51,8 +51,8 @@ function coreXYPosBL() = [
     eZ - yCarriageThickness() - yCarriageBraceThickness()/2  - (_beltWidth == 6 ? 42.5 : 42.5 + pulley_height(coreXY_toothed_idler(coreXY_type())) - 7.5)
 ];
 
-function coreXYPosTR(NEMA_width) = [
+function coreXYPosTR(motorWidth) = [
     eX + 2*eSize - coreXYPosBL().x,
-    eY + 2*eSize - NEMA_width/2 - motorClearance().y,
+    eY + 2*eSize - motorWidth/2 - motorClearance().y,
     coreXYPosBL().z
 ];

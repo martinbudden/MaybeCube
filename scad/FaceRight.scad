@@ -29,6 +29,7 @@ lowerMiddleExtrusion = false;
 module Right_Side_assembly() pose(a=[55, 0, 25 - 90])
 assembly("Right_Side", big=true) {
 
+    zMotorLength = 40;
     translate([eX + eSize, eSize, 0]) {
 
         if (!useDualZRods())
@@ -45,7 +46,7 @@ assembly("Right_Side", big=true) {
     }
 
     if (useDualZRods()) {
-        faceRightLowerExtrusion();
+        faceRightLowerExtrusion(zMotorLength);
         faceRightMiddleExtrusion();
     }
 
@@ -66,12 +67,12 @@ module faceRightMiddleExtrusion() {
     }
 }
 
-module faceRightLowerExtrusion() {
+module faceRightLowerExtrusion(zMotorLength) {
     translate([eX + eSize, eSize, 0]) {
         extrusionOY2040VEndBolts(eY);
         translate([eSize, 0, 0])
             mirror([1, 0, 0])
-                zMountsLower();
+                zMountsLower(zMotorLength);
     }
 }
 

@@ -88,9 +88,10 @@ stl("XY_Encoder_Mount")
                             }
                     }
             }
-            *NEMA_screw_positions(NEMA17)
-                vflip()
-                    boltHoleM3Tap(8);
+            rotate(45)
+                BLDC_screw_positions(size.x + 8)
+                    vflip()
+                        boltHoleM3Tap(8);
         }
         translate_z(-size.z)
             rounded_cube_xy([size.x, size.y, 5], cornerFillet, xy_center=true);
@@ -99,10 +100,10 @@ stl("XY_Encoder_Mount")
 module XY_Encoder_Mount_Left_assembly()
 assembly("XY_Encoder_Mount_Left", ngb=true) {
 
-    NEMA_width = NEMA_width(NEMA17);
+    motorWidth = motorWidth(BLDC4250);
     basePlateThickness = 6;
 
-    translate([coreXYPosBL().x + leftDrivePulleyOffset().x + coreXY_drive_pulley_x_alignment(coreXY_type()), coreXYPosTR(NEMA_width).y, coreXYPosBL().z - coreXYSeparation().z - basePlateThickness]) {
+    translate([coreXYPosBL().x + leftDrivePulleyOffset().x + coreXY_drive_pulley_x_alignment(coreXY_type()), coreXYPosTR(motorWidth).y, coreXYPosBL().z - coreXYSeparation().z - basePlateThickness]) {
         stl_colour(pp2_colour)
             XY_Encoder_Mount_stl();
         XY_Encoder_Mount_hardware(BLDC_type);
@@ -112,10 +113,10 @@ assembly("XY_Encoder_Mount_Left", ngb=true) {
 module XY_Encoder_Mount_Right_assembly()
 assembly("XY_Encoder_Mount_Right", ngb=true) {
 
-    NEMA_width = NEMA_width(NEMA17);
+    motorWidth = motorWidth(BLDC4250);
     basePlateThickness = 6;
 
-    translate([coreXYPosTR(NEMA_width).x + rightDrivePulleyOffset().x - coreXY_drive_pulley_x_alignment(coreXY_type()), coreXYPosTR(NEMA_width).y, coreXYPosBL().z - 0*coreXYSeparation().z - basePlateThickness]) {
+    translate([coreXYPosTR(motorWidth).x + rightDrivePulleyOffset().x - coreXY_drive_pulley_x_alignment(coreXY_type()), coreXYPosTR(motorWidth).y, coreXYPosBL().z - 0*coreXYSeparation().z - basePlateThickness]) {
         stl_colour(pp2_colour)
             XY_Encoder_Mount_stl();
         XY_Encoder_Mount_hardware(BLDC_type);

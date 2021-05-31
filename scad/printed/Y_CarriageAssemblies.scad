@@ -28,7 +28,7 @@ module Y_Carriage_Left_stl() {
 
     tongueOffset = tongueOffset();
     endStopOffsetX = 0;
-    chamfer = _xCarriageType == "9C" || _xCarriageType == "9H" ? 1 : 0;
+    chamfer = _xCarriageDescriptor == "MGN9C" || _xCarriageDescriptor == "MGN9H" ? 1 : 0;
 
     stl("Y_Carriage_Left")
         color(pp2_colour)
@@ -39,7 +39,7 @@ module Y_Carriage_Right_stl() {
     idlerHeight = pulley_height(coreXY_toothed_idler(coreXY_type()));
     tongueOffset = tongueOffset();
     endStopOffsetX = 0;
-    chamfer = _xCarriageType == "9C" || _xCarriageType == "9H" ? 1 : 0;
+    chamfer = _xCarriageDescriptor == "MGN9C" || _xCarriageDescriptor == "MGN9H" ? 1 : 0;
 
     stl("Y_Carriage_Right")
         color(pp2_colour)
@@ -50,7 +50,7 @@ module Y_Carriage_Left_AL_dxf() {
     idlerHeight = pulley_height(coreXY_toothed_idler(coreXY_type()));
     tongueOffset = tongueOffset();
     endStopOffsetX = 12;
-    chamfer = _xCarriageType == "9C" || _xCarriageType == "9H" ? 1 : 0;
+    chamfer = _xCarriageDescriptor == "MGN9C" || _xCarriageDescriptor == "MGN9H" ? 1 : 0;
 
     dxf("Y_Carriage_Left_AL")
         color(silver)
@@ -61,7 +61,7 @@ module Y_Carriage_Right_AL_dxf() {
     idlerHeight = pulley_height(coreXY_toothed_idler(coreXY_type()));
     tongueOffset = tongueOffset();
     endStopOffsetX = 2;
-    chamfer = _xCarriageType == "9C" || _xCarriageType == "9H" ? 1 : 0;
+    chamfer = _xCarriageDescriptor == "MGN9C" || _xCarriageDescriptor == "MGN9H" ? 1 : 0;
 
     dxf("Y_Carriage_Right_AL")
         color(silver)
@@ -87,12 +87,13 @@ module Y_Carriage_Brace_Right_stl() {
 module Y_Carriage_Left_assembly()
 assembly("Y_Carriage_Left", ngb=true) {
 
+    yCarriageType = yCarriageType();
     railOffset = [1.5*eSize, 0, eZ - eSize];
     plainIdler = coreXY_plain_idler(coreXY_type());
     toothedIdler = coreXY_toothed_idler(coreXY_type());
     pulleyStackHeight = pulleyStackHeight(pulley_height(plainIdler));
 
-    translate([railOffset.x, carriagePosition().y, railOffset.z - carriage_height(yCarriageType())])
+    translate([railOffset.x, carriagePosition().y, railOffset.z - carriage_height(yCarriageType)])
         rotate([180, 0, 0]) {
             stl_colour(pp2_colour)
                 Y_Carriage_Left_stl();
@@ -101,19 +102,20 @@ assembly("Y_Carriage_Left", ngb=true) {
                     explode(4*yCarriageExplodeFactor())
                         stl_colour(pp1_colour)
                             Y_Carriage_Brace_Left_stl();
-            Y_Carriage_hardware(yCarriageType(), plainIdler, toothedIdler, _beltWidth, yCarriageThickness(), yCarriageBraceThickness(), pulleyOffset(), left=true);
+            Y_Carriage_hardware(yCarriageType, plainIdler, toothedIdler, _beltWidth, yCarriageThickness(), yCarriageBraceThickness(), pulleyOffset(), left=true);
         }
 }
 
 module Y_Carriage_Right_assembly()
 assembly("Y_Carriage_Right", ngb=true) {
 
+    yCarriageType = yCarriageType();
     railOffset = [1.5*eSize, 0, eZ - eSize];
     plainIdler = coreXY_plain_idler(coreXY_type());
     toothedIdler = coreXY_toothed_idler(coreXY_type());
     pulleyStackHeight = pulleyStackHeight(pulley_height(plainIdler));
 
-    translate([eX + 2*eSize - railOffset.x, carriagePosition().y, railOffset.z - carriage_height(yCarriageType())])
+    translate([eX + 2*eSize - railOffset.x, carriagePosition().y, railOffset.z - carriage_height(yCarriageType)])
         rotate([180, 0, 180]) {
             stl_colour(pp2_colour)
                 Y_Carriage_Right_stl();
@@ -122,6 +124,6 @@ assembly("Y_Carriage_Right", ngb=true) {
                     explode(4*yCarriageExplodeFactor())
                         stl_colour(pp1_colour)
                             Y_Carriage_Brace_Right_stl();
-            Y_Carriage_hardware(yCarriageType(), plainIdler, toothedIdler, _beltWidth, yCarriageThickness(), yCarriageBraceThickness(), pulleyOffset(), left=false);
+            Y_Carriage_hardware(yCarriageType, plainIdler, toothedIdler, _beltWidth, yCarriageThickness(), yCarriageBraceThickness(), pulleyOffset(), left=false);
         }
 }

@@ -24,7 +24,7 @@ module XY_Motor_Mount_test() {
     XY_Motor_Mount_hardware(BLDC_type, left=true);
     XY_Encoder_Mount_Left_assembly();
     XY_Motor_Mount_Right_stl();
-    XY_Motor_Mount_hardware(BLDC_type, left=false);
+    //XY_Motor_Mount_hardware(BLDC_type, left=false);
     XY_Encoder_Mount_Right_assembly();
 }
 

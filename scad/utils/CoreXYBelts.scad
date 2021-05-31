@@ -7,14 +7,14 @@ include <../Parameters_CoreXY.scad>
 
 
 module CoreXYBelts(carriagePosition, x_gap=20, show_pulleys=false) {
-    assert(is_list(carriagePosition));
+    assert(is_list(carriagePosition) && len(carriagePosition) == 2);
 
-    NEMA_width = _xyNemaType == "14" ? 35.2 : 42.3;
+    xyMotorWidth = _xyMotorDescriptor == "NEMA14" ? 35.2 : _xyMotorDescriptor == "BLDC4250"? 56 : 42.3;
 
     coreXY_belts(coreXY_type(),
         carriagePosition = carriagePosition + [-coreXYPosBL().x, 0],
         coreXYPosBL = coreXYPosBL(),
-        coreXYPosTR = coreXYPosTR(NEMA_width),
+        coreXYPosTR = coreXYPosTR(xyMotorWidth),
         separation = coreXYSeparation(),
         x_gap = x_gap,
         upper_drive_pulley_offset = -rightDrivePulleyOffset(),

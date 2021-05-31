@@ -40,7 +40,7 @@ assembly("Printhead", big=true) {
                 rotate([90, 0, -90]) {
                     explode(-40, true) {
                         stl_colour(pp2_colour)
-                            if (_blower_type == 30)
+                            if (blower_size(blower_type).x == 30)
                                 Hotend_Clamp_stl();
                             else
                                 Hotend_Clamp_40_stl();
@@ -58,16 +58,18 @@ assembly("Printhead", big=true) {
 }
 
 module fullPrinthead(rotate=180) {
+    xCarriageType = xCarriageType();
+
     xRailCarriagePosition()
         rotate(rotate) {// for debug, to see belts better
             explode([0, -20, 0], true) {
                 X_Carriage_Front_assembly();
-                xCarriageFrontAssemblyBolts(xCarriageType(), _beltWidth);
+                xCarriageFrontAssemblyBolts(xCarriageType, _beltWidth);
             }
             Printhead_assembly();
-            xCarriageTopBolts(xCarriageType());
+            xCarriageTopBolts(xCarriageType);
             if (!exploded())
-                xCarriageBeltFragments(xCarriageType(), coreXY_belt(coreXY_type()), beltOffsetZ(), coreXYSeparation().z, coreXY_upper_belt_colour(coreXY_type()), coreXY_lower_belt_colour(coreXY_type()));
+                xCarriageBeltFragments(xCarriageType, coreXY_belt(coreXY_type()), beltOffsetZ(), coreXYSeparation().z, coreXY_upper_belt_colour(coreXY_type()), coreXY_lower_belt_colour(coreXY_type()));
         }
 }
 

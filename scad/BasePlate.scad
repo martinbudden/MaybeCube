@@ -2,7 +2,7 @@ include <global_defs.scad>
 
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/displays.scad>
-include <NopSCADlib/vitamins/sheets.scad>
+use <NopSCADlib/vitamins/sheet.scad>
 
 use <printed/BaseFoot.scad>
 use <printed/DisplayHousingAssemblies.scad>

@@ -5,14 +5,14 @@ eX = __extrusionLengths.x;
 eY = __extrusionLengths.y;
 eZ = __extrusionLengths.z;
 
-_xyNemaType = "17_40";
-_zNemaType = "17_40L280";
+_xyMotorDescriptor = "NEMA17_40";
+_zMotorDescriptor = "NEMA17_40L280";
 _corkDamperThickness = 3;
 
 _xRailLength = eX - 50;
 _yRailLength = eY;
-_xCarriageType = "12H";
-_yCarriageType = "12H";
+_xCarriageDescriptor = "MGN12H";
+_yCarriageDescriptor = "MGN12H";
 
 _beltWidth = 6;
 
@@ -20,7 +20,7 @@ _printBedSize = 214;
 _printBedArmSeparation = 188;
 _printBed4PointSupport = !true;
 
-_blower_type = 30;
+_blowerDescriptor = "BL30x10";
 
 //_useMotorIdler20 = true;
 

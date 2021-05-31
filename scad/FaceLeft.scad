@@ -27,8 +27,10 @@ include <Parameters_Main.scad>
 //
 module Left_Side_assembly() pose(a=[55, 0, 25 + 90])
 assembly("Left_Side", big=true) {
+
+    zMotorLength = 40;
+    faceLeftLowerExtrusion(zMotorLength);
     faceLeftMiddleExtrusion();
-    faceLeftLowerExtrusion();
 
     explode([0, 70, 0], true)
         faceLeftMotorUpright();
@@ -46,10 +48,10 @@ module faceLeftMiddleExtrusion() {
     }
 }
 
-module faceLeftLowerExtrusion() {
+module faceLeftLowerExtrusion(zMotorLength) {
     translate([0, eSize, 0]) {
         extrusionOY2040VEndBolts(eY);
-        zMountsLower();
+        zMountsLower(zMotorLength);
     }
 }
 

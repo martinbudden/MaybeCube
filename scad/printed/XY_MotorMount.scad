@@ -9,6 +9,8 @@ include <NopSCADlib/vitamins/stepper_motors.scad>
 
 use <../../../BabyCube/scad/vitamins/CorkDamper.scad>
 
+include <../utils/motorTypes.scad>
+
 use <../vitamins/bolts.scad>
 use <../vitamins/cables.scad>
 use <../vitamins/extrusionBracket.scad>
@@ -22,14 +24,6 @@ use <../Parameters_CoreXY.scad>
 
 NEMA17_60  = ["NEMA17_60",   42.3, 60,     53.6/2, 25,     11,     2,     5,     24,          31,    [11.5,  9]];
 
-NEMA_type =
-    _xyNemaType == "14" ? NEMA14 :
-    _xyNemaType == "17_40" ? NEMA17M :
-    _xyNemaType == "17_48" ? NEMA17 :
-    _xyNemaType == "17_60" ? NEMA17_60 :
-    undef;
-
-NEMA_width = NEMA_width(NEMA_type);
 NEMA_hole_depth = 5;
 
 BLDC_type = BLDC4250;
@@ -58,7 +52,6 @@ bracketHeightRight = eZ - eSize - (coreXYPosBL().z + washer_thickness(M3_washer)
 bracketHeightLeft = bracketHeightRight + coreXYSeparation().z;
 
 function upperBoltPositions(sizeX) = [eSize/2 + 3, sizeX - 3*eSize/2 - 3];
-function is_NEMA(motor_type) = motor_type[0][0] == "N";
 
 //leftDrivePlainIdlerOffset = [0, useMotorIdler20 ? 0 : eX >=300 ? 2 : 5, 0];
 //rightDrivePlainIdlerOffset = [0, eX >=300 ? 0 : 5, 0];
@@ -68,11 +61,27 @@ frameBoltOffsetZ = 12.5; // this allows an inner corner bracket to be used
 blockHeightExtra = is_undef(_use2020TopExtrusion) || _use2020TopExtrusion == false ? 0 : eSize;
 boltHeadTolerance = 0.1;
 sideSupportSizeY = 30;
+encoderHolePitch = 56;
 
-module xyMotorMountBaseCutouts(left, size, offset, sideSupportSizeY = 0, cnc=false) {
-    assert(!is_undef(left));
+module xyMotorScrewPositions(motorType) {
+    if (isNEMAType(motorType))
+        NEMA_screw_positions(motorType)
+            children();
+    else if (is_list(motorType))
+        BLDC_base_screw_positions(motorType)
+            children();
+    else
+        rotate(45)
+            BLDC_screw_positions(motorType)
+                children();
+
+}
+
+module xyMotorMountBaseCutouts(left, size, motorType, offset, sideSupportSizeY = 0, cnc=false) {
+    assert(left == true || left == false);
     fillet = 1.5;
     yFillet = 5;
+    motorWidth = motorWidth(motorType);
     separation = coreXYSeparation();
     coreXY_type = coreXY_type();
 
@@ -94,15 +103,12 @@ module xyMotorMountBaseCutouts(left, size, offset, sideSupportSizeY = 0, cnc=fal
         translate([eSize/2, eY + 3*eSize/2 - (sideSupportSizeY < 0 ? size.y - eSize : sideSupportSizeY)])
             poly_circle(r = screw_head_radius(M4_dome_screw) + boltHeadTolerance);
 
-    translate([coreXYPosBL().x + separation.x/2, coreXYPosTR(NEMA_width).y + offset.y]) {
+    translate([coreXYPosBL().x + separation.x/2, coreXYPosTR(motorWidth).y + offset.y]) {
         translate([coreXY_drive_pulley_x_alignment(coreXY_type) + offset.x, 0]) {
-            poly_circle(r = BLDC_type ? 6 : NEMA_boss_radius(NEMA_type));
+            poly_circle(r = isNEMAType(motorType) ? NEMA_boss_radius(motorType) : 6);
             if (cnc) {
-                NEMA_screw_positions(NEMA_type)
+                xyMotorScrewPositions(motorType)
                     poly_circle(r = M3_clearance_radius);
-                if (BLDC_type)
-                    BLDC_screw_positions(BLDC_type)
-                        poly_circle(r = M3_clearance_radius);
             }
         }
         if (cnc) {
@@ -114,11 +120,11 @@ module xyMotorMountBaseCutouts(left, size, offset, sideSupportSizeY = 0, cnc=fal
     }
 }
 
-module xyMotorMountBase(left, size, offset, sideSupportSizeY, cnc=false) {
+module xyMotorMountBase(motorType, left, size, offset, sideSupportSizeY, cnc=false) {
     baseFillet = 3;
     separation = coreXYSeparation();
     coreXYPosBL = coreXYPosBL();
-    coreXYPosTR = coreXYPosTR(NEMA_width);
+    coreXYPosTR = coreXYPosTR(motorWidth(motorType));
     coreXY_type = coreXY_type();
     pP = coreXY_drive_plain_idler_offset(coreXY_type) + (left ? leftDrivePlainIdlerOffset : rightDrivePlainIdlerOffset);
     pT = coreXY_drive_toothed_idler_offset(coreXY_type);
@@ -128,18 +134,25 @@ module xyMotorMountBase(left, size, offset, sideSupportSizeY, cnc=false) {
             difference() {
                 translate([0, eY + 2*eSize - size.y, 0])
                     rounded_square([size.x, size.y], baseFillet, center=false);
-                xyMotorMountBaseCutouts(left, size=size, offset=offset, sideSupportSizeY=sideSupportSizeY, cnc=cnc);
+                xyMotorMountBaseCutouts(left, size=size, motorType=motorType, offset=offset, sideSupportSizeY=sideSupportSizeY, cnc=cnc);
             }
         }
         if (!cnc)
             translate([coreXYPosBL.x + separation.x/2, coreXYPosTR.y + offset.y]) {
                 translate([coreXY_drive_pulley_x_alignment(coreXY_type) + offset.x, 0]) {
-                    NEMA_screw_positions(NEMA_type)
-                        boltHoleM3(basePlateThickness, twist=5);
-                    if (BLDC_type)
-                        BLDC_base_screw_positions(BLDC_type)
+                    if (isNEMAType(motorType)) {
+                        NEMA_screw_positions(motorType)
+                            boltHoleM3(basePlateThickness, twist=5);
+                    } else {
+                        BLDC_base_screw_positions(motorType)
                             translate_z(basePlateThickness)
                                 boltPolyholeM3Countersunk(basePlateThickness, sink=0.25);
+                        rotate(45)
+                            BLDC_screw_positions(encoderHolePitch)
+                                translate_z(basePlateThickness)
+                                    vflip()
+                                        boltHoleM3(basePlateThickness);
+                    }
                 }
                 translate(pP)
                     boltHoleM3Tap(basePlateThickness);
@@ -177,13 +190,13 @@ module xyMotorMountBase(left, size, offset, sideSupportSizeY, cnc=false) {
         }
 }
 
-module xyMotorMountBlock(size, bracketHeight, basePlateThickness, offset=[0, 0], sideSupportSizeY, blockHeightExtra=0) {
+module xyMotorMountBlock(motorType, size, bracketHeight, basePlateThickness, offset=[0, 0], sideSupportSizeY, blockHeightExtra=0) {
     fillet = 1.5;
     yFillet = 5;
     baseFillet = 3;
 
     coreXYPosBL = coreXYPosBL();
-    coreXYPosTR = coreXYPosTR(NEMA_width);
+    coreXYPosTR = coreXYPosTR(motorWidth(motorType));
     separation = coreXYSeparation();
     coreXY_type = coreXY_type();
 
@@ -198,7 +211,7 @@ module xyMotorMountBlock(size, bracketHeight, basePlateThickness, offset=[0, 0],
                     translate([eSize, eY + eSize])
                         rounded_square([size.x - eSize, eSize], fillet, center=false);
                     translate([coreXYPosBL.x + separation.x/2 + coreXY_drive_pulley_x_alignment(coreXY_type) + offset.x, coreXYPosTR.y + offset.y])
-                        NEMA_screw_positions(NEMA_type) {
+                        xyMotorScrewPositions(isNEMAType(motorType) ? motorType : encoderHolePitch) {
                             cutout = 6.5;
                             circle(d = cutout);
                             translate([-cutout/2, -cutout])
@@ -261,12 +274,13 @@ module xyMotorMountBlock(size, bracketHeight, basePlateThickness, offset=[0, 0],
         }
 }
 
-module xyMotorMount(left, bracketHeight, basePlateThickness, offset=[0, 0], sideSupportSizeY, blockHeightExtra=0) {
-    size = [offset.x + eX + 2*eSize + coreXY_drive_pulley_x_alignment(coreXY_type()) + NEMA_width/2, -offset.y + eY + 2*eSize + NEMA_width/2, eZ + basePlateThickness] - coreXYPosTR(NEMA_width);
+module xyMotorMount(motorType, left, bracketHeight, basePlateThickness, offset=[0, 0], sideSupportSizeY, blockHeightExtra=0) {
+    motorWidth = motorWidth(motorType);
+    size = [offset.x + eX + 2*eSize + coreXY_drive_pulley_x_alignment(coreXY_type()) + motorWidth/2, -offset.y + eY + 2*eSize + motorWidth/2, eZ + basePlateThickness] - coreXYPosTR(motorWidth);
 
-    xyMotorMountBase(left, [size.x, size.y, basePlateThickness], offset, sideSupportSizeY);
+    xyMotorMountBase(motorType, left, [size.x, size.y, basePlateThickness], offset, sideSupportSizeY);
     translate_z(basePlateThickness - eps)
-        xyMotorMountBlock(size, bracketHeight, basePlateThickness, offset, sideSupportSizeY, blockHeightExtra);
+        xyMotorMountBlock(motorType, size, bracketHeight, basePlateThickness, offset, sideSupportSizeY, blockHeightExtra);
 }
 
 /*
@@ -384,10 +398,10 @@ module xyMotorMountRight(bracketHeight, basePlateThickness, offset=[0, 0], block
 */
 
 module XY_Motor_Mount_hardware(motorType, sideSupportSizeY=sideSupportSizeY, corkDamperThickness=0, blockHeightExtra=0, left=true) {
-
     offset = left ? leftDrivePulleyOffset() : rightDrivePulleyOffset();
+    motorWidth = motorWidth(motorType);
     coreXYPosBL = coreXYPosBL();
-    coreXYPosTR = coreXYPosTR(NEMA_width);
+    coreXYPosTR = coreXYPosTR(motorWidth);
     separation = coreXYSeparation();
     coreXY_type = coreXY_type();
 
@@ -395,7 +409,7 @@ module XY_Motor_Mount_hardware(motorType, sideSupportSizeY=sideSupportSizeY, cor
     translate([left ? coreXYPosBL.x + separation.x/2 : coreXYPosTR.x - separation.x/2, coreXYPosTR.y + offset.y, eZ - eSize - (left ? bracketHeightLeft : bracketHeightRight)]) {
         translate([offset.x + (left ? coreXY_drive_pulley_x_alignment(coreXY_type) : -coreXY_drive_pulley_x_alignment(coreXY_type)), 0, 0]) {
             translate_z(-basePlateThickness - corkDamperThickness) {
-                if (is_NEMA(motorType)) {
+                if (isNEMAType(motorType)) {
                     rotate(left ? -90 : 90)
                         NEMA(motorType, jst_connector = true);
                     corkDamper(motorType, corkDamperThickness);
@@ -410,11 +424,10 @@ module XY_Motor_Mount_hardware(motorType, sideSupportSizeY=sideSupportSizeY, cor
                 translate_z(-pulley_height(coreXY_drive_pulley(coreXY_type)))
                     pulley(coreXY_drive_pulley(coreXY_type()));
             boltLength = screw_shorter_than(NEMA_hole_depth + basePlateThickness + corkDamperThickness);
-            if (is_NEMA(motorType))
-                NEMA_screw_positions(NEMA_type)
+            xyMotorScrewPositions(motorType)
+                if (isNEMAType(motorType))
                     boltM3Buttonhead(boltLength);
-            else
-                BLDC_base_screw_positions(BLDC_type)
+                else
                     boltM3Countersunk(boltLength);
         }
 
@@ -438,7 +451,7 @@ module XY_Motor_Mount_hardware(motorType, sideSupportSizeY=sideSupportSizeY, cor
     }
 
     if (left) {
-        size = [offset.x + eX + 2*eSize + coreXY_drive_pulley_x_alignment(coreXY_type()) + NEMA_width/2, -offset.y + eY + 2*eSize + NEMA_width/2, eZ + basePlateThickness] - coreXYPosTR;
+        size = [offset.x + eX + 2*eSize + coreXY_drive_pulley_x_alignment(coreXY_type()) + motorWidth/2, -offset.y + eY + 2*eSize + motorWidth/2, eZ + basePlateThickness] - coreXYPosTR;
         for (x = upperBoltPositions(size.x))
             translate([x + eSize, eY + 3*eSize/2, eZ - 2*eSize - 5 + blockHeightExtra])
                 vflip()
@@ -452,7 +465,7 @@ module XY_Motor_Mount_hardware(motorType, sideSupportSizeY=sideSupportSizeY, cor
                 rotate([90, 0, 0])
                     boltM4ButtonheadHammerNut(_frameBoltLength, rotate=90);
     } else {
-        size = [-offset.x + eX + 2*eSize + coreXY_drive_pulley_x_alignment(coreXY_type()) + NEMA_width/2, -offset.y + eY + 2*eSize + NEMA_width/2, eZ + basePlateThickness]  - coreXYPosTR;
+        size = [-offset.x + eX + 2*eSize + coreXY_drive_pulley_x_alignment(coreXY_type()) + motorWidth/2, -offset.y + eY + 2*eSize + motorWidth/2, eZ + basePlateThickness]  - coreXYPosTR;
         for (x = upperBoltPositions(size.x))
             translate([x + eX + 2*eSize - size.x, eY + 3*eSize/2, eZ - 2*eSize - 5 + blockHeightExtra])
                 vflip()
@@ -463,6 +476,7 @@ module XY_Motor_Mount_hardware(motorType, sideSupportSizeY=sideSupportSizeY, cor
     }
 }
 
+/*
 module XY_Motor_Mount_Right_hardware(corkDamperThickness=0, blockHeightExtra=0) {
 
     offset = rightDrivePulleyOffset();
@@ -512,6 +526,7 @@ module XY_Motor_Mount_Right_hardware(corkDamperThickness=0, blockHeightExtra=0) 
         vflip()
             boltM4ButtonheadHammerNut(_frameBoltLength);
 }
+*/
 
 module XY_Motor_Mount_Left_stl() {
     offset = leftDrivePulleyOffset();
@@ -522,7 +537,7 @@ module XY_Motor_Mount_Left_stl() {
         color(pp1_colour)
             translate_z(eZ - eSize - basePlateThickness - bracketHeightLeft)
             //translate_z(coreXYPosBL.z - basePlateThickness - washer_thickness(M3_washer))
-                xyMotorMount(true, bracketHeightLeft, basePlateThickness, offset, sideSupportSizeY, blockHeightExtra=blockHeightExtra);
+                xyMotorMount(motorType(_xyMotorDescriptor), true, bracketHeightLeft, basePlateThickness, offset, sideSupportSizeY, blockHeightExtra=blockHeightExtra);
 }
 
 module XY_Motor_Mount_Left_assembly()
@@ -530,7 +545,7 @@ assembly("XY_Motor_Mount_Left", ngb=true) {
 
     stl_colour(pp1_colour)
         XY_Motor_Mount_Left_stl();
-    XY_Motor_Mount_hardware(NEMA_type, sideSupportSizeY, _corkDamperThickness, blockHeightExtra, left=true);
+    XY_Motor_Mount_hardware(motorType(_xyMotorDescriptor), sideSupportSizeY, _corkDamperThickness, blockHeightExtra, left=true);
 }
 
 module XY_Motor_Mount_Right_stl() {
@@ -545,7 +560,7 @@ module XY_Motor_Mount_Right_stl() {
                 *xyMotorMountRight(bracketHeightRight, basePlateThickness, offset=offset, blockHeightExtra=blockHeightExtra);
             translate([eX + 2*eSize, 0, eZ - eSize - basePlateThickness - bracketHeightRight])
                 mirror([1, 0, 0])
-                    xyMotorMount(false, bracketHeightRight, basePlateThickness, -offset, sideSupportSizeY, blockHeightExtra=blockHeightExtra);
+                    xyMotorMount(motorType(_xyMotorDescriptor), false, bracketHeightRight, basePlateThickness, -offset, sideSupportSizeY, blockHeightExtra=blockHeightExtra);
 }
 
 module XY_Motor_Mount_Right_assembly()
@@ -554,5 +569,5 @@ assembly("XY_Motor_Mount_Right", ngb=true) {
     stl_colour(pp1_colour)
         XY_Motor_Mount_Right_stl();
     //XY_Motor_Mount_Right_hardware(corkDamperThickness=_corkDamperThickness, blockHeightExtra=blockHeightExtra);
-    XY_Motor_Mount_hardware(NEMA_type, sideSupportSizeY, _corkDamperThickness, blockHeightExtra, left=false);
+    XY_Motor_Mount_hardware(motorType(_xyMotorDescriptor), sideSupportSizeY, _corkDamperThickness, blockHeightExtra, left=false);
 }

@@ -5,14 +5,14 @@ eX = __extrusionLengths.x;
 eY = __extrusionLengths.y;
 eZ = __extrusionLengths.z;
 
-_xyNemaType = "17_40";
-_zNemaType = "17_40L230";
+_xyMotorDescriptor = "NEMA17_40";
+_zMotorDescriptor = "NEMA17_40L230";
 _corkDamperThickness = 2;
 
 _xRailLength = eX - 50;
 _yRailLength = eY;
-_xCarriageType = "9H";
-_yCarriageType = "12H";
+_xCarriageDescriptor = "MGN9H";
+_yCarriageDescriptor = "MGN12H";
 
 _beltWidth = 6;
 
@@ -20,7 +20,7 @@ _printBedSize = 180;
 _printBedArmSeparation = 150;
 _printBed4PointSupport = false;
 
-_blower_type = 30;
+_blowerDescriptor = "BL30x10";
 
 // set this so the zRod brackets clear the xy motors
 // limited by printbed frame hitting XY motors and possibly extruder motor

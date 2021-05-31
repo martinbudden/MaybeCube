@@ -182,14 +182,16 @@ assembly("Wiring_Guide") {
 
 module Left_Side_Upper_Extrusion_assembly() pose(a = [180 + 55, 0, 25 + 90])
 assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
+
+    yCarriageType = yCarriageType();
     translate([0, eSize, eZ - eSize])
         extrusionOY2040HEndBolts(eY);
     explode(-40, true)
         translate([1.5*eSize, eSize + _yRailLength/2, eZ - eSize])
             rotate([180, 0, 90])
                 if (is_undef($hide_rails) || $hide_rails == false) {
-                    rail_assembly(yCarriageType(), _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
-                    railBoltsAndNuts(yRailType(), _yRailLength, 5);
+                    rail_assembly(yCarriageType, _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
+                    railBoltsAndNuts(carriage_rail(yCarriageType), _yRailLength, 5);
                 }
     explode(-10, true)
         Y_Carriage_Left_assembly();
@@ -198,6 +200,7 @@ assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
 module Right_Side_Upper_Extrusion_assembly() pose(a = [180+55, 0, 25-90])
 assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
 
+    yCarriageType = yCarriageType();
     translate([eX, eSize, eZ - eSize])
         extrusionOY2040HEndBolts(eY);
 
@@ -206,7 +209,7 @@ assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
             rotate([180, 0, 90])
                 if (is_undef($hide_rails) || $hide_rails == false) {
                     rail_assembly(yCarriageType(), _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
-                    railBoltsAndNuts(yRailType(), _yRailLength, 5);
+                    railBoltsAndNuts(carriage_rail(yCarriageType), _yRailLength, 5);
                 }
     explode(-10, true)
         Y_Carriage_Right_assembly();
