@@ -2,13 +2,13 @@
 include <../scad/global_defs.scad>
 
 include <NopSCADlib/core.scad>
+include <NopSCADlib/vitamins/bldc_motors.scad>
 
 include <../scad/printed/XY_EncoderMount.scad>
 use <../scad/printed/XY_MotorMount.scad>
 use <../scad/utils/CoreXYBelts.scad>
 
 use <../scad/Parameters_Positions.scad>
-include <../scad/vitamins/bldc_motors.scad>
 include <../scad/Parameters_Main.scad>
 
 BLDC_type = BLDC4250;

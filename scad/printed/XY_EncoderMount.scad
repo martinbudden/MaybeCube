@@ -3,12 +3,11 @@ include <../global_defs.scad>
 include <NopSCADlib/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 
+include <NopSCADlib/vitamins/bldc_motors.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
 
 use <../vitamins/bolts.scad>
 use <../vitamins/cables.scad>
-
-include <../vitamins/bldc_motors.scad>
 
 include <../Parameters_Main.scad>
 use <../Parameters_CoreXY.scad>
