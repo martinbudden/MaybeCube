@@ -102,10 +102,11 @@ assembly("XY_Encoder_Mount_Left", ngb=true) {
     NEMA_width = NEMA_width(NEMA17);
     basePlateThickness = 6;
 
-    translate([coreXYPosBL().x + leftDrivePulleyOffset().x + coreXY_drive_pulley_x_alignment(coreXY_type()), coreXYPosTR(NEMA_width).y, coreXYPosBL().z - coreXYSeparation().z - basePlateThickness])
-    stl_colour(pp2_colour)
-        XY_Encoder_Mount_stl();
-    XY_Encoder_Mount_hardware(BLDC_type);
+    translate([coreXYPosBL().x + leftDrivePulleyOffset().x + coreXY_drive_pulley_x_alignment(coreXY_type()), coreXYPosTR(NEMA_width).y, coreXYPosBL().z - coreXYSeparation().z - basePlateThickness]) {
+        stl_colour(pp2_colour)
+            XY_Encoder_Mount_stl();
+        XY_Encoder_Mount_hardware(BLDC_type);
+    }
 }
 
 module XY_Encoder_Mount_Right_assembly()
@@ -114,10 +115,11 @@ assembly("XY_Encoder_Mount_Right", ngb=true) {
     NEMA_width = NEMA_width(NEMA17);
     basePlateThickness = 6;
 
-    translate([coreXYPosTR(NEMA_width).x + rightDrivePulleyOffset().x - coreXY_drive_pulley_x_alignment(coreXY_type()), coreXYPosTR(NEMA_width).y, coreXYPosBL().z - 0*coreXYSeparation().z - basePlateThickness])
-    stl_colour(pp2_colour)
-        XY_Encoder_Mount_stl();
-    XY_Encoder_Mount_hardware(BLDC_type);
+    translate([coreXYPosTR(NEMA_width).x + rightDrivePulleyOffset().x - coreXY_drive_pulley_x_alignment(coreXY_type()), coreXYPosTR(NEMA_width).y, coreXYPosBL().z - 0*coreXYSeparation().z - basePlateThickness]) {
+        stl_colour(pp2_colour)
+            XY_Encoder_Mount_stl();
+        XY_Encoder_Mount_hardware(BLDC_type);
+    }
 }
 
 module radial_encoder_magnet_6_2p5() {

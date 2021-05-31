@@ -10,9 +10,9 @@ use <NopSCADlib/utils/tube.scad>
 
 function BLDC_diameter(type)                    = type[1]; //! Diameter of motor
 function BLDC_height(type)                      = type[2]; //! Height of motor including boss, if any, but excluding prop shaft
-function BLDC_shaft_diameter(type)              = type[3]; //! Shaft diameter
+function BLDC_shaft_diameter(type)              = type[3]; //! shaft diameter
 function BLDC_shaft_length(type)                = type[4]; //! Total shaft length
-function BLDC_shaft_offset(type)                = type[5]; //! Shaft offset from base
+function BLDC_shaft_offset(type)                = type[5]; //! shaft offset from base
 function BLDC_body_colour(type)                 = type[6]; //! Body colour
 function BLDC_base_diameter(type)               = type[7]; //! Base diameter
 function BLDC_base_height_1(type)               = type[8]; //! Base height 1
@@ -68,6 +68,28 @@ module BLDC(type) { //! Draw specified BLDC motor
         }
     }
 
+    module cutout(d1, d2, r, h) {
+        translate_z(-eps)
+            linear_extrude(h + 2 * eps)
+                hull() {
+                    translate([d1 / 2, 0])
+                        circle(r = r);
+                    translate([d2 / 2, -r])
+                        square([eps, 2 * r]);
+                }
+    }
+
+    module cutout2(d1, r1, d2, r2, h) {
+        translate_z(-eps)
+            linear_extrude(h + 2 * eps)
+                hull() {
+                    translate([d1 / 2, 0])
+                        circle(r = r1);
+                    translate([d2 / 2, 0])
+                        circle(r = r2);
+                }
+    }
+
     module base() {
         base_diameter = BLDC_base_diameter(type);
         h1 = BLDC_base_height_1(type);
@@ -98,32 +120,16 @@ module BLDC(type) { //! Draw specified BLDC motor
                         rotate_extrude()
                             polygon([ [base_diameter/2, 0], [body_diameter/2, h1], [body_diameter/2, h1+h2], [body_diameter/2 - wall_thickness, h1+h2], [body_diameter/2 - wall_thickness, h1], [base_diameter/2, h1] ]);
                     }
-                r =  body_diameter > 40 ? 2.5 : body_diameter * PI / (8 * 3);
+                r =  body_diameter > 40 ? 2 : body_diameter * PI / (8 * 3);
                 for (a = [0, 90, 180, 270])
                     rotate(a)
-                        hull() {
-                            translate([base_diameter/2, 0,  -eps])
-                                cylinder(r = r, h = h1 + 2*eps);
-                            translate([body_diameter/2, -r, -eps])
-                                cube([eps, 2*r, h1 + 2*eps]);
-                        }
+                        cutout(base_diameter, body_diameter, r, h1);
                 if (body_diameter > 40) {
-                    hull() {
-                        r = 6;
-                        translate([base_diameter/2, 0,  -eps])
-                            cylinder(r=r, h=h1 + 2*eps);
-                        translate([body_diameter/2, -r, -eps])
-                            cube([eps, 2*r, h1 + 2*eps]);
-                    }
-                    for (a = [90, 180, 270])
-                        for (b = [-90/4, 90/4])
-                            rotate(a + b)
-                                hull() {
-                                    translate([base_diameter/2 - r, 0, -eps])
-                                        cylinder(r=r, h=h1 + 2*eps);
-                                    translate([body_diameter/2, -r, -eps])
-                                        cube([eps, 2*r, h1 + 2*eps]);
-                                }
+                    // cutout for wires
+                    cutout(base_diameter, body_diameter, 6, h1);
+                    for (a = [90, 180, 270], b = [-90/4, 90/4])
+                        rotate(a + b)
+                            cutout(base_diameter - 2*r, body_diameter, r, h1);
                 }
             }
         }
@@ -136,7 +142,7 @@ module BLDC(type) { //! Draw specified BLDC motor
                 female_metric_thread(BLDC_base_hole_diameter(type), metric_coarse_pitch(BLDC_base_hole_diameter(type)), h1, center = false, colour = body_colour);
 
         wire_diameter = BLDC_wire_diameter(type);
-        for(i = [0 : 2])
+        for (i = [0 : 2])
             color(wire_diameter > 3 ? ["red", "blue", "yellow"][i] : grey(20))
                 translate([body_diameter / 5, (i - 1) * wire_diameter, wire_diameter / 2 + 0.25])
                     rotate([0, 90, 0])
@@ -146,18 +152,18 @@ module BLDC(type) { //! Draw specified BLDC motor
 
     module bell() {
         bell_diameter = BLDC_bell_diameter(type);
-        hb = BLDC_bell_height_1(type);
-        ha = BLDC_bell_height_2(type);
+        h1 = BLDC_bell_height_1(type);
+        h2 = BLDC_bell_height_2(type);
         gap = BLDC_base_open(type) ? - 0.25 : height > 20 ? 0.5 : 0.25;
-        side_length = height - ha - hb - gap - BLDC_base_height_1(type) - BLDC_base_height_2(type);
+        side_length = height - h2 - h1 - gap - BLDC_base_height_1(type) - BLDC_base_height_2(type);
 
         color(body_colour) {
-            translate_z(height - ha) {
+            translate_z(height - h2) {
                 difference() {
                     union() {
-                        top_thickness = min(ha, 2);
+                        top_thickness = min(h2, 2);
                         render(convexity = 8)
-                            translate_z(ha - top_thickness)
+                            translate_z(h2 - top_thickness)
                                 linear_extrude(top_thickness)
                                     difference() {
                                         circle(d = bell_diameter);
@@ -167,38 +173,24 @@ module BLDC(type) { //! Draw specified BLDC motor
                                             circle(d = BLDC_bell_hole_diameter(type));
                                     }
                         rotate_extrude()
-                            polygon([ [bell_diameter/2, ha], [body_diameter/2, 0], [body_diameter/2, -hb], [body_diameter/2 - wall_thickness, -hb], [body_diameter/2 - wall_thickness, 0], [bell_diameter/2, ha - top_thickness] ]);
+                            polygon([ [bell_diameter/2, h2], [body_diameter/2, 0], [body_diameter/2, -h1], [body_diameter/2 - wall_thickness, -h1], [body_diameter/2 - wall_thickness, 0], [bell_diameter/2, h2 - top_thickness] ]);
                     }
                     spoke_count = BLDC_bell_spokes(type);
                     if (spoke_count % 4 == 0) {
                         r = body_diameter > 40 ? body_diameter / 15 : 2.5;
                         for (a = [0, 90, 180, 270])
                             rotate(a) {
-                                hull() {
-                                    translate([bell_diameter/2 + r, 0, -eps])
-                                        cylinder(r=r, h = ha + 2*eps);
-                                    translate([body_diameter/2, -r, -eps])
-                                        cube([eps, 2*r, ha + 2*eps]);
+                                cutout(bell_diameter + 2*r, body_diameter, r, h2);
+                                rotate(45) {
+                                    cutout(bell_diameter, body_diameter, r, h2);
                                 }
-                                rotate(45)
-                                    hull() {
-                                        translate([bell_diameter/2, 0, -eps])
-                                            cylinder(r=r, h=ha + 2*eps);
-                                        translate([body_diameter/2, -r, -eps])
-                                            cube([eps, 2*r, ha + 2*eps]);
-                                    }
                             }
                     } else {
                         r1 =  bell_diameter * PI / (spoke_count * 3);
                         r2 =  body_diameter * PI / (spoke_count * 3);
                         for (i = [0 : 1 : spoke_count - 1])
                             rotate(i * 360 / spoke_count)
-                                hull() {
-                                    translate([bell_diameter/2, 0, -eps])
-                                        cylinder(r=r1, h=ha + 2*eps);
-                                    translate([body_diameter/2, 0, -eps])
-                                        cylinder(r=r2, h=ha + 2*eps);
-                                }
+                                cutout2(bell_diameter, r1, body_diameter, r2, h2);
                     }
                 } // end difference
             } // end translate
@@ -221,14 +213,14 @@ module BLDC(type) { //! Draw specified BLDC motor
         } // end colour
 
         color(side_colour)
-            translate_z(height - ha - hb  -side_length)
+            translate_z(height - h2 - h1  -side_length)
                 tube(body_diameter/2, body_diameter/2 - wall_thickness, side_length, center=false);
 
         if (show_threads)
             translate_z(height)
                 BLDC_bell_screw_positions(type)
                     vflip()
-                        female_metric_thread(BLDC_bell_hole_diameter(type), metric_coarse_pitch(BLDC_bell_hole_diameter(type)), ha, center = false, colour = body_colour);
+                        female_metric_thread(BLDC_bell_hole_diameter(type), metric_coarse_pitch(BLDC_bell_hole_diameter(type)), h2, center = false, colour = body_colour);
     } // end module bell
 
     base();
