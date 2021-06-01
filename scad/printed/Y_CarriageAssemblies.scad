@@ -89,6 +89,7 @@ assembly("Y_Carriage_Left", ngb=true) {
 
     yCarriageType = yCarriageType();
     railOffset = [1.5*eSize, 0, eZ - eSize];
+
     plainIdler = coreXY_plain_idler(coreXY_type());
     toothedIdler = coreXY_toothed_idler(coreXY_type());
     pulleyStackHeight = pulleyStackHeight(pulley_height(plainIdler));
@@ -111,6 +112,7 @@ assembly("Y_Carriage_Right", ngb=true) {
 
     yCarriageType = yCarriageType();
     railOffset = [1.5*eSize, 0, eZ - eSize];
+
     plainIdler = coreXY_plain_idler(coreXY_type());
     toothedIdler = coreXY_toothed_idler(coreXY_type());
     pulleyStackHeight = pulleyStackHeight(pulley_height(plainIdler));

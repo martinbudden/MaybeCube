@@ -165,17 +165,17 @@ module Y_Carriage(yCarriageType, idlerHeight, beltWidth, xRailType, xRailLength,
                 carriage_hole_positions(yCarriageType)
                     vflip()
                         boltHoleM3Counterbore(thickness, counterBore(thickness), cnc=cnc);
-        boltDiameter = beltWidth == 6 ? 2*M3_clearance_radius : 2*M5_clearance_radius;
+        boltDiameter = beltWidth == 6 ? 2*M3_tap_radius : 2*M5_tap_radius;
         if (left) {
             translate([toothedPulleyPos.x, toothedPulleyPos.y, 0])
-                boltHole(boltDiameter, thickness, cnc=cnc);
+                boltHole(boltDiameter, thickness, twist=5, cnc=cnc);
             translate([plainPulleyPos.x, 0, 0])
-                boltHole(boltDiameter, thickness + pulleyStackHeight(plainIdlerHeight), cnc=cnc);
+                boltHole(boltDiameter, thickness + pulleyStackHeight(plainIdlerHeight), twist=5, cnc=cnc);
         } else {
             translate([plainPulleyPos.x, plainPulleyPos.y, 0])
-                boltHole(boltDiameter, thickness, cnc=cnc);
+                boltHole(boltDiameter, thickness, twist=5, cnc=cnc);
             translate([toothedPulleyPos.x, toothedPulleyPos.y, 0])
-                boltHole(boltDiameter, thickness + pulleyStackHeight(toothedIdlerHeight), cnc=cnc);
+                boltHole(boltDiameter, thickness + pulleyStackHeight(toothedIdlerHeight), twist=5, cnc=cnc);
         }
         for (x = [-blockSize.x/2 + 4, 23])
             translate([x, 0, 0])
