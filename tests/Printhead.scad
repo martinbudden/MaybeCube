@@ -41,8 +41,7 @@ module Printhead_test() {
             X_Carriage_Front_assembly();
             //X_Carriage_assembly();
         }
-    let($hide_bolts=true)
-    Printhead_assembly();
+    let($hide_bolts=true) Printhead_assembly();
     //translate([-11.4, 0, 8]) rotate(180)    xCarriageTop();
     //X_Carriage_assembly();
     //X_Carriage_stl();
