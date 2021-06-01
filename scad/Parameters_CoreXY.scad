@@ -45,7 +45,7 @@ function motorClearance() = [0, 14];
 
 
 function coreXYPosBL() = [
-    1.5*eSize, // this lines of the center of the pulley with the center of the Y rail
+    1.5*eSize, // this aligns of the center of the pulley with the center of the Y rail
     eSize/2,
     // choose Z so the belts align with the Y_Carriage pulleys
     eZ - yCarriageThickness() - yCarriageBraceThickness()/2  - (_beltWidth == 6 ? 42.5 : 42.5 + pulley_height(coreXY_toothed_idler(coreXY_type())) - 7.5)
