@@ -130,7 +130,7 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |   .  |   .  |   .  |   .  |  12  |   .  |   .  |   .  |   .  |   .  |  14  |   .  |   .  |   .  |   .  |   .  |  48  |   74  |  Nut M4 hammer |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   8  |   .  |    8  |  Nut M4 hammer - not shown |
 |   .  |   .  |   .  |   .  |  20  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   8  |  12  |   .  |   40  |  Nut M4 sliding T |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE tube 463 mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE tube 459 mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Pillar hex nylon F/F M3x14 |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   5  |   .  |   .  |   .  |   .  |   .  |   .  |    5  |  Pillar hex nylon F/F M3x20 |
 |   .  |   .  |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    8  |  Pulley GT2 idler 16 teeth |
@@ -1509,7 +1509,7 @@ and move on to the next bolt, making several circuits of the frame to get all th
 |2| Bolt M4 buttonhead x 12mm|
 |1| IEC320 C14 switched fused inlet module|
 |2| Linear rod 12mm x 300mm|
-|1| PTFE tube 463 mm|
+|1| PTFE tube 459 mm|
 
 
 ### 3D Printed parts
