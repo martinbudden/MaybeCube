@@ -35,16 +35,19 @@ module Printhead_test() {
         translate_z(eZ)
             xRail(carriagePosition());
     }
-    translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())])
+    *translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())])
         xRailCarriagePosition() {
             Printhead_assembly();
-            //X_Carriage_Front_assembly();
+            X_Carriage_Front_assembly();
             //X_Carriage_assembly();
-            //fullPrinthead();
         }
+    let($hide_bolts=true)
+    Printhead_assembly();
+    //translate([-11.4, 0, 8]) rotate(180)    xCarriageTop();
+    //X_Carriage_assembly();
     //X_Carriage_stl();
     //Fan_Duct_stl();
-    //Hotend_Clamp_stl();
+    //rotate([90, 0, -90]) Hotend_Clamp_stl();
     //Hotend_Clamp_hardware();
     //Hotend_Strain_Relief_Clamp_stl();
 }
@@ -77,8 +80,6 @@ module xCarriageTop() {
     }
 }
 
-translate([-16.6, 0, 13+8])
-    xCarriageTop();
 
 if ($preview)
     Printhead_test();
