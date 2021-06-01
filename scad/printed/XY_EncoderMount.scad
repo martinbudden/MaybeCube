@@ -100,7 +100,7 @@ module XY_Encoder_Mount_Left_assembly()
 assembly("XY_Encoder_Mount_Left", ngb=true) {
 
     motorWidth = motorWidth(BLDC4250);
-    basePlateThickness = 6;
+    basePlateThickness = 5;
 
     translate([coreXYPosBL().x + leftDrivePulleyOffset().x + coreXY_drive_pulley_x_alignment(coreXY_type()), coreXYPosTR(motorWidth).y, coreXYPosBL().z - coreXYSeparation().z - basePlateThickness]) {
         stl_colour(pp2_colour)
@@ -113,9 +113,9 @@ module XY_Encoder_Mount_Right_assembly()
 assembly("XY_Encoder_Mount_Right", ngb=true) {
 
     motorWidth = motorWidth(BLDC4250);
-    basePlateThickness = 6;
+    basePlateThickness = 5;
 
-    translate([coreXYPosTR(motorWidth).x + rightDrivePulleyOffset().x - coreXY_drive_pulley_x_alignment(coreXY_type()), coreXYPosTR(motorWidth).y, coreXYPosBL().z - 0*coreXYSeparation().z - basePlateThickness]) {
+    translate([coreXYPosTR(motorWidth).x + rightDrivePulleyOffset().x - coreXY_drive_pulley_x_alignment(coreXY_type()), coreXYPosTR(motorWidth).y, coreXYPosBL().z - basePlateThickness]) {
         stl_colour(pp2_colour)
             XY_Encoder_Mount_stl();
         XY_Encoder_Mount_hardware(BLDC_type);
