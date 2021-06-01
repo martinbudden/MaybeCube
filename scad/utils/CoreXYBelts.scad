@@ -6,10 +6,10 @@ use <NopSCADlib/utils/core_xy.scad>
 include <../Parameters_CoreXY.scad>
 
 
-module CoreXYBelts(carriagePosition, x_gap=20, show_pulleys=false) {
+module CoreXYBelts(carriagePosition, x_gap=20, show_pulleys=false, xyMotorWidth=undef) {
     assert(is_list(carriagePosition) && len(carriagePosition) == 2);
 
-    xyMotorWidth = _xyMotorDescriptor == "NEMA14" ? 35.2 : _xyMotorDescriptor == "BLDC4250"? 56 : 42.3;
+    xyMotorWidth = is_undef(xyMotorWidth) ? _xyMotorDescriptor == "NEMA14" ? 35.2 : _xyMotorDescriptor == "BLDC4250"? 56 : 42.3 : xyMotorWidth;
 
     coreXY_belts(coreXY_type(),
         carriagePosition = carriagePosition + [-coreXYPosBL().x, 0],
