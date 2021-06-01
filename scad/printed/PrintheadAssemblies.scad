@@ -19,6 +19,10 @@ use <../Parameters_CoreXY.scad>
 include <../Parameters_Main.scad>
 
 
+function hotendClampOffset(xCarriageType, hotend_type=0) =  [hotendOffset(xCarriageType, hotend_type).x, 18 + xCarriageBackOffsetY(xCarriageType) + grooveMountOffsetX(hotend_type), printHeadHotendOffset(hotend_type).z];
+grooveMountFillet = 1;
+function grooveMountClampSize(blower_type, hotend_type) = [grooveMountSize(blower_type, hotend_type).y - 2*grooveMountFillet - grooveMountClampOffsetX(), 12, 17+5];//!!+5 is temporary for M3x30 bolts, run out of M3xx25
+
 //!1. Assemble the E3D hotend, including fan, thermistor cartridge and heater cartridge.
 //!2. Use the Hotend_Clamp to attach the hotend to the X_Carriage.
 //!3. Collect the wires together and attach to the X_Carriage using the Hotend_Strain_Relief_Clamp.
@@ -43,10 +47,10 @@ assembly("Printhead", big=true) {
                             Hotend_Clamp_stl();
                         else
                             Hotend_Clamp_40_stl();
-                    Hotend_Clamp_hardware(xCarriageType, hotend_type, blower_type);
+                    Hotend_Clamp_hardware(xCarriageType, blower_type, hotend_type);
                 }
                 explode(-60, true)
-                    translate([0, grooveMountClampStrainReliefOffset(), -grooveMountClampSize(xCarriageType, hotend_type, blower_type).z - 5])
+                    translate([0, grooveMountClampStrainReliefOffset(), -grooveMountClampSize(blower_type, hotend_type).z - 5])
                         vflip() {
                             stl_colour(pp1_colour)
                                 Hotend_Strain_Relief_Clamp_stl();
@@ -109,7 +113,7 @@ module Hotend_Clamp_stl() {
     stl("Hotend_Clamp")
         color(pp2_colour)
             mirror([1, 0, 0])
-                grooveMountClamp(MGN12H_carriage, 0, blower_type);
+            grooveMountClamp(grooveMountClampSize(blower_type));
 }
 
 module Hotend_Clamp_40_stl() {
@@ -118,11 +122,11 @@ module Hotend_Clamp_40_stl() {
     stl("Hotend_Clamp")
         color(pp2_colour)
             mirror([1, 0, 0])
-                grooveMountClamp(MGN12H_carriage, 0, blower_type);
+                grooveMountClamp(grooveMountClampSize(blower_type));
 }
 
-module Hotend_Clamp_hardware(xCarriageType, hotend_type, blower_type) {
-    grooveMountClampHardware(xCarriageType, hotend_type, blower_type);
+module Hotend_Clamp_hardware(xCarriageType, blower_type, hotend_type) {
+    grooveMountClampHardware(grooveMountClampSize(blower_type, hotend_type));
 }
 
 module Hotend_Clamp_MGN12H_stl() {
