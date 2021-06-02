@@ -8,7 +8,7 @@ include <NopSCADlib/vitamins/rails.scad>
 
 use <../utils/carriageTypes.scad>
 
-use <Y_Carriage.scad>
+use <../../../BabyCube/scad/printed/Y_Carriage.scad>
 
 use <../Parameters_CoreXY.scad>
 use <../Parameters_Positions.scad>
