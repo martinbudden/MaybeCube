@@ -75,7 +75,7 @@ assembly("Display_Housing_TFT35_E3", big=true) {
 
     display_type = BTT_TFT35_E3_V3_0();
 
-    translate([eX/2 + eSize, -displayBracketBackThickness, displayHousingOffsetZ]) {
+    translate([eX/2 + eSize + displayHousingSize(display_type).x/2, -displayBracketBackThickness, displayHousingOffsetZ]) {
         displayHousingLocate(displayHousingSize(display_type), displayAngle) {
             //stl_colour(pp2_colour)
                 //Display_Housing_TFT35_E3_stl();

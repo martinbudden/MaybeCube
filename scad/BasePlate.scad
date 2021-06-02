@@ -5,6 +5,7 @@ include <NopSCADlib/vitamins/displays.scad>
 use <NopSCADlib/vitamins/sheet.scad>
 
 use <printed/BaseFoot.scad>
+use <printed/BaseFrontCover.scad>
 use <printed/DisplayHousingAssemblies.scad>
 
 use <utils/FrameBolts.scad>
@@ -187,6 +188,12 @@ assembly("Base_Plate", ngb = true, big = true) {
         rotate([180, 0, 180])
             stl_colour(pp1_colour)
                 Foot_LShaped_12mm_stl();
+
+    translate([eSize, 0, 4*eSize + 2*eps])
+        Front_Cover_stl();
+    translate([eSize + eX/2, 2*eps, 4*eSize + 2*eps])
+        vflip()
+            Front_Display_Wiring_Cover_stl();
 }
 
 /*

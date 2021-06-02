@@ -4,6 +4,7 @@ include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/pcbs.scad>
 
 use <../scad/printed/BaseFoot.scad>
+use <../scad/printed/BaseFrontCover.scad>
 use <../scad/printed/ControlPanel.scad>
 use <../scad/printed/PSU.scad>
 
@@ -20,6 +21,7 @@ include <../scad/vitamins/pcbs.scad>
 module Base_test() {
     //PSU();
     Base_Plate_assembly();
+    //Front_Display_Wiring_Cover_stl();
     //Left_Side_assembly();
     //Right_Side_assembly();
     //faceRightExtras();
