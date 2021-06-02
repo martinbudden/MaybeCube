@@ -1,4 +1,4 @@
-//!Display the belt clamps.
+//!Display the extrusion covers.
 
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/extrusions.scad>
