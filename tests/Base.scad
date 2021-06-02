@@ -22,6 +22,7 @@ module Base_test() {
     //PSU();
     Base_Plate_assembly();
     //Front_Display_Wiring_Cover_stl();
+    //Front_Cover_stl();
     //Left_Side_assembly();
     //Right_Side_assembly();
     //faceRightExtras();
