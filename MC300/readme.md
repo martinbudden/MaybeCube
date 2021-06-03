@@ -91,8 +91,8 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   5  |   .  |   4  |   .  |   .  |   .  |   .  |    9  |  Bolt M3 caphead x  6mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M3 caphead x  8mm |
 |   .  |   .  |   .  |   .  |  28  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   28  |  Bolt M3 caphead x 10mm |
-|   .  |   .  |   .  |   .  |  10  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   10  |  Bolt M3 caphead x 16mm |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 20mm |
+|   .  |   .  |   .  |   .  |   6  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    6  |  Bolt M3 caphead x 16mm |
+|   .  |   .  |   2  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    6  |  Bolt M3 caphead x 20mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |   .  |   .  |    6  |  Bolt M3 caphead x 25mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 30mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |  40  |   40  |  Bolt M4 buttonhead x  8mm |
@@ -147,11 +147,11 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Stepper motor cable, 1050mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  |  Stepper motor cable, 750mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Stepper motor cable, 900mm |
-|   .  |   .  |   .  |   .  |  22  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   22  |  Washer  M3 |
+|   .  |   .  |   .  |   .  |  26  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   26  |  Washer  M3 |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer  M4 |
 |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Ziptie 2.5mm x 100mm min length |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  filament sensor |
-|   .  |  19  |   8  |   .  | 210  |   1  |   .  |   .  |   .  |   .  |  50  |  12  |   9  |   .  |  41  |  64  | 144  |  558  | Total vitamins count |
+|   .  |  19  |   8  |   .  | 214  |   1  |   .  |   .  |   .  |   .  |  50  |  12  |   9  |   .  |  41  |  64  | 144  |  562  | Total vitamins count |
 |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   .  |   2  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  | Belt_Clamp.stl |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  | Belt_Tensioner.stl |
@@ -163,6 +163,8 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Extrusion_Drill_Jig_120_4.stl |
 |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Fan_Duct_Right.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  | Foot_LShaped_12mm.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Front_Cover.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Front_Display_Wiring_Cover.stl |
 |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Hotend_Clamp.stl |
 |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Hotend_Strain_Relief_Clamp.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  | IEC_Housing.stl |
@@ -179,6 +181,8 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Wiring_Guide_Clamp.stl |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Left.stl |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Right.stl |
+|   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Left.stl |
+|   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Right.stl |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Left.stl |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Right.stl |
 |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage.stl |
@@ -193,7 +197,7 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_MountGuide_19mm.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |    2  | Z_RodMountGuide_50mm.stl |
-|   1  |   6  |   6  |   2  |  12  |   .  |   1  |   1  |   1  |   1  |   3  |   .  |   2  |   2  |   3  |   6  |   8  |   55  | Total 3D printed parts count |
+|   1  |   6  |   6  |   2  |  14  |   .  |   1  |   1  |   1  |   1  |   3  |   .  |   2  |   2  |   3  |   6  |  10  |   59  | Total 3D printed parts count |
 |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |       | **CNC routed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Back_Panel.dxf |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | BaseAL.dxf |
@@ -525,7 +529,7 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |Qty|Description|
 |---:|:----------|
 |4| Bolt M3 buttonhead x 12mm|
-|2| Bolt M3 caphead x 16mm|
+|2| Bolt M3 caphead x 20mm|
 |3| Bolt M4 buttonhead x 10mm|
 |1| Cork damper NEMA 17|
 |3| Nut M4 hammer|
@@ -534,14 +538,14 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |1| Pulley GT2OB 20 teeth|
 |1| Stepper motor NEMA17 x 40mm|
 |1| Stepper motor cable, 1050mm|
-|2| Washer  M3|
+|4| Washer  M3|
 
 
 ### 3D Printed parts
 
-| 1 x XY_Motor_Mount_Right.stl |
-|---|
-| ![XY_Motor_Mount_Right.stl](stls/XY_Motor_Mount_Right.png) 
+| 1 x XY_Motor_Mount_Brace_Right.stl | 1 x XY_Motor_Mount_Right.stl |
+|---|---|
+| ![XY_Motor_Mount_Brace_Right.stl](stls/XY_Motor_Mount_Brace_Right.png) | ![XY_Motor_Mount_Right.stl](stls/XY_Motor_Mount_Right.png) 
 
 
 
@@ -598,7 +602,7 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |Qty|Description|
 |---:|:----------|
 |4| Bolt M3 buttonhead x 12mm|
-|2| Bolt M3 caphead x 16mm|
+|2| Bolt M3 caphead x 20mm|
 |3| Bolt M4 buttonhead x 10mm|
 |1| Cork damper NEMA 17|
 |3| Nut M4 hammer|
@@ -607,14 +611,14 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 |1| Pulley GT2OB 20 teeth|
 |1| Stepper motor NEMA17 x 40mm|
 |1| Stepper motor cable, 1050mm|
-|2| Washer  M3|
+|4| Washer  M3|
 
 
 ### 3D Printed parts
 
-| 1 x XY_Motor_Mount_Left.stl |
-|---|
-| ![XY_Motor_Mount_Left.stl](stls/XY_Motor_Mount_Left.png) 
+| 1 x XY_Motor_Mount_Brace_Left.stl | 1 x XY_Motor_Mount_Left.stl |
+|---|---|
+| ![XY_Motor_Mount_Brace_Left.stl](stls/XY_Motor_Mount_Brace_Left.png) | ![XY_Motor_Mount_Left.stl](stls/XY_Motor_Mount_Left.png) 
 
 
 
@@ -1166,9 +1170,9 @@ and move on to the next bolt, making several circuits of the frame to get all th
 
 ### 3D Printed parts
 
-| 4 x Foot_LShaped_12mm.stl |
-|---|
-| ![Foot_LShaped_12mm.stl](stls/Foot_LShaped_12mm.png) 
+| 4 x Foot_LShaped_12mm.stl | 1 x Front_Cover.stl | 1 x Front_Display_Wiring_Cover.stl |
+|---|---|---|
+| ![Foot_LShaped_12mm.stl](stls/Foot_LShaped_12mm.png) | ![Front_Cover.stl](stls/Front_Cover.png) | ![Front_Display_Wiring_Cover.stl](stls/Front_Display_Wiring_Cover.png) 
 
 
 
