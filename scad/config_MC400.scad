@@ -7,7 +7,7 @@ eZ = __extrusionLengths.z;
 
 _xyMotorDescriptor = "NEMA17_40";
 _zMotorDescriptor = "NEMA17_40L330";
-_corkDamperThickness = 3;
+_corkDamperThickness = 2;
 
 _xRailLength = eX - 50;
 _yRailLength = eY;
