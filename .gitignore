@@ -51,16 +51,16 @@ MC300/dxfs/*
 MC300/stls/*
 MC300/tmp/
 MC300/*.html
-# change to ! once released
+# change to !, except for diffs, once released
 !MC300/readme.md
 !MC300/assemblies/main_assembled.png
-#!MC300/assemblies/*.png
+!MC300/assemblies/*.png
+!MC300/dxfs/*.dxf
+!MC300/dxfs/*.png
+!MC300/stls/*.stl
+!MC300/stls/*.png
 MC300/assemblies/*_diff.png
-#!MC300/dxfs/*.dxf
-#!MC300/dxfs/*.png
 MC300/dxfs/*_diff.png
-#!MC300/stls/*.stl
-#!MC300/stls/*.png
 MC300/stls/*_diff.png
 
 MC350/assemblies/*
@@ -69,16 +69,16 @@ MC350/dxfs/*
 MC350/stls/*
 MC350/tmp/
 MC350/*.html
-# change to ! once released
+# change to !, except for diffs, once released
 !MC350/readme.md
 #!MC350/assemblies/*.png
 !MC350/assemblies/main_assembled.png
-MC350/assemblies/*_diff.png
 #!MC350/dxfs/*.dxf
 #!MC350/dxfs/*.png
+#!MC350/stls/*.stl
+#!MC350/stls/*.png
+MC350/assemblies/*_diff.png
 MC350/dxfs/*_diff.png
-!MC350/stls/*.stl
-!MC350/stls/*.png
 MC350/stls/*_diff.png
 
 MC400/assemblies/*
@@ -87,14 +87,14 @@ MC400/dxfs/*
 MC400/stls/*
 MC400/tmp/
 MC400/*.html
-# change to ! once released
+# change to !, except for diffs, once released
 !MC400/readme.md
 !MC400/assemblies/main_assembled.png
 #!MC400/assemblies/*.png
-MC400/assemblies/*_diff.png
 #!MC400/dxfs/*.dxf
 #!MC400/dxfs/*.png
-MC400/dxfs/*_diff.png
 #!MC400/stls/*.stl
 #!MC400/stls/*.png
+MC400/assemblies/*_diff.png
+MC400/dxfs/*_diff.png
 MC400/stls/*_diff.png
