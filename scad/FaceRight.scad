@@ -9,6 +9,7 @@ use <utils/FrameBolts.scad>
 use <utils/Z_Rods.scad>
 
 use <vitamins/extrusion.scad>
+use <vitamins/SidePanels.scad>
 
 use <Parameters_CoreXY.scad>
 use <Parameters_Positions.scad>
@@ -55,6 +56,7 @@ assembly("Right_Side", big=true) {
 
     explode([0, -70, 0], true)
         faceRightIdlerUpright();
+    //Right_Side_Panel_assembly();
 }
 
 module faceRightMiddleExtrusion() {

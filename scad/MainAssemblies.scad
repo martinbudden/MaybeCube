@@ -112,7 +112,7 @@ staged_assembly("Stage_4", big=true, ngb=true) {
 
     Stage_3_assembly();
     Back_Panel_assembly();
-    Partition_assembly();
+    //Partition_assembly();
 }
 
 //!1. Thread the belts as shown.
@@ -147,7 +147,6 @@ staged_assembly("Stage_6", big=true, ngb=true) {
     }*/
     stl_colour(pp1_colour)
         faceRightSpoolHolder();
-    Right_Side_Panel_assembly();
     faceRightExtras();
 }
 

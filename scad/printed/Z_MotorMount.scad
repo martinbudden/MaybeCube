@@ -155,18 +155,20 @@ module Z_Motor_Mount_stl() {
     // invert Z_Motor_Mount so it can be printed without support
     zMotorType = motorType(_zMotorDescriptor);
     stl("Z_Motor_Mount")
-        translate([0, -Z_Motor_MountSize(NEMA_length(zMotorType)).x/2, 0])
-            rotate([180, 0, 90])
-                zMotorMount(zMotorType);
+        color(pp1_colour)
+            translate([0, -Z_Motor_MountSize(NEMA_length(zMotorType)).x/2, 0])
+                rotate([180, 0, 90])
+                    zMotorMount(zMotorType);
 }
 
 module Z_Motor_Mount_Right_stl() {
     // invert Z_Motor_Mount so it can be printed without support
     zMotorType = motorType(_zMotorDescriptor);
     stl("Z_Motor_Mount_Right")
-        translate([0, -Z_Motor_MountSize(NEMA_length(zMotorType)).x/2, 0])
-            rotate([180, 0, 90])
-                zMotorMount(zMotorType, eHeight=20);
+        color(pp1_colour)
+            translate([0, -Z_Motor_MountSize(NEMA_length(zMotorType)).x/2, 0])
+                rotate([180, 0, 90])
+                    zMotorMount(zMotorType, eHeight=20);
 }
 
 module zMotorLeadscrew(zMotorType, zLeadScrewLength) {
@@ -217,19 +219,21 @@ module zMotorMountAssembly(zMotorType, corkDamperThickness) {
 }
 
 module Z_Motor_Mount_assembly() pose(a=[55, 0, 25+90])
-assembly("Z_Motor_Mount", big = true, ngb=true) {
+assembly("Z_Motor_Mount", big=true, ngb=true) {
 
     zMotorType = motorType(_zMotorDescriptor);
     vflip()
-        Z_Motor_Mount_stl();
+        stl_colour(pp1_colour)
+            Z_Motor_Mount_stl();
     zMotorMountAssembly(zMotorType, corkDamperThickness=_corkDamperThickness);
 }
 
 module Z_Motor_Mount_Right_assembly() pose(a=[55, 0, 25+90])
-assembly("Z_Motor_Mount_Right", big = true, ngb=true) {
+assembly("Z_Motor_Mount_Right", big=true, ngb=true) {
 
     zMotorType = motorType(_zMotorDescriptor);
     vflip()
-        Z_Motor_Mount_Right_stl();
+        stl_colour(pp1_colour)
+            Z_Motor_Mount_Right_stl();
     zMotorMountAssembly(zMotorType, corkDamperThickness=_corkDamperThickness);
 }

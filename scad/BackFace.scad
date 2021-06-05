@@ -50,11 +50,8 @@ assembly("Back_Panel") {
     countersunk = true;
 
     pcbAssembly(pcbType());
-    hidden() PCB_Mount_stl();
 
     psuAsssembly(psuVertical);
-    hidden() PSU_Lower_Mount_stl();
-    hidden() PSU_Upper_Mount_stl();
 
     size = backPanelSize();
 
@@ -98,9 +95,10 @@ module backPanelAccessHolePositions(size) {
 }
 
 module backPanelBoltHolePositionsX(size) {
-    xPositions = size.x == 300 + 2*eSize
-    ? [eSize + 50, size.x/2, size.x - eSize - 50]
-    : [-size.x/2 + 1.5*eSize, -(size.x - eSize)/6, (size.x - eSize)/6, size.x/2 - 1.5*eSize];
+    //xPositions = size.x == 300 + 2*eSize
+    //? [eSize + 50, size.x/2, size.x - eSize - 50]
+    //: [-size.x/2 + 1.5*eSize, -(size.x - eSize)/6, (size.x - eSize)/6, size.x/2 - 1.5*eSize];
+    xPositions = [eSize + 50, size.x/2, size.x - eSize - 50];
     for (x = xPositions, y = [eSize/2, size.y - eSize/2])
         translate([x, y])
             rotate(exploded() ? 90 : 0)
@@ -274,7 +272,7 @@ module PSU_Lower_Mount_stl() {
 */
 
 module PSU_Lower_Mount_assembly()
-assembly("PSU_Lower_Mount") {
+assembly("PSU_Lower_Mount", ngb=true) {
 
     translate([0, eY + 2*eSize + 2*eps, 0])
         rotate([90, 0, 0]) {
@@ -296,14 +294,13 @@ module PSU_Left_Mount_stl() {
 }
 
 module PSU_Left_Mount_assembly()
-assembly("PSU_Left_Mount") {
+assembly("PSU_Left_Mount", ngb=true) {
 
     translate([0, eY + 2*eSize + 2*eps, 0])
         rotate([90, 0, 0])
             stl_colour(pp2_colour)
-                vflip(){
+                vflip()
                     PSU_Left_Mount_stl();
-    }
 }
 
 module PSU_Right_Mount_stl() {
@@ -318,14 +315,13 @@ module PSU_Right_Mount_stl() {
 }
 
 module PSU_Right_Mount_assembly()
-assembly("PSU_Right_Mount") {
+assembly("PSU_Right_Mount", ngb=true) {
 
     translate([0, eY + 2*eSize + 2*eps, 0])
         rotate([90, 0, 0])
             stl_colour(pp2_colour)
-                vflip(){
+                vflip()
                     PSU_Right_Mount_stl();
-    }
 }
 
 module PSU_Upper_Mount_stl() {
@@ -366,14 +362,13 @@ module PSU_Upper_Mount_stl() {
 }
 
 module PSU_Upper_Mount_assembly()
-assembly("PSU_Upper_Mount") {
+assembly("PSU_Upper_Mount", ngb=true) {
 
     translate([0, eY + 2*eSize, 0])
-        rotate([90, 0, 0]) {
+        rotate([90, 0, 0])
             stl_colour(pp2_colour)
                 vflip()
                     PSU_Upper_Mount_stl();
-        }
 }
 
 module PSU_Hole_Jig_stl() {
@@ -401,7 +396,7 @@ module PSU_Hole_Jig_stl() {
 }
 
 module PSU_Hole_Jig_assembly()
-assembly("PSU_Hole_Jig") {
+assembly("PSU_Hole_Jig", ngb=true) {
 
     translate([0, eY + 2*eSize, 0])
         rotate([90, 0, 0]) {
@@ -449,7 +444,7 @@ module PCB_Mount_stl() {
 }
 
 module PCB_Mounting_Plate_assembly()
-assembly("PCB_Mounting_Plate") {
+assembly("PCB_Mounting_Plate", ngb=true) {
 
     translate([0, eY + 2*eSize, 0])
         rotate([90, 0, 0]) {
@@ -488,7 +483,7 @@ module PCB_Hole_Jig_stl() {
 }
 
 module PCB_Hole_Jig_assembly()
-assembly("PCB_Hole_Jig") {
+assembly("PCB_Hole_Jig", ngb=true) {
 
     translate([0, eY + 2*eSize, 0])
         rotate([90, 0, 0]) {
@@ -550,7 +545,7 @@ assembly("PSU_Right_Mount") {
 
 M3x20_nylon_hex_pillar = ["M3x20_nylon_hex_pillar", "hex nylon", 3, 20, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -6, -6+eps];
 
-module pcbAssembly(pcbType) {
+module pcbAssembly(pcbType, useMounts = false) {
     pcbOffsetFromBase = 20;
 
     if (is_undef($hide_pcb) || $hide_pcb == false)
@@ -570,6 +565,11 @@ module pcbAssembly(pcbType) {
                     }
                 }
             }
+    if (useMounts)
+        PCB_Mounting_Plate_assembly();
+    else
+        hidden() PCB_Mount_stl();
+
 }
 
 module pcbPosition(pcbType, z=0) {
@@ -602,20 +602,30 @@ module pcbPosition(pcbType, z=0) {
     }
 }
 
-module psuAsssembly(psuVertical) {
+module psuAsssembly(psuVertical, useMounts=false) {
     PSUPosition(psuVertical)
         explode(50)
             PSU();
-    if (psuVertical)
+
+    *if (psuVertical)
         PSU_Cover_assembly();
     if (eX == 300) {
-        PSU_Upper_Mount_assembly();
-        PSU_Lower_Mount_assembly();
+        if (useMounts) {
+            PSU_Upper_Mount_assembly();
+            PSU_Lower_Mount_assembly();
+        } else {
+            hidden() PSU_Lower_Mount_stl();
+            hidden() PSU_Upper_Mount_stl();
+        }
     } else {
-        PSU_Left_Mount_assembly();
-        PSU_Right_Mount_assembly();
+        if (useMounts) {
+            PSU_Left_Mount_assembly();
+            PSU_Right_Mount_assembly();
+        } else {
+            hidden() PSU_Left_Mount_stl();
+            hidden() PSU_Right_Mount_stl();
+        }
     }
-    PCB_Mounting_Plate_assembly();
 }
 
 module Partition_dxf() {
@@ -633,7 +643,7 @@ module Partition_dxf() {
 }
 
 module Partition_assembly()
-assembly("Partition") {
+assembly("Partition", ngb=true) {
     size = partitionSize();
 
     translate([0, eY + 2*eSize - 59, 0])

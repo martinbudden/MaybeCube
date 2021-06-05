@@ -63,7 +63,7 @@ module faceRightExtras() {
     cableRadius = 2.5;
     // don't show the incomplete cable if there are no extrusions to obscure it
     if (is_undef($hide_extrusions))
-        ptfeTube([eX/2 + eSize, eY + eSize - 5, eZ], carriagePos + printheadWiringOffset(), grey(20), cableRadius);
+        ptfeTube([eX/2 + eSize, eY + eSize - 5, eZ - 2*eSize], carriagePos + printheadWiringOffset(), grey(20), cableRadius);
 }
 
 module ptfeTube(curPos, pos, color, tubeRadius = 2) {

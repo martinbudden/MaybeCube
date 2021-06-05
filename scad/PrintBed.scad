@@ -346,7 +346,7 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
                     Z_Carriage_Left_assembly();
     }
     Z_Carriage_Center_assembly();
-    Printbed_Strain_Relief_assembly();
+    *Printbed_Strain_Relief_assembly(); //!!TODO position this correctly
 }
 
 //!1. With the heatbed upside down, place the bolts through the heatbed and place the springs over the bolts.
