@@ -169,7 +169,7 @@ module Wiring_Guide_Clamp_stl() {
  }
 
 module Wiring_Guide_assembly()
-assembly("Wiring_Guide") {
+assembly("Wiring_Guide", ngb=true) {
     translate([eX/2 + eSize, eY + eSize, eZ - 2*eSize])
         rotate([90, 0, 0]) {
             stl_colour(pp1_colour)

@@ -84,7 +84,7 @@ module PSU_Cover_stl() {
 }
 
 module PSU_Cover_assembly()
-assembly("PSU_Cover") {
+assembly("PSU_Cover", ngb=true) {
 
     psuSize = psu_size(PSUtype());
     PSUPosition(psuVertical=true)

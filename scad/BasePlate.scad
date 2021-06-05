@@ -133,7 +133,7 @@ function basePlateHeight() = _basePlateThickness + 12;
 
 
 module Base_Plate_assembly()
-assembly("Base_Plate", ngb = true, big = true) {
+assembly("Base_Plate", big=true, ngb=true) {
     size = basePlateSize;
 
     BaseAL();
@@ -190,10 +190,12 @@ assembly("Base_Plate", ngb = true, big = true) {
                 Foot_LShaped_12mm_stl();
 
     translate([eSize, 0, 4*eSize + 2*eps])
-        Front_Cover_stl();
+        stl_colour(pp1_colour)
+            Front_Cover_stl();
     translate([eSize + eX/2, 2*eps, 4*eSize + 2*eps])
         vflip()
-            Front_Display_Wiring_Cover_stl();
+            stl_colour(pp1_colour)
+                Front_Display_Wiring_Cover_stl();
 }
 
 /*

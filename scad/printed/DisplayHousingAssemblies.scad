@@ -34,7 +34,7 @@ module Display_Housing_TFT35_E3_stl() {
 }
 
 module Display_Cover_TFT35_E3_assembly()  pose(a=[55 + 45, 0, 25 + 95])
-assembly("Display_Cover_TFT35_E3", big=true, ngb = true) {
+assembly("Display_Cover_TFT35_E3", big=true, ngb=true) {
 
     display_type = BTT_TFT35_E3_V3_0();
 

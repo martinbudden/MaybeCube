@@ -103,7 +103,7 @@ module IEC_Housing_Mount_stl() {
 }
 
 module IEC_Housing_Mount_assembly()
-assembly("IEC_Housing_Mount") {
+assembly("IEC_Housing_Mount", ngb=true) {
 
     translate([eX + 2*eSize, eY + eSize - iecHousingSize().x, 2*eSize])
         rotate([90, 0, 90])
