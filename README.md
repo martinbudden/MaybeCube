@@ -17,7 +17,7 @@ chance to look at the design and decide if they might want to build it in future
 
 The "standard" size is the MC350 variant. I have built the MC300 variant for two reasons: to test sizing - if the components fit in the MC300 variant, then they will fit in larger variants; and because had a quantity of 300mm extrusion and the right size heated bed from an earlier project.
 
-The assembly instructions and the BOM (parts list) for the MC350 variant will be placed [here](MC350/readme.md) when they are ready.
+The assembly instructions and the BOM (parts list) for the MC350 variant will be made available when they are ready.
 
 The assembly instructions and the BOM for the MC300 variant are [here](MC300/readme.md). The STL files are [here](MC300/stls).
 
