@@ -24,11 +24,11 @@ function hotendOffset(xCarriageType, hotend_type=0) = printHeadHotendOffset(hote
 function grooveMountSize(blower_type, hotend_type=0) = [printHeadHotendOffset(hotend_type).x, blower_size(blower_type).x + 6.25, 12];
 function blower_type() = is_undef(_blowerDescriptor) || _blowerDescriptor == "BL30x10" ? BL30x10 : BL40x10;
 
-module X_Carriage_Front_stl() {
-    xCarriageType = xCarriageType();
+module X_Carriage_Front_MGN12H_stl() {
+    xCarriageType = MGN12H_carriage;
 
     // orientate for printing
-    stl("X_Carriage_Front")
+    stl("X_Carriage_Front_MGN12H")
         color(pp4_colour)
             rotate([0, -90, 0])
                 xCarriageFront(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z);
@@ -36,16 +36,16 @@ module X_Carriage_Front_stl() {
 
 //!1. Bolt the Belt_Clamps to the X_Carriage_Front, leaving them loose for later insertion of the belts.
 //!2. Insert the Belt_tensioners into the X_Carriage_Front, and use the 20mm bolts to secure them in place.
-module X_Carriage_Front_assembly()
-assembly("X_Carriage_Front", big=true) {
+module X_Carriage_Front_MGN12H_assembly()
+assembly("X_Carriage_Front_MGN12H", big=true) {
 
-    xCarriageType = xCarriageType();
+    xCarriageType = MGN12H_carriage;
     size = xCarriageFrontSize(xCarriageType, _beltWidth);
     beltOffsetZ = beltOffsetZ();
 
     rotate([0, 90, 0])
         stl_colour(pp4_colour)
-            X_Carriage_Front_stl();
+            X_Carriage_Front_MGN12H_stl();
 
     translate([-size.x/2, -xCarriageFrontOffsetY(xCarriageType), 0]) {
         for (i= [
@@ -128,14 +128,14 @@ module xCarriageAssembly(xCarriageType, beltOffsetZ, coreXYSeparationZ) {
     }
 }
 
-module X_Carriage_stl() {
-    xCarriageType = xCarriageType();
+module X_Carriage_MGN12H_stl() {
+    xCarriageType = MGN12H_carriage;
     blower_type = blower_type();
     hotend_type = 0;
     grooveMountSize = grooveMountSize(blower_type, hotend_type);
     hotendOffset = hotendOffset(xCarriageType, hotend_type);
 
-    stl("X_Carriage")
+    stl("X_Carriage_MGN12H")
         color(pp1_colour)
             rotate([0, 90, 0]) {
                 xCarriageBack(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z);
@@ -146,16 +146,16 @@ module X_Carriage_stl() {
 //!1. Bolt the belt clamps to the sides of the X_Carriage. Leave the clamps loose to allow later insertion of the belts.
 //!2. Bolt the fan onto the side of the X_Carriage, secure the fan wire with a ziptie.
 //!3. Ensure a good fit between the fan and the fan duct and bolt the fan duct to the X_Carriage.
-module X_Carriage_assembly()  pose(a=[55, 0, 25 + 290])
-assembly("X_Carriage", big=true, ngb=true) {
+module X_Carriage_MGN12H_assembly()  pose(a=[55, 0, 25 + 290])
+assembly("X_Carriage_MGN12H", big=true, ngb=true) {
 
-    xCarriageType = xCarriageType();
+    xCarriageType = MGN12H_carriage;
     blower_type = blower_type();
     hotend_type = 0;
 
     rotate([0, -90, 0])
         stl_colour(pp1_colour)
-            X_Carriage_stl();
+            X_Carriage_MGN12H_stl();
 
     xCarriageAssembly(xCarriageType, beltOffsetZ(), coreXYSeparation().z);
 

@@ -5,7 +5,6 @@ include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/blowers.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
-use <../utils/carriageTypes.scad>
 use <../utils/PrintheadOffsets.scad>
 use <../utils/X_rail.scad>
 
@@ -26,14 +25,14 @@ function grooveMountClampSize(blower_type, hotend_type) = [grooveMountSize(blowe
 //!1. Assemble the E3D hotend, including fan, thermistor cartridge and heater cartridge.
 //!2. Use the Hotend_Clamp to attach the hotend to the X_Carriage.
 //!3. Collect the wires together and attach to the X_Carriage using the Hotend_Strain_Relief_Clamp.
-module Printhead_assembly()
-assembly("Printhead", big=true) {
+module Printhead_MGN12H_assembly()
+assembly("Printhead_MGN12H", big=true) {
 
-    xCarriageType = xCarriageType();
+    xCarriageType = MGN12H_carriage;
     blower_type = blower_type();
     hotend_type = 0;
 
-    X_Carriage_assembly();
+    X_Carriage_MGN12H_assembly();
 
     hotendOffset = hotendOffset(xCarriageType, hotend_type);
     hotEndHolderAlign(xCarriageType, hotendOffset, left=false) {
@@ -61,16 +60,14 @@ assembly("Printhead", big=true) {
     }
 }
 
-module fullPrinthead(rotate=180) {
-    xCarriageType = xCarriageType();
-
+module fullPrinthead(xCarriageType, rotate=180) {
     xRailCarriagePosition()
         rotate(rotate) {// for debug, to see belts better
             explode([0, -20, 0], true) {
-                X_Carriage_Front_assembly();
+                X_Carriage_Front_MGN12H_assembly();
                 xCarriageFrontAssemblyBolts(xCarriageType, _beltWidth);
             }
-            Printhead_assembly();
+            Printhead_MGN12H_assembly();
             xCarriageTopBolts(xCarriageType);
             if (!exploded())
                 xCarriageBeltFragments(xCarriageType, coreXY_belt(coreXY_type()), beltOffsetZ(), coreXYSeparation().z, coreXY_upper_belt_colour(coreXY_type()), coreXY_lower_belt_colour(coreXY_type()));
