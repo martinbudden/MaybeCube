@@ -114,7 +114,7 @@ module Hotend_Clamp_stl() {
     stl("Hotend_Clamp")
         color(pp2_colour)
             mirror([1, 0, 0])
-            grooveMountClamp(grooveMountClampSize(blower_type));
+                grooveMountClamp(grooveMountClampSize(blower_type));
 }
 
 module Hotend_Clamp_40_stl() {

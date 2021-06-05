@@ -170,7 +170,7 @@ assembly("X_Carriage", big=true, ngb=true) {
                 blowerTranslate(xCarriageType, grooveMountSize, hotendOffset, blower_type, left=false)
                     rotate([-90, 0, 0]) {
                         stl_colour(pp2_colour)
-                            Fan_Duct_Right_stl();
+                            Fan_Duct_stl();
                         Fan_Duct_hardware(xCarriageType, hotend_type);
                     }
 }
@@ -193,8 +193,8 @@ module Belt_Tensioner_stl() {
             beltTensioner(_beltWidth);
 }
 
-module Fan_Duct_Right_stl() {
-    stl("Fan_Duct_Right")
+module Fan_Duct_stl() {
+    stl("Fan_Duct")
         color(pp2_colour)
             translate([26, 0, 0])
                 mirror([1, 0, 0])
