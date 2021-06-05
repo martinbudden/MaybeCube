@@ -144,9 +144,19 @@ assembly("Base_Plate", big=true, ngb=true) {
     //    controlPanel();
     Display_Housing_TFT35_E3_assembly();
     // front extrusion
-    translate([eSize, 0, 0])
-        explode(50)
+    explode(50, true)
+        translate([eSize, 0, 0]) {
             extrusionOX2080VEndBolts(eX);
+            translate_z(4*eSize + 2*eps)
+                explode(25)
+                    stl_colour(pp1_colour)
+                        Front_Cover_stl();
+            translate([eX/2, 2*eps, 4*eSize + 2*eps])
+                explode(25)
+                    vflip()
+                        stl_colour(pp2_colour)
+                            Front_Display_Wiring_Cover_stl();
+        }
 
     // rear extrusion
     translate([eSize, eY + eSize, 0])
@@ -189,13 +199,6 @@ assembly("Base_Plate", big=true, ngb=true) {
             stl_colour(pp1_colour)
                 Foot_LShaped_12mm_stl();
 
-    translate([eSize, 0, 4*eSize + 2*eps])
-        stl_colour(pp1_colour)
-            Front_Cover_stl();
-    translate([eSize + eX/2, 2*eps, 4*eSize + 2*eps])
-        vflip()
-            stl_colour(pp2_colour)
-                Front_Display_Wiring_Cover_stl();
 }
 
 /*
