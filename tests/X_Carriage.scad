@@ -16,7 +16,6 @@ module X_Carriage_test() {
     X_Carriage_assembly();
     X_Carriage_Front_assembly();
     //Fan_Duct_stl();
-    //Fan_Duct_Right_stl();
     //Belt_Tensioner_stl();
     //Belt_Clamp_stl();
     //Belt_Tidy_stl();
