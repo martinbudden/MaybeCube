@@ -45,7 +45,7 @@ module Front_Display_Wiring_Cover_stl() {
 
 
     stl("Front_Display_Wiring_Cover")
-        color(pp1_colour)
+        color(pp2_colour)
             vflip()
                 difference() {
                     union() {

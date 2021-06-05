@@ -194,7 +194,7 @@ assembly("Base_Plate", big=true, ngb=true) {
             Front_Cover_stl();
     translate([eSize + eX/2, 2*eps, 4*eSize + 2*eps])
         vflip()
-            stl_colour(pp1_colour)
+            stl_colour(pp2_colour)
                 Front_Display_Wiring_Cover_stl();
 }
 
