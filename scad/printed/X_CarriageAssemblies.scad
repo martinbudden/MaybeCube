@@ -193,12 +193,6 @@ module Belt_Tensioner_stl() {
             beltTensioner(_beltWidth);
 }
 
-module Fan_Duct_stl() {
-    stl("Fan_Duct")
-        color(pp2_colour)
-            fanDuct(printHeadHotendOffset().x);
-}
-
 module Fan_Duct_Right_stl() {
     stl("Fan_Duct_Right")
         color(pp2_colour)
