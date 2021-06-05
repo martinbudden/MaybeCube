@@ -2,7 +2,9 @@
 
 The **MaybeCube** is a CoreXY 3D printer with a linear rails motion system.
 
-![Main Assembly](MC350/assemblies/main_assembled.png)
+![Main Assembly](MC300/assemblies/main_assembled.png)
+
+![MaybeCube300](pictures/maybecube300_1000.jpg)
 
 The MaybeCube MC350 variant has a print volume of approximately 230mm by 230mm by 200mm.
 
@@ -12,6 +14,8 @@ The dimensions of the main MC350 cuboid are 390mm by 390mm by 400mm, and the enc
 
 The MaybeCube is still in development and these build instructions are incomplete. They are posted to allow prospective builders a
 chance to look at the design and decide if they might want to build it in future. If you are an experienced constructor of 3D printers then there is probably sufficient information for you to fill in the gaps and construct the printer.
+
+The "standard" size is the MC350 variant. I have built the MC300 variant for two reasons: to test sizing - if the components fit in the MC300 variant, then they will fit in larger variants; and because had a quantity of 300mm extrusion and the right size heated bed from an earlier project.
 
 The assembly instructions and the BOM (parts list) for the MC350 variant are [here](MC350/readme.md). The STL files are [here](MC350/stls).
 
@@ -45,11 +49,12 @@ If you would like to build a smaller printer, you may be interested in the Maybe
      * linear rods are used for the z-axis, since linear rails offer no advantage here
 4. **Maximise frame rigidity**
      * one of my goals is to experiment with high print speeds. A highly rigid frame allows higher acceleration settings
+     * use 2040 aluminium extrusion, corner joints are about 4 times more rigid than 2020 corner joints and 2-3 times more rigid than 3030 corner joints
 5. **Maximise build volume for selected extrusion lengths**
      * Z-axis assembly is on the left side of MaybeCube. This means the Z-axis assembly does not impede travel in the Y direction
 6. **Try and keep the costs down**
      * the aim is not to be as cheap as possible, but rather to avoid unnecessary costs
-     * use standard extrusions sizes
+     * use standard extrusions lengths, as far as possible, so no custom cutting is required
 7. **Facilitate customisation and experimentation**
      * Open source design
      * Parametric design in OpenSCAD
