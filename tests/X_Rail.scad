@@ -11,7 +11,6 @@ include <../scad/Parameters_Main.scad>
 module xRail_test() {
     translate([-eX/2, -eY/2, 0])
         xRail();
-        //X_Rail_with_X_Carriage_assembly();
 }
 
 if ($preview)

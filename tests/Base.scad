@@ -16,7 +16,7 @@ use <../scad/FaceRightExtras.scad>
 include <../scad/vitamins/pcbs.scad>
 
 
-//$explode = 1;
+$explode = 1;
 //$pose = 1;
 module Base_test() {
     //PSU();

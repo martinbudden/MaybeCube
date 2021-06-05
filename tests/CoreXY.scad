@@ -27,6 +27,7 @@ include <../scad/Parameters_Main.scad>
 
 
 yCarriageType = MGN12H_carriage;
+xCarriageType = MGN12H_carriage;
 rail_type = MGN12;
 
 
@@ -37,7 +38,7 @@ module CoreXY_test() {
     NEMA_width = _xyMotorDescriptor == "NEMA14" ? 35.2 : 42.3;
     coreXYSize = coreXYPosTR(NEMA_width) - coreXYPosBL();
     CoreXYBelts(carriagePosition(), x_gap = 20, show_pulleys = [1, 0, 0]);
-    fullPrinthead();
+    fullPrinthead(xCarriageType);
 
 //    translate_z(eZ-eSize)
 

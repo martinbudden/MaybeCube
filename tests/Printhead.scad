@@ -37,15 +37,15 @@ module Printhead_test() {
     }
     *translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())])
         xRailCarriagePosition() {
-            Printhead_assembly();
-            X_Carriage_Front_assembly();
-            //X_Carriage_assembly();
+            Printhead_MGN12H_assembly();
+            X_Carriage_Front_MGN12H_assembly();
+            //X_Carriage_MGN12H_assembly();
         }
-    let($hide_bolts=true) Printhead_assembly();
+    let($hide_bolts=true) Printhead_MGN12H_assembly();
     //translate([-11.4, 0, 8]) rotate(180)    xCarriageTop();
     //X_Carriage_Front_assembly();
-    //X_Carriage_assembly();
-    //X_Carriage_stl();
+    //X_Carriage_MGN12H_assembly();
+    //X_Carriage_MGN12H_stl();
     //Fan_Duct_stl();
     //rotate([90, 0, -90]) Hotend_Clamp_stl();
     //Hotend_Clamp_hardware();
