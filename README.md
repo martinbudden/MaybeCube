@@ -11,12 +11,13 @@ The dimensions of the main MC350 cuboid are 390mm by 390mm by 400mm, and the enc
 ## Assembly instructions
 
 The MaybeCube is still in development and these build instructions are incomplete. They are posted to allow prospective builders a
-chance to look at the design and decide if they might want to build it in future. If you are an experienced constructor of 3D printers
-then there is probably sufficient information for you to fill in the gaps and construct the printer.
+chance to look at the design and decide if they might want to build it in future. If you are an experienced constructor of 3D printers then there is probably sufficient information for you to fill in the gaps and construct the printer.
 
 The assembly instructions and the BOM (parts list) for the MC350 variant are [here](MC350/readme.md). The STL files are [here](MC350/stls).
 
 The assembly instructions and the BOM for the MC300 variant are [here](MC300/readme.md). The STL files are [here](MC300/stls).
+
+I plan to make a series of YouTube videos giving build instructions, when I have done so I will post a link here. I won't start these, however, until I have completed the BabyCube build videos and completed the build instructions of the MaybeCube.
 
 If you would like to build a smaller printer, you may be interested in the MaybeCube's smaller sibling, the [BabyCube](https://github.com/martinbudden/BabyCube).
 
