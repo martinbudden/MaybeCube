@@ -10,7 +10,8 @@ include <../Parameters_Main.scad>
 module xRailBoltPositions() {
     xCarriageType = xCarriageType();
     xRailType = xRailType();
-    translate([eSize + eX/2, carriagePosition().y, -eSize - rail_height(xRailType) - rail_height(yRailType()) + carriage_clearance(xCarriageType)])
+    yRailType = yRailType();
+    translate([eSize + eX/2, carriagePosition().y, -eSize - rail_height(xRailType) - rail_height(yRailType) + carriage_clearance(xCarriageType)])
         for (x = [1, 3], s = [-_xRailLength/2, _xRailLength/2 - 2*rail_pitch(xRailType)])
             translate([s + x*rail_pitch(xRailType)/2, 0, rail_height(xRailType) - rail_bore_depth(xRailType)])
                 children();
@@ -18,7 +19,9 @@ module xRailBoltPositions() {
 
 module xRail(carriagePosition=carriagePosition()) {
     xCarriageType = xCarriageType();
-    translate([eSize + eX/2, carriagePosition().y, -eSize - rail_height(xRailType()) - rail_height(yRailType()) + carriage_clearance(xCarriageType)])
+    xRailType = xRailType();
+    yRailType = yRailType();
+    translate([eSize + eX/2, carriagePosition().y, -eSize - rail_height(xRailType) - rail_height(yRailType) + carriage_clearance(xCarriageType)])
         rotate(180)
             if (is_undef($hide_rails) || $hide_rails == false)
                 rail_assembly(xCarriageType, _xRailLength, eX - _xRailLength/2 - 5 - carriagePosition().x, carriage_end_colour="green", carriage_wiper_colour="red");
@@ -26,9 +29,11 @@ module xRail(carriagePosition=carriagePosition()) {
 
 module xRailCarriagePosition() {
     xCarriageType = xCarriageType();
+    xRailType = xRailType();
+    yRailType = yRailType();
     translate([ carriagePosition().x + eSize + 5 - (eX - _xRailLength)/2,
                 carriagePosition().y,
-                eZ - eSize - rail_height(xRailType()) - rail_height(yRailType()) + carriage_clearance(xCarriageType) + carriage_height(xCarriageType)
+                eZ - eSize - rail_height(xRailType) - rail_height(yRailType) + carriage_clearance(xCarriageType) + carriage_height(xCarriageType)
             ])
         rotate(180)
             children();
@@ -46,9 +51,9 @@ assembly("X_Rail_with_X_Carriage") {
     xRail();
     xRailCarriagePosition()
         rotate(180)
-        Printhead_assembly();
+        Printhead_MGN12H_assembly();
         explode(90, true) {
-            X_Carriage_assembly();
+            X_Carriage_MGN12H_assembly();
             xCarriageBoltPositions()
                 boltM3Caphead(8);
             explode(-70, true)
