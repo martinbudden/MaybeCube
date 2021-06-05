@@ -26,7 +26,7 @@ springLength = 18; // 25 uncompressed
 sk12HoleOffsetFromTop = 37.5 - 23; // 14.5
 
 heatedBedOffset = _printBed4PointSupport
-    ? [0, 20, _printBedExtrusionSize/2 + 1 + springLength]
+    ? [0, 20, _printBedExtrusionSize/2 + springLength - 8]
     : [0, sk12HoleOffsetFromTop + 0.5, _printBedExtrusionSize/2];
 
 
