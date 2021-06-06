@@ -5,6 +5,7 @@ use <NopSCADlib/utils/fillet.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
 use <printed/PrintheadAssemblies.scad>
+use <printed/WiringGuide.scad>
 use <printed/XY_MotorMount.scad>
 use <printed/XY_Idler.scad>
 use <printed/Y_CarriageAssemblies.scad>
@@ -40,6 +41,9 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
     }
     faceTopFront();
     faceTopBack();
+    wiringGuidePosition(offset=0)
+        stl_colour(pp1_colour)
+            Wiring_Guide_stl();
     explode(50, true) {
         Top_Corner_Piece_assembly();
         translate([eX + 2*eSize, 0, 0])
@@ -120,64 +124,6 @@ module faceTopBack() {
 
         }
     }
-    Wiring_Guide_assembly();
-}
-
-wiringDiameter = 7;
-sideThickness = 6.5;
-
-module Wiring_Guide_stl() {
-    size = [40, eSize, 5];
-    fillet = 1.5;
-
-    stl("Wiring_Guide")
-        color(pp1_colour)
-            translate([-size.x/2, 0, 0])
-                difference() {
-                    union() {
-                        rounded_cube_xy([size.x, size.y, 3], fillet);
-                        rounded_cube_xy([(size.x - wiringDiameter)/2, size.y, size.z], fillet);
-                        translate([(size.x + wiringDiameter)/2, 0, 0]) {
-                            rounded_cube_xy([(size.x - wiringDiameter)/2, size.y, size.z], fillet);
-                            rounded_cube_xy([sideThickness, size.y, wiringDiameter + 2], fillet);
-                        }
-                        translate([(size.x - wiringDiameter)/2 - sideThickness, 0, 0])
-                            rounded_cube_xy([sideThickness, size.y, wiringDiameter + 2], fillet);
-                    }
-                    for (x = [5, size.x - 5])
-                        translate([x, size.y/2, 0])
-                            boltHoleM3(size.z, twist=3);
-                    for (x = [(size.x - wiringDiameter - sideThickness)/2, (size.x + wiringDiameter + sideThickness)/2])
-                        translate([x, size.y/2, 0])
-                            boltHoleM3Tap(size.z + wiringDiameter);
-                }
-}
-
-module Wiring_Guide_Clamp_stl() {
-    size = [wiringDiameter + 2*sideThickness, eSize, 2.5];
-    fillet = 1.5;
-
-    stl("Wiring_Guide_Clamp")
-        color(pp2_colour)
-            translate([-size.x/2, 0, 0])
-                difference() {
-                    rounded_cube_xy(size, fillet);
-                    for (x = [sideThickness/2, size.x - sideThickness/2])
-                        translate([x, size.y/2, 0])
-                            boltHoleM3(size.z, twist=3);
-                }
- }
-
-module Wiring_Guide_assembly()
-assembly("Wiring_Guide", ngb=true) {
-    translate([eX/2 + eSize, eY + eSize, eZ - 2*eSize])
-        rotate([90, 0, 0]) {
-            stl_colour(pp1_colour)
-                Wiring_Guide_stl();
-            stl_colour(pp2_colour)
-                translate_z(wiringDiameter + 2)
-                    Wiring_Guide_Clamp_stl();
-        }
 }
 
 module Left_Side_Upper_Extrusion_assembly() pose(a = [180 + 55, 0, 25 + 90])

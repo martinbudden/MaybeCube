@@ -2,18 +2,15 @@ include <global_defs.scad>
 
 include <NopSCADlib/core.scad>
 
-use <NopSCADlib/utils/sweep.scad>
-use <NopSCADlib/utils/maths.scad>
-use <NopSCADlib/utils/bezier.scad>
-use <NopSCADlib/utils/tube.scad>
-
 use <NopSCADlib/vitamins/iec.scad>
 include <NopSCADlib/vitamins/spools.scad>
 
 use <printed/ExtruderBracket.scad>
 use <printed/IEC_Housing.scad>
-use <utils/printheadOffsets.scad>
 use <printed/SpoolHolder.scad>
+
+use <utils/bezierTube.scad>
+use <utils/printheadOffsets.scad>
 
 use <vitamins/SidePanels.scad>
 
@@ -49,37 +46,16 @@ module faceRightExtras() {
     // add the extruder, place it in the middle of the top right edge
     //startPos = [eX+2*eSize, eSize+eY/2, eZ] + Extruder_Bracket_assembly_bowdenOffset();
     //startPos = [eX + 2*eSize, eY-50, eZ-95] + Extruder_Bracket_assembly_bowdenOffset();
-    carriagePos = [carriagePosition().x, carriagePosition().y, eZ];
 
     explode([0, 200, 0])
-        ptfeTube(extruderPosition() + Extruder_Bracket_assembly_bowdenOffset(),
-                 carriagePos + printheadBowdenOffset(),
-                 "white",
-                 tubeRadius = 2);
+        color("white")
+            bezierTube(extruderPosition() + Extruder_Bracket_assembly_bowdenOffset(),
+                [carriagePosition().x, carriagePosition().y, eZ] + printheadBowdenOffset(),
+                tubeRadius=2,
+                ptfeTube=true);
 
     explode([25, 75, 0])
         Extruder_Bracket_assembly();
-
-    cableRadius = 2.5;
-    // don't show the incomplete cable if there are no extrusions to obscure it
-    if (is_undef($hide_extrusions))
-        ptfeTube([eX/2 + eSize, eY + eSize - 5, eZ - 2*eSize], carriagePos + printheadWiringOffset(), grey(20), cableRadius);
-}
-
-module ptfeTube(curPos, pos, color, tubeRadius = 2) {
-
-    endPos = curPos-pos;
-    p = [ [0, 0, 0], [0, 0, 100], [0, 0, 150], [endPos.x/2, endPos.y/2, 250], endPos+[0, 0, 125], endPos];
-    path = bezier_path(p, 50);
-
-    if (color == "white") {
-        length = ceil(bezier_length(p));
-        vitamin(str("ptfeTube(): PTFE tube ", length, " mm"));
-    }
-
-    color(color)
-        translate(pos)
-            sweep(path, circle_points(tubeRadius, $fn = 64));
 }
 
 /*
