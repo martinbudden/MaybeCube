@@ -1,4 +1,4 @@
-include <global_defs.scad>
+include <../global_defs.scad>
 
 include <NopSCADlib/core.scad>
 
