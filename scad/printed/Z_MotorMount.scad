@@ -61,7 +61,6 @@ module zMotorMount(zMotorType, eHeight=40) {
     blockSizeZ = size.z - eHeight;
     offset = (motorBracketSizeX - NEMA_hole_pitch(zMotorType))/2;
 
-    color(pp1_colour)
     translate([wingSizeX, eSize, size.z - motorBracketSizeZ]) difference() {
         union() {
             reduce = 1;
