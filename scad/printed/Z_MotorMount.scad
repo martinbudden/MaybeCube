@@ -123,13 +123,13 @@ module zMotorMount(zMotorType, eHeight=40) {
             translate([offset, 0, 0])
                 vflip()
                     if (eHeight==20)
-                        boltHoleM4Counterbore(blockSizeZ, boreDepth=blockSizeZ-5, bridgeThickness=0.5);
+                        boltHoleM4HangingCounterboreButtonhead(blockSizeZ, boreDepth=blockSizeZ - 5);
                     else
                         boltHoleM4(blockSizeZ);
             translate([motorBracketSizeX - offset, 0, 0])
                 vflip()
                     if (eHeight==20)
-                        boltHoleM4Counterbore(blockSizeZ, boreDepth=blockSizeZ-5, bridgeThickness=0.5);
+                        boltHoleM4HangingCounterboreButtonhead(blockSizeZ, boreDepth=blockSizeZ - 5);
                     else
                         boltHoleM4(blockSizeZ);
         }
@@ -139,16 +139,6 @@ module zMotorMount(zMotorType, eHeight=40) {
                  rotate([-90, 0, 0])
                     boltHoleM4(motorBracketSizeZ, horizontal=true);
     }
-    // add the main bolts
-    for (x = [offset, motorBracketSizeX-offset])
-        translate([x+wingSizeX, eSize/2, size.z])
-            boltM4ButtonheadTNut(eHeight==40 ? 12 : _frameBoltLength);
-
-    // add the bolts on the wings
-    for (x = [wingSizeX/2 + 0.75, size.x - wingSizeX/2 - 0.75])
-        translate([x, eSize + motorBracketSizeZ, eSize - 2*motorBracketSizeZ])
-            rotate([90, 0, 180])
-                boltM4ButtonheadTNut(_frameBoltLength);
 }
 
 module Z_Motor_Mount_stl() {
@@ -161,15 +151,15 @@ module Z_Motor_Mount_stl() {
                     zMotorMount(zMotorType);
 }
 
-module Z_Motor_Mount_Right_stl() {
+/*module Z_Motor_Mount_Right_stl() {
     // invert Z_Motor_Mount so it can be printed without support
     zMotorType = motorType(_zMotorDescriptor);
     stl("Z_Motor_Mount_Right")
         color(pp1_colour)
             translate([0, -Z_Motor_MountSize(NEMA_length(zMotorType)).x/2, 0])
                 rotate([180, 0, 90])
-                    zMotorMount(zMotorType, eHeight=20);
-}
+                    zMotorMount(zMotorType);
+}*/
 
 module zMotorLeadscrew(zMotorType, zLeadScrewLength) {
     zLeadScrewLength = _zRodLength - 50;
@@ -177,7 +167,7 @@ module zMotorLeadscrew(zMotorType, zLeadScrewLength) {
         leadscrewX(_zLeadScrewDiameter, zLeadScrewLength);
 }
 
-module zMotorMountAssembly(zMotorType, corkDamperThickness) {
+module zMotorMountAssembly(zMotorType, corkDamperThickness, eHeight=40) {
     assert(isNEMAType(zMotorType));
 
     stepper_motor_cable(eX + eY + 150);// z motor
@@ -216,6 +206,16 @@ module zMotorMountAssembly(zMotorType, corkDamperThickness) {
     NEMA_screw_positions(zMotorType)
         translate([eSize + _zLeadScrewOffset, 0, size.z - counterBoreDepth])
             boltM3Buttonhead(screw_shorter_than(5 + motorBracketSizeZ - counterBoreDepth + corkDamperThickness));
+
+    // add the main bolts
+    for (y = [NEMA_hole_pitch(zMotorType)/2, -NEMA_hole_pitch(zMotorType)/2])
+        translate([eSize/2, y, size.z])
+            boltM4ButtonheadTNut(eHeight==40 ? 12 : _frameBoltLength, rotate=90);
+    // add the bolts on the wings
+    for (y = [size.x/2 - wingSizeX/2 - 0.75, -size.x/2 + wingSizeX/2 + 0.75])
+        translate([eSize + motorBracketSizeZ, y, eSize - 2*motorBracketSizeZ])
+            rotate([90, 0, 90])
+                boltM4ButtonheadTNut(_frameBoltLength);
 }
 
 module Z_Motor_Mount_assembly() pose(a=[55, 0, 25+90])
