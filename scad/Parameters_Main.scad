@@ -22,6 +22,7 @@ _zRodLength = eZ - 100;
 _zRodOffsetX = _zRodDiameter == 8 ? 20 : _zRodDiameter == 10 ? 20 : 23; // 20 is SK8 and SK10 hole offset, 23 is SK12 hole offset
 _zLeadScrewDiameter = 8;
 _zLeadScrewOffset = _zRodOffsetX;// ensures clearance of zMotor from frame and alignment with zRods
+_upperZRodMountsExtrusionOffsetZ = _zRodLength + 5;
 
 __scs_hole_offset = _zRodDiameter == 8 ? 11 : _zRodDiameter == 10 ? 13 : 15;
 _zCarriageSCS_sizeZ = 5.5;

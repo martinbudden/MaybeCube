@@ -6,7 +6,6 @@ use <../vitamins/extrusion.scad>
 use <../vitamins/bolts.scad>
 include <../Parameters_Main.scad>
 
-function middleExtrusionOffsetZ() = _zRodLength + 5;
 
 module jointBolt() {
     if (_useBlindJoints)

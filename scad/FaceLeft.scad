@@ -30,7 +30,7 @@ assembly("Left_Side", big=true) {
 
     zMotorLength = 40;
     faceLeftLowerExtrusion(zMotorLength);
-    faceLeftMiddleExtrusion();
+    faceLeftUpperZRodMountsExtrusion();
 
     explode([0, 70, 0], true)
         faceLeftMotorUpright();
@@ -40,8 +40,8 @@ assembly("Left_Side", big=true) {
     hidden() Extrusion_Drill_Jig_120_4_stl();
 }
 
-module faceLeftMiddleExtrusion() {
-    translate([0, eSize, middleExtrusionOffsetZ()]) {
+module faceLeftUpperZRodMountsExtrusion() {
+    translate([0, eSize, _upperZRodMountsExtrusionOffsetZ]) {
         translate_z(-eSize)
             extrusionOY2040VEndBolts(eY);
         zMountsUpper();
@@ -61,7 +61,7 @@ module faceLeftIdlerUpright() {
         render(convexity=2)
             difference() {
                 extrusionOZ(eZ, eSize);
-                for (z = [eSize/2, 3*eSize/2, eZ-eSize/2, middleExtrusionOffsetZ() + eSize/2, middleExtrusionOffsetZ() - eSize/2])
+                for (z = [eSize/2, 3*eSize/2, eZ-eSize/2, _upperZRodMountsExtrusionOffsetZ + eSize/2, _upperZRodMountsExtrusionOffsetZ - eSize/2])
                     translate([eSize/2, 0, z])
                         rotate([-90, 0, 0])
                             jointBoltHole();
@@ -78,7 +78,7 @@ module faceLeftMotorUpright() {
             render(convexity=2)
                 difference() {
                     extrusionOZ(eZ, eSize);
-                    for (z = [eSize/2, 3*eSize/2, eZ - eSize/2, middleExtrusionOffsetZ() + eSize/2, middleExtrusionOffsetZ() - eSize/2])
+                    for (z = [eSize/2, 3*eSize/2, eZ - eSize/2, _upperZRodMountsExtrusionOffsetZ + eSize/2, _upperZRodMountsExtrusionOffsetZ - eSize/2])
                         translate([eSize/2, eSize, z])
                             rotate([90, 0, 0])
                                 jointBoltHole();

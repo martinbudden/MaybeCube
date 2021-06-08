@@ -93,7 +93,7 @@ module backPanelAccessHolePositions(size) {
     for (y = [spoolHeight() - eSize/2, spoolHeight() + eSize/2])
         translate([size.x - eSize/2, y])
             children();
-    for (y = [middleExtrusionOffsetZ() - eSize/2, middleExtrusionOffsetZ() + eSize/2])
+    for (y = [_upperZRodMountsExtrusionOffsetZ - eSize/2, _upperZRodMountsExtrusionOffsetZ + eSize/2])
         translate([eSize/2, y])
             children();
 }
@@ -676,7 +676,7 @@ module partitionCutouts(cncSides) {
 
     translate([-size.x/2, -size.y/2]) {
         square([eSize, 2*eSize]);
-        translate([0, middleExtrusionOffsetZ() - eSize])
+        translate([0, _upperZRodMountsExtrusionOffsetZ - eSize])
             square([eSize, 2*eSize]);
         translate([eX + eSize, 0])
             square([eSize, 2*eSize]);

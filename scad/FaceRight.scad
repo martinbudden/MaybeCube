@@ -16,9 +16,6 @@ use <Parameters_Positions.scad>
 include <Parameters_Main.scad>
 
 
-faceRightLowerMiddleExtrusionZ = eSize + 40;
-lowerMiddleExtrusion = false;
-
 //!1. On a flat surface, bolt the top, middle and lower extrusions into the left and right uprights as shown.
 //!
 //!2. Take time to ensure everything is square and then work your way around the bolts tightening them while ensuring
@@ -30,26 +27,13 @@ lowerMiddleExtrusion = false;
 module Right_Side_assembly() pose(a=[55, 0, 25 - 90])
 assembly("Right_Side", big=true) {
 
-    zMotorLength = 40;
-    translate([eX + eSize, eSize, 0]) {
+    // extra extrusion for mounting spool holder
+    translate([eX + eSize, eSize, spoolHeight() - eSize])
+        extrusionOY2040VEndBolts(eY);
 
-        if (!useDualZRods())
-            extrusionOY2040VEndBolts(eY);
-
-        // extra extrusion for mounting spool holder
-        translate_z(spoolHeight() - eSize)
-            extrusionOY2040VEndBolts(eY);
-
-        if (lowerMiddleExtrusion)
-            translate_z(faceRightLowerMiddleExtrusionZ)
-                extrusionOY(eY);
-
-    }
-
-    if (useDualZRods()) {
-        faceRightLowerExtrusion(zMotorLength);
-        faceRightMiddleExtrusion();
-    }
+    faceRightLowerExtrusion();
+    if (eX >= 350)
+        faceRightUpperZRodMountsExtrusion();
 
     explode([0, 70, 0], true)
         faceRightMotorUpright();
@@ -59,24 +43,29 @@ assembly("Right_Side", big=true) {
     //Right_Side_Panel_assembly();
 }
 
-module faceRightMiddleExtrusion() {
-    translate([eX + eSize, eSize, middleExtrusionOffsetZ()]) {
+module faceRightUpperZRodMountsExtrusion() {
+    translate([eX + eSize, eSize, _upperZRodMountsExtrusionOffsetZ]) {
         translate_z(-eSize)
             extrusionOY2040VEndBolts(eY);
-        translate([eSize, 0, 0])
-            mirror([1, 0, 0])
-                zMountsUpper();
+        if (useDualZRods())
+            translate([eSize, 0, 0])
+                mirror([1, 0, 0])
+                    zMountsUpper();
     }
 }
 
-module faceRightLowerExtrusion(zMotorLength) {
+module faceRightLowerExtrusion() {
+    zMotorLength = 40;
     translate([eX + eSize, eSize, 0]) {
         extrusionOY2040VEndBolts(eY);
-        translate([eSize, 0, 0])
-            mirror([1, 0, 0])
-                zMountsLower(zMotorLength);
+        if (_useDualZRods)
+            translate([eSize, 0, 0])
+                mirror([1, 0, 0])
+                    zMountsLower(zMotorLength);
     }
 }
+
+frontAndBackHolePositionsZ = concat([eSize/2, 3*eSize/2, eZ - eSize/2, spoolHeight() + eSize/2, spoolHeight() - eSize/2], eX < 350 ? [] : [_upperZRodMountsExtrusionOffsetZ + eSize/2, _upperZRodMountsExtrusionOffsetZ - eSize/2]);
 
 module faceRightIdlerUpright() {
     translate([eX + eSize, 0, 0])
@@ -84,7 +73,7 @@ module faceRightIdlerUpright() {
             render(convexity=2)
                 difference() {
                     extrusionOZ(eZ, eSize);
-                    for (z = [eSize/2, 3*eSize/2, eZ - eSize/2, spoolHeight() + eSize/2, spoolHeight() - eSize/2])
+                    for (z = frontAndBackHolePositionsZ)
                         translate([eSize/2, 0, z])
                             rotate([-90, 0, 0])
                                 jointBoltHole();
@@ -101,7 +90,8 @@ module faceRightMotorUpright() {
             render(convexity=2)
                 difference() {
                     extrusionOZ(eZ, eSize);
-                    for (z = [eSize/2, 3*eSize/2, eZ - eSize/2, spoolHeight() + eSize/2, spoolHeight() - eSize/2])
+                    for (z = frontAndBackHolePositionsZ)
+                    for (z = [eSize/2, 3*eSize/2, eZ - eSize/2, spoolHeight() + eSize/2, spoolHeight() - eSize/2, _upperZRodMountsExtrusionOffsetZ + eSize/2, _upperZRodMountsExtrusionOffsetZ - eSize/2])
                         translate([eSize/2, eSize, z])
                             rotate([90, 0, 0])
                                 jointBoltHole();
