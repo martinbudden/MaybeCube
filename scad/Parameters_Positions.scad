@@ -6,7 +6,7 @@ include <Parameters_main.scad>
 $t = 2;
 
 // print size is approx eX-134, eY-115, eZ-219
-_xMin = eSize + 48.5; // does not hit SK brackets
+_xMin = eSize + 60; // limited by hotend cartridge wiring hitting SK brackets
 _xMax = eX + 2*eSize - 79; // limited by printhead fan hitting Y_Carriage
 _yMin = 44.5;
 _yMax = eY - 71; // motor limits this, get an extra 3 with MGN9 X rail

@@ -28,7 +28,8 @@ module Y_Carriage_Left_stl() {
 
     chamfer = _xCarriageDescriptor == "MGN9C" || _xCarriageDescriptor == "MGN9H" ? 1 : 0;
     blockOffsetX = 0.5;
-    endStopOffsetX = 0;
+    xMin = xPos(3);
+    endStopOffsetX = max(0, xMin - 68); // 12
 
     stl("Y_Carriage_Left")
         color(pp2_colour)
@@ -51,7 +52,8 @@ module Y_Carriage_Left_AL_dxf() {
     tongueOffset = tongueOffset();
     blockOffsetX = 0.5;
     chamfer = _xCarriageDescriptor == "MGN9C" || _xCarriageDescriptor == "MGN9H" ? 1 : 0;
-    endStopOffsetX = 12;
+    xMin = xPos(3);
+    endStopOffsetX = max(0, xMin - 68); // 12
 
     dxf("Y_Carriage_Left_AL")
         color(silver)
