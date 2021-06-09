@@ -30,7 +30,6 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 1. [Printhead_MGN12H assembly](#Printhead_MGN12H_assembly)
 1. [X_Carriage_Front_MGN12H assembly](#X_Carriage_Front_MGN12H_assembly)
 1. [Top_Corner_Piece assembly](#Top_Corner_Piece_assembly)
-1. [Wiring_Guide assembly](#Wiring_Guide_assembly)
 1. [XY_Motor_Mount_Right assembly](#XY_Motor_Mount_Right_assembly)
 1. [XY_Idler_Right assembly](#XY_Idler_Right_assembly)
 1. [XY_Motor_Mount_Left assembly](#XY_Motor_Mount_Left_assembly)
@@ -83,7 +82,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M3 caphead x  8mm |
 |   .  |   .  |  28  |   .  |   .  |   .  |   .  |   .  |   .  |   28  |  Bolt M3 caphead x 10mm |
 |   .  |   .  |   6  |   .  |   .  |   .  |   .  |   .  |   .  |    6  |  Bolt M3 caphead x 16mm |
-|   .  |   2  |   4  |   .  |   .  |   .  |   .  |   .  |   .  |    6  |  Bolt M3 caphead x 20mm |
+|   .  |   2  |   8  |   .  |   .  |   .  |   .  |   .  |   .  |   10  |  Bolt M3 caphead x 20mm |
 |   .  |   .  |   2  |   .  |   .  |   4  |   .  |   .  |   .  |    6  |  Bolt M3 caphead x 25mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 30mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |  24  |   24  |  Bolt M4 buttonhead x  8mm |
@@ -121,7 +120,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |  12  |  14  |   .  |   .  |   .  |   .  |  32  |   58  |  Nut M4 hammer |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   8  |   .  |    8  |  Nut M4 hammer - not shown |
 |   .  |   .  |  20  |   .  |   .  |   .  |   8  |  12  |   .  |   40  |  Nut M4 sliding T |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE tube 459 mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE tube 456 mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Pillar hex nylon F/F M3x14 |
 |   .  |   .  |   .  |   5  |   .  |   .  |   .  |   .  |   .  |    5  |  Pillar hex nylon F/F M3x20 |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |   .  |    8  |  Pulley GT2 idler 16 teeth |
@@ -141,7 +140,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer  M4 |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Ziptie 2.5mm x 100mm min length |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  filament sensor |
-|  19  |   8  | 214  |  50  |  12  |   9  |  41  |  64  |  97  |  514  | Total vitamins count |
+|  19  |   8  | 218  |  50  |  12  |   9  |  41  |  64  |  97  |  518  | Total vitamins count |
 |      |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   2  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  | Belt_Clamp.stl |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  | Belt_Tensioner.stl |
@@ -165,7 +164,6 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder.stl |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |   .  |    4  | Top_Corner_Piece.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Wiring_Guide.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Wiring_Guide_Clamp.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Left.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Right.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Left.stl |
@@ -184,7 +182,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_MountGuide_19mm.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |    2  | Z_RodMountGuide_50mm.stl |
-|   6  |   6  |  16  |   3  |   .  |   2  |   3  |   6  |  10  |   52  | Total 3D printed parts count |
+|   6  |   6  |  15  |   3  |   .  |   2  |   3  |   6  |  10  |   51  | Total 3D printed parts count |
 |      |      |      |      |      |      |      |      |      |       | **CNC routed parts** |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Back_Panel.dxf |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | BaseAL.dxf |
@@ -434,28 +432,6 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 [Top](#TOP)
 
 ---
-<a name="Wiring_Guide_assembly"></a>
-
-## Wiring_Guide assembly
-
-### 3D Printed parts
-
-| 1 x Wiring_Guide.stl | 1 x Wiring_Guide_Clamp.stl |
-|---|---|
-| ![Wiring_Guide.stl](stls/Wiring_Guide.png) | ![Wiring_Guide_Clamp.stl](stls/Wiring_Guide_Clamp.png) 
-
-
-
-### Assembly instructions
-
-![Wiring_Guide_assembly](assemblies/Wiring_Guide_assembly_tn.png)
-
-![Wiring_Guide_assembled](assemblies/Wiring_Guide_assembled_tn.png)
-
-<span></span>
-[Top](#TOP)
-
----
 <a name="XY_Motor_Mount_Right_assembly"></a>
 
 ## XY_Motor_Mount_Right assembly
@@ -465,7 +441,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |Qty|Description|
 |---:|:----------|
 |4| Bolt M3 buttonhead x 12mm|
-|2| Bolt M3 caphead x 20mm|
+|4| Bolt M3 caphead x 20mm|
 |3| Bolt M4 buttonhead x 10mm|
 |1| Cork damper NEMA 17|
 |3| Nut M4 hammer|
@@ -538,7 +514,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |Qty|Description|
 |---:|:----------|
 |4| Bolt M3 buttonhead x 12mm|
-|2| Bolt M3 caphead x 20mm|
+|4| Bolt M3 caphead x 20mm|
 |3| Bolt M4 buttonhead x 10mm|
 |1| Cork damper NEMA 17|
 |3| Nut M4 hammer|
@@ -752,6 +728,14 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |1| Extrusion E2040 x 300mm|
 
 
+### 3D Printed parts
+
+| 1 x Wiring_Guide.stl |
+|---|
+| ![Wiring_Guide.stl](stls/Wiring_Guide.png) 
+
+
+
 ### Sub-assemblies
 
 | 1 x Left_Side_Upper_Extrusion_assembly | 1 x Right_Side_Upper_Extrusion_assembly | 4 x Top_Corner_Piece_assembly |
@@ -759,14 +743,14 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 | ![Left_Side_Upper_Extrusion_assembled](assemblies/Left_Side_Upper_Extrusion_assembled_tn.png) | ![Right_Side_Upper_Extrusion_assembled](assemblies/Right_Side_Upper_Extrusion_assembled_tn.png) | ![Top_Corner_Piece_assembled](assemblies/Top_Corner_Piece_assembled_tn.png) 
 
 
-| 1 x Wiring_Guide_assembly | 1 x XY_Idler_Left_assembly | 1 x XY_Idler_Right_assembly |
+| 1 x XY_Idler_Left_assembly | 1 x XY_Idler_Right_assembly | 1 x XY_Motor_Mount_Left_assembly |
 |---|---|---|
-| ![Wiring_Guide_assembled](assemblies/Wiring_Guide_assembled_tn.png) | ![XY_Idler_Left_assembled](assemblies/XY_Idler_Left_assembled_tn.png) | ![XY_Idler_Right_assembled](assemblies/XY_Idler_Right_assembled_tn.png) 
+| ![XY_Idler_Left_assembled](assemblies/XY_Idler_Left_assembled_tn.png) | ![XY_Idler_Right_assembled](assemblies/XY_Idler_Right_assembled_tn.png) | ![XY_Motor_Mount_Left_assembled](assemblies/XY_Motor_Mount_Left_assembled_tn.png) 
 
 
-| 1 x XY_Motor_Mount_Left_assembly | 1 x XY_Motor_Mount_Right_assembly |
-|---|---|
-| ![XY_Motor_Mount_Left_assembled](assemblies/XY_Motor_Mount_Left_assembled_tn.png) | ![XY_Motor_Mount_Right_assembled](assemblies/XY_Motor_Mount_Right_assembled_tn.png) 
+| 1 x XY_Motor_Mount_Right_assembly |
+|---|
+| ![XY_Motor_Mount_Right_assembled](assemblies/XY_Motor_Mount_Right_assembled_tn.png) 
 
 
 
@@ -1297,7 +1281,7 @@ and move on to the next bolt, making several circuits of the frame to get all th
 |2| Bolt M4 buttonhead x 12mm|
 |1| IEC320 C14 switched fused inlet module|
 |2| Linear rod 12mm x 300mm|
-|1| PTFE tube 459 mm|
+|1| PTFE tube 456 mm|
 
 
 ### 3D Printed parts
