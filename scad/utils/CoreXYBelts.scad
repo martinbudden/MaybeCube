@@ -10,9 +10,9 @@ module CoreXYBelts(carriagePosition, x_gap=20, show_pulleys=false, xyMotorWidth=
     assert(is_list(carriagePosition) && len(carriagePosition) == 2);
 
     xyMotorWidth = is_undef(xyMotorWidth) ? _xyMotorDescriptor == "NEMA14" ? 35.2 : _xyMotorDescriptor == "BLDC4250"? 56 : 42.3 : xyMotorWidth;
-
+    //!!TODO - fix magic number 23
     coreXY_belts(coreXY_type(),
-        carriagePosition = carriagePosition + [-coreXYPosBL().x, 0],
+        carriagePosition = carriagePosition + [coreXYPosBL().x - x_gap - 23, 0],
         coreXYPosBL = coreXYPosBL(),
         coreXYPosTR = coreXYPosTR(xyMotorWidth),
         separation = coreXYSeparation(),

@@ -28,8 +28,9 @@ module Y_Carriage_Left_stl() {
 
     chamfer = _xCarriageDescriptor == "MGN9C" || _xCarriageDescriptor == "MGN9H" ? 1 : 0;
     blockOffsetX = 0.5;
-    xMin = xPos(3);
-    endStopOffsetX = max(0, xMin - 68); // 12
+    //xMin = xPos(3);
+    //endStopOffsetX = max(0, xMin - 68); // 12
+    endStopOffsetX = 4; // set this to zero and instead set software endstop offset (X_MIN_POS in Marlin) to -8
 
     stl("Y_Carriage_Left")
         color(pp2_colour)
@@ -52,8 +53,9 @@ module Y_Carriage_Left_AL_dxf() {
     tongueOffset = tongueOffset();
     blockOffsetX = 0.5;
     chamfer = _xCarriageDescriptor == "MGN9C" || _xCarriageDescriptor == "MGN9H" ? 1 : 0;
-    xMin = xPos(3);
-    endStopOffsetX = max(0, xMin - 68); // 12
+    //xMin = xPos(3);
+    //endStopOffsetX = max(0, xMin - 68); // 12
+    endStopOffsetX = 4; // set this to zero and instead set software endstop offset (X_MIN_POS in Marlin) to -8
 
     dxf("Y_Carriage_Left_AL")
         color(silver)
@@ -75,7 +77,7 @@ module Y_Carriage_Brace_Left_stl() {
     holeRadius = coreXYIdlerBore() == 3 ? M3_tap_radius : M5_tap_radius;
 
     stl("Y_Carriage_Brace_Left")
-        color(pp1_colour)
+        color(pp3_colour)
             yCarriageBrace(yCarriageType(), yCarriageBraceThickness(), pulleyOffset(), holeRadius, left=true);
 }
 
@@ -83,7 +85,7 @@ module Y_Carriage_Brace_Right_stl() {
     holeRadius = coreXYIdlerBore() == 3 ? M3_tap_radius : M5_tap_radius;
 
     stl("Y_Carriage_Brace_Right")
-        color(pp1_colour)
+        color(pp3_colour)
             yCarriageBrace(yCarriageType(), yCarriageBraceThickness(), pulleyOffset(), holeRadius, left=false);
 }
 
@@ -104,7 +106,7 @@ assembly("Y_Carriage_Left", ngb=true) {
             if (yCarriageBraceThickness())
                 translate_z(yCarriageThickness() + pulleyStackHeight + eps)
                     explode(4*yCarriageExplodeFactor())
-                        stl_colour(pp1_colour)
+                        stl_colour(pp3_colour)
                             Y_Carriage_Brace_Left_stl();
             Y_Carriage_hardware(yCarriageType, plainIdler, toothedIdler, _beltWidth, yCarriageThickness(), yCarriageBraceThickness(), pulleyOffset(), left=true);
         }
@@ -127,7 +129,7 @@ assembly("Y_Carriage_Right", ngb=true) {
             if (yCarriageBraceThickness())
                 translate_z(yCarriageThickness() + pulleyStackHeight + 2*eps)
                     explode(4*yCarriageExplodeFactor())
-                        stl_colour(pp1_colour)
+                        stl_colour(pp3_colour)
                             Y_Carriage_Brace_Right_stl();
             Y_Carriage_hardware(yCarriageType, plainIdler, toothedIdler, _beltWidth, yCarriageThickness(), yCarriageBraceThickness(), pulleyOffset(), left=false);
         }
