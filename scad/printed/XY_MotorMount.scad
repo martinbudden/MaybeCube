@@ -51,6 +51,8 @@ bracketHeightRight = eZ - eSize - (coreXYPosBL().z + washer_thickness(M3_washer)
 bracketHeightLeft = bracketHeightRight + coreXYSeparation().z;
 braceThickness = 3;
 pulleyStackHeight = 2*washer_thickness(coreXYIdlerBore() == 3 ? M3_washer : M5_washer) + pulley_height(coreXY_plain_idler(coreXY_type()));
+sizeP = [9, 8.5, pulleyStackHeight];
+sizeT = [8.5, 9, pulleyStackHeight];
 
 function upperBoltPositions(sizeX) = [eSize/2 + 3, sizeX - 3*eSize/2 - 3];
 
@@ -168,8 +170,6 @@ module xyMotorMountBase(motorType, left, size, offset, sideSupportSizeY, cnc=fal
     }
     if (!cnc)
         translate([coreXYPosBL.x + separation.x/2, coreXYPosTR.y + offset.y]) {
-            sizeP = [9, 8.5, pulleyStackHeight];
-            sizeT = [8.5, 9, pulleyStackHeight];
             translate([pP.x, pT.y, size.z])
                 difference() {
                     if (left)
@@ -199,23 +199,12 @@ module xyMotorMountBrace(thickness, offset = [0,0], left = true) {
 
     difference() {
         union() {
-            sizeP = [9, 8.5];
-            sizeT = [8.5, 9];
-            *if (left)
-                translate([pP.x - sizeP.x/2, pT.y - 1 - sizeP.y/2, 0])
-                    rounded_cube_xy([sizeP.x, sizeP.y - leftDrivePlainIdlerOffset.y, thickness], 1, xy_center=false);
-            else
-                translate([pP.x - sizeP.x/2, pT.y - 1 - sizeP.y/2, 0])
-                    rounded_cube_xy([sizeP.x, sizeP.y, thickness], 1, xy_center=false);
             if (left)
-                translate([pT.x + 1 - sizeT.x/2, pP.y - sizeT.y/2, 0]) {
-                    //rounded_cube_xy([sizeT.x, sizeT.y, thickness], 1, xy_center=false);
-                    rounded_cube_xy([(pP.x - sizeP.x/2)-(pT.x + 1 - sizeT.x/2)+sizeP.x, (pT.y - 1 - sizeP.y/2)-(pP.y - sizeT.y/2)+sizeP.y, thickness], 1, xy_center=false);
-                }
+                translate([pT.x + 1 - sizeT.x/2, pP.y - sizeT.y/2, 0])
+                    rounded_cube_xy([(pP.x - sizeP.x/2) - (pT.x + 1 - sizeT.x/2) + sizeP.x, (pT.y - 1 - sizeP.y/2) - (pP.y - sizeT.y/2) + sizeP.y, thickness], 1, xy_center=false);
             else
-                translate([pT.x + 1 - sizeT.x/2, pP.y - sizeT.y/2, 0]) {
+                translate([pT.x + 1 - sizeT.x/2, pP.y - sizeT.y/2, 0])
                     rounded_cube_xy([sizeT.x, sizeT.y, thickness], 1, xy_center=false);
-                }
         }
         translate(pP)
             boltHoleM3Tap(thickness);
@@ -473,23 +462,28 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, sideSupportSizeY=s
         washer = coreXYIdlerBore() == 3 ? M3_washer : M5_washer;
         screw = coreXYIdlerBore() == 3 ? M3_cap_screw : M5_cap_screw;
         screwLength = screw_longer_than(pulleyStackHeight + braceThickness + basePlateThickness);
-        translate(left ? coreXY_drive_plain_idler_offset(coreXY_type) + leftDrivePlainIdlerOffset
-                       : [-coreXY_drive_plain_idler_offset(coreXY_type).x, coreXY_drive_plain_idler_offset(coreXY_type).y + rightDrivePlainIdlerOffset.y, 0]) {
+        plainIdlerPos = left ? coreXY_drive_plain_idler_offset(coreXY_type) + leftDrivePlainIdlerOffset
+                       : [-coreXY_drive_plain_idler_offset(coreXY_type).x, coreXY_drive_plain_idler_offset(coreXY_type).y + rightDrivePlainIdlerOffset.y, 0];
+        translate(plainIdlerPos) {
             translate_z(pulleyStackHeight + braceThickness)
                 screw(screw, screwLength);
             washer(washer)
                 pulley(useMotorIdler20 ? GT2x20_plain_idler : coreXY_plain_idler(coreXY_type))
                     washer(washer);
         }
-        translate(coreXY_drive_toothed_idler_offset(coreXY_type)) {
+        toothedIdlerPos = coreXY_drive_toothed_idler_offset(coreXY_type);
+        translate(toothedIdlerPos) {
             translate_z(pulleyStackHeight + braceThickness)
                 screw(screw, screwLength);
             washer(washer)
                 pulley(coreXY_toothed_idler(coreXY_type))
                     washer(washer);
             //translate_z(30) vflip() pulley(GT2x40_pulley);
-
         }
+        translate([plainIdlerPos.x, toothedIdlerPos.y, pulleyStackHeight + braceThickness])
+            screw(screw, screwLength);
+        translate([toothedIdlerPos.x, plainIdlerPos.y, pulleyStackHeight + braceThickness])
+            screw(screw, screwLength);
     }
 
     if (left) {
