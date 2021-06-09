@@ -1,6 +1,7 @@
 //! Display the left face
 
 include <NopSCADlib/core.scad>
+include <NopSCADlib/vitamins/rails.scad>
 
 use <../scad/printed/extruderBracket.scad>
 use <../scad/printed/PrintheadAssemblies.scad>
@@ -34,10 +35,10 @@ module Left_Side_test() {
     //let($hide_corexy=true)
     //let($hide_extrusions=true)
     //Face_Top_assembly();
-    //fullPrinthead();
+    fullPrinthead(MGN12H_carriage);
 
     // always add the side panel last, so it is transparent to other items
-    Left_Side_Panel_assembly();
+    //Left_Side_Panel_assembly();
 }
 
 if ($preview)

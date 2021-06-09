@@ -40,27 +40,25 @@ module CoreXY_test() {
     CoreXYBelts(carriagePosition(), x_gap = 20, show_pulleys = [1, 0, 0]);
     fullPrinthead(xCarriageType);
 
-//    translate_z(eZ-eSize)
+    for (x=[0, eX + eSize], y=[0, eY + eSize])
+        translate([x, y, 250])
+            extrusionOZ(eZ-250);
 
-for (x=[0, eX+eSize], y=[0, eY+eSize])
-    translate([x, y, 250])
-        extrusionOZ(eZ-250);
-
-    *translate([eSize, 0, eZ-eSize])
+    *translate([eSize, 0, eZ - eSize])
         extrusionOX(eX);
-    *translate([eSize, eY+eSize, eZ-2*eSize])
+    *translate([eSize, eY + eSize, eZ - 2*eSize])
         extrusionOX2040V(eX);
     *for (x=[0, eX])
-        translate([x, eSize, eZ-eSize])
+        translate([x, eSize, eZ - eSize])
             extrusionOY2040H(eY);
 
-    translate([1.5*eSize, eSize+_yRailLength/2, eZ - eSize])
+    translate([1.5*eSize, eSize + _yRailLength/2, eZ - eSize])
         rotate([180, 0, 90])
-            rail_assembly(yCarriageType, _yRailLength, carriagePosition().y-eSize-_yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
+            rail_assembly(yCarriageType, _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
     Y_Carriage_Left_assembly();
     translate([eSize/2+eX, eSize+_yRailLength/2, eZ - eSize])
         rotate([180, 0, 90])
-            rail_assembly(yCarriageType, _yRailLength, carriagePosition().y-eSize-_yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
+            rail_assembly(yCarriageType, _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
     Y_Carriage_Right_assembly();
 
     //XY_Idler_Left_assembly();
