@@ -9,6 +9,8 @@ use <NopSCADlib/utils/fillet.scad>
 
 use <printed/Z_Carriage.scad>
 
+use <utils/FrameBolts.scad>
+
 use <vitamins/AntiBacklashNut.scad>
 use <vitamins/bolts.scad>
 use <vitamins/extrusion.scad>
@@ -152,39 +154,48 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
 
     boltHoles = _printBed4PointSupport
         ? [ [holeOffset, holeOffset, 0], [size.x - holeOffset, holeOffset, 0], [size.x - holeOffset, size.y - holeOffset, 0], [holeOffset, size.y - holeOffset, 0] ]
-        : [ [size.x/2, holeOffset, 0], [size.x - holeOffset, size.y - holeOffset, 0], [holeOffset, size.y - holeOffset, 0] ];
+        : [ [holeOffset, size.y/2, 0], [size.x - holeOffset, size.y - holeOffset, 0], [size.x - holeOffset, holeOffset, 0] ];
     translate([-_heatedBedSize.y/2, 0, 0]) {
         if (size.x == 235)
             translate([_heatedBedSize.x - 20, 0, 1])
                 rotate([90, 90, 0])
                     molex_400(6);
 
+        translate_z(_printBed4PointSupport ? 0 : underlayThickness)
         color("silver")
             difference() {
                 rounded_cube_xy(size, 1);
                 for (i = boltHoles)
                     translate(i)
                         if (_printBed4PointSupport)
-                            translate_z(size.z +eps)
+                            translate_z(size.z + eps)
                                 rotate([180, 0, 0]) {
                                     boltHoleM3(size.z);
                                     screw_countersink(M3_cs_cap_screw);
                                 }
                         else
                             boltHoleM3(size.z);
-                *for (i=[ [holeOffset, holeOffset], [size.x - holeOffset, holeOffset] ])
+                *for (i = [ [holeOffset, holeOffset], [size.x - holeOffset, holeOffset] ])
                     translate(i)
                         boltHoleM3(size.z - underlayThickness);
             }
         // add magnetic layer
-        translate_z(size.z)
+        translate_z(size.z + (_printBed4PointSupport ? 0 : underlayThickness))
             color(grey(20))
-                rounded_cube_xy([size.x, size.y, 1], 1);
+                difference() {
+                    thickness = 1;
+                    rounded_cube_xy([size.x, size.y, thickness], 1);
+                    for (i = boltHoles)
+                        translate(i)
+                            boltHoleM3(thickness);
+                }
 
         // add underlay
-        foamUnderlay(size, holeOffset, 7);
-        *explode(30)
-            corkUnderlay(size, boltHoles, underlayThickness);
+        if (_printBed4PointSupport)
+            foamUnderlay(size, holeOffset, 7);
+        else
+            explode(30)
+                corkUnderlay(size, boltHoles, underlayThickness);
 
         spring  = ["spring", 8, 0.9, 20, 10, 1, false, 0, "lightblue"];
         supportBoltLength = _printBed4PointSupport ? 45 : 12;
@@ -212,22 +223,24 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
 module printbedFrameCrossPiece() {
     fSize = _printBedExtrusionSize;
     translate([-_printBedArmSeparation/2, 0, 0]) {
-        extrusionOX2040H(_printBedArmSeparation);
-        translate([0, 2*fSize, fSize/2]) {
-            translate([_printBedArmSeparation, 0, 0])
-                explode([40, 0, 0])
-                    rotate([0, 0, 90])
+        extrusionOX2040HEndBolts(_printBedArmSeparation);
+        if (!_useBlindJoints) {
+            translate([0, 2*fSize, fSize/2]) {
+                translate([_printBedArmSeparation, 0, 0])
+                    explode([40, 0, 0])
+                        rotate([0, 0, 90])
+                            extrusionInnerCornerBracket();
+                explode([-40, 0, 0])
+                    rotate([0, 180, -90])
                         extrusionInnerCornerBracket();
-            explode([-40, 0, 0])
-                rotate([0, 180, -90])
-                    extrusionInnerCornerBracket();
-        }
-        translate([0, 0, fSize/2]) {
-            translate([_printBedArmSeparation, 0, 0])
-                rotate([180, 0, -90])
+            }
+            translate([0, 0, fSize/2]) {
+                translate([_printBedArmSeparation, 0, 0])
+                    rotate([180, 0, -90])
+                        extrusionInnerCornerBracket(1);
+                rotate([0, 0, -90])
                     extrusionInnerCornerBracket(1);
-            rotate([0, 0, -90])
-                extrusionInnerCornerBracket(1);
+            }
         }
     }
 
@@ -268,9 +281,14 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                     translate([x - fSize/2, -yOffset, 0])
                         extrusionOY(size.y, fSize);
                     // access hole for Z_Carriage bolt
-                    translate([x + fSize/2, -yOffset + (scs_size(scs_type).x - scs_screw_separation_x(scs_type))/2, fSize/2])
+                    *translate([x + fSize/2, -yOffset + (scs_size(scs_type).x - scs_screw_separation_x(scs_type))/2, fSize/2])
                         rotate([0, -90, 0])
-                            boltHoleM3(eSize);
+                            jointBoltHole();
+                    // access holes for crosspiece
+                    for (y = [fSize/2, 3*fSize/2])
+                        translate([x + fSize/2, y + printBedFrameCrossPieceOffset(), fSize/2])
+                            rotate([0, -90, 0])
+                                jointBoltHole();
                     if (_printBed4PointSupport)
                         for (y = [_heatedBedHoleOffset, _heatedBedSize.y - _heatedBedHoleOffset])
                             translate([x, y + heatedBedOffset.y, 0]) {

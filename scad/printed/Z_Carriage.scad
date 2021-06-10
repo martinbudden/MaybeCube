@@ -23,13 +23,13 @@ boltOffset = 26;
 leadnut = LSN8x2;
 leadnutInset = leadnut_flange_t(leadnut);
 
-function printBedFrameCrossPieceOffset() = baseSize.x/2 + tabRightLength + 9.75;
+function printBedFrameCrossPieceOffset() = baseSize.x/2 + tabRightLength;// + 9.75;
 
 holes = [for (i=[ [-1, 1], [1, 1], [-1, -1], [1, -1] ]) [i.x*scs_screw_separation_x(scsType)/2, i.y*scs_screw_separation_z(scsType)/2, baseSize.z] ];
 
 
 module zCarriageSCS(cnc=false) {
-    shelfExtension = tabRightLength; //!! was 5
+    shelfExtension = tabRightLength;
 
     translate_z(scs_hole_offset(scsType)) {
         fillet = 2;
