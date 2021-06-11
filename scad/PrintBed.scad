@@ -271,7 +271,7 @@ module Printbed_Frame_assembly()
 assembly("Printbed_Frame", big=true, ngb=true) {
     size = printBedSize();
     fSize = _printBedExtrusionSize;
-    yOffset = scs_size(scs_type).x/2;
+    yOffset = scs_size(scs_type).x/2; // 42/2
     //yOffset = 28;
 
     translate([-_printBedArmSeparation/2, 0, -fSize/2]) {
@@ -306,7 +306,9 @@ assembly("Printbed_Frame", big=true, ngb=true) {
             translate([0, printBedFrameCrossPieceOffset()])
                 printbedFrameCrossPiece();
             if (useDualZRods)
-                translate([0, eY - 2*eSize - 6 - printBedFrameCrossPieceOffset(), 0])
+                //translate([0, eY - 2*eSize - 6 - printBedFrameCrossPieceOffset(), 0])
+                //translate([0, eY + 2*eSize - _zRodOffsetX - 3*printBedFrameCrossPieceOffset(), 0])
+                translate([0, eY - 2*_zRodOffsetX - printBedFrameCrossPieceOffset(), 0])
                     rotate(180)
                         printbedFrameCrossPiece();
         }
@@ -344,26 +346,28 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
 
     Printbed_Frame_assembly();
 
-    yOffset = 0;
+    yRight = eY - 2*eSize - 6; //!!TODO - fix magic number
     translate([-zRodSeparation()/2, 0, 0]) {
         explode([0, -100, 0])
-            translate([0, -yOffset, 0])
-                Z_Carriage_Left_assembly();
+            Z_Carriage_Left_assembly();
         if (useDualZRods)
-            translate([0, eY - 2*eSize - 2*yOffset, 0])
+            translate([0, yRight, 0])
                 rotate(180)
                     Z_Carriage_Right_assembly();
     }
     translate([zRodSeparation()/2, 0, 0]) {
         explode([0, -100, 0])
-            translate([0, -yOffset, 0])
-                Z_Carriage_Right_assembly();
+            Z_Carriage_Right_assembly();
         if (useDualZRods)
-            translate([0, eY - 2*eSize - 2*yOffset, 0])
+            translate([0, yRight, 0])
                 rotate(180)
                     Z_Carriage_Left_assembly();
     }
     Z_Carriage_Center_assembly();
+    if (useDualZRods)
+        translate([0, yRight, 0])
+            rotate(180)
+                Z_Carriage_Center_assembly();
     *Printbed_Strain_Relief_assembly(); //!!TODO position this correctly
 }
 
