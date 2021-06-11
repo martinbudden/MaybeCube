@@ -215,14 +215,14 @@ module Z_Carriage_Center_hardware() {
 
 module Z_Carriage_Center_stl() {
     stl("Z_Carriage_Center")
-        color(pp1_colour)
+        color(pp2_colour)
             zCarriageCenter();
 }
 
 module Z_Carriage_Center_assembly()
 assembly("Z_Carriage_Center", ngb=true) {
 
-    stl_colour(pp1_colour)
+    stl_colour(pp2_colour)
         Z_Carriage_Center_stl();
     Z_Carriage_Center_hardware();
 }
