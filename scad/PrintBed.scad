@@ -20,6 +20,7 @@ use <vitamins/nuts.scad>
 
 include <Parameters_Main.scad>
 
+function is_true(x) = !is_undef(x);
 
 springDiameter = 8;
 springLength = 18; // 25 uncompressed
@@ -87,11 +88,11 @@ supportLengthCenter = heatedBedOffsetY+insetY-braceY()+printBedHoleOffset+heated
 // 220 heatbed
 // support lengths 25, 25, 17
 scs_type = _zRodDiameter == 8 ? SCS8LUU : _zRodDiameter == 10 ? SCS10LUU : SCS12LUU;
-useDualZRods = !is_undef(_useDualZRods) && _useDualZRods;
+
 
 function printBedSize() = [
     _heatedBedSize.x,
-    useDualZRods ? eY - 3 : eY <= 250 ? 225 : eY <= 300 ? 260 : eY <= 350 ? 275 : 375,
+    is_true(_useDualZRods) ? eY - 3 : eY <= 250 ? 225 : eY <= 300 ? 260 : eY <= 350 ? 275 : 375,
     _printBedExtrusionSize + _heatedBedSize.z
 ];
 
@@ -114,6 +115,7 @@ module foamUnderlay(size, holeOffset, foamThickness) {
 
 module corkUnderlay(size, boltHoles, underlayThickness) {
     vitamin(str("corkUnderlay(", size, ", ", boltHoles, ", ", underlayThickness, "): Cork underlay ", size.x, "mm x ", size.y, "mm"));
+
     color("tan")
         difference() {
             rounded_rectangle([size.x, size.y, underlayThickness], 1, center=false, xy_center=false);
@@ -305,7 +307,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
         translate([_printBedArmSeparation/2, 0]) {
             translate([0, printBedFrameCrossPieceOffset()])
                 printbedFrameCrossPiece();
-            if (useDualZRods)
+            if (is_true(_useDualZRods))
                 //translate([0, eY - 2*eSize - 6 - printBedFrameCrossPieceOffset(), 0])
                 //translate([0, eY + 2*eSize - _zRodOffsetX - 3*printBedFrameCrossPieceOffset(), 0])
                 translate([0, eY - 2*_zRodOffsetX - printBedFrameCrossPieceOffset(), 0])
@@ -322,7 +324,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
         rotate([-90, -90, -90])
             Printbed_Corner_Bracket_stl();
 
-    if (useDualZRods)
+    if (is_true(_useDualZRods))
         translate([0, eY-2*eSize - 18, fSize]) {
             explode([50, -40, 0], true)
                 rotate([-90, 90, -90])
@@ -345,12 +347,12 @@ module Printbed_Frame_with_Z_Carriages_assembly()
 assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
 
     Printbed_Frame_assembly();
+    yRight = eY - 2*_zRodOffsetX;
 
-    yRight = eY - 2*eSize - 6; //!!TODO - fix magic number
     translate([-zRodSeparation()/2, 0, 0]) {
         explode([0, -100, 0])
             Z_Carriage_Left_assembly();
-        if (useDualZRods)
+        if (is_true(_useDualZRods))
             translate([0, yRight, 0])
                 rotate(180)
                     Z_Carriage_Right_assembly();
@@ -358,13 +360,13 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
     translate([zRodSeparation()/2, 0, 0]) {
         explode([0, -100, 0])
             Z_Carriage_Right_assembly();
-        if (useDualZRods)
+        if (is_true(_useDualZRods))
             translate([0, yRight, 0])
                 rotate(180)
                     Z_Carriage_Left_assembly();
     }
     Z_Carriage_Center_assembly();
-    if (useDualZRods)
+    if (is_true(_useDualZRods))
         translate([0, yRight, 0])
             rotate(180)
                 Z_Carriage_Center_assembly();
