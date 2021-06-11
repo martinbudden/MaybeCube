@@ -124,7 +124,8 @@ module Extruder_Bracket_hardware(corkDamperThickness, addM4Bolts=false) {
             translate_z(size.x)
                 Extruder_MK10_Dual_Pulley(extruderNEMAType, motorOffsetZ=size.x + corkDamperThickness, motorRotate=180);
             translate_z(-corkDamperThickness)
-                corkDamper(extruderNEMAType, corkDamperThickness);
+                explode(-40)
+                    corkDamper(extruderNEMAType, corkDamperThickness);
             clearance = 3.5;
             translate([extruderFilamentOffset().x, -extruderFilamentOffset().y - clearance, pillarHeight + size.x]) {
                 filament_sensor();
