@@ -35,7 +35,7 @@ module Left_Side_test() {
     //let($hide_corexy=true)
     //let($hide_extrusions=true)
     //Face_Top_assembly();
-    fullPrinthead(MGN12H_carriage);
+    //fullPrinthead(MGN12H_carriage);
 
     // always add the side panel last, so it is transparent to other items
     //Left_Side_Panel_assembly();
