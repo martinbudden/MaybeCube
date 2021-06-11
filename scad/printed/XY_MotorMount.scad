@@ -460,7 +460,7 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, sideSupportSizeY=s
         }
 
         washer = coreXYIdlerBore() == 3 ? M3_washer : M5_washer;
-        screw = coreXYIdlerBore() == 3 ? M3_cap_screw : M5_cap_screw;
+        screw = coreXYIdlerBore() == 3 ? M3_dome_screw : M5_dome_screw;
         screwLength = screw_longer_than(pulleyStackHeight + braceThickness + basePlateThickness);
         plainIdlerPos = left ? coreXY_drive_plain_idler_offset(coreXY_type) + leftDrivePlainIdlerOffset
                        : [-coreXY_drive_plain_idler_offset(coreXY_type).x, coreXY_drive_plain_idler_offset(coreXY_type).y + rightDrivePlainIdlerOffset.y, 0];
