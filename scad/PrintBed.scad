@@ -20,7 +20,7 @@ use <vitamins/nuts.scad>
 
 include <Parameters_Main.scad>
 
-function is_true(x) = !is_undef(x);
+function is_true(x) = !is_undef(x) && x == true;
 
 springDiameter = 8;
 springLength = 18; // 25 uncompressed
