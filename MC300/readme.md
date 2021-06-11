@@ -77,24 +77,26 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   4  |   6  |   2  |   5  |   .  |   .  |   .  |   .  |   .  |   17  |  Bolt M3 buttonhead x 10mm |
 |   2  |   .  |  14  |   .  |   .  |   .  |   .  |   4  |   .  |   20  |  Bolt M3 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Bolt M3 buttonhead x 16mm |
+|   .  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |   .  |    8  |  Bolt M3 buttonhead x 20mm |
 |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 25mm |
 |   .  |   .  |   .  |   5  |   .  |   4  |   .  |   .  |   .  |    9  |  Bolt M3 caphead x  6mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M3 caphead x  8mm |
 |   .  |   .  |  28  |   .  |   .  |   .  |   .  |   .  |   .  |   28  |  Bolt M3 caphead x 10mm |
 |   .  |   .  |   6  |   .  |   .  |   .  |   .  |   .  |   .  |    6  |  Bolt M3 caphead x 16mm |
-|   .  |   2  |   8  |   .  |   .  |   .  |   .  |   .  |   .  |   10  |  Bolt M3 caphead x 20mm |
+|   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 20mm |
 |   .  |   .  |   2  |   .  |   .  |   4  |   .  |   .  |   .  |    6  |  Bolt M3 caphead x 25mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 30mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |  24  |   24  |  Bolt M4 buttonhead x  8mm |
-|   .  |   .  |  14  |   .  |   .  |   .  |  10  |   2  |   8  |   34  |  Bolt M4 buttonhead x 10mm |
+|   .  |   .  |  14  |   .  |   .  |   .  |   8  |   2  |   8  |   32  |  Bolt M4 buttonhead x 10mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   8  |   .  |    8  |  Bolt M4 buttonhead x 10mm - not shown |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   2  |    4  |  Bolt M4 buttonhead x 12mm |
 |   .  |   .  |   .  |  18  |   .  |   .  |   .  |   .  |   .  |   18  |  Bolt M4 countersunk x  8mm |
 |   .  |   .  |  20  |   .  |   .  |   .  |   .  |   8  |   .  |   28  |  Bolt M4 countersunk x 10mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M5 buttonhead x 10mm |
-|   .  |   .  |  10  |   .  |   8  |   .  |   .  |   8  |  12  |   38  |  Bolt M5 buttonhead x 12mm |
+|   .  |   .  |  10  |   .  |   8  |   .  |   4  |   8  |  12  |   42  |  Bolt M5 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   8  |   .  |   .  |    8  |  Bolt M5 countersunk x 12mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   1  |   1  |    4  |  Cork damper NEMA 17 |
+|   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  |  Cork underlay 214mm x 214mm |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  E3D V6 Fan Duct |
 |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  Extrusion E2020 x 260mm |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Extrusion E2020 x 300mm |
@@ -102,7 +104,6 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  |  Extrusion E2040 x 188mm |
 |   .  |   .  |   3  |   .  |   2  |   .  |   .  |   2  |   1  |    8  |  Extrusion E2040 x 300mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Extrusion E2080 x 300mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Extrusion inner corner bracket 4.5 |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Fan 30mm x 10mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  |  Heated Bed 214mm x 214mm |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Hot end E3D V6 direct 1.75mm |
@@ -120,7 +121,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |  12  |  14  |   .  |   .  |   .  |   .  |  32  |   58  |  Nut M4 hammer |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   8  |   .  |    8  |  Nut M4 hammer - not shown |
 |   .  |   .  |  20  |   .  |   .  |   .  |   8  |  12  |   .  |   40  |  Nut M4 sliding T |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE tube 456 mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE tube 458 mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Pillar hex nylon F/F M3x14 |
 |   .  |   .  |   .  |   5  |   .  |   .  |   .  |   .  |   .  |    5  |  Pillar hex nylon F/F M3x20 |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |   .  |    8  |  Pulley GT2 idler 16 teeth |
@@ -140,7 +141,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer  M4 |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Ziptie 2.5mm x 100mm min length |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  filament sensor |
-|  19  |   8  | 218  |  50  |  12  |   9  |  41  |  64  |  97  |  518  | Total vitamins count |
+|  19  |   8  | 218  |  50  |  12  |   9  |  40  |  64  |  97  |  517  | Total vitamins count |
 |      |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   2  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  | Belt_Clamp.stl |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  | Belt_Tensioner.stl |
@@ -441,7 +442,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |Qty|Description|
 |---:|:----------|
 |4| Bolt M3 buttonhead x 12mm|
-|4| Bolt M3 caphead x 20mm|
+|4| Bolt M3 buttonhead x 20mm|
 |3| Bolt M4 buttonhead x 10mm|
 |1| Cork damper NEMA 17|
 |3| Nut M4 hammer|
@@ -514,7 +515,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |Qty|Description|
 |---:|:----------|
 |4| Bolt M3 buttonhead x 12mm|
-|4| Bolt M3 caphead x 20mm|
+|4| Bolt M3 buttonhead x 20mm|
 |3| Bolt M4 buttonhead x 10mm|
 |1| Cork damper NEMA 17|
 |3| Nut M4 hammer|
@@ -1096,10 +1097,9 @@ and move on to the next bolt, making several circuits of the frame to get all th
 
 |Qty|Description|
 |---:|:----------|
-|2| Bolt M4 buttonhead x 10mm|
+|4| Bolt M5 buttonhead x 12mm|
 |2| Extrusion E2020 x 260mm|
 |1| Extrusion E2040 x 188mm|
-|4| Extrusion inner corner bracket 4.5|
 
 
 ### Assembly instructions
@@ -1151,6 +1151,7 @@ and move on to the next bolt, making several circuits of the frame to get all th
 
 |Qty|Description|
 |---:|:----------|
+|1| Cork underlay 214mm x 214mm|
 |1| Heated Bed 214mm x 214mm|
 
 
@@ -1281,7 +1282,7 @@ and move on to the next bolt, making several circuits of the frame to get all th
 |2| Bolt M4 buttonhead x 12mm|
 |1| IEC320 C14 switched fused inlet module|
 |2| Linear rod 12mm x 300mm|
-|1| PTFE tube 456 mm|
+|1| PTFE tube 458 mm|
 
 
 ### 3D Printed parts
