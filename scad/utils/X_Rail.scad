@@ -27,12 +27,12 @@ module xRail(carriagePosition=carriagePosition()) {
                 rail_assembly(xCarriageType, _xRailLength, eX - _xRailLength/2 - 5 - carriagePosition().x, carriage_end_colour="green", carriage_wiper_colour="red");
 }
 
-module xRailCarriagePosition() {
+module xRailCarriagePosition(t=undef) {
     xCarriageType = xCarriageType();
     xRailType = xRailType();
     yRailType = yRailType();
-    translate([ carriagePosition().x + eSize + 5 - (eX - _xRailLength)/2,
-                carriagePosition().y,
+    translate([ carriagePosition(t).x + eSize + 5 - (eX - _xRailLength)/2,
+                carriagePosition(t).y,
                 eZ - eSize - rail_height(xRailType) - rail_height(yRailType) + carriage_clearance(xCarriageType) + carriage_height(xCarriageType)
             ])
         rotate(180)
