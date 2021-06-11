@@ -30,7 +30,7 @@ module Y_Carriage_Left_stl() {
     blockOffsetX = 0.5;
     //xMin = xPos(3);
     //endStopOffsetX = max(0, xMin - 68); // 12
-    endStopOffsetX = 4; // set this to zero and instead set software endstop offset (X_MIN_POS in Marlin) to -8
+    endStopOffsetX = 0; // set this to zero and instead set software endstop offset (X_MIN_POS in Marlin) to -12
 
     stl("Y_Carriage_Left")
         color(pp2_colour)
@@ -55,7 +55,7 @@ module Y_Carriage_Left_AL_dxf() {
     chamfer = _xCarriageDescriptor == "MGN9C" || _xCarriageDescriptor == "MGN9H" ? 1 : 0;
     //xMin = xPos(3);
     //endStopOffsetX = max(0, xMin - 68); // 12
-    endStopOffsetX = 4; // set this to zero and instead set software endstop offset (X_MIN_POS in Marlin) to -8
+    endStopOffsetX = 0; // set this to zero and instead set software endstop offset (X_MIN_POS in Marlin) to -12
 
     dxf("Y_Carriage_Left_AL")
         color(silver)
@@ -66,7 +66,7 @@ module Y_Carriage_Right_AL_dxf() {
     idlerHeight = pulley_height(coreXY_toothed_idler(coreXY_type()));
     blockOffsetX = 0.5;
     chamfer = _xCarriageDescriptor == "MGN9C" || _xCarriageDescriptor == "MGN9H" ? 1 : 0;
-    endStopOffsetX = 2;
+    endStopOffsetX = 0;
 
     dxf("Y_Carriage_Right_AL")
         color(silver)
