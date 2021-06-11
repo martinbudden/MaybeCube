@@ -13,7 +13,7 @@ include <../scad/Parameters_main.scad>
 module Printbed_test() {
     Printbed_assembly();
     translate_z(-_zRodLength/2) zRods();
-    if(is_undef(_useDualZRods)) translate_z(-_zRodLength/2) zRods(left=false);
+    if(is_true(_useDualZRods)) translate_z(-_zRodLength/2) zRods(left=false);
     //heatedBed();
     //Printbed_Frame_with_Z_Carriages_assembly();
     *rotate(90)
