@@ -21,7 +21,7 @@ _printBedSize = 310;
 _printBedArmSeparation = 225;
 _printBed4PointSupport = true;
 
-_blowerDescriptor = "BL40x10"
+_blowerDescriptor = "BL40x10";
 
 // set this so the zRod brackets clear the xy motors
 // limited by printbed frame hitting XY motors and possibly extruder motor
