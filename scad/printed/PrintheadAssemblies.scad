@@ -60,8 +60,8 @@ assembly("Printhead_MGN12H", big=true) {
     }
 }
 
-module fullPrinthead(xCarriageType, rotate=180) {
-    xRailCarriagePosition()
+module fullPrinthead(xCarriageType, rotate=180, t=undef) {
+    xRailCarriagePosition(t)
         rotate(rotate) {// for debug, to see belts better
             explode([0, -20, 0], true) {
                 X_Carriage_Front_MGN12H_assembly();
