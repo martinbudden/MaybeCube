@@ -22,9 +22,9 @@ module Z_RodMountGuide_70mm_stl() {
         E2020Cover(70);
 }
 
-module Z_RodMountGuide_105mm_stl() {
-    stl("Z_RodMountGuide_105mm")
-        E2020Cover(105);
+module Z_RodMountGuide_100mm_stl() {
+    stl("Z_RodMountGuide_100mm")
+        E2020Cover(100);
 }
 
 module zRodMountGuide(length) {
@@ -39,8 +39,8 @@ module zRodMountGuide(length) {
             color(pp2_colour) hflip() Z_RodMountGuide_50mm_stl();
         } else if (length==70) {
             color(pp2_colour) hflip() Z_RodMountGuide_70mm_stl();
-        } else if (length==105) {
-            color(pp2_colour) hflip() Z_RodMountGuide_105mm_stl();
+        } else if (length==100) {
+            color(pp2_colour) hflip() Z_RodMountGuide_100mm_stl();
         } else {
             echo(zRodMountGuide_length = length);
             color("red") hflip() E2020Cover(length);
