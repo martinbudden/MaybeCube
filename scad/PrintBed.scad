@@ -4,6 +4,7 @@ include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/springs.scad>
 include <NopSCADlib/vitamins/bearing_blocks.scad>
 include <NopSCADlib/vitamins/pcb.scad>
+include <NopSCADlib/vitamins/sk_brackets.scad>
 use <NopSCADlib/utils/fillet.scad>
 
 
@@ -26,11 +27,13 @@ springDiameter = 8;
 springLength = 18; // 25 uncompressed
 // y value of heatedBedOffset constrained by clearance for heatbed cable connector relative to SK bracket
 // and leveling knobs clearance of Z_Carriage
-sk12HoleOffsetFromTop = 37.5 - 23; // 14.5
+//sk12HoleOffsetFromTop = -0.5;//37.5 - 23; // 14.5
+SK_type = _zRodDiameter == 8 ? SK8 : _zRodDiameter == 10 ? SK10 : SK12;
+skHoleOffsetFromTop = sk_size(SK_type).y - sk_hole_offset(SK_type);
 
 heatedBedOffset = _printBed4PointSupport
     ? [0, 20, _printBedExtrusionSize/2 + springLength - 8]
-    : [0, sk12HoleOffsetFromTop + 0.5, _printBedExtrusionSize/2];
+    : [0, skHoleOffsetFromTop + 8, _printBedExtrusionSize/2];
 
 
 _heatedBedSize = _printBedSize == 100 ? [100, 100, 1.6] : // Openbuilds mini heated bed size
@@ -172,25 +175,33 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
                         if (_printBed4PointSupport)
                             translate_z(size.z + eps)
                                 rotate([180, 0, 0]) {
-                                    boltHoleM3(size.z);
+                                    boltHoleM3(size.z, cnc=true);
                                     screw_countersink(M3_cs_cap_screw);
                                 }
                         else
-                            boltHoleM3(size.z);
+                            boltHoleM3(size.z, cnc=true);
                 *for (i = [ [holeOffset, holeOffset], [size.x - holeOffset, holeOffset] ])
                     translate(i)
                         boltHoleM3(size.z - underlayThickness);
             }
         // add magnetic layer
         translate_z(size.z + (_printBed4PointSupport ? 0 : underlayThickness))
-            color(grey(20))
-                difference() {
-                    thickness = 1;
-                    rounded_cube_xy([size.x, size.y, thickness], 1);
-                    for (i = boltHoles)
-                        translate(i)
-                            boltHoleM3(thickness);
-                }
+            if (_printBed4PointSupport) {
+                color(grey(20))
+                    difference() {
+                        magneticBaseSize = [size.x, size.y, 1];
+                        rounded_cube_xy(magneticBaseSize, 1);
+                        for (i = boltHoles)
+                            translate(i)
+                                boltHoleM3(magneticBaseSize.z, cnc=true);
+                    }
+            } else {
+                offset = 5;
+                printSurfaceSize = [size.x - 2*offset, size.y - 2*offset, 1];
+                translate([offset, offset, 0])
+                    color("orangeRed")
+                        rounded_cube_xy(printSurfaceSize, 1);
+            }
 
         // add underlay
         if (_printBed4PointSupport)
@@ -274,7 +285,6 @@ assembly("Printbed_Frame", big=true, ngb=true) {
     size = printBedSize();
     fSize = _printBedExtrusionSize;
     yOffset = scs_size(scs_type).x/2; // 42/2
-    //yOffset = 28;
 
     translate([-_printBedArmSeparation/2, 0, -fSize/2]) {
         for (x = [-fSize/2, _printBedArmSeparation + fSize/2])
@@ -291,7 +301,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                         translate([x + fSize/2, y + printBedFrameCrossPieceOffset(), fSize/2])
                             rotate([0, -90, 0])
                                 jointBoltHole();
-                    if (_printBed4PointSupport)
+                    if (_printBed4PointSupport) {
                         for (y = [_heatedBedHoleOffset, _heatedBedSize.y - _heatedBedHoleOffset])
                             translate([x, y + heatedBedOffset.y, 0]) {
                                 // hole for bolt
@@ -302,6 +312,11 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                                 *translate_z(-1)
                                     cylinder(h=4, r=5);
                             }
+                    } else {
+                        for (y = x == -fSize/2 ? [_heatedBedSize.y/2] : [_heatedBedHoleOffset, _heatedBedSize.y - _heatedBedHoleOffset])
+                            translate([x, y + heatedBedOffset.y, 0])
+                                cylinder(h=eSize, r=M4_clearance_radius);
+                    }
             }
 
         translate([_printBedArmSeparation/2, 0]) {
@@ -314,7 +329,18 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                     rotate(180)
                         printbedFrameCrossPiece();
         }
-
+    if (!_printBed4PointSupport) {
+        translate([-fSize/2, heatedBedOffset.y + _heatedBedSize.y/2, 27])
+            boltM3Caphead(20);
+        translate([fSize/2 + _printBedArmSeparation, - yOffset, 27]) {
+            //boltM3Caphead(20);
+            translate([0, yOffset + heatedBedOffset.y + _heatedBedHoleOffset, 0])
+                boltM3Caphead(20);
+            translate([0, yOffset + heatedBedOffset.y + _heatedBedSize.y - _heatedBedHoleOffset, 0])
+                boltM3Caphead(20);
+            //echo(eOffset = yOffset + heatedBedOffset.y + _heatedBedHoleOffset-1.5);
+        }
+    }
     /*
     translate([_printBedArmSeparation, 0, fSize])
         explode([50, -40, 0], true)
