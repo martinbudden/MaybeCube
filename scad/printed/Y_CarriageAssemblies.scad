@@ -30,7 +30,8 @@ module Y_Carriage_Left_stl() {
     blockOffsetX = 0.5;
     //xMin = xPos(3);
     //endStopOffsetX = max(0, xMin - 68); // 12
-    endStopOffsetX = 0; // set this to zero and instead set software endstop offset (X_MIN_POS in Marlin) to -12
+    //endStopOffsetX = max(0, xMin - 75); // 5
+    endStopOffsetX = 5; // set this to zero and instead set software endstop offset (X_MIN_POS in Marlin) to -12
 
     stl("Y_Carriage_Left")
         color(pp2_colour)
@@ -55,7 +56,7 @@ module Y_Carriage_Left_AL_dxf() {
     chamfer = _xCarriageDescriptor == "MGN9C" || _xCarriageDescriptor == "MGN9H" ? 1 : 0;
     //xMin = xPos(3);
     //endStopOffsetX = max(0, xMin - 68); // 12
-    endStopOffsetX = 0; // set this to zero and instead set software endstop offset (X_MIN_POS in Marlin) to -12
+    endStopOffsetX = 5;
 
     dxf("Y_Carriage_Left_AL")
         color(silver)
