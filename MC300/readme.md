@@ -83,7 +83,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M3 caphead x  8mm |
 |   .  |   .  |  28  |   .  |   .  |   .  |   .  |   .  |   .  |   28  |  Bolt M3 caphead x 10mm |
 |   .  |   .  |   6  |   .  |   .  |   .  |   .  |   .  |   .  |    6  |  Bolt M3 caphead x 16mm |
-|   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 20mm |
+|   .  |   2  |   .  |   .  |   .  |   .  |   3  |   .  |   .  |    5  |  Bolt M3 caphead x 20mm |
 |   .  |   .  |   2  |   .  |   .  |   4  |   .  |   .  |   .  |    6  |  Bolt M3 caphead x 25mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 30mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |  24  |   24  |  Bolt M4 buttonhead x  8mm |
@@ -121,7 +121,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |  12  |  14  |   .  |   .  |   .  |   .  |  32  |   58  |  Nut M4 hammer |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   8  |   .  |    8  |  Nut M4 hammer - not shown |
 |   .  |   .  |  20  |   .  |   .  |   .  |   8  |  12  |   .  |   40  |  Nut M4 sliding T |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE tube 458 mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE tube 459 mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Pillar hex nylon F/F M3x14 |
 |   .  |   .  |   .  |   5  |   .  |   .  |   .  |   .  |   .  |    5  |  Pillar hex nylon F/F M3x20 |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |   .  |    8  |  Pulley GT2 idler 16 teeth |
@@ -141,7 +141,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer  M4 |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Ziptie 2.5mm x 100mm min length |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  filament sensor |
-|  19  |   8  | 218  |  50  |  12  |   9  |  40  |  64  |  97  |  517  | Total vitamins count |
+|  19  |   8  | 218  |  50  |  12  |   9  |  43  |  64  |  97  |  520  | Total vitamins count |
 |      |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   2  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  | Belt_Clamp.stl |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  | Belt_Tensioner.stl |
@@ -1097,6 +1097,7 @@ and move on to the next bolt, making several circuits of the frame to get all th
 
 |Qty|Description|
 |---:|:----------|
+|3| Bolt M3 caphead x 20mm|
 |4| Bolt M5 buttonhead x 12mm|
 |2| Extrusion E2020 x 260mm|
 |1| Extrusion E2040 x 188mm|
@@ -1282,7 +1283,7 @@ and move on to the next bolt, making several circuits of the frame to get all th
 |2| Bolt M4 buttonhead x 12mm|
 |1| IEC320 C14 switched fused inlet module|
 |2| Linear rod 12mm x 300mm|
-|1| PTFE tube 458 mm|
+|1| PTFE tube 459 mm|
 
 
 ### 3D Printed parts
