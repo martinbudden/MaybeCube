@@ -31,11 +31,11 @@ module Left_Side_test() {
     //Right_Side_assembly(); if(is_true(_useDualZRods))zRods(left=false);
     //Extruder_Bracket_assembly();
     //let($hide_extrusions=true)
-    //translate_z(bedHeight(t=3)) Printbed_assembly();
+    translate_z(bedHeight(t=3)) Printbed_assembly();
     //let($hide_corexy=true)
     //let($hide_extrusions=true)
     //Face_Top_assembly();
-    //fullPrinthead(MGN12H_carriage,t=3);
+    fullPrinthead(MGN12H_carriage,t=3);
 
     // always add the side panel last, so it is transparent to other items
     //Left_Side_Panel_assembly();

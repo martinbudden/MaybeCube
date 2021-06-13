@@ -29,7 +29,7 @@ include <../scad/Parameters_Main.scad>
 yCarriageType = MGN12H_carriage;
 xCarriageType = MGN12H_carriage;
 rail_type = MGN12;
-
+t = 5;
 
 module CoreXY_test() {
 
@@ -37,8 +37,8 @@ module CoreXY_test() {
 
     NEMA_width = _xyMotorDescriptor == "NEMA14" ? 35.2 : 42.3;
     coreXYSize = coreXYPosTR(NEMA_width) - coreXYPosBL();
-    CoreXYBelts(carriagePosition(), x_gap = 20, show_pulleys = [1, 0, 0]);
-    fullPrinthead(xCarriageType);
+    CoreXYBelts(carriagePosition(t), x_gap = 20, show_pulleys = [1, 0, 0]);
+    fullPrinthead(xCarriageType, t=t);
 
     for (x=[0, eX + eSize], y=[0, eY + eSize])
         translate([x, y, 250])
@@ -54,12 +54,14 @@ module CoreXY_test() {
 
     translate([1.5*eSize, eSize + _yRailLength/2, eZ - eSize])
         rotate([180, 0, 90])
-            rail_assembly(yCarriageType, _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
-    Y_Carriage_Left_assembly();
+            rail_assembly(yCarriageType, _yRailLength, carriagePosition(t).y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
+    translate([0, carriagePosition(t).y - carriagePosition().y, 0])
+        Y_Carriage_Left_assembly();
     translate([eSize/2+eX, eSize+_yRailLength/2, eZ - eSize])
         rotate([180, 0, 90])
-            rail_assembly(yCarriageType, _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
-    Y_Carriage_Right_assembly();
+            rail_assembly(yCarriageType, _yRailLength, carriagePosition(t).y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
+    translate([0, carriagePosition(t).y - carriagePosition().y, 0])
+        Y_Carriage_Right_assembly();
 
     //XY_Idler_Left_assembly();
     //XY_Idler_Right_assembly();
