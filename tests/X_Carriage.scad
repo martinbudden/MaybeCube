@@ -13,7 +13,7 @@ include <../scad/Parameters_Main.scad>
 //$explode = 1;
 //$pose = 1;
 module X_Carriage_test() {
-    //X_Carriage_MGN12H_stl();
+    //rotate([0, -90, 0]) X_Carriage_MGN12H_stl();
     X_Carriage_MGN12H_assembly();
     X_Carriage_Front_MGN12H_assembly();
     //Fan_Duct_stl();
