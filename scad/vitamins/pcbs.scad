@@ -39,3 +39,19 @@ RepRapSmartController = ["RepRapSmartController", "RepRap smart controller",
     ],
     []
 ];
+
+ADXL345  = [
+    "ADXL345 1", "ADXL345 ",
+    20, 15, 1, // size
+    0, // corner radius
+    3, // mounting hole diameter
+    0, // pad around mounting hole
+    "MediumBlue", // color
+    false, // true if parts should be separate BOM items
+    [ [2.5, -2.5], [-2.5, -2.5] ], // hole positions
+    [ // components
+        [ 10,  9,  0, "chip", 6,  4, 1.1,  grey(15) ],
+    ],
+    [], // accessories
+    [(20-2.54*7)/2, 2.54/2, 8, 1], // 8x1 line of holes
+];
