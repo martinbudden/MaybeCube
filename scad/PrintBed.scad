@@ -207,7 +207,7 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
         if (_printBed4PointSupport)
             foamUnderlay(size, holeOffset, 7);
         else
-            explode(30)
+            explode(-40)
                 corkUnderlay(size, boltHoles, underlayThickness);
 
         spring  = ["spring", 8, 0.9, 20, 10, 1, false, 0, "lightblue"];
@@ -288,7 +288,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
 
     translate([-_printBedArmSeparation/2, 0, -fSize/2]) {
         for (x = [-fSize/2, _printBedArmSeparation + fSize/2])
-            explode([0, 100, 0])
+            explode([0, 150, 0])
                 color(frameColor()) render(convexity=2) difference() {
                     translate([x - fSize/2, -yOffset, 0])
                         extrusionOY(size.y, fSize);
@@ -329,7 +329,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                     rotate(180)
                         printbedFrameCrossPiece();
         }
-    if (!_printBed4PointSupport) {
+    *if (!_printBed4PointSupport) {
         translate([-fSize/2, heatedBedOffset.y + _heatedBedSize.y/2, 27])
             boltM3Caphead(20);
         translate([fSize/2 + _printBedArmSeparation, - yOffset, 27]) {
@@ -362,6 +362,13 @@ assembly("Printbed_Frame", big=true, ngb=true) {
         }
     */
     }
+    explode([150, 0, 0])
+        Z_Carriage_Center_assembly();
+    if (is_true(_useDualZRods))
+        translate([0, yRight, 0])
+            rotate(180)
+                explode([150, 0, 0])
+                    Z_Carriage_Center_assembly();
 }
 
 
@@ -391,18 +398,9 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
                 rotate(180)
                     Z_Carriage_Left_assembly();
     }
-    Z_Carriage_Center_assembly();
-    if (is_true(_useDualZRods))
-        translate([0, yRight, 0])
-            rotate(180)
-                Z_Carriage_Center_assembly();
     *Printbed_Strain_Relief_assembly(); //!!TODO position this correctly
 }
 
-//!1. With the heatbed upside down, place the bolts through the heatbed and place the springs over the bolts.
-//!
-//!2. Thread the bolts through the frame and add the adjusting wheels, tightening them to mid position, to allow later adjustments.
-//
 module Printbed_assembly()  pose(a=[210, 0, 320])
 assembly("Printbed", big=true) {
 

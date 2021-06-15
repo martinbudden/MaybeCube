@@ -8,6 +8,7 @@ include <../Parameters_Main.scad>
 
 use <../vitamins/bolts.scad>
 use <../vitamins/iec320c14.scad>
+use <../vitamins/nuts.scad>
 
 
 function iecHousingSize() = [70, 50, 42 + 3];
@@ -55,17 +56,19 @@ module IEC_housing() {
     iecHousingSize = iecHousingSize();
     sidePanelSizeZ = 3;
 
-    translate([eX + 2*eSize - iecHousingSize.z, eY + eSize - iecHousingSize.x, 2*eSize])
-        rotate([90, 0, 90])
-            stl_colour(pp1_colour)
-                IEC_Housing_stl();
-    translate([eX + 2*eSize + sidePanelSizeZ + 2*eps, eY + eSize - iecHousingSize.x/2, 2*eSize + iecHousingSize.y/2])
-        rotate([0, 90, 0]) {
-            iec320c14FusedSwitched();
+    explode([-30, 0, 0])
+        translate([-iecHousingSize.z, -iecHousingSize().x, 0])
+            rotate([90, 0, 90])
+                stl_colour(pp1_colour)
+                    IEC_Housing_stl();
+    explode([40, 0, 0], true)
+        translate([sidePanelSizeZ + 2*eps, -iecHousingSize.x/2, iecHousingSize.y/2])
+            rotate([0, 90, 0]) {
+                iec320c14FusedSwitched();
                 iec_screw_positions(iecType())
                     translate_z(sidePanelSizeZ)
                         boltM4Buttonhead(12);
-        }
+            }
 }
 
 module IEC_Housing_Mount_stl() {
@@ -102,13 +105,31 @@ module IEC_Housing_Mount_stl() {
         }
 }
 
+module IEC_Housing_Mount_hardware() {
+    iecHousingSize = iecHousingSize();
+    size = [iecHousingSize.x + eSize, iecHousingSize.y + 2*eSize, 3];
+
+    translate([0, iecHousingSize.y - size.y,0]) {
+        // attachment holes
+        for (x = [eSize/2, size.x - 3*eSize/2])
+            translate([x, eSize/2, size.z])
+                boltM4ButtonheadTNut(_sideBoltLength);
+        for (y = [eSize, size.x - eSize/2])
+            translate([size.x - eSize/2, y, size.z])
+                boltM4ButtonheadTNut(_sideBoltLength, rotate=90);
+    }
+}
+
 module IEC_Housing_Mount_assembly()
 assembly("IEC_Housing_Mount", ngb=true) {
 
-    translate([eX + 2*eSize, eY + eSize - iecHousingSize().x, 2*eSize])
-        rotate([90, 0, 90])
+    translate([0, -iecHousingSize().x, 0])
+        rotate([90, 0, 90]) {
             stl_colour(pp2_colour)
                 IEC_Housing_Mount_stl();
+            IEC_Housing_Mount_hardware();
+        }
+    IEC_housing();
 }
 
 /*

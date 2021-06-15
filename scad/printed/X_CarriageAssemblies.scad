@@ -146,7 +146,7 @@ module X_Carriage_MGN12H_stl() {
 //!1. Bolt the belt clamps to the sides of the X_Carriage. Leave the clamps loose to allow later insertion of the belts.
 //!2. Bolt the fan onto the side of the X_Carriage, secure the fan wire with a ziptie.
 //!3. Ensure a good fit between the fan and the fan duct and bolt the fan duct to the X_Carriage.
-module X_Carriage_MGN12H_assembly()  pose(a=[55, 0, 25 + 290])
+module X_Carriage_MGN12H_assembly()
 assembly("X_Carriage_MGN12H", big=true, ngb=true) {
 
     xCarriageType = MGN12H_carriage;
@@ -162,9 +162,9 @@ assembly("X_Carriage_MGN12H", big=true, ngb=true) {
     grooveMountSize = grooveMountSize(blower_type, hotend_type);
 
     hotendOffset = hotendOffset(xCarriageType, hotend_type);
-    explode([-20, 0, 10], true)
+    explode([40, 0, 0], true)
         hotEndPartCoolingFan(xCarriageType, grooveMountSize, hotendOffset, blower_type, left=false);
-    explode([-20, 0, -10], true)
+    explode([40, 0, -10], true)
         hotEndHolderAlign(xCarriageType, hotendOffset, left=false)
             translate_z(hotendOffset.z)
                 blowerTranslate(xCarriageType, grooveMountSize, hotendOffset, blower_type, left=false)

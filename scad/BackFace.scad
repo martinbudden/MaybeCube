@@ -2,9 +2,10 @@ include <global_defs.scad>
 
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/pillar.scad>
-include <NopSCADlib/vitamins/psus.scad>
 include <NopSCADlib/vitamins/pcbs.scad>
+include <NopSCADlib/vitamins/psus.scad>
 use <NopSCADlib/vitamins/sheet.scad>
+use <NopSCADlib/vitamins/wire.scad>
 
 use <printed/extruderBracket.scad>
 use <printed/PSU.scad>
@@ -55,7 +56,7 @@ assembly("Back_Panel") {
 
     pcbAssembly(pcbType());
 
-    psuAsssembly(psuVertical);
+    psuAssembly(psuVertical);
 
     size = backPanelSize();
 
@@ -612,13 +613,21 @@ module printHeadWiring() {
         color(grey(20))
             bezierTube([eX/2 + eSize, eY + eSize - 5, eZ - 2*eSize], [carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(), tubeRadius=wireRadius);
 
+    translate([carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset())
+        for (z = [11, 21])
+            translate([0, -3.5, z])
+                rotate([0, 90, 90])
+                    cable_tie(cable_r = 3, thickness = 4.5);
+
     wiringGuidePosition()
-        stl_colour(pp2_colour)
-            translate_z(wireRadius)
+        translate_z(wireRadius) {
+            stl_colour(pp2_colour)
                 Wiring_Guide_Clamp_stl();
+            Wiring_Guide_Clamp_hardware();
+        }
 }
 
-module psuAsssembly(psuVertical, useMounts=false) {
+module psuAssembly(psuVertical, useMounts=false) {
     PSUPosition(psuVertical)
         explode(50)
             PSU();

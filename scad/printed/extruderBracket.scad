@@ -117,7 +117,7 @@ module Extruder_Bracket_hardware(corkDamperThickness, addM4Bolts=false) {
     if (addM4Bolts)
         extruderBoltPositions()
             translate_z(size.x)
-                boltM4ButtonheadHammerNut(8);
+                boltM4ButtonheadHammerNut(_sideBoltLength);
 
     translate(extruderPosition())
         rotate([90, 0, 90]) {
@@ -148,7 +148,7 @@ module Extruder_Bracket_hardware(corkDamperThickness, addM4Bolts=false) {
 module Extruder_Bracket_assembly() pose(a=[55, 0, 25 + 180])
 assembly("Extruder_Bracket", ngb=true) {
 
-    Extruder_Bracket_hardware(_corkDamperThickness);
+    Extruder_Bracket_hardware(_corkDamperThickness, addM4Bolts=true);
 
     rotate([0, -90, 0])
         stl_colour(pp1_colour)

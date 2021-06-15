@@ -198,11 +198,14 @@ module Z_Carriage_Center_hardware() {
     tabSize = [50, 5, eSize];
 
     vflip() {
-        translate_z(eSize/2 + baseThickness + eps) {
-            leadnut(leadnut);
-            leadnut_screw_positions(leadnut)
-                screw(leadnut_screw(leadnut), 8);
-        }
+        explode(25, true)
+            translate_z(eSize/2 + baseThickness + eps) {
+                brassColor = "#B5A642";
+                color(brassColor)
+                    leadnut(leadnut);
+                leadnut_screw_positions(leadnut)
+                    screw(leadnut_screw(leadnut), 8);
+            }
         for (x = [5, tabSize.x -5])
             translate([x - tabSize.x/2, tabSize.y - printBedFrameCrossPieceOffset(), 0]) {
                 rotate([-90, 0, 0])

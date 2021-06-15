@@ -124,7 +124,7 @@ staged_assembly("Stage_5", big=true, ngb=true) {
 
     Stage_4_assembly();
     Face_Top_assembly();
-
+    printHeadWiring();
 }
 
 //!Attach the print head to the x-carriage.
@@ -147,6 +147,7 @@ staged_assembly("Stage_6", big=true, ngb=true) {
     }*/
     stl_colour(pp1_colour)
         faceRightSpoolHolder();
+    BowdenTube();
     faceRightExtras();
 }
 
@@ -156,6 +157,6 @@ module FinalAssembly() {
         no_explode()
             Stage_6_assembly();
         faceRightSpool();
-        Left_Side_Panel_assembly();
+        leftSidePanelPC();
     }
 }

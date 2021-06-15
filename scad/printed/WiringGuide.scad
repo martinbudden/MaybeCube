@@ -4,6 +4,7 @@ include <NopSCADlib/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 
 use <../vitamins/bolts.scad>
+use <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>
 
@@ -38,6 +39,14 @@ module Wiring_Guide_stl() {
                 }
 }
 
+module Wiring_Guide_hardware() {
+    size = [40, eSize, 5];
+    fillet = 1.5;
+    for (x = [5 - size.x/2, size.x/2 - 5])
+        translate([x, size.y/2, size.z])
+            boltM3ButtonheadHammerNut(_frameBoltLength);
+}
+
 module Wiring_Guide_Clamp_stl() {
     size = [wiringDiameter + 2*sideThickness, eSize, 2.5];
     fillet = 1.5;
@@ -51,6 +60,13 @@ module Wiring_Guide_Clamp_stl() {
                         translate([x, size.y/2, 0])
                             boltHoleM3(size.z, twist=3);
                 }
+ }
+
+module Wiring_Guide_Clamp_hardware() {
+    size = [wiringDiameter + 2*sideThickness, eSize, 2.5];
+    for (x = [-size.x/2 + sideThickness/2, size.x/2 - sideThickness/2])
+        translate([x, size.y/2, size.z])
+            boltM3Buttonhead(8);
  }
 
 module wiringGuidePosition(offset=wiringDiameter) {

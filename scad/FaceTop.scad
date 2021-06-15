@@ -41,21 +41,18 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
     }
     faceTopFront();
     faceTopBack();
-    wiringGuidePosition(offset=0)
+    wiringGuidePosition(offset=0) {
         stl_colour(pp1_colour)
             Wiring_Guide_stl();
-    explode(50, true) {
-        Top_Corner_Piece_assembly();
-        translate([eX + 2*eSize, 0, 0])
-            rotate(90)
-                Top_Corner_Piece_assembly();
-        translate([0, eY + 2*eSize, 0])
-            rotate(270)
-                Top_Corner_Piece_assembly();
-        translate([eX + 2*eSize, eY + 2*eSize, 0])
-            rotate(180)
-                Top_Corner_Piece_assembly();
+            Wiring_Guide_hardware();
     }
+    topCornerPieceAssembly(90);
+    translate([eX + 2*eSize, 0, 0])
+        topCornerPieceAssembly(180);
+    translate([0, eY + 2*eSize, 0])
+        topCornerPieceAssembly(0);
+    translate([eX + 2*eSize, eY + 2*eSize, 0])
+        topCornerPieceAssembly(270);
 }
 
 module Face_Top_assembly()
@@ -65,15 +62,15 @@ assembly("Face_Top", big=true) {
     //hidden() Y_Carriage_Left_AL_dxf();
     //hidden() Y_Carriage_Right_AL_dxf();
 
-    explode(100, true)
-        translate_z(eZ) {
+    translate_z(eZ)
+        explode(100, true) {
             xRail();
             xRailBoltPositions()
                 explode(20, true)
                     boltM3Caphead(10);
         }
-    fullPrinthead(xCarriageType());
-    explode(200, true)
+    fullPrinthead(xCarriageType(), explode=100);
+    if (!exploded())
         CoreXYBelts(carriagePosition());
 }
 
@@ -126,24 +123,25 @@ module faceTopBack() {
     }
 }
 
-module Left_Side_Upper_Extrusion_assembly() pose(a = [180 + 55, 0, 25 + 90])
+module Left_Side_Upper_Extrusion_assembly() pose(a=[180 + 55, 0, 25 + 90])
 assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
 
     yCarriageType = yCarriageType();
     translate([0, eSize, eZ - eSize])
         extrusionOY2040HEndBolts(eY);
-    explode(-40, true)
-        translate([1.5*eSize, eSize + _yRailLength/2, eZ - eSize])
+    translate([1.5*eSize, eSize + _yRailLength/2, eZ - eSize])
+        explode(-40, true)
             rotate([180, 0, 90])
                 if (is_undef($hide_rails) || $hide_rails == false) {
                     rail_assembly(yCarriageType, _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
                     railBoltsAndNuts(carriage_rail(yCarriageType), _yRailLength, 5);
                 }
-    explode(-10, true)
-        Y_Carriage_Left_assembly();
+    translate_z(eZ - eSize)
+        explode(-80)
+            Y_Carriage_Left_assembly();
 }
 
-module Right_Side_Upper_Extrusion_assembly() pose(a = [180+55, 0, 25-90])
+module Right_Side_Upper_Extrusion_assembly() pose(a=[180 + 55, 0, 25 - 90])
 assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
 
     yCarriageType = yCarriageType();
@@ -157,8 +155,9 @@ assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
                     rail_assembly(yCarriageType(), _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
                     railBoltsAndNuts(carriage_rail(yCarriageType), _yRailLength, 5);
                 }
-    explode(-10, true)
-        Y_Carriage_Right_assembly();
+    translate([eX + 2*eSize, 0, eZ - eSize])
+        explode(-80, true)
+            Y_Carriage_Right_assembly();
 }
 
 topCornerPieceHoles = [ [eSize/2, 3*eSize/2], [eSize/2, 5*eSize/2], [3*eSize/2, eSize/2], [3*eSize/2, 3*eSize/2], [5*eSize/2, eSize/2] ];
@@ -188,21 +187,20 @@ module Top_Corner_Piece_stl() {
                 topCornerPiece();
 }
 
-module Top_Corner_Piece_hardware() {
+module Top_Corner_Piece_hardware(rotate=0) {
     vflip()
-        for (i = topCornerPieceHoles)
-            translate(i)
+        for (i = [0 : len(topCornerPieceHoles) - 1])
+            translate(topCornerPieceHoles[i])
                 vflip()
-                    boltM4CountersunkTNut(10);
+                    boltM4CountersunkTNut(10, rotate=(i < 2 ? 90 : i==3 ? (rotate == 0 || rotate==180 ? 90 : 0) : 0));
 }
 
-module Top_Corner_Piece_assembly()
-assembly("Top_Corner_Piece", ngb=true) {
-
+module topCornerPieceAssembly(rotate=0) {
     translate_z(eZ + 5)
-        rotate(90) {
-            stl_colour(pp1_colour)
-                Top_Corner_Piece_stl();
-            Top_Corner_Piece_hardware();
-        }
+        explode(50, true)
+            rotate(rotate) {
+                stl_colour(pp1_colour)
+                    Top_Corner_Piece_stl();
+                Top_Corner_Piece_hardware(rotate);
+            }
 }

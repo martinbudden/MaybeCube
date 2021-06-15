@@ -64,18 +64,19 @@ assembly("Printhead_MGN12H", big=true) {
     }
 }
 
-module fullPrinthead(xCarriageType, rotate=180, t=undef) {
+module fullPrinthead(xCarriageType, rotate=180, explode=0, t=undef) {
     xRailCarriagePosition(t)
-        rotate(rotate) {// for debug, to see belts better
-            explode([0, -20, 0], true) {
-                X_Carriage_Front_MGN12H_assembly();
-                xCarriageFrontAssemblyBolts(xCarriageType, _beltWidth);
+        explode(explode, true)
+            rotate(rotate) {// for debug, to see belts better
+                explode([0, -20, 0], true) {
+                    X_Carriage_Front_MGN12H_assembly();
+                    xCarriageFrontAssemblyBolts(xCarriageType, _beltWidth);
+                }
+                Printhead_MGN12H_assembly();
+                xCarriageTopBolts(xCarriageType);
+                if (!exploded())
+                    xCarriageBeltFragments(xCarriageType, coreXY_belt(coreXY_type()), beltOffsetZ(), coreXYSeparation().z, coreXY_upper_belt_colour(coreXY_type()), coreXY_lower_belt_colour(coreXY_type()));
             }
-            Printhead_MGN12H_assembly();
-            xCarriageTopBolts(xCarriageType);
-            if (!exploded())
-                xCarriageBeltFragments(xCarriageType, coreXY_belt(coreXY_type()), beltOffsetZ(), coreXYSeparation().z, coreXY_upper_belt_colour(coreXY_type()), coreXY_lower_belt_colour(coreXY_type()));
-        }
 }
 
 module hotEndHolderHardware(xCarriageType, hotend_type = 0) {

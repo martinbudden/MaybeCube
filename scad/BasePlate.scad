@@ -160,7 +160,7 @@ assembly("Base_Plate", big=true, ngb=true) {
 
     // rear extrusion
     translate([eSize, eY + eSize, 0])
-        explode(50)
+        explode(50, true)
             extrusionOX2040VEndBolts(eX);
     translate_z(-size.z)
         baseplateM4BoltPositions(size) {

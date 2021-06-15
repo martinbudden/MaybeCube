@@ -11,18 +11,13 @@ use <utils/Z_Rods.scad>
 use <vitamins/extrusion.scad>
 use <vitamins/SidePanels.scad>
 
+use <FaceRightExtras.scad>
 use <Parameters_CoreXY.scad>
 use <Parameters_Positions.scad>
 include <Parameters_Main.scad>
 
 
-//!1. On a flat surface, bolt the top, middle and lower extrusions into the left and right uprights as shown.
-//!
-//!2. Take time to ensure everything is square and then work your way around the bolts tightening them while ensuring
-//!the frame remains square. Don't tighten each bolt fully before moving on to the next, rather tighten each bolt a bit
-//!and move on to the next bolt, making several circuits of the frame to get all the bolts tight.
-//!
-//!3. Once the frame is square and tightened, align the motor mount and idler with the top extrusion and tighten them in place.
+//!On a flat surface, bolt the upper and lower extrusions into the left and right uprights as shown.
 //
 module Right_Side_assembly() pose(a=[55, 0, 25 - 90])
 assembly("Right_Side", big=true) {
@@ -40,6 +35,7 @@ assembly("Right_Side", big=true) {
 
     explode([0, -70, 0], true)
         faceRightIdlerUpright();
+    faceRightExtras();
     //Right_Side_Panel_assembly();
 }
 

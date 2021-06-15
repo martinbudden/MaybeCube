@@ -38,23 +38,21 @@ module faceRightSpool() {
                     spool(spool, 46, "deepskyblue", 1.75);
 }
 
-module faceRightExtras() {
-    IEC_housing();
-    IEC_Housing_Mount_assembly();
-
- 
-    // add the extruder, place it in the middle of the top right edge
-    //startPos = [eX+2*eSize, eSize+eY/2, eZ] + Extruder_Bracket_assembly_bowdenOffset();
-    //startPos = [eX + 2*eSize, eY-50, eZ-95] + Extruder_Bracket_assembly_bowdenOffset();
-
+module BowdenTube() {
     explode([0, 200, 0])
         color("white")
             bezierTube(extruderPosition() + Extruder_Bracket_assembly_bowdenOffset(),
                 [carriagePosition().x, carriagePosition().y, eZ] + printheadBowdenOffset(),
                 tubeRadius=2,
                 ptfeTube=true);
+}
 
-    explode([25, 75, 0])
+module faceRightExtras() {
+    translate([eX + 2*eSize, eY + eSize, 2*eSize])
+        explode([50, 75, 0])
+            IEC_Housing_Mount_assembly();
+
+    explode([50, 75, 0])
         Extruder_Bracket_assembly();
 }
 

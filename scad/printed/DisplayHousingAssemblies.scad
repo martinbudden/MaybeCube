@@ -76,14 +76,13 @@ assembly("Display_Housing_TFT35_E3", big=true) {
     display_type = BTT_TFT35_E3_V3_0();
 
     translate([eX/2 + eSize + displayHousingSize(display_type).x/2, -displayBracketBackThickness, displayHousingOffsetZ]) {
-        displayHousingLocate(displayHousingSize(display_type), displayAngle) {
-            //stl_colour(pp2_colour)
-                //Display_Housing_TFT35_E3_stl();
-            Display_Cover_TFT35_E3_assembly();
-            displayHousingBoltPositions(display_type)
-                vflip()
-                    boltM3Caphead(useCounterbore() ? 25 : 30);
-        }
+        displayHousingLocate(displayHousingSize(display_type), displayAngle)
+            explode(-50, true) {
+                Display_Cover_TFT35_E3_assembly();
+                displayHousingBoltPositions(display_type)
+                    vflip()
+                        boltM3Caphead(useCounterbore() ? 25 : 30);
+            }
         rotate([90, 0, 0])
             translate_z(-eps)
                 stl_colour(pp1_colour)
