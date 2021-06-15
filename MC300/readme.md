@@ -23,13 +23,11 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 
 1. [Parts list](#Parts_list)
 
-1. [Left_Side_Panel assembly](#Left_Side_Panel_assembly)
 1. [Extruder_Bracket assembly](#Extruder_Bracket_assembly)
 1. [IEC_Housing_Mount assembly](#IEC_Housing_Mount_assembly)
 1. [X_Carriage_MGN12H assembly](#X_Carriage_MGN12H_assembly)
 1. [Printhead_MGN12H assembly](#Printhead_MGN12H_assembly)
 1. [X_Carriage_Front_MGN12H assembly](#X_Carriage_Front_MGN12H_assembly)
-1. [Top_Corner_Piece assembly](#Top_Corner_Piece_assembly)
 1. [XY_Motor_Mount_Right assembly](#XY_Motor_Mount_Right_assembly)
 1. [XY_Idler_Right assembly](#XY_Idler_Right_assembly)
 1. [XY_Motor_Mount_Left assembly](#XY_Motor_Mount_Left_assembly)
@@ -45,9 +43,9 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 1. [Display_Cover_TFT35_E3 assembly](#Display_Cover_TFT35_E3_assembly)
 1. [Display_Housing_TFT35_E3 assembly](#Display_Housing_TFT35_E3_assembly)
 1. [Base_Plate assembly](#Base_Plate_assembly)
-1. [Z_Carriage_Center assembly](#Z_Carriage_Center_assembly)
 1. [Z_Carriage_Right assembly](#Z_Carriage_Right_assembly)
 1. [Z_Carriage_Left assembly](#Z_Carriage_Left_assembly)
+1. [Z_Carriage_Center assembly](#Z_Carriage_Center_assembly)
 1. [Printbed_Frame assembly](#Printbed_Frame_assembly)
 1. [Printbed_Frame_with_Z_Carriages assembly](#Printbed_Frame_with_Z_Carriages_assembly)
 1. [Printbed assembly](#Printbed_assembly)
@@ -73,29 +71,28 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  BigTreeTech SKR E3 Turbo |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  BigTreeTech TFT35 E3 v3.0 |
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Bolt M3 buttonhead x  8mm |
-|   4  |   6  |   2  |   5  |   .  |   .  |   .  |   .  |   .  |   17  |  Bolt M3 buttonhead x 10mm |
+|   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |   4  |    6  |  Bolt M3 buttonhead x  8mm |
+|   4  |   6  |   4  |   5  |   .  |   .  |   .  |   .  |   .  |   19  |  Bolt M3 buttonhead x 10mm |
 |   2  |   .  |  14  |   .  |   .  |   .  |   .  |   4  |   .  |   20  |  Bolt M3 buttonhead x 12mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Bolt M3 buttonhead x 16mm |
+|   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |   2  |    4  |  Bolt M3 buttonhead x 16mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |   .  |    8  |  Bolt M3 buttonhead x 20mm |
 |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 25mm |
 |   .  |   .  |   .  |   5  |   .  |   4  |   .  |   .  |   .  |    9  |  Bolt M3 caphead x  6mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M3 caphead x  8mm |
 |   .  |   .  |  28  |   .  |   .  |   .  |   .  |   .  |   .  |   28  |  Bolt M3 caphead x 10mm |
 |   .  |   .  |   6  |   .  |   .  |   .  |   .  |   .  |   .  |    6  |  Bolt M3 caphead x 16mm |
-|   .  |   2  |   .  |   .  |   .  |   .  |   3  |   .  |   .  |    5  |  Bolt M3 caphead x 20mm |
+|   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 20mm |
 |   .  |   .  |   2  |   .  |   .  |   4  |   .  |   .  |   .  |    6  |  Bolt M3 caphead x 25mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 30mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |  24  |   24  |  Bolt M4 buttonhead x  8mm |
+|   .  |   .  |   .  |   .  |   8  |   .  |   .  |   .  |  32  |   40  |  Bolt M4 buttonhead x  8mm |
 |   .  |   .  |  14  |   .  |   .  |   .  |   8  |   2  |   8  |   32  |  Bolt M4 buttonhead x 10mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   8  |   .  |    8  |  Bolt M4 buttonhead x 10mm - not shown |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   2  |    4  |  Bolt M4 buttonhead x 12mm |
+|   .  |   .  |   .  |   .  |   2  |   .  |   .  |   2  |   2  |    6  |  Bolt M4 buttonhead x 12mm |
 |   .  |   .  |   .  |  18  |   .  |   .  |   .  |   .  |   .  |   18  |  Bolt M4 countersunk x  8mm |
 |   .  |   .  |  20  |   .  |   .  |   .  |   .  |   8  |   .  |   28  |  Bolt M4 countersunk x 10mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M5 buttonhead x 10mm |
 |   .  |   .  |  10  |   .  |   8  |   .  |   4  |   8  |  12  |   42  |  Bolt M5 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   8  |   .  |   .  |    8  |  Bolt M5 countersunk x 12mm |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   1  |   1  |    4  |  Cork damper NEMA 17 |
+|   .  |   .  |   2  |   .  |   1  |   .  |   .  |   1  |   1  |    5  |  Cork damper NEMA 17 |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  |  Cork underlay 214mm x 214mm |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  E3D V6 Fan Duct |
 |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  Extrusion E2020 x 260mm |
@@ -107,7 +104,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Fan 30mm x 10mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  |  Heated Bed 214mm x 214mm |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Hot end E3D V6 direct 1.75mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  IEC320 C14 switched fused inlet module |
+|   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   1  |    2  |  IEC320 C14 switched fused inlet module |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  LED Switching Power Supply 24V 15A 360W |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  |  Leadscrew 8mm x 280mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  |  Leadscrew nut 8 x 2 |
@@ -116,13 +113,12 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   3  |   .  |   .  |   .  |   .  |   .  |   .  |    3  |  Linear rail carriage MGN12H |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Linear rod 12mm x 300mm |
 |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  M3 self tapping screw x 16mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  MK10 Dual Pulley Extruder |
-|   .  |   .  |  16  |   .  |   .  |   .  |   .  |   .  |   .  |   16  |  Nut M3 hammer |
-|   .  |   .  |  12  |  14  |   .  |   .  |   .  |   .  |  32  |   58  |  Nut M4 hammer |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   8  |   .  |    8  |  Nut M4 hammer - not shown |
-|   .  |   .  |  20  |   .  |   .  |   .  |   8  |  12  |   .  |   40  |  Nut M4 sliding T |
+|   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   1  |    2  |  MK10 Dual Pulley Extruder |
+|   .  |   .  |  18  |   .  |   .  |   .  |   .  |   .  |   .  |   18  |  Nut M3 hammer |
+|   .  |   .  |  12  |  14  |   4  |   .  |   .  |   .  |  36  |   66  |  Nut M4 hammer |
+|   .  |   .  |  20  |   .  |   4  |   .  |   8  |  12  |   4  |   48  |  Nut M4 sliding T |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE tube 459 mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Pillar hex nylon F/F M3x14 |
+|   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |   2  |    4  |  Pillar hex nylon F/F M3x14 |
 |   .  |   .  |   .  |   5  |   .  |   .  |   .  |   .  |   .  |    5  |  Pillar hex nylon F/F M3x20 |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |   .  |    8  |  Pulley GT2 idler 16 teeth |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Pulley GT2 idler smooth 9.63mm |
@@ -133,38 +129,37 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Square radial fan 3010 |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Stepper motor NEMA17 x 40mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  |  Stepper motor NEMA17 x 40mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Stepper motor NEMA17 x 47mm |
+|   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   1  |    2  |  Stepper motor NEMA17 x 47mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Stepper motor cable, 1050mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  |  Stepper motor cable, 750mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Stepper motor cable, 900mm |
+|   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   1  |    2  |  Stepper motor cable, 900mm |
 |   .  |   .  |  26  |   .  |   .  |   .  |   .  |   .  |   .  |   26  |  Washer  M3 |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer  M4 |
-|   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Ziptie 2.5mm x 100mm min length |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  filament sensor |
-|  19  |   8  | 218  |  50  |  12  |   9  |  43  |  64  |  97  |  520  | Total vitamins count |
+|   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    3  |  Ziptie 2.5mm x 100mm min length |
+|   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   1  |    2  |  filament sensor |
+|  19  |   8  | 222  |  50  |  42  |   9  |  40  |  48  | 117  |  555  | Total vitamins count |
 |      |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   2  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  | Belt_Clamp.stl |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  | Belt_Tensioner.stl |
 |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Belt_Tidy.stl |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | Display_Housing_Bracket_TFT35_E3.stl |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | Display_Housing_TFT35_E3.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Extruder_Bracket.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Extrusion_Drill_Jig_120_2.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Extrusion_Drill_Jig_120_4.stl |
+|   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   1  |    2  | Extruder_Bracket.stl |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Fan_Duct.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  | Foot_LShaped_12mm.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Front_Cover.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Front_Display_Wiring_Cover.stl |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Hotend_Clamp.stl |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Hotend_Strain_Relief_Clamp.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | IEC_Housing.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | IEC_Housing_Mount.stl |
+|   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   1  |    2  | IEC_Housing.stl |
+|   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   1  |    2  | IEC_Housing_Mount.stl |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | PCB_Mount.stl |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | PSU_Left_Mount.stl |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | PSU_Upper_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder.stl |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |   .  |    4  | Top_Corner_Piece.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Wiring_Guide.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Wiring_Guide_Clamp.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Left.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Right.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Left.stl |
@@ -183,7 +178,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_MountGuide_19mm.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |    2  | Z_RodMountGuide_50mm.stl |
-|   6  |   6  |  15  |   3  |   .  |   2  |   3  |   6  |  10  |   51  | Total 3D printed parts count |
+|   6  |   6  |  15  |   3  |   3  |   2  |   3  |   4  |  11  |   53  | Total 3D printed parts count |
 |      |      |      |      |      |      |      |      |      |       | **CNC routed parts** |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Back_Panel.dxf |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | BaseAL.dxf |
@@ -194,58 +189,29 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 [Top](#TOP)
 
 ---
-<a name="Left_Side_Panel_assembly"></a>
-
-## Left_Side_Panel assembly
-
-### Vitamins
-
-|Qty|Description|
-|---:|:----------|
-|16| Bolt M4 buttonhead x  8mm|
-|16| Nut M4 hammer|
-|1| Sheet polycarbonate 340mm x 400mm x 3mm|
-
-
-### CNC Routed parts
-
-| 1 x Left_Side_Panel.dxf |
-|---|
-| ![Left_Side_Panel.dxf](dxfs/Left_Side_Panel.png) 
-
-
-
-### Assembly instructions
-
-![Left_Side_Panel_assembly](assemblies/Left_Side_Panel_assembly.png)
-
-![Left_Side_Panel_assembled](assemblies/Left_Side_Panel_assembled.png)
-
-<span></span>
-[Top](#TOP)
-
----
 <a name="Extruder_Bracket_assembly"></a>
 
-## Extruder_Bracket assembly
+## 2 x Extruder_Bracket assembly
 
 ### Vitamins
 
 |Qty|Description|
 |---:|:----------|
-|2| Bolt M3 buttonhead x  8mm|
-|2| Bolt M3 buttonhead x 16mm|
-|1| Cork damper NEMA 17|
-|1| MK10 Dual Pulley Extruder|
-|2| Pillar hex nylon F/F M3x14|
-|1| Stepper motor NEMA17 x 47mm|
-|1| Stepper motor cable, 900mm|
-|1| filament sensor|
+|4| Bolt M3 buttonhead x  8mm|
+|4| Bolt M3 buttonhead x 16mm|
+|8| Bolt M4 buttonhead x  8mm|
+|2| Cork damper NEMA 17|
+|2| MK10 Dual Pulley Extruder|
+|8| Nut M4 hammer|
+|4| Pillar hex nylon F/F M3x14|
+|2| Stepper motor NEMA17 x 47mm|
+|2| Stepper motor cable, 900mm|
+|2| filament sensor|
 
 
 ### 3D Printed parts
 
-| 1 x Extruder_Bracket.stl |
+| 2 x Extruder_Bracket.stl |
 |---|
 | ![Extruder_Bracket.stl](stls/Extruder_Bracket.png) 
 
@@ -263,13 +229,23 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 ---
 <a name="IEC_Housing_Mount_assembly"></a>
 
-## IEC_Housing_Mount assembly
+## 2 x IEC_Housing_Mount assembly
+
+### Vitamins
+
+|Qty|Description|
+|---:|:----------|
+|8| Bolt M4 buttonhead x  8mm|
+|4| Bolt M4 buttonhead x 12mm|
+|2| IEC320 C14 switched fused inlet module|
+|8| Nut M4 sliding T|
+
 
 ### 3D Printed parts
 
-| 1 x IEC_Housing_Mount.stl |
-|---|
-| ![IEC_Housing_Mount.stl](stls/IEC_Housing_Mount.png) 
+| 2 x IEC_Housing.stl | 2 x IEC_Housing_Mount.stl |
+|---|---|
+| ![IEC_Housing.stl](stls/IEC_Housing.png) | ![IEC_Housing_Mount.stl](stls/IEC_Housing_Mount.png) 
 
 
 
@@ -398,36 +374,6 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 2. Insert the Belt_tensioners into the X_Carriage_Front, and use the 20mm bolts to secure them in place.
 
 ![X_Carriage_Front_MGN12H_assembled](assemblies/X_Carriage_Front_MGN12H_assembled.png)
-
-<span></span>
-[Top](#TOP)
-
----
-<a name="Top_Corner_Piece_assembly"></a>
-
-## 4 x Top_Corner_Piece assembly
-
-### Vitamins
-
-|Qty|Description|
-|---:|:----------|
-|20| Bolt M4 countersunk x 10mm|
-|20| Nut M4 sliding T|
-
-
-### 3D Printed parts
-
-| 4 x Top_Corner_Piece.stl |
-|---|
-| ![Top_Corner_Piece.stl](stls/Top_Corner_Piece.png) 
-
-
-
-### Assembly instructions
-
-![Top_Corner_Piece_assembly](assemblies/Top_Corner_Piece_assembly_tn.png)
-
-![Top_Corner_Piece_assembled](assemblies/Top_Corner_Piece_assembled_tn.png)
 
 <span></span>
 [Top](#TOP)
@@ -723,35 +669,34 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 
 |Qty|Description|
 |---:|:----------|
+|2| Bolt M3 buttonhead x 10mm|
+|20| Bolt M4 countersunk x 10mm|
 |4| Bolt M5 buttonhead x 10mm|
 |2| Bolt M5 buttonhead x 12mm|
 |1| Extrusion E2020 x 300mm|
 |1| Extrusion E2040 x 300mm|
+|2| Nut M3 hammer|
+|20| Nut M4 sliding T|
 
 
 ### 3D Printed parts
 
-| 1 x Wiring_Guide.stl |
-|---|
-| ![Wiring_Guide.stl](stls/Wiring_Guide.png) 
+| 4 x Top_Corner_Piece.stl | 1 x Wiring_Guide.stl |
+|---|---|
+| ![Top_Corner_Piece.stl](stls/Top_Corner_Piece.png) | ![Wiring_Guide.stl](stls/Wiring_Guide.png) 
 
 
 
 ### Sub-assemblies
 
-| 1 x Left_Side_Upper_Extrusion_assembly | 1 x Right_Side_Upper_Extrusion_assembly | 4 x Top_Corner_Piece_assembly |
+| 1 x Left_Side_Upper_Extrusion_assembly | 1 x Right_Side_Upper_Extrusion_assembly | 1 x XY_Idler_Left_assembly |
 |---|---|---|
-| ![Left_Side_Upper_Extrusion_assembled](assemblies/Left_Side_Upper_Extrusion_assembled_tn.png) | ![Right_Side_Upper_Extrusion_assembled](assemblies/Right_Side_Upper_Extrusion_assembled_tn.png) | ![Top_Corner_Piece_assembled](assemblies/Top_Corner_Piece_assembled_tn.png) 
+| ![Left_Side_Upper_Extrusion_assembled](assemblies/Left_Side_Upper_Extrusion_assembled_tn.png) | ![Right_Side_Upper_Extrusion_assembled](assemblies/Right_Side_Upper_Extrusion_assembled_tn.png) | ![XY_Idler_Left_assembled](assemblies/XY_Idler_Left_assembled_tn.png) 
 
 
-| 1 x XY_Idler_Left_assembly | 1 x XY_Idler_Right_assembly | 1 x XY_Motor_Mount_Left_assembly |
+| 1 x XY_Idler_Right_assembly | 1 x XY_Motor_Mount_Left_assembly | 1 x XY_Motor_Mount_Right_assembly |
 |---|---|---|
-| ![XY_Idler_Left_assembled](assemblies/XY_Idler_Left_assembled_tn.png) | ![XY_Idler_Right_assembled](assemblies/XY_Idler_Right_assembled_tn.png) | ![XY_Motor_Mount_Left_assembled](assemblies/XY_Motor_Mount_Left_assembled_tn.png) 
-
-
-| 1 x XY_Motor_Mount_Right_assembly |
-|---|
-| ![XY_Motor_Mount_Right_assembled](assemblies/XY_Motor_Mount_Right_assembled_tn.png) 
+| ![XY_Idler_Right_assembled](assemblies/XY_Idler_Right_assembled_tn.png) | ![XY_Motor_Mount_Left_assembled](assemblies/XY_Motor_Mount_Left_assembled_tn.png) | ![XY_Motor_Mount_Right_assembled](assemblies/XY_Motor_Mount_Right_assembled_tn.png) 
 
 
 
@@ -857,17 +802,19 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |2| Extrusion E2040 x 300mm|
 
 
+### Sub-assemblies
+
+| 1 x Extruder_Bracket_assembly | 1 x IEC_Housing_Mount_assembly |
+|---|---|
+| ![Extruder_Bracket_assembled](assemblies/Extruder_Bracket_assembled_tn.png) | ![IEC_Housing_Mount_assembled](assemblies/IEC_Housing_Mount_assembled_tn.png) 
+
+
+
 ### Assembly instructions
 
 ![Right_Side_assembly](assemblies/Right_Side_assembly.png)
 
-1. On a flat surface, bolt the top, middle and lower extrusions into the left and right uprights as shown.
-
-2. Take time to ensure everything is square and then work your way around the bolts tightening them while ensuring
-the frame remains square. Don't tighten each bolt fully before moving on to the next, rather tighten each bolt a bit
-and move on to the next bolt, making several circuits of the frame to get all the bolts tight.
-
-3. Once the frame is square and tightened, align the motor mount and idler with the top extrusion and tighten them in place.
+On a flat surface, bolt the upper and lower extrusions into the left and right uprights as shown.
 
 ![Right_Side_assembled](assemblies/Right_Side_assembled.png)
 
@@ -993,38 +940,6 @@ and move on to the next bolt, making several circuits of the frame to get all th
 [Top](#TOP)
 
 ---
-<a name="Z_Carriage_Center_assembly"></a>
-
-## Z_Carriage_Center assembly
-
-### Vitamins
-
-|Qty|Description|
-|---:|:----------|
-|4| Bolt M3 caphead x  8mm|
-|4| Bolt M4 buttonhead x 10mm|
-|1| Leadscrew nut 8 x 2|
-|4| Nut M4 sliding T|
-
-
-### 3D Printed parts
-
-| 1 x Z_Carriage_Center.stl |
-|---|
-| ![Z_Carriage_Center.stl](stls/Z_Carriage_Center.png) 
-
-
-
-### Assembly instructions
-
-![Z_Carriage_Center_assembly](assemblies/Z_Carriage_Center_assembly_tn.png)
-
-![Z_Carriage_Center_assembled](assemblies/Z_Carriage_Center_assembled_tn.png)
-
-<span></span>
-[Top](#TOP)
-
----
 <a name="Z_Carriage_Right_assembly"></a>
 
 ## Z_Carriage_Right assembly
@@ -1089,6 +1004,38 @@ and move on to the next bolt, making several circuits of the frame to get all th
 [Top](#TOP)
 
 ---
+<a name="Z_Carriage_Center_assembly"></a>
+
+## Z_Carriage_Center assembly
+
+### Vitamins
+
+|Qty|Description|
+|---:|:----------|
+|4| Bolt M3 caphead x  8mm|
+|4| Bolt M4 buttonhead x 10mm|
+|1| Leadscrew nut 8 x 2|
+|4| Nut M4 sliding T|
+
+
+### 3D Printed parts
+
+| 1 x Z_Carriage_Center.stl |
+|---|
+| ![Z_Carriage_Center.stl](stls/Z_Carriage_Center.png) 
+
+
+
+### Assembly instructions
+
+![Z_Carriage_Center_assembly](assemblies/Z_Carriage_Center_assembly_tn.png)
+
+![Z_Carriage_Center_assembled](assemblies/Z_Carriage_Center_assembled_tn.png)
+
+<span></span>
+[Top](#TOP)
+
+---
 <a name="Printbed_Frame_assembly"></a>
 
 ## Printbed_Frame assembly
@@ -1097,10 +1044,17 @@ and move on to the next bolt, making several circuits of the frame to get all th
 
 |Qty|Description|
 |---:|:----------|
-|3| Bolt M3 caphead x 20mm|
 |4| Bolt M5 buttonhead x 12mm|
 |2| Extrusion E2020 x 260mm|
 |1| Extrusion E2040 x 188mm|
+
+
+### Sub-assemblies
+
+| 1 x Z_Carriage_Center_assembly |
+|---|
+| ![Z_Carriage_Center_assembled](assemblies/Z_Carriage_Center_assembled_tn.png) 
+
 
 
 ### Assembly instructions
@@ -1119,14 +1073,9 @@ and move on to the next bolt, making several circuits of the frame to get all th
 
 ### Sub-assemblies
 
-| 1 x Printbed_Frame_assembly | 1 x Z_Carriage_Center_assembly | 1 x Z_Carriage_Left_assembly |
+| 1 x Printbed_Frame_assembly | 1 x Z_Carriage_Left_assembly | 1 x Z_Carriage_Right_assembly |
 |---|---|---|
-| ![Printbed_Frame_assembled](assemblies/Printbed_Frame_assembled_tn.png) | ![Z_Carriage_Center_assembled](assemblies/Z_Carriage_Center_assembled_tn.png) | ![Z_Carriage_Left_assembled](assemblies/Z_Carriage_Left_assembled_tn.png) 
-
-
-| 1 x Z_Carriage_Right_assembly |
-|---|
-| ![Z_Carriage_Right_assembled](assemblies/Z_Carriage_Right_assembled_tn.png) 
+| ![Printbed_Frame_assembled](assemblies/Printbed_Frame_assembled_tn.png) | ![Z_Carriage_Left_assembled](assemblies/Z_Carriage_Left_assembled_tn.png) | ![Z_Carriage_Right_assembled](assemblies/Z_Carriage_Right_assembled_tn.png) 
 
 
 
@@ -1167,10 +1116,6 @@ and move on to the next bolt, making several circuits of the frame to get all th
 ### Assembly instructions
 
 ![Printbed_assembly](assemblies/Printbed_assembly.png)
-
-1. With the heatbed upside down, place the bolts through the heatbed and place the springs over the bolts.
-
-2. Thread the bolts through the frame and add the adjusting wheels, tightening them to mid position, to allow later adjustments.
 
 ![Printbed_assembled](assemblies/Printbed_assembled.png)
 
@@ -1222,26 +1167,19 @@ and move on to the next bolt, making several circuits of the frame to get all th
 
 |Qty|Description|
 |---:|:----------|
-|8| Bolt M4 buttonhead x 10mm - not shown|
 |8| Bolt M4 countersunk x 10mm|
 |8| Bolt M5 buttonhead x 12mm|
 |2| Extrusion E2020 x 400mm|
 |2| Extrusion E2040 x 300mm|
-|8| Nut M4 hammer - not shown|
 |8| Nut M4 sliding T|
 |4| SK12 shaft support bracket|
 
 
 ### 3D Printed parts
 
-| 1 x Extrusion_Drill_Jig_120_2.stl | 1 x Extrusion_Drill_Jig_120_4.stl | 1 x Z_Motor_MountGuide_19mm.stl |
-|---|---|---|
-| ![Extrusion_Drill_Jig_120_2.stl](stls/Extrusion_Drill_Jig_120_2.png) | ![Extrusion_Drill_Jig_120_4.stl](stls/Extrusion_Drill_Jig_120_4.png) | ![Z_Motor_MountGuide_19mm.stl](stls/Z_Motor_MountGuide_19mm.png) 
-
-
-| 2 x Z_RodMountGuide_50mm.stl |
-|---|
-| ![Z_RodMountGuide_50mm.stl](stls/Z_RodMountGuide_50mm.png) 
+| 1 x Z_Motor_MountGuide_19mm.stl | 2 x Z_RodMountGuide_50mm.stl |
+|---|---|
+| ![Z_Motor_MountGuide_19mm.stl](stls/Z_Motor_MountGuide_19mm.png) | ![Z_RodMountGuide_50mm.stl](stls/Z_RodMountGuide_50mm.png) 
 
 
 
@@ -1280,17 +1218,28 @@ and move on to the next bolt, making several circuits of the frame to get all th
 
 |Qty|Description|
 |---:|:----------|
-|2| Bolt M4 buttonhead x 12mm|
-|1| IEC320 C14 switched fused inlet module|
+|2| Bolt M3 buttonhead x  8mm|
+|16| Bolt M4 buttonhead x  8mm|
 |2| Linear rod 12mm x 300mm|
+|16| Nut M4 hammer|
 |1| PTFE tube 459 mm|
+|1| Sheet polycarbonate 340mm x 400mm x 3mm|
+|2| Ziptie 2.5mm x 100mm min length|
 
 
 ### 3D Printed parts
 
-| 1 x IEC_Housing.stl | 1 x Spool_Holder.stl |
+| 1 x Spool_Holder.stl | 1 x Wiring_Guide_Clamp.stl |
 |---|---|
-| ![IEC_Housing.stl](stls/IEC_Housing.png) | ![Spool_Holder.stl](stls/Spool_Holder.png) 
+| ![Spool_Holder.stl](stls/Spool_Holder.png) | ![Wiring_Guide_Clamp.stl](stls/Wiring_Guide_Clamp.png) 
+
+
+
+### CNC Routed parts
+
+| 1 x Left_Side_Panel.dxf |
+|---|
+| ![Left_Side_Panel.dxf](dxfs/Left_Side_Panel.png) 
 
 
 
@@ -1301,14 +1250,14 @@ and move on to the next bolt, making several circuits of the frame to get all th
 | ![Back_Panel_assembled](assemblies/Back_Panel_assembled_tn.png) | ![Base_Plate_assembled](assemblies/Base_Plate_assembled_tn.png) | ![Extruder_Bracket_assembled](assemblies/Extruder_Bracket_assembled_tn.png) 
 
 
-| 1 x Face_Top_assembly | 1 x IEC_Housing_Mount_assembly | 1 x Left_Side_Panel_assembly |
+| 1 x Face_Top_assembly | 1 x IEC_Housing_Mount_assembly | 1 x Left_Side_assembly |
 |---|---|---|
-| ![Face_Top_assembled](assemblies/Face_Top_assembled_tn.png) | ![IEC_Housing_Mount_assembled](assemblies/IEC_Housing_Mount_assembled_tn.png) | ![Left_Side_Panel_assembled](assemblies/Left_Side_Panel_assembled_tn.png) 
+| ![Face_Top_assembled](assemblies/Face_Top_assembled_tn.png) | ![IEC_Housing_Mount_assembled](assemblies/IEC_Housing_Mount_assembled_tn.png) | ![Left_Side_assembled](assemblies/Left_Side_assembled_tn.png) 
 
 
-| 1 x Left_Side_assembly | 1 x Printbed_assembly | 1 x Right_Side_assembly |
-|---|---|---|
-| ![Left_Side_assembled](assemblies/Left_Side_assembled_tn.png) | ![Printbed_assembled](assemblies/Printbed_assembled_tn.png) | ![Right_Side_assembled](assemblies/Right_Side_assembled_tn.png) 
+| 1 x Printbed_assembly | 1 x Right_Side_assembly |
+|---|---|
+| ![Printbed_assembled](assemblies/Printbed_assembled_tn.png) | ![Right_Side_assembled](assemblies/Right_Side_assembled_tn.png) 
 
 
 
