@@ -105,7 +105,7 @@ module zMountsLower(zMotorLength) {
         explode([20, -20, 0])
             translate([eSize, sk_size(SK_type).x/2, 3*eSize/2])
                 rotate([0, 90, 0])
-                    Z_Motor_MountGuide((zRodSeparation() - Z_Motor_MountSize(zMotorLength).x - sk_size(SK_type).x)/2);
+                    zMotorMountGuide((zRodSeparation() - Z_Motor_MountSize(zMotorLength).x - sk_size(SK_type).x)/2);
     }
 }
 

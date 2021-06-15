@@ -8,26 +8,26 @@ use <extrusionChannels.scad>
 _useAsserts = is_undef(_useAsserts) ? false : _useAsserts;
 
 module Z_RodMountGuide_40mm_stl() {
-    stl("Z_RodMountGuide_40mm")
-        color(pp2_colour)
+    color(pp2_colour)
+        stl("Z_RodMountGuide_40mm")
             E2020Cover(40);
 }
 
 module Z_RodMountGuide_50mm_stl() {
-    stl("Z_RodMountGuide_50mm")
-        color(pp2_colour)
+    color(pp2_colour)
+        stl("Z_RodMountGuide_50mm")
             E2020Cover(50);
 }
 
 module Z_RodMountGuide_70mm_stl() {
-    stl("Z_RodMountGuide_70mm")
-        color(pp2_colour)
+    color(pp2_colour)
+        stl("Z_RodMountGuide_70mm")
             E2020Cover(70);
 }
 
 module Z_RodMountGuide_100mm_stl() {
-    stl("Z_RodMountGuide_100mm")
-        color(pp2_colour)
+    color(pp2_colour)
+        stl("Z_RodMountGuide_100mm")
             E2020Cover(100);
 }
 
@@ -55,31 +55,31 @@ module zRodMountGuide(length) {
 }
 
 module Z_Motor_MountGuide_19mm_stl() {
-    stl("Z_Motor_MountGuide_19mm")
-        color(pp2_colour)
+    color(pp2_colour)
+        stl("Z_Motor_MountGuide_19mm")
             E2020Cover(19);
 }
 
 module Z_Motor_MountGuide_25mm_stl() {
-    stl("Z_Motor_MountGuide_25mm")
-        color(pp2_colour)
+    color(pp2_colour)
+        stl("Z_Motor_MountGuide_25mm")
             E2020Cover(25);
 }
 
 module Z_Motor_MountGuide_55mm_stl() {
-    stl("Z_Motor_MountGuide_55mm")
-        color(pp2_colour)
+    color(pp2_colour)
+        stl("Z_Motor_MountGuide_55mm")
             E2020Cover(55);
 }
 
 module Z_Motor_MountGuide_92p5mm_stl() {
     // for MC400
-    stl("Z_Motor_MountGuide_92p5mm")
-        color(pp2_colour)
+    color(pp2_colour)
+        stl("Z_Motor_MountGuide_92p5mm")
             E2020Cover(92.5);
 }
 
-module Z_Motor_MountGuide(length) {
+module zMotorMountGuide(length) {
     size = E2020CoverSizeFn(length);
     translate_z(size.y)
         rotate([-90, 0, 0]) {
