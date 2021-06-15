@@ -15,11 +15,11 @@ The dimensions of the main MC350 cuboid are 390mm by 390mm by 400mm, and the enc
 The MaybeCube is still in development and these build instructions are incomplete. They are posted to allow prospective builders a
 chance to look at the design and decide if they might want to build it in future. If you are an experienced constructor of 3D printers then there is probably sufficient information for you to fill in the gaps and construct the printer.
 
-The "standard" size is the MC350 variant. I have built the MC300 variant for two reasons: to test sizing - if the components fit in the MC300 variant, then they will fit in larger variants; and because had a quantity of 300mm extrusion and the right size heated bed from an earlier project.
+The "standard" size is the MC350 variant. I have built the MC300 variant for two reasons: to test sizing (if the components fit in the MC300 variant, then they will fit in larger variants); and because had a quantity of 300mm extrusion and the right size heated bed from an earlier project.
 
 The assembly instructions and the BOM (parts list) for the MC350 variant will be made available when they are ready.
 
-The assembly instructions and the BOM for the MC300 variant are [here](MC300/readme.md). The STL files are [here](MC300/stls).
+The assembly instructions and the BOM for the MC300 variant are [here](MC300/readme.md). The STL files are [here](MC300/stls). These are still a work in progress and are provided to allow familiarisation with the design prior to assembly.
 
 I plan to make a series of YouTube videos giving build instructions, when I have done so I will post a link here. I won't start these, however, until I have completed the BabyCube build videos and completed the build instructions of the MaybeCube.
 
@@ -67,23 +67,25 @@ The canonical form is the MC350 variant.
  variant | ExtrusionSizes | Rail/rod lengths | Approx Build Volume | Bed Size   | Exterior Dimensions
  --------| -------------- | ---------------- | ------------------- | ---------- | -------------------
  MC250   | x250 y250 z350 | x200 y250 z250   | concept variant     | 180mm      | 290 x 290 x 350
- MC300   | x300 y300 z400 | x250 y300 z300   | 180 x 185 x 200     | 214mm      | 340 x 340 x 400
- MC350   | x350 y350 y400 | x300 y350 z300   | 230 x 235 x 200     | 235mm      | 390 x 390 x 400
- MC400   | x400 y400 y450 | x350 y400 z350   | 280 x 285 x 250     | 310mm      | 440 x 440 x 450
+ MC300   | x300 y300 z400 | x250 y300 z300   | 180 x 180 x 200     | 214mm      | 340 x 340 x 400
+ MC350   | x350 y350 y400 | x300 y350 z300   | 230 x 230 x 200     | 235mm      | 390 x 390 x 400
+ MC400   | x400 y400 y450 | x350 y400 z350   | 280 x 280 x 250     | 310mm      | 440 x 440 x 450
 
- For reference, the original HyperCube has extrusion sizes of x340 y303 z350 to give a build volume of 200 x 200 x 155.
+ For reference, the original [HyperCube](https://www.thingiverse.com/thing:1752766) has extrusion sizes of x340 y303 z350 to give a build volume of 200 x 200 x 155.
 
 ## Frame stiffness
 
 The MaybeCube is a cuboid with 6 rectangular faces. Rectangles have no inherent rigidity and are subject to shearing. The rigidity of a rectangle is provided solely by the strength of its joints, and these often do not provide sufficient rigidity.
-A small movement at a joint is magnified into a much larger movement at the end an extrusion 400mm away.
+A small movement at a joint is magnified into a much larger movement at the end of a 400mm extrusion.
 There are three main ways to increase the rigidity of rectangles:
 
 1. triangulation, where the a diagonal piece divides the rectangle into two triangles, this is exemplified in [truss bridges](https://en.wikipedia.org/wiki/Truss_bridge)
 2. using a shear plate, this is exemplified in the [sheer boards](https://en.wikipedia.org/wiki/Shear_wall) used to stiffen wooden framed buildings
 3. reinforcing the joints.
 
-The MaybeCube uses 2040 extrusions, these have twice the contact area at the joints and provide significantly more rigidity than joints between 2020 extrusion. Additionally the MaybeCube uses shear plates on the bottom, left and back faces to stiffen the frame.
+The MaybeCube uses 2040 extrusions, these have twice the contact area at the joints and provide significantly more joint rigidity than 2020 extrusions. Additionally the MaybeCube uses shear plates on the bottom, back, left and (optionally) right faces to stiffen the frame.
+
+The front face of the MaybeCube is the most subject to shearing, since it needs to be open to allow access to the printbed. Two measures are taken to counteract this: 2080 rather than 2040 extrusion is used at the bottom of the face, and the idler mounts at the top are extended to provide some triangulation and reinforcement of the upper joints.
 
 ## Customisations
 
