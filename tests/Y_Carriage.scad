@@ -21,11 +21,11 @@ rail_type = MGN12;
 //$explode = 1;
 //$pose = 1;
 module Y_Carriage_test0() {
-    translate_z(-eZ + eSize) {
+    translate_z(-eZ + eSize)
         CoreXYBelts(carriagePosition(), x_gap = 20, show_pulleys = [1,0,0]);
-        Y_Carriage_Left_assembly();
+    Y_Carriage_Left_assembly();
+    translate([eX + 2*eSize, 0, 0])
         Y_Carriage_Right_assembly();
-    }
 }
 
 module Y_Carriage_test1() {
@@ -41,5 +41,6 @@ module Y_Carriage_test1() {
         Y_Carriage_Right_assembly();
 }
 
+//Y_Carriage_Left_assembly();
 if ($preview)
     Y_Carriage_test0();

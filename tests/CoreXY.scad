@@ -55,12 +55,12 @@ module CoreXY_test() {
     translate([1.5*eSize, eSize + _yRailLength/2, eZ - eSize])
         rotate([180, 0, 90])
             rail_assembly(yCarriageType, _yRailLength, carriagePosition(t).y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
-    translate([0, carriagePosition(t).y - carriagePosition().y, 0])
+    translate([0, carriagePosition(t).y - carriagePosition().y, eZ - eSize])
         Y_Carriage_Left_assembly();
-    translate([eSize/2+eX, eSize+_yRailLength/2, eZ - eSize])
+    translate([eSize/2 + eX, eSize+_yRailLength/2, eZ - eSize])
         rotate([180, 0, 90])
             rail_assembly(yCarriageType, _yRailLength, carriagePosition(t).y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
-    translate([0, carriagePosition(t).y - carriagePosition().y, 0])
+    translate([eX + 2*eSize, carriagePosition(t).y - carriagePosition().y, eZ - eSize])
         Y_Carriage_Right_assembly();
 
     //XY_Idler_Left_assembly();

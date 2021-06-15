@@ -29,18 +29,18 @@ module Right_Side_test() {
     //faceRightSpoolHolder();
     //faceRightSpool();
     //zRods(left=false);
-    Extruder_Bracket_assembly();
+    //Extruder_Bracket_assembly();
     //IEC_housing();
     //IEC_Housing_stl();
     //IEC_Housing_Mount_stl();
-    IEC_Housing_Mount_assembly();
+    //IEC_Housing_Mount_assembly();
 
     //faceRightExtras();
     //Extruder_Bracket_stl();
     //faceRightSpool();
 
     // always add the side panel last, so it is transparent to other items
-    Right_Side_Panel_assembly();
+    //Right_Side_Panel_assembly();
 }
 
 if ($preview)

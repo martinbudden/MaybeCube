@@ -18,6 +18,7 @@ display_type = BTT_TFT35_E3_V3_0();
 //$pose = 1;
 module Display_Housing_test() {
     Display_Housing_TFT35_E3_assembly();
+    //Display_Cover_TFT35_E3_assembly();
     //displayHousing(display_type);
     //displayHousingBase(display_type, testLayer=0);
     //displayHousingSides(display_type);
