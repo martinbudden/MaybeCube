@@ -76,14 +76,15 @@ module leftSidePanelPC(addBolts=true) {
     size = sidePanelSize();
 
     translate([-size.z/2, size.x/2, size.y/2])
-        rotate([90, 0, -90]) {
-            render_2D_sheet(PC3, w=size.x, d=size.y)
-                Left_Side_Panel_dxf();
-            if (addBolts)
-                sidePanelBoltHolePositions(size)
-                    translate_z(size.z/2)
-                        boltM4ButtonheadHammerNut(_sideBoltLength);
-        }
+        explode([-30, 0, 0], true)
+            rotate([90, 0, -90]) {
+                render_2D_sheet(PC3, w=size.x, d=size.y)
+                    Left_Side_Panel_dxf();
+                if (addBolts)
+                    sidePanelBoltHolePositions(size)
+                        translate_z(size.z/2)
+                            boltM4ButtonheadHammerNut(_sideBoltLength, nutExplode=10);
+            }
 }
 
 module Left_Side_Panel_assembly()
