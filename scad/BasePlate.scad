@@ -148,14 +148,18 @@ assembly("Base_Plate", big=true, ngb=true) {
         translate([eSize, 0, 0]) {
             extrusionOX2080VEndBolts(eX);
             translate_z(4*eSize + 2*eps)
-                explode(25)
+                explode(25, true) {
                     stl_colour(pp1_colour)
                         Front_Cover_stl();
+                    Front_Cover_hardware();
+                }
             translate([eX/2, 2*eps, 4*eSize + 2*eps])
-                explode(25)
-                    vflip()
+                explode(25, true)
+                    vflip() {
                         stl_colour(pp2_colour)
                             Front_Display_Wiring_Cover_stl();
+                        Front_Display_Wiring_Cover_hardware();
+                    }
         }
 
     // rear extrusion
@@ -205,7 +209,7 @@ assembly("Base_Plate", big=true, ngb=true) {
 module Standoff_6mm_stl() {
     stl("Standoff_6mm");
 
-    h = PSUstandoffHeight();
+    h = PSUStandoffHeight();
     color(pp1_colour)
         tube(or=6/2, ir = M3_clearance_radius, h=h, center = false);
 }

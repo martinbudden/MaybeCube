@@ -3,10 +3,11 @@ include <../global_defs.scad>
 include <NopSCADlib/core.scad>
 include <NopSCADlib/utils/fillet.scad>
 
-use <../vitamins/bolts.scad>
 use <../vitamins/displays.scad>
-use <../../../BabyCube/scad/printed/DisplayHousing.scad>
+use <../vitamins/bolts.scad>
+use <../vitamins/nuts.scad>
 
+use <../../../BabyCube/scad/printed/DisplayHousing.scad>
 use <DisplayHousingAssemblies.scad>
 
 include <../Parameters_Main.scad>
@@ -33,6 +34,17 @@ module Front_Cover_stl() {
                             vflip()
                                 boltHoleM3(size.z);
             }
+}
+
+module Front_Cover_hardware() {
+    size = [eX/2, eSize + lip, height];
+
+    for (x = [20, size.x - 20])
+        translate([x, eSize/2, size.z])
+            if (countersunk)
+                boltM3CountersunkHammerNut(12);
+            else
+                boltM3ButtonheadHammerNut(12);
 }
 
 module Front_Display_Wiring_Cover_stl() {
@@ -88,4 +100,15 @@ module Front_Display_Wiring_Cover_stl() {
                                 vflip()
                                     boltHoleM3(size1.z);
                 }
+}
+
+module Front_Display_Wiring_Cover_hardware() {
+
+    for (x = [20, eX/2 - 20])
+        translate([x, -eSize/2, -height])
+            vflip()
+                if (countersunk)
+                    boltM3CountersunkHammerNut(12);
+                else
+                    boltM3ButtonheadHammerNut(12);
 }
