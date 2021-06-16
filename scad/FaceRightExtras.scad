@@ -35,7 +35,7 @@ module faceRightSpool() {
         translate([0.1 + spool_width(spool)/2 + spool_rim_thickness(spool), 0, -spool_hub_bore(spool)/2])
             rotate([0, 90, 0])
                 not_on_bom()
-                    spool(spool, 46, "deepskyblue", 1.75);
+                    spool(spool, 46, "DeepSkyBlue", 1.75);
 }
 
 module BowdenTube() {
@@ -70,7 +70,7 @@ _spoolType = spool_200x60;
 //_spoolType = spool_300x88;
 module spoolWithFilament(showFilamentStrand=true) {
     size = spoolSize();
-    filamentColor = "deepskyblue";
+    filamentColor = "DeepSkyBlue";
     filamentDiameter = 1.75;
     translate([size.x/2, size.y/2, size.z/2])
         spool(_spoolType, 46, filamentColor, filamentDiameter);
