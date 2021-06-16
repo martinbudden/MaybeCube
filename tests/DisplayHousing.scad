@@ -28,8 +28,10 @@ module Display_Housing_test() {
         display_aperture(display_type, clearance=0, clear_pcb=false);
     *displayHousingLocate(displayHousingSize(display_type), angle=60)
         Display_Housing_TFT35_E3_stl();
-    *rotate([90, 0, 0])
+    *rotate([90, 0, 0]) {
         Display_Housing_Bracket_TFT35_E3_stl();
+        Display_Housing_Bracket_TFT35_E3_hardware();
+    }
     *displayHousingBracket(display_type, displayBracketBackThickness=10, angle=60, enclosed=true);
 }
 
