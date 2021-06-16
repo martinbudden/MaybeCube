@@ -46,7 +46,7 @@ ADXL345  = [
     0, // corner radius
     3, // mounting hole diameter
     0, // pad around mounting hole
-    "MediumBlue", // color
+    "#2140BE", // color
     false, // true if parts should be separate BOM items
     [ [2.5, -2.5], [-2.5, -2.5] ], // hole positions
     [ // components
