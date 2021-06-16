@@ -6,7 +6,7 @@ include <NopSCADlib/vitamins/bearing_blocks.scad>
 include <NopSCADlib/vitamins/pcb.scad>
 include <NopSCADlib/vitamins/sk_brackets.scad>
 use <NopSCADlib/utils/fillet.scad>
-
+use <NopSCADlib/vitamins/o_ring.scad>
 
 use <printed/Z_Carriage.scad>
 
@@ -21,6 +21,7 @@ use <vitamins/nuts.scad>
 
 include <Parameters_Main.scad>
 
+
 function is_true(x) = !is_undef(x) && x == true;
 
 springDiameter = 8;
@@ -33,7 +34,7 @@ skHoleOffsetFromTop = sk_size(SK_type).y - sk_hole_offset(SK_type);
 
 heatedBedOffset = _printBed4PointSupport
     ? [0, 20, _printBedExtrusionSize/2 + springLength - 8]
-    : [0, skHoleOffsetFromTop + 8, _printBedExtrusionSize/2];
+    : [0, skHoleOffsetFromTop + 8, _printBedExtrusionSize/2 + 5.5];
 
 
 _heatedBedSize = _printBedSize == 100 ? [100, 100, 1.6] : // Openbuilds mini heated bed size
@@ -103,16 +104,16 @@ extrusion_inner_corner_bracket_hole_offset = 15;
 
 
 module foamUnderlay(size, holeOffset, foamThickness) {
-    dsize = [size.x - 5, holeOffset*2 + 5, foamThickness];
+    dSize = [size.x - 5, holeOffset*2 + 5, foamThickness];
     color(grey(20))
         hull()
             translate([size.x/2, size.y/2, -foamThickness]) {
                 rotate(45)
-                    translate([-dsize.x/2, -dsize.y/2, 0])
-                        rounded_cube_xy(dsize, 1);
+                    translate([-dSize.x/2, -dSize.y/2, 0])
+                        rounded_cube_xy(dSize, 1);
                 rotate(-45)
-                    translate([-dsize.x/2, -dsize.y/2, 0])
-                        rounded_cube_xy(dsize, 1);
+                    translate([-dSize.x/2, -dSize.y/2, 0])
+                        rounded_cube_xy(dSize, 1);
             }
 }
 
@@ -231,6 +232,44 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
             }
         }
     }
+}
+module heatedBedHardware(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayThickness=0) {
+    vitamin(str("heatedBed(", size, ", ", holeOffset, ", ", underlayThickness, "): Heated Bed ", size.x, "mm x ", size.y, "mm"));
+
+    boltHoles = _printBed4PointSupport
+        ? [ [holeOffset, holeOffset, 0], [size.x - holeOffset, holeOffset, 0], [size.x - holeOffset, size.y - holeOffset, 0], [holeOffset, size.y - holeOffset, 0] ]
+        : [ [holeOffset, size.y/2, 0], [size.x - holeOffset, size.y - holeOffset, 0], [size.x - holeOffset, holeOffset, 0] ];
+
+    module oRing() {
+        thickness = 2;
+        translate_z(thickness/2)
+            color("firebrick")
+                O_ring(3, thickness);
+        if($children)
+            translate_z(thickness)
+                children();
+    }
+
+    translate([-_heatedBedSize.y/2, 0, underlayThickness + size.z])
+        for (i = boltHoles)
+            translate(i) {
+                translate_z(-washer_thickness(M3_washer))
+                    boltM3Caphead(20);
+                washer(M3_washer);
+                translate_z(-size.z)//-washer_thickness(M4_penny_washer))
+                    vflip()
+                        washer(M4_penny_washer)
+                            oRing()
+                                washer(M3_washer)
+                                    oRing()
+                                        washer(M3_washer)
+                                            oRing()
+                                                washer(M4_penny_washer)
+                                                    translate_z(2)
+                                                        rotate(90)
+                                                            nutM3SlidingT();
+
+           }
 }
 
 module printbedFrameCrossPiece() {
@@ -409,8 +448,11 @@ assembly("Printbed", big=true) {
             Printbed_Frame_with_Z_Carriages_assembly();
             // add the heated bed
             explode(120, true)
-                translate(heatedBedOffset)
+                translate(heatedBedOffset) {
                     not_on_reduced_bom() heatedBed(_heatedBedSize, _heatedBedHoleOffset, 3);
+                    if (!_printBed4PointSupport)
+                        heatedBedHardware(_heatedBedSize, _heatedBedHoleOffset, 3);
+                }
         }
 }
 
