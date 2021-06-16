@@ -132,35 +132,18 @@ module baseplateM4CornerBoltPositions(size) {
 function basePlateHeight() = _basePlateThickness + 12;
 
 
-module Base_Plate_assembly()
-assembly("Base_Plate", big=true, ngb=true) {
+module Base_Plate_Stage_1_assembly()
+assembly("Base_Plate_Stage_1", big=true, ngb=true) {
     size = basePlateSize;
 
     BaseAL();
     //hidden() Base_stl();
     //hidden() Base_template_stl();
 
-    //controlPanelPosition()
-    //    controlPanel();
-    Display_Housing_TFT35_E3_assembly();
     // front extrusion
-    explode(50, true)
-        translate([eSize, 0, 0]) {
+    translate([eSize, 0, 0])
+        explode(50, true)
             extrusionOX2080VEndBolts(eX);
-            translate_z(4*eSize + 2*eps)
-                explode(25, true) {
-                    stl_colour(pp1_colour)
-                        Front_Cover_stl();
-                    Front_Cover_hardware();
-                }
-            translate([eX/2, 2*eps, 4*eSize + 2*eps])
-                explode(25, true)
-                    vflip() {
-                        stl_colour(pp2_colour)
-                            Front_Display_Wiring_Cover_stl();
-                        Front_Display_Wiring_Cover_hardware();
-                    }
-        }
 
     // rear extrusion
     translate([eSize, eY + eSize, 0])
@@ -203,6 +186,31 @@ assembly("Base_Plate", big=true, ngb=true) {
             stl_colour(pp1_colour)
                 Foot_LShaped_12mm_stl();
 
+}
+
+module Base_Plate_assembly()
+assembly("Base_Plate", big=true, ngb=true) {
+
+    Base_Plate_Stage_1_assembly();
+
+    explode([0, -50, 0], true)
+        displayHousingTFT35E3Assembly();
+
+    translate([eSize, 0, 0]) {
+        translate_z(4*eSize + 2*eps)
+            explode(75, true) {
+                stl_colour(pp1_colour)
+                    Front_Cover_stl();
+                Front_Cover_hardware();
+            }
+        translate([eX/2, 2*eps, 4*eSize + 2*eps])
+            explode(75, true)
+                vflip() {
+                    stl_colour(pp2_colour)
+                        Front_Display_Wiring_Cover_stl();
+                    Front_Display_Wiring_Cover_hardware();
+                }
+    }
 }
 
 /*
