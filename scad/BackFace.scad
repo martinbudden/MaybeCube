@@ -45,7 +45,7 @@ module Back_Panel_dxf() {
         color(sheet_colour(sheet))
             difference() {
                 sheet_2D(sheet, size.x, size.y, fillet);
-                backPanelCutouts(PSUtype(), pcbType(), cncSides=0);
+                backPanelCutouts(PSUType(), pcbType(), cncSides=0);
             }
 }
 
@@ -128,25 +128,25 @@ module backPanelBoltHolePositions(size) {
                 children();
 }
 
-module backPanelCutouts(PSUtype, pcbType, cncSides = undef, radius = undef) {
+module backPanelCutouts(psuType, pcbType, cncSides = undef, radius = undef) {
     size = backPanelSize();
 
     translate([-size.x/2, -size.y/2]) {
         if (eX == 300)
-            translate([psuOffset(PSUtype).x, psuOffset(PSUtype).z])
+            translate([psuOffset(psuType).x, psuOffset(psuType).z])
                 rotate(-90)
                     PSUBoltPositions()
                         poly_circle(r = is_undef(radius) ? M4_clearance_radius : radius, sides=cncSides);
         else
-            translate([eSize + psu_length(PSUtype)/2, 2*eSize + 3 + psu_width(PSUtype)/2])
+            translate([eSize + psu_length(psuType)/2, 2*eSize + 3 + psu_width(psuType)/2])
                 PSUBoltPositions()
                     poly_circle(r = is_undef(radius) ? M4_clearance_radius : radius, sides=cncSides);
                 /*mirror([0, 1, 0])
                     rotate(180) {
-                        psu_shroud_hole_positions(PSUtype)
+                        psu_shroud_hole_positions(psuType)
                             circle(r = M3_clearance_radius);
                         cutoutWidth = 1.5;
-                        psu_shroud_cable_positions(PSUtype, psuShroudCableDiameter())
+                        psu_shroud_cable_positions(psuType, psuShroudCableDiameter())
                             for (y = [-psuShroudCableDiameter()/2 - cutoutWidth/2, psuShroudCableDiameter()/2 + cutoutWidth/2])
                                 translate([0, y])
                                     rounded_square([4, cutoutWidth], 0.25, center=true);
@@ -196,7 +196,7 @@ module psuLowerMount(size, counterSunk, offsetX=0) {
                                 poly_circle(r = M4_clearance_radius);
                         } else {
                             translate([backPanelSize().x/2, backPanelSize().y/2])
-                                backPanelCutouts(PSUtype(), pcbType());
+                                backPanelCutouts(PSUType(), pcbType());
                             translate([eSize/2, size.y - eSize/2])
                                 poly_circle(r = M4_clearance_radius);
                         }
@@ -229,7 +229,7 @@ module psuLowerMount(size, counterSunk, offsetX=0) {
 module PSU_Lower_Mount_stl() {
     coverThickness = 3;
 
-    size = [eSize + 2*coverThickness + psu_width(PSUtype()), 95, 3];
+    size = [eSize + 2*coverThickness + psu_width(PSUType()), 95, 3];
     counterSunk = true;
     stl("PSU_Left_Mount")
         color(pp2_colour)
@@ -257,7 +257,7 @@ module PSU_Lower_Mount_stl() {
                                         poly_circle(r = M4_clearance_radius);
                                 } else {
                                     translate([backPanelSize().x/2, backPanelSize().y/2])
-                                        backPanelCutouts(PSUtype(), pcbType());
+                                        backPanelCutouts(PSUType(), pcbType());
                                     translate([eSize/2, size.y - eSize/2])
                                         poly_circle(r = M4_clearance_radius);
                                 }
@@ -267,7 +267,7 @@ module PSU_Lower_Mount_stl() {
                                 boltPolyholeM4Countersunk(size.z);
                             translate([eSize/2, size.y - 8])
                                 boltPolyholeM4Countersunk(size.z);
-                            translate([psuOffset(PSUtype()).x, psuOffset(PSUtype()).z])
+                            translate([psuOffset(PSUType()).x, psuOffset(PSUType()).z])
                                 rotate(-90)
                                     PSUBoltPositions()
                                         boltPolyholeM4Countersunk(size.z);
@@ -332,7 +332,7 @@ assembly("PSU_Right_Mount", ngb=true) {
 module PSU_Upper_Mount_stl() {
     size = [115, 30, 3];
     fillet = 3;
-    offsetY = psuOffset(PSUtype()).z + 75;
+    offsetY = psuOffset(PSUType()).z + 75;
     counterSunk = true;
 
     stl("PSU_Upper_Mount")
@@ -350,7 +350,7 @@ module PSU_Upper_Mount_stl() {
                                             translate([eSize/2, y])
                                                 poly_circle(r = M4_clearance_radius);
                                     translate([backPanelSize().x/2, backPanelSize().y/2])
-                                        backPanelCutouts(PSUtype(), pcbType());
+                                        backPanelCutouts(PSUType(), pcbType());
                                 }
                             }
                         if (counterSunk) {
@@ -358,7 +358,7 @@ module PSU_Upper_Mount_stl() {
                                 for (y = [6, size.y - 6])
                                     translate([eSize/2, y])
                                         boltPolyholeM4Countersunk(size.z);
-                            translate([psuOffset(PSUtype()).x, psuOffset(PSUtype()).z])
+                            translate([psuOffset(PSUType()).x, psuOffset(PSUType()).z])
                                 rotate(-90)
                                     PSUBoltPositions()
                                         boltPolyholeM4Countersunk(size.z);
@@ -379,7 +379,7 @@ assembly("PSU_Upper_Mount", ngb=true) {
 module PSU_Hole_Jig_stl() {
     size = [115, 20, 1];
     fillet = 3;
-    offsetY = psuOffset(PSUtype()).z;
+    offsetY = psuOffset(PSUType()).z;
     counterSunk = true;
 
     stl("PSU_Hole_Jig")
@@ -396,7 +396,7 @@ module PSU_Hole_Jig_stl() {
                                 rounded_square([size.x, size.y], fillet, center=false);
                         }
                         translate([backPanelSize().x/2, backPanelSize().y/2])
-                            backPanelCutouts(PSUtype(), pcbType(), radius=1);
+                            backPanelCutouts(PSUType(), pcbType(), radius=1);
                     }
 }
 
@@ -429,7 +429,7 @@ module PCB_Mount_stl() {
                                         translate([eX + 3*eSize/2, y + offsetY -size.y/2])
                                             poly_circle(r = M4_clearance_radius);
                                     translate([backPanelSize().x/2, backPanelSize().y/2])
-                                        backPanelCutouts(PSUtype(), pcbType());
+                                        backPanelCutouts(PSUType(), pcbType());
                                 }
                         }
                     if (countersunk) {
@@ -481,7 +481,7 @@ module PCB_Hole_Jig_stl() {
                                     translate([eX + 3*eSize/2, y + offsetY -size.y/2])
                                         poly_circle(r = M4_clearance_radius);
                                 translate([backPanelSize().x/2, backPanelSize().y/2])
-                                    backPanelCutouts(PSUtype(), pcbType(), radius=1);
+                                    backPanelCutouts(PSUType(), pcbType(), radius=1);
                         }
                 }
             }
@@ -521,10 +521,10 @@ module PSU_Right_Mount_stl() {
                             PSUBoltPositions()
                                 boltHoleM4(size.z);
                             rotate(180) {
-                                psu_shroud_hole_positions(PSUtype)
+                                psu_shroud_hole_positions(psuType)
                                     boltHoleM3(size.z);
                                 cutoutWidth = 1.5;
-                                psu_shroud_cable_positions(PSUtype, psuShroudCableD)
+                                psu_shroud_cable_positions(psuType, psuShroudCableD)
                                     for (y = [-psuShroudCableD/2 - cutoutWidth/2, psuShroudCableD/2 + cutoutWidth/2])
                                         translate([0, y, -eps])
                                             rounded_cube_xy([4, cutoutWidth, size.z + 2*eps], 0.25, xy_center=true);
