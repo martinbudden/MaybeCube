@@ -39,6 +39,7 @@ module Left_Side_test() {
 
     // always add the side panel last, so it is transparent to other items
     //Left_Side_Panel_assembly();
+    leftSidePanelPC();
 }
 
 if ($preview)

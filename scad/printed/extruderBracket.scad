@@ -107,7 +107,7 @@ M3x12_nylon_hex_pillar = ["M3x12_nylon_hex_pillar", "hex nylon", 3, 12, 6/cos(30
 M3x14_nylon_hex_pillar = ["M3x14_nylon_hex_pillar", "hex nylon", 3, 14, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -7, -7+eps];
 
 module Extruder_Bracket_hardware(corkDamperThickness, addM4Bolts=false) {
-    stepper_motor_cable(eZ + eY + 200); // extruder motor
+    stepper_motor_cable(200); // extruder motor
 
     size = extruderBracketSize();
 

@@ -44,7 +44,8 @@ module BowdenTube() {
             bezierTube(extruderPosition() + Extruder_Bracket_assembly_bowdenOffset(),
                 [carriagePosition().x, carriagePosition().y, eZ] + printheadBowdenOffset(),
                 tubeRadius=2,
-                ptfeTube=true);
+                bowdenTube=true,
+                length = eX + eY - 100);
 }
 
 module faceRightExtras() {

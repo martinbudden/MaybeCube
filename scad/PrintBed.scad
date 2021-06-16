@@ -234,8 +234,6 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
     }
 }
 module heatedBedHardware(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayThickness=0) {
-    vitamin(str("heatedBed(", size, ", ", holeOffset, ", ", underlayThickness, "): Heated Bed ", size.x, "mm x ", size.y, "mm"));
-
     boltHoles = _printBed4PointSupport
         ? [ [holeOffset, holeOffset, 0], [size.x - holeOffset, holeOffset, 0], [size.x - holeOffset, size.y - holeOffset, 0], [holeOffset, size.y - holeOffset, 0] ]
         : [ [holeOffset, size.y/2, 0], [size.x - holeOffset, size.y - holeOffset, 0], [size.x - holeOffset, holeOffset, 0] ];
@@ -243,7 +241,7 @@ module heatedBedHardware(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, u
     module oRing() {
         thickness = 2;
         translate_z(thickness/2)
-            color("firebrick")
+            color("FireBrick")
                 O_ring(3, thickness);
         if($children)
             translate_z(thickness)
@@ -256,7 +254,7 @@ module heatedBedHardware(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, u
                 translate_z(-washer_thickness(M3_washer))
                     boltM3Caphead(20);
                 washer(M3_washer);
-                translate_z(-size.z)//-washer_thickness(M4_penny_washer))
+                translate_z(-size.z)
                     vflip()
                         washer(M4_penny_washer)
                             oRing()

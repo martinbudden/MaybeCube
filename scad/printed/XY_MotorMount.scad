@@ -433,7 +433,7 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, sideSupportSizeY=s
     separation = coreXYSeparation();
     coreXY_type = coreXY_type();
 
-    stepper_motor_cable(eZ - 100 + eX + eY/2 + 300);
+    stepper_motor_cable(left ? 500 : 300);
     translate([left ? coreXYPosBL.x + separation.x/2 : coreXYPosTR.x - separation.x/2, coreXYPosTR.y + offset.y, eZ - eSize - (left ? bracketHeightLeft : bracketHeightRight)]) {
         translate([offset.x + (left ? coreXY_drive_pulley_x_alignment(coreXY_type) : -coreXY_drive_pulley_x_alignment(coreXY_type)), 0, 0]) {
             translate_z(-basePlateThickness - corkDamperThickness) {

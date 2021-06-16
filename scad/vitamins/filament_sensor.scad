@@ -20,7 +20,7 @@ module filament_sensor_hole_positions(z=0) {
 }
 
 module filament_sensor() {
-    vitamin(str("filament_sensor() : filament sensor"));
+    vitamin(str("filament_sensor() : Filament sensor"));
     size = filament_sensor_size();
     filamentOffset = filament_sensor_offset();
     tubeLength = 6;

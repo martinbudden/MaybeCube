@@ -148,7 +148,6 @@ staged_assembly("Stage_6", big=true, ngb=true) {
     stl_colour(pp1_colour)
         faceRightSpoolHolder();
     BowdenTube();
-    faceRightExtras();
 }
 
 module FinalAssembly() {

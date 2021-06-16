@@ -75,7 +75,8 @@ assembly("Back_Panel") {
                 translate_z(-size.z)
                     vflip()
                         if (countersunk)
-                            boltM4CountersunkHammerNut(_sideBoltLength);
+                            translate_z(eps)
+                                boltM4CountersunkHammerNut(_sideBoltLength);
                         else
                             boltM4ButtonheadHammerNut(_sideBoltLength);
             translate([size.x/2, size.y/2, -size.z/2])
