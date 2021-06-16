@@ -116,7 +116,7 @@ module IEC_Housing_Mount_hardware() {
                 boltM4ButtonheadTNut(_sideBoltLength);
         for (y = [eSize, size.x - eSize/2])
             translate([size.x - eSize/2, y, size.z])
-                boltM4ButtonheadTNut(_sideBoltLength, rotate=90);
+                boltM4ButtonheadHammerNut(_sideBoltLength, rotate=90);
     }
 }
 

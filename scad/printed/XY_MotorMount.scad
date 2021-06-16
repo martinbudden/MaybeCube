@@ -197,7 +197,7 @@ module xyMotorMountBrace(thickness, offset = [0,0], left = true) {
     pP = coreXY_drive_plain_idler_offset(coreXY_type()) + (left ? leftDrivePlainIdlerOffset : rightDrivePlainIdlerOffset);
     pT = coreXY_drive_toothed_idler_offset(coreXY_type());
 
-    explode(10)
+    explode(25)
         difference() {
             union() {
                 if (left)
@@ -467,26 +467,34 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, sideSupportSizeY=s
         screwLength = screw_longer_than(pulleyStackHeight + braceThickness + basePlateThickness);
         plainIdlerPos = left ? coreXY_drive_plain_idler_offset(coreXY_type) + leftDrivePlainIdlerOffset
                        : [-coreXY_drive_plain_idler_offset(coreXY_type).x, coreXY_drive_plain_idler_offset(coreXY_type).y + rightDrivePlainIdlerOffset.y, 0];
-        translate(plainIdlerPos) {
-            translate_z(pulleyStackHeight + braceThickness)
+        explode(20, true) {
+            translate(plainIdlerPos) {
+                translate_z(pulleyStackHeight + braceThickness)
+                    screw(screw, screwLength);
+                explode(-10, true)
+                    washer(washer)
+                        explode(5, true)
+                            pulley(useMotorIdler20 ? GT2x20_plain_idler : coreXY_plain_idler(coreXY_type))
+                                explode(5)
+                                    washer(washer);
+            }
+            toothedIdlerPos = coreXY_drive_toothed_idler_offset(coreXY_type);
+            translate(toothedIdlerPos) {
+                translate_z(pulleyStackHeight + braceThickness)
+                    screw(screw, screwLength);
+                explode(-10, true)
+                    washer(washer)
+                        explode(5, true)
+                            pulley(coreXY_toothed_idler(coreXY_type))
+                                explode(5)
+                                    washer(washer);
+                //translate_z(30) vflip() pulley(GT2x40_pulley);
+            }
+            translate([plainIdlerPos.x, toothedIdlerPos.y, pulleyStackHeight + braceThickness])
                 screw(screw, screwLength);
-            washer(washer)
-                pulley(useMotorIdler20 ? GT2x20_plain_idler : coreXY_plain_idler(coreXY_type))
-                    washer(washer);
-        }
-        toothedIdlerPos = coreXY_drive_toothed_idler_offset(coreXY_type);
-        translate(toothedIdlerPos) {
-            translate_z(pulleyStackHeight + braceThickness)
+            translate([toothedIdlerPos.x, plainIdlerPos.y, pulleyStackHeight + braceThickness])
                 screw(screw, screwLength);
-            washer(washer)
-                pulley(coreXY_toothed_idler(coreXY_type))
-                    washer(washer);
-            //translate_z(30) vflip() pulley(GT2x40_pulley);
         }
-        translate([plainIdlerPos.x, toothedIdlerPos.y, pulleyStackHeight + braceThickness])
-            screw(screw, screwLength);
-        translate([toothedIdlerPos.x, plainIdlerPos.y, pulleyStackHeight + braceThickness])
-            screw(screw, screwLength);
     }
 
     if (left) {
@@ -571,23 +579,23 @@ module XY_Motor_Mount_Brace_Left_stl() {
     columnHeight = 9.5;
     motorType = motorType(_xyMotorDescriptor);
 
-    stl("XY_Motor_Mount_Brace_Left")
-        color(pp2_colour)
-            translate_z(eZ - eSize - bracketHeightLeft + columnHeight)
-                translate([coreXYPosBL().x + coreXYSeparation().x/2, coreXYPosTR(motorWidth(motorType)).y + offset.y])
-                    xyMotorMountBrace(braceThickness, offset, left=true);
+    stl("XY_Motor_Mount_Brace_Left"); // note - need semicolon to ensure explode of xyMotorMountBrace works
+    color(pp2_colour)
+        translate_z(eZ - eSize - bracketHeightLeft + columnHeight)
+            translate([coreXYPosBL().x + coreXYSeparation().x/2, coreXYPosTR(motorWidth(motorType)).y + offset.y])
+                xyMotorMountBrace(braceThickness, offset, left=true);
 }
 
 module XY_Motor_Mount_Brace_Right_stl() {
     offset = rightDrivePulleyOffset();
     motorType = motorType(_xyMotorDescriptor);
 
-    stl("XY_Motor_Mount_Brace_Right")
-        color(pp2_colour)
-            translate([eX + 2*eSize, 0, eZ - eSize - bracketHeightRight + pulleyStackHeight])
-                mirror([1, 0, 0])
-                    translate([coreXYPosBL().x + coreXYSeparation().x/2, coreXYPosTR(motorWidth(motorType)).y + offset.y])
-                        xyMotorMountBrace(braceThickness, -offset, left=true);
+    stl("XY_Motor_Mount_Brace_Right"); // note - need semicolon to ensure explode of xyMotorMountBrace works
+    color(pp2_colour)
+        translate([eX + 2*eSize, 0, eZ - eSize - bracketHeightRight + pulleyStackHeight])
+            mirror([1, 0, 0])
+                translate([coreXYPosBL().x + coreXYSeparation().x/2, coreXYPosTR(motorWidth(motorType)).y + offset.y])
+                    xyMotorMountBrace(braceThickness, -offset, left=true);
 }
 
 
