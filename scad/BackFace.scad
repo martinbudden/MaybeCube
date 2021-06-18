@@ -165,7 +165,7 @@ module backPanelCutouts(psuType, pcbType, cncSides = undef, radius = undef) {
                 rotate(90)
                     translate([pcbSize.x/2, pcbSize.y/2])
                         pcb_screw_positions(pcbType)
-                        poly_circle(r = is_undef(radius) ? M3_clearance_radius : radius, sides=cncSides);
+                            poly_circle(r = is_undef(radius) ? M3_clearance_radius : radius, sides=cncSides);
             }
         backPanelAccessHolePositions(size)
             poly_circle(r = accessHoleRadius, sides=cncSides);
@@ -377,40 +377,6 @@ assembly("PSU_Upper_Mount", ngb=true) {
                     PSU_Upper_Mount_stl();
 }
 
-module PSU_Hole_Jig_stl() {
-    size = [115, 20, 1];
-    fillet = 3;
-    offsetY = psuOffset(PSUType()).z;
-    counterSunk = true;
-
-    stl("PSU_Hole_Jig")
-        color(pp2_colour)
-            translate_z(-size.z)
-                linear_extrude(size.z)
-                    difference() {
-                        union() {
-                            translate([0, 80]) {
-                                rounded_square([size.x, size.y], fillet, center=false);
-                                rounded_square([20, 160], fillet, center=false);
-                            }
-                            translate([0, offsetY + 75 - size.y/2])
-                                rounded_square([size.x, size.y], fillet, center=false);
-                        }
-                        translate([backPanelSize().x/2, backPanelSize().y/2])
-                            backPanelCutouts(PSUType(), pcbType(), radius=1);
-                    }
-}
-
-module PSU_Hole_Jig_assembly()
-assembly("PSU_Hole_Jig", ngb=true) {
-
-    translate([0, eY + 2*eSize, 0])
-        rotate([90, 0, 0]) {
-            stl_colour(pp2_colour)
-                PSU_Hole_Jig_stl();
-        }
-}
-
 module PCB_Mount_stl() {
     size = [110, 120, 3];
     fillet = 1;
@@ -456,45 +422,6 @@ assembly("PCB_Mounting_Plate", ngb=true) {
         rotate([90, 0, 0]) {
             stl_colour(pp2_colour)
                 PCB_Mount_stl();
-        }
-}
-
-module PCB_Hole_Jig_stl() {
-    size = [110, 20, 1];
-    fillet = 3;
-    offsetY = 155;
-
-    stl("PCB_Hole_Jig")
-        color(pp2_colour)
-            translate_z(-size.z) {
-                difference() {
-                    linear_extrude(size.z)
-                        difference() {
-                            translate([eX + 2*eSize - size.x, offsetY - size.y/2])
-                                union() {
-                                    translate([size.x - eSize, -offsetY+size.y/2])
-                                    rounded_square([eSize, 200], fillet, center=false);
-                                    for (y = [50, -50])
-                                        translate([0, y])
-                                            rounded_square([size.x, size.y], fillet, center=false);
-                                }
-                                *for (y = [6, size.y/2, size.y - 6])
-                                    translate([eX + 3*eSize/2, y + offsetY -size.y/2])
-                                        poly_circle(r = M4_clearance_radius);
-                                translate([backPanelSize().x/2, backPanelSize().y/2])
-                                    backPanelCutouts(PSUType(), pcbType(), radius=1);
-                        }
-                }
-            }
-}
-
-module PCB_Hole_Jig_assembly()
-assembly("PCB_Hole_Jig", ngb=true) {
-
-    translate([0, eY + 2*eSize, 0])
-        rotate([90, 0, 0]) {
-            stl_colour(pp2_colour)
-                PCB_Hole_Jig_stl();
         }
 }
 

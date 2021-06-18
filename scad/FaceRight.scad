@@ -87,7 +87,6 @@ module faceRightMotorUpright() {
                 difference() {
                     extrusionOZ(eZ, eSize);
                     for (z = frontAndBackHolePositionsZ)
-                    for (z = [eSize/2, 3*eSize/2, eZ - eSize/2, spoolHeight() + eSize/2, spoolHeight() - eSize/2, _upperZRodMountsExtrusionOffsetZ + eSize/2, _upperZRodMountsExtrusionOffsetZ - eSize/2])
                         translate([eSize/2, eSize, z])
                             rotate([90, 0, 0])
                                 jointBoltHole();
