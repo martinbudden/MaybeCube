@@ -27,22 +27,41 @@ tests/*
 !tests/*.scad
 
 
+jigs/assemblies/*
+jigs/bom/
+jigs/dxfs/*
+jigs/stls/*
+jigs/tmp/
+jigs/*.html
+jigs/*.md
+#!jigs/readme.md
+#!jigs/assemblies/main_assembled.png
+#!jigs/assemblies/*.png
+#!jigs/dxfs/*.dxf
+#!jigs/dxfs/*.png
+!jigs/stls/*.stl
+!jigs/stls/*.png
+jigs/assemblies/*_diff.png
+jigs/dxfs/*_diff.png
+jigs/stls/*_diff.png
+
+
 MC250/assemblies/*
 MC250/bom/
 MC250/dxfs/*
 MC250/stls/*
 MC250/tmp/
 MC250/*.html
-# change to ! once released
+# change to !, except for diffs, once released
 !MC250/readme.md
 !MC250/assemblies/main_assembled.png
 #!MC250/assemblies/*.png
-MC250/assemblies/*_diff.png
 #!MC250/dxfs/*.dxf
 #!MC250/dxfs/*.png
-MC250/dxfs/*_diff.png
 #!MC250/stls/*.stl
 #!MC250/stls/*.png
+MC250/assemblies/*_diff.png
+MC250/dxfs/*_diff.png
 MC250/stls/*_diff.png
 
 MC300/assemblies/*

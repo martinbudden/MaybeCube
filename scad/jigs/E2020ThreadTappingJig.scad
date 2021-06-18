@@ -25,8 +25,8 @@ module channelInsert(length=5, channelWidth, channelDepth) {
 
 
 module jig(boltSize, topLength=22, channelInsertLength1=25, channelInsertLength2=25, boltOffset=0) {
-    channelWidth = boltSize == 5 ? 5.5 : 6;
-    channelDepth = 5;
+    channelWidth = 6;
+    channelDepth = 5.5;
 
     translate([0, -eSize, 0])
         difference() {
@@ -77,4 +77,4 @@ module E2020_Thread_Tapping_Jig_6mm_stl() {
 }
 
 if ($preview)
-    E2020_Thread_Tapping_Jig_stl();
+    E2020_Thread_Tapping_Jig_6mm_stl();
