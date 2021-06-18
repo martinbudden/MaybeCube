@@ -3,8 +3,9 @@
 include <NopSCADlib/core.scad>
 
 use <../scad/FaceLeft.scad>
+use <../scad/FaceRight.scad>
 
-use <../scad/printed/extrusionDrillJig.scad>
+use <../scad/jigs/ExtrusionDrillJig.scad>
 include <../scad/Parameters_Main.scad>
 
 
@@ -21,16 +22,16 @@ module Jig_test() {
 
 module Jig_test2() {
     Left_Side_assembly();
-    //let($hide_bolts=true)
-        translate([35, -5, -5])
-            rotate([0, -90, 0])
-                Extrusion_Drill_Jig_120_2_stl();
-    //let($hide_bolts=true)
-        translate([-5, eY + 2*eSize + 15 + eps, eZ+5])
-            rotate([0, 90, -90]) {
-                //Extrusion_Drill_Jig_90_2_stl();
-                Extrusion_Drill_Jig_120_2_stl();
-            }
+    translate([35, -5, -5])
+        rotate([0, 90, 180])
+            Extrusion_Drill_Jig_Pilot_stl();
+    translate([-5, eY + 2*eSize + 15 + eps, eZ+5])
+        rotate([0, -90, 90])
+            Extrusion_Drill_Jig_Pilot_stl();
+    Right_Side_assembly();
+    translate([eX + 2*eSize+5, -15, eZ+5])
+        rotate([0, -90, -90])
+            Extrusion_Drill_Jig_Pilot_stl();
 }
 
-Jig_test();
+Jig_test2();

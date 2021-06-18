@@ -17,7 +17,7 @@ include <../scad/Parameters_Main.scad>
 //$explode = 1;
 //$pose = 1;
 module Face_Top_test() {
-    CoreXYBelts(carriagePosition(), show_pulleys=[1, 0, 0]);
+    if(!exploded()) CoreXYBelts(carriagePosition(), show_pulleys=[1, 0, 0]);
 
     //let($hide_extrusions=true)
     //let($hide_rails=true)

@@ -3,7 +3,7 @@ include <NopSCADlib/core.scad>
 
 include <../scad/vitamins/SidePanels.scad>
 use <../scad/vitamins/extrusion.scad>
-use <../scad/printed/sidePanelJig.scad>
+use <../scad/jigs/SidePanelJig.scad>
 
 include <../scad/Parameters_Main.scad>
 
