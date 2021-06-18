@@ -13,8 +13,6 @@ use <../scad/FaceLeft.scad>
 use <../scad/FaceRight.scad>
 use <../scad/FaceRightExtras.scad>
 
-include <../scad/vitamins/pcbs.scad>
-
 
 //$explode = 1;
 //$pose = 1;

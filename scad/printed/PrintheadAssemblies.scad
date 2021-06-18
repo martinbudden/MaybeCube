@@ -9,7 +9,7 @@ use <../utils/PrintheadOffsets.scad>
 use <../utils/X_rail.scad>
 
 use <../vitamins/bolts.scad>
-include <../vitamins/pcbs.scad>
+include <../../../BabyCube/scad/vitamins/pcbs.scad>
 
 use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
@@ -70,10 +70,10 @@ module fullPrinthead(xCarriageType, rotate=180, explode=0, t=undef, acceleromete
                     xCarriageFrontAssemblyBolts(xCarriageType, _beltWidth);
                 }
                 Printhead_MGN12H_assembly();
-                xCarriageTopBolts(xCarriageType);
+                xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk);
                 if (accelerometer)
                     explode(50, true)
-                        translate(accelerometerOffset() + [0, 0, 1.5])
+                        translate(accelerometerOffset() + [0, 0, 1])
                             rotate(180) {
                                 pcb = ADXL345;
                                 pcb(pcb);
@@ -83,8 +83,7 @@ module fullPrinthead(xCarriageType, rotate=180, explode=0, t=undef, acceleromete
                                     explode(-5)
                                         vflip()
                                             washer(M3_washer)
-                                                washer(M3_washer)
-                                                    washer(M3_washer);
+                                                washer(M3_washer);
                                 }
                             }
                 if (!exploded())

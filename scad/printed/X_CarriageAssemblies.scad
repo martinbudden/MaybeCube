@@ -10,7 +10,7 @@ use <../utils/carriageTypes.scad>
 use <../utils/PrintheadOffsets.scad>
 
 use <../vitamins/bolts.scad>
-include <../vitamins/pcbs.scad>
+include <../../../BabyCube/scad/vitamins/pcbs.scad>
 
 use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
@@ -141,7 +141,7 @@ module X_Carriage_MGN12H_stl() {
         color(pp1_colour)
             rotate([0, 90, 0]) {
                 difference() {
-                    xCarriageBack(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, reflected=true, strainRelief=true);
+                    xCarriageBack(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0);
                     translate(accelerometerOffset())
                         rotate(180)
                             pcb_hole_positions(ADXL345)
