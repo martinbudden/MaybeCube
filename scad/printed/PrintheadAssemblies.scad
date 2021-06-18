@@ -34,9 +34,6 @@ assembly("Printhead_MGN12H", big=true) {
     hotend_type = 0;
 
     X_Carriage_MGN12H_assembly();
-    *translate([0, 0, 10])
-        rotate(90)
-            pcb(ADXL345);
 
     hotendOffset = hotendOffset(xCarriageType, hotend_type);
     hotEndHolderAlign(xCarriageType, hotendOffset, left=false) {
@@ -64,7 +61,7 @@ assembly("Printhead_MGN12H", big=true) {
     }
 }
 
-module fullPrinthead(xCarriageType, rotate=180, explode=0, t=undef) {
+module fullPrinthead(xCarriageType, rotate=180, explode=0, t=undef, accelerometer=false) {
     xRailCarriagePosition(t)
         explode(explode, true)
             rotate(rotate) {// for debug, to see belts better
@@ -74,6 +71,22 @@ module fullPrinthead(xCarriageType, rotate=180, explode=0, t=undef) {
                 }
                 Printhead_MGN12H_assembly();
                 xCarriageTopBolts(xCarriageType);
+                if (accelerometer)
+                    explode(50, true)
+                        translate(accelerometerOffset() + [0, 0, 1.5])
+                            rotate(180) {
+                                pcb = ADXL345;
+                                pcb(pcb);
+                                pcb_hole_positions(pcb) {
+                                    translate_z(pcb_size(pcb).z)
+                                        boltM3Caphead(10);
+                                    explode(-5)
+                                        vflip()
+                                            washer(M3_washer)
+                                                washer(M3_washer)
+                                                    washer(M3_washer);
+                                }
+                            }
                 if (!exploded())
                     xCarriageBeltFragments(xCarriageType, coreXY_belt(coreXY_type()), beltOffsetZ(), coreXYSeparation().z, coreXY_upper_belt_colour(coreXY_type()), coreXY_lower_belt_colour(coreXY_type()));
             }
