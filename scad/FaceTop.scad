@@ -137,8 +137,11 @@ assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
                     railBoltsAndNuts(carriage_rail(yCarriageType), _yRailLength, 5);
                 }
     translate_z(eZ - eSize)
-        explode(-80)
+        explode(-80, true) {
             Y_Carriage_Left_assembly();
+            explode(-20, true)
+                Y_Carriage_bolts(yCarriageType, yCarriageThickness(), left=true);
+        }
 }
 
 module Right_Side_Upper_Extrusion_assembly() pose(a=[180 + 55, 0, 25 - 90])
@@ -156,8 +159,11 @@ assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
                     railBoltsAndNuts(carriage_rail(yCarriageType), _yRailLength, 5);
                 }
     translate([eX + 2*eSize, 0, eZ - eSize])
-        explode(-80, true)
+        explode(-80, true) {
             Y_Carriage_Right_assembly();
+            explode(-20, true)
+                Y_Carriage_bolts(yCarriageType, yCarriageThickness(), left=false);
+        }
 }
 
 topCornerPieceHoles = [ [eSize/2, 3*eSize/2], [eSize/2, 5*eSize/2], [3*eSize/2, eSize/2], [3*eSize/2, 3*eSize/2], [5*eSize/2, eSize/2] ];
