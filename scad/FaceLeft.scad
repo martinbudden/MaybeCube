@@ -3,8 +3,6 @@ include <global_defs.scad>
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
-use <printed/extrusionDrillJig.scad>
-
 use <utils/FrameBolts.scad>
 use <utils/Z_Rods.scad>
 
