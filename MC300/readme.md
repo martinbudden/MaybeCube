@@ -73,7 +73,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   2  |    4  |  Bolt M3 buttonhead x  8mm |
 |   4  |   6  |   4  |   5  |   .  |   .  |   .  |   .  |   19  |  Bolt M3 buttonhead x 10mm |
-|   2  |   .  |  14  |   .  |   .  |   .  |   4  |   4  |   24  |  Bolt M3 buttonhead x 12mm |
+|   2  |   .  |  10  |   .  |   .  |   .  |   4  |   4  |   20  |  Bolt M3 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 16mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |    8  |  Bolt M3 buttonhead x 20mm |
 |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 25mm |
@@ -84,6 +84,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   2  |   .  |   .  |   .  |   3  |   .  |   .  |    5  |  Bolt M3 caphead x 20mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   4  |    6  |  Bolt M3 caphead x 25mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 30mm |
+|   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 countersunk x 12mm |
 |   .  |   .  |   .  |   .  |   8  |   .  |   .  |  24  |   32  |  Bolt M4 buttonhead x  8mm |
 |   .  |   .  |  14  |   .  |   .  |   8  |   2  |  12  |   36  |  Bolt M4 buttonhead x 10mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   2  |   .  |    4  |  Bolt M4 buttonhead x 12mm |
@@ -462,7 +463,6 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 
 |Qty|Description|
 |---:|:----------|
-|4| Bolt M3 caphead x 10mm|
 |3| Bolt M3 caphead x 16mm|
 |1| Bolt M3 caphead x 25mm|
 |1| Pulley GT2 idler 16 teeth|
@@ -496,7 +496,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 
 |Qty|Description|
 |---:|:----------|
-|8| Bolt M3 caphead x 10mm|
+|12| Bolt M3 caphead x 10mm|
 |4| Bolt M5 buttonhead x 12mm|
 |1| Extrusion E2040 x 300mm|
 |1| Linear rail MGN12 x 300mm|
@@ -530,7 +530,6 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 
 |Qty|Description|
 |---:|:----------|
-|4| Bolt M3 caphead x 10mm|
 |3| Bolt M3 caphead x 16mm|
 |1| Bolt M3 caphead x 25mm|
 |1| Pulley GT2 idler 16 teeth|
@@ -550,6 +549,8 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 
 ![Y_Carriage_Left_assembly](assemblies/Y_Carriage_Left_assembly_tn.png)
 
+
+
 ![Y_Carriage_Left_assembled](assemblies/Y_Carriage_Left_assembled_tn.png)
 
 <span></span>
@@ -564,7 +565,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 
 |Qty|Description|
 |---:|:----------|
-|8| Bolt M3 caphead x 10mm|
+|12| Bolt M3 caphead x 10mm|
 |4| Bolt M5 buttonhead x 12mm|
 |1| Extrusion E2040 x 300mm|
 |1| Linear rail MGN12 x 300mm|
@@ -650,8 +651,9 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |1| Belt GT2 x 6mm x nanmm|
 |1| Belt GT2 x 6mm x nanmm|
 |2| Bolt M3 buttonhead x 10mm|
-|6| Bolt M3 buttonhead x 12mm|
+|2| Bolt M3 buttonhead x 12mm|
 |4| Bolt M3 caphead x 10mm|
+|4| Bolt M3 countersunk x 12mm|
 |1| Linear rail MGN12 x 250mm|
 |1| Linear rail carriage MGN12H|
 
