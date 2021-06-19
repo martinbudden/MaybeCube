@@ -108,7 +108,8 @@ module zCarriageSCS_hardware(cnc=false) {
         //    boltM5Buttonhead(12);
         for (i = [0, 1, 2, 3])
             translate(holes[i])
-                boltM5Countersunk(12);
+                explode(20, true)
+                    boltM5Countersunk(12);
     }
 }
 

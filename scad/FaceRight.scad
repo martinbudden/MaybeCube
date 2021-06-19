@@ -54,10 +54,10 @@ module faceRightLowerExtrusion() {
     zMotorLength = 40;
     translate([eX + eSize, eSize, 0]) {
         extrusionOY2040VEndBolts(eY);
-        if (_useDualZRods)
+        if (useDualZRods())
             translate([eSize, 0, 0])
                 mirror([1, 0, 0])
-                    zMountsLower(zMotorLength);
+                    zMountsLower(zMotorLength = useDualZMotors() ? zMotorLength : 0);
     }
 }
 

@@ -18,6 +18,7 @@ _yCarriageDescriptor = "MGN12H";
 _beltWidth = 6;
 
 _useDualZRods = true;
+_useDualZMotors = true;
 _printBedSize = 310;
 _printBedArmSeparation = 225;
 _printBed4PointSupport = true;

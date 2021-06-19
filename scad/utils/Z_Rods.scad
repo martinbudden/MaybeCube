@@ -15,6 +15,7 @@ include <../Parameters_Main.scad>
 
 
 function useDualZRods() = !is_undef(_useDualZRods) && _useDualZRods;
+function useDualZRods() = !is_undef(_useDualZMotors) && _useDualZMotors;
 
 SK_type = _zRodDiameter == 8 ? SK8 : _zRodDiameter == 10 ? SK10 : SK12;
 
@@ -96,17 +97,18 @@ module zMountsLower(zMotorLength) {
     translate_z(eSize)
         zMounts();
 
-    translate([0, _zRodOffsetY, 0]) {
-        // add the motor mount
-        explode([30, 0, 20], true)
-            translate([0, zRodSeparation()/2, 0])
-                Z_Motor_Mount_assembly();
+    if (zMotorLength)
+        translate([0, _zRodOffsetY, 0]) {
+            // add the motor mount
+            explode([30, 0, 20], true)
+                translate([0, zRodSeparation()/2, 0])
+                    Z_Motor_Mount_assembly();
 
-        explode([20, -20, 0])
-            translate([eSize, sk_size(SK_type).x/2, 3*eSize/2])
-                rotate([0, 90, 0])
-                    zMotorMountGuide((zRodSeparation() - Z_Motor_MountSize(zMotorLength).x - sk_size(SK_type).x)/2);
-    }
+            explode([20, -20, 0])
+                translate([eSize, sk_size(SK_type).x/2, 3*eSize/2])
+                    rotate([0, 90, 0])
+                        zMotorMountGuide((zRodSeparation() - Z_Motor_MountSize(zMotorLength).x - sk_size(SK_type).x)/2);
+        }
 }
 
 module zRods(left=true) {
