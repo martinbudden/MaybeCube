@@ -154,13 +154,16 @@ module xyIdler() {
     }
 }
 
-module XY_Idler_hardware() {
+module XY_Idler_hardware(left = true) {
 
-    module doubleWasher() {
+    module doubleWasher(left) {
         if (coreXYIdlerBore() == 3)
-            washer(M3_washer)
+            explode([left ? 20 : -20, 10, 0], true)
                 washer(M3_washer)
-                    children();
+                    explode([0, -10, 0], true)
+                        washer(M3_washer)
+                            explode([left ? -20 : 20, 0, 0], true)
+                                children();
         else
             washer(M5_washer)
                 children();
@@ -174,15 +177,17 @@ module XY_Idler_hardware() {
         translate([eSize/2, eZ - eSize - size.y, 0]) {
             for (y = [lowerBoltOffset, size.y - upperBoltOffset])
                 translate([0, y, size.z])
-                    boltM4ButtonheadHammerNut(_frameBoltLength, rotate=90);
+                    explode(20, true)
+                        boltM4ButtonheadHammerNut(_frameBoltLength, rotate=90, nutExplode=60);
 
             translate([0, size.y - tabThickness, armSize.z + tabLength - tabBoltOffset])
                 rotate([90, 0, 0])
                     boltM4ButtonheadHammerNut(_frameBoltLength, rotate=90);
             translate([0, size.y + 2, axisOffset])
                 rotate([-90, 0, 0]) {
-                    washer(M4_washer)
-                        boltM4Buttonhead(10);
+                    explode(10, true)
+                        washer(M4_washer)
+                            boltM4Buttonhead(10);
                 }
         }
 
@@ -191,21 +196,26 @@ module XY_Idler_hardware() {
             rotate([-90, 0, 0]) {
                 vflip()
                     translate_z(armSize.y + eps)
-                        boltM3Caphead(30);
-                washer(washer) {
-                    pulley(toothed_idler);
-                    translate_z(pulley_height(toothed_idler)) {
-                        doubleWasher()
-                            if (yCarriageBraceThickness() == 0) {
-                                pulley(toothed_idler)
-                                    washer(washer);
-                            } else {
-                                doubleWasher()
+                        explode(20, true)
+                            boltM3Caphead(30);
+                explode([left ? 50 : -50, 0, 0])
+                    washer(washer);
+                explode([left ? 30 : -30, 0, 0], true)
+                    translate_z(washer_thickness(washer)) {
+                        pulley(toothed_idler);
+                        translate_z(pulley_height(toothed_idler)) {
+                            doubleWasher(left)
+                                if (yCarriageBraceThickness() == 0) {
                                     pulley(toothed_idler)
                                         washer(washer);
-                            }
+                                } else {
+                                    doubleWasher(left)
+                                        pulley(toothed_idler)
+                                    explode([left ? 20 : -20, 0, 0])
+                                            washer(washer);
+                                }
+                        }
                     }
-                }
             }
     }
 }
@@ -234,7 +244,7 @@ assembly("XY_Idler_Left", ngb=true) {
             stl_colour(pp1_colour)
                 XY_Idler_Left_stl();
         rotate([90, 0, 180])
-            XY_Idler_hardware();
+            XY_Idler_hardware(left=true);
     }
 }
 
@@ -247,6 +257,6 @@ assembly("XY_Idler_Right", ngb=true) {
                 XY_Idler_Right_stl();
             translate_z(eSize)
                 hflip()
-                    XY_Idler_hardware();
+                    XY_Idler_hardware(left=false);
         }
 }

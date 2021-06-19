@@ -17,13 +17,13 @@ module XY_Idler_test() {
         xyIdler();
         *translate([0, -eZ, eZ]) {
             XY_Idler_Left_stl();
-            XY_Idler_hardware();
+            XY_Idler_hardware(left=true);
         }
     *translate([-120, -eZ, eZ]) {
         XY_Idler_Right_stl();
         translate([0, 0, eSize])
             rotate([0, 180, 0])
-                XY_Idler_hardware();
+                XY_Idler_hardware(left=false);
     }
 }
 
