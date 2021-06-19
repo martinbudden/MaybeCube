@@ -77,11 +77,11 @@ module boltPolyholeM3Countersunk(length, sink = 0) {
     screw_polysink(M3_cs_cap_screw, 2*length + 2*eps, sink = sink);
 }
 
-module boltHoleM3Counterbore(length, boreDepth=undef, boltHeadTolerance = 0, horizontal = false, cnc = false) {
+module boltHoleM3Counterbore(length, boreDepth = undef, boltHeadTolerance = 0, horizontal = false, cnc = false) {
     boltHoleCounterbore(M3_cap_screw, length, boreDepth, boltHeadTolerance, horizontal=horizontal, cnc=cnc);
 }
 
-module boltHoleM3CounterboreButtonhead(length, boreDepth=undef, boltHeadTolerance = 0.4, horizontal = false, cnc = false) {
+module boltHoleM3CounterboreButtonhead(length, boreDepth = undef, boltHeadTolerance = 0.4, horizontal = false, cnc = false) {
     boltHoleCounterbore(M3_dome_screw, length, boreDepth, boltHeadTolerance, horizontal=horizontal, cnc=cnc);
 }
 
@@ -89,7 +89,7 @@ module boltHoleM3HangingCounterbore(length) {
     boltHoleHangingCounterbore(M3_cap_screw, length);
 }
 
-module boltHoleM3HangingCounterbore(length, boreDepth=undef, boltHeadTolerance = 0) {
+module boltHoleM3HangingCounterbore(length, boreDepth = undef, boltHeadTolerance = 0) {
     boltHoleHangingCounterbore(M3_cap_screw, length=length, boreDepth=boreDepth, boltHeadTolerance=boltHeadTolerance);
 }
 
@@ -112,7 +112,7 @@ module boltPolyholeM4Countersunk(length, sink = 0) {
     screw_polysink(M4_cs_cap_screw, 2*length + 2*eps, sink = sink);
 }
 
-module boltHoleM4CounterboreButtonhead(length, boreDepth=undef, boltHeadTolerance = 0.4, horizontal = false, chamfer = 0.5, cnc = false) {
+module boltHoleM4CounterboreButtonhead(length, boreDepth = undef, boltHeadTolerance = 0.4, horizontal = false, chamfer = 0.5, cnc = false) {
     boltHoleCounterbore(M4_dome_screw, length=length, boreDepth=boreDepth, boltHeadTolerance=boltHeadTolerance, horizontal=horizontal, chamfer=0.5, cnc=cnc);
 }
 
@@ -169,7 +169,7 @@ module boltM3Caphead(length) {
     bolt(M3_cap_screw, length);
 }
 
-module boltM3Countersunk(length, boreDepth=undef) {
+module boltM3Countersunk(length, boreDepth = undef) {
     translate_z(is_undef(boreDepth) ? 0 : boreDepth)
         bolt(M3_cs_cap_screw, length);
 }
@@ -187,7 +187,7 @@ module boltM4Caphead(length) {
     bolt(M4_cap_screw, length);
 }
 
-module boltM4Countersunk(length, boreDepth=undef) {
+module boltM4Countersunk(length, boreDepth = undef) {
     translate_z(is_undef(boreDepth) ? 0 : boreDepth)
         bolt(M4_cs_cap_screw, length);
 }
@@ -201,7 +201,7 @@ module boltM5Caphead(length) {
     bolt(M5_cap_screw, length);
 }
 
-module boltM5Countersunk(length, boreDepth=undef) {
+module boltM5Countersunk(length, boreDepth = undef) {
     translate_z(is_undef(boreDepth)  ? 0 : boreDepth)
         bolt(M5_cs_cap_screw, length);
 }
