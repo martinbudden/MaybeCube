@@ -20,11 +20,8 @@ include <Parameters_Main.scad>
 AL3 = ["AL3", "Aluminium sheet", 3, [0.9, 0.9, 0.9, 1], false];
 
 basePlateSize = [eX + 2*eSize, eY + 2*eSize, _basePlateThickness];
-function pcbType() = BTT_SKR_V1_4_TURBO;
-//function pcbType() = BTT_SKR_E3_TURBO;
-//function pcbType() = BTT_SKR_MINI_E3_V2_0;
 
-psuOnBase = false; //eX >= 350;
+psuOnBase = false;
 pcbOnBase = false;
 
 module BaseAL_dxf() {

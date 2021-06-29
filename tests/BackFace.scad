@@ -22,15 +22,8 @@ module BackFace_test() {
     //PSU_Cover_stl();
     //PSU_Upper_Mount_stl();
     //PSU_Lower_Mount_stl();
-    *if (psuVertical) {
-        PSU_Upper_Mount_assembly();
-        PSU_Lower_Mount_assembly();
-        *PSU_Hole_Jig_assembly();
-    } else {
-        PSU_Left_Mount_assembly();
-        PSU_Right_Mount_assembly();
-    }
-
+    psuAssembly(psuVertical, useMounts=true);
+    pcbAssembly(pcbType(), useMounts=true);
     //PSU_Cover_assembly();
     //PCB_Mount_stl();
     //let($hide_pcb=true)
@@ -40,7 +33,7 @@ module BackFace_test() {
     //faceRightExtras();
     //Face_Top_assembly();
     //printHeadWiring();
-    Back_Panel_assembly();
+    //Back_Panel_assembly();
     //Back_Panel_dxf();
     //Partition_assembly();
 }
