@@ -73,7 +73,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   2  |    4  |  Bolt M3 buttonhead x  8mm |
 |   4  |   6  |   4  |   5  |   .  |   .  |   .  |   .  |   19  |  Bolt M3 buttonhead x 10mm |
-|   2  |   .  |  10  |   .  |   .  |   .  |   4  |   4  |   20  |  Bolt M3 buttonhead x 12mm |
+|   .  |   .  |  10  |   .  |   .  |   .  |   4  |   4  |   18  |  Bolt M3 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 16mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |    8  |  Bolt M3 buttonhead x 20mm |
 |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 25mm |
@@ -139,7 +139,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer  M4 |
 |   .  |   .  |   .  |   .  |   .  |   6  |   .  |   .  |    6  |  Washer penny  M4 |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    3  |  Ziptie 2.5mm x 100mm min length |
-|  16  |   8  | 222  |  50  |  42  |  70  |  47  | 112  |  567  | Total vitamins count |
+|  14  |   8  | 222  |  50  |  42  |  70  |  47  | 112  |  565  | Total vitamins count |
 |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   2  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    4  | Belt_Clamp.stl |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  | Belt_Tensioner.stl |
@@ -152,11 +152,10 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Front_Cover.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Front_Display_Wiring_Cover.stl |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Hotend_Clamp.stl |
-|   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Hotend_Strain_Relief_Clamp.stl |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | IEC_Housing.stl |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | IEC_Housing_Mount.stl |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | PCB_Mount.stl |
-|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | PSU_Left_Mount.stl |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | PSU_Lower_Mount.stl |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | PSU_Upper_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder.stl |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  | Top_Corner_Piece.stl |
@@ -180,7 +179,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_MountGuide_19mm.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |    2  | Z_RodMountGuide_50mm.stl |
-|   6  |   6  |  15  |   3  |   3  |   3  |   4  |  10  |   50  | Total 3D printed parts count |
+|   5  |   6  |  15  |   3  |   3  |   3  |   4  |  10  |   49  | Total 3D printed parts count |
 |      |      |      |      |      |      |      |      |       | **CNC routed parts** |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | Back_Panel.dxf |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | BaseAL.dxf |
@@ -235,7 +234,6 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 
 |Qty|Description|
 |---:|:----------|
-|2| Bolt M3 buttonhead x 12mm|
 |2| Bolt M3 buttonhead x 25mm|
 |1| Fan 30mm x 10mm|
 |1| Hot end E3D V6 direct 1.75mm|
@@ -243,9 +241,9 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 
 ### 3D Printed parts
 
-| 1 x Hotend_Clamp.stl | 1 x Hotend_Strain_Relief_Clamp.stl |
-|---|---|
-| ![Hotend_Clamp.stl](stls/Hotend_Clamp.png) | ![Hotend_Strain_Relief_Clamp.stl](stls/Hotend_Strain_Relief_Clamp.png) 
+| 1 x Hotend_Clamp.stl |
+|---|
+| ![Hotend_Clamp.stl](stls/Hotend_Clamp.png) 
 
 
 
@@ -696,9 +694,9 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 
 ### 3D Printed parts
 
-| 1 x PCB_Mount.stl | 1 x PSU_Left_Mount.stl | 1 x PSU_Upper_Mount.stl |
+| 1 x PCB_Mount.stl | 1 x PSU_Lower_Mount.stl | 1 x PSU_Upper_Mount.stl |
 |---|---|---|
-| ![PCB_Mount.stl](stls/PCB_Mount.png) | ![PSU_Left_Mount.stl](stls/PSU_Left_Mount.png) | ![PSU_Upper_Mount.stl](stls/PSU_Upper_Mount.png) 
+| ![PCB_Mount.stl](stls/PCB_Mount.png) | ![PSU_Lower_Mount.stl](stls/PSU_Lower_Mount.png) | ![PSU_Upper_Mount.stl](stls/PSU_Upper_Mount.png) 
 
 
 
