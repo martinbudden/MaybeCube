@@ -22,6 +22,7 @@ include <../Parameters_Main.scad>
 function hotendClampOffset(xCarriageType, hotend_type=0) =  [hotendOffset(xCarriageType, hotend_type).x, 18 + xCarriageBackOffsetY(xCarriageType) + grooveMountOffsetX(hotend_type), hotendOffset(xCarriageType, hotend_type).z];
 grooveMountFillet = 1;
 function grooveMountClampSize(blower_type, hotend_type) = [grooveMountSize(blower_type, hotend_type).y - 2*grooveMountFillet - grooveMountClampOffsetX(), 12, 17];
+strainRelief = false;
 
 //!1. Assemble the E3D hotend, including fan, thermistor cartridge and heater cartridge.
 //!2. Use the Hotend_Clamp to attach the hotend to the X_Carriage.
@@ -50,13 +51,14 @@ assembly("Printhead_MGN12H", big=true) {
                             Hotend_Clamp_40_stl();
                     Hotend_Clamp_hardware(xCarriageType, blower_type, hotend_type);
                 }
-                explode(-60, true)
-                    translate([0, grooveMountClampStrainReliefOffset(), -grooveMountClampSize(blower_type, hotend_type).z - 5])
-                        vflip() {
-                            stl_colour(pp1_colour)
-                                Hotend_Strain_Relief_Clamp_stl();
-                            Hotend_Strain_Relief_Clamp_hardware();
-                        }
+                if (strainRelief)
+                    explode(-60, true)
+                        translate([0, grooveMountClampStrainReliefOffset(), -grooveMountClampSize(blower_type, hotend_type).z - 5])
+                            vflip() {
+                                stl_colour(pp1_colour)
+                                    Hotend_Strain_Relief_Clamp_stl();
+                                Hotend_Strain_Relief_Clamp_hardware();
+                            }
             }
     }
 }
@@ -128,7 +130,7 @@ module Hotend_Clamp_stl() {
     stl("Hotend_Clamp")
         color(pp2_colour)
             mirror([1, 0, 0])
-                grooveMountClamp(grooveMountClampSize(blower_type));
+                grooveMountClamp(grooveMountClampSize(blower_type), strainRelief=strainRelief);
 }
 
 module Hotend_Clamp_40_stl() {
