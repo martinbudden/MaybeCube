@@ -69,7 +69,7 @@ assembly("Face_Top", big=true) {
                 explode(20, true)
                     boltM3Caphead(10);
         }
-    fullPrinthead(xCarriageType(), explode=100);
+    fullPrinthead(explode=100);
     if (!exploded())
         CoreXYBelts(carriagePosition());
 }
