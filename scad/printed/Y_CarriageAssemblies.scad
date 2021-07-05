@@ -1,4 +1,4 @@
-//!! This is a copy of the BabyCube file
+//!! This is a copy of the BabyCube file with alterations
 include <../global_defs.scad>
 
 include <NopSCADlib/core.scad>
@@ -26,8 +26,8 @@ module Y_Carriage_Left_stl() {
     pulleyStackHeight = pulleyStackHeight(idlerHeight);
     assert(pulleyStackHeight + yCarriageBraceThickness() == coreXYSeparation().z);
 
-    chamfer = _xCarriageDescriptor == "MGN9C" || _xCarriageDescriptor == "MGN9H" ? 1 : 0;
     blockOffsetX = 0.5;
+    chamfer = _xCarriageDescriptor == "MGN9C" || _xCarriageDescriptor == "MGN9H" ? 1 : 0;
     //xMin = xPos(3);
     //endStopOffsetX = max(0, xMin - 68); // 12
     //endStopOffsetX = max(0, xMin - 75); // 5
@@ -51,7 +51,6 @@ module Y_Carriage_Right_stl() {
 
 module Y_Carriage_Left_AL_dxf() {
     idlerHeight = pulley_height(coreXY_toothed_idler(coreXY_type()));
-    tongueOffset = tongueOffset();
     blockOffsetX = 0.5;
     chamfer = _xCarriageDescriptor == "MGN9C" || _xCarriageDescriptor == "MGN9H" ? 1 : 0;
     //xMin = xPos(3);
@@ -118,7 +117,7 @@ module Y_Carriage_Right_assembly() pose(a=[55+180, 0, 25])
 assembly("Y_Carriage_Right", ngb=true) {
 
     yCarriageType = yCarriageType();
-    railOffsetX = 1.5*eSize;;
+    railOffsetX = 1.5*eSize;
 
     plainIdler = coreXY_plain_idler(coreXY_type());
     toothedIdler = coreXY_toothed_idler(coreXY_type());
@@ -138,7 +137,7 @@ assembly("Y_Carriage_Right", ngb=true) {
 }
 
 module Y_Carriage_bolts(yCarriageType, thickness, left) {
-    railOffsetX = 1.5*eSize;;
+    railOffsetX = 1.5*eSize;
 
     translate([left ? railOffsetX : -railOffsetX, carriagePosition().y, -carriage_height(yCarriageType)])
         rotate([180, 0, left ? 0 : 180])
