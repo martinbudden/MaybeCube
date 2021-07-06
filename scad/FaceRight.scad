@@ -23,7 +23,7 @@ module Right_Side_assembly() pose(a=[55, 0, 25 - 90])
 assembly("Right_Side", big=true) {
 
     // extra extrusion for mounting spool holder
-    translate([eX + eSize, eSize, spoolHeight() - eSize])
+    translate([eX + eSize, eSize, spoolHeight() - (eX == 350 ? 0 : eSize)])
         extrusionOY2040VEndBolts(eY);
 
     faceRightLowerExtrusion();
@@ -61,7 +61,7 @@ module faceRightLowerExtrusion() {
     }
 }
 
-frontAndBackHolePositionsZ = concat([eSize/2, 3*eSize/2, eZ - eSize/2, spoolHeight() + eSize/2, spoolHeight() - eSize/2], eX < 350 ? [] : [_upperZRodMountsExtrusionOffsetZ + eSize/2, _upperZRodMountsExtrusionOffsetZ - eSize/2]);
+frontAndBackHolePositionsZ = concat([eSize/2, 3*eSize/2, eZ - eSize/2, spoolHeight() + eSize/2, spoolHeight() - (eX == 350 ? -3*eSize/2 : eSize/2)], eX < 350 ? [] : [_upperZRodMountsExtrusionOffsetZ + eSize/2, _upperZRodMountsExtrusionOffsetZ - eSize/2]);
 
 module faceRightIdlerUpright() {
     translate([eX + eSize, 0, 0])

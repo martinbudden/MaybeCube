@@ -401,6 +401,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
     }
     explode([150, 0, 0])
         Z_Carriage_Center_assembly();
+    yRight = eY - 2*_zRodOffsetX;
     if (is_true(_useDualZMotors))
         translate([0, yRight, 0])
             rotate(180)

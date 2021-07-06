@@ -31,8 +31,9 @@ psuVertical = eX == 300;
 function backPanelSize() = [eX + 2*eSize, eZ, 3];
 function partitionSize() = [eX + 2*eSize, eZ-51.5, 3];
 //function pcbType() = BTT_SKR_V1_4_TURBO;
-function pcbType() = BTT_SKR_E3_TURBO;
+function pcbType() = eX == 250 ? BTT_SKR_MINI_E3_V2_0 : BTT_SKR_E3_TURBO;
 //function pcbType() = BTT_SKR_MINI_E3_V2_0;
+pcbOffsetZ = eX == 250 ? 155 : 100;
 
 
 module Back_Panel_dxf() {
@@ -153,7 +154,6 @@ module backPanelCutouts(psuType, pcbType, cncSides = undef, radius = undef) {
                                     rounded_square([4, cutoutWidth], 0.25, center=true);
                     }*/
 
-        pcbOffsetZ = 100;
         translate([eX + eSize, pcbOffsetZ])
             if (pcbType == BTT_SKR_E3_TURBO || pcbType == BTT_SKR_MINI_E3_V2_0) {
                 pcbSize = pcb_size(BTT_SKR_E3_TURBO);
@@ -370,7 +370,7 @@ assembly("PSU_Right_Mount", ngb=true) {
 
 module PCB_Mount_stl() {
     skrV1_4 = pcbType() == BTT_SKR_V1_4_TURBO;
-    size = [skrV1_4 ? 110 : 130, 120, 3];
+    size = [skrV1_4 ? 110 : 130, pcbOffsetZ + 20, 3];
     fillet = 1;
     countersunk = true;
     offsetY = 155;
@@ -395,9 +395,8 @@ module PCB_Mount_stl() {
                         for (y = [6, size.y/2, size.y - 6])
                             translate([eX + 3*eSize/2, y + offsetY -size.y/2])
                                 boltPolyholeM4Countersunk(size.z);
-                        pcbOffsetZ = 100;
                         pcbSize = pcb_size(pcbType());
-                        translate([eX + eSize, pcbOffsetZ])
+                        translate([eX + eSize, pcbOffsetZ + (pcbOffsetZ == 100 ? 0 : 10)])
                             rotate(skrV1_4 ? [0, 0, 90] : [0, 0, 0])
                                 translate([skrV1_4 ? pcbSize.x/2 : -pcbSize.x/2, pcbSize.y/2, 0])
                                     pcb_screw_positions(pcbType())
@@ -509,7 +508,6 @@ module pcbPosition(pcbType, z=0) {
                 rotate(90)
                     children();
     } else {
-        pcbOffsetZ = 100;
         if (pcbType == BTT_SKR_E3_TURBO || pcbType == BTT_SKR_MINI_E3_V2_0) {
             pcbSize = pcb_size(BTT_SKR_E3_TURBO);
             translate([eX + eSize - pcbSize.x/2, eY + 2*eSize - pcbStandOffHeight, pcbSize.y/2 + pcbOffsetZ])

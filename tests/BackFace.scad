@@ -29,7 +29,7 @@ module BackFace_test() {
     //let($hide_pcb=true)
     //Base_Plate_assembly();
     //Left_Side_assembly();
-    //Right_Side_assembly();
+    Right_Side_assembly();
     //faceRightExtras();
     //Face_Top_assembly();
     //printHeadWiring();
