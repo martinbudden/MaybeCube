@@ -15,7 +15,7 @@ include <../Parameters_Main.scad>
 
 
 function useDualZRods() = !is_undef(_useDualZRods) && _useDualZRods;
-function useDualZRods() = !is_undef(_useDualZMotors) && _useDualZMotors;
+function useDualZMotors() = !is_undef(_useDualZMotors) && _useDualZMotors;
 
 SK_type = _zRodDiameter == 8 ? SK8 : _zRodDiameter == 10 ? SK10 : SK12;
 
