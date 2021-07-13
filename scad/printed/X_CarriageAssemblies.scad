@@ -28,21 +28,21 @@ function blower_type() = is_undef(_blowerDescriptor) || _blowerDescriptor == "BL
 //function accelerometerOffset() = [10, -1, 8];
 function accelerometerOffset() = [8, -1, 8];
 
-module X_Carriage_Front_Belt_Attachment_MGN12H_stl() {
+module X_Carriage_Belt_Attachment_MGN12H_stl() {
     xCarriageType = MGN12H_carriage;
 
     // orientate for printing
-    stl("X_Carriage_Front_Belt_Attachment_MGN12H")
+    stl("X_Carriage_Belt_Attachment_MGN12H")
         color(pp4_colour)
             rotate([0, -90, 0])
                 xCarriageFrontBeltAttachment(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, accelerometerOffset());
 }
 
-module X_Carriage_Front_Belt_Attachment_MGN12H_assembly()
-assembly("X_Carriage_Front_Belt_Attachment_MGN12H", big=true) {
+module X_Carriage_Belt_Attachment_MGN12H_assembly()
+assembly("X_Carriage_Belt_Attachment_MGN12H", big=true) {
     rotate([0, 90, 0])
         stl_colour(pp4_colour)
-            X_Carriage_Front_Belt_Attachment_MGN12H_stl();
+            X_Carriage_Belt_Attachment_MGN12H_stl();
     translate([19, -2.5, -31])
         rotate([0, 0, 180]) {
             X_Carriage_Belt_Tensioner_stl();

@@ -62,7 +62,7 @@ module fullPrinthead(rotate=180, beltAttachment=true, explode=0, t=undef, accele
             rotate(rotate) {// for debug, to see belts better
                 explode([0, -20, 0], true) {
                     if (beltAttachment)
-                        X_Carriage_Front_Belt_Attachment_MGN12H_assembly();
+                        X_Carriage_Belt_Attachment_MGN12H_assembly();
                     else
                         X_Carriage_Front_MGN12H_assembly();
                     xCarriageFrontBolts(xCarriageType, _beltWidth, topBoltLength=30);

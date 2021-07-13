@@ -18,7 +18,7 @@ module X_Carriage_test() {
     //rotate([0, -90, 0]) X_Carriage_MGN12H_stl();
     X_Carriage_MGN12H_assembly();
     //X_Carriage_Front_MGN12H_assembly();
-    X_Carriage_Front_Belt_Attachment_MGN12H_assembly();
+    X_Carriage_Belt_Attachment_MGN12H_assembly();
     translate_z(-13)
         carriage(MGN12H_carriage);
     //Fan_Duct_stl();

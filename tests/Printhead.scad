@@ -40,7 +40,7 @@ module Printhead_test() {
         xRailCarriagePosition() {
             //Printhead_MGN12H_assembly();
             //X_Carriage_Front_MGN12H_assembly();
-            X_Carriage_Front_Belt_Attachment_MGN12H_assembly();
+            X_Carriage_Belt_Attachment_MGN12H_assembly();
             X_Carriage_MGN12H_assembly();
         }
     }
