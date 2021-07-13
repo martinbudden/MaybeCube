@@ -54,15 +54,18 @@ assembly("Printhead_MGN12H", big=true) {
         }
 }
 
-module fullPrinthead(rotate=180, explode=0, t=undef, accelerometer=false) {
+module fullPrinthead(rotate=180, beltAttachment=true, explode=0, t=undef, accelerometer=false) {
     xCarriageType = MGN12H_carriage;
 
     xRailCarriagePosition(t)
         explode(explode, true)
             rotate(rotate) {// for debug, to see belts better
                 explode([0, -20, 0], true) {
-                    X_Carriage_Front_MGN12H_assembly();
-                    xCarriageFrontBolts(xCarriageType, _beltWidth);
+                    if (beltAttachment)
+                        X_Carriage_Front_Belt_Attachment_MGN12H_assembly();
+                    else
+                        X_Carriage_Front_MGN12H_assembly();
+                    xCarriageFrontBolts(xCarriageType, _beltWidth, topBoltLength=30);
                 }
                 Printhead_MGN12H_assembly();
                 xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk);
@@ -81,7 +84,7 @@ module fullPrinthead(rotate=180, explode=0, t=undef, accelerometer=false) {
                                                 washer(M3_washer);
                                 }
                             }
-                if (!exploded())
+                if (!beltAttachment && !exploded())
                     xCarriageBeltFragments(xCarriageType, coreXY_belt(coreXY_type()), beltOffsetZ(), coreXYSeparation().z, coreXY_upper_belt_colour(coreXY_type()), coreXY_lower_belt_colour(coreXY_type()));
             }
 }

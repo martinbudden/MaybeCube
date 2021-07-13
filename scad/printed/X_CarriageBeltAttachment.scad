@@ -7,6 +7,9 @@ include <NopSCADlib/vitamins/rails.scad>
 
 use <../vitamins/bolts.scad>
 
+use <../../../BabyCube/scad/printed/X_Carriage.scad>
+include <../../../BabyCube/scad/vitamins/pcbs.scad>
+
 X_Carriage_Belt_Tensioner_size = [21, 10, 7.2];
 
 
@@ -72,10 +75,10 @@ module X_Carriage_Belt_Tensioner_stl() {
                 threadLength = 8;
                 translate([0, (size.y + offsetY)/2, size.z/2])
                     rotate([90, 0, 90])
-                        boltHoleM3Tap(threadLength, horizontal=true);
+                        boltHoleM3(size.x - threadLength, horizontal=true, chamfer_both_ends=false);
                 translate([size.x, (size.y + offsetY)/2, size.z/2])
                     rotate([90, 0, -90])
-                        boltHoleM3(size.x - threadLength, horizontal=true, chamfer_both_ends=false);
+                        boltHoleM3Tap(threadLength, horizontal=true);
                 translate([0, -eps, -eps])
                     rotate([90, 0, 90])
                         right_triangle(fillet, fillet, size.x + 2*eps, center=false);
@@ -88,13 +91,16 @@ module X_Carriage_Belt_Tensioner_stl() {
 module X_Carriage_Belt_Tensioner_hardware() {
     size = X_Carriage_Belt_Tensioner_size;
     offsetY = 4.5;
-    translate([41, (size.y + offsetY)/2, size.z/2])
+    translate([41.6, (size.y + offsetY)/2, size.z/2])
         rotate([90, 0, 90])
-            boltM3Caphead(40);
+            washer(M3_washer)
+                boltM3Caphead(40);
 }
 
 module xCarriageBeltAttachment(sizeZ) {
     size = [xCarriageBeltAttachmentSizeX(), 18 - toothHeight, sizeZ];
+    cutoutSize = [7.75, 9.75];
+    endCubeSize = [9, 8, 12];
 
     difference() {
         union() {
@@ -104,34 +110,35 @@ module xCarriageBeltAttachment(sizeZ) {
                         square([size.x, size.y]);
                         for (y = [0, 9.25])
                             translate([y + 0.5, 0.5])
-                                hull(){
-                                    square([7.35, 9.25]);
+                                hull() {
+                                    square(cutoutSize);
                                     translate([1, 0])
-                                        square([5.35, 10.25]);
+                                        square([cutoutSize.x - 2, cutoutSize.y + 1]);
                                 }
                     }
             translate([0, size.z - 0.5, size.y])
                 rotate([90, 0, -90])
-                    GT2Teeth(8*2+2.5, 21, horizontal=true);
+                    GT2Teeth(8*2+2.5, floor(size.z/2) - 1, horizontal=true);
             translate([-size.x, 0, size.y])
                 cube([xCarriageBeltAttachmentSizeX() - 18, size.z, toothHeight]);
             translate([-8.8 - 3/2, 0, size.y])
                 cube([3, size.z, toothHeight]);
             translate([-9, 0, 0])
-                cube([9, 5, 12]);
-            translate([-18.5, size.z - 5, 0])
-                cube([9, 5, 12]);
+                cube(endCubeSize);
+            translate([-18.5, size.z - endCubeSize.y, 0])
+                cube(endCubeSize);
         }
         for (x = [0, -xCarriageBeltClampHoleSeparation], y = [3*size.z/10, 7*size.z/10])
             translate([x - 8.8, y, size.y + toothHeight])
                 vflip()
                     boltHoleM3Tap(6);
-        translate([-4.2, 0, 3.3])
+        translate([-4.2, 0, 3.3]) {
             rotate([-90, 180, 0])
-                boltHoleM3(5, horizontal=true);
-        translate([-4.2 - 9.2, size.z, 3.3])
-            rotate([90, 0, 0])
-                boltHoleM3(5, horizontal=true);
+                boltHoleM3(endCubeSize.y, horizontal=true);
+            translate([-9.2, size.z, 0])
+                rotate([90, 0, 0])
+                    boltHoleM3(endCubeSize.y, horizontal=true);
+        }
     }
 }
 module X_Carriage_Belt_Clamp_stl() {
@@ -162,8 +169,63 @@ module xCarriageBeltAttachmentTest_stl() {
         xCarriageBeltAttachment(44.1);
 }
 
-module xCarriageFrontBeltAttachment(xCarriageType, beltWidth, beltOffsetZ, coreXYSeparationZ) {
+module xCarriageFrontBeltAttachment(xCarriageType, beltWidth, beltOffsetZ, coreXYSeparationZ, accelerometerOffset=undef) {
     assert(is_list(xCarriageType));
 
     size = xCarriageFrontSize(xCarriageType, beltWidth);
+    topSize = [size.x, size.y + 15.45, xCarriageTopThickness()];
+    carriageSize = carriage_size(xCarriageType);
+    baseThickness = xCarriageBaseThickness();
+    baseOffset = size.z - topSize.z;
+    railCarriageGap = 0.5;
+    fillet = 1;
+
+    translate([-size.x/2, -xCarriageFrontOffsetY(xCarriageType), 0]) {
+        difference () {
+            //translate_z(-size.z + topThickness)
+            translate_z(-baseOffset)
+                union() {
+                    rounded_cube_xz(size, fillet);
+                    translate([0, 0, size.z - topSize.z])
+                        rounded_cube_xz(topSize, fillet);
+                    insetHeight = 8+2*fillet;//size.z - railCarriageGap - topSize.z - carriage_size(xCarriageType).z + carriage_clearance(xCarriageType);
+                    rounded_cube_xz([size.x, size.y + beltInsetFront(xCarriageType), insetHeight], fillet);
+                    translate_z(8) {
+                        cube([size.x, size.y + 2.6, 28.5]);
+                        cube([size.x, size.y + 20.5, 5]);
+                    }
+                } // end union
+            // holes at the top to connect to the printhead
+            for (x = xCarriageTopHolePositions(xCarriageType))
+                translate([x, 0, -baseOffset + size.z - topSize.z/2])
+                    rotate([-90, 0, 0])
+                        boltHoleM3(topSize.y, twist=4);
+            // holes at the bottom to connect to the printhead
+            for (x = xCarriageBottomHolePositions(xCarriageType))
+                translate([x, size.y + beltInsetFront(xCarriageType), -baseOffset + baseThickness/2])
+                    rotate([90, 90, 0])
+                        boltHoleM3(size.y + beltInsetFront(xCarriageType), twist=4);
+            // bolt holes to connect to to the rail carriage
+            translate([size.x/2, xCarriageFrontOffsetY(xCarriageType), -carriage_height(xCarriageType)]) {
+                carriage_hole_positions(xCarriageType) {
+                    boltHoleM3(topSize.z, horizontal=true);
+                    // cut the countersink
+                    translate_z(topSize.z)
+                        hflip()
+                            boltHoleM3(topSize.z, horizontal=true, chamfer=3.2, chamfer_both_ends=false);
+                }
+                if (is_list(accelerometerOffset))
+                    translate(accelerometerOffset + [0, 0, carriage_height(xCarriageType)])
+                        rotate(180)
+                            pcb_hole_positions(ADXL345)
+                                vflip()
+                                    boltHoleM3Tap(8, horizontal=true);
+            }
+
+        } // end difference
+
+    }
+    translate([size.x/2, -13, -size.z + 20.5])
+        rotate([0, 90, 90])
+            xCarriageBeltAttachment(size.x);
 }
