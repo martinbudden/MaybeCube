@@ -16,14 +16,17 @@ function X_CarriageEVATensionerOffsetX() = 1;
 
 
 module evaPrintheadList() {
-    hidden() {
-        xCarriageBeltAttachmentTest_stl();
-        EVA_MC_top_orbiter_mgn12_stl();
-        EVA_MC_top_titan_mgn12_stl();
-        EVA_MC_top_bmg_mgn12_stl();
+    EVA_MC_top_mgn12_stl();
+    translate([50, 0, 0])
         EVA_MC_top_lgx_mgn12_a_stl();
-        evaHotendBase();
-    }
+    translate([100, 0, 0])
+        EVA_MC_top_bmg_mgn12_stl();
+    translate([150, 0, 0])
+        EVA_MC_top_orbiter_mgn12_stl();
+    translate([210, 0, 0])
+        EVA_MC_top_titan_mgn12_stl();
+    translate([-50, 0, 0])
+        EVA_MC_bottom_mgn12_short_duct_stl();
 }
 
 module evaHotendBase() {

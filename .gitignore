@@ -20,6 +20,7 @@ times.txt
 scad/target.scad
 scad/bom.scad
 scad/stlimporttemp
+scad/stlimport/eva
 
 tests.*
 tests/*.*
@@ -52,6 +53,24 @@ jigs/assemblies/*_diff.png
 jigs/dxfs/*_diff.png
 jigs/stls/*_diff.png
 
+EVA/assemblies/*
+EVA/bom/
+EVA/dxfs/*
+EVA/stls/*
+EVA/tmp/
+EVA/*.html
+EVA/*.md
+#!jigs/readme.md
+#!jigs/assemblies/main_assembled.png
+#!jigs/assemblies/*.png
+#!jigs/dxfs/*.dxf
+#!jigs/dxfs/*.png
+
+#!EVA/stls/*.stl
+#!EVA/stls/*.png
+EVA/assemblies/*_diff.png
+EVA/dxfs/*_diff.png
+EVA/stls/*_diff.png
 
 MC250/assemblies/*
 MC250/bom/
