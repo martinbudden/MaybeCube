@@ -25,6 +25,7 @@ use <../scad/Parameters_CoreXY.scad>
 use <../scad/Parameters_Positions.scad>
 include <../scad/Parameters_Main.scad>
 
+use <EVA.scad>
 
 yCarriageType = MGN12H_carriage;
 rail_type = MGN12;
@@ -38,6 +39,11 @@ module CoreXY_test() {
     coreXYSize = coreXYPosTR(NEMA_width) - coreXYPosBL();
     CoreXYBelts(carriagePosition(t), x_gap = 20, show_pulleys = [1, 0, 0]);
     fullPrinthead(t=t);
+    *xRailCarriagePosition(t)
+        evaHotend();
+
+    translate_z(eZ)
+        xRail(carriagePosition(t));
 
     for (x=[0, eX + eSize], y=[0, eY + eSize])
         translate([x, y, 250])

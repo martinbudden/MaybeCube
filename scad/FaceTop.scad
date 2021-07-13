@@ -8,6 +8,7 @@ use <printed/PrintheadAssemblies.scad>
 use <printed/WiringGuide.scad>
 use <printed/XY_MotorMount.scad>
 use <printed/XY_Idler.scad>
+use <printed/X_CarriageEVA.scad>
 use <printed/Y_CarriageAssemblies.scad>
 
 use <utils/FrameBolts.scad>
@@ -70,6 +71,8 @@ assembly("Face_Top", big=true) {
                     boltM3Caphead(10);
         }
     fullPrinthead(explode=100);
+    hidden()
+        evaHotendBase();
     if (!exploded())
         CoreXYBelts(carriagePosition());
 }
