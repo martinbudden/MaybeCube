@@ -21,10 +21,10 @@ module xRail(carriagePosition=carriagePosition()) {
     xCarriageType = xCarriageType();
     xRailType = xRailType();
     yRailType = yRailType();
-    translate([eSize + eX/2, carriagePosition().y, -eSize - rail_height(xRailType) - rail_height(yRailType) + carriage_clearance(xCarriageType)])
+    translate([eSize + eX/2, carriagePosition.y, -eSize - rail_height(xRailType) - rail_height(yRailType) + carriage_clearance(xCarriageType)])
         rotate(180)
             if (is_undef($hide_rails) || $hide_rails == false)
-                rail_assembly(xCarriageType, _xRailLength, eX - _xRailLength/2 - 5 - carriagePosition().x, carriage_end_colour="green", carriage_wiper_colour="red");
+                rail_assembly(xCarriageType, _xRailLength, eX - _xRailLength/2 - 5 - carriagePosition.x, carriage_end_colour="green", carriage_wiper_colour="red");
 }
 
 module xRailCarriagePosition(t=undef) {
