@@ -30,18 +30,21 @@ module Printhead_test() {
     echo(coreXYSeparation=coreXYSeparation());
 
     *translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
-        fullPrinthead();
-        CoreXYBelts(carriagePosition(), x_gap = 20, show_pulleys = [1, 0, 0]);
+        fullPrinthead(accelerometer=true);
+        CoreXYBelts(carriagePosition(), x_gap = -25, show_pulleys = [1, 0, 0]);
         translate_z(eZ)
             xRail(carriagePosition());
     }
-    *translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())])
+    translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
+        CoreXYBelts(carriagePosition(), x_gap = -25, show_pulleys = ![1, 0, 0]);
         xRailCarriagePosition() {
-            Printhead_MGN12H_assembly();
-            X_Carriage_Front_MGN12H_assembly();
-            //X_Carriage_MGN12H_assembly();
+            //Printhead_MGN12H_assembly();
+            //X_Carriage_Front_MGN12H_assembly();
+            X_Carriage_Front_Belt_Attachment_MGN12H_assembly();
+            X_Carriage_MGN12H_assembly();
         }
-    let($hide_bolts=true) Printhead_MGN12H_assembly();
+    }
+    *let($hide_bolts=true) Printhead_MGN12H_assembly();
     //translate([-11.4, 0, 8]) rotate(180)    xCarriageTop();
     //X_Carriage_Front_MGN12H_assembly();
     //X_Carriage_MGN12H_assembly();

@@ -15,6 +15,7 @@ include <NopSCADlib/vitamins/rails.scad>
 use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/X_CarriageAssemblies.scad>
 use <../scad/printed/X_CarriageEVA.scad>
+use <../scad/printed/X_CarriageBeltAttachment.scad>
 
 use <../scad/utils/carriageTypes.scad>
 use <../scad/utils/CoreXYBelts.scad>
@@ -34,7 +35,7 @@ tensionerOffsetX = X_CarriageEVATensionerOffsetX();
 module EVA_test() {
     carriagePosition = carriagePosition();
     translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
-        //fullPrinthead(180);
+        //fullPrinthead(rotate=180);
         CoreXYBelts(carriagePosition() + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
         translate_z(eZ)
             xRail(carriagePosition);
@@ -188,12 +189,18 @@ module evaImportStlBottom() {
 //universal_face();
 //importTensioner();
 //EvaTopConvert("top_orbiter_mgn12");
+//EvaTopConvert("top_lgx_mgn12_a");
+//EVA_MC_top_lgx_mgn12_a_stl();
 //EVA_MC_top_mgn12_stl();
 //evaImportStlBottom();
 //EVA_MC_bottom_mgn12_short_duct_stl();
-//X_Carriage_Belt_Tensioner_stl()
+xCarriageBeltAttachment(40);
+//X_Carriage_Belt_Tensioner_stl();
 //teeth(8, 5, horizontal=!true);
 //evaHotendBase();
+//translate([-43.7, 22, 16]) rotate([-90, 0, 90]) evaImportStl("contributors/dual_5015_bottom_mgn12_wide");
+//EVA_MC_dual_5015_bottom_mgn12_wide_stl();
+//translate([4.1, 22.1, 27]) rotate([-90,0,90]) evaImportStl("contributors/7530_fan_mgn12_bottom_wide");
 //X_Carriage_Belt_Clamp_stl();
-if ($preview)
+*if ($preview)
     EVA_test();
