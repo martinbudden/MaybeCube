@@ -11,6 +11,8 @@ use <../utils/PrintheadOffsets.scad>
 
 use <../vitamins/bolts.scad>
 
+use <X_CarriageBeltAttachment.scad>
+
 use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
 use <../../../BabyCube/scad/printed/X_CarriageBeltClamps.scad>
@@ -24,6 +26,25 @@ function hotendOffset(xCarriageType, hotend_type=0) = printHeadHotendOffset(hote
 function grooveMountSize(blower_type, hotend_type=0) = [printHeadHotendOffset(hotend_type).x, blower_size(blower_type).x + 6.25, 12];
 function blower_type() = is_undef(_blowerDescriptor) || _blowerDescriptor == "BL30x10" ? BL30x10 : BL40x10;
 function accelerometerOffset() = [10, -1, 8];
+
+module X_Carriage_Front_Belt_Attachment_MGN12H_stl() {
+    xCarriageType = MGN12H_carriage;
+
+    // orientate for printing
+    stl("X_Carriage_Front_Belt_Attachment_MGN12H")
+        color(pp4_colour)
+            rotate([0, -90, 0])
+                xCarriageFrontBeltAttachment(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z);
+}
+
+module X_Carriage_Front_Belt_Attachment_MGN12H_assembly()
+assembly("X_Carriage_Front_Belt_Attachment_MGN12H", big=true) {
+    rotate([0, 90, 0])
+        stl_colour(pp4_colour)
+            X_Carriage_Front_Belt_Attachment_MGN12H_stl();
+    X_Carriage_Belt_Clamp_stl();
+    X_Carriage_Belt_Clamp_hardware();
+}
 
 module X_Carriage_Front_MGN12H_stl() {
     xCarriageType = MGN12H_carriage;

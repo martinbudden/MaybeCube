@@ -13,6 +13,7 @@ use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/Y_CarriageAssemblies.scad>
 use <../scad/printed/XY_Idler.scad>
 use <../scad/printed/XY_MotorMount.scad>
+use <../scad/printed/X_CarriageEVA.scad>
 
 use <../scad/utils/printParameters.scad>
 use <../scad/utils/CoreXYBelts.scad>
@@ -40,7 +41,7 @@ module CoreXY_test() {
     CoreXYBelts(carriagePosition(t), x_gap = 20, show_pulleys = [1, 0, 0]);
     fullPrinthead(t=t);
     *xRailCarriagePosition(t)
-        evaHotend();
+        evaHotendBase();
 
     translate_z(eZ)
         xRail(carriagePosition(t));
