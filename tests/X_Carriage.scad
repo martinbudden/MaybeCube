@@ -19,8 +19,8 @@ module X_Carriage_test() {
     X_Carriage_MGN12H_assembly();
     //X_Carriage_Front_MGN12H_assembly();
     X_Carriage_Belt_Attachment_MGN12H_assembly();
-    translate_z(-13)
-        carriage(MGN12H_carriage);
+    //X_Carriage_Belt_Attachment_MGN12H_stl();
+    translate_z(-13) carriage(MGN12H_carriage);
     //Fan_Duct_stl();
     //Belt_Tensioner_stl();
     //Belt_Clamp_stl();
