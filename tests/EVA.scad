@@ -34,20 +34,20 @@ tensionerOffsetX = X_CarriageEVATensionerOffsetX();
 module EVA_test() {
     carriagePosition = carriagePosition();
     translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
-        fullPrinthead(180);
-        CoreXYBelts(carriagePosition() + [2, 0], x_gap = -44, show_pulleys = ![1, 0, 0]);
+        //fullPrinthead(180);
+        CoreXYBelts(carriagePosition() + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
         translate_z(eZ)
             xRail(carriagePosition);
     }
     translate([-4.5, 0, 13])
         rotate(180) {
             evaHotendBase();
-            //evaHotend(full=true);
+            evaHotend(full=true);
         }
 }
 
 module importEva(file) {
-    import(str("../scad/stlimport/eva_stls/", file, ".stl"));
+    import(str("../scad/stlimport/eva/", file, ".stl"));
 }
 
 module evaHotend(full=false) {

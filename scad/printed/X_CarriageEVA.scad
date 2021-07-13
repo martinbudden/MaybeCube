@@ -221,8 +221,7 @@ module X_Carriage_EVA_Bottom_stl() {
 
 module evaHotendBase() {
     translate_z(2*eps)
-        color(pp1_colour)
-            X_Carriage_EVA_Top_stl();
+        X_Carriage_EVA_Top_stl();
     translate([-22.1, 13.5, -40.8])
         rotate([90, 90, 0])
             X_Carriage_EVA_Bottom_stl();
