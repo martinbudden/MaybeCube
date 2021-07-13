@@ -17,11 +17,11 @@ toothHeight = 0.75;
 function xCarriageBeltAttachmentSizeX() = 24;
 xCarriageBeltClampHoleSeparation = 12;
 
-module GT2Teeth(sizeZ, n, horizontal=false) {
+module GT2Teeth(sizeZ, toothCount, horizontal=false) {
     fillet = 0.35;
     size = [1, toothHeight];
     linear_extrude(sizeZ)
-        for (x = [0 : 2 : 2*n])
+        for (x = [0 : 2 : 2*toothCount])
             translate([x, 0]) {
                 rotate(90)
                     fillet(fillet);
@@ -101,6 +101,7 @@ module xCarriageBeltAttachment(sizeZ) {
     size = [xCarriageBeltAttachmentSizeX(), 18 - toothHeight, sizeZ];
     cutoutSize = [7.75, 9.75];
     endCubeSize = [9, 8, 12];
+    toothCount = floor(size.z/2) - 1;
 
     difference() {
         union() {
@@ -116,9 +117,9 @@ module xCarriageBeltAttachment(sizeZ) {
                                         square([cutoutSize.x - 2, cutoutSize.y + 1]);
                                 }
                     }
-            translate([0, size.z - 0.5, size.y])
+            translate([0, size.z/2 + toothCount + 0.5, size.y])
                 rotate([90, 0, -90])
-                    GT2Teeth(8*2+2.5, floor(size.z/2) - 1, horizontal=true);
+                    GT2Teeth(8*2+2.5, toothCount, horizontal=true);
             translate([-size.x, 0, size.y])
                 cube([xCarriageBeltAttachmentSizeX() - 18, size.z, toothHeight]);
             translate([-8.8 - 3/2, 0, size.y])

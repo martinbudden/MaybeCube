@@ -34,13 +34,13 @@ module X_Carriage_Belt_Attachment_MGN12H_stl() {
     // orientate for printing
     stl("X_Carriage_Belt_Attachment_MGN12H")
         color(pp4_colour)
-            rotate([0, -90, 0])
+            rotate([90, 0, 0])
                 xCarriageFrontBeltAttachment(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, accelerometerOffset());
 }
 
 module X_Carriage_Belt_Attachment_MGN12H_assembly()
 assembly("X_Carriage_Belt_Attachment_MGN12H", big=true) {
-    rotate([0, 90, 0])
+    rotate([-90, 0, 0])
         stl_colour(pp4_colour)
             X_Carriage_Belt_Attachment_MGN12H_stl();
     translate([19, -2.5, -31])
