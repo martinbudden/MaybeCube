@@ -43,11 +43,11 @@ module EVA_test() {
         translate_z(eZ)
             xRail(carriagePosition, MGN12H_carriage);
     }
-    *translate([-4.5, 0, 13])
+    translate([-4.5, 0, carriage_height(MGN12H_carriage)])
         rotate(180) {
             evaHotendBase();
-            evaHotend(full=!true);
-            *translate([0, 18.5, -15.5 - zOffset])
+            //evaHotend(full=!true);
+            *translate([0, 18.5 + 5, -15.5 - zOffset])
                 color(pp2_colour)
                     evaImportStl("back_corexy");
         }
@@ -200,7 +200,7 @@ module evaImportStlBottom() {
 //EVA_MC_top_mgn12_stl();
 //evaImportStlBottom();
 //EVA_MC_bottom_mgn12_short_duct_stl();
-//xCarriageBeltAttachment(40);
+//xCarriageBeltAttachment(30);
 //X_Carriage_Belt_Tensioner_stl();
 //teeth(8, 5, horizontal=!true);
 //evaHotendBase();
