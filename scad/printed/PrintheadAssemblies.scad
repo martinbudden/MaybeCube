@@ -14,6 +14,7 @@ include <../../../BabyCube/scad/vitamins/pcbs.scad>
 use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
 use <X_CarriageAssemblies.scad>
+use <X_CarriageBeltAttachment.scad>
 
 use <../Parameters_CoreXY.scad>
 include <../Parameters_Main.scad>
@@ -65,7 +66,7 @@ module fullPrinthead(rotate=180, beltAttachment=true, explode=0, t=undef, accele
                         X_Carriage_Belt_Attachment_MGN12H_assembly();
                     else
                         X_Carriage_Front_MGN12H_assembly();
-                    xCarriageFrontBolts(xCarriageType, _beltWidth, topBoltLength=30, countersunk=true);
+                    xCarriageFrontBolts(xCarriageType, _beltWidth, topBoltLength=30, countersunk=true, offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom());
                 }
                 Printhead_MGN12H_assembly();
                 xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk);

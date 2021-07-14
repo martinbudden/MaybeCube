@@ -11,5 +11,8 @@ _xyMotorDescriptor = "NEMA17_48";
 
 _xRailLength = eX - 50;
 _yRailLength = eY;
+_xCarriageDescriptor = "MGN12H";
+_xCarriageCountersunk = true;
+_yCarriageDescriptor = "MGN12H";
 
 _beltWidth = 6;

@@ -22,7 +22,9 @@ assembly("EVA", big=true) {
 
     translate_z(carriage_height(xCarriageType)) {
         stl_colour(evaColorGrey())
-            evaHotendBase(top="bmg_mgn12");
+            not_on_bom()
+                evaHotendBase(top="bmg_mgn12", explode=60);
+        evaHotendBaseHardware(explode=60);
         translate([0, 18.5, -20.5]) {
             explode([0, 30, 0])
                 stl_colour(evaColorGreen())
@@ -33,8 +35,8 @@ assembly("EVA", big=true) {
                         evaImportStl("universal_face");
         }
     }
-    carriage(xCarriageType, end_colour="green", wiper_colour="red");
-    rail(MGN12, _xRailLength);
+    explode(40)
+        rail_assembly(xCarriageType, _xRailLength, pos=0, carriage_end_colour="green", carriage_wiper_colour="red");
     carriagePosition = carriagePosition();
     if (!exploded())
         translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType)])

@@ -26,7 +26,7 @@ function hotendOffset(xCarriageType, hotend_type=0) = printHeadHotendOffset(hote
 function grooveMountSize(blower_type, hotend_type=0) = [printHeadHotendOffset(hotend_type).x, blower_size(blower_type).x + 6.25, 12];
 function blower_type() = is_undef(_blowerDescriptor) || _blowerDescriptor == "BL30x10" ? BL30x10 : BL40x10;
 //function accelerometerOffset() = [10, -1, 8];
-function accelerometerOffset() = [8, -1, 8];
+function accelerometerOffset() = [7, -1, 8];
 
 module X_Carriage_Belt_Attachment_MGN12H_stl() {
     xCarriageType = MGN12H_carriage;
@@ -59,7 +59,7 @@ module X_Carriage_Belt_Attachment_MGN12C_stl() {
     xCarriageType = MGN12C_carriage;
 
     // orientate for printing
-    #stl("X_Carriage_Belt_Attachment_MGN12C")
+    stl("X_Carriage_Belt_Attachment_MGN12C")
         color(pp4_colour)
             rotate([90, 0, 0])
                 xCarriageFrontBeltAttachment(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, accelerometerOffset());
@@ -76,7 +76,7 @@ module X_Carriage_Belt_Attachment_MGN9C_stl() {
     xCarriageType = MGN9C_carriage;
 
     // orientate for printing
-    #stl("X_Carriage_Belt_Attachment_MGN9C")
+    stl("X_Carriage_Belt_Attachment_MGN9C")
         color(pp4_colour)
             rotate([90, 0, 0])
                 xCarriageFrontBeltAttachment(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, accelerometerOffset());
@@ -180,7 +180,7 @@ module X_Carriage_MGN12H_stl() {
     stl("X_Carriage_MGN12H")
         color(pp1_colour)
             rotate([0, 90, 0]) {
-                xCarriageBack(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, clamps=false, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, accelerometerOffset = accelerometerOffset());
+                xCarriageBack(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, clamps=false, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(),accelerometerOffset = accelerometerOffset());
                 hotEndHolder(xCarriageType, grooveMountSize, hotendOffset, hotend_type, blower_type, baffle=false, left=false);
             }
 }

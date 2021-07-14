@@ -12,10 +12,16 @@ include <../../../BabyCube/scad/vitamins/pcbs.scad>
 
 X_Carriage_Belt_Tensioner_size = [21, 10, 7.2];
 
+function xCarriageHoleOffsetTop() = [5.65, -1]; // for alignment with EVA
+//function xCarriageHoleOffsetTop() = [4, 0];
+//function xCarriageHoleOffsetBottom() = [9.7, 4.5]; // for alignment with EVA
+function xCarriageHoleOffsetBottom() = [9.7, 0];
+
+function xCarriageBeltAttachmentSizeX() = 24;
 
 toothHeight = 0.75;
-function xCarriageBeltAttachmentSizeX() = 24;
 xCarriageBeltClampHoleSeparation = 12;
+
 
 module GT2Teeth(sizeZ, toothCount, horizontal=false) {
     fillet = 0.35;
@@ -216,18 +222,14 @@ module xCarriageFrontBeltAttachment(xCarriageType, beltWidth, beltOffsetZ, coreX
                         fillet(1, size.y + 20.5 - size.y);
             }
             // holes at the top to connect to the printhead
-            //offsetT = [5.65, 1]; // for alignment with EVA
-            offsetT = [4, 0];
-            for (x = xCarriageTopHolePositions(xCarriageType, offsetT.x))
-                translate([x, 0, -baseOffset + size.z - topSize.z/2 - offsetT.y])
+            for (x = xCarriageTopHolePositions(xCarriageType, xCarriageHoleOffsetTop().x))
+                translate([x, 0, -baseOffset + size.z - topSize.z/2 + xCarriageHoleOffsetTop().y])
                     rotate([-90, 0, 0])
                         boltPolyholeM3Countersunk(topSize.y);
                         //boltHoleM3(topSize.y, twist=4);
             // holes at the bottom to connect to the printhead
-            //offsetB = [9.7, 4.5]; // for alignment with EVA
-            offsetB = [4, 0];
-            for (x = xCarriageBottomHolePositions(xCarriageType, offsetB.x))
-                translate([x, 0, -baseOffset + baseThickness/2 + offsetB.y])
+            for (x = xCarriageBottomHolePositions(xCarriageType, xCarriageHoleOffsetBottom().x))
+                translate([x, 0, -baseOffset + baseThickness/2 + xCarriageHoleOffsetBottom().y])
                     rotate([-90, 0, 0])
                         boltPolyholeM3Countersunk(size.y + beltInsetFront(xCarriageType));
                         //boltHoleM3(size.y + beltInsetFront(xCarriageType), twist=4,cnc=true);

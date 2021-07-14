@@ -15,6 +15,8 @@ function evaColorGrey() = grey(25);
 function evaColorGreen() = "LimeGreen";
 function X_CarriageEVATensionerOffsetX() = 1;
 
+bottomMgn12Size = [8.2, 44.1, 27];
+
 
 module evaPrintheadList() {
     EVA_MC_top_mgn12_stl();
@@ -34,9 +36,9 @@ module evaPrintheadList() {
         EVA_MC_7530_fan_mgn12_bottom_wide_stl();
 }
 
-module evaHotendBase(top="mgn12") {
+module evaHotendBase(top="mgn12", explode=40) {
     translate_z(2*eps)
-        explode(20)
+        explode(explode)
             if (top == "bmg_mgn12")
                 EVA_MC_top_bmg_mgn12_stl();
             else
@@ -47,30 +49,67 @@ module evaHotendBase(top="mgn12") {
             sizeZ = 44.1;
             explode(20, true)
                 for (y = [3*sizeZ/10, 7*sizeZ/10])
-                    translate([-xCarriageBeltAttachmentSizeX(), y, 18.5]) {
+                    translate([-xCarriageBeltAttachmentSizeX(), y, 18.5])
                         X_Carriage_Belt_Clamp_stl();
-                        X_Carriage_Belt_Clamp_hardware();
-                    }
         }
     evaTensioners();
 }
 
-module evaTensioners(color=pp2_colour) {
-    translate([-18 - X_CarriageEVATensionerOffsetX(), 2.95, -31]) {
+module evaHotendBaseHardware(explode=40) {
+    carriageType = MGN12H_carriage;
+    translate_z(5 - carriage_height(carriageType))
+        carriage_hole_positions(MGN12H_carriage)
+            explode(explode, true)
+                boltM3Caphead(8);
+    translate([-22.1, 13.5, -40.8])
+        rotate([90, 90, 0]) {
+            sizeZ = 44.1;
+            explode(20, true)
+                for (y = [3*sizeZ/10, 7*sizeZ/10])
+                    translate([-xCarriageBeltAttachmentSizeX(), y, 18.5])
+                        X_Carriage_Belt_Clamp_hardware();
+            size = bottomMgn12Size;
+            explode([-explode, 0, 0], true)
+                for (y = [5, size.y - 5])
+                    translate([-44, y, size.z]) {
+                        boltM3Caphead(40);
+                        translate_z(-33)
+                            rotate(30)
+                                explode(-20)
+                                    nut(M3_nut);
+                    }
+            for (y = [9, size.y - 9])
+                translate([size.x - 4, y, size.z]) {
+                    boltM3Caphead(40);
+                    translate_z(-33)
+                        rotate(30)
+                            explode(-40)
+                                nut(M3_nut);
+                }
+        }
+    evaTensionersHardware();
+}
+
+module evaTensioners() {
+    translate([-18 - X_CarriageEVATensionerOffsetX(), 2.95, -31])
         explode([-50, 0, 0])
             X_Carriage_Belt_Tensioner_stl();
-        X_Carriage_Belt_Tensioner_hardware();
-    }
     translate([18 + X_CarriageEVATensionerOffsetX(), 2.95, -33])
-        rotate([0, -180, 0]) {
+        rotate([0, -180, 0])
             explode([-50, 0, 0])
                 X_Carriage_Belt_Tensioner_stl();
+}
+
+module evaTensionersHardware() {
+    translate([-18 - X_CarriageEVATensionerOffsetX(), 2.95, -31])
+        X_Carriage_Belt_Tensioner_hardware();
+    translate([18 + X_CarriageEVATensionerOffsetX(), 2.95, -33])
+        rotate([0, -180, 0])
             X_Carriage_Belt_Tensioner_hardware();
-        }
 }
 
 module EVA_MC_BottomMgn12(ductSizeY=undef, split=false) {
-    size = [8.2, 44.1, 27];
+    size = bottomMgn12Size;
     tabSize = [22, is_undef(ductSizeY) ? size.y - 20 : ductSizeY, 3];
     fillet = 0;
     offsetY = 4.5;
@@ -229,7 +268,7 @@ module EVA_MC_7530_fan_mgn12_bottom_wide_stl() {
 module EVA_MC_top_mgn12_stl() {
     stl("EVA_MC_top_mgn12")
         color(evaColorGrey())
-            EVA_MC_TopMgn12(counterBore=false);
+            EVA_MC_TopMgn12(counterBore=true);
 }
 
 module EVA_MC_top_lgx_mgn12_a_stl() {
