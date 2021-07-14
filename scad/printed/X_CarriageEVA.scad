@@ -39,13 +39,15 @@ module evaPrintheadList() {
 module evaHotendBase(top="mgn12", explode=40) {
     translate_z(2*eps)
         explode(explode)
-            if (top == "bmg_mgn12")
-                EVA_MC_top_bmg_mgn12_stl();
-            else
-                EVA_MC_top_mgn12_stl();
+            not_on_bom()
+                if (top == "bmg_mgn12")
+                    EVA_MC_top_bmg_mgn12_stl();
+                else
+                    EVA_MC_top_mgn12_stl();
     translate([-22.1, 13.5, -40.8])
         rotate([90, 90, 0]) {
-            EVA_MC_bottom_mgn12_short_duct_stl();
+            not_on_bom()
+                EVA_MC_bottom_mgn12_short_duct_stl();
             sizeZ = 44.1;
             explode(20, true)
                 for (y = [3*sizeZ/10, 7*sizeZ/10])

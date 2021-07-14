@@ -22,8 +22,7 @@ assembly("EVA", big=true) {
 
     translate_z(carriage_height(xCarriageType)) {
         stl_colour(evaColorGrey())
-            not_on_bom()
-                evaHotendBase(top="bmg_mgn12", explode=60);
+            evaHotendBase(top="bmg_mgn12", explode=60);
         evaHotendBaseHardware(explode=60);
         translate([0, 18.5, -20.5]) {
             explode([0, 30, 0])
