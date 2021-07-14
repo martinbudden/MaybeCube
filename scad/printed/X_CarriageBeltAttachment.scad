@@ -93,8 +93,9 @@ module X_Carriage_Belt_Tensioner_hardware() {
     offsetY = 4.5;
     translate([41.6, (size.y + offsetY)/2, size.z/2])
         rotate([90, 0, 90])
-            washer(M3_washer)
-                boltM3Caphead(40);
+            explode(10,true)
+                washer(M3_washer)
+                    boltM3Caphead(40);
 }
 
 module xCarriageBeltAttachment(sizeZ) {

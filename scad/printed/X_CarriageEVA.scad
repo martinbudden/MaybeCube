@@ -34,30 +34,37 @@ module evaPrintheadList() {
         EVA_MC_7530_fan_mgn12_bottom_wide_stl();
 }
 
-module evaHotendBase() {
+module evaHotendBase(top="mgn12") {
     translate_z(2*eps)
-        EVA_MC_top_mgn12_stl();
+        explode(20)
+            if (top == "bmg_mgn12")
+                EVA_MC_top_bmg_mgn12_stl();
+            else
+                EVA_MC_top_mgn12_stl();
     translate([-22.1, 13.5, -40.8])
         rotate([90, 90, 0]) {
             EVA_MC_bottom_mgn12_short_duct_stl();
             sizeZ = 44.1;
-            for (y = [3*sizeZ/10, 7*sizeZ/10])
-                translate([-xCarriageBeltAttachmentSizeX(), y, 18.5]) {
-                    X_Carriage_Belt_Clamp_stl();
-                    X_Carriage_Belt_Clamp_hardware();
-                }
+            explode(20, true)
+                for (y = [3*sizeZ/10, 7*sizeZ/10])
+                    translate([-xCarriageBeltAttachmentSizeX(), y, 18.5]) {
+                        X_Carriage_Belt_Clamp_stl();
+                        X_Carriage_Belt_Clamp_hardware();
+                    }
         }
     evaTensioners();
 }
 
 module evaTensioners(color=pp2_colour) {
     translate([-18 - X_CarriageEVATensionerOffsetX(), 2.95, -31]) {
-       X_Carriage_Belt_Tensioner_stl();
-       X_Carriage_Belt_Tensioner_hardware();
+        explode([-50, 0, 0])
+            X_Carriage_Belt_Tensioner_stl();
+        X_Carriage_Belt_Tensioner_hardware();
     }
     translate([18 + X_CarriageEVATensionerOffsetX(), 2.95, -33])
         rotate([0, -180, 0]) {
-            X_Carriage_Belt_Tensioner_stl();
+            explode([-50, 0, 0])
+                X_Carriage_Belt_Tensioner_stl();
             X_Carriage_Belt_Tensioner_hardware();
         }
 }
@@ -171,35 +178,34 @@ module EvaTopConvert(stlFile, zOffset = 5) {
         }
     }
 
-    color(evaColorGrey())
-        translate_z(-zOffset)
-            render(convexity=2)
-                difference() {
-                    height = 8;
-                    union() {
-                        evaImportStl(stlFile);
-                        size1 = [30 + 2*eps, 27, height - screw_head_height(M3_cap_screw) - 0.2];
-                        size2 = [44.1, 12, 1];
-                        size3 = [30, 12, height - screw_head_height(M3_cap_screw) - 0.2];
-                        for (size = [size1, size2, size3])
-                            translate([-size.x/2, -size.y/2, zOffset])
-                                cube(size);
-                    }
-                    boltCutout(7, height - 3);
-                    size = [44.1 + 2*eps, 27 + 2*eps, zOffset + eps];
-                    translate([-size.x/2, -size.y/2, -eps])
-                        cube(size);
-                    translate_z(-zOffset - height) {
-                        offset = 1.25;
-                        carriageType = MGN12H_carriage;
-                        x_pitch = carriage_pitch_x(carriageType)/2 - offset;
-                        y_pitch = carriage_pitch_y(carriageType)/2;
-
-                        for(x = [-x_pitch, x_pitch], y = [-y_pitch, y_pitch])
-                            translate([x, y, carriage_height(carriageType)])
-                                boltCutout(offset, height - 3);
-                    }
+    translate_z(-zOffset)
+        //render(convexity=2)
+            difference() {
+                height = 8;
+                union() {
+                    evaImportStl(stlFile);
+                    size1 = [30 + 2*eps, 27, height - screw_head_height(M3_cap_screw) - 0.2];
+                    size2 = [44.1, 12, 1];
+                    size3 = [30, 12, height - screw_head_height(M3_cap_screw) - 0.2];
+                    for (size = [size1, size2, size3])
+                        translate([-size.x/2, -size.y/2, zOffset])
+                            cube(size);
                 }
+                boltCutout(7, height - 3);
+                size = [44.1 + 2*eps, 27 + 2*eps, zOffset + eps];
+                translate([-size.x/2, -size.y/2, -eps])
+                    cube(size);
+                translate_z(-zOffset - height) {
+                    offset = 1.25;
+                    carriageType = MGN12H_carriage;
+                    x_pitch = carriage_pitch_x(carriageType)/2 - offset;
+                    y_pitch = carriage_pitch_y(carriageType)/2;
+
+                    for(x = [-x_pitch, x_pitch], y = [-y_pitch, y_pitch])
+                        translate([x, y, carriage_height(carriageType)])
+                            boltCutout(offset, height - 3);
+                }
+            }
 }
 
 module EVA_MC_bottom_mgn12_short_duct_stl() {
@@ -234,15 +240,18 @@ module EVA_MC_top_lgx_mgn12_a_stl() {
 
 module EVA_MC_top_bmg_mgn12_stl() {
     stl("EVA_MC_top_bmg_mgn12")
-        EvaTopConvert("top_bmg_mgn12");
+        color(evaColorGrey())
+            EvaTopConvert("top_bmg_mgn12");
 }
 
 module EVA_MC_top_orbiter_mgn12_stl() {
     stl("EVA_MC_top_orbiter_mgn12")
-        EvaTopConvert("top_orbiter_mgn12");
+        color(evaColorGrey())
+            EvaTopConvert("top_orbiter_mgn12");
 }
 
 module EVA_MC_top_titan_mgn12_stl() {
     stl("EVA_MC_top_titan_mgn12")
-        EvaTopConvert("top_titan_mgn12");
+        color(evaColorGrey())
+            EvaTopConvert("top_titan_mgn12");
 }

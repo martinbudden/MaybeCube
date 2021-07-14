@@ -1,1 +1,15 @@
 _variant = "EVA";
+
+__extrusionLengths = [350, 350, 400];
+eX = __extrusionLengths.x;
+eY = __extrusionLengths.y;
+eZ = __extrusionLengths.z;
+
+eSize = 20;
+
+_xyMotorDescriptor = "NEMA17_48";
+
+_xRailLength = eX - 50;
+_yRailLength = eY;
+
+_beltWidth = 6;
