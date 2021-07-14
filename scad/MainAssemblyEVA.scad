@@ -34,19 +34,21 @@ assembly("EVA", big=true) {
         translate([0, 18.5, -20.5]) {
             explode([0, 30, 0])
                 stl_colour(evaColorGreen())
-                    evaImportStl("back_corexy");
+                    EVA_MC_back_corexy_stl();
             *explode([0, -30, 0])
                 translate([0, -32, 0])
                     stl_colour(evaColorGreen())
-                        evaImportStl("universal_face");
+                        EVA_MC_universal_face_stl();
         }
     }
     explode(40)
-        rail_assembly(xCarriageType, _xRailLength, pos=0, carriage_end_colour="green", carriage_wiper_colour="red");
+        not_on_bom()
+            rail_assembly(xCarriageType, _xRailLength, pos=0, carriage_end_colour="green", carriage_wiper_colour="red");
     carriagePosition = carriagePosition();
     if (!exploded())
-        translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType)])
-            CoreXYBelts(carriagePosition + [-2, 0], x_gap=-25);
+        rotate(180)
+            translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType)])
+                CoreXYBelts(carriagePosition + [-2, 0], x_gap=-25);
 }
 
 if ($preview)
