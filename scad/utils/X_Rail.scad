@@ -9,7 +9,7 @@ include <../Parameters_Main.scad>
 
 module xRailBoltPositions() {
     xCarriageType = xCarriageType();
-    xRailType = xRailType();
+    xRailType = carriage_rail(xCarriageType);
     yRailType = yRailType();
     translate([eSize + eX/2, carriagePosition().y, -eSize - rail_height(xRailType) - rail_height(yRailType) + carriage_clearance(xCarriageType)])
         for (x = [1, 3], s = [-_xRailLength/2, _xRailLength/2 - 2*rail_pitch(xRailType)])
@@ -17,9 +17,9 @@ module xRailBoltPositions() {
                 children();
 }
 
-module xRail(carriagePosition=carriagePosition()) {
-    xCarriageType = xCarriageType();
-    xRailType = xRailType();
+module xRail(carriagePosition=carriagePosition(), xCarriageType=undef) {
+    xCarriageType = is_undef(xCarriageType) ? xCarriageType() : xCarriageType;
+    xRailType = carriage_rail(xCarriageType);
     yRailType = yRailType();
     translate([eSize + eX/2, carriagePosition.y, -eSize - rail_height(xRailType) - rail_height(yRailType) + carriage_clearance(xCarriageType)])
         rotate(180)
@@ -29,7 +29,7 @@ module xRail(carriagePosition=carriagePosition()) {
 
 module xRailCarriagePosition(t=undef) {
     xCarriageType = xCarriageType();
-    xRailType = xRailType();
+    xRailType = carriage_rail(xCarriageType);
     yRailType = yRailType();
     translate([ carriagePosition(t).x + eSize + 5 - (eX - _xRailLength)/2,
                 carriagePosition(t).y,

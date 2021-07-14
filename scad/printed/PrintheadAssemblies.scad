@@ -65,7 +65,7 @@ module fullPrinthead(rotate=180, beltAttachment=true, explode=0, t=undef, accele
                         X_Carriage_Belt_Attachment_MGN12H_assembly();
                     else
                         X_Carriage_Front_MGN12H_assembly();
-                    xCarriageFrontBolts(xCarriageType, _beltWidth, topBoltLength=30);
+                    xCarriageFrontBolts(xCarriageType, _beltWidth, topBoltLength=30, countersunk=true);
                 }
                 Printhead_MGN12H_assembly();
                 xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk);

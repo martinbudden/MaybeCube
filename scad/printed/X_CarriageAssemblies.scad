@@ -55,6 +55,40 @@ assembly("X_Carriage_Belt_Attachment_MGN12H", big=true) {
         }
 }
 
+module X_Carriage_Belt_Attachment_MGN12C_stl() {
+    xCarriageType = MGN12C_carriage;
+
+    // orientate for printing
+    #stl("X_Carriage_Belt_Attachment_MGN12C")
+        color(pp4_colour)
+            rotate([90, 0, 0])
+                xCarriageFrontBeltAttachment(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, accelerometerOffset());
+}
+
+module X_Carriage_Belt_Attachment_MGN12C_assembly()
+assembly("X_Carriage_Belt_Attachment_MGN12C", big=true) {
+    rotate([-90, 0, 0])
+        stl_colour(pp4_colour)
+            X_Carriage_Belt_Attachment_MGN12C_stl();
+}
+
+module X_Carriage_Belt_Attachment_MGN9C_stl() {
+    xCarriageType = MGN9C_carriage;
+
+    // orientate for printing
+    #stl("X_Carriage_Belt_Attachment_MGN9C")
+        color(pp4_colour)
+            rotate([90, 0, 0])
+                xCarriageFrontBeltAttachment(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, accelerometerOffset());
+}
+
+module X_Carriage_Belt_Attachment_MGN9C_assembly()
+assembly("X_Carriage_Belt_Attachment_MGN9C", big=true) {
+    rotate([-90, 0, 0])
+        stl_colour(pp4_colour)
+            X_Carriage_Belt_Attachment_MGN9C_stl();
+}
+
 module X_Carriage_Front_MGN12H_stl() {
     xCarriageType = MGN12H_carriage;
 
