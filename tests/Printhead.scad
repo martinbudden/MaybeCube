@@ -29,13 +29,13 @@ module Printhead_test() {
     echo(coreXYPosBL=coreXYPosBL());
     echo(coreXYSeparation=coreXYSeparation());
 
-    *translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
+    translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
         fullPrinthead(accelerometer=true);
         CoreXYBelts(carriagePosition(), x_gap = -25, show_pulleys = [1, 0, 0]);
         translate_z(eZ)
             xRail(carriagePosition());
     }
-    translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
+    *translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
         CoreXYBelts(carriagePosition(), x_gap = -25, show_pulleys = ![1, 0, 0]);
         xRailCarriagePosition() {
             //Printhead_MGN12H_assembly();
