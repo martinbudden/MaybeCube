@@ -1,5 +1,7 @@
 //!# EVA adaptors
 //
+include <global_defs.scad>
+
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
@@ -22,8 +24,13 @@ assembly("EVA", big=true) {
 
     translate_z(carriage_height(xCarriageType)) {
         stl_colour(evaColorGrey())
-            evaHotendBase(top="bmg_mgn12", explode=60);
+            not_on_bom()
+                evaHotendBase(top="bmg_mgn12", explode=60);
         evaHotendBaseHardware(explode=60);
+        stl_colour(pp2_colour)
+            evaTensioners();
+        stl_colour(pp2_colour)
+            evaBeltClamps();
         translate([0, 18.5, -20.5]) {
             explode([0, 30, 0])
                 stl_colour(evaColorGreen())

@@ -35,8 +35,8 @@ tensionerOffsetX = X_CarriageEVATensionerOffsetX();
 module EVA_test() {
     carriagePosition = carriagePosition();
     translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
-        fullPrinthead(rotate=180);
-        *xRailCarriagePosition()
+        //fullPrinthead(rotate=180);
+        xRailCarriagePosition()
             rotate(180)
                 X_Carriage_Belt_Attachment_MGN12H_assembly();
         CoreXYBelts(carriagePosition + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
@@ -201,12 +201,12 @@ module evaImportStlBottom() {
 //evaImportStlBottom();
 //EVA_MC_bottom_mgn12_short_duct_stl();
 //xCarriageBeltAttachment(30);
-//X_Carriage_Belt_Tensioner_stl();
 //teeth(8, 5, horizontal=!true);
 //evaHotendBase();
 //translate([-43.7, 22, 16]) rotate([-90, 0, 90]) evaImportStl("contributors/dual_5015_bottom_mgn12_wide");
 //EVA_MC_dual_5015_bottom_mgn12_wide_stl();
 //translate([4.1, 22.1, 27]) rotate([-90,0,90]) evaImportStl("contributors/7530_fan_mgn12_bottom_wide");
 //X_Carriage_Belt_Clamp_stl();
+//X_Carriage_Belt_Tensioner_stl();
 if ($preview)
     EVA_test();
