@@ -10,7 +10,7 @@ use <../vitamins/bolts.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
 include <../../../BabyCube/scad/vitamins/pcbs.scad>
 
-X_Carriage_Belt_Tensioner_size = [21, 10, 7.2];
+X_Carriage_Belt_Tensioner_size = [23, 10, 7.2];
 
 function xCarriageHoleOffsetTop() = [5.65, -1]; // for alignment with EVA
 //function xCarriageHoleOffsetTop() = [4, 0];
@@ -19,7 +19,8 @@ function xCarriageHoleOffsetBottom() = [9.7, 0];
 
 function xCarriageBeltAttachmentSizeX() = 24;
 
-toothHeight = 0.75;
+// actual dimensions for belt are thickness:1.4, toothHeight:0.75
+toothHeight = 0.8;//0.75;
 xCarriageBeltClampHoleSeparation = 12;
 
 
@@ -29,13 +30,14 @@ module GT2Teeth(sizeZ, toothCount, horizontal=false) {
     linear_extrude(sizeZ)
         for (x = [0 : 2 : 2*toothCount])
             translate([x, 0]) {
-                rotate(90)
-                    fillet(fillet);
+                //if (x != 0)
+                    rotate(90)
+                        fillet(fillet);
                 translate([size.x, 0])
                     fillet(fillet);
                 difference() {
                     square(size);
-                    if (!horizontal) {
+                    *if (!horizontal) {
                         translate([0, size.y])
                             rotate(270)
                                 fillet(fillet);
@@ -50,41 +52,53 @@ module GT2Teeth(sizeZ, toothCount, horizontal=false) {
 module X_Carriage_Belt_Tensioner_stl() {
     size = X_Carriage_Belt_Tensioner_size;
     fillet = 1;
-    offsetX = 4;
-    toothOffsetX = 2+3.93125;
-    offsetY = 4.5;
-    offsetY2 = 2.5;
+    offsetX = 3.5;
+    toothOffsetX = 3.93125;
+    offsetY = 5;
+    beltThickness = 1.65;//- 4.5 + 2.83118; actual belt thickness is 1.4
+    offsetYT = offsetY - beltThickness;
+    offsetY2 = 2.25;
 
     stl("X_Carriage_Belt_Tensioner")
         color(pp2_colour)
             difference() {
                 union() {
-                    rounded_cube_xy([size.x, size.y, 1], fillet);
                     translate([offsetX, 0, 0])
-                        rounded_cube_xy([size.x - offsetX, 2.83118, size.z], fillet);
+                        rounded_cube_xy([size.x - offsetX, size.y, 1], fillet);
+                    translate([0, offsetY2, 0])
+                        rounded_cube_xy([size.x, size.y - offsetY2, 1], fillet);
+                    translate([offsetX, 0, 0])
+                        rounded_cube_xy([size.x - offsetX - fillet, offsetYT, size.z], 0.5);
                     //translate([toothOffsetX, 2.83118, 0])
                     translate([toothOffsetX, offsetY, 0])
                         mirror([0, 1, 0])
-                            GT2Teeth(size.z, floor((size.x - 10)/2));
+                            GT2Teeth(size.z, floor((size.x - 10)/2) + 1);
+                    *translate([toothOffsetX, offsetYT, 0])
+                        GT2Teeth(size.z, floor((size.x - 10)/2) + 1);
                     translate([0, offsetY, 0])
                         rounded_cube_xy([size.x, size.y - offsetY, size.z], fillet);
+                    translate([offsetX, offsetY2,0])
+                        rotate(180)
+                            fillet(1, 1);
                     translate([0, offsetY2, 0])
                         rounded_cube_xy([2.5, size.y - offsetY2, size.z], 0.5);
                     translate([2.5, offsetY, 0])
                         rotate(270)
-                            fillet(fillet, size.z);
+                            fillet(1, size.z);
                     endSizeX = 4.5;
                     translate([size.x - endSizeX, 0, 0])
                         rounded_cube_xy([endSizeX, size.y, size.z], fillet);
                 }
                 //translate([0, 4.35, size.z/2])
                 threadLength = 8;
-                translate([0, (size.y + offsetY)/2, size.z/2])
+                boltOffsetY = 7.25; // was (size.y + offsetY)/2
+                translate([0, boltOffsetY, size.z/2]) {
                     rotate([90, 0, 90])
                         boltHoleM3(size.x - threadLength, horizontal=true, chamfer_both_ends=false);
-                translate([size.x, (size.y + offsetY)/2, size.z/2])
-                    rotate([90, 0, -90])
-                        boltHoleM3Tap(threadLength, horizontal=true);
+                    translate([size.x, 0, 0])
+                        rotate([90, 0, -90])
+                            boltHoleM3Tap(threadLength, horizontal=true);
+                }
                 translate([0, -eps, -eps])
                     rotate([90, 0, 90])
                         right_triangle(fillet, fillet, size.x + 2*eps, center=false);
