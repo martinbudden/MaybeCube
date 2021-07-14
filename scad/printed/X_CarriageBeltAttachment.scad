@@ -200,12 +200,14 @@ module xCarriageFrontBeltAttachment(xCarriageType, beltWidth, beltOffsetZ, coreX
             for (x = xCarriageTopHolePositions(xCarriageType))
                 translate([x, 0, -baseOffset + size.z - topSize.z/2])
                     rotate([-90, 0, 0])
-                        boltHoleM3(topSize.y, twist=4);
+                        boltPolyholeM3Countersunk(topSize.y);
+                        //boltHoleM3(topSize.y, twist=4);
             // holes at the bottom to connect to the printhead
             for (x = xCarriageBottomHolePositions(xCarriageType))
-                translate([x, size.y + beltInsetFront(xCarriageType), -baseOffset + baseThickness/2])
-                    rotate([90, 90, 0])
-                        boltHoleM3(size.y + beltInsetFront(xCarriageType), twist=4);
+                translate([x, 0, -baseOffset + baseThickness/2])
+                    rotate([-90, 0, 0])
+                        boltPolyholeM3Countersunk(size.y + beltInsetFront(xCarriageType));
+                        //boltHoleM3(size.y + beltInsetFront(xCarriageType), twist=4);
             // bolt holes to connect to to the rail carriage
             translate([size.x/2, xCarriageFrontOffsetY(xCarriageType), -carriage_height(xCarriageType)]) {
                 carriage_hole_positions(xCarriageType) {
@@ -222,7 +224,11 @@ module xCarriageFrontBeltAttachment(xCarriageType, beltWidth, beltOffsetZ, coreX
                                 vflip()
                                     boltHoleM3Tap(8, horizontal=true);
             }
-
+            // add bolt holes to allow tooling to be attached, eg second printhead
+            translate([size.x/2, xCarriageFrontOffsetY(xCarriageType)+1, topSize.z - size.z/2])
+                rotate([90, 0, 0])
+                    carriage_hole_positions(MGN12H_carriage)
+                        boltHoleM3Tap(8, twist=4);
         } // end difference
 
     }
