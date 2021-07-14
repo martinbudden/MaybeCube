@@ -95,6 +95,12 @@ The front face of the MaybeCube is the most subject to shearing, since it needs 
 
 ## Customisations
 
+## EVA module printhead system
+
+In its default configuration the MaybeCube has a E3D V6 hotend with a Bowden extruder. However I've created adaptors
+so that the [EVA module printhead system](https://main.eva-3d.page) can be used. The EVA system supports a wide variety
+of hotends and extruders. More details on using the adaptors are [here](https://github.com/martinbudden/MaybeCube/tree/main/EVA).
+
 ### E3D tool changer
 
 While the MaybeCube was not specifically designed to use the E3D tool changer, it was designed with it in mind. That is, I tried to avoid any design decisions that would preclude the use of the tool changer. In particular the x-axis linear rail
