@@ -12,7 +12,6 @@ _boltTogether = true;
 _useAsserts = true;
 
 
-eSize = 20; // for 2020, 2040  etc extrusion
 _printBedExtrusionSize = 20;
 _basePlateThickness = 3;
 

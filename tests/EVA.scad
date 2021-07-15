@@ -38,7 +38,7 @@ module EVA_test() {
         //fullPrinthead(rotate=180);
         xRailCarriagePosition()
             rotate(180)
-                X_Carriage_Belt_Attachment_MGN12H_assembly();
+                X_Carriage_Belt_Side_MGN12H_assembly();
         CoreXYBelts(carriagePosition + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
         translate_z(eZ)
             xRail(carriagePosition, MGN12H_carriage);

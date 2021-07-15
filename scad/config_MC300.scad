@@ -5,6 +5,8 @@ eX = __extrusionLengths.x;
 eY = __extrusionLengths.y;
 eZ = __extrusionLengths.z;
 
+eSize = 20; // for 2020, 2040  etc extrusion
+
 _xyMotorDescriptor = "NEMA17_40";
 _zMotorDescriptor = "NEMA17_40L280";
 _corkDamperThickness = 2;
