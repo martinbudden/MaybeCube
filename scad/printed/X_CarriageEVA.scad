@@ -30,9 +30,9 @@ module evaPrintheadList() {
         EVA_MC_top_titan_mgn12_stl();
     translate([-50, 0, 0])
         EVA_MC_bottom_mgn12_short_duct_stl();
-    translate([-100, 0, 0])
+    *translate([-100, 0, 0])
         EVA_MC_dual_5015_bottom_mgn12_wide_stl();
-    translate([-150, 0, 0])
+    *translate([-150, 0, 0])
         EVA_MC_7530_fan_mgn12_bottom_wide_stl();
 }
 
@@ -49,7 +49,7 @@ module evaHotendBase(top="mgn12", explode=40) {
             sizeZ = 44.1;
             explode(20, true)
                 for (y = [3*sizeZ/10, 7*sizeZ/10])
-                    translate([-xCarriageBeltAttachmentSizeX(), y, 18.5])
+                    translate([-xCarriageBeltAttachmentSize().x, y, 18.5])
                         X_Carriage_Belt_Clamp_stl();
         }
 }
@@ -93,7 +93,7 @@ module evaClampPositions() {
         rotate([90, 90, 0])
             explode(20, true)
                 for (y = [3*sizeZ/10, 7*sizeZ/10])
-                    translate([-xCarriageBeltAttachmentSizeX(), y, 18.5])
+                    translate([-xCarriageBeltAttachmentSize().x, y, 18.5])
                         children();
 }
 
@@ -311,4 +311,16 @@ module EVA_MC_top_titan_mgn12_stl() {
     stl("EVA_MC_top_titan_mgn12")
         color(evaColorGrey())
             EvaTopConvert("top_titan_mgn12");
+}
+
+module EVA_MC_back_corexy_stl() {
+    stl("EVA_MC_back_corexy")
+        stl_colour(evaColorGreen())
+            evaImportStl("back_corexy");
+}
+
+module EVA_MC_universal_face_stl() {
+    stl("EVA_MC_universal_face")
+        stl_colour(evaColorGreen())
+            evaImportStl("universal_face");
 }
