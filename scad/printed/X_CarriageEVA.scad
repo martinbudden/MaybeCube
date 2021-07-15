@@ -313,14 +313,14 @@ module EVA_MC_top_titan_mgn12_stl() {
             EvaTopConvert("top_titan_mgn12");
 }
 
-module EVA_MC_back_corexy_stl() {
-    stl("EVA_MC_back_corexy")
+module back_corexy_stl() {
+    stl("back_corexy")
         stl_colour(evaColorGreen())
             evaImportStl("back_corexy");
 }
 
-module EVA_MC_universal_face_stl() {
-    stl("EVA_MC_universal_face")
+module universal_face_stl() {
+    stl("universal_face")
         stl_colour(evaColorGreen())
             evaImportStl("universal_face");
 }

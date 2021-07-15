@@ -34,11 +34,11 @@ assembly("EVA", big=true) {
         translate([0, 18.5, -20.5]) {
             explode([0, 30, 0])
                 stl_colour(evaColorGreen())
-                    EVA_MC_back_corexy_stl();
+                    back_corexy_stl();
             *explode([0, -30, 0])
                 translate([0, -32, 0])
                     stl_colour(evaColorGreen())
-                        EVA_MC_universal_face_stl();
+                        universal_face_stl();
         }
     }
     explode(40)
