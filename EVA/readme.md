@@ -13,7 +13,7 @@ The top adaptor varies according to the extruder used - the part name is the sam
 So for example if you wanted to used the BMG extruder then you should use part **EVA_MC_bmg_mgn12.stl**
 (rather than part **bmg_mgn12.stl** that you would ordinarily use).
 
-##License
+## License
 
 EVA is licensed under the [GNU General Public License v3.0](https://github.com/EVA-3D/eva-main/blob/main/LICENSE)
 and EVA parts may be used under those terms.
