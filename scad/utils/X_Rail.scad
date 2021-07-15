@@ -38,26 +38,3 @@ module xRailCarriagePosition(t=undef) {
         rotate(180)
             children();
 }
-
-/*
-//!You may wish to temporarily put a nut and bolt through each end of the x axis linear rail, so that the carriage does
-//!not fall off the rail before it is attached to the frame.
-//!
-//!1. Bolt the X carriage to the carriage on the linear rail.
-//!2. Bolt on the bottom of the X carriage.
-//
-module X_Rail_with_X_Carriage_assembly()
-assembly("X_Rail_with_X_Carriage") {
-    xRail();
-    xRailCarriagePosition()
-        rotate(180)
-        Printhead_MGN12H_assembly();
-        explode(90, true) {
-            X_Carriage_MGN12H_assembly();
-            xCarriageBoltPositions()
-                boltM3Caphead(8);
-            explode(-70, true)
-                X_Carriage_Bottom_stl();
-        }
-}
-*/

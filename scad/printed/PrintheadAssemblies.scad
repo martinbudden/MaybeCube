@@ -27,15 +27,15 @@ function grooveMountClampSize(blower_type, hotend_type) = [grooveMountSize(blowe
 //!1. Assemble the E3D hotend, including fan, thermistor cartridge and heater cartridge.
 //!2. Use the Hotend_Clamp to attach the hotend to the X_Carriage.
 //!3. Collect the wires together and attach to the X_Carriage using the Hotend_Strain_Relief_Clamp.
-module Printhead_MGN12H_assembly()  pose(a=[55, 0, 25 + 180])
-assembly("Printhead_MGN12H", big=true) {
+module Printhead_E3DV6_MGN12H_assembly()  pose(a=[55, 0, 25 + 180])
+assembly("Printhead_E3DV6_MGN12H", big=true) {
 
     xCarriageType = MGN12H_carriage;
     blower_type = blower_type();
     hotend_type = 0;
     hotendOffset = hotendOffset(xCarriageType, hotend_type);
 
-    X_Carriage_MGN12H_assembly();
+    X_Carriage_Groovemount_MGN12H_assembly();
 
     rotate(180)
         translate([0, -2*hotendOffset.y, 0]) {
@@ -63,12 +63,12 @@ module fullPrinthead(rotate=180, beltAttachment=true, explode=0, t=undef, accele
             rotate(rotate) {// for debug, to see belts better
                 explode([0, -20, 0], true) {
                     if (beltAttachment)
-                        X_Carriage_Belt_Attachment_MGN12H_assembly();
+                        X_Carriage_Belt_Side_MGN12H_assembly();
                     else
                         X_Carriage_Front_MGN12H_assembly();
-                    xCarriageFrontBolts(xCarriageType, _beltWidth, topBoltLength=30, countersunk=true, offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom());
+                    xCarriageFrontBolts(xCarriageType, _beltWidth, topBoltLength=30, bottomBoltLength=30, countersunk=true, offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom());
                 }
-                Printhead_MGN12H_assembly();
+                Printhead_E3DV6_MGN12H_assembly();
                 xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk);
                 if (accelerometer)
                     explode(50, true)

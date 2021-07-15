@@ -5,10 +5,6 @@
 add more cable vitamins
 complete assembly instructions
 complete top level blurb
-add BTT_B1_Box_V1_0 to baseplate
-add filament runout sensor to extruderbracket
-z endstop
-reinforce idler shelves
 
 
 //DONE
@@ -27,7 +23,12 @@ y endstop
 convert extruder bracket to BIQU B1 form
 add belt fragments for x carriage
 move motors to back, ie swap left and right face arrangement
+add filament runout sensor to extruder bracket
+reinforce idler shelves
 
+// Not Doing
+add BTT_B1_Box_V1_0 to baseplate
+z endstop
 */
 
 include <NopSCADlib/core.scad>

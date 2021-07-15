@@ -28,21 +28,21 @@ function blower_type() = is_undef(_blowerDescriptor) || _blowerDescriptor == "BL
 //function accelerometerOffset() = [10, -1, 8];
 function accelerometerOffset() = [7, -1, 8];
 
-module X_Carriage_Belt_Attachment_MGN12H_stl() {
+module X_Carriage_Belt_Side_MGN12H_stl() {
     xCarriageType = MGN12H_carriage;
 
     // orientate for printing
-    stl("X_Carriage_Belt_Attachment_MGN12H")
+    stl("X_Carriage_Belt_Side_MGN12H")
         color(pp4_colour)
             rotate([90, 0, 0])
                 xCarriageFrontBeltAttachment(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, accelerometerOffset());
 }
 
-module X_Carriage_Belt_Attachment_MGN12H_assembly()
-assembly("X_Carriage_Belt_Attachment_MGN12H", big=true) {
+module X_Carriage_Belt_Side_MGN12H_assembly()
+assembly("X_Carriage_Belt_Side_MGN12H", big=true) {
     rotate([-90, 0, 0])
         stl_colour(pp4_colour)
-            X_Carriage_Belt_Attachment_MGN12H_stl();
+            X_Carriage_Belt_Side_MGN12H_stl();
     translate([19, -2.5, -31]) {
         rotate([0, 0, 180]) {
             X_Carriage_Belt_Tensioner_stl();
@@ -56,38 +56,38 @@ assembly("X_Carriage_Belt_Attachment_MGN12H", big=true) {
     }
 }
 
-module X_Carriage_Belt_Attachment_MGN12C_stl() {
+module X_Carriage_Belt_Side_MGN12C_stl() {
     xCarriageType = MGN12C_carriage;
 
     // orientate for printing
-    stl("X_Carriage_Belt_Attachment_MGN12C")
+    stl("X_Carriage_Belt_Side_MGN12C")
         color(pp4_colour)
             rotate([90, 0, 0])
                 xCarriageFrontBeltAttachment(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, accelerometerOffset());
 }
 
-module X_Carriage_Belt_Attachment_MGN12C_assembly()
-assembly("X_Carriage_Belt_Attachment_MGN12C", big=true) {
+module X_Carriage_Belt_Side_MGN12C_assembly()
+assembly("X_Carriage_Belt_Side_MGN12C", big=true) {
     rotate([-90, 0, 0])
         stl_colour(pp4_colour)
-            X_Carriage_Belt_Attachment_MGN12C_stl();
+            X_Carriage_Belt_Side_MGN12C_stl();
 }
 
-module X_Carriage_Belt_Attachment_MGN9C_stl() {
+module X_Carriage_Belt_Side_MGN9C_stl() {
     xCarriageType = MGN9C_carriage;
 
     // orientate for printing
-    stl("X_Carriage_Belt_Attachment_MGN9C")
+    stl("X_Carriage_Belt_Side_MGN9C")
         color(pp4_colour)
             rotate([90, 0, 0])
                 xCarriageFrontBeltAttachment(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, accelerometerOffset());
 }
 
-module X_Carriage_Belt_Attachment_MGN9C_assembly()
-assembly("X_Carriage_Belt_Attachment_MGN9C", big=true) {
+module X_Carriage_Belt_Side_MGN9C_assembly()
+assembly("X_Carriage_Belt_Side_MGN9C", big=true) {
     rotate([-90, 0, 0])
         stl_colour(pp4_colour)
-            X_Carriage_Belt_Attachment_MGN9C_stl();
+            X_Carriage_Belt_Side_MGN9C_stl();
 }
 
 module X_Carriage_Front_MGN12H_stl() {
@@ -171,14 +171,14 @@ module xCarriageBeltClamps(xCarriageType) {
             }
 }
 
-module X_Carriage_MGN12H_stl() {
+module X_Carriage_Groovemount_MGN12H_stl() {
     xCarriageType = MGN12H_carriage;
     blower_type = blower_type();
     hotend_type = 0;
     grooveMountSize = grooveMountSize(blower_type, hotend_type);
     hotendOffset = hotendOffset(xCarriageType, hotend_type);
 
-    stl("X_Carriage_MGN12H")
+    stl("X_Carriage_Groovemount_MGN12H")
         color(pp1_colour)
             rotate([0, 90, 0]) {
                 xCarriageBack(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, clamps=false, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(), accelerometerOffset=accelerometerOffset());
@@ -189,8 +189,8 @@ module X_Carriage_MGN12H_stl() {
 //!1. Bolt the belt clamps to the sides of the X_Carriage. Leave the clamps loose to allow later insertion of the belts.
 //!2. Bolt the fan onto the side of the X_Carriage, secure the fan wire with a ziptie.
 //!3. Ensure a good fit between the fan and the fan duct and bolt the fan duct to the X_Carriage.
-module X_Carriage_MGN12H_assembly()
-assembly("X_Carriage_MGN12H", big=true, ngb=true) {
+module X_Carriage_Groovemount_MGN12H_assembly()
+assembly("X_Carriage_Groovemount_MGN12H", big=true, ngb=true) {
 
     xCarriageType = MGN12H_carriage;
     blower_type = blower_type();
@@ -199,7 +199,7 @@ assembly("X_Carriage_MGN12H", big=true, ngb=true) {
 
     rotate([0, -90, 0])
         stl_colour(pp1_colour)
-            X_Carriage_MGN12H_stl();
+            X_Carriage_Groovemount_MGN12H_stl();
 
     *translate([0, carriage_size(xCarriageType).y/2 + xCarriageBackSize(xCarriageType).y - beltInsetBack(undef), beltOffsetZ()])
         xCarriageBeltClamps(xCarriageType);

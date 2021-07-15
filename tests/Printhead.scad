@@ -38,17 +38,17 @@ module Printhead_test() {
     *translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
         CoreXYBelts(carriagePosition(), x_gap = -25, show_pulleys = ![1, 0, 0]);
         xRailCarriagePosition() {
-            //Printhead_MGN12H_assembly();
+            //Printhead_E3DV6_MGN12H_assembly();
             //X_Carriage_Front_MGN12H_assembly();
-            X_Carriage_Belt_Attachment_MGN12H_assembly();
-            X_Carriage_MGN12H_assembly();
+            X_Carriage_Belt_Side_MGN12H_assembly();
+            X_Carriage_Groovemount_MGN12H_assembly();
         }
     }
-    *let($hide_bolts=true) Printhead_MGN12H_assembly();
+    *let($hide_bolts=true) Printhead_E3DV6_MGN12H_assembly();
     //translate([-11.4, 0, 8]) rotate(180)    xCarriageTop();
     //X_Carriage_Front_MGN12H_assembly();
-    //X_Carriage_MGN12H_assembly();
-    //X_Carriage_MGN12H_stl();
+    //X_Carriage_Groovemount_MGN12H_assembly();
+    //X_Carriage_Groovemount_MGN12H_stl();
     //Fan_Duct_stl();
     //rotate([90, 0, -90]) Hotend_Clamp_stl();
     //Hotend_Clamp_hardware();
