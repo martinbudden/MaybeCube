@@ -43,16 +43,17 @@ assembly("X_Carriage_Belt_Attachment_MGN12H", big=true) {
     rotate([-90, 0, 0])
         stl_colour(pp4_colour)
             X_Carriage_Belt_Attachment_MGN12H_stl();
-    translate([19, -2.5, -31])
+    translate([19, -2.5, -31]) {
         rotate([0, 0, 180]) {
             X_Carriage_Belt_Tensioner_stl();
             X_Carriage_Belt_Tensioner_hardware();
         }
-    translate([-19, -2.5, -33])
-        rotate([180, 0, 0]) {
-            X_Carriage_Belt_Tensioner_stl();
-            X_Carriage_Belt_Tensioner_hardware();
-        }
+        translate([-19*2, 0, -2])
+            rotate([180, 0, 0]) {
+                X_Carriage_Belt_Tensioner_stl();
+                X_Carriage_Belt_Tensioner_hardware();
+            }
+    }
 }
 
 module X_Carriage_Belt_Attachment_MGN12C_stl() {
@@ -180,7 +181,7 @@ module X_Carriage_MGN12H_stl() {
     stl("X_Carriage_MGN12H")
         color(pp1_colour)
             rotate([0, 90, 0]) {
-                xCarriageBack(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, clamps=false, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(),accelerometerOffset = accelerometerOffset());
+                xCarriageBack(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, clamps=false, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(), accelerometerOffset=accelerometerOffset());
                 hotEndHolder(xCarriageType, grooveMountSize, hotendOffset, hotend_type, blower_type, baffle=false, left=false);
             }
 }
@@ -240,5 +241,5 @@ module Fan_Duct_stl() {
         color(pp2_colour)
             translate([26, 0, 0])
                 mirror([1, 0, 0])
-                    fanDuct(printHeadHotendOffset().x, jetOffset = -0.5);
+                    fanDuct(printHeadHotendOffset().x, jetOffset=-0.5, chimneySizeZ=17);
 }
