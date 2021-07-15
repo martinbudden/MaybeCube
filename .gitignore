@@ -60,14 +60,14 @@ EVA/stls/*
 EVA/tmp/
 EVA/*.html
 EVA/*.md
-#!EVA/readme.md
+!EVA/readme.md
 #!EVA/assemblies/main_assembled.png
-#!EVA/assemblies/*.png
+!EVA/assemblies/*.png
 #!EVA/dxfs/*.dxf
 #!EVA/dxfs/*.png
 
-#!EVA/stls/*.stl
-#!EVA/stls/*.png
+!EVA/stls/*.stl
+!EVA/stls/*.png
 EVA/assemblies/*_diff.png
 EVA/dxfs/*_diff.png
 EVA/stls/*_diff.png

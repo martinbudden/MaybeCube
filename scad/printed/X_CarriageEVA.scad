@@ -54,37 +54,36 @@ module evaHotendBase(top="mgn12", explode=40) {
         }
 }
 
-module evaHotendBaseHardware(explode=40) {
+module evaHotendBaseHardware(explode=40, boltOffset=0) {
     carriageType = MGN12H_carriage;
+    boltLength = 35;
 
     translate_z(5 - carriage_height(carriageType))
         carriage_hole_positions(MGN12H_carriage)
             explode(explode, true)
                 boltM3Caphead(8);
 
-    translate([-22.1, 13.5, -40.8])
+    translate([-22.1, 11.5 + boltOffset, -40.9])
         rotate([90, 90, 0]) {
             size = bottomMgn12Size;
             explode([-explode, 0, 0], true)
                 for (y = [5, size.y - 5])
                     translate([-44, y, size.z]) {
-                        boltM3Caphead(40);
-                        translate_z(-33)
+                        boltM3Caphead(boltLength);
+                        translate_z(-boltLength + boltOffset + 0.8)
                             rotate(30)
                                 explode(-20)
                                     nut(M3_nut);
                     }
             for (y = [9, size.y - 9])
                 translate([size.x - 4, y, size.z]) {
-                    boltM3Caphead(40);
-                    translate_z(-33)
+                    boltM3Caphead(boltLength);
+                    translate_z(-boltLength + boltOffset + 0.8)
                         rotate(30)
                             explode(-70)
                                 nut(M3_nut);
                 }
         }
-    evaTensionersHardware();
-    evaBeltClampHardware();
 }
 
 module evaClampPositions() {
