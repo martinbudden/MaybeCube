@@ -60,11 +60,11 @@ EVA/stls/*
 EVA/tmp/
 EVA/*.html
 EVA/*.md
-#!jigs/readme.md
-#!jigs/assemblies/main_assembled.png
-#!jigs/assemblies/*.png
-#!jigs/dxfs/*.dxf
-#!jigs/dxfs/*.png
+#!EVA/readme.md
+#!EVA/assemblies/main_assembled.png
+#!EVA/assemblies/*.png
+#!EVA/dxfs/*.dxf
+#!EVA/dxfs/*.png
 
 #!EVA/stls/*.stl
 #!EVA/stls/*.png
