@@ -35,7 +35,6 @@ tensionerOffsetX = X_CarriageEVATensionerOffsetX();
 module EVA_test() {
     carriagePosition = carriagePosition();
     translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
-        //fullPrinthead(rotate=180);
         xRailCarriagePosition()
             rotate(180)
                 X_Carriage_Belt_Side_MGN12H_assembly();
@@ -47,7 +46,7 @@ module EVA_test() {
         rotate(180) {
             evaHotendBase();
             //evaHotend(full=!true);
-            *translate([0, 18.5 + 5, -15.5 - zOffset])
+            *translate([0, 18.5, -15.5 - zOffset])
                 color(pp2_colour)
                     evaImportStl("back_corexy");
         }
@@ -177,7 +176,7 @@ module importTensioner(color=pp4_colour) {
                     difference() {
                         evaImportStl("tension_slider_6mm_belt_M3s");
                         cSize = [25, 7.2, 3];
-                        translate([-cSize.x/2, -cSize.y+2.5, 0])
+                        translate([-cSize.x/2, -cSize.y + 2.5, 0])
                             cube(cSize);
                     }
 }

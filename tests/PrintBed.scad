@@ -11,11 +11,11 @@ include <../scad/Parameters_main.scad>
 //$explode = 1;
 //$pose = 1;
 module Printbed_test() {
-    Printbed_assembly();
-    translate_z(-_zRodLength/2) zRods();
-    if(is_true(_useDualZRods)) translate_z(-_zRodLength/2) zRods(left=false);
+    //Printbed_assembly();
+    //translate_z(-_zRodLength/2) zRods();
+    //if(is_true(_useDualZRods)) translate_z(-_zRodLength/2) zRods(left=false);
     //heatedBed();
-    //Printbed_Frame_with_Z_Carriages_assembly();
+    Printbed_Frame_with_Z_Carriages_assembly();
     *rotate(90)
         translate([-eSize - _zRodOffsetX, -eSize - zRodSeparation()/2 - _zRodOffsetY, -_zRodLength/2]) {
             zRods();

@@ -71,7 +71,7 @@ module xCarriageTop() {
             difference() {
                 tabSize = [15, 5, 25];
                 rounded_cube_xy(tabSize, fillet);
-                for (x = [tabSize.x/2 - 4, tabSize.x/2 + 4], z = [5+2, 15+2])
+                for (x = [tabSize.x/2 - 4, tabSize.x/2 + 4], z = [5 + 2, 15 + 2])
                     translate([x-1, -eps, z])
                         cube([2, tabSize.y + 2*eps, 4]);
             }

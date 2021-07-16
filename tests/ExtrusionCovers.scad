@@ -30,8 +30,8 @@ module ExtrusionCover_test() {
 //extrusionChannel(200, [50, 150], sliding=false, channelWidth=4.95);
 //extrusionChannel(100, [10, 50], sliding=false);
 //extrusionChannel(100, [50, 150], sliding=false);
-//extrusionChannel(200, [eSize, eSize+120], sliding=false);
-//extrusionChannel(200, [eSize/2, eSize, eSize+120], sliding=false);
+//extrusionChannel(200, [eSize, eSize + 120], sliding=false);
+//extrusionChannel(200, [eSize/2, eSize, eSize + 120], sliding=false);
 //rotate(90) extrusionChannel(120, [10, 60, 110], sliding=false, channelWidth=3.8, boltDiameter=3);
 rotate(90) extrusionChannel(120, [10, 35, 60, 85, 110], sliding=false, channelWidth=4.8, boltDiameter=3);
 //rounded_cube_xy([20, 20, 10],1.5);

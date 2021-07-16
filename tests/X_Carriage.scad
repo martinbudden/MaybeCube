@@ -7,6 +7,7 @@ include <NopSCADlib/vitamins/rails.scad>
 
 use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/X_CarriageAssemblies.scad>
+use <../scad/printed/X_CarriageBeltAttachment.scad>
 
 use <../scad/utils/carriageTypes.scad>
 

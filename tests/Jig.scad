@@ -25,11 +25,11 @@ module Jig_test2() {
     translate([35, -5, -5])
         rotate([0, 90, 180])
             Extrusion_Drill_Jig_Pilot_stl();
-    translate([-5, eY + 2*eSize + 15 + eps, eZ+5])
+    translate([-5, eY + 2*eSize + 15 + eps, eZ + 5])
         rotate([0, -90, 90])
             Extrusion_Drill_Jig_Pilot_stl();
     Right_Side_assembly();
-    translate([eX + 2*eSize+5, -15, eZ+5])
+    translate([eX + 2*eSize + 5, -15, eZ + 5])
         rotate([0, -90, -90])
             Extrusion_Drill_Jig_Pilot_stl();
 }

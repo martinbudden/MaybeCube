@@ -84,5 +84,5 @@ module PrintBounds_test() {
 }
 
 if ($preview)
-    translate([-(eX+2*eSize)/2, -(eY+2*eSize)/2, -eZ/2])
+    translate([-(eX + 2*eSize)/2, -(eY + 2*eSize)/2, -eZ/2])
         PrintBounds_test();
