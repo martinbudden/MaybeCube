@@ -61,12 +61,14 @@ assembly("EVA_Stage_1", big=true) {
             evaBeltTensioners();
         evaBeltTensionersHardware();
 
-        stl_colour(pp2_colour)
-            evaBeltClamps();
-        evaBeltClampHardware();
+        explode([0, -20,0], true) {
+            stl_colour(pp2_colour)
+                evaBeltClamps();
+            evaBeltClampHardware();
+        }
 
         translate([0, 18.5, -20.5])
-            explode([0, 30, 0])
+            explode([0, 30, 60])
                 stl_colour(evaColorGreen())
                     back_corexy_stl();
     }

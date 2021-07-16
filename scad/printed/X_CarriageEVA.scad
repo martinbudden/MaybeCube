@@ -40,19 +40,20 @@ module evaPrintheadList() {
 module evaHotendBase(top="mgn12", explode=40) {
     translate_z(2*eps)
         explode(explode)
-            if (top == "bmg_mgn12")
+            if (top == "lgx_bmg_mgn12_a")
+                EVA_MC_top_lgx_mgn12_a_stl();
+            else if (top == "bmg_mgn12")
                 EVA_MC_top_bmg_mgn12_stl();
+            else if (top == "orbiter_mgn12")
+                EVA_MC_top_orbiter_mgn12_stl();
+            else if (top == "titan_mgn12")
+                EVA_MC_top_titan_mgn12_stl();
             else
                 EVA_MC_top_mgn12_stl();
 
-    sizeZ = bottomMgn12Size.y;
-    translate([-sizeZ/2, bottomMgn12Size.z/2, -bottomMgn12OffsetZ]) {
+    translate([-bottomMgn12Size.y/2, bottomMgn12Size.z/2, -bottomMgn12OffsetZ])
         rotate([90, 90, 0])
             EVA_MC_bottom_mgn12_short_duct_stl();
-        explode([0, -20, 0], true)
-            xCarriageBeltClampPositions(sizeZ)
-                    X_Carriage_Belt_Clamp_stl();
-    }
 }
 
 module evaHotendBaseHardware(explode=40, boltOffset=0) {
@@ -65,7 +66,7 @@ module evaHotendBaseHardware(explode=40, boltOffset=0) {
                 boltM3Caphead(8);
 
     size = bottomMgn12Size;
-    translate([-size.y/2, 11.5 + boltOffset, -bottomMgn12OffsetZ])
+    translate([-size.y/2, bottomMgn12Size.z/2 - 2 + boltOffset, -bottomMgn12OffsetZ])
         rotate([90, 90, 0]) {
             explode([-explode, 0, 0], true)
                 for (y = [5, size.y - 5])
@@ -73,7 +74,7 @@ module evaHotendBaseHardware(explode=40, boltOffset=0) {
                         boltM3Caphead(boltLength);
                         translate_z(-boltLength + boltOffset + 0.8)
                             rotate(30)
-                                explode(-20)
+                                explode(-70)
                                     nut(M3_nut);
                     }
             for (y = [9, size.y - 9])
@@ -90,9 +91,8 @@ module evaHotendBaseHardware(explode=40, boltOffset=0) {
 module evaBeltClampPositions() {
     size = bottomMgn12Size;
     translate([-size.y/2, size.z/2, -bottomMgn12OffsetZ])
-        explode(20, true)
-            xCarriageBeltClampPositions(size.y)
-                children();
+        xCarriageBeltClampPositions(size.y)
+            children();
 }
 
 module evaBeltClamps() {
@@ -123,7 +123,7 @@ module evaBeltTensioners() {
 }
 module evaBeltTensionersHardware() {
     evaBeltTensionerPositions(explode=70)
-        X_Carriage_Belt_Tensioner_hardware();
+        X_Carriage_Belt_Tensioner_hardware(18.5);
 }
 
 module EVA_MC_BottomMgn12(ductSizeY=undef, split=false) {
