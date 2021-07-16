@@ -28,7 +28,7 @@ module brassKnurlHoleM3(length=0, tolerance=brassKnurlTolerance, nutDepth=0, bri
 module brassKnurlHoleM3Bridged(length=0, tolerance=brassKnurlTolerance, nutDepth=0) {
     depth = nutDepth ? nutDepth : brassKnurl5x5Length;
     brassKnurl5x5Hole(tolerance, nutDepth=depth);
-    translate([0, 0, depth+0.25]) boltHoleM3(length-depth-0.25, tolerance);
+    translate([0, 0, depth + 0.25]) boltHoleM3(length-depth-0.25, tolerance);
     *boltHoleM3(length, tolerance);
 }
 
