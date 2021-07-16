@@ -39,11 +39,6 @@ assembly("Printhead_E3DV6_MGN12H", big=true) {
     hotendOffset = hotendOffset(xCarriageType, hotend_type);
 
     X_Carriage_Groovemount_MGN12H_assembly();
-    translate(printheadWiringOffset())
-        for (z = [0, 10])
-            translate([0, -3.5, z + 30])
-                rotate([0, 90, 90])
-                    cable_tie(cable_r = 3, thickness = 4.5);
 
     rotate(180)
         translate([0, -2*hotendOffset.y, 0]) {
@@ -61,6 +56,13 @@ assembly("Printhead_E3DV6_MGN12H", big=true) {
                         Hotend_Clamp_hardware(xCarriageType, blower_type, hotend_type);
                     }
         }
+
+    if (!exploded())
+        translate(printheadWiringOffset())
+            for (z = [0, 10])
+                translate([0, -3.5, z + 30])
+                    rotate([0, 90, 90])
+                        cable_tie(cable_r = 3, thickness = 4.5);
 }
 
 

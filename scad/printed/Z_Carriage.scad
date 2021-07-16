@@ -127,6 +127,9 @@ module Z_Carriage_Right_stl() {
 }
 
 
+//!1. Bolt the SCS bearing block to the **Z_Carriage_Left**.
+//!2. Add the bolts and t-nuts in preparation for connection to the printbed.
+//
 module Z_Carriage_Left_assembly() pose(a=[55+40, 0, 25 + 180])
 assembly("Z_Carriage_Left", ngb=true) {
 
@@ -137,11 +140,15 @@ assembly("Z_Carriage_Left", ngb=true) {
             mirror([0, 1, 0])
                 zCarriageSCS_hardware();
         }
-        rotate(-90)
-            scs_bearing_block(scsType);
+        explode([30, 0, 0])
+            rotate(-90)
+                scs_bearing_block(scsType);
     }
 }
 
+//!1. Bolt the SCS bearing block to the **Z_Carriage_Right**.
+//!2. Add the bolts and t-nuts in preparation for connection to the printbed.
+//
 module Z_Carriage_Right_assembly()
 assembly("Z_Carriage_Right", ngb=true) {
 
@@ -151,8 +158,9 @@ assembly("Z_Carriage_Right", ngb=true) {
                 Z_Carriage_Right_stl();
             zCarriageSCS_hardware();
         }
-        rotate(90)
-            scs_bearing_block(scsType);
+        explode([-30, 0, 0])
+            rotate(90)
+                scs_bearing_block(scsType);
     }
 }
 

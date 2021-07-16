@@ -13,15 +13,13 @@ use <Parameters_CoreXY.scad>
 use <Parameters_Positions.scad>
 include <Parameters_Main.scad>
 
-
-//!1. On a flat surface, bolt the top, middle and lower extrusions into the left and right uprights as shown. Note
-//!that the lower extrusion is 2020 extrusion, this is to allow access to the power supply and mainboard.
-//!
-//!2. Take time to ensure everything is square and then work your way around the bolts tightening them while ensuring
-//!the frame remains square. Don't tighten each bolt fully before moving on to the next, rather tighten each bolt a bit
-//!and move on to the next bolt, making several circuits of the frame to get all the bolts tight.
-//!
-//!3. Once the frame is square and tightened, align the motor mount and idler with the top extrusion and tighten them in place.
+//!1. Attach the SK brackets to the upper extrusion, use the **Z_RodMountGuide** to align the left bracket.
+//!2. Tighten the bolts for the left bracket. Leave the bolts to the right bracket loosely tightened for now.
+//!3. Attach the SK brackets and the **Z_Motor_Mount_assembly** to the lower extrusion, use the **Z_RodMountGuide** to
+//!align the left bracket and the **Z_Motor_MountGuide** to align the motor.
+//!4. Tighten the bolts for the left bracket and the motor. Leave the bolts to the right bracket loosely tightened for now.
+//!5. On a flat surface, bolt the upper and lower extrusions into the left and right uprights as shown. Tighten the bolts
+//!continuously ensuring the frame is square.
 //
 module Left_Side_assembly() pose(a=[55, 0, 25 + 90])
 assembly("Left_Side", big=true) {

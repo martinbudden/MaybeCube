@@ -224,6 +224,10 @@ module zMotorMountAssembly(zMotorType, corkDamperThickness, eHeight=40) {
                 boltM4ButtonheadTNut(_frameBoltLength);
 }
 
+//!1. Bolt the motor and the cork damper to the **Z_Motor_Mount**. Note that the cork damper thermally insulates the motor
+//!from the motor mount and should not be ommited.
+//!2. Attach the other bolts and t-nuts loosely to the motor mount, for later attachment to the frame.
+//
 module Z_Motor_Mount_assembly() pose(a=[55, 0, 25+90])
 assembly("Z_Motor_Mount", big=true, ngb=true) {
 
@@ -234,6 +238,10 @@ assembly("Z_Motor_Mount", big=true, ngb=true) {
     zMotorMountAssembly(zMotorType, corkDamperThickness=_corkDamperThickness);
 }
 
+//!1. Bolt the motor and the cork damper to the **Z_Motor_Mount**. Note that the cork damper thermally insulates the motor
+//!from the motor mount and should not be ommited.
+//!2. Attach the other bolts and t-nuts loosely to the motor mount, for later attachment to the frame.
+//
 module Z_Motor_Mount_Right_assembly() pose(a=[55, 0, 25+90])
 assembly("Z_Motor_Mount_Right", big=true, ngb=true) {
 

@@ -89,8 +89,10 @@ module Y_Carriage_Brace_Right_stl() {
             yCarriageBrace(yCarriageType(), yCarriageBraceThickness(), pulleyOffset(), holeRadius, left=false);
 }
 
-//!
-module Y_Carriage_Left_assembly() pose(a=[55+180, 0, 25])
+//!1. Bolt the **Y_Carriage_Brace_Left* and the pulleys to the **Y_Carriage_Left** as shown. Note the position of the washers.
+//!2. Tighten the bolts until the pulleys no longer turn freely and then loosen by about 1/4 turn so the pulleys can again turn.
+//
+module Y_Carriage_Left_assembly() pose(a=[55 + 180, 0, 25])
 assembly("Y_Carriage_Left", ngb=true) {
 
     yCarriageType = yCarriageType();
@@ -113,7 +115,10 @@ assembly("Y_Carriage_Left", ngb=true) {
         }
 }
 
-module Y_Carriage_Right_assembly() pose(a=[55+180, 0, 25])
+//!1. Bolt the **Y_Carriage_Brace_Right* and the pulleys to the **Y_Carriage_Right** as shown. Note the position of the washers.
+//!2. Tighten the bolts until the pulleys no longer turn freely and then loosen by about 1/4 turn so the pulleys can again turn.
+//
+module Y_Carriage_Right_assembly() pose(a=[55 + 180, 0, 25])
 assembly("Y_Carriage_Right", ngb=true) {
 
     yCarriageType = yCarriageType();

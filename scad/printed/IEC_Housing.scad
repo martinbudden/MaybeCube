@@ -120,8 +120,12 @@ module IEC_Housing_Mount_hardware() {
     }
 }
 
-module IEC_Housing_Mount_assembly()
-assembly("IEC_Housing_Mount", ngb=true) {
+//!1. Attach the power cables to the IEC connector.
+//!2. Thread the power cables through the hole in the **IEC_Housing** and bolt the **IEC_Housing_Mount** to the **IEC_housing**.
+//!3. Add the bolts and t-nuts in preparation for attachment to the frame.
+//
+module IEC_Housing_assembly()
+assembly("IEC_Housing", ngb=true) {
 
     translate([0, -iecHousingSize().x, 0])
         rotate([90, 0, 90]) {

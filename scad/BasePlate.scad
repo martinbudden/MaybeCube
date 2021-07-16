@@ -128,7 +128,9 @@ module baseplateM4CornerBoltPositions(size) {
 
 function basePlateHeight() = _basePlateThickness + 12;
 
-
+//!1. Insert the bolts into the ends of the E2040 and E2080 extrusions in preparation for connection to the frame uprights.
+//!2. Bolt the extrusions and the L-shaped feet to the baseplate as shown.
+//
 module Base_Plate_Stage_1_assembly()
 assembly("Base_Plate_Stage_1", big=true, ngb=true) {
     size = basePlateSize;
@@ -158,7 +160,7 @@ assembly("Base_Plate_Stage_1", big=true, ngb=true) {
     translate_z(-size.z - extrusionFootLShapedBoltOffsetZ())
         baseplateM4CornerBoltPositions(size) {
             vflip()
-                explode(30)
+                explode(50)
                     boltM4Buttonhead(_frameBoltLength);
             translate_z(_frameBoltLength-3)
                 explode(20)
@@ -166,23 +168,24 @@ assembly("Base_Plate_Stage_1", big=true, ngb=true) {
         }
 
     footHeight = 12;
-    translate([0, eSize, -size.z - footHeight])
-        rotate([180, 0, -90])
-            stl_colour(pp1_colour)
-                Foot_LShaped_12mm_stl();
-    translate([eX + eSize, 0, -size.z - footHeight])
-        rotate([180, 0, 0])
-            stl_colour(pp1_colour)
-                Foot_LShaped_12mm_stl();
-    translate([eX + 2*eSize, eY + eSize, -size.z - footHeight])
-        rotate([180, 0, 90])
-            stl_colour(pp1_colour)
-                Foot_LShaped_12mm_stl();
-    translate([eSize, eY + 2*eSize, -size.z - footHeight])
-        rotate([180, 0, 180])
-            stl_colour(pp1_colour)
-                Foot_LShaped_12mm_stl();
-
+    explode(-20) {
+        translate([0, eSize, -size.z - footHeight])
+            rotate([180, 0, -90])
+                stl_colour(pp1_colour)
+                    Foot_LShaped_12mm_stl();
+        translate([eX + eSize, 0, -size.z - footHeight])
+            rotate([180, 0, 0])
+                stl_colour(pp1_colour)
+                    Foot_LShaped_12mm_stl();
+        translate([eX + 2*eSize, eY + eSize, -size.z - footHeight])
+            rotate([180, 0, 90])
+                stl_colour(pp1_colour)
+                    Foot_LShaped_12mm_stl();
+        translate([eSize, eY + 2*eSize, -size.z - footHeight])
+            rotate([180, 0, 180])
+                stl_colour(pp1_colour)
+                    Foot_LShaped_12mm_stl();
+    }
 }
 
 module Base_Plate_assembly()

@@ -108,7 +108,7 @@ module X_Carriage_Belt_Tensioner_stl() {
             }
 }
 
-module X_Carriage_Belt_Tensioner_hardware(offset) {
+module X_Carriage_Belt_Tensioner_hardware(offset=0) {
     size = X_Carriage_Belt_Tensioner_size;
     offsetY = 4.5;
     translate([offset + 22.7, (size.y + offsetY)/2, size.z/2])
@@ -166,6 +166,14 @@ module xCarriageBeltAttachment(sizeZ, endCube=true) {
         }
     }
 }
+
+module xCarriageBeltClampPositions(sizeZ) {
+    rotate([90, 90, 0])
+        for (y = [3*sizeZ/10, 7*sizeZ/10])
+            translate([-xCarriageBeltAttachmentSize().x, y, 18.5])
+                children();
+}
+
 module X_Carriage_Belt_Clamp_stl() {
     size = [xCarriageBeltAttachmentSize().x - 0.5, 8, 4.5];
     fillet = 1;
@@ -185,8 +193,9 @@ module X_Carriage_Belt_Clamp_hardware() {
     size = [xCarriageBeltAttachmentSize().x - 0.5, 6, 4.5];
 
     for (x = [0, xCarriageBeltClampHoleSeparation])
-        translate([x + 3.2, 0, size.z])
-            boltM3Buttonhead(10);
+        translate([x + 3.2, 0, 0])
+            vflip()
+                boltM3Buttonhead(10);
 }
 
 module xCarriageBeltAttachmentTest_stl() {
