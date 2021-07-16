@@ -17,13 +17,13 @@ include <../scad/Parameters_Main.scad>
 //$explode = 1;
 //$pose = 1;
 module Face_Top_test() {
-    if(!exploded()) CoreXYBelts(carriagePosition(), show_pulleys=[1, 0, 0]);
+    //if(!exploded()) CoreXYBelts(carriagePosition(), show_pulleys=[1, 0, 0]);
 
     //let($hide_extrusions=true)
     //let($hide_rails=true)
     //let($hide_corexy=true)
     //faceTopBack();
-    if (!exploded())
+    *if (!exploded())
         printHeadWiring();
     *translate_z(eZ) {
         Wiring_Guide_stl();
