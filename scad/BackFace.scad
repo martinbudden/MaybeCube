@@ -5,7 +5,6 @@ include <NopSCADlib/vitamins/pillar.scad>
 include <NopSCADlib/vitamins/pcbs.scad>
 include <NopSCADlib/vitamins/psus.scad>
 use <NopSCADlib/vitamins/sheet.scad>
-use <NopSCADlib/vitamins/wire.scad>
 
 use <printed/extruderBracket.scad>
 use <printed/PSU.scad>
@@ -529,11 +528,11 @@ module printHeadWiring() {
         color(grey(20))
             bezierTube([eX/2 + eSize, eY + eSize - 5, eZ - 2*eSize], [carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(), tubeRadius=wireRadius);
 
-    translate([carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset())
+    /*translate([carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset())
         for (z = [11, 21])
             translate([0, -3.5, z])
                 rotate([0, 90, 90])
-                    cable_tie(cable_r = 3, thickness = 4.5);
+                    cable_tie(cable_r = 3, thickness = 4.5);*/
 
     wiringGuidePosition()
         translate_z(wireRadius) {

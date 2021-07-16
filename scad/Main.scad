@@ -19,11 +19,8 @@ include <NopSCADlib/core.scad>
 
 use <MainAssemblies.scad>
 
-//!1. Attach the extruder and the spoolholder to the right face.
-//!
-//!2. Connect the Bowden tube between the extruder and the printhead.
-//!
-//!3. Attach the polycarbonate sheet to the back of the print. Make sure everything is square before tightening the bolts.
+//!1. Bolt the polycarbonate sheet to the left face.
+//!2. Attach the spoolholder and filament spool to the right face.
 //
 module main_assembly() assembly("main") {
     FinalAssembly();

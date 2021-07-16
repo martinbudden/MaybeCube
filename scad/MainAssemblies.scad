@@ -3,7 +3,7 @@ include <global_defs.scad>
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
-use <printed/X_CarriageAssemblies.scad>
+use <printed/PrintheadAssemblies.scad>
 use <printed/Z_MotorMount.scad>
 
 use <utils/printParameters.scad>
@@ -83,7 +83,7 @@ staged_assembly("Stage_1", big=true, ngb=true) {
             Printbed_assembly();
 }
 
-//!1. Slide the left face into the bottom plate assembly.
+//!1. Slide the left face into the base plate assembly.
 //
 module Stage_2_assembly() pose(a=_poseMainAssembly)
 staged_assembly("Stage_2", big=true, ngb=true) {
@@ -115,38 +115,14 @@ staged_assembly("Stage_4", big=true, ngb=true) {
     //Partition_assembly();
 }
 
-//!1. Thread the belts as shown.
-//!
-//!2. Attach the belts to the x-carriage and use the adjustment bolts to ensure a good tension.
-//
+//!2. Connect the Bowden tube between the extruder and the printhead.
 module Stage_5_assembly()
 staged_assembly("Stage_5", big=true, ngb=true) {
 
     Stage_4_assembly();
     Face_Top_assembly();
+    printheadHotendSide();
     printHeadWiring();
-}
-
-//!Attach the print head to the x-carriage.
-//
-module Stage_6_assembly()
-staged_assembly("Stage_6", big=true, ngb=true) {
-
-    Stage_5_assembly();
-
-    /*translate_z(eZ) {
-        xRailCarriagePosition()
-            not_on_reduced_bom()
-                xCarriagePrintHeadOffset() {
-                    explode([-20, 0, 150])
-                        PrintHeadBIQU_B1();
-                    PrintHeadBIQU_B1_boltPositions()
-                        explode([0, 150, 70])
-                            boltM3Caphead(10);
-                }
-    }*/
-    stl_colour(pp1_colour)
-        faceRightSpoolHolder();
     BowdenTube();
 }
 
@@ -154,7 +130,9 @@ module FinalAssembly() {
     // does not use assembly(""), since made into an assembly in Main.scad
     translate([-(2*eSize + eX)/2, -(2*eSize + eY)/2, basePlateHeight() - eZ/2]) {
         no_explode()
-            Stage_6_assembly();
+            Stage_5_assembly();
+        stl_colour(pp1_colour)
+            faceRightSpoolHolder();
         faceRightSpool();
         leftSidePanelPC();
     }

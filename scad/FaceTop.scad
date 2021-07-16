@@ -44,7 +44,7 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
     wiringGuidePosition(offset=0) {
         stl_colour(pp1_colour)
             Wiring_Guide_stl();
-            Wiring_Guide_hardware();
+        Wiring_Guide_hardware();
     }
     topCornerPieceAssembly(90);
     translate([eX + 2*eSize, 0, 0])
@@ -69,7 +69,7 @@ assembly("Face_Top", big=true) {
                 explode(20, true)
                     boltM3Caphead(10);
         }
-    fullPrinthead(explode=100);
+    printheadBeltSide(explode=100);
     if (!exploded())
         CoreXYBelts(carriagePosition());
 }

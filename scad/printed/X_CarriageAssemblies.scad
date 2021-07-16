@@ -26,7 +26,7 @@ function hotendOffset(xCarriageType, hotend_type=0) = printHeadHotendOffset(hote
 function grooveMountSize(blower_type, hotend_type=0) = [printHeadHotendOffset(hotend_type).x, blower_size(blower_type).x + 6.25, 12];
 function blower_type() = is_undef(_blowerDescriptor) || _blowerDescriptor == "BL30x10" ? BL30x10 : BL40x10;
 //function accelerometerOffset() = [10, -1, 8];
-function accelerometerOffset() = [7, -1, 8];
+function accelerometerOffset() = [6.5, -2, 8];
 
 module X_Carriage_Belt_Side_MGN12H_stl() {
     xCarriageType = MGN12H_carriage;
@@ -38,20 +38,28 @@ module X_Carriage_Belt_Side_MGN12H_stl() {
                 xCarriageFrontBeltAttachment(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, accelerometerOffset());
 }
 
+//!Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensioners into the
+//!**X_Carriage_Belt_Side_MGN12H** part as shown.
+//
 module X_Carriage_Belt_Side_MGN12H_assembly()
 assembly("X_Carriage_Belt_Side_MGN12H", big=true) {
     rotate([-90, 0, 0])
         stl_colour(pp4_colour)
             X_Carriage_Belt_Side_MGN12H_stl();
-    translate([19, -2.5, -31]) {
+    offset = 22.5;
+    translate([offset, -2.5, -31]) {
         rotate([0, 0, 180]) {
-            X_Carriage_Belt_Tensioner_stl();
-            X_Carriage_Belt_Tensioner_hardware();
+            explode([-40, 0, 0])
+                stl_colour(pp2_colour)
+                    X_Carriage_Belt_Tensioner_stl();
+            X_Carriage_Belt_Tensioner_hardware(offset);
         }
-        translate([-19*2, 0, -2])
+        translate([-2*offset, 0, -2])
             rotate([180, 0, 0]) {
-                X_Carriage_Belt_Tensioner_stl();
-                X_Carriage_Belt_Tensioner_hardware();
+                explode([-40, 0, 0])
+                    stl_colour(pp2_colour)
+                        X_Carriage_Belt_Tensioner_stl();
+                X_Carriage_Belt_Tensioner_hardware(offset);
             }
     }
 }
@@ -187,10 +195,8 @@ module X_Carriage_Groovemount_MGN12H_stl() {
 }
 
 //!1. Bolt the belt clamps to the sides of the X_Carriage. Leave the clamps loose to allow later insertion of the belts.
-//!2. Bolt the fan onto the side of the X_Carriage, secure the fan wire with a ziptie.
-//!3. Ensure a good fit between the fan and the fan duct and bolt the fan duct to the X_Carriage.
-module X_Carriage_Groovemount_MGN12H_assembly()
-assembly("X_Carriage_Groovemount_MGN12H", big=true, ngb=true) {
+module X_Carriage_Groovemount_MGN12H_assembly() {
+//assembly("X_Carriage_Groovemount_MGN12H", big=true, ngb=true) {
 
     xCarriageType = MGN12H_carriage;
     blower_type = blower_type();

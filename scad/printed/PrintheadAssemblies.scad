@@ -4,6 +4,7 @@ include <../global_defs.scad>
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/blowers.scad>
 include <NopSCADlib/vitamins/rails.scad>
+use <NopSCADlib/vitamins/wire.scad>
 
 use <../utils/PrintheadOffsets.scad>
 use <../utils/X_rail.scad>
@@ -24,9 +25,11 @@ function hotendClampOffset(xCarriageType, hotend_type=0) =  [hotendOffset(xCarri
 grooveMountFillet = 1;
 function grooveMountClampSize(blower_type, hotend_type) = [grooveMountSize(blower_type, hotend_type).y - 2*grooveMountFillet - grooveMountClampOffsetX(), 12, 17];
 
-//!1. Assemble the E3D hotend, including fan, thermistor cartridge and heater cartridge.
-//!2. Use the Hotend_Clamp to attach the hotend to the X_Carriage.
-//!3. Collect the wires together and attach to the X_Carriage using the Hotend_Strain_Relief_Clamp.
+//!1. Bolt the fan onto the side of the **X_Carriage_Groovemount_MGN12H**, secure the fan wire with a ziptie.
+//!2. Ensure a good fit between the fan and the fan duct and bolt the fan duct to the X_Carriage.
+//!3. Assemble the E3D hotend, including fan, thermistor cartridge and heater cartridge.
+//!4. Use the **Hotend_Clamp** to attach the E3D hotend to the X_Carriage.
+//!5. Collect the wires together, wrap them in spiral wrap,  and secure them to the X_Carriage using the zipties. Note that the wiring is not shown in this diagram.
 module Printhead_E3DV6_MGN12H_assembly()  pose(a=[55, 0, 25 + 180])
 assembly("Printhead_E3DV6_MGN12H", big=true) {
 
@@ -36,6 +39,11 @@ assembly("Printhead_E3DV6_MGN12H", big=true) {
     hotendOffset = hotendOffset(xCarriageType, hotend_type);
 
     X_Carriage_Groovemount_MGN12H_assembly();
+    translate(printheadWiringOffset())
+        for (z = [0, 10])
+            translate([0, -3.5, z + 30])
+                rotate([0, 90, 90])
+                    cable_tie(cable_r = 3, thickness = 4.5);
 
     rotate(180)
         translate([0, -2*hotendOffset.y, 0]) {
@@ -55,37 +63,70 @@ assembly("Printhead_E3DV6_MGN12H", big=true) {
         }
 }
 
-module fullPrinthead(rotate=180, beltAttachment=true, explode=0, t=undef, accelerometer=false) {
+
+module printheadBeltSide(rotate=180, explode=0, t=undef) {
+    xCarriageType = MGN12H_carriage;
+
+    xRailCarriagePosition(t)
+        explode(explode, true)
+            rotate(rotate) {// for debug, to see belts better
+                explode([0, -20, 0], true)
+                    X_Carriage_Belt_Side_MGN12H_assembly();
+                xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = [ [1, -1], [-1, -1] ]);
+            }
+}
+
+module printheadAccelerometerAssembly() {
+    translate(accelerometerOffset() + [0, 0, 1])
+        rotate(180) {
+            pcb = ADXL345;
+            pcb(pcb);
+            pcb_hole_positions(pcb) {
+                translate_z(pcb_size(pcb).z)
+                    boltM3Caphead(10);
+                explode(-5)
+                    vflip()
+                        washer(M3_washer)
+                            washer(M3_washer);
+            }
+        }
+}
+
+module printheadHotendSide(rotate=180, clamps=false, explode=0, t=undef, accelerometer=false) {
+    xCarriageType = MGN12H_carriage;
+
+    xRailCarriagePosition(t)
+        explode(explode, true)
+            rotate(rotate) {// for debug, to see belts better
+                explode([0, -20, 0], true)
+                    xCarriageFrontBolts(xCarriageType, _beltWidth, clamps, topBoltLength=30, bottomBoltLength=30, countersunk=true, offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom());
+                Printhead_E3DV6_MGN12H_assembly();
+                xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = [ [1, 1], [-1, 1] ]);
+                if (accelerometer)
+                    explode(50, true)
+                        printheadAccelerometerAssembly();
+            }
+}
+
+module fullPrinthead(rotate=180, clamps=false, explode=0, t=undef, accelerometer=false) {
     xCarriageType = MGN12H_carriage;
 
     xRailCarriagePosition(t)
         explode(explode, true)
             rotate(rotate) {// for debug, to see belts better
                 explode([0, -20, 0], true) {
-                    if (beltAttachment)
-                        X_Carriage_Belt_Side_MGN12H_assembly();
-                    else
+                    if (clamps)
                         X_Carriage_Front_MGN12H_assembly();
-                    xCarriageFrontBolts(xCarriageType, _beltWidth, topBoltLength=30, bottomBoltLength=30, countersunk=true, offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom());
+                    else
+                        X_Carriage_Belt_Side_MGN12H_assembly();
+                    xCarriageFrontBolts(xCarriageType, _beltWidth, clamps, topBoltLength=30, bottomBoltLength=30, countersunk=true, offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom());
                 }
                 Printhead_E3DV6_MGN12H_assembly();
                 xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk);
                 if (accelerometer)
                     explode(50, true)
-                        translate(accelerometerOffset() + [0, 0, 1])
-                            rotate(180) {
-                                pcb = ADXL345;
-                                pcb(pcb);
-                                pcb_hole_positions(pcb) {
-                                    translate_z(pcb_size(pcb).z)
-                                        boltM3Caphead(10);
-                                    explode(-5)
-                                        vflip()
-                                            washer(M3_washer)
-                                                washer(M3_washer);
-                                }
-                            }
-                if (!beltAttachment && !exploded())
+                        printheadAccelerometerAssembly();
+                if (clamps && !exploded())
                     xCarriageBeltFragments(xCarriageType, coreXY_belt(coreXY_type()), beltOffsetZ(), coreXYSeparation().z, coreXY_upper_belt_colour(coreXY_type()), coreXY_lower_belt_colour(coreXY_type()));
             }
 }

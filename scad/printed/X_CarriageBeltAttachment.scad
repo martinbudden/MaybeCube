@@ -108,19 +108,20 @@ module X_Carriage_Belt_Tensioner_stl() {
             }
 }
 
-module X_Carriage_Belt_Tensioner_hardware() {
+module X_Carriage_Belt_Tensioner_hardware(offset) {
     size = X_Carriage_Belt_Tensioner_size;
     offsetY = 4.5;
-    translate([41.6, (size.y + offsetY)/2, size.z/2])
+    translate([offset + 22.7, (size.y + offsetY)/2, size.z/2])
         rotate([90, 0, 90])
-            explode(10,true)
+            explode(10, true)
                 washer(M3_washer)
                     boltM3Caphead(40);
 }
 
 module xCarriageBeltAttachment(sizeZ, endCube=true) {
     size = xCarriageBeltAttachmentSize(sizeZ) - [0, toothHeight, 0];
-    cutoutSize = [7.75, 9.75];
+    cutoutSize = [X_Carriage_Belt_Tensioner_size.z + 0.55, X_Carriage_Belt_Tensioner_size.y + 0.75];
+    assert(cutoutSize==[7.75, 10.75]);
     endCubeSize = [9, 8, 12];
     toothCount = floor(size.z/2) - 1;
 
@@ -133,14 +134,14 @@ module xCarriageBeltAttachment(sizeZ, endCube=true) {
                         for (y = [0, 9.25])
                             translate([y + 0.5, 0.5])
                                 hull() {
-                                    square(cutoutSize);
+                                    square([cutoutSize.x, cutoutSize.y - 1]);
                                     translate([1, 0])
-                                        square([cutoutSize.x - 2, cutoutSize.y + 1]);
+                                        square([cutoutSize.x - 2, cutoutSize.y]);
                                 }
                     }
             translate([0, size.z/2 + toothCount + 0.5, size.y])
                 rotate([90, 0, -90])
-                    GT2Teeth(8*2+2.5, toothCount, horizontal=true);
+                    GT2Teeth(8*2 + 2.5, toothCount, horizontal=true);
             translate([-size.x, 0, size.y])
                 cube([xCarriageBeltAttachmentSize().x - 18, size.z, toothHeight]);
             translate([-8.8 - 3/2, 0, size.y])
@@ -198,7 +199,6 @@ module xCarriageFrontBeltAttachment(xCarriageType, beltWidth, beltOffsetZ, coreX
 
     size = xCarriageFrontSize(xCarriageType, beltWidth, clamps=false);
     sizeExtra = [0, (carriage_height(xCarriageType) >= 13 ? 1 : -1), 0];
-echo(size=size);
     carriageSize = carriage_size(xCarriageType);
     tolerance = 0.05;
     topSize = [size.x, size.y + carriageSize.y/2 + 2 - tolerance, xCarriageTopThickness()];
