@@ -23,7 +23,15 @@ use <vitamins/extrusion.scad>
 use <Parameters_Positions.scad>
 include <Parameters_Main.scad>
 
-
+//!1. Bolt the two motor mounts and the **Wiring_Guide** to the rear extrusion.
+//!2. Bolt the two idlers to the front extrusion.
+//!3. Screw the bolts into the ends of the front and rear extrusions.
+//!4. Insert the t-nuts for the **Top_Corner_Piece**s into the extrusions.
+//!5. Bolt the front and rear extrusions to the side extrusions, leaving the bolts slightly loose.
+//!6. Bolt the **Top_Corner_Piece**s to the extrusions leaving the bolts slightly loose.
+//!7. Turn the top face upside down and place on a flat surface. Ensure it is square and tighten the hidden bolts.
+//!8. Turn the top face the right way up and tighten the bolts on the **Top_Corner_Piece**s.
+//
 module Face_Top_Stage_1_assembly()
 assembly("Face_Top_Stage_1", big=true, ngb=true) {
     Left_Side_Upper_Extrusion_assembly();
@@ -55,6 +63,12 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
         topCornerPieceAssembly(270);
 }
 
+//!1. Bolt the MGN rail to the Y_Carriages as shown. Ensure the MGN rail is square to the frame.
+//!2. Turn the top face upside down and place on a flat surface. Rack the right side linear rail - move the X-rail
+//!to one extreme of the frame and tighten the bolts on that end of the Y-rail. Then move the X-rail to the other
+//!extreme and tighten the bolts on that end of the Y-rail. Finally tighten the remaining bolts on the Y-rail.
+//!3. Ensure the X-rail moves freely, if it doesn't loosen the bolts you have just tightened and repeat step 2.
+//
 module Face_Top_Stage_2_assembly()
 assembly("Face_Top_Stage_2", big=true, ngb=true) {
 
@@ -74,8 +88,7 @@ assembly("Face_Top_Stage_2", big=true, ngb=true) {
 //!1. Bolt the **X_Carriage_Belt_Side_MGN12H_assembly** to the MGN carriage.
 //!2. Thread the belts as shown and attach them to the **X_Carriage_Belt_Side_MGN12H_assembly**
 //! using the **X_Carriage_Belt_Clamp**s
-//!3. The belts should not be loose, but neither should they be fully tight - tensioning of the belts is done after
-//!the frame is assembled.
+//!3. Leave the belts fairly loose - tensioning of the belts is done after the frame is assembled.
 //
 module Face_Top_assembly()
 assembly("Face_Top", big=true) {
