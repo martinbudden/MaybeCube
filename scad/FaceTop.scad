@@ -55,8 +55,8 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
         topCornerPieceAssembly(270);
 }
 
-module Face_Top_assembly()
-assembly("Face_Top", big=true) {
+module Face_Top_Stage_2_assembly()
+assembly("Face_Top_Stage_2", big=true, ngb=true) {
 
     Face_Top_Stage_1_assembly();
     //hidden() Y_Carriage_Left_AL_dxf();
@@ -69,6 +69,19 @@ assembly("Face_Top", big=true) {
                 explode(20, true)
                     boltM3Caphead(10);
         }
+}
+
+//!1. Bolt the **X_Carriage_Belt_Side_MGN12H_assembly** to the MGN carriage.
+//!2. Thread the belts as shown and attach them to the **X_Carriage_Belt_Side_MGN12H_assembly**
+//! using the **X_Carriage_Belt_Clamp**s
+//!3. The belts should not be loose, but neither should they be fully tight - tensioning of the belts is done after
+//!the frame is assembled.
+//
+module Face_Top_assembly()
+assembly("Face_Top", big=true) {
+
+    Face_Top_Stage_2_assembly();
+
     printheadBeltSide(explode=100);
     if (!exploded())
         CoreXYBelts(carriagePosition());
@@ -123,6 +136,12 @@ module faceTopBack() {
     }
 }
 
+//!1. Bolt the MGN linear rail to the extrusion, using the **Rail_Centering_Jig** to align the rail. Fully tighten the
+//!bolts - the left rail is the fixed rail and the right rail will be aligned to it.
+//!bolts at this stage - they will be fully tightened when the rail is racked at a later stage.
+//!2. Bolt the **Y_Carriage_Left_assembly** to the MGN carriage.
+//!3. Screw the bolts into ends of the extrusion in preparation for attachment to the rest of the top face.
+//
 module Left_Side_Upper_Extrusion_assembly() pose(a=[180 + 55, 0, 25 + 90])
 assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
 
@@ -144,6 +163,11 @@ assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
         }
 }
 
+//!1. Bolt the MGN linear rail to the extrusion, using the **Rail_Centering_Jig** to align the rail. Do not fully tighten the
+//!bolts at this stage - they will be fully tightened when the rail is racked at a later stage.
+//!2. Bolt the **Y_Carriage_Right_assembly** to the MGN carriage.
+//!3. Screw the bolts into ends of the extrusion in preparation for attachment to the rest of the top face.
+//
 module Right_Side_Upper_Extrusion_assembly() pose(a=[180 + 55, 0, 25 - 90])
 assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
 

@@ -15,9 +15,8 @@ function evaColorGrey() = grey(25);
 function evaColorGreen() = "LimeGreen";
 function X_CarriageEVATensionerOffsetX() = 1;
 
-bottomMgn12Size = [8.2, 44.1, 27];
-bottomMgn12OffsetZ = 40.8;
-
+bottomMgn12Size = [8.2, 44.1, 27]
+bottomMgn12OffsetZ = xCarriageBottomOffsetZ();
 
 module evaPrintheadList() {
     EVA_MC_top_mgn12_stl();

@@ -12,6 +12,7 @@ include <../../../BabyCube/scad/vitamins/pcbs.scad>
 
 X_Carriage_Belt_Tensioner_size = [23, 10, 7.2];
 
+function xCarriageBottomOffsetZ() = 40.8;
 function xCarriageHoleOffsetTop() = [5.65, -1]; // for alignment with EVA
 //function xCarriageHoleOffsetTop() = [4, 0];
 //function xCarriageHoleOffsetBottom() = [9.7, 4.5]; // for alignment with EVA
@@ -284,4 +285,15 @@ module xCarriageFrontBeltAttachment(xCarriageType, beltWidth, beltOffsetZ, coreX
                                 boltHoleM3Tap(6, twist=4);
         } // end difference
     }
+}
+
+module xCarriageFrontBeltAttachmentBeltClamps(xCarriageType, beltWidth) {
+    size = xCarriageFrontSize(xCarriageType, beltWidth, clamps=false);
+    translate([-size.x/2, size.z/2, -xCarriageBottomOffsetZ()])
+        explode([0, 10, 0], true)
+            xCarriageBeltClampPositions(size.x) {
+                stl_colour(pp2_colour)
+                    X_Carriage_Belt_Clamp_stl();
+                X_Carriage_Belt_Clamp_hardware();
+        }
 }

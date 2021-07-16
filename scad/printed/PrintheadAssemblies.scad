@@ -75,6 +75,7 @@ module printheadBeltSide(rotate=180, explode=0, t=undef) {
                 explode([0, -20, 0], true)
                     X_Carriage_Belt_Side_MGN12H_assembly();
                 xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = [ [1, -1], [-1, -1] ]);
+                xCarriageFrontBeltAttachmentBeltClamps(xCarriageType, _beltWidth);
             }
 }
 

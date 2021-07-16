@@ -65,15 +65,6 @@ assembly("X_Carriage_Belt_Side_MGN12H") {
                 X_Carriage_Belt_Tensioner_hardware(offset);
             }
     }
-
-    size = xCarriageFrontSize(xCarriageType, _beltWidth, clamps=false);
-    translate([-size.x/2, size.z/2, -40.8])
-        explode([0, 10, 0], true)
-            xCarriageBeltClampPositions(size.x) {
-                stl_colour(pp2_colour)
-                    X_Carriage_Belt_Clamp_stl();
-                X_Carriage_Belt_Clamp_hardware();
-        }
 }
 
 module X_Carriage_Belt_Side_MGN12C_stl() {
