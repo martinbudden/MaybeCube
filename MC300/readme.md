@@ -23,7 +23,6 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 
 1. [Parts list](#Parts_list)
 
-1. [X_Carriage_Groovemount_MGN12H assembly](#X_Carriage_Groovemount_MGN12H_assembly)
 1. [Printhead_E3DV6_MGN12H assembly](#Printhead_E3DV6_MGN12H_assembly)
 1. [X_Carriage_Belt_Side_MGN12H assembly](#X_Carriage_Belt_Side_MGN12H_assembly)
 1. [XY_Motor_Mount_Right assembly](#XY_Motor_Mount_Right_assembly)
@@ -85,8 +84,8 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   4  |    6  |  Bolt M3 caphead x 25mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 30mm |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 40mm |
-|   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 countersunk x 12mm |
-|   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 countersunk x 30mm |
+|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   2  |    4  |  Bolt M3 countersunk x 12mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M3 countersunk x 30mm |
 |   .  |   .  |   .  |   .  |   8  |   .  |   .  |  24  |   32  |  Bolt M4 buttonhead x  8mm |
 |   .  |   .  |  14  |   .  |   .  |   8  |   2  |  12  |   36  |  Bolt M4 buttonhead x 10mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   2  |   .  |    4  |  Bolt M4 buttonhead x 12mm |
@@ -140,8 +139,8 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   2  |  26  |   .  |   .  |   9  |   .  |   .  |   37  |  Washer  M3 |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer  M4 |
 |   .  |   .  |   .  |   .  |   .  |   6  |   .  |   .  |    6  |  Washer penny  M4 |
-|   1  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    3  |  Ziptie 2.5mm x 100mm min length |
-|  10  |   4  | 222  |  50  |  42  |  70  |  47  | 112  |  557  | Total vitamins count |
+|   3  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    3  |  Ziptie 2.5mm x 100mm min length |
+|  12  |   4  | 216  |  50  |  42  |  70  |  47  | 116  |  557  | Total vitamins count |
 |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_Bracket_TFT35_E3.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_TFT35_E3.stl |
@@ -190,41 +189,6 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 [Top](#TOP)
 
 ---
-<a name="X_Carriage_Groovemount_MGN12H_assembly"></a>
-
-## X_Carriage_Groovemount_MGN12H assembly
-
-### Vitamins
-
-|Qty|Description|
-|---:|:----------|
-|4| Bolt M2 caphead x  6mm|
-|1| Square radial fan 3010|
-|1| Ziptie 2.5mm x 100mm min length|
-
-
-### 3D Printed parts
-
-| 1 x Fan_Duct.stl | 1 x X_Carriage_Groovemount_MGN12H.stl |
-|---|---|
-| ![Fan_Duct.stl](stls/Fan_Duct.png) | ![X_Carriage_Groovemount_MGN12H.stl](stls/X_Carriage_Groovemount_MGN12H.png) 
-
-
-
-### Assembly instructions
-
-![X_Carriage_Groovemount_MGN12H_assembly](assemblies/X_Carriage_Groovemount_MGN12H_assembly.png)
-
-1. Bolt the belt clamps to the sides of the X_Carriage. Leave the clamps loose to allow later insertion of the belts.
-2. Bolt the fan onto the side of the X_Carriage, secure the fan wire with a ziptie.
-3. Ensure a good fit between the fan and the fan duct and bolt the fan duct to the X_Carriage.
-
-![X_Carriage_Groovemount_MGN12H_assembled](assemblies/X_Carriage_Groovemount_MGN12H_assembled.png)
-
-<span></span>
-[Top](#TOP)
-
----
 <a name="Printhead_E3DV6_MGN12H_assembly"></a>
 
 ## Printhead_E3DV6_MGN12H assembly
@@ -233,24 +197,19 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 
 |Qty|Description|
 |---:|:----------|
+|4| Bolt M2 caphead x  6mm|
 |2| Bolt M3 buttonhead x 25mm|
 |1| Fan 30mm x 10mm|
 |1| Hot end E3D V6 direct 1.75mm|
+|1| Square radial fan 3010|
+|3| Ziptie 2.5mm x 100mm min length|
 
 
 ### 3D Printed parts
 
-| 1 x Hotend_Clamp.stl |
-|---|
-| ![Hotend_Clamp.stl](stls/Hotend_Clamp.png) 
-
-
-
-### Sub-assemblies
-
-| 1 x X_Carriage_Groovemount_MGN12H_assembly |
-|---|
-| ![X_Carriage_Groovemount_MGN12H_assembled](assemblies/X_Carriage_Groovemount_MGN12H_assembled_tn.png) 
+| 1 x Fan_Duct.stl | 1 x Hotend_Clamp.stl | 1 x X_Carriage_Groovemount_MGN12H.stl |
+|---|---|---|
+| ![Fan_Duct.stl](stls/Fan_Duct.png) | ![Hotend_Clamp.stl](stls/Hotend_Clamp.png) | ![X_Carriage_Groovemount_MGN12H.stl](stls/X_Carriage_Groovemount_MGN12H.png) 
 
 
 
@@ -258,9 +217,11 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 
 ![Printhead_E3DV6_MGN12H_assembly](assemblies/Printhead_E3DV6_MGN12H_assembly.png)
 
-1. Assemble the E3D hotend, including fan, thermistor cartridge and heater cartridge.
-2. Use the Hotend_Clamp to attach the hotend to the X_Carriage.
-3. Collect the wires together and attach to the X_Carriage using the Hotend_Strain_Relief_Clamp.
+1. Bolt the fan onto the side of the **X_Carriage_Groovemount_MGN12H**, secure the fan wire with a ziptie.
+2. Ensure a good fit between the fan and the fan duct and bolt the fan duct to the X_Carriage.
+3. Assemble the E3D hotend, including fan, thermistor cartridge and heater cartridge.
+4. Use the **Hotend_Clamp** to attach the E3D hotend to the X_Carriage.
+5. Collect the wires together, wrap them in spiral wrap,  and secure them to the X_Carriage using the zipties. Note that the wiring is not shown in this diagram.
 
 ![Printhead_E3DV6_MGN12H_assembled](assemblies/Printhead_E3DV6_MGN12H_assembled.png)
 
@@ -291,6 +252,9 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 ### Assembly instructions
 
 ![X_Carriage_Belt_Side_MGN12H_assembly](assemblies/X_Carriage_Belt_Side_MGN12H_assembly.png)
+
+Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensioners into the
+**X_Carriage_Belt_Side_MGN12H** part as shown.
 
 ![X_Carriage_Belt_Side_MGN12H_assembled](assemblies/X_Carriage_Belt_Side_MGN12H_assembled.png)
 
@@ -640,17 +604,16 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |1| Belt GT2 x 6mm x nanmm|
 |1| Belt GT2 x 6mm x nanmm|
 |4| Bolt M3 caphead x 10mm|
-|4| Bolt M3 countersunk x 12mm|
-|4| Bolt M3 countersunk x 30mm|
+|2| Bolt M3 countersunk x 12mm|
 |1| Linear rail MGN12 x 250mm|
 |1| Linear rail carriage MGN12H|
 
 
 ### Sub-assemblies
 
-| 1 x Face_Top_Stage_1_assembly | 1 x Printhead_E3DV6_MGN12H_assembly | 1 x X_Carriage_Belt_Side_MGN12H_assembly |
-|---|---|---|
-| ![Face_Top_Stage_1_assembled](assemblies/Face_Top_Stage_1_assembled_tn.png) | ![Printhead_E3DV6_MGN12H_assembled](assemblies/Printhead_E3DV6_MGN12H_assembled_tn.png) | ![X_Carriage_Belt_Side_MGN12H_assembled](assemblies/X_Carriage_Belt_Side_MGN12H_assembled_tn.png) 
+| 1 x Face_Top_Stage_1_assembly | 1 x X_Carriage_Belt_Side_MGN12H_assembly |
+|---|---|
+| ![Face_Top_Stage_1_assembled](assemblies/Face_Top_Stage_1_assembled_tn.png) | ![X_Carriage_Belt_Side_MGN12H_assembled](assemblies/X_Carriage_Belt_Side_MGN12H_assembled_tn.png) 
 
 
 
@@ -1209,12 +1172,13 @@ and move on to the next bolt, making several circuits of the frame to get all th
 |Qty|Description|
 |---:|:----------|
 |2| Bolt M3 buttonhead x  8mm|
+|2| Bolt M3 countersunk x 12mm|
+|4| Bolt M3 countersunk x 30mm|
 |16| Bolt M4 buttonhead x  8mm|
 |2| Linear rod 12mm x 300mm|
 |16| Nut M4 hammer|
 |1| PTFE Bowden tube, 500 mm|
 |1| Sheet polycarbonate 340mm x 400mm x 3mm|
-|2| Ziptie 2.5mm x 100mm min length|
 
 
 ### 3D Printed parts
@@ -1240,9 +1204,14 @@ and move on to the next bolt, making several circuits of the frame to get all th
 | ![Back_Panel_assembled](assemblies/Back_Panel_assembled_tn.png) | ![Base_Plate_assembled](assemblies/Base_Plate_assembled_tn.png) | ![Face_Top_assembled](assemblies/Face_Top_assembled_tn.png) 
 
 
-| 1 x Left_Side_assembly | 1 x Printbed_assembly | 1 x Right_Side_assembly |
+| 1 x Left_Side_assembly | 1 x Printbed_assembly | 1 x Printhead_E3DV6_MGN12H_assembly |
 |---|---|---|
-| ![Left_Side_assembled](assemblies/Left_Side_assembled_tn.png) | ![Printbed_assembled](assemblies/Printbed_assembled_tn.png) | ![Right_Side_assembled](assemblies/Right_Side_assembled_tn.png) 
+| ![Left_Side_assembled](assemblies/Left_Side_assembled_tn.png) | ![Printbed_assembled](assemblies/Printbed_assembled_tn.png) | ![Printhead_E3DV6_MGN12H_assembled](assemblies/Printhead_E3DV6_MGN12H_assembled_tn.png) 
+
+
+| 1 x Right_Side_assembly |
+|---|
+| ![Right_Side_assembled](assemblies/Right_Side_assembled_tn.png) 
 
 
 
@@ -1250,11 +1219,8 @@ and move on to the next bolt, making several circuits of the frame to get all th
 
 ![main_assembly](assemblies/main_assembly.png)
 
-1. Attach the extruder and the spoolholder to the right face.
-
-2. Connect the Bowden tube between the extruder and the printhead.
-
-3. Attach the polycarbonate sheet to the back of the print. Make sure everything is square before tightening the bolts.
+1. Bolt the polycarbonate sheet to the left face.
+2. Attach the spoolholder and filament spool to the right face.
 
 ![main_assembled](assemblies/main_assembled.png)
 
