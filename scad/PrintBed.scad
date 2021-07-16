@@ -125,7 +125,7 @@ module corkUnderlay(size, boltHoles, underlayThickness) {
             rounded_rectangle([size.x, size.y, underlayThickness], 1, center=false, xy_center=false);
             for (i = boltHoles)
                 translate(i)
-                    boltHole(springDiameter+1, underlayThickness+2*eps);
+                    boltHole(springDiameter+1, underlayThickness + 2*eps);
         }
 }
 
@@ -317,6 +317,11 @@ module printbedFrameCrossPiece() {
     }
 }
 
+//! 1. Slide the **Z_Carriage_Center_assembly** to the approximate center of the 2040 extrusion and loosely tighten the bolts.
+//!The bolts will be fully tightened when the Z_Carriage is aligned.
+//!2. Slide the 2040 extrusion into the 2020 extrusions and loosely tighten the bolts. The bolts will be fully tightened after
+//!the Z carriages are added.
+//
 module Printbed_Frame_assembly()
 assembly("Printbed_Frame", big=true, ngb=true) {
     size = printBedSize();
@@ -410,18 +415,18 @@ assembly("Printbed_Frame", big=true, ngb=true) {
 }
 
 
-//!1. Slide the Z carriages onto the frame as shown.
-//!
-//!2. Ensure the Z carriages are square and aligned with the end of the frame and then tighten the bolts.
+//!1. Lay the frame on a flat surface and  slide the Z carriages onto the frame as shown.
+//!2. Ensure the Z carriages are square and aligned with the end of the frame and then tighten the bolts on Z_carriages.
+//!3  Ensure the 2040 extrusion is pressed firmly against the Z_Carriages and tighten the hidden bolts in the frame.
 //
-module Printbed_Frame_with_Z_Carriages_assembly()
+module Printbed_Frame_with_Z_Carriages_assembly() pose(a=[55, 180, 25 - 50])
 assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
 
     Printbed_Frame_assembly();
     yRight = eY - 2*_zRodOffsetX;
 
     translate([-zRodSeparation()/2, 0, 0]) {
-        explode([0, -100, 0])
+        explode([0, -120, 0])
             Z_Carriage_Left_assembly();
         if (is_true(_useDualZRods))
             translate([0, yRight, 0])
@@ -429,7 +434,7 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
                     Z_Carriage_Right_assembly();
     }
     translate([zRodSeparation()/2, 0, 0]) {
-        explode([0, -100, 0])
+        explode([0, -120, 0])
             Z_Carriage_Right_assembly();
         if (is_true(_useDualZRods))
             translate([0, yRight, 0])
