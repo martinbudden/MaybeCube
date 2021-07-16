@@ -58,8 +58,8 @@ assembly("EVA_Stage_1", big=true) {
         evaHotendBaseHardware(explode=60, boltOffset=temporaryBolts ? 2 : 0);
 
         stl_colour(pp2_colour)
-            evaTensioners();
-        evaTensionersHardware();
+            evaBeltTensioners();
+        evaBeltTensionersHardware();
 
         stl_colour(pp2_colour)
             evaBeltClamps();

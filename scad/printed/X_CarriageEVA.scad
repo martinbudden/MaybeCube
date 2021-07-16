@@ -16,6 +16,7 @@ function evaColorGreen() = "LimeGreen";
 function X_CarriageEVATensionerOffsetX() = 1;
 
 bottomMgn12Size = [8.2, 44.1, 27];
+bottomMgn12OffsetZ = 40.8;
 
 
 module evaPrintheadList() {
@@ -43,15 +44,15 @@ module evaHotendBase(top="mgn12", explode=40) {
                 EVA_MC_top_bmg_mgn12_stl();
             else
                 EVA_MC_top_mgn12_stl();
-    translate([-22.1, 13.5, -40.8])
-        rotate([90, 90, 0]) {
+
+    sizeZ = bottomMgn12Size.y;
+    translate([-sizeZ/2, bottomMgn12Size.z/2, -bottomMgn12OffsetZ]) {
+        rotate([90, 90, 0])
             EVA_MC_bottom_mgn12_short_duct_stl();
-            sizeZ = 44.1;
-            explode(20, true)
-                for (y = [3*sizeZ/10, 7*sizeZ/10])
-                    translate([-xCarriageBeltAttachmentSize().x, y, 18.5])
-                        X_Carriage_Belt_Clamp_stl();
-        }
+        explode([0, -20, 0], true)
+            xCarriageBeltClampPositions(sizeZ)
+                    X_Carriage_Belt_Clamp_stl();
+    }
 }
 
 module evaHotendBaseHardware(explode=40, boltOffset=0) {
@@ -63,12 +64,12 @@ module evaHotendBaseHardware(explode=40, boltOffset=0) {
             explode(explode, true)
                 boltM3Caphead(8);
 
-    translate([-22.1, 11.5 + boltOffset, -40.9])
+    size = bottomMgn12Size;
+    translate([-size.y/2, 11.5 + boltOffset, -bottomMgn12OffsetZ])
         rotate([90, 90, 0]) {
-            size = bottomMgn12Size;
             explode([-explode, 0, 0], true)
                 for (y = [5, size.y - 5])
-                    translate([-44, y, size.z]) {
+                    translate([-bottomMgn12Size.y, y, size.z]) {
                         boltM3Caphead(boltLength);
                         translate_z(-boltLength + boltOffset + 0.8)
                             rotate(30)
@@ -86,27 +87,27 @@ module evaHotendBaseHardware(explode=40, boltOffset=0) {
         }
 }
 
-module evaClampPositions() {
-    sizeZ = 44.1;
-    translate([-22.1, 13.5, -40.8])
-        rotate([90, 90, 0])
-            explode(20, true)
-                for (y = [3*sizeZ/10, 7*sizeZ/10])
-                    translate([-xCarriageBeltAttachmentSize().x, y, 18.5])
-                        children();
+module evaBeltClampPositions() {
+    size = bottomMgn12Size;
+    translate([-size.y/2, size.z/2, -bottomMgn12OffsetZ])
+        explode(20, true)
+            xCarriageBeltClampPositions(size.y)
+                children();
 }
 
 module evaBeltClamps() {
-    evaClampPositions()
+    evaBeltClampPositions()
         X_Carriage_Belt_Clamp_stl();
 }
 
 module evaBeltClampHardware() {
-    evaClampPositions()
-        X_Carriage_Belt_Clamp_hardware();
+    evaBeltClampPositions()
+        translate_z(4.5)
+            vflip()
+                X_Carriage_Belt_Clamp_hardware();
 }
 
-module evaTensionerPositions(explode=0) {
+module evaBeltTensionerPositions(explode=0) {
     translate([-18 - X_CarriageEVATensionerOffsetX(), 2.95, -31])
         explode([explode, 0, 0])
             children();
@@ -116,12 +117,12 @@ module evaTensionerPositions(explode=0) {
                 children();
 }
 
-module evaTensioners() {
-    evaTensionerPositions(explode=-50)
+module evaBeltTensioners() {
+    evaBeltTensionerPositions(explode=-40)
         X_Carriage_Belt_Tensioner_stl();
 }
-module evaTensionersHardware() {
-    evaTensionerPositions()
+module evaBeltTensionersHardware() {
+    evaBeltTensionerPositions(explode=70)
         X_Carriage_Belt_Tensioner_hardware();
 }
 
@@ -190,7 +191,9 @@ module EVA_MC_BottomMgn12(ductSizeY=undef, split=false) {
 }
 
 module EVA_MC_TopMgn12(counterBore=true) {
-    size = [44.1, 27, 8];
+    sizeZ = bottomMgn12Size.y;
+    //bottomMgn12Size = [8.2, 44.1, 27];
+    size = [bottomMgn12Size.y, bottomMgn12Size.z, 8];
     carriageType = MGN12H_carriage;
 
     difference() {
@@ -241,14 +244,14 @@ module EvaTopConvert(stlFile, zOffset = 5) {
                 union() {
                     evaImportStl(stlFile);
                     size1 = [30 + 2*eps, 27, height - screw_head_height(M3_cap_screw) - 0.2];
-                    size2 = [44.1, 12, 1];
+                    size2 = [bottomMgn12Size.y, 12, 1];
                     size3 = [30, 12, height - screw_head_height(M3_cap_screw) - 0.2];
                     for (size = [size1, size2, size3])
                         translate([-size.x/2, -size.y/2, zOffset])
                             cube(size);
                 }
                 boltCutout(7, height - 3);
-                size = [44.1 + 2*eps, 27 + 2*eps, zOffset + eps];
+                size = [bottomMgn12Size.y + 2*eps, 27 + 2*eps, zOffset + eps];
                 translate([-size.x/2, -size.y/2, -eps])
                     cube(size);
                 translate_z(-zOffset - height) {
