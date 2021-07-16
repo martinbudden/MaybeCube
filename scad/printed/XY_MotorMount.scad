@@ -608,6 +608,13 @@ module XY_Motor_Mount_Left_stl() {
                 xyMotorMount(motorType(_xyMotorDescriptor), true, bracketHeightLeft, basePlateThickness, offset, sideSupportSizeY, blockHeightExtra=blockHeightExtra);
 }
 
+//!1. Bolt the idler pulleys and the **XY_Motor_Mount_Brace_Left** to the **XY_Motor_Mount_Left**. Tighten the pulley bolts until
+//!the pulleys no longer turn freely, and then loosen the bolts by about 1/4 turn until the pulleys turn freely again.
+//!2. Bolt the motor and the cork damper to the motor mount. The core damper thermally insulates the motor from the mount
+//!and should not be omitted.
+//!3. Align the drive pulley with the idler pulleys and bolt it to the motor shaft.
+//!4. Add the bolts and t-nuts in preparation for later attachment to the frame.
+//
 module XY_Motor_Mount_Left_assembly()
 assembly("XY_Motor_Mount_Left", ngb=true) {
 
@@ -631,6 +638,13 @@ module XY_Motor_Mount_Right_stl() {
                     xyMotorMount(motorType(_xyMotorDescriptor), false, bracketHeightRight, basePlateThickness, -offset, sideSupportSizeY, blockHeightExtra=blockHeightExtra);
 }
 
+//!1. Bolt the idler pulleys and the **XY_Motor_Mount_Brace_Right** to the **XY_Motor_Mount_Right**. Tighten the pulley bolts until
+//!the pulleys no longer turn freely, and then loosen the bolts by about 1/4 turn until the pulleys turn freely again.
+//!2. Bolt the motor and the cork damper to the motor mount. The core damper thermally insulates the motor from the mount
+//!and should not be omitted.
+//!3. Align the drive pulley with the idler pulleys and bolt it to the motor shaft.
+//!4. Add the bolts and t-nuts in preparation for later attachment to the frame.
+//
 module XY_Motor_Mount_Right_assembly()
 assembly("XY_Motor_Mount_Right", ngb=true) {
 

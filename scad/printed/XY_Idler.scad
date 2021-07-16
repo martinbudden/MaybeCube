@@ -198,9 +198,10 @@ module XY_Idler_hardware(left = true) {
                     translate_z(armSize.y + eps)
                         explode(20, true)
                             boltM3Caphead(30);
-                explode([left ? 50 : -50, 0, 0])
+                explode = 35;
+                explode([left ? explode + 20 : -explode - 20, 0, 0])
                     washer(washer);
-                explode([left ? 30 : -30, 0, 0], true)
+                explode([left ? explode : -explode, 0, 0], true)
                     translate_z(washer_thickness(washer)) {
                         pulley(toothed_idler);
                         translate_z(pulley_height(toothed_idler)) {
@@ -236,7 +237,14 @@ module XY_Idler_Right_stl() {
                     xyIdler();
 }
 
-module XY_Idler_Left_assembly() pose(a=[70, 0, -180 + 60])
+//!1. Bolt the pulley stack into the **XY_Idler_Left**. Note that there are 4 washers between the two pulleys and one
+//!washer at the top and the bottom of the pulley stack.
+//!2. Tighten the bolt until the pulleys no longer turn freely, and then loosen the bolt by about 1/4 turn to allow the pulleys
+//!to turn freely again.
+//!3. Add the bolts and t-nuts in preparation for later attachment to the frame.
+//!4. Add the button head bolt and washer.
+//
+module XY_Idler_Left_assembly() pose(a=[70, 0, -180 + 30])
 assembly("XY_Idler_Left", big=true, ngb=true) {
 
     translate([eSize, 0, 0]) {
@@ -248,7 +256,14 @@ assembly("XY_Idler_Left", big=true, ngb=true) {
     }
 }
 
-module XY_Idler_Right_assembly() pose(a=[70, 0, -180 + 60])
+//!1. Bolt the pulley stack into the **XY_Idler_Right**. Note that there are 4 washers between the two pulleys and one
+//!washer at the top and the bottom of the pulley stack.
+//!2. Tighten the bolt until the pulleys no longer turn freely, and then loosen the bolt by about 1/4 turn to allow the pulleys
+//!to turn freely again.
+//!3. Add the bolts and t-nuts in preparation for later attachment to the frame.
+//!4. Add the button head bolt and washer.
+//
+module XY_Idler_Right_assembly() pose(a=[70, 0, -180 + 30])
 assembly("XY_Idler_Right", big=true, ngb=true) {
 
     translate([eX + eSize, 0, 0])
