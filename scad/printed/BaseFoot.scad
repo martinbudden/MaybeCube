@@ -11,7 +11,7 @@ include <../Parameters_Main.scad>
 function extrusionFootLShapedBoltOffsetZ() = 3;
 
 module extrusionFootLShaped(footHeight = 10) {
-    size = [eSize, eSize+25, footHeight];
+    size = [eSize, eSize + 25, footHeight];
     boltOffset = 10;
     fillet = 2;
 

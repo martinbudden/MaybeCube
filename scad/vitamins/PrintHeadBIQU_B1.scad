@@ -66,7 +66,7 @@ module circuitBoard(size, color) {
             rotate(180)
                 right_triangle(7, 5, size.z, center=false);
     }
-    translate([-size.x/2-microswitch_width(switchType)/2 - 0.5, size.y/2 - microswitch_length(switchType)/2 - 7, microswitch_thickness(switchType)/2 + size.z]) {
+    translate([-size.x/2 - microswitch_width(switchType)/2 - 0.5, size.y/2 - microswitch_length(switchType)/2 - 7, microswitch_thickness(switchType)/2 + size.z]) {
         rotate(90)
             not_on_bom() microswitch(switchType);
         color("silver")
@@ -148,7 +148,7 @@ probing = false;
                         rotate([90, 0, 0])
                             cylinder(h=frontSize.y*4, d=27);
                     for (z=[0 : 3])
-                        translate([frontSize.x/2, frontSize.y+eps, z*3 + 2])
+                        translate([frontSize.x/2, frontSize.y + eps, z*3 + 2])
                             rotate([90, 0, 0])
                                 rounded_rectangle([32, 1.5, frontSize.y + 2*eps], 0.5, center=false);
                 }
@@ -162,7 +162,7 @@ probing = false;
             translate([frontSize.x/2, topSize.y, frontSize.z/2])
                 rotate([-90, 0, 0])
                     circuitBoard([frontSize.x, frontSize.z, 0.5], color=grey(20));
-            translate([frontSize.x/2, topSize.y+0.5, frontSize.z/2])
+            translate([frontSize.x/2, topSize.y + 0.5, frontSize.z/2])
                 rotate([-90, 0, 0])
                     insetCube([frontSize.x, frontSize.z, 4.5], color=grey(90));
         }
@@ -175,7 +175,7 @@ probing = false;
                 vflip()
                     not_on_bom() boltM3Buttonhead(5);
         }
-        //translate([-topSize.x/2, topSize.y/2, 20-frontSize.z])
+        //translate([-topSize.x/2, topSize.y/2, 20 - frontSize.z])
         translate([-topSize.x/2, topSize.x, -frontSize.z])
             rotate([90, 0, -90])
                 not_on_bom() blowerWithBolts(BL40x10);
@@ -184,7 +184,7 @@ probing = false;
                 not_on_bom() blowerWithBolts(BL40x10);
     }
 
-    translate([0, 23-topSize.y, -7]) {
+    translate([0, 23 - topSize.y, -7]) {
         translate([0, -topBackSize.y, 0]) {
             bowden_connector(grey(20));
             h = 5;

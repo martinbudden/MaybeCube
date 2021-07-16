@@ -85,7 +85,7 @@ module xyIdler() {
                         rounded_cube_yz([size.x, sizeY2, armSize.z], fillet);
                     translate([0, size.y - tabThickness, 0])
                         rounded_cube_yz([size.x, tabThickness, armSize.z + tabLength], fillet);
-                    *translate([0, sizeY1- armSize.y, 0])
+                    *translate([0, sizeY1 - armSize.y, 0])
                         rounded_cube_yz([sideThickness, size.y - sizeY1 + armSize.y, armSize.z], fillet);
                     rotate([0, -90, 0])
                         translate_z(-sideThickness)

@@ -44,7 +44,7 @@ module NEMA_baseplate(NEMA_type, size) {
         translate([size.x/2, _zLeadScrewOffset, 0]) {
             // center circle for the motor axle
             translate_z(-eps)
-                poly_cylinder(r=NEMA_boss_radius(NEMA_type), h=size.z+2*eps);
+                poly_cylinder(r=NEMA_boss_radius(NEMA_type), h=size.z + 2*eps);
             // motor boltholes
             NEMA_screw_positions(NEMA_type)
                 boltHoleM3(size.z);
@@ -66,8 +66,8 @@ module zMotorMount(zMotorType, eHeight=40) {
             reduce = 1;
             translate([reduce, 0, 0])
                 NEMA_baseplate(zMotorType, [motorBracketSizeX-2*reduce, motorBracketSizeY, motorBracketSizeZ]);
-            *translate([0, 5, -size.z+motorBracketSizeZ+4]) rotate([0, 0, 90]) fillet(2, size.z-4);
-            *translate([motorBracketSizeX, 5, -size.z+motorBracketSizeZ+4]) fillet(2, size.z-4);
+            *translate([0, 5, -size.z+motorBracketSizeZ + 4]) rotate([0, 0, 90]) fillet(2, size.z-4);
+            *translate([motorBracketSizeX, 5, -size.z+motorBracketSizeZ + 4]) fillet(2, size.z-4);
             // add the braces
             braceSize = [motorBracketSizeY - motorBracketSizeZ, size.z - motorBracketSizeZ-7, motorBracketSizeZ - reduce];
             for (x = [motorBracketSizeZ, motorBracketSizeX - reduce])
@@ -228,7 +228,7 @@ module zMotorMountAssembly(zMotorType, corkDamperThickness, eHeight=40) {
 //!from the motor mount and should not be ommited.
 //!2. Attach the other bolts and t-nuts loosely to the motor mount, for later attachment to the frame.
 //
-module Z_Motor_Mount_assembly() pose(a=[55, 0, 25+90])
+module Z_Motor_Mount_assembly() pose(a=[55, 0, 25 + 90])
 assembly("Z_Motor_Mount", big=true, ngb=true) {
 
     zMotorType = motorType(_zMotorDescriptor);
@@ -242,7 +242,7 @@ assembly("Z_Motor_Mount", big=true, ngb=true) {
 //!from the motor mount and should not be ommited.
 //!2. Attach the other bolts and t-nuts loosely to the motor mount, for later attachment to the frame.
 //
-module Z_Motor_Mount_Right_assembly() pose(a=[55, 0, 25+90])
+module Z_Motor_Mount_Right_assembly() pose(a=[55, 0, 25 + 90])
 assembly("Z_Motor_Mount_Right", big=true, ngb=true) {
 
     zMotorType = motorType(_zMotorDescriptor);

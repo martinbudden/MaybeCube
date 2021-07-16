@@ -153,7 +153,7 @@ module EVA_MC_BottomMgn12(ductSizeY=undef, split=false) {
                         fillet(2, tabSize.z);
             }
         }
-        cutoutSize = [size.x+2*eps, 12, 2+2*eps];
+        cutoutSize = [size.x + 2*eps, 12, 2 + 2*eps];
         hull()
             translate([-eps, (size.y - cutoutSize.y)/2, size.z + eps]) {
                 translate([0, cutoutSize.y, 0])
@@ -233,7 +233,7 @@ module EvaTopConvert(stlFile, zOffset = 5) {
             hull()
                 for (x = [-offset, offset])
                     translate([x, 0, -zOffset - height])
-                        cylinder(r=screw_clearance_radius(M3_cap_screw), h=8+eps);
+                        cylinder(r=screw_clearance_radius(M3_cap_screw), h=8 + eps);
         }
     }
 

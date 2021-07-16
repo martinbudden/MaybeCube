@@ -31,7 +31,7 @@ module nutHole(diameter, length=0, tolerance=nutHoleTolerance, nutDepth=0) {
     radius = METRIC_NUT_AC_WIDTHS[diameter]/2+tolerance;
     depth = nutDepth ? nutDepth : METRIC_NUT_THICKNESS[diameter];
     translate([0, 0, -boltHoleEpsilon])
-        linear_extrude(depth+boltHoleCapHeightTolerance+2*boltHoleEpsilon)
+        linear_extrude(depth+boltHoleCapHeightTolerance + 2*boltHoleEpsilon)
             circle(r=radius, $fn=6);
     if (length) {
         boltHole(diameter, length, tolerance);
@@ -42,7 +42,7 @@ module nutHoleM3(length=0, tolerance=nutHoleTolerance, nutDepth=0) {
     radius = METRIC_NUT_AC_WIDTHS[3]/2+tolerance;
     depth = nutDepth ? nutDepth : METRIC_NUT_THICKNESS[3];
     translate([0, 0, -boltHoleEpsilon])
-        linear_extrude(depth+boltHoleCapHeightTolerance+2*boltHoleEpsilon)
+        linear_extrude(depth+boltHoleCapHeightTolerance + 2*boltHoleEpsilon)
             circle(r=radius, $fn=6);
     if (length) {
         boltHoleM3(length, tolerance);
@@ -68,7 +68,7 @@ module nutM3Hammer() {
 module nutHoleM3Tap(length=0, tolerance=nutHoleTolerance, nutDepth=0) {
     radius = METRIC_NUT_AC_WIDTHS[3]/2+tolerance;
     depth = nutDepth ? nutDepth : METRIC_NUT_THICKNESS[3];
-    translate([0, 0, -boltHoleEpsilon]) linear_extrude(depth+boltHoleCapHeightTolerance+2*boltHoleEpsilon) circle(r=radius, $fn=6);
+    translate([0, 0, -boltHoleEpsilon]) linear_extrude(depth+boltHoleCapHeightTolerance + 2*boltHoleEpsilon) circle(r=radius, $fn=6);
     if (length)
         boltHoleM3Tap(length, tolerance);
 }
@@ -77,7 +77,7 @@ module nutHoleM4(length=0, tolerance=nutHoleTolerance, nutDepth=0) {
     radius = METRIC_NUT_AC_WIDTHS[4]/2+tolerance;
     depth = nutDepth ? nutDepth : METRIC_NUT_THICKNESS[4];
     translate([0, 0, -boltHoleEpsilon])
-        linear_extrude(depth+boltHoleCapHeightTolerance++2*boltHoleEpsilon)
+        linear_extrude(depth+boltHoleCapHeightTolerance+ + 2*boltHoleEpsilon)
             circle(r=radius, $fn=6);
     if (length)
         boltHoleM4(length, tolerance);

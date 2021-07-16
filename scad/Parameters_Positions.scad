@@ -12,7 +12,7 @@ _yMin = 44.5;
 _yMax = eY - 71; // motor limits this, get an extra 3 with MGN9 X rail
 _yMaxCenter = eY - 33; // used for tool changing
 _zMin = 97; // limited by z carriage hitting sk bracket, limited by leadscrew coupling for _variant=250
-_zMax = eZ - eSize - (eX >= 350 ? 105 : 85+3);
+_zMax = eZ - eSize - (eX >= 350 ? 105 : 85 + 3);
 
 // note values of _zRodOffsetY (in Parameters_Main.scad) and heatedBedOffset (in Printbed.scad)
 

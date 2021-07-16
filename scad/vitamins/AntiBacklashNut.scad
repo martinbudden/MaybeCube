@@ -80,7 +80,7 @@ module antiBacklashSpacer(sizeZ=3.6) {
     difference() {
         rounded_cube_xy(size, 3.04);
         translate([(size.x-20)/2, 10, 0]) boltHoleM4(sizeZ);
-        translate([(size.x+20)/2, 10, 0]) boltHoleM4(sizeZ);
+        translate([(size.x + 20)/2, 10, 0]) boltHoleM4(sizeZ);
     }
 }
 */

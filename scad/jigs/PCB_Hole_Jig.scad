@@ -27,7 +27,7 @@ module PCB_Hole_Jig_stl() {
                                     translate([0, 50 - 25])
                                         rounded_square([size.x, size.y + 25], fillet, center=false);
                                     translate([-15, -50])
-                                        rounded_square([size.x+15, size.y + 35], fillet, center=false);
+                                        rounded_square([size.x + 15, size.y + 35], fillet, center=false);
                                 }
                                 *for (y = [6, size.y/2, size.y - 6])
                                     translate([eX + 3*eSize/2, y + offsetY -size.y/2])

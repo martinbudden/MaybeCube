@@ -29,7 +29,7 @@ function spoolHeight() = extruderPosition().z - 80;
 
 function extruderBracketSize() = [3, 77.5, eZ - spoolHeight()];
 //filamentSensorOffset = [20.5, 4.5, -45];
-function filamentSensorOffset() = [extruderFilamentOffset().z + extruderBracketSize().x, extruderFilamentOffset().x, -extruderFilamentOffset().y - filament_sensor_size().x/2-4];
+function filamentSensorOffset() = [extruderFilamentOffset().z + extruderBracketSize().x, extruderFilamentOffset().x, -extruderFilamentOffset().y - filament_sensor_size().x/2 - 4];
 
 counterSunk = false;
 
@@ -102,9 +102,9 @@ module Extruder_Bracket_stl() {
                 extruderBracket();
 }
 
-M3x10_nylon_hex_pillar = ["M3x10_nylon_hex_pillar", "hex nylon", 3, 10, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -5, -5+eps];
-M3x12_nylon_hex_pillar = ["M3x12_nylon_hex_pillar", "hex nylon", 3, 12, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -6, -6+eps];
-M3x14_nylon_hex_pillar = ["M3x14_nylon_hex_pillar", "hex nylon", 3, 14, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -7, -7+eps];
+M3x10_nylon_hex_pillar = ["M3x10_nylon_hex_pillar", "hex nylon", 3, 10, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -5, -5 + eps];
+M3x12_nylon_hex_pillar = ["M3x12_nylon_hex_pillar", "hex nylon", 3, 12, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -6, -6 + eps];
+M3x14_nylon_hex_pillar = ["M3x14_nylon_hex_pillar", "hex nylon", 3, 14, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -7, -7 + eps];
 
 module Extruder_Bracket_hardware(corkDamperThickness, addM4Bolts=false) {
     stepper_motor_cable(200); // extruder motor

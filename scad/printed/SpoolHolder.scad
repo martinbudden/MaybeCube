@@ -56,11 +56,11 @@ module spoolHolderBracket(eSize, bracketThickness) {
     }
     translate([0, eSize, 0])
         difference() {
-            cube([eSize, topThickness, eSize+2*bracketThickness]);
-            //translate([eSize/2, topThickness+eps, eSize/2+bracketThickness])
+            cube([eSize, topThickness, eSize + 2*bracketThickness]);
+            //translate([eSize/2, topThickness + eps, eSize/2+bracketThickness])
                 //rotate([90, -90, 0])
                     //boltHoleM4(bracketThickness);
-                    //vertical_tearslot(bracketThickness+2+2*eps, M4_clearance_radius, center=false, chamfer=0.5);
+                    //vertical_tearslot(bracketThickness + 2 + 2*eps, M4_clearance_radius, center=false, chamfer=0.5);
             translate([0, topThickness, 0])
                 rotate([0, -90, 180])
                     fillet(1, eSize);
@@ -91,13 +91,13 @@ module Spool_Holder_stl() {
                 translate([0, eSize+bracketThickness, z])
                     cube([eSize, endHeight, bracketThickness]);
             for (z=[0, length-bracketThickness])
-                translate([eSize/2, eSize+bracketThickness+endHeight, z])
+                translate([eSize/2, eSize+bracketThickness + endHeight, z])
                     spoolHolderCap(eSize, bracketThickness);
         }
     }
     thumbScrewLength = 12;
     *if ($preview)
-        translate([15, eSize+bracketThickness+2, -spoolHolderSize().x/2])
+        translate([15, eSize+bracketThickness + 2, -spoolHolderSize().x/2])
             rotate([90, 0, 0]) {
                 explode(-40)
                     boltM4Thumbscrew(thumbScrewLength);

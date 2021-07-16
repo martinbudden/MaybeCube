@@ -63,14 +63,14 @@ holeSeparationY = _heatedBedSize.y - 2*_heatedBedHoleOffset;
 
 
 // how far the print bed is inset from the ends of the extrusion, y direction
-//insetY = _variant==200 ? 49.5-1 : 54.5;// !!TODO 200 _variant limited by support, needs new type of support
+//insetY = _variant==200 ? 49.5 - 1 : 54.5;// !!TODO 200 _variant limited by support, needs new type of support
 //heatedBedOffsetY = 2;
 //    : [-supportLengthLeft+printBedSupportBoltHoleOffset()-heatedBedHoleOffset, insetY-heatedBedHoleOffset+supportLengthCenter-printBedSupportBoltHoleOffset(), _printBedExtrusionSize];
 
 /*
 printBedHoleOffset = printBedSupportBoltHoleOffset();
-supportLengthLeft = printBedHoleOffset-heatedBedHoleOffset+(printBedSize().x-_printBedArmSeparation-_printBedExtrusionSize)/2-_printBedOffsetX;
-supportLengthRight = supportLengthLeft+2*_printBedOffsetX;
+supportLengthLeft = printBedHoleOffset-heatedBedHoleOffset+(printBedSize().x-_printBedArmSeparation-_printBedExtrusionSize)/2 - _printBedOffsetX;
+supportLengthRight = supportLengthLeft + 2*_printBedOffsetX;
 supportLengthCenter = heatedBedOffsetY+insetY-braceY()+printBedHoleOffset+heatedBedHoleOffset;
 //yOffset = 22;
 //supportLengthCenter = yOffset+insetY-braceY()-extrusionSize+printBedHoleOffset+heatedBedHoleOffset;
@@ -125,7 +125,7 @@ module corkUnderlay(size, boltHoles, underlayThickness) {
             rounded_rectangle([size.x, size.y, underlayThickness], 1, center=false, xy_center=false);
             for (i = boltHoles)
                 translate(i)
-                    boltHole(springDiameter+1, underlayThickness + 2*eps);
+                    boltHole(springDiameter + 1, underlayThickness + 2*eps);
         }
 }
 
@@ -149,7 +149,7 @@ module molex_400(ways) { //! Draw molex header
          }
 
     color("silver")
-        for (i = [0: ways -1])
+        for (i = [0: ways - 1])
             translate([0, i * pitch - width / 2 + pitch / 2, (above + below) / 2 - below])
                 cube([1, 1, above + below], center = true);
 }
@@ -216,7 +216,7 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
         if (_printBed4PointSupport) for (i=boltHoles) {
             translate(i) {
                 explode(0.1, false)
-                    translate_z(size.z+eps)
+                    translate_z(size.z + eps)
                         if (_printBed4PointSupport)
                             boltM4Countersunk(supportBoltLength);
                         else
@@ -299,7 +299,7 @@ module printbedFrameCrossPiece() {
             vflip()
                 antiBacklashNut();
         translate([antiBacklashNutBoltSeparation()/2, 0, 0]) {
-            explode([_printBedArmSeparation/2+10, 0, 0])
+            explode([_printBedArmSeparation/2 + 10, 0, 0])
                 rotate([-90, 0, 0])
                     nutM4SlidingT();
             rotate([90, 0, 0])
@@ -307,7 +307,7 @@ module printbedFrameCrossPiece() {
                     boltM4Buttonhead(12);
         }
         translate([-antiBacklashNutBoltSeparation()/2, 0, 0]) {
-            explode([-_printBedArmSeparation/2-10, 0, 0])
+            explode([-_printBedArmSeparation/2 - 10, 0, 0])
                 rotate([-90, 0, 0])
                     nutM4SlidingT();
             rotate([90, 0, 0])
@@ -380,7 +380,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                 boltM3Caphead(20);
             translate([0, yOffset + heatedBedOffset.y + _heatedBedSize.y - _heatedBedHoleOffset, 0])
                 boltM3Caphead(20);
-            //echo(eOffset = yOffset + heatedBedOffset.y + _heatedBedHoleOffset-1.5);
+            //echo(eOffset = yOffset + heatedBedOffset.y + _heatedBedHoleOffset - 1.5);
         }
     }
     /*

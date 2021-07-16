@@ -51,7 +51,7 @@ module zCarriageSCS(cnc=false) {
                             translate([baseSize.x/2 - 2*fillet, baseSize.y/2 - eSize - shelfThickness]) {
                                 rounded_square([shelfExtension + 2*fillet, eSize + shelfThickness], uprightFillet, center=false);
                                 translate([0, -shelfExtension + shelfThickness])
-                                    circle(r=fillet+1);
+                                    circle(r=fillet + 1);
                             }
                         }
                     }
@@ -130,7 +130,7 @@ module Z_Carriage_Right_stl() {
 //!1. Bolt the SCS bearing block to the **Z_Carriage_Left**.
 //!2. Add the bolts and t-nuts in preparation for connection to the printbed.
 //
-module Z_Carriage_Left_assembly() pose(a=[55+40, 0, 25 + 180])
+module Z_Carriage_Left_assembly() pose(a=[55 + 40, 0, 25 + 180])
 assembly("Z_Carriage_Left", ngb=true) {
 
     translate_z(-scs_screw_separation_z(scsType)/2) {

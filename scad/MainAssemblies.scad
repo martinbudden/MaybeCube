@@ -28,7 +28,7 @@ use <Parameters_Positions.scad>
 include <Parameters_Main.scad>
 
 
-_poseMainAssembly = [90-15, 0, 90+15];
+_poseMainAssembly = [90 - 15, 0, 90 + 15];
 
 
 if (_useAsserts) {
