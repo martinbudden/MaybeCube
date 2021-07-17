@@ -122,7 +122,7 @@ module Extruder_Bracket_hardware(corkDamperThickness, addM4Bolts=false) {
     translate(extruderPosition())
         rotate([90, 0, 90]) {
             translate_z(size.x)
-                Extruder_MK10_Dual_Pulley(extruderNEMAType, motorOffsetZ=size.x + corkDamperThickness, motorRotate=180);
+                Extruder_MK10_Dual_Pulley(extruderNEMAType, motorOffsetZ=size.x + corkDamperThickness, motorRotate=180, extruderExplode=80, motorExplode=80);
             translate_z(-corkDamperThickness)
                 explode(-40)
                     corkDamper(extruderNEMAType, corkDamperThickness);
@@ -145,7 +145,13 @@ module Extruder_Bracket_hardware(corkDamperThickness, addM4Bolts=false) {
         }
 }
 
-module Extruder_Bracket_assembly() pose(a=[55, 0, 25 + 180])
+//!1. Bolt the stepper motor and cork damper through the **Extruder_Bracket** to the extruder as shown. The cork damper
+//!thermally isolates the motor from the **Extruder_Bracket* and should not be omitted.
+//!2. Align the hobb gear on the stepper motor shaft withe the hobb gear in the extruder and tighten the grub screws.
+//!3. Bolt the filament sensor to the hex pillars and bolt them to the **Extruder_Bracket**.
+//!4. Add the bolts and t-nuts in preparation for later attachment to the frame.
+//
+module Extruder_Bracket_assembly()
 assembly("Extruder_Bracket", ngb=true) {
 
     Extruder_Bracket_hardware(_corkDamperThickness, addM4Bolts=true);
