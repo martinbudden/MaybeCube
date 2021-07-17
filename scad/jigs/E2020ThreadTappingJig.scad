@@ -30,7 +30,7 @@ module jig(boltSize, topLength=22, channelInsertLength1=25, channelInsertLength2
 
     translate([0, -eSize, 0])
         difference() {
-            rounded_rectangle([eSize, eSize, topLength], 2, center=false, xy_center=false);
+            rounded_cube_xy([eSize, eSize, topLength], 2);
             translate([eSize/2, eSize/2, -eps]) {
                 poly_cylinder(h=topLength + 2*eps, r=(boltSize == 5 ? M5_clearance_radius : M6_clearance_radius) + 0.1);
                 //boltHoleM6Counterbore(topLength, boreDepth=topLength-5, bridgeThickness=0.5);
