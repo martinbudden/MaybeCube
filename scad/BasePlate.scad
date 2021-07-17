@@ -191,6 +191,13 @@ assembly("Base_Plate_Stage_1", big=true, ngb=true) {
     }
 }
 
+//!1. Bolt the **Display_Housing_Bracket_TFT35_E3** to the 2080 extrusion.
+//!2. Thread the display wiring through the hole in the **Display_Housing_Bracket_TFT35_E3** and connect it to the TFT display.
+//!3. Bolt the **Display_Cover_TFT35_E3_assembly** to the **Display_Housing_Bracket_TFT35_E3**.
+//!4. Bolt the **Front_Cover** to the top of the 2080 extrusion.
+//!5. Bolt the **Front_Display_Wiring_Cover** to the top of the 2080 extrusion, covering the wiring.
+//!6. Route the wiring to the back of the base, ready for later connection to the mainboard.
+//
 module Base_Plate_assembly()
 assembly("Base_Plate", big=true, ngb=true) {
 

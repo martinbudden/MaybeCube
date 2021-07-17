@@ -22,11 +22,10 @@ spoolHolderPosition = [eX + 2*eSize, eY/2, spoolHeight() + eSize];
 
 module faceRightSpoolHolder() {
    // add the spool holder, place it to the back of the right side, so that the feed to the extruder is as straight as possible
-    explode([0, 20, 50])
-        translate(spoolHolderPosition)
-        //translate([-eSize - 5,  - 10, 0])
-            rotate([90, 0, 0])
-                Spool_Holder_stl();
+    translate(spoolHolderPosition)
+    //translate([-eSize - 5,  - 10, 0])
+        rotate([90, 0, 0])
+            Spool_Holder_stl();
 }
 
 module faceRightSpool() {

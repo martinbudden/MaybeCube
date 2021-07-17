@@ -149,10 +149,12 @@ staged_assembly("Stage_5", big=true, ngb=true) {
 
 module FinalAssembly() {
     // does not use assembly(""), since made into an assembly in Main.scad
-    no_explode()
-        Stage_5_assembly();
-    stl_colour(pp1_colour)
-        faceRightSpoolHolder();
-    faceRightSpool();
-    leftSidePanelPC();
+    Stage_5_assembly();
+    explode([80, 0, 80])
+        stl_colour(pp1_colour)
+            faceRightSpoolHolder();
+    explode([200, 0, 100])
+        faceRightSpool();
+    explode([-50, 0, 0], true)
+        leftSidePanelPC();
 }

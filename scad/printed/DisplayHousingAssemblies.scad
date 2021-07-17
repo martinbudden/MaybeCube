@@ -86,7 +86,7 @@ module displayHousingTFT35E3Assembly() {
 
     translate([eX/2 + eSize + displayHousingSize(display_type).x/2, -displayBracketBackThickness, displayHousingOffsetZ]) {
         displayHousingLocate(displayHousingSize(display_type), displayAngle)
-            explode(-50, true) {
+            explode(-150, true) {
                 Display_Cover_TFT35_E3_assembly();
                 displayHousingBoltPositions(display_type)
                     vflip()
