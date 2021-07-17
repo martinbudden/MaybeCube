@@ -128,6 +128,9 @@ module baseplateM4CornerBoltPositions(size) {
 
 function basePlateHeight() = _basePlateThickness + 12;
 
+//!If you have access to a CNC, you can machine the base plate using **BaseAL.dxf**, if not you can use the **Panel_Jig**
+//!as a template to drill the holes in the base plate.
+//!
 //!1. Insert the bolts into the ends of the E2040 and E2080 extrusions in preparation for connection to the frame uprights.
 //!2. Bolt the extrusions and the L-shaped feet to the baseplate as shown.
 //

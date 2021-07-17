@@ -417,7 +417,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
 
 //!1. Lay the frame on a flat surface and  slide the Z carriages onto the frame as shown.
 //!2. Ensure the Z carriages are square and aligned with the end of the frame and then tighten the bolts on Z_carriages.
-//!3  Ensure the 2040 extrusion is pressed firmly against the Z_Carriages and tighten the hidden bolts in the frame.
+//!3.  Ensure the 2040 extrusion is pressed firmly against the Z_Carriages and tighten the hidden bolts in the frame.
 //
 module Printbed_Frame_with_Z_Carriages_assembly() pose(a=[55, 180, 25 - 50])
 assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {

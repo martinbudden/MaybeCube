@@ -147,7 +147,7 @@ module Extruder_Bracket_hardware(corkDamperThickness, addM4Bolts=false) {
 
 //!1. Bolt the stepper motor and cork damper through the **Extruder_Bracket** to the extruder as shown. The cork damper
 //!thermally isolates the motor from the **Extruder_Bracket* and should not be omitted.
-//!2. Align the hobb gear on the stepper motor shaft withe the hobb gear in the extruder and tighten the grub screws.
+//!2. Align the hobb gear on the stepper motor shaft with the the hobb gear in the extruder and tighten the grub screws.
 //!3. Bolt the filament sensor to the hex pillars and bolt them to the **Extruder_Bracket**.
 //!4. Add the bolts and t-nuts in preparation for later attachment to the frame.
 //

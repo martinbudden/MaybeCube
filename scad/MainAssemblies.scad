@@ -115,7 +115,13 @@ staged_assembly("Stage_4", big=true, ngb=true) {
     //Partition_assembly();
 }
 
-//!2. Connect the Bowden tube between the extruder and the printhead.
+//!1. Slide the **Face_Top** assembly into the rest of the frame and tighten the hidden bolts.
+//!2. Check that the print head slides freely on the Y-axis. If it doesn't, then re-rack the Y-axis,
+//!see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
+//!3. Route the wiring from the print head to the mainboard and secure it with the **Wiring_Guide_Clamp**.
+//!4. Adjust the belt tension.
+//!5. Connect the Bowden tube between the extruder and the printhead.
+//
 module Stage_5_assembly()
 staged_assembly("Stage_5", big=true, ngb=true) {
 
