@@ -190,5 +190,5 @@ module Extrusion_Drill_Jig_E20_to_E40_120_7_stl() {
     extrusionDrillJig_hardware(120, holes);
 }
 
-//if ($preview)
-    Extrusion_Drill_Jig_120_2_stl();
+if ($preview)
+    Extrusion_Drill_Jig_stl();

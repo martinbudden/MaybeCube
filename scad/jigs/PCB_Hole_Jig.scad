@@ -4,8 +4,6 @@ include <NopSCADlib/vitamins/pcbs.scad>
 use <../printed/PSU.scad>
 use <../BackFace.scad>
 
-include <../Parameters_Main.scad>
-
 eSize = 20;
 jigColor = rr_green;
 
