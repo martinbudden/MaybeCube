@@ -92,6 +92,7 @@ supportLengthCenter = heatedBedOffsetY+insetY-braceY()+printBedHoleOffset+heated
 // 220 heatbed
 // support lengths 25, 25, 17
 scs_type = _zRodDiameter == 8 ? SCS8LUU : _zRodDiameter == 10 ? SCS10LUU : SCS12LUU;
+dualCrossPieces = true;
 
 
 function printBedSize() = [
@@ -122,10 +123,10 @@ module corkUnderlay(size, boltHoles, underlayThickness) {
 
     color("tan")
         difference() {
-            rounded_rectangle([size.x, size.y, underlayThickness], 1, center=false, xy_center=false);
+            rounded_cube_xy([size.x, size.y, underlayThickness], 1);
             for (i = boltHoles)
                 translate(i)
-                    boltHole(springDiameter + 1, underlayThickness + 2*eps);
+                    rounded_cube_xy([15, 15, underlayThickness + 2*eps], 1, xy_center=true);
         }
 }
 
@@ -240,33 +241,38 @@ module heatedBedHardware(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, u
 
     module oRing() {
         thickness = 2;
-        translate_z(thickness/2)
-            color("FireBrick")
-                O_ring(3, thickness);
+        explode(5, true)
+            translate_z(thickness/2)
+                color("FireBrick")
+                    O_ring(3, thickness);
         if($children)
             translate_z(thickness)
-                children();
+                explode(10, true)
+                    children();
     }
 
     translate([-_heatedBedSize.y/2, 0, underlayThickness + size.z])
+    //explode(-10, true)
         for (i = boltHoles)
             translate(i) {
                 translate_z(-washer_thickness(M3_washer))
                     boltM3Caphead(20);
-                washer(M3_washer);
+                explode(5)
+                    washer(M3_washer);
                 translate_z(-size.z)
                     vflip()
-                        washer(M4_penny_washer)
-                            oRing()
-                                washer(M3_washer)
-                                    oRing()
-                                        washer(M3_washer)
-                                            oRing()
-                                                washer(M4_penny_washer)
-                                                    translate_z(2)
-                                                        rotate(90)
-                                                            nutM3SlidingT();
-
+                        explode(5,true)
+                            washer(M4_penny_washer)
+                                oRing()
+                                    washer(M3_washer)
+                                        oRing()
+                                            washer(M3_washer)
+                                                oRing()
+                                                    washer(M4_penny_washer)
+                                                        translate_z(2)
+                                                            rotate(90)
+                                                                explode(5)
+                                                                    nutM3SlidingT();
            }
 }
 
@@ -317,9 +323,10 @@ module printbedFrameCrossPiece() {
     }
 }
 
-//! 1. Slide the **Z_Carriage_Center_assembly** to the approximate center of the 2040 extrusion and loosely tighten the bolts.
+//!1. Slide the **Z_Carriage_Center_assembly** to the approximate center of the first 2040 extrusion and loosely tighten the bolts.
 //!The bolts will be fully tightened when the Z_Carriage is aligned.
-//!2. Slide the 2040 extrusion into the 2020 extrusions and loosely tighten the bolts. The bolts will be fully tightened after
+//!2. Bolt the **Printbed_Strain_Relief** to the second extrusion.
+//!3. Slide the 2040 extrusion into the 2020 extrusions and loosely tighten the bolts. The bolts will be fully tightened after
 //!the Z carriages are added.
 //
 module Printbed_Frame_assembly()
@@ -330,7 +337,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
 
     translate([-_printBedArmSeparation/2, 0, -fSize/2]) {
         for (x = [-fSize/2, _printBedArmSeparation + fSize/2])
-            explode([0, 150, 0])
+            explode([x < 0 ? -50 : 50, 0, 0])
                 color(frameColor()) render(convexity=2) difference() {
                     translate([x - fSize/2, -yOffset, 0])
                         extrusionOY(size.y, fSize);
@@ -339,10 +346,16 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                         rotate([0, -90, 0])
                             jointBoltHole();
                     // access holes for crosspiece
-                    for (y = [fSize/2, 3*fSize/2])
-                        translate([x + fSize/2, y + printBedFrameCrossPieceOffset(), fSize/2])
-                            rotate([0, -90, 0])
-                                jointBoltHole();
+                    translate([x + fSize/2, 0, fSize/2]) {
+                        for (y = [fSize/2, 3*fSize/2])
+                            rotate([0, -90, 0]) {
+                                translate([0, y + printBedFrameCrossPieceOffset(), 0])
+                                    jointBoltHole();
+                                if (dualCrossPieces)
+                                    translate([0, -y + eY - 2*_zRodOffsetX - printBedFrameCrossPieceOffset(), 0])
+                                        jointBoltHole();
+                            }
+                    }
                     if (_printBed4PointSupport) {
                         for (y = [_heatedBedHoleOffset, _heatedBedSize.y - _heatedBedHoleOffset])
                             translate([x, y + heatedBedOffset.y, 0]) {
@@ -362,9 +375,9 @@ assembly("Printbed_Frame", big=true, ngb=true) {
             }
 
         translate([_printBedArmSeparation/2, 0]) {
-            translate([0, printBedFrameCrossPieceOffset()])
+            translate([0, printBedFrameCrossPieceOffset(), 0])
                 printbedFrameCrossPiece();
-            if (is_true(_useDualZRods))
+            if (dualCrossPieces)
                 //translate([0, eY - 2*eSize - 6 - printBedFrameCrossPieceOffset(), 0])
                 //translate([0, eY + 2*eSize - _zRodOffsetX - 3*printBedFrameCrossPieceOffset(), 0])
                 translate([0, eY - 2*_zRodOffsetX - printBedFrameCrossPieceOffset(), 0])
@@ -404,7 +417,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
         }
     */
     }
-    explode([150, 0, 0])
+    explode([0, -50, 0])
         Z_Carriage_Center_assembly();
     yRight = eY - 2*_zRodOffsetX;
     if (is_true(_useDualZMotors))
@@ -412,12 +425,20 @@ assembly("Printbed_Frame", big=true, ngb=true) {
             rotate(180)
                 explode([150, 0, 0])
                     Z_Carriage_Center_assembly();
+
+    explode([0, -20, 0], true)
+        translate([0, eX - 2*eSize - 2*_zRodOffsetX - printBedFrameCrossPieceOffset(), -eSize/2])
+            rotate([90, 0, 0]) {
+                stl_colour(pp1_colour)
+                    Printbed_Strain_Relief_stl();
+                Printbed_Strain_Relief_hardware();
+            }
 }
 
 
 //!1. Lay the frame on a flat surface and  slide the Z carriages onto the frame as shown.
 //!2. Ensure the Z carriages are square and aligned with the end of the frame and then tighten the bolts on Z_carriages.
-//!3.  Ensure the 2040 extrusion is pressed firmly against the Z_Carriages and tighten the hidden bolts in the frame.
+//!3. Ensure the 2040 extrusion is pressed firmly against the Z_Carriages and tighten the hidden bolts in the frame.
 //
 module Printbed_Frame_with_Z_Carriages_assembly() pose(a=[55, 180, 25 - 50])
 assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
@@ -441,9 +462,12 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
                 rotate(180)
                     Z_Carriage_Left_assembly();
     }
-    *Printbed_Strain_Relief_assembly(); //!!TODO position this correctly
 }
 
+//!1. Attach the heated bed to the frame using the stacks of washers and o-rings as shown.
+//!2. Spiral wrap the wires from the heated bed.
+//!3. Use the **Printbed_Strain_Relief_Clamp** to clamp the wires to the frame.
+//
 module Printbed_assembly()  pose(a=[210, 0, 320])
 assembly("Printbed", big=true) {
 
@@ -457,6 +481,14 @@ assembly("Printbed", big=true) {
                     if (!_printBed4PointSupport)
                         heatedBedHardware(_heatedBedSize, _heatedBedHoleOffset, 3);
                 }
+            translate([0, eX - 2*eSize - 2*_zRodOffsetX - printBedFrameCrossPieceOffset(), -eSize/2])
+                rotate([90, 0, 0]) {
+                    stl_colour(pp2_colour)
+                        explode(10)
+                            Printbed_Strain_Relief_Clamp_stl();
+                    explode(10, true)
+                        Printbed_Strain_Relief_Clamp_hardware();
+        }
         }
 }
 
@@ -487,27 +519,48 @@ module Printbed_Strain_Relief_stl() {
                 }
 }
 
+module Printbed_Strain_Relief_hardware() {
+    size = [40, eSize, 5];
+    fillet = 1.5;
+
+    translate([-size.x/2, 0, 0])
+        for (x = [5, size.x - 5])
+            translate([x, size.y/2, size.z])
+                boltM3CountersunkHammerNut(_frameBoltLength);
+}
+
 module Printbed_Strain_Relief_Clamp_stl() {
     size = [eSize, eSize, 2.5];
     fillet = 1.5;
 
     stl("Printbed_Strain_Relief_Clamp")
         color(pp2_colour)
-            translate([-size.x/2, 0, 0])
+            translate([-size.x/2, 0, 8.5])
                 difference() {
                     rounded_cube_xy(size, fillet);
                     for (y = [sideThickness/2, size.y - sideThickness/2])
                         translate([size.x/2, y, 0])
                             boltHoleM3(size.z, twist=5);
                 }
- }
+}
+
+module Printbed_Strain_Relief_Clamp_hardware() {
+    size = [40, eSize, 5];
+    fillet = 1.5;
+
+    translate([-size.x/2, 0, 0])
+        for (y = [sideThickness/2, size.y - sideThickness/2])
+            translate([size.x/2, y, 11])
+                boltM3Buttonhead(8);
+}
 
 module Printbed_Strain_Relief_assembly()
 assembly("Printbed_Strain_Relief") {
-    translate([eSize + _zRodOffsetX + 150, 2*eSize + zRodSeparation() + _zRodOffsetY, -eSize/2])
+    translate([0, eX - 2*eSize - 2*_zRodOffsetX - printBedFrameCrossPieceOffset(), -eSize/2])
         rotate([90, 0, 0]) {
             stl_colour(pp1_colour)
                 Printbed_Strain_Relief_stl();
+            Printbed_Strain_Relief_hardware();
             stl_colour(pp2_colour)
                 translate_z(wiringDiameter + 2)
                     Printbed_Strain_Relief_Clamp_stl();
