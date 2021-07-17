@@ -231,6 +231,8 @@ module Z_Carriage_Center_stl() {
             zCarriageCenter();
 }
 
+//!1. Bolt the leadscrew to the **Z_Carriage_Center**.
+//!2. Add the bolts and t-nuts in preparation for later attachment to the printbed frame.
 module Z_Carriage_Center_assembly()
 assembly("Z_Carriage_Center", ngb=true) {
 
