@@ -3,9 +3,10 @@ include <../global_defs.scad>
 include <NopSCADlib/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 
-include <NopSCADlib/vitamins/stepper_motors.scad>
+include <NopSCADlib/vitamins/leadnuts.scad>
 include <NopSCADlib/vitamins/pin_headers.scad>
 include <NopSCADlib/vitamins/shaft_couplings.scad>
+include <NopSCADlib/vitamins/stepper_motors.scad>
 use <NopSCADlib/utils/rounded_triangle.scad>
 
 use <../../../BabyCube/scad/vitamins/CorkDamper.scad>
@@ -17,6 +18,7 @@ use <../vitamins/cables.scad>
 use <../vitamins/leadscrew.scad>
 use <../vitamins/nuts.scad>
 
+use <../Parameters_Positions.scad>
 include <../Parameters_Main.scad>
 
 
@@ -166,24 +168,24 @@ module zMotorLeadscrew(zMotorType, zLeadScrewLength) {
         leadscrewX(_zLeadScrewDiameter, zLeadScrewLength);
 }
 
-module zMotorMountAssembly(zMotorType, corkDamperThickness, eHeight=40) {
-    assert(isNEMAType(zMotorType));
+module Z_Motor_Mount_Motor_hardware(explode=50) {
+    zMotorType = motorType(_zMotorDescriptor);
+    corkDamperThickness = _corkDamperThickness;
 
     stepper_motor_cable(eX + eY + 150);// z motor
 
     size = Z_Motor_MountSize(NEMA_length(zMotorType));
     translate([eSize + _zLeadScrewOffset, 0, size.z - motorBracketSizeZ - corkDamperThickness]) {
         if (corkDamperThickness)
-            explode(-40)
+            explode(-explode + 10)
                 corkDamper(zMotorType, corkDamperThickness);
-        explode(-50, true)  {
+        explode(-explode, true)  {
             shaft_length = NEMA_shaft_length(zMotorType);
             if (is_list(shaft_length)) {
                 if (bom_mode()) {
                     rotate(-90)
                         not_on_bom() NEMA(zMotorType, jst_connector = true);
-            vitamin(str("NEMA(", zMotorType[0], "): Stepper motor NEMA", round(NEMA_width(zMotorType) / 2.54), " x ", NEMA_length(zMotorType), "mm, ", shaft_length[0], "mm integrated leadscrew"));
-
+                    vitamin(str("NEMA(", zMotorType[0], "): Stepper motor NEMA", round(NEMA_width(zMotorType) / 2.54), " x ", NEMA_length(zMotorType), "mm, ", shaft_length[0], "mm integrated leadscrew"));
                 } else {
                     // integrated lead screw, so set shaft length to zero and use leadscrewX rather than NopSCADlib leadscrew
                     NEMA_no_shaft = [ for (i = [0 : len(zMotorType) - 1]) i==8 ? [1, shaft_length[1], shaft_length[2]] : zMotorType[i] ];
@@ -212,6 +214,12 @@ module zMotorMountAssembly(zMotorType, corkDamperThickness, eHeight=40) {
     NEMA_screw_positions(zMotorType)
         translate([eSize + _zLeadScrewOffset, 0, size.z - counterBoreDepth])
             boltM3Buttonhead(screw_shorter_than(5 + motorBracketSizeZ - counterBoreDepth + corkDamperThickness));
+}
+
+module Z_Motor_Mount_hardware() {
+    zMotorType = motorType(_zMotorDescriptor);
+    size = Z_Motor_MountSize(NEMA_length(zMotorType));
+    eHeight = 40;
 
     // add the main bolts
     for (y = [NEMA_hole_pitch(zMotorType)/2, -NEMA_hole_pitch(zMotorType)/2])
@@ -231,11 +239,11 @@ module zMotorMountAssembly(zMotorType, corkDamperThickness, eHeight=40) {
 module Z_Motor_Mount_assembly() pose(a=[55, 0, 25 + 90])
 assembly("Z_Motor_Mount", big=true, ngb=true) {
 
-    zMotorType = motorType(_zMotorDescriptor);
     vflip()
         stl_colour(pp1_colour)
             Z_Motor_Mount_stl();
-    zMotorMountAssembly(zMotorType, corkDamperThickness=_corkDamperThickness);
+    Z_Motor_Mount_hardware();
+    Z_Motor_Mount_Motor_hardware();
 }
 
 //!1. Bolt the motor and the cork damper to the **Z_Motor_Mount**. Note that the cork damper thermally insulates the motor
@@ -245,9 +253,9 @@ assembly("Z_Motor_Mount", big=true, ngb=true) {
 module Z_Motor_Mount_Right_assembly() pose(a=[55, 0, 25 + 90])
 assembly("Z_Motor_Mount_Right", big=true, ngb=true) {
 
-    zMotorType = motorType(_zMotorDescriptor);
     vflip()
         stl_colour(pp1_colour)
             Z_Motor_Mount_Right_stl();
-    zMotorMountAssembly(zMotorType, corkDamperThickness=_corkDamperThickness);
+    Z_Motor_Mount_hardware();
+    Z_Motor_Mount_Motor_hardware();
 }

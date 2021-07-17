@@ -546,11 +546,12 @@ module printHeadWiring() {
                     cable_tie(cable_r = 3, thickness = 4.5);*/
 
     wiringGuidePosition()
-        translate_z(wireRadius) {
-            stl_colour(pp2_colour)
-                Wiring_Guide_Clamp_stl();
-            Wiring_Guide_Clamp_hardware();
-        }
+        explode(20, true)
+            translate_z(wireRadius) {
+                stl_colour(pp2_colour)
+                    Wiring_Guide_Clamp_stl();
+                Wiring_Guide_Clamp_hardware();
+            }
 }
 
 module psuAssembly(psuVertical, useMounts=false) {

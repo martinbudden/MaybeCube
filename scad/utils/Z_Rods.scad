@@ -93,7 +93,7 @@ module zMountsUpper() {
                     kp_pillow_block_with_bolts(KP08_18);
 }
 
-module zMountsLower(zMotorLength) {
+module zMountsLower(zMotorLength, includeMotor=false) {
     translate_z(eSize)
         zMounts();
 
@@ -101,14 +101,25 @@ module zMountsLower(zMotorLength) {
         translate([0, _zRodOffsetY, 0]) {
             // add the motor mount
             explode([30, 0, 20], true)
-                translate([0, zRodSeparation()/2, 0])
-                    Z_Motor_Mount_assembly();
+                translate([0, zRodSeparation()/2, 0]) {
+                    stl_colour(pp1_colour)
+                        vflip()
+                            Z_Motor_Mount_stl();
+                    Z_Motor_Mount_hardware();
+                    if (includeMotor)
+                        Z_Motor_Mount_Motor_hardware();
+                }
 
             explode([20, -20, 0])
                 translate([eSize, sk_size(SK_type).x/2, 3*eSize/2])
                     rotate([0, 90, 0])
                         zMotorMountGuide((zRodSeparation() - Z_Motor_MountSize(zMotorLength).x - sk_size(SK_type).x)/2);
         }
+}
+
+module zMotor(explode=_zRodLength + 40) {
+    translate([0, eSize + _zRodOffsetY + zRodSeparation()/2, 0])
+        Z_Motor_Mount_Motor_hardware(explode);
 }
 
 module zRods(left=true) {

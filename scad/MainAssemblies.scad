@@ -47,7 +47,7 @@ module echoParameters() {
     echo(nozzle =  nozzle, extrusion_width = extrusion_width, layer_height = layer_height, show_threads = show_threads);
 }
 
-staged_assembly = !true; // set this to false for faster builds during development
+staged_assembly = true; // set this to false for faster builds during development
 
 module staged_assembly(name, big, ngb) {
     if (staged_assembly)
@@ -57,49 +57,54 @@ module staged_assembly(name, big, ngb) {
         children();
 }
 
-//!1. Attach the print bed to the left face by sliding the linear rods through the bearing blocks.
+//!1. Face the left face on a flat surface.
 //!
-//!2. Tighten the grub screws on the rod brackets, but don't yet tighten the bolts holding the brackets to the frame.
+//!2. Attach the print bed to the left face by sliding the linear rods through the Z_Carriages.
 //!
-//!3. Don't yet bolt the lead nut to the print bed.
+//!3. Tighten the grub screws on the rod brackets, but don't yet tighten the bolts holding the brackets to the frame.
 //!
-//!4. Slide the print bed to the bottom of the rods and tighten the bolts on the bottom right rod bracket
+//!4. Slide the print bed to the top of the rods, and tighten the bolts in the top right rod bracket.
+//!(you will have tightened the bolts on the top left bracket in a previous step).
+//!
+//!5. Slide the print bed to the bottom of the rods and tighten the bolts on the bottom right rod bracket
 //!(you will have tightened the bolts on the bottom left bracket in a previous step).
 //!
-//!5. Slide the print bed to the top of the rods, and tighten the bolts in the top right rod bracket.
+//!6. Thread the motor's lead screw through the lead nut on the **Z_Carriage_Center** and bolt the motor to
+//! the **Z_Motor_Mount**.
 //!
-//!6. Slide the print bed to the bottom of the rods and bolt the lead nut to the print bed.
-//!
-//!7. Turn the lead screw to raise the print bed to the top of the rods and tighten the bolts on the upper middle bearing.
-//!Taking these steps will ensure the print bed can run freely on the rods.
+//!8. Ensure the **Z_Carriage_Center** is aligned with the lead screw and tighten the bolts on the **Z_Carriage_Center**.
 //
-module Stage_1_assembly() pose(a=_poseMainAssembly)
+module Stage_1_assembly() pose(a=[55 + 90, 90 - 20, 90])
 staged_assembly("Stage_1", big=true, ngb=true) {
 
     Left_Side_assembly();
     zRods();
+    zMotor();
     translate_z(bedHeight())
-        explode([300, 0, 0])
+        explode([200, 0, 0])
             Printbed_assembly();
 }
 
 //!1. Slide the left face into the base plate assembly.
+//!2. Ensuring the frame remains square, tighten the hidden bolts and the bolts under the baseplate.
 //
-module Stage_2_assembly() pose(a=_poseMainAssembly)
+module Stage_2_assembly() //pose(a=_poseMainAssembly)
 staged_assembly("Stage_2", big=true, ngb=true) {
 
-    Stage_1_assembly();
+    explode(150)
+        Stage_1_assembly();
     Base_Plate_assembly();
 }
 
-//!1. Slide the right face into the rest of the assembly.
+//!1. Slide the right face into the base plate assembly.
+//!2. Ensuring the frame remains square, tighten the hidden bolts and the bolts under the baseplate.
 //
-module Stage_3_assembly() pose(a=_poseMainAssembly)
+module Stage_3_assembly() //pose(a=_poseMainAssembly)
 staged_assembly("Stage_3", big=true, ngb=true) {
 
     Stage_2_assembly();
 
-    explode([100, 0, 100], true) {
+    explode(150, true) {
         Right_Side_assembly();
         // add the right side Z rods if using dual Z rods
         if (useDualZRods())
@@ -107,17 +112,22 @@ staged_assembly("Stage_3", big=true, ngb=true) {
     }
 }
 
-module Stage_4_assembly() pose(a=_poseMainAssembly)
+//!1. Attach the back face to the rest of the assembly.
+//!2. Tighten the bolts on the back face.
+//
+module Stage_4_assembly() //pose(a=_poseMainAssembly)
 staged_assembly("Stage_4", big=true, ngb=true) {
 
     Stage_3_assembly();
-    Back_Panel_assembly();
+    explode([0, 150, 0])
+        Back_Panel_assembly();
     //Partition_assembly();
 }
 
 //!1. Slide the **Face_Top** assembly into the rest of the frame and tighten the hidden bolts.
 //!2. Check that the print head slides freely on the Y-axis. If it doesn't, then re-rack the Y-axis,
 //!see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
+//!3. Bolt the **Printhead_E3DV6_MGN12H_assembly** to MGN carriage.
 //!3. Route the wiring from the print head to the mainboard and secure it with the **Wiring_Guide_Clamp**.
 //!4. Adjust the belt tension.
 //!5. Connect the Bowden tube between the extruder and the printhead.
@@ -126,20 +136,23 @@ module Stage_5_assembly()
 staged_assembly("Stage_5", big=true, ngb=true) {
 
     Stage_4_assembly();
-    Face_Top_assembly();
-    printheadHotendSide();
-    printHeadWiring();
-    BowdenTube();
+    explode(150, true) {
+        Face_Top_assembly();
+        explode(50, true) {
+            printheadHotendSide();
+            printHeadWiring();
+        }
+        explode([100, 0, 100])
+            BowdenTube();
+    }
 }
 
 module FinalAssembly() {
     // does not use assembly(""), since made into an assembly in Main.scad
-    translate([-(2*eSize + eX)/2, -(2*eSize + eY)/2, basePlateHeight() - eZ/2]) {
-        no_explode()
-            Stage_5_assembly();
-        stl_colour(pp1_colour)
-            faceRightSpoolHolder();
-        faceRightSpool();
-        leftSidePanelPC();
-    }
+    no_explode()
+        Stage_5_assembly();
+    stl_colour(pp1_colour)
+        faceRightSpoolHolder();
+    faceRightSpool();
+    leftSidePanelPC();
 }
