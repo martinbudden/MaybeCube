@@ -26,8 +26,8 @@ module main_test() {
     //let($hide_bolts=true)
     //let($hide_extrusions=true)
     //let($hide_rails=true)
-    Stage_5_assembly();
-    //main_assembly();
+    //Stage_5_assembly();
+    main_assembly();
 }
 
 if ($preview)
