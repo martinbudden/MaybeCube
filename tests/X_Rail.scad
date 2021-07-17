@@ -1,4 +1,4 @@
-//!Display the x axis linear rail.
+//!Display the X-axis linear rail.
 
 include <../scad/global_defs.scad>
 

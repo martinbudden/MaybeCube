@@ -1,4 +1,4 @@
-//! Display the z-axis motor mount
+//! Display the Z-axis motor mount
 
 use <../scad/printed/Z_MotorMount.scad>
 

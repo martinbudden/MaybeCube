@@ -3,7 +3,7 @@ include <NopSCADlib/core.scad>
 
 include <../scad/vitamins/SidePanels.scad>
 use <../scad/vitamins/extrusion.scad>
-use <../scad/jigs/SidePanelJig.scad>
+use <../scad/jigs/PanelJig.scad>
 
 include <../scad/Parameters_Main.scad>
 
@@ -11,11 +11,11 @@ include <../scad/Parameters_Main.scad>
 module SidePanel_test() {
     translate([-3, 0, eZ])
         rotate([0, 90, 0])
-            Side_Panel_Jig_stl();
+            Panel_Jig_stl();
     translate([-3, eY + 2*eSize, eZ])
         rotate([-90, 0, -90])
-            Side_Panel_Jig_stl();
-    Side_Panel_Jig_stl();
+            Panel_Jig_stl();
+    Panel_Jig_stl();
     //extrusionOZ(eZ);
     Left_Side_Panel_assembly();
     //Left_Side_Panel_dxf();
@@ -26,4 +26,4 @@ module SidePanel_test() {
 if ($preview)
     SidePanel_test();
 else
-    Side_Panel_Jig_stl();
+    Panel_Jig_stl();

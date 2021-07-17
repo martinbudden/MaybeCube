@@ -15,6 +15,9 @@ include <../scad/Parameters_Main.scad>
 //$explode = 1;
 //$pose = 1;
 module BackFace_test() {
+    Back_Panel_assembly();
+    //Back_Panel_dxf();
+    //Partition_assembly();
     psuVertical = eX == 300;
     //PSUPosition(psuVertical) PSU();
     //PSUPosition(psuVertical) PSUBoltPositions() cylinder(r=3,h=2);
@@ -22,8 +25,8 @@ module BackFace_test() {
     //PSU_Cover_stl();
     //PSU_Upper_Mount_stl();
     //PSU_Lower_Mount_stl();
-    psuAssembly(psuVertical, useMounts=true);
-    pcbAssembly(pcbType(), useMounts=true);
+    //psuAssembly(psuVertical, useMounts=true);
+    //pcbAssembly(pcbType(), useMounts=true);
     //PSU_Cover_assembly();
     //PCB_Mount_stl();
     //let($hide_pcb=true)
@@ -33,9 +36,6 @@ module BackFace_test() {
     //faceRightExtras();
     //Face_Top_assembly();
     //printHeadWiring();
-    //Back_Panel_assembly();
-    //Back_Panel_dxf();
-    //Partition_assembly();
 }
 
 module BackFace_test2() {
