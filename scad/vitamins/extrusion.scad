@@ -104,7 +104,7 @@ module extrusionOX2080VEndBoltPositions(length, offset=0) {
 }
 
 // OY - oriented to Y
-// rotated about Y axis and re-aligned with origin
+// rotated about Y-axis and re-aligned with origin
 // so it points in the Y direction and is "canonical" to the XZ plane
 module extrusionOY(length, eSize=20) {
     translate([0, length, 0])
@@ -140,7 +140,7 @@ module extrusionOY2040VEndBoltPositions(length, offset=0) {
 
 //extrusionOZ(200, 20);
 // OZ - oriented to Z form
-// rotated about Z axis and re-aligned with origin
+// rotated about Z-axis and re-aligned with origin
 // so it points in the Z direction and is "canonical" to the XY plane
 module extrusionOZ(length, eSize=20) {
     translate([eSize, 0, 0])
