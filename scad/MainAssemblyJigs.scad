@@ -1,4 +1,4 @@
-//!# JIGS
+//!# Jigs
 //
 include <NopSCADlib/core.scad>
 
@@ -12,8 +12,8 @@ use <jigs/RailCenteringJig.scad>
 
 jigColor = rr_green;
 
-module jigs_assembly()
-assembly("jigs") {
+module Jigs_assembly()
+assembly("Jigs") {
 
     translate([-205, 0, 0])
         stl_colour(jigColor)
@@ -49,6 +49,10 @@ assembly("jigs") {
             Panel_Jig_stl();
     //PCB_Hole_Jig_stl();
     //PSU_Hole_Jig_stl();
+}
+
+module jigs_assembly() {
+    Jigs_assembly();
 }
 
 if ($preview)
