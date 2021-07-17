@@ -41,7 +41,7 @@ module kp_pillow_block_spacer(type) {
     translate([0, -kp_hole_offset(type), 0])
         rotate([90, 90, 0])
             difference() {
-                rounded_rectangle(size, 2, center=false);
+                rounded_cube_xy(size, 2, xy_center=true);
                 for (i = [-kp_screw_separation(type)/2, kp_screw_separation(type)/2])
                     translate([0, i, 0])
                         boltHoleM4(size.z);
