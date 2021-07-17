@@ -1,4 +1,4 @@
-//!# JIGS Assembly Instructions
+//!# JIGS
 //
 include <NopSCADlib/core.scad>
 
@@ -21,14 +21,26 @@ assembly("jigs") {
     translate([-165, 0, 0])
         stl_colour(jigColor)
             E2020_Thread_Tapping_Jig_6mm_stl();
-    translate([120, 0, 0])
-        Extrusion_Drill_Jig_Pilot_stl();
-    translate([260, 0, 0])
-        Extrusion_Drill_Jig_stl();
-    translate([320, 0, 0])
-        Extrusion_Drill_Jig_Extension_Pilot_stl();
-    translate([380, 0, 0])
-        Extrusion_Drill_Jig_Extension_stl();
+    translate([120, 0, 0]) {
+        stl_colour(jigColor)
+            Extrusion_Drill_Jig_Pilot_stl();
+        Extrusion_Drill_Jig_Pilot_hardware();
+    }
+    translate([260, 0, 0]) {
+        stl_colour(jigColor)
+            Extrusion_Drill_Jig_stl();
+        Extrusion_Drill_Jig_hardware();
+    }
+    translate([320, 0, 0]) {
+        stl_colour(jigColor)
+            Extrusion_Drill_Jig_Extension_Pilot_stl();
+        Extrusion_Drill_Jig_Extension_Pilot_hardware();
+    }
+    translate([380, 0, 0]) {
+        stl_colour(jigColor)
+            Extrusion_Drill_Jig_Extension_stl();
+        Extrusion_Drill_Jig_Extension_hardware();
+    }
     translate([-115, 0, 0])
         stl_colour(jigColor)
             Rail_Centering_Jig_stl();

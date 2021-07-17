@@ -92,6 +92,10 @@ module Extrusion_Drill_Jig_Extension_Pilot_stl() {
     stl("Extrusion_Drill_Jig_Extension")
         color(jigColor)
             extrusionDrillJig(40, 2, holes, endStop=false);
+}
+
+module Extrusion_Drill_Jig_Extension_Pilot_hardware() {
+    holes = [5, 25];
     extrusionDrillJig_hardware(50, holes);
 }
 
@@ -100,6 +104,10 @@ module Extrusion_Drill_Jig_Extension_stl() {
     stl("Extrusion_Drill_Jig_Extension")
         color(jigColor)
             extrusionDrillJig(40, 4, holes, endStop=false);
+}
+
+module Extrusion_Drill_Jig_Extension_hardware() {
+    holes = [5, 25];
     extrusionDrillJig_hardware(50, holes);
 }
 
@@ -146,6 +154,10 @@ module Extrusion_Drill_Jig_Pilot_stl() {
     stl("Extrusion_Drill_Jig_Pilot")
         color(jigColor)
             extrusionDrillJig(120, 2, holes, holes2);
+}
+
+module Extrusion_Drill_Jig_Pilot_hardware() {
+    holes2 = [eSize/2, 3*eSize/2, 85, 105];
     extrusionDrillJig_hardware(120, holes2);
 }
 
@@ -155,6 +167,10 @@ module Extrusion_Drill_Jig_stl() {
     stl("Extrusion_Drill_Jig")
         color(jigColor)
             extrusionDrillJig(120, 4, holes, holes2);
+}
+
+module Extrusion_Drill_Jig_hardware() {
+    holes2 = [eSize/2, 3*eSize/2, 85, 105];
     extrusionDrillJig_hardware(120, holes2);
 }
 
