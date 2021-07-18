@@ -29,8 +29,8 @@ module X_Carriage_test() {
     //Belt_Tensioner_stl();
     //Belt_Clamp_stl();
     //Belt_Tidy_stl();
+    //xCarriageBeltAttachmentSize(30)
 }
 
-xCarriageBeltAttachmentTest_stl();
-*if ($preview)
+if ($preview)
     X_Carriage_test();
