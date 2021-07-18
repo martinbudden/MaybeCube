@@ -3,6 +3,7 @@ include <global_defs.scad>
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
+use <printed/E20Cover.scad>
 use <printed/PrintheadAssemblies.scad>
 use <printed/Z_MotorMount.scad>
 
@@ -72,6 +73,8 @@ module staged_assembly(name, big, ngb) {
 //!6. Thread the motor's lead screw through the lead nut on the **Z_Carriage_Center** and bolt the motor to
 //! the **Z_Motor_Mount**.
 //!
+//!7. Route the motor wire through the lower extrusion channel and use the **E20_ChannelCover_50mm**s to hold it in place.
+//!
 //!8. Ensure the **Z_Carriage_Center** is aligned with the lead screw and tighten the bolts on the **Z_Carriage_Center**.
 //
 module Stage_1_assembly() pose(a=[55 + 90, 90 - 20, 90])
@@ -80,6 +83,15 @@ staged_assembly("Stage_1", big=true, ngb=true) {
     Left_Side_assembly();
     zRods();
     zMotor();
+
+    coverLength = 50;
+    for (y = [eSize + _zRodOffsetY + zRodSeparation()/2 + Z_Motor_MountSize().x/2 + 5, eY + eSize - coverLength - 5])
+        translate([eSize + 2, y, eSize/2])
+            explode([50, 0, 0])
+                rotate([0, 90, 90])
+                    stl_colour(pp2_colour)
+                        E20_ChannelCover_50mm_stl();
+
     translate_z(bedHeight())
         explode([200, 0, 0])
             Printbed_assembly();
@@ -98,6 +110,9 @@ staged_assembly("Stage_2", big=true, ngb=true) {
 
 //!1. Slide the right face into the base plate assembly.
 //!2. Ensuring the frame remains square, tighten the hidden bolts and the bolts under the baseplate.
+//!3. Route the serial cable for the display in the top channel of the right side lower extrusion and route
+//!the ribbon cable along the bottom of the extrusion and cover with the **E20_RibbonCover_50mm**s to keep
+//!the cables in place.
 //
 module Stage_3_assembly() //pose(a=_poseMainAssembly)
 staged_assembly("Stage_3", big=true, ngb=true) {
@@ -110,6 +125,12 @@ staged_assembly("Stage_3", big=true, ngb=true) {
         if (useDualZRods())
             zRods(left=false);
     }
+    coverLength = 50;
+    explode([-50, 0, 0])
+        for (y = [eSize + 5, eSize + eY/2 - coverLength/2, eSize + eY - coverLength - 5])
+            translate([eX + eSize-1, y, 3*eSize/2])
+                rotate([-90, -90, 0])
+                    E20_RibbonCover_50mm_stl();
 }
 
 //!1. Attach the back face to the rest of the assembly.

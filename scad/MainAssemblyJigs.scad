@@ -2,7 +2,7 @@
 //
 include <NopSCADlib/core.scad>
 
-use <jigs/E2020ThreadTappingJig.scad>
+use <jigs/E20ThreadTappingJig.scad>
 use <jigs/ExtrusionDrillJig.scad>
 use <jigs/PanelJig.scad>
 use <jigs/PCB_Hole_Jig.scad>
@@ -17,10 +17,10 @@ assembly("Jigs") {
 
     translate([-205, 0, 0])
         stl_colour(jigColor)
-            E2020_Thread_Tapping_Jig_5mm_stl();
+            E20_Thread_Tapping_Jig_5mm_stl();
     translate([-165, 0, 0])
         stl_colour(jigColor)
-            E2020_Thread_Tapping_Jig_6mm_stl();
+            E20_Thread_Tapping_Jig_6mm_stl();
     translate([120, 0, 0]) {
         stl_colour(jigColor)
             Extrusion_Drill_Jig_Pilot_stl();

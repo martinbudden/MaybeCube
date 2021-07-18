@@ -11,10 +11,9 @@ use <../utils/PrintheadOffsets.scad>
 
 use <../vitamins/bolts.scad>
 
-use <X_CarriageBeltAttachment.scad>
-
 use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
+use <../../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 use <../../../BabyCube/scad/printed/X_CarriageBeltClamps.scad>
 include <../../../BabyCube/scad/printed/X_CarriageFanDuct.scad>
 
@@ -27,6 +26,43 @@ function grooveMountSize(blower_type, hotend_type=0) = [printHeadHotendOffset(ho
 function blower_type() = is_undef(_blowerDescriptor) || _blowerDescriptor == "BL30x10" ? BL30x10 : BL40x10;
 //function accelerometerOffset() = [10, -1, 8];
 function accelerometerOffset() = [6.5, -2, 8];
+
+module X_Carriage_Belt_Tensioner_stl() {
+    stl("X_Carriage_Belt_Tensioner")
+        color(pp2_colour)
+            xCarriageBeltTensioner(23);
+}
+
+module xCarriageBeltAttachmentTest_stl() {
+    stl("xCarriageBeltAttachmentTest") {
+        xCarriageBeltAttachment(30);
+        size = xCarriageBeltAttachmentSize(30);
+        cube([3, size.z, size.y]);
+    }
+}
+
+module X_Carriage_Belt_Clamp_stl() {
+    size = [xCarriageBeltAttachmentSize().x - 0.5, 8, 4.5];
+    fillet = 1;
+
+    stl("X_Carriage_Belt_Clamp")
+        color(pp2_colour)
+            translate([0, -size.y/2, 0])
+                difference() {
+                    rounded_cube_xy(size, fillet);
+                    for (x = [0, xCarriageBeltClampHoleSeparation()])
+                        translate([x + 3.2, size.y/2, 0])
+                            boltHoleM3(size.z, twist=4);
+                }
+}
+
+module xCarriageFrontBeltAttachmentBeltClamps(xCarriageType, beltWidth) {
+    xCarriageFrontBeltAttachmentPositions(xCarriageType, beltWidth) {
+        stl_colour(pp2_colour)
+            X_Carriage_Belt_Clamp_stl();
+        X_Carriage_Belt_Clamp_hardware();
+    }
+}
 
 module X_Carriage_Belt_Side_MGN12H_stl() {
     xCarriageType = MGN12H_carriage;
@@ -82,23 +118,6 @@ assembly("X_Carriage_Belt_Side_MGN12C", big=true) {
     rotate([-90, 0, 0])
         stl_colour(pp4_colour)
             X_Carriage_Belt_Side_MGN12C_stl();
-}
-
-module X_Carriage_Belt_Side_MGN9C_stl() {
-    xCarriageType = MGN9C_carriage;
-
-    // orientate for printing
-    stl("X_Carriage_Belt_Side_MGN9C")
-        color(pp4_colour)
-            rotate([90, 0, 0])
-                xCarriageFrontBeltAttachment(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, accelerometerOffset());
-}
-
-module X_Carriage_Belt_Side_MGN9C_assembly()
-assembly("X_Carriage_Belt_Side_MGN9C", big=true) {
-    rotate([-90, 0, 0])
-        stl_colour(pp4_colour)
-            X_Carriage_Belt_Side_MGN9C_stl();
 }
 
 module X_Carriage_Front_MGN12H_stl() {

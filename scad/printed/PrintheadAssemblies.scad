@@ -14,8 +14,8 @@ include <../../../BabyCube/scad/vitamins/pcbs.scad>
 
 use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
+use <../../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 use <X_CarriageAssemblies.scad>
-use <X_CarriageBeltAttachment.scad>
 
 use <../Parameters_CoreXY.scad>
 include <../Parameters_Main.scad>

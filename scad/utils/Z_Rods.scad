@@ -5,7 +5,7 @@ include <NopSCADlib/vitamins/pillow_blocks.scad>
 include <NopSCADlib/vitamins/rod.scad>
 include <NopSCADlib/vitamins/sk_brackets.scad>
 
-use <../printed/E2020Cover.scad>
+use <../printed/E20Cover.scad>
 use <../printed/Z_MotorMount.scad>
 
 use <../vitamins/bolts.scad>
@@ -64,7 +64,7 @@ module zMounts() {
     translate([eSize, 0, eSize/2]) {
         explode([30, -100, 0])
             rotate([0, 90, 0])
-                zRodMountGuide(_zRodOffsetY-sk_size(SK_type).x/2);
+                zRodMountGuide(_zRodOffsetY - sk_size(SK_type).x/2);
         translate([_zRodOffsetX, _zRodOffsetY, 0])
             rotate([0, 180, -90]) {
                 explode([-70, 30, 0], true)

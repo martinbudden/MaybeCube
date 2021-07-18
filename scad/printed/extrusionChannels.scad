@@ -2,20 +2,20 @@ include <NopSCADlib/core.scad>
 include <../vitamins/bolts.scad>
 
 
-e2020CoverSizeX = 15;
-e2020CoverSizeY = 1.5;
-e2020CoverSizeZ = 10;
+e20CoverSizeX = 15;
+e20CoverSizeY = 1.5;
+e20CoverSizeZ = 10;
 
-e2020ChannelWidth = 6.2;
-e2020ChannelDepth = 1.8;
+e20ChannelWidth = 6.2;
+e20ChannelDepth = 1.8;
 
 
-module _E2020Base(coverSizeX, coverSizeY) {
+module _E20Base(coverSizeX, coverSizeY) {
     translate([-coverSizeX/2, 0])
         square([coverSizeX, coverSizeY]);
 }
 
-module E2020Clip2d(channelWidth=6.0, channelDepth=1.9, lipOverhang = 0.3) {
+module E20Clip2d(channelWidth=6.0, channelDepth=1.9, lipOverhang = 0.3) {
 /*
     taperBottomX = 5.9;
     taperTopX = 5.9;
@@ -46,18 +46,17 @@ module E2020Clip2d(channelWidth=6.0, channelDepth=1.9, lipOverhang = 0.3) {
     }
 }
 
-module E2020Clip(size, channelWidth=6.0, channelDepth=1.9, lipOverhang=0.3) {
+module E20Clip(size, channelWidth=6.0, channelDepth=1.9, lipOverhang=0.3) {
     linear_extrude(size)
-        E2020Clip2d(channelWidth, channelDepth);
+        E20Clip2d(channelWidth, channelDepth);
 }
 
-//_E2020Stripe(6.2, 1.8);
-module _E2020Stripe(channelWidth, channelDepth, lipOverhang=0.3) {
-    E2020Clip2d(channelWidth, channelDepth, lipOverhang);
+module _E20Stripe(channelWidth, channelDepth, lipOverhang=0.3) {
+    E20Clip2d(channelWidth, channelDepth, lipOverhang);
 
-    stripeX = e2020ChannelWidth + lipOverhang;
-    totalDepth = 6;
-    stripeY = totalDepth - e2020ChannelDepth;
+    stripeX = e20ChannelWidth + lipOverhang;
+    totalDepth = 6 - 0.2;
+    stripeY = totalDepth - e20ChannelDepth;
     thickness = 1;
     difference() {
         translate([-stripeX/2, channelDepth])
@@ -67,27 +66,42 @@ module _E2020Stripe(channelWidth, channelDepth, lipOverhang=0.3) {
     }
 }
 
-module E2020Cover(length, topOnlyLength=0, channelWidth=6.0, channelDepth=1.8, coverSizeX=e2020CoverSizeX) {
+module E20Cover(length, topOnlyLength=0, channelWidth=6.0, channelDepth=1.8, coverSizeX=e20CoverSizeX) {
     assert(length > 0);
 
     linear_extrude(length - topOnlyLength) {
-        _E2020Base(coverSizeX, e2020CoverSizeY);
-        translate([0, e2020CoverSizeY])
-            E2020Clip2d(channelWidth, channelDepth);
+        _E20Base(coverSizeX, e20CoverSizeY);
+        translate([0, e20CoverSizeY])
+            E20Clip2d(channelWidth, channelDepth);
     }
     translate_z(length - topOnlyLength)
         linear_extrude(topOnlyLength)
-            _E2020Base(coverSizeX, e2020CoverSizeY);
+            _E20Base(coverSizeX, e20CoverSizeY);
 }
 
-function E2020CoverSizeFn(length) = [e2020CoverSizeX, e2020CoverSizeY, length];
+function E20CoverSizeFn(length) = [e20CoverSizeX, e20CoverSizeY, length];
+
+module E20RibbonCover(length) {
+    assert(length > 0);
+
+    extraX = 2.5;
+    sizeY = 2;
+
+    E20Cover(length);
+    linear_extrude(length) {
+        translate([-extraX/2, e20CoverSizeY - sizeY])
+            _E20Base(e20CoverSizeX + extraX, sizeY);
+        translate([-10, e20CoverSizeY - 2*sizeY + eps])
+                _E20Base(35, sizeY);
+    }
+}
 
 module extrusionPiping(length, channelWidth=6.2, channelDepth=1.8) {
     linear_extrude(length) {
         stripeSizeY = 1.0;
-        _E2020Base(7, stripeSizeY);
+        _E20Base(7, stripeSizeY);
         translate([0, stripeSizeY])
-            _E2020Stripe(channelWidth, channelDepth);
+            _E20Stripe(channelWidth, channelDepth);
     }
 }
 

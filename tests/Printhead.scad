@@ -38,6 +38,8 @@ module Printhead_test() {
     }
     *translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
         CoreXYBelts(carriagePosition(), x_gap = -25, show_pulleys = ![1, 0, 0]);
+        translate_z(eZ)
+            xRail(carriagePosition());
         xRailCarriagePosition() {
             //Printhead_E3DV6_MGN12H_assembly();
             //X_Carriage_Front_MGN12H_assembly();

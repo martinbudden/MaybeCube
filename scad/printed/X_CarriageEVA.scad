@@ -5,8 +5,9 @@ include <NopSCADlib/utils/fillet.scad>
 include <NopSCADlib/utils/tube.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
+use <../../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
+use <../printed/X_CarriageAssemblies.scad>
 use <../printed/X_CarriageEVA.scad>
-use <../printed/X_CarriageBeltAttachment.scad>
 
 use <../vitamins/bolts.scad>
 
@@ -17,6 +18,8 @@ function X_CarriageEVATensionerOffsetX() = 1;
 
 bottomMgn12Size = [8.2, 44.1, 27];
 bottomMgn12OffsetZ = xCarriageBottomOffsetZ();
+evaHoleSeparationTop = 34;
+evaHoleSeparationBottom = 26;
 
 module evaPrintheadList() {
     EVA_MC_top_mgn12_stl();
@@ -176,7 +179,8 @@ module EVA_MC_BottomMgn12(ductSizeY=undef, split=false) {
         translate([size.x + eps, size.y + eps, -eps])
             rotate(180)
                 right_triangle(2, 2, size.z + 2*eps, center=false);
-        for (y = [9, size.y - 9])
+        for (y = [(size.y - evaHoleSeparationBottom)/2, (size.y + evaHoleSeparationBottom)/2])
+        //for (y = [9, size.y - 9])
             translate([size.x - 4, y, 0])
                 boltHoleM3(size.z, twist=4);
         for (y = [(size.y + tabSize.y)/2 + 3, (size.y - tabSize.y)/2 - 3])
@@ -204,7 +208,8 @@ module EVA_MC_TopMgn12(counterBore=true) {
                         boltHoleM3Counterbore(8, twist=4);
                     else
                         boltHoleM3(8, twist=4);
-        for (x = [-size.x/2 + 5, size.x/2 -5])
+        for (x = [-evaHoleSeparationTop/2, evaHoleSeparationTop/2])
+        //for (x = [-size.x/2 + 5, size.x/2 - 5])
             translate([x, size.y/2, 3])
                     rotate([90, 0, 0])
                         boltHoleM3(size.y, horizontal=true);

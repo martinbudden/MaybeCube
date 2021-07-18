@@ -31,5 +31,5 @@ module main_test() {
 }
 
 if ($preview)
-    translate([-eX/2 -eSize, -eY/2 -eSize, -eZ/2])
+    //translate([-eX/2 -eSize, -eY/2 -eSize, -eZ/2])
         main_test();

@@ -35,7 +35,7 @@ motorBracketSizeX = NEMA_motorWidth + 2*motorBracketSizeZ;
 motorBracketSizeY = _zLeadScrewOffset + NEMA_motorWidth/2 - 1;
 counterBoreDepth = 0;//1.5;
 
-function Z_Motor_MountSize(motorLength)
+function Z_Motor_MountSize(motorLength=NEMA_length(motorType(_zMotorDescriptor)))
     = [2*wingSizeX + motorBracketSizeX, motorBracketSizeY + eSize, motorLength + motorBracketSizeZ + 1 + _corkDamperThickness];
 
 module NEMA_baseplate(NEMA_type, size) {

@@ -64,17 +64,17 @@ module jig(boltSize, topLength=22, channelInsertLength1=25, channelInsertLength2
     }
 }
 
-module E2020_Thread_Tapping_Jig_5mm_stl() {
-    stl("E2020_Thread_Tapping_Jig_5mm")
+module E20_Thread_Tapping_Jig_5mm_stl() {
+    stl("E20_Thread_Tapping_Jig_5mm")
         color(jigColor)
             jig(5);
 }
 
-module E2020_Thread_Tapping_Jig_6mm_stl() {
-    stl("E2020_Thread_Tapping_Jig_6mm")
+module E20_Thread_Tapping_Jig_6mm_stl() {
+    stl("E20_Thread_Tapping_Jig_6mm")
         color(jigColor)
             jig(6);
 }
 
 if ($preview)
-    E2020_Thread_Tapping_Jig_6mm_stl();
+    E20_Thread_Tapping_Jig_6mm_stl();

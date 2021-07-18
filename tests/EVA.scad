@@ -12,10 +12,11 @@ include <NopSCADlib/vitamins/e3d.scad>
 include <NopSCADlib/vitamins/fans.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
+use <../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
+
 use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/X_CarriageAssemblies.scad>
 use <../scad/printed/X_CarriageEVA.scad>
-use <../scad/printed/X_CarriageBeltAttachment.scad>
 
 use <../scad/utils/carriageTypes.scad>
 use <../scad/utils/CoreXYBelts.scad>
