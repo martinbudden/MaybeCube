@@ -149,6 +149,8 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_Bracket_TFT35_E3.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_TFT35_E3.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  | E20_ChannelCover_50mm.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   3  |    3  | E20_RibbonCover_50mm.stl |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | Extruder_Bracket.stl |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Fan_Duct.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  | Foot_LShaped_12mm.stl |
@@ -186,7 +188,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_MountGuide_19mm.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |    2  | Z_RodMountGuide_50mm.stl |
-|   3  |   3  |  17  |   3  |   3  |   5  |   4  |  10  |   48  | Total 3D printed parts count |
+|   3  |   3  |  17  |   3  |   3  |   5  |   4  |  15  |   53  | Total 3D printed parts count |
 |      |      |      |      |      |      |      |      |       | **CNC routed parts** |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | Back_Panel.dxf |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | BaseAL.dxf |
@@ -1322,6 +1324,14 @@ continuously ensuring the frame is square.
 |1| Stepper motor cable, 750mm|
 
 
+### 3D Printed parts
+
+| 2 x E20_ChannelCover_50mm.stl |
+|---|
+| ![E20_ChannelCover_50mm.stl](stls/E20_ChannelCover_50mm.png) 
+
+
+
 ### Sub-assemblies
 
 | 1 x Left_Side_assembly | 1 x Printbed_assembly |
@@ -1348,6 +1358,8 @@ continuously ensuring the frame is square.
 
 6. Thread the motor's lead screw through the lead nut on the **Z_Carriage_Center** and bolt the motor to
 the **Z_Motor_Mount**.
+
+7. Route the motor wire through the lower extrusion channel and use the **E20_ChannelCover_50mm**s to hold it in place.
 
 8. Ensure the **Z_Carriage_Center** is aligned with the lead screw and tighten the bolts on the **Z_Carriage_Center**.
 
@@ -1386,6 +1398,14 @@ the **Z_Motor_Mount**.
 
 ## Stage_3 assembly
 
+### 3D Printed parts
+
+| 3 x E20_RibbonCover_50mm.stl |
+|---|
+| ![E20_RibbonCover_50mm.stl](stls/E20_RibbonCover_50mm.png) 
+
+
+
 ### Sub-assemblies
 
 | 1 x Right_Side_assembly | 1 x Stage_2_assembly |
@@ -1400,6 +1420,9 @@ the **Z_Motor_Mount**.
 
 1. Slide the right face into the base plate assembly.
 2. Ensuring the frame remains square, tighten the hidden bolts and the bolts under the baseplate.
+3. Route the serial cable for the display in the top channel of the right side lower extrusion and route
+the ribbon cable along the bottom of the extrusion and cover with the **E20_RibbonCover_50mm**s to keep
+the cables in place.
 
 ![Stage_3_assembled](assemblies/Stage_3_assembled.png)
 
