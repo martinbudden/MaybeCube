@@ -45,5 +45,6 @@ module Face_Top_test() {
 }
 
 if ($preview)
-    translate_z(-eZ)
-        Face_Top_test();
+    rotate(-90 + 30)
+        translate([-eX/2 - eSize, -eY/2 - eSize, -eZ])
+            Face_Top_test();

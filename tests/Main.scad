@@ -31,5 +31,6 @@ module main_test() {
 }
 
 if ($preview)
-    //translate([-eX/2 -eSize, -eY/2 -eSize, -eZ/2])
-        main_test();
+    rotate(-90 + 30)
+        translate([-eX/2 - eSize, -eY/2 - eSize, 0])
+            main_test();
