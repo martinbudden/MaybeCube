@@ -38,6 +38,8 @@ module xCarriageBeltAttachmentTest_stl() {
         xCarriageBeltAttachment(30);
         size = xCarriageBeltAttachmentSize(30);
         cube([3, size.z, size.y]);
+        translate([-size.x, 0, -2])
+            cube([size.x + 3, size.z, 2]);
     }
 }
 
