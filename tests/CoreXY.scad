@@ -36,7 +36,7 @@ module CoreXY_test() {
 
     NEMA_width = _xyMotorDescriptor == "NEMA14" ? 35.2 : 42.3;
     coreXYSize = coreXYPosTR(NEMA_width) - coreXYPosBL();
-    CoreXYBelts(carriagePosition(t), x_gap = -20, show_pulleys = [1, 0, 0]);
+    CoreXYBelts(carriagePosition(t), x_gap = -20, show_pulleys = ![1, 0, 0]);
     printheadBeltSide(t=t);
     //fullPrinthead(t=t);
 
@@ -69,8 +69,8 @@ module CoreXY_test() {
     translate([eX + 2*eSize, carriagePosition(t).y - carriagePosition().y, eZ - eSize])
         Y_Carriage_Right_assembly();
 
-    //XY_Idler_Left_assembly();
-    //XY_Idler_Right_assembly();
+    XY_Idler_Left_assembly();
+    XY_Idler_Right_assembly();
 
     //XY_Motor_Mount_Left_stl();
     XY_Motor_Mount_Left_assembly();
@@ -78,5 +78,6 @@ module CoreXY_test() {
 }
 
 if ($preview)
-    translate_z(-coreXYPosBL().z)
-        CoreXY_test();
+    rotate(-90 + 30)
+        translate([-eX/2 - eSize, -eY/2 - eSize, -coreXYPosBL().z])
+            CoreXY_test();
