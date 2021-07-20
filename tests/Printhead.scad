@@ -48,7 +48,7 @@ module Printhead_test() {
         }
     }
     *let($hide_bolts=true) Printhead_E3DV6_MGN12H_assembly();
-    //translate([-11.4, 0, 8]) rotate(180)    xCarriageTop();
+    //translate([-11.4, 0, 8]) rotate(180) xCarriageTopTest();
     //X_Carriage_Front_MGN12H_assembly();
     //X_Carriage_Groovemount_MGN12H_assembly();
     //X_Carriage_Groovemount_MGN12H_stl();
@@ -58,7 +58,7 @@ module Printhead_test() {
     //Hotend_Strain_Relief_Clamp_stl();
 }
 
-module xCarriageTop() {
+module xCarriageTopTest() {
     xCarriageType = MGN12H_carriage;
     topThickness = xCarriageTopThickness();
     fillet = 1;
