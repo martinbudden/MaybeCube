@@ -74,8 +74,8 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  BigTreeTech SKR E3 Turbo |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech TFT35 E3 v3.0 |
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
-|   .  |   .  |   .  |   .  |   2  |   2  |   .  |   2  |    6  |  Bolt M3 buttonhead x  8mm |
-|   .  |   .  |   6  |   5  |   .  |   .  |   .  |   .  |   11  |  Bolt M3 buttonhead x 10mm |
+|   .  |   .  |   2  |   .  |   2  |   2  |   .  |   2  |    8  |  Bolt M3 buttonhead x  8mm |
+|   .  |   .  |   2  |   5  |   .  |   .  |   .  |   .  |    7  |  Bolt M3 buttonhead x 10mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   8  |   16  |  Bolt M3 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 16mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |    8  |  Bolt M3 buttonhead x 20mm |
@@ -145,7 +145,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer  M4 |
 |   .  |   .  |   .  |   .  |   .  |   6  |   .  |   .  |    6  |  Washer penny  M4 |
 |   3  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    3  |  Ziptie 2.5mm x 100mm min length |
-|  12  |   4  | 220  |  50  |  42  |  81  |  40  | 123  |  572  | Total vitamins count |
+|  12  |   4  | 218  |  50  |  42  |  81  |  40  | 123  |  570  | Total vitamins count |
 |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_Bracket_TFT35_E3.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_TFT35_E3.stl |
@@ -702,7 +702,7 @@ extreme and tighten the bolts on that end of the Y-rail. Finally tighten the rem
 |---:|:----------|
 |1| Belt GT2 x 6mm x nanmm|
 |1| Belt GT2 x 6mm x nanmm|
-|4| Bolt M3 buttonhead x 10mm|
+|2| Bolt M3 buttonhead x  8mm|
 |2| Bolt M3 countersunk x 12mm|
 
 
@@ -1492,10 +1492,10 @@ the cables in place.
 1. Slide the **Face_Top** assembly into the rest of the frame and tighten the hidden bolts.
 2. Check that the print head slides freely on the Y-axis. If it doesn't, then re-rack the Y-axis,
 see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
-3. Bolt the **Printhead_E3DV6_MGN12H_assembly** to MGN carriage.
-3. Route the wiring from the print head to the mainboard and secure it with the **Wiring_Guide_Clamp**.
-4. Adjust the belt tension.
-5. Connect the Bowden tube between the extruder and the printhead.
+4. Bolt the **Printhead_E3DV6_MGN12H_assembly** to MGN carriage.
+5. Route the wiring from the print head to the mainboard and secure it with the **Wiring_Guide_Clamp**.
+6. Adjust the belt tension.
+7. Connect the Bowden tube between the extruder and the printhead.
 
 ![Stage_5_assembled](assemblies/Stage_5_assembled.png)
 
