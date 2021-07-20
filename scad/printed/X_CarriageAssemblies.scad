@@ -52,14 +52,18 @@ module X_Carriage_Belt_Clamp_stl() {
             translate([0, -size.y/2, 0])
                 difference() {
                     rounded_cube_xy(size, fillet);
-                    for (x = [0, xCarriageBeltClampHoleSeparation()])
+                    *for (x = [0, xCarriageBeltClampHoleSeparation()])
                         translate([x + 3.2, size.y/2, 0])
                             boltHoleM3(size.z, twist=4);
+                    translate([size.x/2 + 1.25, size.y/2, 0])
+                        boltHoleM3(size.z, twist=4);
                 }
 }
 
-module xCarriageFrontBeltAttachmentBeltClamps(xCarriageType, beltWidth) {
-    xCarriageFrontBeltAttachmentPositions(xCarriageType, beltWidth) {
+module xCarriageBeltSideBeltClamps(xCarriageType) {
+    size = xCarriageFrontSize(xCarriageType, _beltWidth, clamps=false);
+
+    xCarriageBeltSideClampPositions(xCarriageType, size) {
         stl_colour(pp2_colour)
             X_Carriage_Belt_Clamp_stl();
         X_Carriage_Belt_Clamp_hardware();
@@ -68,12 +72,13 @@ module xCarriageFrontBeltAttachmentBeltClamps(xCarriageType, beltWidth) {
 
 module X_Carriage_Belt_Side_MGN12H_stl() {
     xCarriageType = MGN12H_carriage;
+    size = xCarriageFrontSize(xCarriageType, _beltWidth, clamps=false);
 
     // orientate for printing
     stl("X_Carriage_Belt_Side_MGN12H")
         color(pp4_colour)
             rotate([90, 0, 0])
-                xCarriageFrontBeltAttachment(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, accelerometerOffset());
+                xCarriageBeltSide(xCarriageType, size, accelerometerOffset());
 }
 
 //!Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensioners into the
@@ -87,32 +92,35 @@ assembly("X_Carriage_Belt_Side_MGN12H") {
     rotate([-90, 0, 0])
         stl_colour(pp4_colour)
             X_Carriage_Belt_Side_MGN12H_stl();
+
     offset = 22.5;
+    boltLength = 40;
     translate([offset, -2.5, -31]) {
         rotate([0, 0, 180]) {
             explode([-40, 0, 0])
                 stl_colour(pp2_colour)
                     X_Carriage_Belt_Tensioner_stl();
-            X_Carriage_Belt_Tensioner_hardware(offset);
+            X_Carriage_Belt_Tensioner_hardware(boltLength, offset);
         }
         translate([-2*offset, 0, -2])
             rotate([180, 0, 0]) {
                 explode([-40, 0, 0])
                     stl_colour(pp2_colour)
                         X_Carriage_Belt_Tensioner_stl();
-                X_Carriage_Belt_Tensioner_hardware(offset);
+                X_Carriage_Belt_Tensioner_hardware(boltLength, offset);
             }
     }
 }
 
 module X_Carriage_Belt_Side_MGN12C_stl() {
     xCarriageType = MGN12C_carriage;
+    size = xCarriageFrontSize(xCarriageType, _beltWidth, clamps=false);
 
     // orientate for printing
     stl("X_Carriage_Belt_Side_MGN12C")
         color(pp4_colour)
             rotate([90, 0, 0])
-                xCarriageFrontBeltAttachment(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, accelerometerOffset());
+                xCarriageBeltSide(xCarriageType, size, accelerometerOffset());
 }
 
 module X_Carriage_Belt_Side_MGN12C_assembly()
@@ -213,7 +221,8 @@ module X_Carriage_Groovemount_MGN12H_stl() {
     stl("X_Carriage_Groovemount_MGN12H")
         color(pp1_colour)
             rotate([0, 90, 0]) {
-                xCarriageBack(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z, clamps=false, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(), accelerometerOffset=accelerometerOffset());
+                size = xCarriageBackSize(xCarriageType, _beltWidth, clamps=false);
+                xCarriageBack(xCarriageType, size, _beltWidth, beltOffsetZ(), coreXYSeparation().z, clamps=false, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), accelerometerOffset=accelerometerOffset());
                 hotEndHolder(xCarriageType, grooveMountSize, hotendOffset, hotend_type, blower_type, baffle=false, left=false);
             }
 }

@@ -75,7 +75,7 @@ module printheadBeltSide(rotate=180, explode=0, t=undef) {
                 explode([0, -20, 0], true)
                     X_Carriage_Belt_Side_MGN12H_assembly();
                 xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = [ [1, -1], [-1, -1] ]);
-                xCarriageFrontBeltAttachmentBeltClamps(xCarriageType, _beltWidth);
+                xCarriageBeltSideBeltClamps(xCarriageType);
             }
 }
 
@@ -102,7 +102,7 @@ module printheadHotendSide(rotate=180, clamps=false, explode=0, t=undef, acceler
         explode(explode, true)
             rotate(rotate) {// for debug, to see belts better
                 explode([0, -20, 0], true)
-                    xCarriageFrontBolts(xCarriageType, _beltWidth, clamps, topBoltLength=30, bottomBoltLength=30, countersunk=true, offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom());
+                    xCarriageFrontBolts(xCarriageType, xCarriageFrontSize(xCarriageType, _beltWidth, clamps), topBoltLength=30, bottomBoltLength=30, countersunk=true, offsetT=xCarriageHoleOffsetTop());
                 Printhead_E3DV6_MGN12H_assembly();
                 xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = [ [1, 1], [-1, 1] ]);
                 if (accelerometer)
@@ -122,7 +122,7 @@ module fullPrinthead(rotate=180, clamps=false, explode=0, t=undef, accelerometer
                         X_Carriage_Front_MGN12H_assembly();
                     else
                         X_Carriage_Belt_Side_MGN12H_assembly();
-                    xCarriageFrontBolts(xCarriageType, _beltWidth, clamps, topBoltLength=30, bottomBoltLength=30, countersunk=true, offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom());
+                    xCarriageFrontBolts(xCarriageType, xCarriageFrontSize(xCarriageType, _beltWidth, clamps), topBoltLength=30, bottomBoltLength=30, countersunk=true, offsetT=xCarriageHoleOffsetTop());
                 }
                 Printhead_E3DV6_MGN12H_assembly();
                 xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk);

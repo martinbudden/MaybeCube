@@ -125,7 +125,7 @@ module evaBeltTensioners() {
 }
 module evaBeltTensionersHardware() {
     evaBeltTensionerPositions(explode=70)
-        X_Carriage_Belt_Tensioner_hardware(18.5);
+        X_Carriage_Belt_Tensioner_hardware(40, 18.5);
 }
 
 module EVA_MC_BottomMgn12(ductSizeY=undef, split=false) {
