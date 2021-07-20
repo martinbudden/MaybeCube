@@ -72,13 +72,13 @@ module xCarriageBeltSideBeltClamps(xCarriageType) {
 
 module X_Carriage_Belt_Side_MGN12H_stl() {
     xCarriageType = MGN12H_carriage;
-    size = xCarriageFrontSize(xCarriageType, _beltWidth, clamps=false);
+    size = xCarriageFrontSize(xCarriageType, _beltWidth, clamps=false);// + [1, 0, 1];
 
     // orientate for printing
     stl("X_Carriage_Belt_Side_MGN12H")
         color(pp4_colour)
             rotate([90, 0, 0])
-                xCarriageBeltSide(xCarriageType, size, accelerometerOffset());
+                xCarriageBeltSide(xCarriageType, size, extraX=1, accelerometerOffset=accelerometerOffset());
 }
 
 //!Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensioners into the
@@ -120,7 +120,7 @@ module X_Carriage_Belt_Side_MGN12C_stl() {
     stl("X_Carriage_Belt_Side_MGN12C")
         color(pp4_colour)
             rotate([90, 0, 0])
-                xCarriageBeltSide(xCarriageType, size, accelerometerOffset());
+                xCarriageBeltSide(xCarriageType, size, extraX=0, accelerometerOffset=accelerometerOffset());
 }
 
 module X_Carriage_Belt_Side_MGN12C_assembly()
