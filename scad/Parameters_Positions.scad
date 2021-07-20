@@ -6,7 +6,7 @@ include <Parameters_main.scad>
 $t = 2;
 
 // print size is approx eX-134, eY-115, eZ-219
-_xMin = eSize + 53; // limited by E3D V6 hotend cartridge wiring hitting SK brackets, will differ for other hotends
+_xMin = eSize + 59; // limited by Y_Carriage tongue with X_Carriage belt attachment, was limited by E3D V6 hotend cartridge wiring hitting SK brackets, will differ for other hotends
 _xMax = eX + 2*eSize - 82; // limited by printhead fan hitting Y_Carriage or belt hitting Y_Carriage brace post
 _yMin = 44.5;
 _yMax = eY - 71; // motor limits this, get an extra 3 with MGN9 X rail
