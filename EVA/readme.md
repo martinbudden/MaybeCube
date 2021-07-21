@@ -47,13 +47,13 @@ as are all EVA community contributions.
 | <span style="writing-mode: vertical-rl; text-orientation: mixed;">EVA Stage 1</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">EVA</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">TOTALS</span> |  |
 |-----:|-----:|------:|:---|
 |      |      |       | **Vitamins** |
-|   4  |   .  |    4  |  Bolt M3 buttonhead x 10mm |
+|   2  |   .  |    2  |  Bolt M3 buttonhead x  8mm |
 |   4  |   .  |    4  |  Bolt M3 caphead x  8mm |
 |   4  |   .  |    4  |  Bolt M3 caphead x 35mm |
 |   2  |   .  |    2  |  Bolt M3 caphead x 40mm |
 |   4  |   .  |    4  |  Nut M3 |
 |   2  |   .  |    2  |  Washer  M3 |
-|  20  |   .  |   20  | Total vitamins count |
+|  18  |   .  |   18  | Total vitamins count |
 |      |      |       | **3D printed parts** |
 |   1  |   .  |    1  | EVA_MC_bottom_mgn12_short_duct.stl |
 |   1  |   .  |    1  | EVA_MC_top_bmg_mgn12.stl |
@@ -79,7 +79,7 @@ as are all EVA community contributions.
 
 |Qty|Description|
 |---:|:----------|
-|4| Bolt M3 buttonhead x 10mm|
+|2| Bolt M3 buttonhead x  8mm|
 |4| Bolt M3 caphead x  8mm|
 |4| Bolt M3 caphead x 35mm|
 |2| Bolt M3 caphead x 40mm|
