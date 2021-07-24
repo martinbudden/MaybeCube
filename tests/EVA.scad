@@ -17,6 +17,7 @@ use <../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/X_CarriageAssemblies.scad>
 use <../scad/printed/X_CarriageEVA.scad>
+use <../scad/printed/Y_CarriageAssemblies.scad>
 
 use <../scad/utils/carriageTypes.scad>
 use <../scad/utils/CoreXYBelts.scad>
@@ -30,27 +31,29 @@ include <../scad/Parameters_Main.scad>
 
 //$explode = 1;
 //$pose = 1;
+t = 2;
 zOffset = 5;
 tensionerOffsetX = X_CarriageEVATensionerOffsetX();
 
 module EVA_test() {
-    carriagePosition = carriagePosition();
+    carriagePosition = carriagePosition(t);
     translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
-        xRailCarriagePosition()
-            rotate(180)
-                X_Carriage_Belt_Side_MGN12H_assembly();
         CoreXYBelts(carriagePosition + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
+        xRailCarriagePosition(t)
+            rotate(180) {
+                //X_Carriage_Belt_Side_MGN12H_assembly();
+                evaHotendBase();
+                translate([0, 18.5, -15.5 - zOffset])
+                    color(pp2_colour)
+                        evaImportStl("back_corexy");
+            }
         translate_z(eZ)
             xRail(carriagePosition, MGN12H_carriage);
+        translate([0, carriagePosition.y - carriagePosition().y, eZ - eSize])
+            Y_Carriage_Left_assembly();
+        translate([2*eSize + eX, carriagePosition.y - carriagePosition().y, eZ - eSize])
+            Y_Carriage_Right_assembly();
     }
-    translate([-4.5, 0, carriage_height(MGN12H_carriage)])
-        rotate(180) {
-            evaHotendBase();
-            //evaHotend(full=!true);
-            *translate([0, 18.5, -15.5 - zOffset])
-                color(pp2_colour)
-                    evaImportStl("back_corexy");
-        }
 }
 
 module evaHotend(full=false) {
