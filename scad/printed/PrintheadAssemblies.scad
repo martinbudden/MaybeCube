@@ -65,7 +65,6 @@ assembly("Printhead_E3DV6_MGN12H", big=true) {
                         cable_tie(cable_r = 3, thickness = 4.5);
 }
 
-
 module printheadBeltSide(rotate=180, explode=0, t=undef) {
     xCarriageType = MGN12H_carriage;
 
@@ -75,24 +74,8 @@ module printheadBeltSide(rotate=180, explode=0, t=undef) {
                 explode([0, -20, 0], true)
                     X_Carriage_Belt_Side_MGN12H_assembly();
                 xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = [ [1, -1], [-1, -1] ]);
-                xCarriageBeltSideBeltClamps(xCarriageType);
+                xCarriageBeltClampAssembly(xCarriageType);
             }
-}
-
-module printheadAccelerometerAssembly() {
-    translate(accelerometerOffset() + [0, 0, 1])
-        rotate(180) {
-            pcb = ADXL345;
-            pcb(pcb);
-            pcb_hole_positions(pcb) {
-                translate_z(pcb_size(pcb).z)
-                    boltM3Caphead(10);
-                explode(-5)
-                    vflip()
-                        washer(M3_washer)
-                            washer(M3_washer);
-            }
-        }
 }
 
 module printheadHotendSide(rotate=180, clamps=false, explode=0, t=undef, accelerometer=false) {
@@ -132,6 +115,22 @@ module fullPrinthead(rotate=180, clamps=false, explode=0, t=undef, accelerometer
                 if (clamps && !exploded())
                     xCarriageBeltFragments(xCarriageType, coreXY_belt(coreXY_type()), beltOffsetZ(), coreXYSeparation().z, coreXY_upper_belt_colour(coreXY_type()), coreXY_lower_belt_colour(coreXY_type()));
             }
+}
+
+module printheadAccelerometerAssembly() {
+    translate(accelerometerOffset() + [0, 0, 1])
+        rotate(180) {
+            pcb = ADXL345;
+            pcb(pcb);
+            pcb_hole_positions(pcb) {
+                translate_z(pcb_size(pcb).z)
+                    boltM3Caphead(10);
+                explode(-5)
+                    vflip()
+                        washer(M3_washer)
+                            washer(M3_washer);
+            }
+        }
 }
 
 module hotEndHolderHardware(xCarriageType, hotend_type = 0) {
