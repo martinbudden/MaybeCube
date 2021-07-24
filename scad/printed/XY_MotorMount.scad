@@ -158,14 +158,9 @@ module xyMotorMountBase(motorType, left, size, offset, sideSupportSizeY, cnc=fal
                                         boltHoleM3(basePlateThickness);
                     }
                 }
-                translate(pP)
-                    boltHoleM3Tap(basePlateThickness);
-                translate(pT)
-                    boltHoleM3Tap(basePlateThickness);
-                translate([pP.x, pT.y])
-                    boltHoleM3Tap(basePlateThickness);
-                translate([pT.x, pP.y])
-                    boltHoleM3Tap(basePlateThickness);
+                for (pos = [pP, pT, [pP.x, pT.y], [pT.x, pP.y]])
+                    translate(pos)
+                        boltHoleM3Tap(basePlateThickness);
             }
     }
     if (!cnc)
@@ -207,14 +202,9 @@ module xyMotorMountBrace(thickness, offset = [0,0], left = true) {
                     translate([pT.x + 1 - sizeT.x/2, pP.y - sizeT.y/2, 0])
                         rounded_cube_xy([sizeT.x, sizeT.y, thickness], 1, xy_center=false);
             }
-            translate(pP)
-                boltHoleM3Tap(thickness);
-            translate(pT)
-                boltHoleM3Tap(thickness);
-            translate([pP.x, pT.y])
-                boltHoleM3Tap(thickness);
-            translate([pT.x, pP.y])
-                boltHoleM3Tap(thickness);
+            for (pos = [pP, pT, [pP.x, pT.y], [pT.x, pP.y]])
+                translate(pos)
+                    boltHoleM3Tap(thickness);
         }
 }
 
