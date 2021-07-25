@@ -63,7 +63,7 @@ assembly("EVA_Stage_1", big=true) {
 
         explode([0, -20,0], true) {
             stl_colour(pp2_colour)
-                evaBeltClamps();
+                evaBeltClamp();
             evaBeltClampHardware();
         }
 

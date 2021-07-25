@@ -90,20 +90,18 @@ module evaHotendBaseHardware(explode=40, boltOffset=0) {
         }
 }
 
-module evaBeltClampPositions() {
-    size = bottomMgn12Size;
-    translate([-size.y/2, size.z/2, -bottomMgn12OffsetZ])
-        xCarriageBeltClampPositions(size.y)
-            children();
+module evaBeltClampPosition() {
+    xCarriageBeltClampPosition(MGN12H_carriage, bottomMgn12Size)
+        children();
 }
 
-module evaBeltClamps() {
-    evaBeltClampPositions()
+module evaBeltClamp() {
+    evaBeltClampPosition()
         X_Carriage_Belt_Clamp_stl();
 }
 
 module evaBeltClampHardware() {
-    evaBeltClampPositions()
+    evaBeltClampPosition()
         translate_z(4.5)
             vflip()
                 X_Carriage_Belt_Clamp_hardware();
@@ -128,7 +126,7 @@ module evaBeltTensionersHardware() {
         X_Carriage_Belt_Tensioner_hardware(40, 18.5);
 }
 
-module EVA_MC_BottomMgn12(ductSizeY=undef, split=false) {
+module EVA_MC_BottomMgn12(ductSizeY=undef, airflowSplit=false) {
     size = bottomMgn12Size;
     tabSize = [22, is_undef(ductSizeY) ? size.y - 20 : ductSizeY, 3];
     fillet = 0;
@@ -182,15 +180,20 @@ module EVA_MC_BottomMgn12(ductSizeY=undef, split=false) {
         for (y = [(size.y - evaHoleSeparationBottom)/2, (size.y + evaHoleSeparationBottom)/2])
         //for (y = [9, size.y - 9])
             translate([size.x - 4, y, 0])
-                boltHoleM3(size.z, twist=4);
+                boltHoleM3Tap(size.z, twist=4);
         for (y = [(size.y + tabSize.y)/2 + 3, (size.y - tabSize.y)/2 - 3])
             translate([size.x + 10, y, 0])
                 boltHoleM3(tabSize.z, twist=4);
     }
-    if (split)
+    if (airflowSplit)
         translate([0, (size.y - 1.5)/2, 0])
             cube([tabSize.x, 1.5, tabSize.z]);
-    xCarriageBeltAttachment(size.y);
+
+    extraZ = 0.5;
+    translate_z(extraZ)
+        xCarriageBeltAttachment(size.y);
+    translate([-xCarriageBeltAttachmentSize().x, 0, 0])
+        cube([xCarriageBeltAttachmentSize().x, size.y, extraZ]);
 }
 
 module EVA_MC_TopMgn12(counterBore=true) {
@@ -212,7 +215,7 @@ module EVA_MC_TopMgn12(counterBore=true) {
         //for (x = [-size.x/2 + 5, size.x/2 - 5])
             translate([x, size.y/2, 3])
                     rotate([90, 0, 0])
-                        boltHoleM3(size.y, horizontal=true);
+                        boltHoleM3Tap(size.y, horizontal=true);
         fillet = 1 + eps;
         translate([-size.x/2 - eps, 0, size.z + eps])
             rotate([90, 90, 0])
@@ -247,13 +250,17 @@ module EvaTopConvert(stlFile, zOffset = 5) {
                 height = 8;
                 union() {
                     evaImportStl(stlFile);
-                    size1 = [30 + 2*eps, 27, height - screw_head_height(M3_cap_screw) - 0.2];
+                    size1 = [30 + 10 + 2*eps, 27, height - screw_head_height(M3_cap_screw) - 0.2];
                     size2 = [bottomMgn12Size.y, 12, 1];
                     size3 = [30, 12, height - screw_head_height(M3_cap_screw) - 0.2];
                     for (size = [size1, size2, size3])
                         translate([-size.x/2, -size.y/2, zOffset])
                             cube(size);
                 }
+                for (x = [-evaHoleSeparationTop/2, evaHoleSeparationTop/2])
+                    translate([x, size.y/2, zOffset + 3])
+                        rotate([90, 0, 0])
+                            boltHoleM3Tap(size.y, horizontal=true);
                 boltCutout(7, height - 3);
                 size = [bottomMgn12Size.y + 2*eps, 27 + 2*eps, zOffset + eps];
                 translate([-size.x/2, -size.y/2, -eps])
@@ -280,7 +287,7 @@ module EVA_MC_bottom_mgn12_short_duct_stl() {
 module EVA_MC_dual_5015_bottom_mgn12_wide_stl() {
     stl("EVA_MC_dual_5015_bottom_mgn12_wide")
         color(evaColorGrey())
-            EVA_MC_BottomMgn12(34, split=true);
+            EVA_MC_BottomMgn12(34, airflowSplit=true);
 }
 
 module EVA_MC_7530_fan_mgn12_bottom_wide_stl() {
