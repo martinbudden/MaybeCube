@@ -97,18 +97,22 @@ The front face of the MaybeCube is the most subject to shearing, since it needs 
 
 ## EVA module printhead system
 
-In its default configuration the MaybeCube has a E3D V6 hotend with a Bowden extruder. However I've created adaptors
+In its default configuration the MaybeCube has an E3D V6 hotend with a Bowden extruder. However I've created adaptors
 so that the [EVA modular printhead system](https://main.eva-3d.page) can be used. The EVA system supports a wide variety
-of hotends and extruders. More details on using the adaptors are [here](https://github.com/martinbudden/MaybeCube/tree/main/EVA).
+of hotends and extruders. More details on using the EVA adaptors are [here](https://github.com/martinbudden/MaybeCube/tree/main/EVA).
+
+## Printermods XChange quick change tool head
+
+I've created an adaptor for the
+[Printermods XChange quick change tool head](https://www.kickstarter.com/projects/printermods/xchange-v10-hot-swap-tool-changing-for-every-3d-printer).
+More details on using the XChange adaptor are [here](https://github.com/martinbudden/MaybeCube/tree/main/XChange).
 
 ### E3D tool changer
 
-While the MaybeCube was not specifically designed to use the E3D tool changer, it was designed with it in mind. That is, I tried to avoid any design decisions that would preclude the use of the tool changer. In particular the x-axis linear rail
-is mounted horizontally, so it should be possible to use the E3D x-carriage (although the belt separation may be different,
-so this may require variations in some of the printed components.
-MaybeCube is a parametric design, so it it is possible to regenerate the printed parts for a different belt separation. Alternatively it might be better to design a new x-carriage for the E3D toolhead.
-There is space in the back face for toolheads and docks. I imagine there is space for 2 or possibly 3 toolhead and docks in the back face of the 350 variant.
-Having said that, I have not tried to do this and would be interested in feedback from anyone who does try this. It would be good to be able to support experimenting with the docking system by providing a framework less expensive than the E3D motion system.
+Currently there is no adaptor for the  [E3D tool changer](https://e3d-online.com/pages/toolchanger), however I think it would be fairly straightforward to create one.
+
+There should be room to dock at least two, and perhaps three [E3D ToolChanger Tools](https://e3d-online.com/products/toolchanger-tools) in the back of the MC350, this would allow experimenting with the E3D docking system in a framework
+considerably less expensive than the [E3D Motion System](https://e3d-online.com/products/e3d-motion-system).
 
 ## License
 
