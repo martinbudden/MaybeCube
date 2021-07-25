@@ -21,6 +21,7 @@ module X_Carriage_test() {
     X_Carriage_Groovemount_MGN12H_assembly();
     //X_Carriage_Front_MGN12H_assembly();
     X_Carriage_Belt_Side_MGN12H_assembly();
+    xCarriageBeltClampAssembly(MGN12H_carriage);
     //X_Carriage_Belt_Side_MGN12H_stl();
     translate_z(-carriage_height(MGN12H_carriage)) carriage(MGN12H_carriage);
     //X_Carriage_Belt_Tensioner_stl();
