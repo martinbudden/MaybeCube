@@ -10,7 +10,7 @@ detail that someone with a good understanding of 3D printers can build the Maybe
 
 ## Printing the parts
 
-//!A number of parts are in proximity with heat sources, namely the hotend, the heated bed and the motors. Ideally these should be
+A number of parts are in proximity with heat sources, namely the hotend, the heated bed and the motors. Ideally these should be
 printed in ABS, but I have used PETG successfully. These parts are insulated from direct contact with the heat sources, by
 cork underlay (for the heated bed) and by cork dampers (for the motors). These insulators should not be omitted from the build.
 
@@ -74,8 +74,8 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  BigTreeTech SKR E3 Turbo |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech TFT35 E3 v3.0 |
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
-|   .  |   .  |   2  |   .  |   2  |   2  |   .  |   2  |    8  |  Bolt M3 buttonhead x  8mm |
-|   .  |   .  |   2  |   5  |   .  |   .  |   .  |   .  |    7  |  Bolt M3 buttonhead x 10mm |
+|   .  |   .  |   .  |   .  |   2  |   2  |   .  |   2  |    6  |  Bolt M3 buttonhead x  8mm |
+|   .  |   .  |   4  |   5  |   .  |   .  |   .  |   .  |    9  |  Bolt M3 buttonhead x 10mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   8  |   16  |  Bolt M3 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 16mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |    8  |  Bolt M3 buttonhead x 20mm |
@@ -174,7 +174,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Right.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Left.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Right.stl |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  | X_Carriage_Belt_Clamp.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Belt_Clamp.stl |
 |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Belt_Side_MGN12H.stl |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  | X_Carriage_Belt_Tensioner.stl |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Groovemount_MGN12H.stl |
@@ -188,7 +188,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_MountGuide_19mm.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |    2  | Z_RodMountGuide_50mm.stl |
-|   3  |   3  |  17  |   3  |   3  |   5  |   4  |  15  |   53  | Total 3D printed parts count |
+|   3  |   3  |  16  |   3  |   3  |   5  |   4  |  15  |   52  | Total 3D printed parts count |
 |      |      |      |      |      |      |      |      |       | **CNC routed parts** |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | Back_Panel.dxf |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | BaseAL.dxf |
@@ -702,13 +702,13 @@ extreme and tighten the bolts on that end of the Y-rail. Finally tighten the rem
 |---:|:----------|
 |1| Belt GT2 x 6mm x nanmm|
 |1| Belt GT2 x 6mm x nanmm|
-|2| Bolt M3 buttonhead x  8mm|
+|2| Bolt M3 buttonhead x 10mm|
 |2| Bolt M3 countersunk x 12mm|
 
 
 ### 3D Printed parts
 
-| 2 x X_Carriage_Belt_Clamp.stl |
+| 1 x X_Carriage_Belt_Clamp.stl |
 |---|
 | ![X_Carriage_Belt_Clamp.stl](stls/X_Carriage_Belt_Clamp.png) 
 
