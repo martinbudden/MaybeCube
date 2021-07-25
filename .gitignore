@@ -73,6 +73,25 @@ EVA/assemblies/*_diff.png
 EVA/dxfs/*_diff.png
 EVA/stls/*_diff.png
 
+XChange/assemblies/*
+XChange/bom/
+XChange/dxfs/*
+XChange/stls/*
+XChange/tmp/
+XChange/*.html
+XChange/*.md
+!XChange/readme.md
+#!XChange/assemblies/main_assembled.png
+!XChange/assemblies/*.png
+#!XChange/dxfs/*.dxf
+#!XChange/dxfs/*.png
+
+#!XChange/stls/*.stl
+!XChange/stls/*.png
+XChange/assemblies/*_diff.png
+XChange/dxfs/*_diff.png
+XChange/stls/*_diff.png
+
 MC250/assemblies/*
 MC250/bom/
 MC250/dxfs/*
@@ -103,7 +122,7 @@ MC300/*.html
 !MC300/assemblies/*.png
 !MC300/dxfs/*.dxf
 !MC300/dxfs/*.png
-!MC300/stls/*.stl
+#!MC300/stls/*.stl
 !MC300/stls/*.png
 MC300/assemblies/*_diff.png
 MC300/dxfs/*_diff.png
