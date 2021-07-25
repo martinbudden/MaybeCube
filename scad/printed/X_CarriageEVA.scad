@@ -58,35 +58,47 @@ module evaHotendBase(top="mgn12", explode=40) {
             EVA_MC_bottom_mgn12_short_duct_stl();
 }
 
-module evaHotendBaseHardware(explode=40, boltOffset=0) {
+module evaHotendBaseTopHardware(explode=40) {
     carriageType = MGN12H_carriage;
-    boltLength = 35;
 
     translate_z(5 - carriage_height(carriageType))
         carriage_hole_positions(MGN12H_carriage)
             explode(explode, true)
                 boltM3Caphead(8);
+}
 
+module evaHotendBaseBackHardware(explode=40) {
     size = bottomMgn12Size;
-    translate([-size.y/2, bottomMgn12Size.z/2 - 2 + boltOffset, -bottomMgn12OffsetZ])
+    boltLength = 10;
+
+    translate([-size.y/2, 3*bottomMgn12Size.z/2 + 2, -bottomMgn12OffsetZ])
         rotate([90, 90, 0]) {
-            explode([-explode, 0, 0], true)
+            explode(-explode, true)
                 for (y = [5, size.y - 5])
-                    translate([-bottomMgn12Size.y, y, size.z]) {
+                    translate([-bottomMgn12Size.y, y, size.z])
+                        vflip()
+                            boltM3Caphead(boltLength);
+            explode(-explode, true)
+                for (y = [9, size.y - 9])
+                    translate([size.x - 4, y, size.z])
+                        vflip()
+                            boltM3Caphead(boltLength);
+        }
+}
+
+module evaHotendBaseFrontHardware(explode=40) {
+    size = bottomMgn12Size;
+    boltLength = 10;
+    translate([-size.y/2, bottomMgn12Size.z/2 - 2, -bottomMgn12OffsetZ])
+        rotate([90, 90, 0]) {
+            explode(explode, true)
+                for (y = [5, size.y - 5])
+                    translate([-bottomMgn12Size.y, y, size.z])
                         boltM3Caphead(boltLength);
-                        translate_z(-boltLength + boltOffset + 0.8)
-                            rotate(30)
-                                explode(-70)
-                                    nut(M3_nut);
-                    }
-            for (y = [9, size.y - 9])
-                translate([size.x - 4, y, size.z]) {
-                    boltM3Caphead(boltLength);
-                    translate_z(-boltLength + boltOffset + 0.8)
-                        rotate(30)
-                            explode(-70)
-                                nut(M3_nut);
-                }
+            explode(explode, true)
+                for (y = [9, size.y - 9])
+                    translate([size.x - 4, y, size.z])
+                        boltM3Caphead(boltLength);
         }
 }
 

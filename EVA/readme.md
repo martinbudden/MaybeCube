@@ -47,13 +47,12 @@ as are all EVA community contributions.
 | <span style="writing-mode: vertical-rl; text-orientation: mixed;">EVA Stage 1</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">EVA</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">TOTALS</span> |  |
 |-----:|-----:|------:|:---|
 |      |      |       | **Vitamins** |
-|   2  |   .  |    2  |  Bolt M3 buttonhead x  8mm |
+|   2  |   .  |    2  |  Bolt M3 buttonhead x 10mm |
 |   4  |   .  |    4  |  Bolt M3 caphead x  8mm |
-|   4  |   .  |    4  |  Bolt M3 caphead x 35mm |
+|   4  |   4  |    8  |  Bolt M3 caphead x 10mm |
 |   2  |   .  |    2  |  Bolt M3 caphead x 40mm |
-|   4  |   .  |    4  |  Nut M3 |
 |   2  |   .  |    2  |  Washer  M3 |
-|  18  |   .  |   18  | Total vitamins count |
+|  14  |   4  |   18  | Total vitamins count |
 |      |      |       | **3D printed parts** |
 |   1  |   .  |    1  | EVA_MC_bottom_mgn12_short_duct.stl |
 |   1  |   .  |    1  | EVA_MC_top_bmg_mgn12.stl |
@@ -61,11 +60,11 @@ as are all EVA community contributions.
 |   1  |   .  |    1  | EVA_MC_top_mgn12.stl |
 |   1  |   .  |    1  | EVA_MC_top_orbiter_mgn12.stl |
 |   1  |   .  |    1  | EVA_MC_top_titan_mgn12.stl |
-|   2  |   .  |    2  | X_Carriage_Belt_Clamp.stl |
+|   1  |   .  |    1  | X_Carriage_Belt_Clamp.stl |
 |   2  |   .  |    2  | X_Carriage_Belt_Tensioner.stl |
 |   1  |   .  |    1  | back_corexy.stl |
 |   .  |   1  |    1  | universal_face.stl |
-|  11  |   1  |   12  | Total 3D printed parts count |
+|  10  |   1  |   11  | Total 3D printed parts count |
 
 <span></span>
 [Top](#TOP)
@@ -79,11 +78,10 @@ as are all EVA community contributions.
 
 |Qty|Description|
 |---:|:----------|
-|2| Bolt M3 buttonhead x  8mm|
+|2| Bolt M3 buttonhead x 10mm|
 |4| Bolt M3 caphead x  8mm|
-|4| Bolt M3 caphead x 35mm|
+|4| Bolt M3 caphead x 10mm|
 |2| Bolt M3 caphead x 40mm|
-|4| Nut M3|
 |2| Washer  M3|
 
 
@@ -99,7 +97,7 @@ as are all EVA community contributions.
 | ![EVA_MC_top_mgn12.stl](stls/EVA_MC_top_mgn12.png) | ![EVA_MC_top_orbiter_mgn12.stl](stls/EVA_MC_top_orbiter_mgn12.png) | ![EVA_MC_top_titan_mgn12.stl](stls/EVA_MC_top_titan_mgn12.png) 
 
 
-| 2 x X_Carriage_Belt_Clamp.stl | 2 x X_Carriage_Belt_Tensioner.stl | 1 x back_corexy.stl |
+| 1 x X_Carriage_Belt_Clamp.stl | 2 x X_Carriage_Belt_Tensioner.stl | 1 x back_corexy.stl |
 |---|---|---|
 | ![X_Carriage_Belt_Clamp.stl](stls/X_Carriage_Belt_Clamp.png) | ![X_Carriage_Belt_Tensioner.stl](stls/X_Carriage_Belt_Tensioner.png) | ![back_corexy.stl](stls/back_corexy.png) 
 
@@ -111,8 +109,8 @@ as are all EVA community contributions.
 
 1. Bolt the top part to the MGN12 carriage. This example uses the **EVA_MC_top_bmg_mgn12.stl** part, you should use the part
 appropriate to your extruder.
-2. Temporarily bolt the **back_corexy.stl** part to the top part.
-3. Temporarily bolt the **EVA_MC_bottom_mgn12_short_duct.stl** part to the **back_corexy.stl** part.
+2. Bolt the **back_corexy.stl** part to the top part.
+3. Bolt the **EVA_MC_bottom_mgn12_short_duct.stl** part to the **back_corexy.stl** part.
 4. Insert the belts into the **X_Carriage_Belt_Tensioner.stl**s and then bolt the tensioners into the
 **EVA_MC_bottom_mgn12_short_duct.stl** part as shown.
 5. Thread the belts through the printer pulleys and then clamp them to the **EVA_MC_bottom_mgn12_short_duct.stl** part.
@@ -126,6 +124,13 @@ appropriate to your extruder.
 <a name="EVA_assembly"></a>
 
 ## EVA assembly
+
+### Vitamins
+
+|Qty|Description|
+|---:|:----------|
+|4| Bolt M3 caphead x 10mm|
+
 
 ### 3D Printed parts
 
@@ -147,7 +152,7 @@ appropriate to your extruder.
 
 ![EVA_assembly](assemblies/EVA_assembly.png)
 
-Remove the temporary bolts and attach the **universal_face.stl** part.
+Bolt the **universal_face.stl** part to the **EVA_MC_top_bmg_mgn12** and **EVA_MC_bottom_mgn12_short_duct** parts.
 
 ![EVA_assembled](assemblies/EVA_assembled.png)
 

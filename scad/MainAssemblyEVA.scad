@@ -33,15 +33,16 @@ use <../scad/Parameters_Positions.scad>
 include <target.scad>
 
 
+//$explode = 1;
+
 //!1. Bolt the top part to the MGN12 carriage. This example uses the **EVA_MC_top_bmg_mgn12.stl** part, you should use the part
 //!appropriate to your extruder.
-//!2. Temporarily bolt the **back_corexy.stl** part to the top part.
-//!3. Temporarily bolt the **EVA_MC_bottom_mgn12_short_duct.stl** part to the **back_corexy.stl** part.
+//!2. Bolt the **back_corexy.stl** part to the top part.
+//!3. Bolt the **EVA_MC_bottom_mgn12_short_duct.stl** part to the **back_corexy.stl** part.
 //!4. Insert the belts into the **X_Carriage_Belt_Tensioner.stl**s and then bolt the tensioners into the
 //!**EVA_MC_bottom_mgn12_short_duct.stl** part as shown.
 //!5. Thread the belts through the printer pulleys and then clamp them to the **EVA_MC_bottom_mgn12_short_duct.stl** part.
-//$explode = 1;
-module EVA_Stage_1_assembly(temporaryBolts=true)
+module EVA_Stage_1_assembly()
 assembly("EVA_Stage_1", big=true) {
 
     hidden()
@@ -55,7 +56,8 @@ assembly("EVA_Stage_1", big=true) {
             not_on_bom()
                 evaHotendBase(top="bmg_mgn12", explode=60);
 
-        evaHotendBaseHardware(explode=60, boltOffset=temporaryBolts ? 2 : 0);
+        evaHotendBaseTopHardware(explode=100);
+        evaHotendBaseBackHardware(explode=100);
 
         stl_colour(pp2_colour)
             evaBeltTensioners();
@@ -68,7 +70,7 @@ assembly("EVA_Stage_1", big=true) {
         }
 
         translate([0, 18.5, -20.5])
-            explode([0, 30, 60])
+            explode([0, 60, 0])
                 stl_colour(evaColorGreen())
                     back_corexy_stl();
     }
@@ -83,13 +85,16 @@ assembly("EVA_Stage_1", big=true) {
                     CoreXYBelts(carriagePosition + [-2, 0], x_gap=-25);
 }
 
-//! Remove the temporary bolts and attach the **universal_face.stl** part.
+//! Bolt the **universal_face.stl** part to the **EVA_MC_top_bmg_mgn12** and **EVA_MC_bottom_mgn12_short_duct** parts.
 module EVA_assembly()
 assembly("EVA", big=true) {
 
-    EVA_Stage_1_assembly(temporaryBolts=false);
+    EVA_Stage_1_assembly();
+    xCarriageType = MGN12H_carriage;
+    translate_z(carriage_height(xCarriageType))
+        evaHotendBaseFrontHardware(explode=60);
 
-    translate([0, 18.5, carriage_height(MGN12H_carriage)-20.5])
+    translate([0, 18.5, carriage_height(MGN12H_carriage) - 20.5])
         explode([0, -30, 0])
             translate([0, -32, 0])
                 stl_colour(evaColorGreen())

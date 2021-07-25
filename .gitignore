@@ -67,7 +67,7 @@ EVA/*.md
 #!EVA/dxfs/*.dxf
 #!EVA/dxfs/*.png
 
-!EVA/stls/*.stl
+#!EVA/stls/*.stl
 !EVA/stls/*.png
 EVA/assemblies/*_diff.png
 EVA/dxfs/*_diff.png
