@@ -95,13 +95,15 @@ module X_Carriage_Belt_Clamp_stl() {
                 }*/
 }
 
-module xCarriageBeltClampAssembly(xCarriageType) {
+module xCarriageBeltClampAssembly(xCarriageType, countersunk=false) {
+    assert(is_list(xCarriageType));
+
     size = xCarriageFrontSize(xCarriageType, _beltWidth, clamps=false);
 
     xCarriageBeltClampPosition(xCarriageType, size) {
         stl_colour(pp2_colour)
             X_Carriage_Belt_Clamp_stl();
-        X_Carriage_Belt_Clamp_hardware();
+        X_Carriage_Belt_Clamp_hardware(countersunk=countersunk);
     }
 }
 
