@@ -78,7 +78,6 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   4  |   5  |   .  |   .  |   .  |   .  |    9  |  Bolt M3 buttonhead x 10mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   8  |   16  |  Bolt M3 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 16mm |
-|   .  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |    8  |  Bolt M3 buttonhead x 20mm |
 |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 25mm |
 |   .  |   .  |   .  |   5  |   .  |   .  |   .  |   4  |    9  |  Bolt M3 caphead x  6mm |
 |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M3 caphead x  8mm |
@@ -90,6 +89,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 40mm |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  Bolt M3 countersunk x 10mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   2  |    4  |  Bolt M3 countersunk x 12mm |
+|   .  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |    8  |  Bolt M3 countersunk x 25mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M3 countersunk x 30mm |
 |   .  |   .  |   .  |   .  |   8  |   .  |   .  |  24  |   32  |  Bolt M4 buttonhead x  8mm |
 |   .  |   .  |  14  |   .  |   .  |   8  |   2  |  12  |   36  |  Bolt M4 buttonhead x 10mm |
@@ -281,7 +281,7 @@ Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensi
 |Qty|Description|
 |---:|:----------|
 |4| Bolt M3 buttonhead x 12mm|
-|4| Bolt M3 buttonhead x 20mm|
+|4| Bolt M3 countersunk x 25mm|
 |3| Bolt M4 buttonhead x 10mm|
 |1| Cork damper NEMA 17|
 |3| Nut M4 hammer|
@@ -305,8 +305,10 @@ Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensi
 
 ![XY_Motor_Mount_Right_assembly](assemblies/XY_Motor_Mount_Right_assembly.png)
 
-1. Bolt the idler pulleys and the **XY_Motor_Mount_Brace_Right** to the **XY_Motor_Mount_Right**. Tighten the pulley bolts until
-the pulleys no longer turn freely, and then loosen the bolts by about 1/4 turn until the pulleys turn freely again.
+1. Bolt the idler pulleys and the **XY_Motor_Mount_Brace_Right** to the **XY_Motor_Mount_Right**. Note the brace is not
+symmetrical - there is an orientation indicator and this should point towards the back of the printer. Tighten the
+pulley bolts until the pulleys no longer turn freely, and then loosen the bolts by about 1/4 turn until the pulleys
+turn freely again.
 2. Bolt the motor and the cork damper to the motor mount. The core damper thermally insulates the motor from the mount
 and should not be omitted.
 3. Align the drive pulley with the idler pulleys and bolt it to the motor shaft.
@@ -368,7 +370,7 @@ to turn freely again.
 |Qty|Description|
 |---:|:----------|
 |4| Bolt M3 buttonhead x 12mm|
-|4| Bolt M3 buttonhead x 20mm|
+|4| Bolt M3 countersunk x 25mm|
 |3| Bolt M4 buttonhead x 10mm|
 |1| Cork damper NEMA 17|
 |3| Nut M4 hammer|
@@ -392,8 +394,10 @@ to turn freely again.
 
 ![XY_Motor_Mount_Left_assembly](assemblies/XY_Motor_Mount_Left_assembly.png)
 
-1. Bolt the idler pulleys and the **XY_Motor_Mount_Brace_Left** to the **XY_Motor_Mount_Left**. Tighten the pulley bolts until
-the pulleys no longer turn freely, and then loosen the bolts by about 1/4 turn until the pulleys turn freely again.
+1. Bolt the idler pulleys and the **XY_Motor_Mount_Brace_Left** to the **XY_Motor_Mount_Left**. Note the brace is not
+symmetrical - there is an orientation indicator and this should point towards the back of the printer. Tighten the
+pulley bolts until the pulleys no longer turn freely, and then loosen the bolts by about 1/4 turn until the pulleys
+turn freely again.
 2. Bolt the motor and the cork damper to the motor mount. The core damper thermally insulates the motor from the mount
 and should not be omitted.
 3. Align the drive pulley with the idler pulleys and bolt it to the motor shaft.
