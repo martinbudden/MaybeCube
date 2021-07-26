@@ -10,7 +10,8 @@ include <../scad/Parameters_Main.scad>
 //$explode = 1;
 //$pose=1;
 module XY_Motor_Mount_test() {
-    CoreXYBelts(carriagePosition(), show_pulleys=[1, 0, 0]);
+    if (is_undef($explode))
+        CoreXYBelts(carriagePosition(), show_pulleys=[1, 0, 0]);
     XY_Motor_Mount_Left_assembly();
     //XY_Motor_Mount_Left_stl();
     //XY_Motor_Mount_Left_hardware();
