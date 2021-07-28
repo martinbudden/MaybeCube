@@ -244,7 +244,7 @@ module heatedBedHardware(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, u
         explode(5, true)
             translate_z(thickness/2)
                 color("FireBrick")
-                    O_ring(3, thickness);
+                    O_ring(4, thickness);
         if($children)
             translate_z(thickness)
                 explode(10, true)
@@ -464,7 +464,7 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
     }
 }
 
-//!1. Attach the heated bed to the frame using the stacks of washers and o-rings as shown.
+//!1. Attach the heated bed to the frame using the stacks of washers and O-rings as shown.
 //!2. Spiral wrap the wires from the heated bed.
 //!3. Use the **Printbed_Strain_Relief_Clamp** to clamp the wires to the frame.
 //
