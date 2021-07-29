@@ -12,8 +12,6 @@ use <../vitamins/cables.scad>
 include <../Parameters_Main.scad>
 use <../Parameters_CoreXY.scad>
 
-BLDC_type = BLDC4250;
-
 
 module cornerCube(size, fillet, cornerFillet) {
     linear_extrude(size.z) {
@@ -39,15 +37,11 @@ module cornerCube(size, fillet, cornerFillet) {
 module XY_Encoder_Mount_hardware(motorType) {
 }
 
-module XY_Encoder_Mount_stl()
-stl("XY_Encoder_Mount")
-    color(pp2_colour) {
-        size = [48, 48, 60];
-        cornerSize = [8, 8, size.z];
-        /*extra = 2.75;
-        size = [BLDC_diameter(BLDC_type) + 2*extra, BLDC_diameter(BLDC_type) + 2*extra, 60];
-        echo(size=size);
-        cornerSize = [6 + extra, 6 + extra, 60];*/
+module xyEncoderMount(size, cornerSize) {
+        //extra = 2.75;
+        //size = [BLDC_diameter(BLDC_type) + 2*extra, BLDC_diameter(BLDC_type) + 2*extra, 60];
+        //echo(size=size);
+        //cornerSize = [6 + extra, 6 + extra, 60];
         //topCornerSize = [9 + extra, 9 + extra, 2];
         fillet = 1;
         cornerFillet = 3;
@@ -87,7 +81,7 @@ stl("XY_Encoder_Mount")
                             }
                     }
             }
-            rotate(45)
+            *rotate(45)
                 BLDC_screw_positions(size.x + 8)
                     vflip()
                         boltHoleM3Tap(8);
@@ -96,28 +90,80 @@ stl("XY_Encoder_Mount")
             rounded_cube_xy([size.x, size.y, 5], cornerFillet, xy_center=true);
 }
 
-module XY_Encoder_Mount_Left_assembly()
-assembly("XY_Encoder_Mount_Left", ngb=true) {
+module XY_Encoder_Mount_4250_stl() {
+    size = [48, 48, 60];
+    cornerSize = [8, 8, size.z];
 
-    motorWidth = motorWidth(BLDC4250);
+    stl("XY_Encoder_Mount_4250")
+        color(pp2_colour)
+            xyEncoderMount(size, cornerSize);
+}
+
+module XY_Encoder_Mount_4250_Left_assembly()
+assembly("XY_Encoder_Mount_4250_Left", ngb=true) {
+
+    BLDC_type = BLDC4250;
+    motorWidth = motorWidth(BLDC_type);
     basePlateThickness = 5;
+    offset = leftDrivePulleyOffset();
 
-    translate([coreXYPosBL().x + leftDrivePulleyOffset().x + coreXY_drive_pulley_x_alignment(coreXY_type()), coreXYPosTR(motorWidth).y, coreXYPosBL().z - coreXYSeparation().z - basePlateThickness]) {
+    translate([coreXYPosBL().x + offset.x + coreXY_drive_pulley_x_alignment(coreXY_type()), coreXYPosTR(motorWidth).y, coreXYPosBL().z - coreXYSeparation().z - basePlateThickness]) {
         stl_colour(pp2_colour)
-            XY_Encoder_Mount_stl();
+            XY_Encoder_Mount_4250_stl();
         XY_Encoder_Mount_hardware(BLDC_type);
     }
 }
 
-module XY_Encoder_Mount_Right_assembly()
-assembly("XY_Encoder_Mount_Right", ngb=true) {
+module XY_Encoder_Mount_4250_Right_assembly()
+assembly("XY_Encoder_Mount_4250_Right", ngb=true) {
 
-    motorWidth = motorWidth(BLDC4250);
+    BLDC_type = BLDC4250;
+    motorWidth = motorWidth(BLDC_type);
     basePlateThickness = 5;
+    offset = rightDrivePulleyOffset();
 
-    translate([coreXYPosTR(motorWidth).x + rightDrivePulleyOffset().x - coreXY_drive_pulley_x_alignment(coreXY_type()), coreXYPosTR(motorWidth).y, coreXYPosBL().z - basePlateThickness]) {
+    translate([coreXYPosTR(motorWidth).x + offset.x - coreXY_drive_pulley_x_alignment(coreXY_type()), coreXYPosTR(motorWidth).y, coreXYPosBL().z - basePlateThickness]) {
         stl_colour(pp2_colour)
-            XY_Encoder_Mount_stl();
+            XY_Encoder_Mount_4250_stl();
+        XY_Encoder_Mount_hardware(BLDC_type);
+    }
+}
+
+module XY_Encoder_Mount_4933_stl() {
+    size = [55, 55, 43];
+    cornerSize = [8, 8, size.z];
+
+    stl("XY_Encoder_Mount_4933")
+        color(pp2_colour)
+            xyEncoderMount(size, cornerSize);
+}
+
+module XY_Encoder_Mount_4933_Left_assembly()
+assembly("XY_Encoder_Mount_4933_Left", ngb=true) {
+
+    BLDC_type = BLDC4933;
+    motorWidth = motorWidth(BLDC_type);
+    basePlateThickness = 6;
+    offset = [40.303, 0];
+
+    translate([coreXYPosBL().x + offset.x + coreXY_drive_pulley_x_alignment(coreXY_type()), coreXYPosTR(motorWidth).y, coreXYPosBL().z - coreXYSeparation().z - basePlateThickness]) {
+        stl_colour(pp2_colour)
+            XY_Encoder_Mount_4933_stl();
+        XY_Encoder_Mount_hardware(BLDC_type);
+    }
+}
+
+module XY_Encoder_Mount_4933_Right_assembly()
+assembly("XY_Encoder_Mount_4933_Right", ngb=true) {
+
+    BLDC_type = BLDC4933;
+    motorWidth = motorWidth(BLDC_type);
+    basePlateThickness = 6;
+    offset = [-45.3595, 0];
+
+    translate([coreXYPosTR(motorWidth).x + offset.x - coreXY_drive_pulley_x_alignment(coreXY_type()), coreXYPosTR(motorWidth).y, coreXYPosBL().z - basePlateThickness]) {
+        stl_colour(pp2_colour)
+            XY_Encoder_Mount_4933_stl();
         XY_Encoder_Mount_hardware(BLDC_type);
     }
 }

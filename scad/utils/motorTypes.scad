@@ -1,6 +1,6 @@
 function isNEMAType(motorType) = is_list(motorType) && motorType[0][0] == "N";
 
-function motorWidth(motorType) = isNEMAType(motorType) ? NEMA_width(motorType) : 56;//BLDC_diameter(motorType);
+function motorWidth(motorType) = isNEMAType(motorType) ? NEMA_width(motorType) : motorType[0]=="BLDC4250" ? 56 : 62.5;
 
 function motorType(motorDescriptor) =
     motorDescriptor == "NEMA14" ? NEMA14 :
