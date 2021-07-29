@@ -210,13 +210,23 @@ module topCornerPiece() {
     fillet = 2;
 
     difference() {
-        linear_extrude(size.z)
-            offset(r=fillet)
-                offset(delta=-fillet)
-                    hull()
-                        polygon([
-                            [eSize, 0], [size.x, 0], [size.x, size.y - 2*eSize], [size.x - 2*eSize, size.y], [0, size.y], [0, eSize]
-                        ]);
+        union() {
+            linear_extrude(size.z)
+                offset(r=fillet)
+                    offset(delta=-fillet)
+                        hull()
+                            polygon([
+                                [eSize, 0], [size.x, 0], [size.x, size.y - 2*eSize], [size.x - 2*eSize, size.y], [0, size.y], [0, eSize]
+                            ]);
+            guideSize = [5, eSize + 0.5, 5];
+            translate([guideSize.y, 0, -guideSize.z])
+                rounded_cube_xy([guideSize.x, guideSize.x + guideSize.y, guideSize.z], 1.5);
+            translate([0, guideSize.y, -guideSize.z])
+                rounded_cube_xy([guideSize.x + guideSize.y, guideSize.x, guideSize.z], 1.5);
+            translate([guideSize.y, guideSize.y, -guideSize.z])
+                rotate(180)
+                    fillet(0.5, guideSize.z);
+        }
         for (i = topCornerPieceHoles)
             translate(i)
                 boltPolyholeM4Countersunk(size.z);
