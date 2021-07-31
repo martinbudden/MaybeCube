@@ -123,7 +123,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   3  |   .  |   .  |    3  |  Nut M3 sliding T |
 |   .  |   .  |  12  |  14  |   6  |   .  |   .  |  36  |   68  |  Nut M4 hammer |
 |   .  |   .  |  20  |   .  |   2  |   8  |  12  |   .  |   42  |  Nut M4 sliding T |
-|   .  |   .  |   .  |   .  |   .  |   9  |   .  |   .  |    9  |  O-ring nitrile 3mm x 2mm |
+|   .  |   .  |   .  |   .  |   .  |   9  |   .  |   .  |    9  |  O-ring nitrile 4mm x 2mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE Bowden tube, 500 mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Pillar hex nylon F/F M3x14 |
 |   .  |   .  |   .  |   5  |   .  |   .  |   .  |   .  |    5  |  Pillar hex nylon F/F M3x20 |
@@ -1233,7 +1233,7 @@ the Z carriages are added.
 |1| Cork underlay 214mm x 214mm|
 |1| Heated Bed 214mm x 214mm|
 |3| Nut M3 sliding T|
-|9| O-ring nitrile 3mm x 2mm|
+|9| O-ring nitrile 4mm x 2mm|
 |9| Washer  M3|
 |6| Washer penny  M4|
 
@@ -1258,7 +1258,7 @@ the Z carriages are added.
 
 ![Printbed_assembly](assemblies/Printbed_assembly.png)
 
-1. Attach the heated bed to the frame using the stacks of washers and o-rings as shown.
+1. Attach the heated bed to the frame using the stacks of washers and O-rings as shown.
 2. Spiral wrap the wires from the heated bed.
 3. Use the **Printbed_Strain_Relief_Clamp** to clamp the wires to the frame.
 
