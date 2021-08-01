@@ -76,10 +76,10 @@ module X_Carriage_Belt_Tensioner_stl() {
             xCarriageBeltTensioner(xCarriageBeltTensionerSizeX);
 }
 
-module X_Carriage_Belt_Clamp_stl() {
+module X_Carriage_Belt_Clamp_Buttonhead_stl() {
     size = [xCarriageBeltAttachmentSize().x - 0.5, 25, 4.5];
 
-    stl("X_Carriage_Belt_Clamp")
+    stl("X_Carriage_Belt_Clamp_Buttonhead")
         color(pp2_colour)
             xCarriageBeltClamp(size);
             /*translate([0, -size.y/2, 0])
@@ -95,15 +95,16 @@ module X_Carriage_Belt_Clamp_stl() {
                 }*/
 }
 
-module X_Carriage_Belt_Clamp_Countersunk_stl() {
+module X_Carriage_Belt_Clamp_stl() {
     size = [xCarriageBeltAttachmentSize().x - 0.5, 25, 4.5];
 
-    stl("X_Carriage_Belt_Countersunk_Clamp")
+    stl("X_Carriage_Belt_Clamp")
         color(pp2_colour)
-            xCarriageBeltClamp(size, countersunk=true);
+            vflip()
+                xCarriageBeltClamp(size, countersunk=true);
 }
 
-module xCarriageBeltClampAssembly(xCarriageType, countersunk=false) {
+module xCarriageBeltClampAssembly(xCarriageType, countersunk=true) {
     assert(is_list(xCarriageType));
 
     size = xCarriageFrontSize(xCarriageType, _beltWidth, clamps=false);
@@ -111,9 +112,10 @@ module xCarriageBeltClampAssembly(xCarriageType, countersunk=false) {
     xCarriageBeltClampPosition(xCarriageType, size) {
         stl_colour(pp2_colour)
             if (countersunk)
-                X_Carriage_Belt_Clamp_Countersunk_stl();
+                vflip()
+                    X_Carriage_Belt_Clamp_stl();
             else
-                X_Carriage_Belt_Clamp_stl();
+                X_Carriage_Belt_Clamp_Buttonhead_stl();
         X_Carriage_Belt_Clamp_hardware(countersunk=countersunk);
     }
 }
