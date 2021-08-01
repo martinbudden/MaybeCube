@@ -242,7 +242,7 @@ module evaImportStl(file) {
     import(str("../stlimport/eva/", file, ".stl"));
 }
 
-module EvaTopConvert(stlFile, zOffset = 5) {
+module EvaTopConvert(stlFile, zOffset=5, horizontal=true) {
     module boltCutout(offset, height) {
         vflip() {
             *hull()
@@ -272,7 +272,7 @@ module EvaTopConvert(stlFile, zOffset = 5) {
                 for (x = [-evaHoleSeparationTop/2, evaHoleSeparationTop/2])
                     translate([x, size.y/2, zOffset + 3])
                         rotate([90, 0, 0])
-                            boltHoleM3Tap(size.y, horizontal=true);
+                            boltHoleM3Tap(size.y, horizontal=horizontal, twist=4);
                 boltCutout(7, height - 3);
                 size = [bottomMgn12Size.y + 2*eps, 27 + 2*eps, zOffset + eps];
                 translate([-size.x/2, -size.y/2, -eps])
@@ -329,7 +329,7 @@ module EVA_MC_top_bmg_mgn12_stl() {
 module EVA_MC_top_orbiter_mgn12_stl() {
     stl("EVA_MC_top_orbiter_mgn12")
         color(evaColorGrey())
-            EvaTopConvert("top_orbiter_mgn12");
+            EvaTopConvert("top_orbiter_mgn12", horizontal=false);
 }
 
 module EVA_MC_top_titan_mgn12_stl() {
