@@ -42,7 +42,8 @@ module EVA_test() {
         xRailCarriagePosition(t)
             rotate(180) {
                 //X_Carriage_Belt_Side_MGN12H_assembly();
-                evaHotendBase(top="mgn12");
+                //evaHotendBase(top="mgn12");
+                evaHotendBase(top="orbiter_mgn12");
                 translate([0, 18.5, -15.5 - zOffset])
                     color(pp2_colour)
                         evaImportStl("back_corexy");
@@ -197,7 +198,7 @@ module evaImportStlBottom() {
 
 //universal_face();
 //importTensioner();
-//EvaTopConvert("top_orbiter_mgn12");
+//EvaTopConvert("top_orbiter_mgn12", horizontal=false);
 //EvaTopConvert("top_lgx_mgn12_a");
 //translate_z(-8)evaImportStl("top_lgx_mgn12_a");
 //EVA_MC_top_lgx_mgn12_a_stl();
