@@ -95,6 +95,14 @@ module X_Carriage_Belt_Clamp_stl() {
                 }*/
 }
 
+module X_Carriage_Belt_Clamp_Countersunk_stl() {
+    size = [xCarriageBeltAttachmentSize().x - 0.5, 25, 4.5];
+
+    stl("X_Carriage_Belt_Countersunk_Clamp")
+        color(pp2_colour)
+            xCarriageBeltClamp(size, countersunk=true);
+}
+
 module xCarriageBeltClampAssembly(xCarriageType, countersunk=false) {
     assert(is_list(xCarriageType));
 
@@ -102,7 +110,10 @@ module xCarriageBeltClampAssembly(xCarriageType, countersunk=false) {
 
     xCarriageBeltClampPosition(xCarriageType, size) {
         stl_colour(pp2_colour)
-            X_Carriage_Belt_Clamp_stl();
+            if (countersunk)
+                X_Carriage_Belt_Clamp_Countersunk_stl();
+            else
+                X_Carriage_Belt_Clamp_stl();
         X_Carriage_Belt_Clamp_hardware(countersunk=countersunk);
     }
 }
