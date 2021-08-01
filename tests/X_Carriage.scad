@@ -31,6 +31,7 @@ module X_Carriage_test() {
     //Belt_Tidy_stl();
     //xCarriageBeltAttachmentSize(30)
     //xCarriageBeltAttachmentTest_stl();
+    //vflip() xCarriageBeltClamp([xCarriageBeltAttachmentSize().x - 0.5, 25+2, 4.5], holeSeparation=18, countersunk=true);
 }
 
 if ($preview)
