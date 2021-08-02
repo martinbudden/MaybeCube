@@ -41,7 +41,7 @@ module CoreXY_test() {
     //fullPrinthead(t=t);
 
     *xRailCarriagePosition(t)
-        evaHotendBase();
+        evaHotendTop();
 
     translate_z(eZ)
         xRail(carriagePosition(t));

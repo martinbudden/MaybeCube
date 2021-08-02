@@ -42,9 +42,15 @@ module EVA_test() {
         xRailCarriagePosition(t)
             rotate(180) {
                 //X_Carriage_Belt_Side_MGN12H_assembly();
-                //evaHotendBase(top="mgn12");
-                evaHotendBase(top="orbiter_mgn12");
-                translate([0, 18.5, -15.5 - zOffset])
+                color(pp4_colour)
+                    //evaHotendTop(top="mgn12");
+                    //evaHotendTop(top="lgx_bmg_mgn12_a");
+                    //evaHotendTop(top="bmg_mgn12");
+                    evaHotendTop(top="orbiter_mgn12");
+                    //evaHotendTop(top="titan_mgn12");
+                color(pp4_colour)
+                    evaHotendBottom();
+                translate([0, 19.5, -15.5 - zOffset])
                     color(pp2_colour)
                         evaImportStl("back_corexy");
             }
@@ -200,6 +206,7 @@ module evaImportStlBottom() {
 //importTensioner();
 //EvaTopConvert("top_orbiter_mgn12", horizontal=false);
 //EvaTopConvert("top_lgx_mgn12_a");
+//EvaTopConvert("top_bmg_mgn12");
 //translate_z(-8)evaImportStl("top_lgx_mgn12_a");
 //EVA_MC_top_lgx_mgn12_a_stl();
 //EVA_MC_top_mgn12_stl();
@@ -208,7 +215,7 @@ module evaImportStlBottom() {
 //EVA_MC_bottom_mgn12_short_duct_stl();
 //xCarriageBeltAttachment(30);
 //teeth(8, 5, horizontal=!true);
-//evaHotendBase();
+//evaHotendTop();
 //translate([-43.7, 22, 16]) rotate([-90, 0, 90]) evaImportStl("contributors/dual_5015_bottom_mgn12_wide");
 //EVA_MC_dual_5015_bottom_mgn12_wide_stl();
 //translate([4.1, 22.1, 27]) rotate([-90,0,90]) evaImportStl("contributors/7530_fan_mgn12_bottom_wide");
