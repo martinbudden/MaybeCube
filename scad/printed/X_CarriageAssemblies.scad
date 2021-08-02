@@ -53,7 +53,7 @@ assembly("X_Carriage_Belt_Side_MGN12H") {
 
     offset = 22.5;
     boltLength = 40;
-    translate([offset, -2.5, -31]) {
+    translate([offset, -3.5, -31]) {
         rotate([0, 0, 180]) {
             explode([-40, 0, 0])
                 stl_colour(pp2_colour)
