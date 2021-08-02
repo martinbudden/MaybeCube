@@ -16,7 +16,10 @@ function evaColorGrey() = grey(25);
 function evaColorGreen() = "LimeGreen";
 function X_CarriageEVATensionerOffsetX() = 1;
 
-bottomMgn12Size = [8.2, 44.1, 27];
+beltAlignmentZ = 1;
+function evaBeltAlignmentZ() = beltAlignmentZ;
+
+bottomMgn12Size = [8.2, 44.1, 27 + beltAlignmentZ];
 bottomMgn12OffsetZ = xCarriageBottomOffsetZ();
 evaHoleSeparationTop = 34;
 evaHoleSeparationBottom = 26;
@@ -39,7 +42,7 @@ module evaPrintheadList() {
         EVA_MC_7530_fan_mgn12_bottom_wide_stl();
 }
 
-module evaHotendBase(top="mgn12", explode=40) {
+module evaHotendTop(top="mgn12", explode=40) {
     translate_z(2*eps)
         explode(explode)
             if (top == "lgx_bmg_mgn12_a")
@@ -52,7 +55,9 @@ module evaHotendBase(top="mgn12", explode=40) {
                 EVA_MC_top_titan_mgn12_stl();
             else
                 EVA_MC_top_mgn12_stl();
+}
 
+module evaHotendBottom() {
     translate([-bottomMgn12Size.y/2, bottomMgn12Size.z/2, -bottomMgn12OffsetZ])
         rotate([90, 90, 0])
             EVA_MC_bottom_mgn12_short_duct_stl();
@@ -141,72 +146,74 @@ module evaBeltTensionersHardware() {
 
 module EVA_MC_BottomMgn12(ductSizeY=undef, airflowSplit=false) {
     size = bottomMgn12Size;
-    tabSize = [22, is_undef(ductSizeY) ? size.y - 20 : ductSizeY, 3];
+    tabSize = [22, is_undef(ductSizeY) ? size.y - 20 : ductSizeY, 3 + beltAlignmentZ];
     fillet = 0;
     offsetY = 4.5;
     carriageType = MGN12H_carriage;
 
-    difference() {
-        union() {
-            rounded_cube_xy(size, fillet);
-            translate([size.x + 10, size.y/2, 0])
-                rounded_cube_xy([8, tabSize.y + 14, tabSize.z], 4 - eps, xy_center=true);
-            translate([0, (size.y - tabSize.y)/2, 0]) {
-                cube(tabSize);
-                translate([size.x, 0, 0])
-                    rotate(270)
+    translate_z(-beltAlignmentZ/2) {
+        difference() {
+            union() {
+                rounded_cube_xy(size, fillet);
+                translate([size.x + 10, size.y/2, 0])
+                    rounded_cube_xy([8, tabSize.y + 14, tabSize.z], 4 - eps, xy_center=true);
+                translate([0, (size.y - tabSize.y)/2, 0]) {
+                    cube(tabSize);
+                    translate([size.x, 0, 0])
+                        rotate(270)
+                            fillet(2, tabSize.z);
+                    translate([size.x + 6, 0, 0])
+                        rotate(180)
+                            fillet(2, tabSize.z);
+                    translate([size.x, tabSize.y, 0])
                         fillet(2, tabSize.z);
-                translate([size.x + 6, 0, 0])
-                    rotate(180)
-                        fillet(2, tabSize.z);
-                translate([size.x, tabSize.y, 0])
-                    fillet(2, tabSize.z);
-                translate([size.x + 6, tabSize.y, 0])
-                    rotate(90)
-                        fillet(2, tabSize.z);
+                    translate([size.x + 6, tabSize.y, 0])
+                        rotate(90)
+                            fillet(2, tabSize.z);
+                }
             }
-        }
-        cutoutSize = [size.x + 2*eps, 12, 2 + 2*eps];
-        hull()
-            translate([-eps, (size.y - cutoutSize.y)/2, size.z + eps]) {
-                translate([0, cutoutSize.y, 0])
-                    rotate([0, 90, 0])
+            cutoutSize = [size.x + 2*eps, 12, 2 + 2*eps];
+            hull()
+                translate([-eps, (size.y - cutoutSize.y)/2, size.z + eps]) {
+                    translate([0, cutoutSize.y, 0])
+                        rotate([0, 90, 0])
+                            right_triangle(cutoutSize.z, cutoutSize.z, cutoutSize.x, center=false);
+                    rotate([-90, 0, -90])
                         right_triangle(cutoutSize.z, cutoutSize.z, cutoutSize.x, center=false);
-                rotate([-90, 0, -90])
-                    right_triangle(cutoutSize.z, cutoutSize.z, cutoutSize.x, center=false);
+            }
+            for (y = [0, size.y], z = [6, size.z - 6])
+                translate([size.x, y, z])
+                    //scale([1, 1.2, 1])
+                        tube(7, 4, 4);
+            translate([3, size.y/2, size.z - cutoutSize.z])
+                vflip()
+                    boltHoleM3(5, twist=4);
+            translate([15.4, size.y/2, -eps])
+                rounded_cube_xy([10.6, tabSize.y - 4, tabSize.z + 2*eps], 1.5, xy_center=true);
+            translate([size.x + eps, -eps, -eps])
+                rotate(90)
+                    right_triangle(2, 2, size.z + 2*eps, center=false);
+            translate([size.x + eps, size.y + eps, -eps])
+                rotate(180)
+                    right_triangle(2, 2, size.z + 2*eps, center=false);
+            for (y = [(size.y - evaHoleSeparationBottom)/2, (size.y + evaHoleSeparationBottom)/2])
+            //for (y = [9, size.y - 9])
+                translate([size.x - 4, y, 0])
+                    boltHoleM3Tap(size.z, twist=4);
+            for (y = [(size.y + tabSize.y)/2 + 3, (size.y - tabSize.y)/2 - 3])
+                translate([size.x + 10, y, 0])
+                    boltHoleM3(tabSize.z, twist=4);
         }
-        for (y = [0, size.y], z = [6, size.z - 6])
-            translate([size.x, y, z])
-                //scale([1, 1.2, 1])
-                    tube(7, 4, 4);
-        translate([3, size.y/2, size.z - cutoutSize.z])
-            vflip()
-                boltHoleM3(5, twist=4);
-        translate([15.4, size.y/2, -eps])
-            rounded_cube_xy([10.6, tabSize.y - 4, tabSize.z + 2*eps], 1.5, xy_center=true);
-        translate([size.x + eps, -eps, -eps])
-            rotate(90)
-                right_triangle(2, 2, size.z + 2*eps, center=false);
-        translate([size.x + eps, size.y + eps, -eps])
-            rotate(180)
-                right_triangle(2, 2, size.z + 2*eps, center=false);
-        for (y = [(size.y - evaHoleSeparationBottom)/2, (size.y + evaHoleSeparationBottom)/2])
-        //for (y = [9, size.y - 9])
-            translate([size.x - 4, y, 0])
-                boltHoleM3Tap(size.z, twist=4);
-        for (y = [(size.y + tabSize.y)/2 + 3, (size.y - tabSize.y)/2 - 3])
-            translate([size.x + 10, y, 0])
-                boltHoleM3(tabSize.z, twist=4);
-    }
-    if (airflowSplit)
-        translate([0, (size.y - 1.5)/2, 0])
-            cube([tabSize.x, 1.5, tabSize.z]);
+        if (airflowSplit)
+            translate([0, (size.y - 1.5)/2, 0])
+                cube([tabSize.x, 1.5, tabSize.z]);
 
-    extraZ = 0.5;
-    translate_z(extraZ)
-        xCarriageBeltAttachment(size.y);
-    translate([-xCarriageBeltAttachmentSize().x, 0, 0])
-        cube([xCarriageBeltAttachmentSize().x, size.y, extraZ]);
+        extraZ = 0.5;
+        translate_z(extraZ)
+            xCarriageBeltAttachment(size.y);
+        translate([-xCarriageBeltAttachmentSize().x, 0, 0])
+            cube([xCarriageBeltAttachmentSize().x, size.y, extraZ]);
+    }
 }
 
 module EVA_MC_TopMgn12(counterBore=true) {
@@ -216,7 +223,8 @@ module EVA_MC_TopMgn12(counterBore=true) {
     carriageType = MGN12H_carriage;
 
     difference() {
-        rounded_cube_xy(size, 1, xy_center=true);
+        translate([0, beltAlignmentZ/2, 0])
+            rounded_cube_xy(size, 1, xy_center=true);
         translate_z(size.z - carriage_height(carriageType))
             carriage_hole_positions(carriageType)
                 vflip()
@@ -269,11 +277,30 @@ module EvaTopConvert(stlFile, zOffset=5, horizontal=true) {
                     for (size = [size1, size2, size3])
                         translate([-size.x/2, -size.y/2, zOffset])
                             cube(size);
+                    size4 = [bottomMgn12Size.y, beltAlignmentZ, height - 1];
+                    size5 = [bottomMgn12Size.y - 2, beltAlignmentZ, height];
+                    translate([-size4.x/2, 13.5, zOffset])
+                        hull() {
+                            cube(size4);
+                            translate([1, 0, 0])
+                                cube(size5);
+                        }
+                    if (stlFile == "top_orbiter_mgn12") {
+                        size1 = [7.07, beltAlignmentZ, height + 1.5];
+                        size2 = [10.1, beltAlignmentZ, height];
+                        translate([-6.55, 13.5, zOffset])
+                            hull() {
+                                translate([-size1.x/2, 0, 0])
+                                    cube(size1);
+                                translate([-size2.x/2, 0, 0])
+                                    cube(size2);
+                            }
+                    }
                 }
                 for (x = [-evaHoleSeparationTop/2, evaHoleSeparationTop/2])
-                    translate([x, size.y/2, zOffset + 3])
+                    translate([x, size.y/2 + beltAlignmentZ, zOffset + 3])
                         rotate([90, 0, 0])
-                            boltHoleM3Tap(size.y, horizontal=horizontal, twist=4);
+                            boltHoleM3Tap(size.y + beltAlignmentZ, horizontal=horizontal, twist=4);
                 boltCutout(7, height - 3);
                 size = [bottomMgn12Size.y + 2*eps, 27 + 2*eps, zOffset + eps];
                 translate([-size.x/2, -size.y/2, -eps])

@@ -53,23 +53,28 @@ assembly("EVA_Stage_1", big=true) {
 
     translate_z(carriage_height(xCarriageType)) {
         stl_colour(evaColorGrey())
-            not_on_bom()
-                evaHotendBase(top="bmg_mgn12", explode=60);
+            not_on_bom() {
+                evaHotendTop(top="bmg_mgn12", explode=60);
+                evaHotendBottom();
+            }
 
         evaHotendBaseTopHardware(explode=100);
         evaHotendBaseBackHardware(explode=100);
 
-        stl_colour(pp2_colour)
-            evaBeltTensioners();
-        evaBeltTensionersHardware();
-
-        explode([0, -20,0], true) {
+        translate([0, evaBeltAlignmentZ()/2, 0]) {
             stl_colour(pp2_colour)
-                evaBeltClamp();
-            evaBeltClampHardware();
+                evaBeltTensioners();
+            evaBeltTensionersHardware();
         }
 
-        translate([0, 18.5, -20.5])
+        explode([0, -20, 0], true)
+            translate([0, -evaBeltAlignmentZ(), 0]) {
+                stl_colour(pp2_colour)
+                    evaBeltClamp();
+                evaBeltClampHardware();
+            }
+
+        translate([0, 18.5 + evaBeltAlignmentZ(), -20.5])
             explode([0, 60, 0])
                 stl_colour(evaColorGreen())
                     back_corexy_stl();
