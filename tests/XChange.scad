@@ -28,8 +28,10 @@ module XChange_test() {
         xRailCarriagePosition(t)
             rotate(180) {
                 X_Carriage_XChange_assembly();
-                X_Carriage_Belt_Side_MGN12H_assembly();
-                xCarriageBeltClampAssembly(xCarriageType, countersunk=true);
+                no_explode() {
+                    X_Carriage_Belt_Side_MGN12H_assembly();
+                    xCarriageBeltClampAssembly(xCarriageType, countersunk=true);
+                }
                 translate_z(-carriage_height(xCarriageType))
                     carriage(xCarriageType);
             }

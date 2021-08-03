@@ -22,7 +22,7 @@ module X_Carriage_XChange_stl() {
     topThickness = xCarriageTopThickness();
     railCarriageGap = 0.5;
     topSizeZ = 18.05 + railCarriageGap - 4.5;
-    bottomSizeZ = 13 + railCarriageGap - 4.5;
+    bottomSizeZ = 13.5 + railCarriageGap - 4.5;
     fillet = 1;
 
     stl("X_Carriage_XChange")
@@ -72,10 +72,12 @@ module X_Carriage_XChange_hardware() {
         holeOffset = 3;
         for (y = xCarriageHolePositions(size.x, xCarriageHoleSeparationTop(xCarriageType)))
             translate([5, y, holeOffset + 30.6])
-                boltM3Countersunk(30);
+                explode(40, true)
+                    boltM3Countersunk(30);
         for (y = xCarriageHolePositions(size.x, xCarriageHoleSeparationBottom(xCarriageType)))
             translate([size.z - 4, y, holeOffset + 30.6])
-                boltM3Countersunk(30);
+                explode(40, true)
+                    boltM3Countersunk(30);
 
         holeSeparation = carriage_pitch_y(xCarriageType);
         for (y = [-holeSeparation/2, holeSeparation/2]) {
@@ -95,6 +97,7 @@ module X_Carriage_XChange_hardware() {
 module X_Carriage_XChange_assembly()
 assembly("X_Carriage_XChange", ngb=true) {
 
+    explode([0, 40, 0], true)
     rotate([0, 90, -90]) {
         stl_colour(pp1_colour)
             X_Carriage_XChange_stl();
