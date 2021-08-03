@@ -199,7 +199,6 @@ module EVA_MC_BottomMgn12(ductSizeY=undef, airflowSplit=false) {
                 rotate(180)
                     right_triangle(2, 2, size.z + 2*eps, center=false);
             for (y = [(size.y - evaHoleSeparationBottom)/2, (size.y + evaHoleSeparationBottom)/2])
-            //for (y = [9, size.y - 9])
                 translate([size.x - 4, y, 0])
                     boltHoleM3Tap(size.z, twist=4);
             for (y = [(size.y + tabSize.y)/2 + 3, (size.y - tabSize.y)/2 - 3])
@@ -219,34 +218,31 @@ module EVA_MC_BottomMgn12(ductSizeY=undef, airflowSplit=false) {
 }
 
 module EVA_MC_TopMgn12(counterBore=true) {
-    sizeZ = bottomMgn12Size.y;
-    //bottomMgn12Size = [8.2, 44.1, 27];
     size = [bottomMgn12Size.y, bottomMgn12Size.z, 8];
     carriageType = MGN12H_carriage;
 
-    difference() {
-        translate([0, beltAlignmentZ/2, 0])
+    translate([0, beltAlignmentZ/2, 0])
+        difference() {
             rounded_cube_xy(size, 1, xy_center=true);
-        translate_z(size.z - carriage_height(carriageType))
-            carriage_hole_positions(carriageType)
-                vflip()
-                    if (counterBore)
-                        boltHoleM3Counterbore(8, twist=4);
-                    else
-                        boltHoleM3(8, twist=4);
-        for (x = [-evaHoleSeparationTop/2, evaHoleSeparationTop/2])
-        //for (x = [-size.x/2 + 5, size.x/2 - 5])
-            translate([x, size.y/2, 3])
-                    rotate([90, 0, 0])
-                        boltHoleM3Tap(size.y, horizontal=true);
-        fillet = 1 + eps;
-        translate([-size.x/2 - eps, 0, size.z + eps])
-            rotate([90, 90, 0])
-                right_triangle(fillet, fillet, size.y + 2*eps, center=true);
-        translate([size.x/2 + eps, 0, size.z + eps])
-            rotate([90, 180, 0])
-                right_triangle(fillet, fillet, size.y + 2*eps, center=true);
-    }
+            translate_z(size.z - carriage_height(carriageType))
+                carriage_hole_positions(carriageType)
+                    vflip()
+                        if (counterBore)
+                            boltHoleM3Counterbore(8, twist=4);
+                        else
+                            boltHoleM3(8, twist=4);
+            for (x = [-evaHoleSeparationTop/2, evaHoleSeparationTop/2])
+                translate([x, size.y/2, 3])
+                        rotate([90, 0, 0])
+                            boltHoleM3Tap(size.y, horizontal=true);
+            fillet = 1 + eps;
+            translate([-size.x/2 - eps, 0, size.z + eps])
+                rotate([90, 90, 0])
+                    right_triangle(fillet, fillet, size.y + 2*eps, center=true);
+            translate([size.x/2 + eps, 0, size.z + eps])
+                rotate([90, 180, 0])
+                    right_triangle(fillet, fillet, size.y + 2*eps, center=true);
+        }
 }
 
 module evaImportStl(file) {
@@ -273,7 +269,7 @@ module EvaTopConvert(stlFile, zOffset=5, horizontal=true) {
                 height = 8;
                 union() {
                     evaImportStl(stlFile);
-                    size1 = [30 + 10 + 2*eps, 27, height - screw_head_height(M3_cap_screw) - 0.2];
+                    size1 = [40 + 2*eps, 27, height - screw_head_height(M3_cap_screw) - 0.2];
                     size2 = [bottomMgn12Size.y, 12, 1];
                     size3 = [30, 12, height - screw_head_height(M3_cap_screw) - 0.2];
                     for (size = [size1, size2, size3])
