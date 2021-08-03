@@ -14,6 +14,8 @@ use <../vitamins/bolts.scad>
 
 function evaColorGrey() = grey(25);
 function evaColorGreen() = "LimeGreen";
+function evaAdaptorColor() = "SteelBlue";
+
 function X_CarriageEVATensionerOffsetX() = 1;
 
 beltAlignmentZ = 1;
@@ -320,49 +322,49 @@ module EvaTopConvert(stlFile, zOffset=5, horizontal=true) {
 
 module EVA_MC_bottom_mgn12_short_duct_stl() {
     stl("EVA_MC_bottom_mgn12_short_duct")
-        color(evaColorGrey())
+        color(evaAdaptorColor())
             EVA_MC_BottomMgn12();
 }
 
 module EVA_MC_dual_5015_bottom_mgn12_wide_stl() {
     stl("EVA_MC_dual_5015_bottom_mgn12_wide")
-        color(evaColorGrey())
+        color(evaAdaptorColor())
             EVA_MC_BottomMgn12(34, airflowSplit=true);
 }
 
 module EVA_MC_7530_fan_mgn12_bottom_wide_stl() {
     stl("EVA_MC_7530_fan_mgn12_bottom_wide")
-        color(evaColorGrey())
+        color(evaAdaptorColor())
             EVA_MC_BottomMgn12(34);
 }
 
 module EVA_MC_top_mgn12_stl() {
     stl("EVA_MC_top_mgn12")
-        color(evaColorGrey())
+        color(evaAdaptorColor())
             EVA_MC_TopMgn12(counterBore=true);
 }
 
 module EVA_MC_top_lgx_mgn12_a_stl() {
     stl("EVA_MC_top_lgx_mgn12_a")
-        color(evaColorGrey())
+        color(evaAdaptorColor())
             EVA_MC_TopMgn12(counterBore=false);
 }
 
 module EVA_MC_top_bmg_mgn12_stl() {
     stl("EVA_MC_top_bmg_mgn12")
-        color(evaColorGrey())
+        color(evaAdaptorColor())
             EvaTopConvert("top_bmg_mgn12");
 }
 
 module EVA_MC_top_orbiter_mgn12_stl() {
     stl("EVA_MC_top_orbiter_mgn12")
-        color(evaColorGrey())
+        color(evaAdaptorColor())
             EvaTopConvert("top_orbiter_mgn12", horizontal=false);
 }
 
 module EVA_MC_top_titan_mgn12_stl() {
     stl("EVA_MC_top_titan_mgn12")
-        color(evaColorGrey())
+        color(evaAdaptorColor())
             EvaTopConvert("top_titan_mgn12");
 }
 

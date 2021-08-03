@@ -46,13 +46,13 @@ module EVA_Stage_1_assembly()
 assembly("EVA_Stage_1", big=true) {
 
     hidden()
-        stl_colour(evaColorGrey())
+        stl_colour(evaAdaptorColor())
             evaPrintheadList();
 
     xCarriageType = MGN12H_carriage;
 
     translate_z(carriage_height(xCarriageType)) {
-        stl_colour(evaColorGrey())
+        stl_colour(evaAdaptorColor())
             not_on_bom() {
                 evaHotendTop(top="bmg_mgn12", explode=60);
                 evaHotendBottom();
