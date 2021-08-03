@@ -70,8 +70,9 @@ module evaHotendBaseTopHardware(explode=40) {
 
     translate_z(5 - carriage_height(carriageType))
         carriage_hole_positions(MGN12H_carriage)
-            explode(explode, true)
-                boltM3Caphead(8);
+            translate_z($exploded ? explode-70 : 0)
+                explode(70, true)
+                    boltM3Caphead(8);
 }
 
 module evaHotendBaseBackHardware(explode=40) {
@@ -116,7 +117,7 @@ module evaBeltClampPosition() {
 
 module evaBeltClamp() {
     evaBeltClampPosition()
-        vflip()
+        translate_z(4.5)
             X_Carriage_Belt_Clamp_stl();
 }
 
@@ -124,7 +125,7 @@ module evaBeltClampHardware() {
     evaBeltClampPosition()
         translate_z(4.5)
             vflip()
-                X_Carriage_Belt_Clamp_hardware();
+                X_Carriage_Belt_Clamp_hardware(countersunk=true);
 }
 
 module evaBeltTensionerPositions(explode=0) {
