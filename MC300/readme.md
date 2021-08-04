@@ -75,7 +75,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech TFT35 E3 v3.0 |
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
 |   .  |   .  |   .  |   .  |   2  |   2  |   .  |   2  |    6  |  Bolt M3 buttonhead x  8mm |
-|   .  |   .  |   4  |   5  |   .  |   .  |   .  |   .  |    9  |  Bolt M3 buttonhead x 10mm |
+|   .  |   .  |   2  |   5  |   .  |   .  |   .  |   .  |    7  |  Bolt M3 buttonhead x 10mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   8  |   16  |  Bolt M3 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 16mm |
 |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 25mm |
@@ -87,7 +87,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   4  |    6  |  Bolt M3 caphead x 25mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 30mm |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 40mm |
-|   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  Bolt M3 countersunk x 10mm |
+|   .  |   .  |   2  |   .  |   .  |   2  |   .  |   .  |    4  |  Bolt M3 countersunk x 10mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   2  |    4  |  Bolt M3 countersunk x 12mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |    8  |  Bolt M3 countersunk x 25mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M3 countersunk x 30mm |
@@ -706,7 +706,7 @@ extreme and tighten the bolts on that end of the Y-rail. Finally tighten the rem
 |---:|:----------|
 |1| Belt GT2 x 6mm x nanmm|
 |1| Belt GT2 x 6mm x nanmm|
-|2| Bolt M3 buttonhead x 10mm|
+|2| Bolt M3 countersunk x 10mm|
 |2| Bolt M3 countersunk x 12mm|
 
 
