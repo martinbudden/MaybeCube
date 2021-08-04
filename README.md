@@ -12,16 +12,19 @@ The dimensions of the main MC350 cuboid are 390mm by 390mm by 400mm, and the enc
 
 ## Assembly instructions
 
-The MaybeCube is still in development and these build instructions are incomplete. They are posted to allow prospective
-builders a chance to look at the design and decide if they might want to build it in future. If you are an experienced constructor of 3D printers then there is probably sufficient information for you to fill in the gaps and construct the printer.
+The "standard" size is the MC350 variant. I have built the MC300 variant for two reasons: to test sizing (if the components fit in the MC300 variant, then they will fit in larger variants); and because I had a quantity of 300mm extrusion and the right size heated bed from an earlier project.
 
-The "standard" size is the MC350 variant. I have built the MC300 variant for two reasons: to test sizing (if the components fit in the MC300 variant, then they will fit in larger variants); and because had a quantity of 300mm extrusion and the right size heated bed from an earlier project.
+The assembly instructions and the BOM (parts list) for the MC300 variant are [here](https://github.com/martinbudden/MaybeCube/blob/main/MC300/readme.md).
 
-The assembly instructions and the BOM (parts list) for the MC350 variant will be made available when they are ready.
+The assembly instructions and the BOM for the MC350 variant are [here](https://github.com/martinbudden/MaybeCube/blob/main/MC350/readme.md).
 
-The assembly instructions and the BOM for the MC300 variant are [here](MC300/readme.md). The STL files are [here](MC300/stls). These are still a work in progress and are provided to allow familiarisation with the design prior to assembly.
+Please read all the build instructions before you begin assembly.
 
-I plan to make a series of YouTube videos giving build instructions, when I have done so I will post a link here. I won't start these, however, until I have completed the BabyCube build videos and completed the build instructions of the MaybeCube.
+The STL files are on [thingiverse](https://www.thingiverse.com/thing:4912095).
+
+The assembly of the different MC300 and MC350 variants is essentially the same, the differences are in the printbed and the placing of the PSU on the back panel. Larger variants naturally have a larger printbed and to support this can optionally have Z-rods on both sides of the printbed.
+
+I plan to make a series of YouTube videos giving build instructions, when I have done so I will post a link here. I won't start these, however, until I have completed the BabyCube build videos.
 
 If you would like to build a smaller printer, you may be interested in the MaybeCube's smaller sibling, the [BabyCube](https://github.com/martinbudden/BabyCube).
 
@@ -89,7 +92,7 @@ There are three main ways to increase the rigidity of rectangles:
 2. using a shear plate, this is exemplified in the [sheer boards](https://en.wikipedia.org/wiki/Shear_wall) used to stiffen wooden framed buildings
 3. reinforcing the joints.
 
-The MaybeCube uses 2040 extrusions, these have twice the contact area at the joints and provide significantly more joint rigidity than 2020 extrusions. Additionally the MaybeCube uses shear plates on the bottom, back, left and (optionally) right faces to stiffen the frame.
+The MaybeCube uses 2040 extrusions, these provide significantly more joint rigidity than either 2020 or 3030 extrusions. Additionally the MaybeCube uses shear plates on the bottom, back, and (optionally) left and right faces to stiffen the frame.
 
 The front face of the MaybeCube is the most subject to shearing, since it needs to be open to allow access to the printbed. Two measures are taken to counteract this: 2080 rather than 2040 extrusion is used at the bottom of the face, and the idler mounts at the top are extended to provide some triangulation and reinforcement of the upper joints.
 
@@ -101,11 +104,15 @@ In its default configuration the MaybeCube has an E3D V6 hotend with a Bowden ex
 so that the [EVA modular printhead system](https://main.eva-3d.page) can be used. The EVA system supports a wide variety
 of hotends and extruders. More details on using the EVA adaptors are [here](https://github.com/martinbudden/MaybeCube/tree/main/EVA).
 
+The STL files are on [thingiverse](https://www.thingiverse.com/thing:4912099).
+
 ## Printermods XChange quick change tool head
 
 I've created an adaptor for the
 [Printermods XChange quick change tool head](https://www.kickstarter.com/projects/printermods/xchange-v10-hot-swap-tool-changing-for-every-3d-printer).
 More details on using the XChange adaptor are [here](https://github.com/martinbudden/MaybeCube/tree/main/XChange).
+
+The STL files are on [thingiverse](https://www.thingiverse.com/thing:4924355).
 
 ### E3D tool changer
 
