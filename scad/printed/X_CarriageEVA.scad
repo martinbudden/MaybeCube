@@ -6,8 +6,7 @@ include <NopSCADlib/utils/tube.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
 use <../../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
-use <../printed/X_CarriageAssemblies.scad>
-use <../printed/X_CarriageEVA.scad>
+use <X_CarriageAssemblies.scad>
 
 use <../vitamins/bolts.scad>
 
