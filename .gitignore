@@ -21,6 +21,7 @@ scad/target.scad
 scad/bom.scad
 scad/stlimporttemp
 scad/stlimport/eva
+scad/stlimport/jubilee
 
 tests.*
 tests/*.*
