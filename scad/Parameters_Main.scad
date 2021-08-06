@@ -3,11 +3,6 @@ include <target.scad>
 _useBlindJoints = true;
 _reducedBOM = false;
 
-module not_on_reduced_bom() {
-    let($on_bom = !_reducedBOM)
-        children();
-}
-
 _boltTogether = true;
 _useAsserts = true;
 
@@ -27,7 +22,7 @@ __scs_hole_offset = _zRodDiameter == 8 ? 11 : _zRodDiameter == 10 ? 13 : 15;
 _zCarriageSCS_sizeZ = 5.5;
 __zCarriageYOffset =  __scs_hole_offset + _zCarriageSCS_sizeZ;
 
-function zRodSeparation() = -__zCarriageYOffset*2 + _printBedArmSeparation;
+function zRodSeparation() = -__zCarriageYOffset*2 + (is_undef(_printBedArmSeparation) ? 150 : _printBedArmSeparation);
 
 // Bolts
 _frameBoltLength = 10;

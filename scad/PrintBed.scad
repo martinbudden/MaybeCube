@@ -32,12 +32,12 @@ springLength = 18; // 25 uncompressed
 SK_type = _zRodDiameter == 8 ? SK8 : _zRodDiameter == 10 ? SK10 : SK12;
 skHoleOffsetFromTop = sk_size(SK_type).y - sk_hole_offset(SK_type);
 
-heatedBedOffset = _printBed4PointSupport
+heatedBedOffset = !is_undef(_printBed4PointSupport) && _printBed4PointSupport
     ? [0, 20, _printBedExtrusionSize/2 + springLength - 8]
     : [0, skHoleOffsetFromTop + 8, _printBedExtrusionSize/2 + 5.5];
 
 
-_heatedBedSize = _printBedSize == 100 ? [100, 100, 1.6] : // Openbuilds mini heated bed size
+_heatedBedSize = is_undef(_printBedSize) || _printBedSize == 100 ? [100, 100, 1.6] : // Openbuilds mini heated bed size
                 _printBedSize == 120 ? [120, 120, 6] : // Voron 0 size
                 _printBedSize == 180 ? [180, 180, 3] :
                 _printBedSize == 210 ? [210, 210, 4] :
@@ -48,7 +48,7 @@ _heatedBedSize = _printBedSize == 100 ? [100, 100, 1.6] : // Openbuilds mini hea
                 undef;
 
 // values marked undef are not currently reliably known
-_heatedBedHoleOffset = _printBedSize == 100 ? 4 :
+_heatedBedHoleOffset = is_undef(_printBedSize) || _printBedSize == 100 ? 4 :
                     _printBedSize == 120 ? 5 :
                     _printBedSize == 180 ? 3 : // !!estimate
                     _printBedSize == 210 ? undef :
@@ -97,7 +97,7 @@ dualCrossPieces = true;
 
 function printBedSize() = [
     _heatedBedSize.x,
-    is_true(_useDualZRods) ? eY - 3 : eY <= 250 ? 225 : eY <= 300 ? 260 : eY <= 350 ? 275 : 375,
+    !is_undef(_useDualZRods) && _useDualZRods ? eY - 3 : eY <= 250 ? 225 : eY <= 300 ? 260 : eY <= 350 ? 275 : 375,
     _printBedExtrusionSize + _heatedBedSize.z
 ];
 
@@ -228,7 +228,7 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
                             comp_spring(spring, springLength);
                     explode(-200)
                         translate_z(-springLength - eSize/2 - 1)
-                            not_on_reduced_bom() HeatedBedLevelingKnob();
+                            HeatedBedLevelingKnob();
                 }
             }
         }
@@ -477,7 +477,7 @@ assembly("Printbed", big=true) {
             // add the heated bed
             explode(120, true)
                 translate(heatedBedOffset) {
-                    not_on_reduced_bom() heatedBed(_heatedBedSize, _heatedBedHoleOffset, 3);
+                    heatedBed(_heatedBedSize, _heatedBedHoleOffset, 3);
                     if (!_printBed4PointSupport)
                         heatedBedHardware(_heatedBedSize, _heatedBedHoleOffset, 3);
                 }
@@ -488,7 +488,7 @@ assembly("Printbed", big=true) {
                             Printbed_Strain_Relief_Clamp_stl();
                     explode(10, true)
                         Printbed_Strain_Relief_Clamp_hardware();
-        }
+                }
         }
 }
 
