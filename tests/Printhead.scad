@@ -21,6 +21,7 @@ include <../scad/Parameters_Main.scad>
 function  blzX(yCarriageType) = coreXYSeparation().z + yRailSupportThickness() + yCarriageThickness() + carriage_height(yCarriageType);
 function  blz(yCarriageType) = yCarriageThickness() + carriage_height(yCarriageType);
 
+
 //$explode = 1;
 //$pose = 1;
 module Printhead_test() {
@@ -86,7 +87,7 @@ module xCarriageTopTest() {
                 boltHoleM3(size.z);
     }
 }
-
-
-if ($preview)
+translate_z(-eZ)
+printheadHotendSide();
+*if ($preview)
     Printhead_test();

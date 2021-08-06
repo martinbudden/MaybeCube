@@ -30,7 +30,8 @@ module Exploded_View_test() {
         Left_Side_assembly();
         zRods();
         translate_z(bedHeight())
-            Printbed_assembly();
+            if ($target[0]=="M")
+                Printbed_assembly();
     }
 
     explode([explode, 0, 0])

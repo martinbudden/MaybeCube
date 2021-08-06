@@ -11,7 +11,8 @@ include <../scad/Parameters_main.scad>
 //$explode = 1;
 //$pose = 1;
 module Printbed_test() {
-    Printbed_assembly();
+    if ($target[0]=="M")
+        Printbed_assembly();
     //translate_z(-_zRodLength/2) zRods();
     //if(is_true(_useDualZRods)) translate_z(-_zRodLength/2) zRods(left=false);
     //heatedBed();
