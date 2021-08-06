@@ -374,6 +374,7 @@ module xyMotorMount(motorType, bracketHeight, basePlateThickness, offset=[0, 0],
 }
 
 module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0,0], sideSupportSizeY=sideSupportSizeY, corkDamperThickness=0, blockHeightExtra=0, stepdown=false, left=true) {
+    corkDamperThickness = is_undef(corkDamperThickness) ? 0 : corkDamperThickness;
     motorWidth = motorWidth(motorType);
     coreXYPosBL = coreXYPosBL();
     coreXYPosTR = coreXYPosTR(motorWidth);
@@ -555,7 +556,7 @@ assembly("XY_Motor_Mount_Left", ngb=true) {
 
     stl_colour(pp1_colour)
         XY_Motor_Mount_Left_stl();
-    XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, sideSupportSizeY, _corkDamperThickness, blockHeightExtra, left=true);
+    XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, sideSupportSizeY, is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, blockHeightExtra, left=true);
     stl_colour(pp2_colour)
         XY_Motor_Mount_Brace_Left_stl();
 }
@@ -585,7 +586,7 @@ assembly("XY_Motor_Mount_Right", ngb=true) {
     stl_colour(pp1_colour)
         XY_Motor_Mount_Right_stl();
     offset = rightDrivePulleyOffset();
-    XY_Motor_Mount_hardware(motorType(_xyMotorDescriptor), basePlateThickness, offset, sideSupportSizeY, _corkDamperThickness, blockHeightExtra, left=false);
+    XY_Motor_Mount_hardware(motorType(_xyMotorDescriptor), basePlateThickness, offset, sideSupportSizeY, is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, blockHeightExtra, left=false);
     stl_colour(pp2_colour)
         XY_Motor_Mount_Brace_Right_stl();
 }

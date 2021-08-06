@@ -26,7 +26,8 @@ NEMA17_40L230 = ["NEMA17_40L230", 42.3,   40,   53.6/2, 25,     11,     2,     8
 NEMA17_40L280 = ["NEMA17_40L280", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [280, 8, 2], 31,    [8,     8]];
 NEMA17_40L330 = ["NEMA17_40L330", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [330, 8, 2], 31,    [8,     8]];
 
-NEMA_motorWidth = _zMotorDescriptor == "NEMA14" ? 36 : 43; // not part of standard, may vary, so give some clearance
+NEMA_motorWidth = !is_undef(_zMotorDescriptor) && _zMotorDescriptor == "NEMA14" ? 36 : 43; // not part of standard, may vary, so give some clearance
+zMotorType = motorType(is_undef(_zMotorDescriptor) ? "NEMA17_40" : _zMotorDescriptor);
 
 //wingSizeX = 13; // so overall X size is 79, so Z_Motor_MountGuide_length is an integer
 wingSizeX = 7;
@@ -35,8 +36,8 @@ motorBracketSizeX = NEMA_motorWidth + 2*motorBracketSizeZ;
 motorBracketSizeY = _zLeadScrewOffset + NEMA_motorWidth/2 - 1;
 counterBoreDepth = 0;//1.5;
 
-function Z_Motor_MountSize(motorLength=NEMA_length(motorType(_zMotorDescriptor)))
-    = [2*wingSizeX + motorBracketSizeX, motorBracketSizeY + eSize, motorLength + motorBracketSizeZ + 1 + _corkDamperThickness];
+function Z_Motor_MountSize(motorLength=NEMA_length(zMotorType))
+    = [2*wingSizeX + motorBracketSizeX, motorBracketSizeY + eSize, motorLength + motorBracketSizeZ + 1 + (is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness)];
 
 module NEMA_baseplate(NEMA_type, size) {
     assert(isNEMAType(NEMA_type));
@@ -144,23 +145,12 @@ module zMotorMount(zMotorType, eHeight=40) {
 
 module Z_Motor_Mount_stl() {
     // invert Z_Motor_Mount so it can be printed without support
-    zMotorType = motorType(_zMotorDescriptor);
     stl("Z_Motor_Mount")
         color(pp1_colour)
             translate([0, -Z_Motor_MountSize(NEMA_length(zMotorType)).x/2, 0])
                 rotate([180, 0, 90])
                     zMotorMount(zMotorType);
 }
-
-/*module Z_Motor_Mount_Right_stl() {
-    // invert Z_Motor_Mount so it can be printed without support
-    zMotorType = motorType(_zMotorDescriptor);
-    stl("Z_Motor_Mount_Right")
-        color(pp1_colour)
-            translate([0, -Z_Motor_MountSize(NEMA_length(zMotorType)).x/2, 0])
-                rotate([180, 0, 90])
-                    zMotorMount(zMotorType);
-}*/
 
 module zMotorLeadscrew(zMotorType, zLeadScrewLength) {
     zLeadScrewLength = _zRodLength - 50;
@@ -169,7 +159,6 @@ module zMotorLeadscrew(zMotorType, zLeadScrewLength) {
 }
 
 module Z_Motor_Mount_Motor_hardware(explode=50) {
-    zMotorType = motorType(_zMotorDescriptor);
     corkDamperThickness = _corkDamperThickness;
 
     stepper_motor_cable(eX + eY + 150);// z motor
@@ -198,13 +187,11 @@ module Z_Motor_Mount_Motor_hardware(explode=50) {
                 }
             } else {
                 // no integrated lead screw, so add lead screw and coupling
-                not_on_reduced_bom()
-                    rotate(-90)
-                        NEMA(zMotorType, jst_connector = true);
+                rotate(-90)
+                    NEMA(zMotorType, jst_connector = true);
                 translate_z(NEMA_shaft_length(motorType)) {
                     explode(80)
-                        not_on_reduced_bom()
-                            shaft_coupling(SC_5x8_rigid, colour = grey(30));
+                        shaft_coupling(SC_5x8_rigid, colour = grey(30));
                     zLeadScrewLength = _zRodLength - 50;
                     leadscrewX(_zLeadScrewDiameter, zLeadScrewLength, center=false);
                 }
@@ -217,7 +204,6 @@ module Z_Motor_Mount_Motor_hardware(explode=50) {
 }
 
 module Z_Motor_Mount_hardware() {
-    zMotorType = motorType(_zMotorDescriptor);
     size = Z_Motor_MountSize(NEMA_length(zMotorType));
     eHeight = 40;
 

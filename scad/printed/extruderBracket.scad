@@ -154,7 +154,7 @@ module Extruder_Bracket_hardware(corkDamperThickness, addM4Bolts=false) {
 module Extruder_Bracket_assembly()
 assembly("Extruder_Bracket", ngb=true) {
 
-    Extruder_Bracket_hardware(_corkDamperThickness, addM4Bolts=true);
+    Extruder_Bracket_hardware(is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, addM4Bolts=true);
 
     rotate([0, -90, 0])
         stl_colour(pp1_colour)

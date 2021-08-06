@@ -48,7 +48,7 @@ module PSU() {
     translate_z(PSUStandoffHeight())
         rotate(180)
             if (is_undef($hide_psu) || $hide_psu == false) {
-                not_on_reduced_bom()  vitamin(str(": LED Switching Power Supply 24V 15A 360W"));
+                vitamin(str(": LED Switching Power Supply 24V 15A 360W"));
                 not_on_bom() psu(PSUType());
                 thickness = 3.5;
                 //mirror([0, 1, 0])
