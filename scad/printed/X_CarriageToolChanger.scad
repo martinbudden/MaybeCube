@@ -108,25 +108,30 @@ module spring_guide_anchor_block_hardware() {
 }
 
 module lock_actuator_assembly()
-assembly("lock_actuator_assembly") {
+assembly("lock_actuator") {
     translate([55, eSize, 9]) {
         rotate([180, 0, -90]) {
-            lock_actuator_base_plate_stl();
+            stl_colour(pp2_colour)
+                lock_actuator_base_plate_stl();
             lock_actuator_base_plate_hardware();
         }
         translate([0, -23, -27])
             rotate([90, 0, -90])
-                lock_actuator_motor_clip_stl();
+                stl_colour(pp1_colour)
+                    lock_actuator_motor_clip_stl();
     }
     translate([0, -34, -18]) {
         rotate([0, 90, 0])
-            fixed_half_pulley_stl();
+            stl_colour(pp3_colour)
+                fixed_half_pulley_stl();
         translate([7.5, 0, 0])
             rotate([0, 90, 0])
-                floating_half_pulley_stl();
+                stl_colour(pp1_colour)
+                    floating_half_pulley_stl();
     }
     translate([10.85, -51, 9]) {
-        spring_guide_anchor_block_stl();
+        stl_colour(pp1_colour)
+            spring_guide_anchor_block_stl();
         spring_guide_anchor_block_hardware();
     }
 }
@@ -230,28 +235,32 @@ module toolDockHardware(separation) {
 
 module tool_dock_47mm_stl() {
     stl("tool_dock_47mm")
-        toolDock(47);
+        color(pp1_colour)
+            toolDock(47);
 }
 
 module tool_dock_47mm_assembly()
 assembly("tool_dock_47mm") {
     translate_z(47.85 - toolChangerAxelOffsetZ)
         rotate([-90, 0, 180]) {
-            tool_dock_47mm_stl();
+            stl_colour(pp1_colour)
+                tool_dock_47mm_stl();
             toolDockHardware(47);
         }
 }
 
 module tool_dock_55mm_stl() {
     stl("tool_dock_55mm")
-        toolDock(55);
+        color(pp1_colour)
+            toolDock(55);
 }
 
 module tool_dock_55mm_assembly()
 assembly("tool_dock_55mm") {
     translate_z(47.85 - toolChangerAxelOffsetZ)
         rotate([-90, 0, 180]) {
-            tool_dock_55mm_stl();
+            stl_colour(pp1_colour)
+                tool_dock_55mm_stl();
             toolDockHardware(55);
         }
 }
@@ -293,7 +302,7 @@ module pen_tool_base_tool_plate_hardware() {
 
 module pen_holder_stl() {
     stl("pen_holder")
-        stl_colour(pp2_colour)
+        color(pp2_colour)
             translate([-8.5, 0, 0])
                 rotate([90, 0, 90])
                     toolChangerPenImportStl("pen_holder");
@@ -301,7 +310,7 @@ module pen_holder_stl() {
 
 module pen_left_parking_wing_stl() {
     stl("pen_left_parking_wing")
-        stl_colour(pp2_colour)
+        color(pp2_colour)
             translate([-26.5, 0, 0])
                toolChangerPenImportStl("left_parking_wing");
 }
@@ -315,7 +324,7 @@ module pen_left_parking_wing_hardware() {
 
 module pen_right_parking_wing_stl() {
     stl("pen_right_parking_wing")
-        stl_colour(pp2_colour)
+        color(pp2_colour)
             translate([0, 0, 0])
                toolChangerPenImportStl("right_parking_wing");
 }
@@ -327,25 +336,30 @@ module pen_right_parking_wing_hardware() {
                 boltM3Countersunk(8);
 }
 
-module pen_assembly() {
+module pen_assembly()
+assembly("pen") {
     translate([0, 22, -toolChangerAxelOffsetZ])
         rotate([90, 0, 180]) {
             pen_tool_base_tool_plate_stl();
             pen_tool_base_tool_plate_hardware();
-            wedge_plate_stl();
+            stl_colour(pp2_colour)
+                wedge_plate_stl();
             wedge_plate_hardware();
-            pen_left_parking_wing_stl();
+            stl_colour(pp2_colour)
+                pen_left_parking_wing_stl();
             pen_left_parking_wing_hardware();
-            pen_right_parking_wing_stl();
+            stl_colour(pp2_colour)
+                pen_right_parking_wing_stl();
             pen_right_parking_wing_hardware();
             translate([0, -2.5, 8])
-                pen_holder_stl();
+                stl_colour(pp2_colour)
+                    pen_holder_stl();
         }
 }
 
 module bondtech_tool_plate_stl() {
     stl("bondtech_tool_plate")
-        stl_colour(pp1_colour)
+        color(pp1_colour)
             translate([150, 190.5, 0])
                 rotate(180)
                     toolChangerBondtechImportStl("tool_plate");
@@ -368,7 +382,7 @@ module bondtech_tool_plate_hardware() {
 
 module bondtech_left_parking_wing_stl() {
     stl("bondtech_left_parking_wing")
-        stl_colour(pp2_colour)
+        color(pp2_colour)
             translate([0, 15, 0])
                 toolChangerBondtechImportStl("left_parking_wing");
 }
@@ -385,7 +399,7 @@ module bondtech_left_parking_wing_hardware() {
 
 module bondtech_right_parking_wing_stl() {
     stl("bondtech_right_parking_wing")
-        stl_colour(pp2_colour)
+        color(pp2_colour)
             translate([127.5, 192.5, 0])
                 rotate(180)
                     toolChangerBondtechImportStl("right_parking_wing");
@@ -403,7 +417,7 @@ module bondtech_right_parking_wing_hardware() {
 
 module bondtech_extruder_holder_stl() {
     stl("bondtech_extruder_holder")
-        stl_colour(pp3_colour)
+        color(pp3_colour)
             translate([150, 150 - 4.5, 0])
                 rotate(180)
                     toolChangerBondtechImportStl("bondtech_bmg_adaptor_plate");
@@ -421,7 +435,7 @@ module bondtech_extruder_holder_hardware() {
 
 module bondtech_groovemount_clip_stl() {
     stl("bondtech_groovemount_clip")
-        stl_colour(pp1_colour)
+        color(pp1_colour)
             translate([154.5, 150, 24])
                 rotate(180)
                     toolChangerBondtechImportStl("groovemount_clip");
@@ -458,26 +472,32 @@ module bondtech_blower_fan_shroud_hardware() {
             blower(RB5015);
 }
 
-module bondtech_assembly() {
+module bondtech_assembly()
+assembly("bondtech") {
     translate([0, 30, -toolChangerAxelOffsetZ])
         rotate([90, 0, 0]) {
-            bondtech_tool_plate_stl();
+            stl_colour(pp1_colour)
+                bondtech_tool_plate_stl();
             bondtech_tool_plate_hardware();
             translate([-22.5, -30, -23])
                 rotate([-90, 180, 0]) {
-                    bondtech_blower_fan_shroud_stl();
+                    stl_colour(pp3_colour)
+                        bondtech_blower_fan_shroud_stl();
                     bondtech_blower_fan_shroud_hardware();
                 }
             vflip()
                 translate_z(-8) {
-                    wedge_plate_stl();
+                    stl_colour(pp2_colour)
+                        wedge_plate_stl();
                     wedge_plate_hardware();
                 }
             translate([0, 23, 0])
                 rotate([180, 0, 180]) {
-                    bondtech_extruder_holder_stl();
+                    stl_colour(pp3_colour)
+                        bondtech_extruder_holder_stl();
                     bondtech_extruder_holder_hardware();
-                    bondtech_groovemount_clip_stl();
+                    stl_colour(pp1_colour)
+                        bondtech_groovemount_clip_stl();
                     bondtech_groovemount_clip_hardware();
                 }
             translate([0, 62, 8])
@@ -505,20 +525,23 @@ module carriage_top_plate_stl() {
     fillet = 1.5;
 
     stl("carriage_top_plate")
-        difference() {
-            translate([-size.x/2, -size.y/2, 0])
-                rounded_cube_xy(size, fillet);
-            translate_z(size.z - carriage_height(xCarriageType))
-                carriage_hole_positions(xCarriageType)
-                    vflip()
-                        boltHoleM3Counterbore(size.z);
-        }
+        color(pp1_colour)
+            difference() {
+                translate([-size.x/2, -size.y/2, 0])
+                    rounded_cube_xy(size, fillet);
+                translate_z(size.z - carriage_height(xCarriageType))
+                    carriage_hole_positions(xCarriageType)
+                        vflip()
+                            boltHoleM3Counterbore(size.z);
+            }
 }
 
-module carriage_top_plate_assembly() {
+module carriage_top_plate_assembly()
+assembly("carriage_top_plate") {
     xCarriageType = MGN12H_carriage;
 
-    carriage_top_plate_stl();
+    stl_colour(pp1_colour)
+        carriage_top_plate_stl();
     translate_z(-7)
         carriage_hole_positions(xCarriageType)
             boltM3Caphead(10);
@@ -526,13 +549,14 @@ module carriage_top_plate_assembly() {
 
 module carriage_pulley_stl() {
     stl("carriage_pulley")
-        translate([-150, -133.5, 0])
-            toolChangerImportStl("carriage_pulley");
+        color(pp1_colour)
+            translate([-150, -133.5, 0])
+                toolChangerImportStl("carriage_pulley");
 }
 
 module carriage_back_plate_stl() {
     stl("carriage_back_plate")
-        stl_colour(pp3_colour)
+        color(pp3_colour)
             //render(convexity=2)
                 intersection() {
                     *translate([-40, -28, -eps])
@@ -543,14 +567,17 @@ module carriage_back_plate_stl() {
                 }
 }
 
-module carriage_back_plate_assembly() {
+module carriage_back_plate_assembly()
+assembly("carriage_back_plate") {
     //rodLength = 85.25;
     rodLength = 62;
     translate([0, -14, -toolChangerAxelOffsetZ])
         rotate([90, 0, 0]) {
-            carriage_back_plate_stl();
+            stl_colour(pp3_colour)
+                carriage_back_plate_stl();
             translate_z(8.5)
-            carriage_pulley_stl();
+                stl_colour(pp1_colour)
+                    carriage_pulley_stl();
             translate_z(-45)
                 rod(5, rodLength, center=false);
         }
@@ -558,28 +585,30 @@ module carriage_back_plate_assembly() {
 
 module carriage_center_plate_stl() {
     stl("carriage_center_plate")
-        stl_colour(pp4_colour)
+        color(pp4_colour)
             translate([-150, -159, 0])
                 toolChangerImportStl("carriage_center_plate");
-}
-
-module carriage_coupler_plate_stl() {
-    stl("carriage_coupler_plate")
-        stl_colour(pp3_colour)
-            translate([-37.15, -27.568, 0])
-                toolChangerImportStl("carriage_coupler_plate");
 }
 
 module carriage_center_plate_assembly() {
     translate([0, -14, -toolChangerAxelOffsetZ])
         rotate([90, 0, 180])
-            carriage_center_plate_stl();
+            stl_colour(pp4_colour)
+                carriage_center_plate_stl();
+}
+
+module carriage_coupler_plate_stl() {
+    stl("carriage_coupler_plate")
+        color(pp3_colour)
+            translate([-37.15, -27.568, 0])
+                toolChangerImportStl("carriage_coupler_plate");
 }
 
 module carriage_coupler_plate_assembly() {
     translate([0, 14, -toolChangerAxelOffsetZ])
         rotate([90, 0, 180]) {
-            carriage_coupler_plate_stl();
+            stl_colour(pp3_colour)
+                carriage_coupler_plate_stl();
             for (a = [0, 120, 240])
                 rotate(a)
                     translate([0, 29, 0])
@@ -588,12 +617,6 @@ module carriage_coupler_plate_assembly() {
                                 translate([-5.75, y, 0])
                                     rod(4, 20);
         }
-}
-
-module E3D_TC_PLATE_assembly() {
-    translate([0, 14, -toolChangerAxelOffsetZ])
-        rotate([90, 0, 180])
-            E3D_TC_PLATE_stl();
 }
 
 module E3D_TC_PLATE_stl() {
@@ -624,4 +647,12 @@ module E3D_TC_PLATE_stl() {
                     translate([x, y, size.z])
                         boltPolyholeM3Countersunk(size.z);
             }
+}
+
+module E3D_TC_PLATE_assembly()
+assembly("E3D_TC_PLATE") {
+    translate([0, 14, -toolChangerAxelOffsetZ])
+        rotate([90, 0, 180])
+            stl_colour(pp4_colour)
+                E3D_TC_PLATE_stl();
 }
