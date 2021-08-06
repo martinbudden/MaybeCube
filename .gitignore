@@ -94,6 +94,27 @@ XChange/assemblies/*_diff.png
 XChange/dxfs/*_diff.png
 XChange/stls/*_diff.png
 
+toolchanger/assemblies/*
+toolchanger/bom/
+toolchanger/dxfs/*
+toolchanger/stls/*
+toolchanger/tmp/
+toolchanger/*.html
+toolchanger/*.md
+!toolchanger/readme.md
+#!toolchanger/assemblies/main_assembled.png
+!toolchanger/assemblies/*.png
+#!toolchanger/dxfs/*.dxf
+#!toolchanger/dxfs/*.png
+
+#!toolchanger/stls/*.stl
+!toolchanger/stls/*.png
+toolchanger/assemblies/*_diff.png
+toolchanger/dxfs/*_diff.png
+toolchanger/stls/*_diff.png
+
+
+
 MC250/assemblies/*
 MC250/bom/
 MC250/dxfs/*
