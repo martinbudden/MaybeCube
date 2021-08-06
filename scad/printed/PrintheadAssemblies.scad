@@ -80,18 +80,41 @@ module printheadBeltSide(rotate=180, explode=0, t=undef) {
 
 module printheadHotendSide(rotate=180, clamps=false, explode=0, t=undef, accelerometer=false) {
     xCarriageType = MGN12H_carriage;
+    xCarriageFrontSize = xCarriageFrontSize(xCarriageType, _beltWidth, clamps);
 
     xRailCarriagePosition(t)
         explode(explode, true)
             rotate(rotate) {// for debug, to see belts better
                 explode([0, -20, 0], true)
-                    xCarriageFrontBolts(xCarriageType, xCarriageFrontSize(xCarriageType, _beltWidth, clamps), topBoltLength=30, bottomBoltLength=30, countersunk=true, offsetT=xCarriageHoleOffsetTop());
+                    xCarriageFrontBolts(xCarriageType, xCarriageFrontSize, topBoltLength=30, bottomBoltLength=30, countersunk=true, offsetT=xCarriageHoleOffsetTop());
                 Printhead_E3DV6_MGN12H_assembly();
+                *translate([xCarriageFrontSize.x/2, 18, -20])
+                    bl_touch_mount();
                 xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = [ [1, 1], [-1, 1] ]);
                 if (accelerometer)
                     explode(50, true)
                         printheadAccelerometerAssembly();
             }
+}
+
+module bl_touch_mount_stl() {
+    stl("bl_touch_mount")
+        color(pp2_colour)
+            translate([0, -4, -7.5])
+                translate([20.5, -1, 4])
+                    rotate([180, 0, 0])
+                        import(str("../stlimport/eva/bl_touch_mount.stl"));
+}
+
+module bl_touch_mount() {
+    translate([10, 0, -8]) {
+        rotate([180, 0, 180])
+            bl_touch_mount_stl();
+        translate([7.25, 16, 3.5])
+            rotate(90)
+                color(grey(90))
+                    import(str("../stlimporttemp/BLTouch_Model.stl"));
+    }
 }
 
 module fullPrinthead(rotate=180, clamps=false, explode=0, t=undef, accelerometer=false) {
