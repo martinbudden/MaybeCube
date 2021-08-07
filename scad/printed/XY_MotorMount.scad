@@ -122,7 +122,7 @@ module xyMotorMountBrace(thickness, offset=[0,0], left=true) {
                         size = [(pP.x - sizeP.x/2) - (pT.x + 1 - sizeT.x/2) + sizeP.x + extra.x, (pT.y - 1 - sizeP.y/2) - (pP.y - sizeT.y/2) + sizeP.y + extra.y, thickness];
                         rounded_cube_xy(size, fillet, xy_center=false);
                         // add orientation indicator
-                        translate([size.x/2, size.y, 0])
+                        translate([size.x/4, size.y, 0])
                             rotate(45)
                                 rounded_cube_xy([3, 3, thickness], 0.5, xy_center=true);
                     }
@@ -131,7 +131,7 @@ module xyMotorMountBrace(thickness, offset=[0,0], left=true) {
                         size = [sizeT.x + extra.x, sizeT.y + extra.y, thickness];
                         rounded_cube_xy(size, fillet, xy_center=false);
                         // add orientation indicator
-                        translate([size.x/2, size.y, 0])
+                        translate([3*size.x/4, size.y, 0])
                             rotate(45)
                                 rounded_cube_xy([3, 3, thickness], 0.5, xy_center=true);
                     }
