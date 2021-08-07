@@ -30,7 +30,8 @@ If you would like to build a smaller printer, you may be interested in the Maybe
 
 ## Design Goals
 
-1. **Make the MaybeCube more easily usable in home environment (as opposed to garage or workshop)**
+1. **Create a high quality engineered 3D printer capable of producing high quality prints**
+2. **Make the MaybeCube more easily usable in home environment (as opposed to garage or workshop)**
      * try and make it easy to transport and store the MaybeCube, so:
      * integrated design, everything is enclosed within the printer's frame with. This includes the motors,
        the motion system, the power supply, and the circuit boards. The only exceptions are the
@@ -40,34 +41,37 @@ If you would like to build a smaller printer, you may be interested in the Maybe
        and allow the back of the MaybeCube to be pushed right against a wall
      * all protrusions from the frame can be easily removed for storage
      * clean wiring - route wiring in extrusion channels where possible and minimise exposed wiring
-2. **Improve ease of assembly**
+3. **Improve ease of assembly**
      * Use internal blind joints on the frame
      * printed parts designed so that bolts are accessible and can be tightened when frame fully assembled (that is bolt holes are not blocked by other parts when assembled)
      * divide the main assembly into a number of independent sub-assemblies.
      * where possible printed parts push up right against frame and so "auto-align"
      * facilitate building in different size variants
-3. **Use linear rails for the x and y axes**
+4. **Use linear rails for the x and y axes**
      * linear rails are now not much more expensive than linear rods
      * linear rails make design and assembly easier, reducing the need for custom printed parts
      * linear rods are used for the z-axis, since linear rails offer no advantage here
-4. **Maximise frame rigidity**
+5. **Maximise frame rigidity**
      * one of my goals is to experiment with high print speeds. A highly rigid frame allows higher acceleration settings
      * use 2040 aluminium extrusion, corner joints are about 4 times more rigid than 2020 corner joints and 2-3 times more rigid than 3030 corner joints
-5. **Maximise build volume for selected extrusion lengths**
+6. **Maximise build volume for selected extrusion lengths**
      * Z-axis assembly is on the left side of MaybeCube. This means the Z-axis assembly does not impede travel in the Y direction
      * The printhead is quite compact, so does not significantly restrict travel in the X and Y directions
-6. **Enable a fully enclosed print volume**
+7. **Enable a fully enclosed print volume**
      * The cubic shape makes enclosure straightforward.
      * Additionally a panel can be placed between the electronics and stepper motors on the back face and the build volume
      * A slide-in front panel can be added
      * A top enclosure can be placed on the frame
-7. **Try and keep the costs down**
+8. **Try and keep the costs down**
      * the aim is not to be as cheap as possible, but rather to avoid unnecessary costs
      * use standard extrusions lengths, as far as possible, so no custom cutting is required
-8. **Facilitate customisation and experimentation**
+9. **Facilitate customisation and experimentation**
      * Open source design
      * Parametric design in OpenSCAD
      * The open design of the frame and the easy accessibility of parts means the MaybeCube is fairly easy to customise - most parts can be changed without the need to disassemble large parts of the frame
+     * The design of the X_Carriage means it is easy to customise to support different hotends and extruders
+     * Support other printhead systems, including EVA, XChange, and, in principle, the Jubilee and E3D toolchangers
+     * The independence of the XY motion system and the Z motion system means that in principle the Z motion system could be replaced (with, say, an autotramming 3-point leveling system)
 
 ## Variations
 
@@ -98,7 +102,7 @@ The front face of the MaybeCube is the most subject to shearing, since it needs 
 
 ## Customisations
 
-## EVA module printhead system
+### EVA module printhead system
 
 In its default configuration the MaybeCube has an E3D V6 hotend with a Bowden extruder. However I've created adaptors
 so that the [EVA modular printhead system](https://main.eva-3d.page) can be used. The EVA system supports a wide variety
@@ -106,7 +110,7 @@ of hotends and extruders. More details on using the EVA adaptors are [here](http
 
 The STL files are on [thingiverse](https://www.thingiverse.com/thing:4912099).
 
-## Printermods XChange quick change tool head
+### Printermods XChange quick change tool head
 
 I've created an adaptor for the
 [Printermods XChange quick change tool head](https://www.kickstarter.com/projects/printermods/xchange-v10-hot-swap-tool-changing-for-every-3d-printer).
@@ -118,8 +122,15 @@ The STL files are on [thingiverse](https://www.thingiverse.com/thing:4924355).
 
 Currently there is no adaptor for the  [E3D tool changer](https://e3d-online.com/pages/toolchanger), however I think it would be fairly straightforward to create one.
 
-There should be room to dock at least two, and perhaps three [E3D ToolChanger Tools](https://e3d-online.com/products/toolchanger-tools) in the back of the MC350, this would allow experimenting with the E3D docking system in a framework
-considerably less expensive than the [E3D Motion System](https://e3d-online.com/products/e3d-motion-system).
+There should be room to dock at least two, and perhaps three [E3D ToolChanger Tools](https://e3d-online.com/products/toolchanger-tools) in the back of the MC350, this would allow experimenting with the E3D docking system in a framework considerably less expensive than the [E3D Motion System](https://e3d-online.com/products/e3d-motion-system).
+
+### Jubilee tool changer
+
+The [Jubilee 3D printer](https://www.jubilee3d.com/index.php?title=Main_Page)
+has a [tool changer](https://www.jubilee3d.com/index.php?title=Tools)
+compatible with the E3D tool changer. I have a proof of concept showing that this tool changer system can be used on the MaybeCube. Note that this is incomplete and still requires an X_Carriage adaptor for the Jubilee plates.
+
+![JubileeToolchanger Assembly](JubileeToolchanger/assemblies/JubileeToolchanger_assembled.png)
 
 ## License
 
