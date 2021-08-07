@@ -87,7 +87,6 @@ module xCarriageTopTest() {
                 boltHoleM3(size.z);
     }
 }
-translate_z(-eZ)
-printheadHotendSide();
-*if ($preview)
+
+if ($preview)
     Printhead_test();
