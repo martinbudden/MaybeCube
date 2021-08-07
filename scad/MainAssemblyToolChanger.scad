@@ -1,0 +1,91 @@
+//!# Tool Changers
+//!
+//!This is proof of concept showing the MaybeCube with the Jubilee tool changers, which are compatible with the E3D
+//!tool changers. It uses the
+//![Jubilee toolchanger carriage](https://docs.google.com/viewer?url=github.com/machineagency/jubilee/raw/main/frame/assembly_instructions/toolchanger_mechanism/toolchanger_carriage_assembly_instructions_draft.pdf),
+//!the
+//![Jubilee toolchanger remote lock](https://docs.google.com/viewer?url=github.com/machineagency/jubilee/raw/main/frame/assembly_instructions/toolchanger_mechanism/toolchanger_lock_assembly_instructions.pdf),
+//!and the
+//![Jubilee Bondtech extruder](https://jubilee3d.com/index.php?title=Bondtech_Direct_Drive_Extruder)
+//!
+//!It is not complete, in particular a MaybeCube X_Carriage adaptor is still required.
+//
+include <global_defs.scad>
+
+include <NopSCADlib/core.scad>
+include <NopSCADlib/vitamins/rails.scad>
+
+use <../scad/printed/X_CarriageToolChanger.scad>
+
+use <utils/carriageTypes.scad>
+use <utils/CoreXYBelts.scad>
+use <utils/X_Rail.scad>
+
+use <FaceTop.scad>
+
+use <Parameters_Positions.scad>
+include <target.scad>
+
+//$explode = 1;
+//$pose = 1;
+
+t = 2;
+carriagePosition = carriagePosition(t);
+
+
+module toolChanger(t=2) {
+    translate([130, eY + eSize, eZ])
+        explode([-100, 0, 0])
+            mirror([1, 0, 0])
+                lock_actuator_assembly();
+    for (i= eX <= 350 ? [0, 1] : [0, 1, 2])
+        translate([xToolPos(i), eY + eSize, eZ - 28.5]) {
+            explode([0, 75, 0])
+                tool_dock_55mm_assembly();
+            if (i == 1 || i == 2) {
+                translate([0, -82, 8.5])
+                    explode([0, -50, 100])
+                        bondtech_assembly();
+                //parking_post_47mm_assembly();
+                //tool_dock_47mm_assembly();
+                *translate([0, -72, 8.5])
+                    pen_assembly();
+            } else if (i == 2) {
+                //parking_post_55mm_assembly();
+                tool_dock_55mm_assembly();
+            }
+        }
+    xRailCarriagePosition(t)
+        rotate(180) {
+            no_explode()
+                carriage_top_plate_assembly();
+            explode([0, -50, 0])
+                carriage_back_plate_assembly();
+            //carriage_center_plate_assembly();
+            carriage_coupler_plate_assembly();
+            //E3D_TC_PLATE_assembly();
+            explode(100)
+            translate([0, 2, 0])
+                if (t==8 || t==9)
+                    pen_assembly();
+                else
+                    bondtech_assembly();
+        }
+}
+
+module toolchanger_assembly()
+assembly("toolchanger", big=true) {
+    explode(100, true)
+        not_on_bom()
+            toolChanger(t);
+    not_on_bom()
+        Face_Top_Stage_2_assembly();
+    not_on_bom()
+        CoreXYBelts([eX + 2*eSize - 10 - carriagePosition.x, carriagePosition.y]);
+}
+
+
+if ($preview)
+    translate(-[eSize + eX/2, carriagePosition.y])
+        translate_z(-(eZ - yRailOffset().x - carriage_clearance(xCarriageType())))
+            toolchanger_assembly();
