@@ -15,7 +15,7 @@ include <global_defs.scad>
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
-use <../scad/printed/X_CarriageToolChanger.scad>
+use <../scad/printed/JubileeToolChanger.scad>
 
 use <utils/carriageTypes.scad>
 use <utils/CoreXYBelts.scad>
@@ -73,11 +73,10 @@ module toolChanger(t=2) {
         }
 }
 
-module toolchanger_assembly()
-assembly("toolchanger", big=true) {
+module JubileeToolchanger_assembly()
+assembly("JubileeToolchanger", big=true) {
     explode(100, true)
-        not_on_bom()
-            toolChanger(t);
+        toolChanger(t);
     not_on_bom()
         Face_Top_Stage_2_assembly();
     not_on_bom()

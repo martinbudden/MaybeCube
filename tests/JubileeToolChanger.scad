@@ -14,7 +14,7 @@ use <../scad/utils/X_Rail.scad>
 
 use <../scad/vitamins/extrusion.scad>
 
-use <../scad/MainAssemblyToolChanger.scad>
+use <../scad/MainAssemblyJubileeToolChanger.scad>
 
 use <../scad/Parameters_CoreXY.scad>
 use <../scad/Parameters_Positions.scad>
@@ -26,7 +26,7 @@ t = 2;
 carriagePosition = carriagePosition(t);
 
 
-module toolChanger_test() {
+module toolchanger_test() {
     toolChanger();
     CoreXYBelts([carriagePosition.x, carriagePosition.y]);
     //printheadBeltSide(t=t);
@@ -36,7 +36,7 @@ module toolChanger_test() {
         extrusionOX2040V(eY);
     for (x=[0, eX + eSize], y=[0, eY + eSize])
         translate([x, y, 250])
-            extrusionOZ(eZ-250);
+            extrusionOZ(eZ - 250);
     XY_Motor_Mount_Left_assembly();
     XY_Motor_Mount_Right_assembly();
 }
@@ -44,4 +44,5 @@ module toolChanger_test() {
 if ($preview)
     translate(-[eSize + eX/2, carriagePosition.y])
         translate_z(-(eZ - yRailOffset().x - carriage_clearance(xCarriageType())))
-            toolChanger_test();
+            JubileeToolchanger_assembly();
+            //toolchanger_test();

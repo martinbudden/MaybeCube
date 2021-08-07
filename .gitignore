@@ -94,24 +94,24 @@ XChange/assemblies/*_diff.png
 XChange/dxfs/*_diff.png
 XChange/stls/*_diff.png
 
-toolchanger/assemblies/*
-toolchanger/bom/
-toolchanger/dxfs/*
-toolchanger/stls/*
-toolchanger/tmp/
-toolchanger/*.html
-toolchanger/*.md
-!toolchanger/readme.md
-#!toolchanger/assemblies/main_assembled.png
-!toolchanger/assemblies/*.png
-#!toolchanger/dxfs/*.dxf
-#!toolchanger/dxfs/*.png
+JubileeToolchanger/assemblies/*
+JubileeToolchanger/bom/
+JubileeToolchanger/dxfs/*
+JubileeToolchanger/stls/*
+JubileeToolchanger/tmp/
+JubileeToolchanger/*.html
+JubileeToolchanger/*.md
+#!JubileeToolchanger/readme.md
+!JubileeToolchanger/assemblies/JubileeToolchanger_assembled.png
+#!JubileeToolchanger/assemblies/*.png
+#!JubileeToolchanger/dxfs/*.dxf
+#!JubileeToolchanger/dxfs/*.png
 
-#!toolchanger/stls/*.stl
-!toolchanger/stls/*.png
-toolchanger/assemblies/*_diff.png
-toolchanger/dxfs/*_diff.png
-toolchanger/stls/*_diff.png
+#!JubileeToolchanger/stls/*.stl
+#!JubileeToolchanger/stls/*.png
+JubileeToolchanger/assemblies/*_diff.png
+JubileeToolchanger/dxfs/*_diff.png
+JubileeToolchanger/stls/*_diff.png
 
 
 
