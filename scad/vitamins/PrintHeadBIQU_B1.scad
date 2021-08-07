@@ -107,7 +107,7 @@ module PrintHeadBIQU_B1() {
     vitamin(str("PrintHeadBIQU_B1(): BIQU B1 print head"));
     color = grey(25);
 
-    not_on_reduced_bom() usb_c_to_c_cable(500);
+    usb_c_to_c_cable(500);
 
 probing = false;
 
