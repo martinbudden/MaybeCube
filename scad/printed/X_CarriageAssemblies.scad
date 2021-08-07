@@ -134,10 +134,11 @@ module X_Carriage_Groovemount_MGN12H_stl() {
                 difference() {
                     union() {
                         xCarriageBack(xCarriageType, size, _beltWidth, beltOffsetZ(), coreXYSeparation().z, clamps=false, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), accelerometerOffset=accelerometerOffset());
-                        hotEndHolder(xCarriageType, grooveMountSize, hotendOffset, hotend_type, blower_type, baffle=true, left=false);
+                        hotEndHolder(xCarriageType, grooveMountSize, hotendOffset, hotend_type, blower_type, baffle=false, left=false);
                     }
+                    // bolt holes for Z probe mount
                     for (z = [0, -8])
-                        translate([size.x/2, 18, z - 30])
+                        translate([size.x/2, 18, z - 26])
                             rotate([0, -90, 0])
                                 boltHoleM3Tap(9);
                 }
