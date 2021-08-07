@@ -36,6 +36,8 @@ module Left_Side_test() {
     //let($hide_extrusions=true)
     //Face_Top_assembly();
     //fullPrinthead(t=3);
+    //printheadBeltSide();
+    //printheadHotendSide();
 
     // always add the side panel last, so it is transparent to other items
     //Left_Side_Panel_assembly();

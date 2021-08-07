@@ -39,7 +39,9 @@ module Exploded_View_test() {
 
     explode([0, 0, 1.25*explode]) {
         Face_Top_assembly();
-        fullPrinthead();
+        //fullPrinthead();
+        printheadBeltSide();
+        printheadHotendSide();
     }
 }
 

@@ -17,7 +17,9 @@ include <../scad/Parameters_Main.scad>
 //$explode = 1;
 module xRail_test() {
     translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
-        fullPrinthead(accelerometer=true);
+        //fullPrinthead(accelerometer=true);
+        printheadBeltSide();
+        printheadHotendSide();
         translate_z(eZ)
             xRail(carriagePosition());
     }
