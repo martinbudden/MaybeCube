@@ -78,7 +78,6 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   2  |   5  |   .  |   .  |   .  |   .  |    7  |  Bolt M3 buttonhead x 10mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   8  |   16  |  Bolt M3 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 16mm |
-|   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 25mm |
 |   .  |   .  |   .  |   5  |   .  |   .  |   .  |   4  |    9  |  Bolt M3 caphead x  6mm |
 |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M3 caphead x  8mm |
 |   .  |   .  |  28  |   .  |   .  |   .  |   .  |   .  |   28  |  Bolt M3 caphead x 10mm |
@@ -88,7 +87,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 40mm |
 |   .  |   .  |   2  |   .  |   .  |   2  |   .  |   .  |    4  |  Bolt M3 countersunk x 10mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   2  |    4  |  Bolt M3 countersunk x 12mm |
-|   .  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |    8  |  Bolt M3 countersunk x 25mm |
+|   2  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |   10  |  Bolt M3 countersunk x 25mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M3 countersunk x 30mm |
 |   .  |   .  |   .  |   .  |   8  |   .  |   .  |  24  |   32  |  Bolt M4 buttonhead x  8mm |
 |   .  |   .  |  14  |   .  |   .  |   8  |   2  |  12  |   36  |  Bolt M4 buttonhead x 10mm |
@@ -204,7 +203,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |Qty|Description|
 |---:|:----------|
 |4| Bolt M2 caphead x  6mm|
-|2| Bolt M3 buttonhead x 25mm|
+|2| Bolt M3 countersunk x 25mm|
 |1| Fan 30mm x 10mm|
 |1| Hot end E3D V6 direct 1.75mm|
 |1| Square radial fan 3010|
@@ -227,7 +226,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 2. Ensure a good fit between the fan and the fan duct and bolt the fan duct to the X_Carriage.
 3. Assemble the E3D hotend, including fan, thermistor cartridge and heater cartridge.
 4. Use the **Hotend_Clamp** to attach the E3D hotend to the X_Carriage.
-5. Collect the wires together, wrap them in spiral wrap,  and secure them to the X_Carriage using the zipties. Note that the wiring is not shown in this diagram.
+5. Collect the wires together, wrap them in spiral wrap, and secure them to the X_Carriage using the zipties. Note that the wiring is not shown in this diagram.
 
 ![Printhead_E3DV6_MGN12H_assembled](assemblies/Printhead_E3DV6_MGN12H_assembled.png)
 
