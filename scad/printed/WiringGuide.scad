@@ -11,9 +11,11 @@ include <../Parameters_Main.scad>
 
 wiringDiameter = 7;
 sideThickness = 6.5;
+wiringGuideSize = [40, eSize, 5];
+wiringGuideClampSize = [wiringDiameter + 2*sideThickness, eSize, 2.5];
 
 module Wiring_Guide_stl() {
-    size = [40, eSize, 5];
+    size = wiringGuideSize;
     fillet = 1.5;
 
     stl("Wiring_Guide")
@@ -40,15 +42,15 @@ module Wiring_Guide_stl() {
 }
 
 module Wiring_Guide_hardware() {
-    size = [40, eSize, 5];
-    fillet = 1.5;
+    size = wiringGuideSize;
+
     for (x = [5 - size.x/2, size.x/2 - 5])
         translate([x, size.y/2, size.z])
             boltM3ButtonheadHammerNut(_frameBoltLength);
 }
 
 module Wiring_Guide_Clamp_stl() {
-    size = [wiringDiameter + 2*sideThickness, eSize, 2.5];
+    size = wiringGuideClampSize;
     fillet = 1.5;
 
     stl("Wiring_Guide_Clamp")
@@ -60,14 +62,15 @@ module Wiring_Guide_Clamp_stl() {
                         translate([x, size.y/2, 0])
                             boltHoleM3(size.z, twist=3);
                 }
- }
+}
 
 module Wiring_Guide_Clamp_hardware() {
-    size = [wiringDiameter + 2*sideThickness, eSize, 2.5];
+    size = wiringGuideClampSize;
+
     for (x = [-size.x/2 + sideThickness/2, size.x/2 - sideThickness/2])
         translate([x, size.y/2, size.z])
             boltM3Buttonhead(8);
- }
+}
 
 module wiringGuidePosition(offset=wiringDiameter) {
     translate([eX/2 + eSize, eY + eSize, eZ - 2*eSize])
