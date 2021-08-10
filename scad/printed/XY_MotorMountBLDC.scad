@@ -28,7 +28,7 @@ stepdown4250 = true;
 
 //                                     shaft  shaft shaft      body   base             holes                 base            side  bell             holes          boss  prop shaft   thread
 //                      diameter height diam length offset   colour   diam   h1    h2  diam position         open  wire    colour  diam   h1    h1  d  pos   spokes  d  h  length diam  length  diam
-BLDC4933  = ["BLDC4933",   49.0, 33,      8,    60,    27, grey(20),   38,   4,    6,  3,   [25,25,25],     true,  3.0, grey(20),   40,   3,    3,  3, 17,       5, 12, 2,     4,   5,      0,     0];
+BLDC4933  = ["BLDC4933",   49.0, 33,      6,    60,    27, grey(20),   38,   5,    5.5,  3,   [32,32,32],     true,  3.0, grey(20),   49,   8,    8,  3, 12,       5, 12, 0,     5,   4,      0,     0];
 
 
 module XY_Motor_Mount_4250_Left_stl() {
