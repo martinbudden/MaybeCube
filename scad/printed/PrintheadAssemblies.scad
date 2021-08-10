@@ -18,6 +18,7 @@ use <../../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 use <X_CarriageAssemblies.scad>
 
 use <../Parameters_CoreXY.scad>
+use <../Parameters_Positions.scad>
 include <../Parameters_Main.scad>
 
 
@@ -71,7 +72,7 @@ assembly("Printhead_E3DV6_MGN12H", big=true) {
 module printheadBeltSide(rotate=180, explode=0, t=undef) {
     xCarriageType = MGN12H_carriage;
 
-    xRailCarriagePosition(t)
+    xRailCarriagePosition(carriagePosition(t))
         explode(explode, true)
             rotate(rotate) {// for debug, to see belts better
                 explode([0, -20, 0], true)
@@ -85,7 +86,7 @@ module printheadHotendSide(rotate=180, explode=0, t=undef) {
     xCarriageType = MGN12H_carriage;
     xCarriageFrontSize = xCarriageFrontSize(xCarriageType, _beltWidth, clamps=false);
 
-    xRailCarriagePosition(t)
+    xRailCarriagePosition(carriagePosition(t))
         explode(explode, true)
             rotate(rotate) {// for debug, to see belts better
                 explode([0, -20, 0], true)
@@ -120,7 +121,7 @@ module bl_touch_mount() {
 module fullPrinthead(rotate=180, explode=0, t=undef, accelerometer=false) {
     xCarriageType = MGN12H_carriage;
 
-    xRailCarriagePosition(t)
+    xRailCarriagePosition(carriagePosition(t))
         explode(explode, true)
             rotate(rotate) {// for debug, to see belts better
                 explode([0, -20, 0], true) {

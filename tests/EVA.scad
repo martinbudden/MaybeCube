@@ -39,7 +39,7 @@ module EVA_test() {
     carriagePosition = carriagePosition(t);
     translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
         CoreXYBelts(carriagePosition + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
-        xRailCarriagePosition(t)
+        xRailCarriagePosition(carriagePosition(t))
             rotate(180) {
                 //X_Carriage_Belt_Side_MGN12H_assembly();
                 color(pp4_colour)

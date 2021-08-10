@@ -55,7 +55,7 @@ module toolChanger(t=2) {
                 tool_dock_55mm_assembly();
             }
         }
-    xRailCarriagePosition(t)
+    xRailCarriagePosition(carriagePosition(t))
         rotate(180) {
             no_explode()
                 carriage_top_plate_assembly();

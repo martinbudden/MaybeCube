@@ -29,7 +29,7 @@ assembly("XChange", big=true) {
         if (!exploded())
             not_on_bom()
                 CoreXYBelts(carriagePosition + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
-        xRailCarriagePosition()
+        xRailCarriagePosition(carriagePosition)
             rotate(180) {
                 explode([0, 60, 0])
                     X_Carriage_XChange_assembly();

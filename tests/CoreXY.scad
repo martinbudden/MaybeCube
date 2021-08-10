@@ -40,7 +40,7 @@ module CoreXY_test() {
     printheadBeltSide(t=t);
     //fullPrinthead(t=t);
 
-    *xRailCarriagePosition(t)
+    *xRailCarriagePosition(carriagePosition(t))
         evaHotendTop();
 
     translate_z(eZ)

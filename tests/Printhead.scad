@@ -42,7 +42,7 @@ module Printhead_test() {
         CoreXYBelts(carriagePosition(), x_gap = -25, show_pulleys = ![1, 0, 0]);
         translate_z(eZ)
             xRail(carriagePosition());
-        xRailCarriagePosition() {
+        xRailCarriagePosition(carriagePosition()) {
             //Printhead_E3DV6_MGN12H_assembly();
             //X_Carriage_Front_MGN12H_assembly();
             X_Carriage_Belt_Side_MGN12H_assembly();

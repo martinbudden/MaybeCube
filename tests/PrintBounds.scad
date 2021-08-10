@@ -76,8 +76,8 @@ module PrintBounds_test() {
 
     CoreXYBelts(carriagePosition(), x_gap = 0, show_pulleys = !false);
     translate_z(eZ) {
-        xRail();
-        //xRailCarriagePosition()
+        xRail(carriagePosition());
+        //xRailCarriagePosition(carriagePosition())
         //    xCarriagePrintHeadOffset()
         //        PrintHeadBIQU_B1();
     }

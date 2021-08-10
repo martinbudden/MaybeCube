@@ -4,7 +4,9 @@ include <NopSCADlib/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
+use <printed/CameraMount.scad>
 use <printed/PrintheadAssemblies.scad>
+use <printed/TopCornerPiece.scad>
 use <printed/WiringGuide.scad>
 use <printed/XY_MotorMount.scad>
 use <printed/XY_Idler.scad>
@@ -17,7 +19,6 @@ use <utils/CoreXYBelts.scad>
 use <utils/X_Rail.scad>
 
 use <vitamins/bolts.scad>
-use <vitamins/nuts.scad>
 use <vitamins/extrusion.scad>
 
 use <Parameters_Positions.scad>
@@ -54,12 +55,18 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
             Wiring_Guide_stl();
         Wiring_Guide_hardware();
     }
-    topCornerPieceAssembly(90);
-    translate([eX + 2*eSize, 0, 0])
+    *cameraMountPosition() {
+        stl_colour(pp1_colour)
+            Camera_Mount_stl();
+        Camera_Mount_hardware();
+    }
+    translate_z(eZ)
+        topCornerPieceAssembly(90);
+    translate([eX + 2*eSize, 0, eZ])
         topCornerPieceAssembly(180);
-    translate([0, eY + 2*eSize, 0])
+    translate([0, eY + 2*eSize, eZ])
         topCornerPieceAssembly(0);
-    translate([eX + 2*eSize, eY + 2*eSize, 0])
+    translate([eX + 2*eSize, eY + 2*eSize, eZ])
         topCornerPieceAssembly(270);
 }
 
@@ -78,8 +85,8 @@ assembly("Face_Top_Stage_2", big=true, ngb=true) {
 
     translate_z(eZ)
         explode(100, true) {
-            xRail();
-            xRailBoltPositions()
+            xRail(carriagePosition());
+            xRailBoltPositions(carriagePosition())
                 explode(20, true)
                     boltM3Caphead(10);
         }
@@ -144,7 +151,6 @@ module faceTopBack() {
                                 rotate([90, 0, 0])
                                     jointBoltHole();
                     }
-
         }
     }
 }
@@ -168,7 +174,7 @@ assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
                     rail_assembly(yCarriageType, _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
                     railBoltsAndNuts(carriage_rail(yCarriageType), _yRailLength, 5);
                 }
-    translate_z(eZ - eSize)
+    translate([0, 0, eZ - eSize])
         explode(-80, true) {
             Y_Carriage_Left_assembly();
             explode(-20, true)
@@ -201,59 +207,4 @@ assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
             explode(-20, true)
                 Y_Carriage_bolts(yCarriageType, yCarriageThickness(), left=false);
         }
-}
-
-topCornerPieceHoles = [ [eSize/2, 3*eSize/2], [eSize/2, 5*eSize/2], [3*eSize/2, eSize/2], [3*eSize/2, 3*eSize/2], [5*eSize/2, eSize/2] ];
-
-module topCornerPiece() {
-    size = [3*eSize, 3*eSize, 5];
-    fillet = 2;
-
-    difference() {
-        union() {
-            linear_extrude(size.z)
-                offset(r=fillet)
-                    offset(delta=-fillet)
-                        hull()
-                            polygon([
-                                [eSize, 0], [size.x, 0], [size.x, size.y - 2*eSize], [size.x - 2*eSize, size.y], [0, size.y], [0, eSize]
-                            ]);
-            guideSize = [5, eSize + 0.5, 5];
-            translate([guideSize.y, 0, -guideSize.z])
-                rounded_cube_xy([guideSize.x, guideSize.x + guideSize.y, guideSize.z], 1.5);
-            translate([0, guideSize.y, -guideSize.z])
-                rounded_cube_xy([guideSize.x + guideSize.y, guideSize.x, guideSize.z], 1.5);
-            translate([guideSize.y, guideSize.y, -guideSize.z])
-                rotate(180)
-                    fillet(0.5, guideSize.z);
-        }
-        for (i = topCornerPieceHoles)
-            translate(i)
-                boltPolyholeM4Countersunk(size.z);
-    }
-}
-
-module Top_Corner_Piece_stl() {
-    stl("Top_Corner_Piece")
-        color(pp1_colour)
-            vflip()
-                topCornerPiece();
-}
-
-module Top_Corner_Piece_hardware(rotate=0) {
-    vflip()
-        for (i = [0 : len(topCornerPieceHoles) - 1])
-            translate(topCornerPieceHoles[i])
-                vflip()
-                    boltM4CountersunkTNut(10, rotate=(i < 2 ? 90 : i==3 ? (rotate == 0 || rotate==180 ? 90 : 0) : 0));
-}
-
-module topCornerPieceAssembly(rotate=0) {
-    translate_z(eZ + 5)
-        explode(50, true)
-            rotate(rotate) {
-                stl_colour(pp1_colour)
-                    Top_Corner_Piece_stl();
-                Top_Corner_Piece_hardware(rotate);
-            }
 }
