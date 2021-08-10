@@ -6,12 +6,16 @@ use <NopSCADlib/vitamins/iec.scad>
 
 include <../Parameters_Main.scad>
 
+use <extruderBracket.scad> // for spoolHeight()
+
 use <../vitamins/bolts.scad>
 use <../vitamins/iec320c14.scad>
 use <../vitamins/nuts.scad>
 
 
 function iecHousingSize() = [70, 50, 42 + 3];
+//function iecHousingMountSize() = [iecHousingSize().x + eSize, iecHousingSize().y + 2*eSize, 3];
+function iecHousingMountSize() = [iecHousingSize().x + eSize, spoolHeight() + (eX < 350 ? 0 : eSize), 3];
 function iecCutoutSize() = [50, 27.5];
 function iecType() = iec320c14FusedSwitchedType();
 
@@ -52,6 +56,19 @@ module IEC_Housing_stl() {
         }
 }
 
+module IEC_housing_hardware() {
+    iecHousingSize = iecHousingSize();
+    sidePanelSizeZ = 3;
+
+    translate([iecHousingSize.x/2, iecHousingSize.z/2, iecHousingSize.y + 2*eps])
+        rotate(-90) {
+            translate_z(-sidePanelSizeZ)
+                iec320c14FusedSwitched();
+            iec_screw_positions(iecType())
+                boltM4Buttonhead(12);
+        }
+}
+
 module IEC_housing() {
     iecHousingSize = iecHousingSize();
     sidePanelSizeZ = 3;
@@ -71,45 +88,61 @@ module IEC_housing() {
             }
 }
 
+module iecHousingMountAttachmentHolePositions(z=0) {
+    size = iecHousingMountSize();
+
+    translate([0, -2*eSize, z]) {
+        for (x = [eSize/2, size.x - 3*eSize/2])
+            translate([x, eSize/2, 0])
+                children();
+        for (y = [eSize, iecHousingSize().y + 3*eSize/2, size.y - eSize/2])
+            translate([size.x - eSize/2, y, 0])
+                children();
+        translate([eSize/2, size.y - eSize/2])
+            children();
+    }
+}
+
 module IEC_Housing_Mount_stl() {
+    size = iecHousingMountSize();
+echo(iecHousingMountSize=size);
     iecHousingSize = iecHousingSize();
-    size = [iecHousingSize.x + eSize, iecHousingSize.y + 2*eSize, 3];
-    fillet = 2;
-    cutoutSize = [iecCutoutSize().x, iecCutoutSize().y, size.z + 2*eps];
+    iecCutoutSize = [iecCutoutSize().x, iecCutoutSize().y, size.z + 2*eps];
+    fillet = 3;
 
     stl("IEC_Housing_Mount")
-        color(pp2_colour) {
+        color(pp2_colour)
             difference() {
-                translate([0, iecHousingSize.y - size.y, 0])
+                translate([0, -2*eSize, 0])
                     rounded_cube_xy(size, fillet);
-                translate([iecHousingSize.x/2 - cutoutSize.x/2, iecHousingSize.y/2 - cutoutSize.y/2, -eps])
-                    rounded_cube_xy(cutoutSize, fillet);
+                // cutout to access TF card
+
+                tfCutoutSize = [40, 50, size.z + 2*eps];
+                translate([size.x - eSize - tfCutoutSize.x, size.y -3*eSize - tfCutoutSize.y, -eps])
+                    rounded_cube_xy(tfCutoutSize, 2);
+                translate([iecHousingSize.x/2 - iecCutoutSize.x/2, iecHousingSize.y/2 - iecCutoutSize.y/2, -eps])
+                    rounded_cube_xy(iecCutoutSize, fillet);
                 translate([iecHousingSize.x/2, iecHousingSize.y/2, 0])
                     rotate(90)
                         iec_screw_positions(iecType())
                             boltHoleM4Tap(size.z);
-                translate([0, iecHousingSize.y - size.y,0]) {
-                    // attachment holes
-                    for (x = [eSize/2, size.x - 3*eSize/2])
-                        translate([x, eSize/2, 0])
-                            boltHoleM4(size.z);
-                    for (y = [eSize, size.x - eSize/2])
-                        translate([size.x - eSize/2, y, 0])
-                            boltHoleM4(size.z);
-                    // access holes
-                    for (y = [eSize/2, 3*eSize/2])
-                        translate([size.x - eSize/2, y, 0])
-                            boltHoleM4(size.z);
-                }
+                iecHousingMountAttachmentHolePositions()
+                    boltHoleM4(size.z);
+                // access holes
+                for (y = [eSize/2, 3*eSize/2])
+                    translate([size.x - eSize/2, y - 2*eSize, 0])
+                        boltHoleM4(size.z);
             }
-        }
 }
 
 module IEC_Housing_Mount_hardware() {
-    iecHousingSize = iecHousingSize();
+
+    iecHousingMountAttachmentHolePositions(iecHousingMountSize().z)
+        boltM4ButtonheadHammerNut(_sideBoltLength, rotate=90);
+/*    iecHousingSize = iecHousingSize();
     size = [iecHousingSize.x + eSize, iecHousingSize.y + 2*eSize, 3];
 
-    translate([0, iecHousingSize.y - size.y,0]) {
+    translate([0, -2*eSize,0]) {
         // attachment holes
         for (x = [eSize/2, size.x - 3*eSize/2])
             translate([x, eSize/2, size.z])
@@ -118,6 +151,7 @@ module IEC_Housing_Mount_hardware() {
             translate([size.x - eSize/2, y, size.z])
                 boltM4ButtonheadHammerNut(_sideBoltLength, rotate=90);
     }
+*/
 }
 
 //!1. Attach the power cables to the IEC connector.
@@ -133,7 +167,15 @@ assembly("IEC_Housing", ngb=true) {
                 IEC_Housing_Mount_stl();
             IEC_Housing_Mount_hardware();
         }
-    IEC_housing();
+
+    translate([-iecHousingSize().z, -iecHousingSize().x, 0])
+        rotate([90, 0, 90]) {
+            explode(-30)
+                stl_colour(pp1_colour)
+                    IEC_Housing_stl();
+            explode(30, true)
+                IEC_housing_hardware();
+        }
 }
 
 /*

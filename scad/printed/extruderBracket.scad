@@ -7,6 +7,8 @@ use <NopSCADlib/utils/fillet.scad>
 use <../../../BabyCube/scad/vitamins/extruder.scad>
 use <../../../BabyCube/scad/vitamins/CorkDamper.scad>
 
+use <IEC_Housing.scad>
+
 use <../vitamins/bolts.scad>
 use <../vitamins/cables.scad>
 use <../vitamins/filament_sensor.scad>
@@ -25,18 +27,18 @@ function extruderPosition() = [eX + 2*eSize, eY + 2*eSize - 45, eX < 350 ? eZ - 
 function Extruder_Bracket_assembly_bowdenOffset() = [20.5, 5, 10];
 
 // spoolHeight is declared here because it is determined by its supporting extrusion requiring to clear the extruder and filament sensor
-function spoolHeight() = extruderPosition().z - 80;
+function spoolHeight() = extruderPosition().z - (eX < 350 ? 90 : 80);
 
-function extruderBracketSize() = [3, 77.5, eZ - spoolHeight()];
+function extruderBracketSize() = [3, iecHousingMountSize().x, eZ - spoolHeight() - (eX < 350 ? 0 : eSize)];
 //filamentSensorOffset = [20.5, 4.5, -45];
 function filamentSensorOffset() = [extruderFilamentOffset().z + extruderBracketSize().x, extruderFilamentOffset().x, -extruderFilamentOffset().y - filament_sensor_size().x/2 - 4];
 
-counterSunk = false;
+counterSunk = true;
 
 module extruderBoltPositions() {
     size = extruderBracketSize();
 
-    translate([eX + 2*eSize, eY + 2*eSize - size.y, spoolHeight()])
+    translate([eX + 2*eSize, eY + 2*eSize - size.y, eZ - size.z])
         //for (y = [10, size.y - eSize/2], z = [eSize/2, size.z - eSize/2])
         //    translate([0, y, z])
         for (i = [
@@ -58,7 +60,7 @@ module extruderCutouts() {
         boltHoleM4(size.x);
 
     // access holes
-    translate([eX + 2*eSize, eY + 2*eSize - size.y, spoolHeight()])
+    translate([eX + 2*eSize, eY + 2*eSize - size.y, eZ - size.z])
         for (z = [size.z - eSize/2, size.z - 3*eSize/2])
             translate([0, size.y - eSize/2, z])
                 rotate([0, 90, 0])
@@ -87,7 +89,7 @@ module extruderBracket() {
     fillet = 3;
 
     difference() {
-        translate([eX + 2*eSize, eY + 2*eSize - size.y, spoolHeight()])
+        translate([eX + 2*eSize, eY + 2*eSize - size.y, eZ - size.z])
             rounded_cube_yz(size, fillet);
         extruderCutouts();
     }
