@@ -36,9 +36,6 @@ module Face_Top_test() {
     //Face_Top_Stage_1_assembly();
     //let($hide_extrusions=true)
     Face_Top_assembly();
-    //Top_Corner_Piece_stl();
-    //Top_Corner_Piece_hardware();
-    //Top_Corner_Piece_assembly();
     //Left_Side_Upper_Extrusion_assembly();
     //Right_Side_Upper_Extrusion_assembly();
     //Extruder_Bracket_assembly();
