@@ -14,13 +14,18 @@ layer height ranges:
 
 extrusion width ranges (2*lh <= ew < 4*lh)
 for 0.4 nozzle
+0.15 : [ 0.44, 0.60 ]
 0.2  : [ 0.44, 0.68]
 0.25 : [ 0.50, 0.68]
+0.3  : [ 0.6,  0.68 ]
 for 0.6 nozzle
-0.4 : [ 0.8, 1.02 ]
-0.5 : [ 1.0, 1.02 ]
-
+0.2  : [ 0.66, 0.80 ]
+0.25 : [ 0.66, 1.00 ]
+0.33 : [ 0.66, 1.02 ]
+0.4  : [ 0.8,  1.02 ]
+0.5  : [ 1.0,  1.02 ]
 */
+
 module echoPrintParameters() {
     //assert(extrusion_width >= 1.1*nozzle, "extrusion_width too small for nozzle");
     //assert(extrusion_width <= 1.7*nozzle, "extrusion_width too large for nozzle");
