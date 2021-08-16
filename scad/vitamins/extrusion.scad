@@ -26,6 +26,14 @@ module extrusionOX2040H(length) {
                     extrusion(E2040, length, center=false);
 }
 
+module extrusionOX2080H(length) {
+    eSize = 20;
+    if (is_undef($hide_extrusions) || $hide_extrusions == false)
+        translate([0, 2*eSize, eSize/2])
+            rotate([0, 90, 0])
+                color(frameColor())
+                    extrusion(E2080, length, center=false);
+}
 
 module extrusionOX2040V(length) {
     eSize = 20;
@@ -123,6 +131,12 @@ module extrusionOY2040HEndBoltPositions(length, offset=0) {
         rotate([0, 0, -90])
             extrusionOX2040HEndBoltPositions(length, offset)
                 children();
+}
+
+module extrusionOY2080H(length) {
+    translate([0, length, 0])
+        rotate([0, 0, -90])
+            extrusionOX2080H(length);
 }
 
 module extrusionOY2040V(length) {
