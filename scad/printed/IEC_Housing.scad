@@ -63,8 +63,9 @@ module IEC_Housing_stl() {
                         translate_z(-lugSize.y)
                             cube([lugSize.x, eps, eps]);
                     }
-                    translate([5, lugSize.y/2 + (fillet + lugFillet)/2, -2])
-                        boltHoleM4Tap(lugSize.z + 2);
+                    for (x = [5, size.x - 35])
+                        translate([x, lugSize.y/2 + (fillet + lugFillet)/2, -2])
+                            boltHoleM4Tap(lugSize.z + 2);
                 }
         }
 }
