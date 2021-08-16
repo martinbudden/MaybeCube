@@ -147,7 +147,7 @@ assembly("Right_Side_Panel", ngb=true) {
 
     Extruder_Bracket_hardware(is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness);
     translate([eX + 2*eSize, eY + eSize, 2*eSize])
-        IEC_housing();
+        iecHousing();
 
     rightSidePanelPC();
 }

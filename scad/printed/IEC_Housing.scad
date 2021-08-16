@@ -15,7 +15,8 @@ use <../vitamins/nuts.scad>
 
 function iecHousingSize() = [70, 50, 42 + 3];
 //function iecHousingMountSize() = [iecHousingSize().x + eSize, iecHousingSize().y + 2*eSize, 3];
-function iecHousingMountSize() = [iecHousingSize().x + eSize, spoolHeight() + (eX < 350 ? 0 : eSize), 3];
+//function iecHousingMountSize() = [iecHousingSize().x + eSize, spoolHeight() + (eX < 350 ? 0 : eSize), 3];
+function iecHousingMountSize() = [iecHousingSize().x + eSize, iecHousingSize().y + 2*eSize, 3];
 function iecCutoutSize() = [50, 27.5];
 function iecType() = iec320c14FusedSwitchedType();
 
@@ -53,6 +54,18 @@ module IEC_Housing_stl() {
                     translate([size.x/2 - 12 - cableCutoutSize.x/2, -size.y/2 - eps, -eps])
                         cube(cableCutoutSize);
                 }
+            lugFillet = 1;
+            lugSize = [size.x, 10 + fillet + lugFillet, 5];
+            translate([0, size.y - fillet - lugFillet, size.z - lugSize.z])
+                difference() {
+                    hull() {
+                        rounded_cube_xy(lugSize, lugFillet);
+                        translate_z(-lugSize.y)
+                            cube([lugSize.x, eps, eps]);
+                    }
+                    translate([5, lugSize.y/2 + (fillet + lugFillet)/2, -2])
+                        boltHoleM4Tap(lugSize.z + 2);
+                }
         }
 }
 
@@ -60,16 +73,16 @@ module IEC_housing_hardware() {
     iecHousingSize = iecHousingSize();
     sidePanelSizeZ = 3;
 
-    translate([iecHousingSize.x/2, iecHousingSize.z/2, iecHousingSize.y + 2*eps])
+    translate([iecHousingSize.x/2, iecHousingSize.y/2, iecHousingSize.z + sidePanelSizeZ +2*eps])
         rotate(-90) {
-            translate_z(-sidePanelSizeZ)
-                iec320c14FusedSwitched();
-            iec_screw_positions(iecType())
-                boltM4Buttonhead(12);
+            iec320c14FusedSwitched();
+            translate_z(3)
+                iec_screw_positions(iecType())
+                    boltM4Buttonhead(12);
         }
 }
 
-module IEC_housing() {
+module iecHousing() {
     iecHousingSize = iecHousingSize();
     sidePanelSizeZ = 3;
 
@@ -98,8 +111,9 @@ module iecHousingMountAttachmentHolePositions(z=0) {
         for (y = [eSize, iecHousingSize().y + 3*eSize/2, size.y - eSize/2])
             translate([size.x - eSize/2, y, 0])
                 children();
-        translate([eSize/2, size.y - eSize/2])
-            children();
+        if (size.y >= spoolHeight())
+            translate([eSize/2, size.y - eSize/2])
+                children();
     }
 }
 
@@ -115,10 +129,12 @@ module IEC_Housing_Mount_stl() {
                 translate([0, -2*eSize, 0])
                     rounded_cube_xy(size, fillet);
 
-                // cutout to access TF card
-                tfCutoutSize = [40, 50, size.z + 2*eps];
-                translate([size.x - eSize - tfCutoutSize.x, size.y -3*eSize - tfCutoutSize.y, -eps])
-                    rounded_cube_xy(tfCutoutSize, 2);
+                if (size.y >= spoolHeight()) {
+                    // cutout to access TF card
+                    tfCutoutSize = [40, 50, size.z + 2*eps];
+                    translate([size.x - eSize - tfCutoutSize.x, size.y -3*eSize - tfCutoutSize.y, -eps])
+                        rounded_cube_xy(tfCutoutSize, 2);
+                }
                 translate([iecHousingSize.x/2 - iecCutoutSize.x/2, iecHousingSize.y/2 - iecCutoutSize.y/2, -eps])
                     rounded_cube_xy(iecCutoutSize, fillet);
                 translate([iecHousingSize.x/2, iecHousingSize.y/2, 0])
