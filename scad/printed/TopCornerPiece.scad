@@ -19,18 +19,25 @@ module topCornerPiece() {
     translate_z(-size.z)
         difference() {
             union() {
-                linear_extrude(size.z)
+                offset = 1; // offset so that the front panel does catch when inserted, even if it flexes a bit.
+                *linear_extrude(size.z)
                     offset(r=fillet)
                         offset(delta=-fillet)
                             hull()
                                 polygon([
                                     [eSize, 0], [size.x, 0], [size.x, size.y - 2*eSize], [size.x - 2*eSize, size.y], [0, size.y], [0, eSize]
                                 ]);
+                hull() {
+                    translate([eSize, offset, 0])
+                        rounded_cube_xy([size.x - eSize, eSize - offset, size.z], fillet);
+                    translate([offset, eSize, 0])
+                        rounded_cube_xy([eSize - offset, size.y - eSize, size.z], fillet);
+                }
                 guideSize = [5, eSize + 0.5, 5];
-                translate([guideSize.y, 0, -guideSize.z])
-                    rounded_cube_xy([guideSize.x, guideSize.x + guideSize.y, guideSize.z], 1.5);
-                translate([0, guideSize.y, -guideSize.z])
-                    rounded_cube_xy([guideSize.x + guideSize.y, guideSize.x, guideSize.z], 1.5);
+                translate([guideSize.y, offset, -guideSize.z])
+                    rounded_cube_xy([guideSize.x, guideSize.x + guideSize.y - offset, guideSize.z], 1.5);
+                translate([offset, guideSize.y, -guideSize.z])
+                    rounded_cube_xy([guideSize.x + guideSize.y - offset, guideSize.x, guideSize.z], 1.5);
                 translate([guideSize.y, guideSize.y, -guideSize.z])
                     rotate(180)
                         fillet(0.5, guideSize.z);
