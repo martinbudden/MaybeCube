@@ -105,7 +105,6 @@ module iecHousingMountAttachmentHolePositions(z=0) {
 
 module IEC_Housing_Mount_stl() {
     size = iecHousingMountSize();
-echo(iecHousingMountSize=size);
     iecHousingSize = iecHousingSize();
     iecCutoutSize = [iecCutoutSize().x, iecCutoutSize().y, size.z + 2*eps];
     fillet = 3;
@@ -115,8 +114,8 @@ echo(iecHousingMountSize=size);
             difference() {
                 translate([0, -2*eSize, 0])
                     rounded_cube_xy(size, fillet);
-                // cutout to access TF card
 
+                // cutout to access TF card
                 tfCutoutSize = [40, 50, size.z + 2*eps];
                 translate([size.x - eSize - tfCutoutSize.x, size.y -3*eSize - tfCutoutSize.y, -eps])
                     rounded_cube_xy(tfCutoutSize, 2);
