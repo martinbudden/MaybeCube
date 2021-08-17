@@ -22,7 +22,7 @@ module Spool_Holder_Bracket_stl() {
     size = [3*eSize, 1.5*eSize, 10];
     fillet = 2;
 
-    stl("Spool_Holder")
+    stl("Spool_Holder_Bracket")
         color(pp1_colour)
             translate([-size.x/2, 0, 0])
                 difference() {
