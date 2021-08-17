@@ -12,7 +12,7 @@ use <printed/SpoolHolder.scad>
 use <utils/bezierTube.scad>
 use <utils/printheadOffsets.scad>
 
-use <vitamins/SidePanels.scad>
+use <vitamins/Panels.scad>
 
 use <Parameters_Positions.scad>
 include <Parameters_Main.scad>

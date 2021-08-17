@@ -9,7 +9,7 @@ use <utils/FrameBolts.scad>
 use <utils/Z_Rods.scad>
 
 use <vitamins/extrusion.scad>
-use <vitamins/SidePanels.scad>
+use <vitamins/Panels.scad>
 
 use <FaceRightExtras.scad>
 use <Parameters_CoreXY.scad>

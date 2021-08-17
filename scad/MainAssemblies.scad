@@ -15,7 +15,7 @@ use <utils/Z_Rods.scad>
 use <vitamins/AntiBacklashNut.scad>
 use <vitamins/extrusion.scad>
 use <vitamins/PrintHeadBIQU_B1.scad>
-use <vitamins/SidePanels.scad>
+use <vitamins/Panels.scad>
 
 use <BackFace.scad>
 use <BasePlate.scad>

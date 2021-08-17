@@ -18,6 +18,8 @@ PC3 = ["PC3", "Sheet polycarbonate", 3, [1,   1,   1,   0.25], false];
 accessHoleRadius = 2.5;
 
 function sidePanelSize() = [eY + 2*eSize, eZ, 3];
+function partitionSize() = [eX, eZ, 3];
+function partitionOffsetY() = 59;
 
 
 module sidePanelAccessHolePositions(size, left) {
@@ -150,4 +152,45 @@ assembly("Right_Side_Panel", ngb=true) {
         iecHousing();
 
     rightSidePanelPC();
+}
+
+module Partition_dxf() {
+    size = partitionSize();
+    fillet = 1;
+    sheet = PC3;
+
+    dxf("Partition")
+        color(sheet_colour(sheet))
+            difference() {
+                sheet_2D(sheet, size.x, size.y, fillet);
+                partitionCutouts(cncSides=0);
+            }
+}
+
+module partitionCutouts(cncSides) {
+    size = partitionSize();
+
+    translate([-size.x/2, -size.y/2]) {
+        translate([0, size.y - 2*eSize])
+            square([eSize, 2*eSize]);
+        translate([size.x - eSize, size.y - 2*eSize])
+            square([eSize, 2*eSize]);
+    }
+}
+
+module partitionPC() {
+    size = partitionSize();
+
+    translate([size.x/2 + eSize, eY + 2*eSize - partitionOffsetY(), size.y/2])
+        rotate([90, 0, 0]) {
+            render_2D_sheet(PC3, w=size.x, d=size.y)
+                Partition_dxf();
+        }
+}
+
+module Partition_assembly()
+assembly("Partition", ngb=true) {
+    size = partitionSize();
+
+    partitionPC();
 }

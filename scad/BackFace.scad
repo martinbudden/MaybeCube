@@ -580,6 +580,7 @@ module psuAssembly(psuVertical, useMounts=false) {
     }
 }
 
+/*
 module Partition_dxf() {
     size = partitionSize();
     fillet = 1;
@@ -625,3 +626,4 @@ module partitionCutouts(cncSides) {
             square(centerTop);
     }
 }
+*/
