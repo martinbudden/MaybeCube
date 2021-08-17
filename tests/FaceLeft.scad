@@ -23,7 +23,7 @@ include <../scad/Parameters_Main.scad>
 //$pose = 1;
 module Left_Side_test() {
     echoPrintSize();
-    //CoreXYBelts(carriagePosition, show_pulleys=[1, 0, 0]);
+    //CoreXYBelts(carriagePosition(), show_pulleys=[1, 0, 0]);
 
     //let($hide_extrusions=true)
     //let($hide_rails=true)

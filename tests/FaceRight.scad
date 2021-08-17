@@ -22,7 +22,7 @@ include <../scad/Parameters_Main.scad>
 //$explode = 1;
 //$pose = 1;
 module Right_Side_test() {
-    //CoreXYBelts(carriagePosition, show_pulleys=!true);
+    //CoreXYBelts(carriagePosition(), show_pulleys=!true);
     Right_Side_assembly();
     //Left_Side_assembly();
     //Face_Top_assembly();

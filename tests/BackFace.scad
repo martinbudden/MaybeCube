@@ -2,7 +2,9 @@
 
 include <NopSCADlib/core.scad>
 
+use <../scad/utils/CoreXYBelts.scad>
 use <../scad/printed/PSU.scad>
+use <../scad/printed/XY_MotorMount.scad>
 use <../scad/BackFace.scad>
 use <../scad/BasePlate.scad>
 use <../scad/FaceLeft.scad>
@@ -11,6 +13,7 @@ use <../scad/FaceRightExtras.scad>
 use <../scad/FaceTop.scad>
 use <../scad/vitamins/Panels.scad>
 
+use <../scad/Parameters_Positions.scad>
 include <../scad/Parameters_Main.scad>
 
 //$explode = 1;
@@ -32,11 +35,17 @@ module BackFace_test() {
     //let($hide_pcb=true)
     //Base_Plate_assembly();
     //Left_Side_assembly();
-    Right_Side_assembly();
+    //Right_Side_assembly();
     //faceRightExtras();
     //Face_Top_Stage_1_assembly();
     //printHeadWiring();
-    //Partition_assembly();
+    showPartition = !true;
+    if (showPartition) {
+        CoreXYBelts(carriagePosition());
+        XY_Motor_Mount_Left_assembly();
+        XY_Motor_Mount_Right_assembly();
+        partitionPC();
+    }
 }
 
 module BackFace_test2() {
