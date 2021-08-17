@@ -28,7 +28,7 @@ module Spool_Holder_Bracket_stl() {
                 difference() {
                     union() {
                         rounded_cube_xy([size.x, size.y, 4.5], fillet);
-                        sideSize = [eSize - 0.5, size.y, size.z];
+                        sideSize = [eSize - 0.25, size.y, size.z];
                         for (x = [0, size.x - sideSize.x])
                             translate([x, 0, 0])
                                 rounded_cube_xy(sideSize, fillet);
