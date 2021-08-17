@@ -173,8 +173,11 @@ module FinalAssembly() {
     translate([-(eX + 2*eSize)/2, - (eY + 2*eSize)/2, -eZ/2]) {
         Stage_5_assembly();
         explode([80, 0, 80])
-            stl_colour(pp1_colour)
+            stl_colour(pp2_colour)
                 faceRightSpoolHolder();
+        stl_colour(pp1_colour)
+            faceRightSpoolHolderBracket();
+        faceRightSpoolHolderBracketHardware();
         explode([200, 0, 100])
             faceRightSpool();
         explode([-50, 0, 0], true)

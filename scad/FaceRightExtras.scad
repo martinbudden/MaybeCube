@@ -18,7 +18,7 @@ use <Parameters_Positions.scad>
 include <Parameters_Main.scad>
 
 
-spoolHolderPosition = [eX + 2*eSize, eY/2, spoolHeight() + eSize];
+spoolHolderPosition = [eX + 2*eSize + 10, eY/2, spoolHeight() + eSize];
 
 module faceRightSpoolHolder() {
    // add the spool holder, place it to the back of the right side, so that the feed to the extruder is as straight as possible
@@ -26,6 +26,18 @@ module faceRightSpoolHolder() {
     //translate([-eSize - 5,  - 10, 0])
         rotate([90, 0, 0])
             Spool_Holder_stl();
+}
+
+module faceRightSpoolHolderBracket() {
+    translate(spoolHolderPosition)
+        rotate([-90, 0, 90])
+            Spool_Holder_Bracket_stl();
+}
+
+module faceRightSpoolHolderBracketHardware() {
+    translate(spoolHolderPosition)
+        rotate([-90, 0, 90])
+            Spool_Holder_Bracket_hardware();
 }
 
 module faceRightSpool() {

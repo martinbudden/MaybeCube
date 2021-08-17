@@ -2,16 +2,50 @@ include <../global_defs.scad>
 
 include <NopSCADlib/core.scad>
 
+use <../vitamins/bolts.scad>
+use <../vitamins/nuts.scad>
+
 use <../../../BabyCube/scad/printed/SpoolHolder.scad>
 
-function spoolOffset() = [17.5 + 3, 0, 7];
+include <../Parameters_Main.scad>
+
+
+function spoolOffset() = [3, 0, 7];
 
 module Spool_Holder_stl() {
-    eSize = 20;
+    stl("Spool_Holder")
+        color(pp2_colour)
+            spoolHolder(bracketSize = [5, 2*eSize-10, 20], offsetX = spoolOffset().x);
+}
+
+module Spool_Holder_Bracket_stl() {
+    size = [3*eSize, 1.5*eSize, 10];
+    fillet = 2;
 
     stl("Spool_Holder")
         color(pp1_colour)
-            spoolHolder(bracketSize = [eSize, 2*eSize, 20], offsetX = spoolOffset().x);
+            translate([-size.x/2, 0, 0])
+                difference() {
+                    union() {
+                        rounded_cube_xy([size.x, size.y, 4.5], fillet);
+                        sideSize = [eSize - 0.5, size.y, size.z];
+                        for (x = [0, size.x - sideSize.x])
+                            translate([x, 0, 0])
+                                rounded_cube_xy(sideSize, fillet);
+                    }
+                    for (x = [eSize/2, size.x - eSize/2])
+                        translate([x, eSize/2, 0])
+                            boltHoleM4HangingCounterboreButtonhead(size.z, boreDepth=size.z - 5);
+                }
+}
+
+module Spool_Holder_Bracket_hardware() {
+    size = [3*eSize, 1.5*eSize, 10];
+
+    for (x = [eSize/2, size.x - eSize/2])
+        translate([x - size.x/2, eSize/2, size.z - 5])
+            vflip()
+                boltM4ButtonheadHammerNut(_frameBoltLength);
 }
 
 //use <NopSCADlib/utils/fillet.scad>
