@@ -61,12 +61,12 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
         Camera_Mount_hardware();
     }
     translate_z(eZ)
-        topCornerPieceAssembly(90);
+        topCornerPieceAssembly(0);
     translate([eX + 2*eSize, 0, eZ])
+        topCornerPieceAssembly(90);
+    translate([eX + 2*eSize, eY + 2*eSize, eZ])
         topCornerPieceAssembly(180);
     translate([0, eY + 2*eSize, eZ])
-        topCornerPieceAssembly(0);
-    translate([eX + 2*eSize, eY + 2*eSize, eZ])
         topCornerPieceAssembly(270);
 }
 
