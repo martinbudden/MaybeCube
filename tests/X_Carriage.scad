@@ -45,4 +45,5 @@ module X_Carriage_test() {
 }
 
 if ($preview)
-    X_Carriage_test();
+    rotate(90)
+        X_Carriage_test();
