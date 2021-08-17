@@ -59,6 +59,11 @@ pulleyStackHeight = 2*washer_thickness(coreXYIdlerBore() == 3 ? M3_washer : M5_w
 sizeP = [9, 8.5, pulleyStackHeight + 0.5];
 sizeT = [8.5, 9, sizeP.z];
 
+function xyMotorMountSize(motorWidth = motorWidth(motorType(_xyMotorDescriptor)), offset = [0, 0], left=true)
+    = [ offset.x + eX + 2*eSize + coreXY_drive_pulley_x_alignment(coreXY_type()) + motorWidth/2,
+       -offset.y + eY + 2*eSize + motorWidth/2,
+       eZ + basePlateThickness - bracketHeightRight + (left ? bracketHeightLeft : bracketHeightRight)] - coreXYPosTR(motorWidth);
+
 function upperBoltPositions(sizeX) = [eSize/2 + 3, sizeX - 3*eSize/2 - 3];
 leftDrivePlainIdlerOffset    = useMotorIdler20 ? [1.19, -2, 0] : [0, 0, 0];
 leftDriveToothedIdlerOffset  = useMotorIdler20 ? [1.19, 1, 0] : [0, 0, 0];
@@ -89,7 +94,7 @@ module xyMotorScrewPositions(motorType) {
 
 }
 
-module  Stepdown_Pulley_40x20_stl() {
+module Stepdown_Pulley_40x20_stl() {
     translate_z(-pulley_height(GT2x40sd_pulley) - pulley_height(GT2x40sd_pulley) - stepdownPulleyOffsetZ -0.3+1+.2-1.6)
         stl("Stepdown_Pulley_40x20")
             color(pp2_colour) {
@@ -366,14 +371,13 @@ module xyMotorMountBlock(motorType, size, bracketHeight, basePlateThickness, off
 
 module xyMotorMount(motorType, bracketHeight, basePlateThickness, offset=[0, 0], sideSupportSizeY, blockHeightExtra=0, stepdown=false, left=true) {
     motorWidth = motorWidth(motorType);
-    size = [offset.x + eX + 2*eSize + coreXY_drive_pulley_x_alignment(coreXY_type()) + motorWidth/2, -offset.y + eY + 2*eSize + motorWidth/2, eZ + basePlateThickness] - coreXYPosTR(motorWidth);
-
+    size = xyMotorMountSize(motorWidth, offset, left);
     xyMotorMountBase(motorType, left, [size.x, size.y, basePlateThickness], offset, sideSupportSizeY, stepdown);
     translate_z(basePlateThickness - eps)
         xyMotorMountBlock(motorType, size, bracketHeight, basePlateThickness, offset, sideSupportSizeY, blockHeightExtra, stepdown);
 }
 
-module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0,0], sideSupportSizeY=sideSupportSizeY, corkDamperThickness=0, blockHeightExtra=0, stepdown=false, left=true) {
+module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], sideSupportSizeY=sideSupportSizeY, corkDamperThickness=0, blockHeightExtra=0, stepdown=false, left=true) {
     corkDamperThickness = is_undef(corkDamperThickness) ? 0 : corkDamperThickness;
     motorWidth = motorWidth(motorType);
     coreXYPosBL = coreXYPosBL();

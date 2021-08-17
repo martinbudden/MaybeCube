@@ -5,9 +5,11 @@ include <NopSCADlib/vitamins/iecs.scad>
 use <NopSCADlib/vitamins/sheet.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
 
-use <../vitamins/bolts.scad>
 use <../printed/extruderBracket.scad>
 use <../printed/IEC_Housing.scad>
+use <../printed/XY_MotorMount.scad>
+
+use <../vitamins/bolts.scad>
 use <../vitamins/filament_sensor.scad>
 use <../vitamins/nuts.scad>
 
@@ -19,7 +21,7 @@ accessHoleRadius = 2.5;
 
 function sidePanelSize() = [eY + 2*eSize, eZ, 3];
 function partitionSize() = [eX, eZ, 3];
-function partitionOffsetY() = 59;
+function partitionOffsetY() = xyMotorMountSize().y;
 
 
 module sidePanelAccessHolePositions(size, left) {
@@ -170,21 +172,25 @@ module Partition_dxf() {
 module partitionCutouts(cncSides) {
     size = partitionSize();
 
+    echo(xySize=xyMotorMountSize());
+    leftCutoutSize = [eSize, xyMotorMountSize(left=true).z];
+    rightCutoutSize = [eSize, xyMotorMountSize(left=false).z];
     translate([-size.x/2, -size.y/2]) {
-        translate([0, size.y - 2*eSize])
-            square([eSize, 2*eSize]);
-        translate([size.x - eSize, size.y - 2*eSize])
-            square([eSize, 2*eSize]);
+        translate([0, size.y - leftCutoutSize.y])
+            square(leftCutoutSize);
+        translate([size.x - eSize, size.y - rightCutoutSize.y])
+            square(rightCutoutSize);
     }
 }
 
 module partitionPC() {
     size = partitionSize();
 
-    translate([size.x/2 + eSize, eY + 2*eSize - partitionOffsetY(), size.y/2])
+    translate([eSize, eY + 2*eSize - partitionOffsetY() - size.z, 0])
         rotate([90, 0, 0]) {
-            render_2D_sheet(PC3, w=size.x, d=size.y)
-                Partition_dxf();
+            translate([size.x/2, size.y/2, -size.z/2])
+                render_2D_sheet(PC3, w=size.x, d=size.y)
+                    Partition_dxf();
         }
 }
 

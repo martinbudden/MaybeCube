@@ -39,7 +39,6 @@ module Back_Panel_dxf() {
     size = backPanelSize();
     fillet = 1;
     sheet = PC3;
-    thickness = sheet_thickness(sheet);
 
     dxf("Back_Panel")
         color(sheet_colour(sheet))
@@ -47,6 +46,15 @@ module Back_Panel_dxf() {
                 sheet_2D(sheet, size.x, size.y, fillet);
                 backPanelCutouts(PSUType(), pcbType(), cncSides=0);
             }
+}
+
+module backPanelPC() {
+    size = backPanelSize();
+
+    rotate([90, 0, 0])
+        translate([size.x/2, size.y/2, -size.z/2])
+            render_2D_sheet(PC3, w=size.x, d=size.y)
+                Back_Panel_dxf();
 }
 
 //!There are three options for the back panel: use a polycarbonate sheet, use an aluminium sheet, or use the three
@@ -79,8 +87,8 @@ assembly("Back_Panel") {
                     else
                         boltM4Buttonhead(_sideBoltLength);
 
-    translate([0, eY + 2*eSize, 0])
-        rotate([90, 0, 0]) {
+    translate([0, eY + 2*eSize, 0]) {
+        rotate([90, 0, 0])
             backPanelBoltHolePositions(size)
                 translate_z(-size.z)
                     vflip()
@@ -89,10 +97,8 @@ assembly("Back_Panel") {
                                 boltM4CountersunkHammerNut(_sideBoltLength);
                         else
                             boltM4ButtonheadHammerNut(_sideBoltLength);
-            translate([size.x/2, size.y/2, -size.z/2])
-                render_2D_sheet(PC3, w=size.x, d=size.y)
-                    Back_Panel_dxf();
-        }
+        backPanelPC();
+    }
 }
 
 module backPanelAccessHolePositions(size) {
