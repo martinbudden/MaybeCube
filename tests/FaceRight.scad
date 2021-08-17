@@ -8,7 +8,7 @@ use <../scad/printed/IEC_Housing.scad>
 use <../scad/utils/Z_Rods.scad>
 use <../scad/utils/CoreXYBelts.scad>
 
-use <../scad/vitamins/SidePanels.scad>
+use <../scad/vitamins/Panels.scad>
 
 use <../scad/FaceRight.scad>
 use <../scad/FaceRightExtras.scad>
@@ -42,8 +42,9 @@ module Right_Side_test() {
     faceRightSpoolHolderBracketHardware();
     //faceRightSpool();
 
-    // always add the side panel last, so it is transparent to other items
+    // always add the panels last, so it is transparent to other items
     //Right_Side_Panel_assembly();
+    //Partition_assembly();
 }
 
 if ($preview)

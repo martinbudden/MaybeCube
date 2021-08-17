@@ -8,7 +8,7 @@ use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/utils/CoreXYBelts.scad>
 use <../scad/utils/printParameters.scad>
 use <../scad/utils/Z_Rods.scad>
-use <../scad/vitamins/SidePanels.scad>
+use <../scad/vitamins/Panels.scad>
 
 use <../scad/FaceLeft.scad>
 use <../scad/FaceRight.scad>
@@ -34,14 +34,15 @@ module Left_Side_test() {
     translate_z(bedHeight(t=3)) Printbed_assembly();
     //let($hide_corexy=true)
     //let($hide_extrusions=true)
-    //Face_Top_assembly();
+    //Face_Top_Stage_1_assembly();
     //fullPrinthead(t=3);
     //printheadBeltSide();
     //printheadHotendSide();
 
-    // always add the side panel last, so it is transparent to other items
+    // always add the panels last, so it is transparent to other items
     //Left_Side_Panel_assembly();
     leftSidePanelPC();
+    //partitionPC();
 }
 
 if ($preview)

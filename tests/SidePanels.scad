@@ -1,7 +1,7 @@
 //!Display a side panel sheet
 include <NopSCADlib/core.scad>
 
-include <../scad/vitamins/SidePanels.scad>
+include <../scad/vitamins/Panels.scad>
 use <../scad/vitamins/extrusion.scad>
 use <../scad/jigs/PanelJig.scad>
 

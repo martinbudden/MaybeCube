@@ -9,6 +9,7 @@ use <../scad/FaceLeft.scad>
 use <../scad/FaceRight.scad>
 use <../scad/FaceRightExtras.scad>
 use <../scad/FaceTop.scad>
+use <../scad/vitamins/Panels.scad>
 
 include <../scad/Parameters_Main.scad>
 
@@ -17,7 +18,6 @@ include <../scad/Parameters_Main.scad>
 module BackFace_test() {
     Back_Panel_assembly();
     //Back_Panel_dxf();
-    //Partition_assembly();
     psuVertical = eX == 300;
     //PSUPosition(psuVertical) PSU();
     //PSUPosition(psuVertical) PSUBoltPositions() cylinder(r=3,h=2);
@@ -34,8 +34,9 @@ module BackFace_test() {
     //Left_Side_assembly();
     Right_Side_assembly();
     //faceRightExtras();
-    //Face_Top_assembly();
+    //Face_Top_Stage_1_assembly();
     //printHeadWiring();
+    //Partition_assembly();
 }
 
 module BackFace_test2() {
