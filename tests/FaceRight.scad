@@ -37,6 +37,9 @@ module Right_Side_test() {
 
     //faceRightExtras();
     //Extruder_Bracket_stl();
+    faceRightSpoolHolder();
+    faceRightSpoolHolderBracket();
+    faceRightSpoolHolderBracketHardware();
     //faceRightSpool();
 
     // always add the side panel last, so it is transparent to other items
