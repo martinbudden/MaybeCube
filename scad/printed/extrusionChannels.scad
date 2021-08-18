@@ -106,7 +106,7 @@ module extrusionPiping(length, channelWidth=6.2, channelDepth=1.8) {
     }
 }
 
-module extrusionChannel(length, bolts, sliding=false, channelWidth=5.8, boltDiameter=4) {
+module extrusionChannel(length, boltHoles=undef, accessHoles=undef, sliding=false, channelWidth=5.8, boltDiameter=4) {
     channelDepth = sliding ? 2.5 : boltDiameter == 4 ? 2 : 1.5;
     size1 = [channelWidth, channelDepth + eps];
     size2 = [5.8, 3.4];
@@ -142,13 +142,18 @@ module extrusionChannel(length, bolts, sliding=false, channelWidth=5.8, boltDiam
                     rotate(270)
                         fillet(fillet, size2.y + 2*eps);
             }
-            if (is_list(bolts))
-                for (z = bolts)
+            if (is_list(boltHoles))
+                for (z = boltHoles)
                     translate_z(z)
                         rotate([-90, 0, 0])
                             if (boltDiameter == 4)
                                 boltHoleM4Tap(size1.y + size2.y, twist=4);
                             else
                                 boltHoleM3Tap(size1.y + size2.y, twist=4);
+            if (is_list(accessHoles))
+                for (z = accessHoles)
+                    translate_z(z)
+                        rotate([-90, 0, 0])
+                            boltHoleM4(size1.y + size2.y, twist=4);
         }
 }
