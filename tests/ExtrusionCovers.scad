@@ -32,6 +32,7 @@ module ExtrusionCover_test() {
         extrusion(E2040, height, center=false);
 }
 
+//extrusionChannel(90, [10, 80], sliding=true);
 //extrusionChannel(90, [10, 20, 80], sliding=false);
 //extrusionChannel(100, [50], sliding=false, narrow=true);
 //extrusionChannel(100, [42.5, 50], sliding=false, channelWidth=4.95);
