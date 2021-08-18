@@ -260,39 +260,42 @@ module xyMotorMountBase(motorType, left, size, offset, sideSupportSizeY, stepdow
             }
     }
    if (!cnc && !stepdown)
-        translate([coreXYPosBL.x + separation.x/2, coreXYPosTR.y + offset.y]) {
-            translate([pP.x, pT.y, size.z])
-                difference() {
-                    delta = useMotorIdler20 ? [1.8, 1.8, 0] : [0 , 0, 0];
-                    if (left)
-                        translate([0, leftDrivePlainIdlerOffset.y/2 - 1, 0] + delta/2)
-                            rounded_cube_xy([sizeP.x - delta.x, sizeP.y - leftDrivePlainIdlerOffset.y - delta.y, sizeP.z], 1, xy_center=true);
-                    else
-                        translate([0, rightDrivePlainIdlerOffset.y/2 - 1, 0] + delta/2)
-                            rounded_cube_xy([sizeP.x - delta.x, sizeP.y - rightDrivePlainIdlerOffset.y -delta.y, sizeP.z], 1, xy_center=true);
-                    boltHoleM3Tap(pulleyStackHeight);
-                }
-                //!!TODO - fix the positioning of this for the useMotorIdler20 case
-                // add guide for threading belts
-                translate([0.75, 0, 0])
-                    hull() {
-                        translate([pP.x, pT.y, size.z])
-                            cylinder(r=0.75, h=sizeP.z);
-                        translate([pT.x, pP.y, size.z])
-                            cylinder(r=0.75, h=sizeP.z);
+        translate([coreXYPosBL.x + separation.x/2, coreXYPosTR.y + offset.y, size.z])
+            difference() {
+                union() {
+                    translate([pP.x, pT.y, 0]) {
+                        delta = useMotorIdler20 ? [1.8, 1.8, 0] : [0 , 0, 0];
+                        if (left)
+                            translate([0, leftDrivePlainIdlerOffset.y/2 - 1, 0] + delta/2)
+                                rounded_cube_xy([sizeP.x - delta.x, sizeP.y - leftDrivePlainIdlerOffset.y - delta.y, sizeP.z], 1, xy_center=true);
+                        else
+                            translate([0, rightDrivePlainIdlerOffset.y/2 - 1, 0] + delta/2)
+                                rounded_cube_xy([sizeP.x - delta.x, sizeP.y - rightDrivePlainIdlerOffset.y -delta.y, sizeP.z], 1, xy_center=true);
                     }
-            translate([pT.x, pP.y, size.z])
-                difference() {
-                    delta = useMotorIdler20 ? [2.5, 2, 0] : [0 , 0, 0];
-                    if (left)
-                        translate([1, -leftDrivePlainIdlerOffset.y, 0] - delta/2)
-                            rounded_cube_xy(sizeT - [delta.x, 0, 0], 1, xy_center=true);
-                    else
-                        translate([1, -rightDrivePlainIdlerOffset.y, 0] - delta/2)
-                            rounded_cube_xy(sizeT - [delta.x, 0, 0], 1, xy_center=true);
-                    boltHoleM3Tap(pulleyStackHeight);
-                }
-        }
+                    translate([pT.x, pP.y, 0]) {
+                        delta = useMotorIdler20 ? [2.5, 2, 0] : [0 , 0, 0];
+                        if (left)
+                            translate([1, -leftDrivePlainIdlerOffset.y, 0] - delta/2)
+                                rounded_cube_xy(sizeT - [delta.x, 0, 0], 1, xy_center=true);
+                        else
+                            translate([1, -rightDrivePlainIdlerOffset.y, 0] - delta/2)
+                                rounded_cube_xy(sizeT - [delta.x, 0, 0], 1, xy_center=true);
+                    }
+                    //!!TODO - fix the positioning of this for the useMotorIdler20 case
+                    // add guide for threading belts
+                    translate([0.75, 0, 0])
+                        hull() {
+                            translate([pP.x, pT.y, 0])
+                                cylinder(r=0.75, h=sizeP.z);
+                            translate([pT.x, pP.y, 0])
+                                cylinder(r=0.75, h=sizeP.z);
+                        }
+                } // end union
+                translate([pP.x, pT.y, 0])
+                    boltHoleM3Tap(sizeP.z);
+                translate([pT.x, pP.y, 0])
+                    boltHoleM3Tap(sizeP.z);
+            } // end difference
 }
 
 module xyMotorMountBlock(motorType, size, bracketHeight, basePlateThickness, offset=[0, 0], sideSupportSizeY, blockHeightExtra=0, stepdown=false, left=true) {
@@ -553,7 +556,7 @@ module XY_Motor_Mount_Left_stl() {
     offset = leftDrivePulleyOffset();
 
     stl("XY_Motor_Mount_Left")
-        color(pp2_colour)
+        color(pp1_colour)
             translate_z(eZ - eSize - basePlateThickness - bracketHeightLeft)
                 xyMotorMount(motorType, bracketHeightLeft, basePlateThickness, offset, blockHeightExtra, left=true);
 }
