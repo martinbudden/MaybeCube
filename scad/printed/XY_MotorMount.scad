@@ -151,7 +151,7 @@ module xyMotorMountBrace(thickness, offset=[0,0], left=true) {
         }
 }
 
-module xyMotorMountBaseCutouts(left, size, motorType, offset, sideSupportSizeY = 0, cnc=false) {
+module xyMotorMountBaseCutouts(left, size, motorType, offset, sideSupportSizeY=0, cnc=false) {
     assert(left == true || left == false);
     fillet = 1.5;
     yFillet = 5;

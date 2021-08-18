@@ -262,20 +262,20 @@ module PSU_Lower_Mount_stl() {
                                 rounded_square([size.x, size.y], fillet, center=false);
                                 *for (x = [eSize/2, eSize + 5, size.x - 5], y = [eSize/2])
                                     translate([x, y, 0])
-                                        poly_circle(r = M4_clearance_radius);
+                                        poly_circle(r=M4_clearance_radius);
                                 *for (y = [3*eSize/2, 2*eSize + 5, size.y - 8])
                                     translate([eSize/2, y])
-                                        poly_circle(r = M4_clearance_radius);
+                                        poly_circle(r=M4_clearance_radius);
                                 backPanelAccessHolePositions(backPanelSize())
                                     poly_circle(r = accessHoleRadius);
                                 if (counterSunk) {
                                     backPanelBoltHolePositions(backPanelSize())
-                                        poly_circle(r = M4_clearance_radius);
+                                        poly_circle(r=M4_clearance_radius);
                                 } else {
                                     translate([backPanelSize().x/2, backPanelSize().y/2])
                                         backPanelCutouts(PSUType(), pcbType());
                                     translate([eSize/2, size.y - eSize/2])
-                                        poly_circle(r = M4_clearance_radius);
+                                        poly_circle(r=M4_clearance_radius);
                                 }
                             }
                         if (counterSunk) {
@@ -482,7 +482,7 @@ assembly("PSU_Right_Mount") {
 
 M3x20_nylon_hex_pillar = ["M3x20_nylon_hex_pillar", "hex nylon", 3, 20, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -6, -6 + eps];
 
-module pcbAssembly(pcbType, useMounts = false) {
+module pcbAssembly(pcbType, useMounts=false) {
     pcbOffsetFromBase = 20;
 
     explode = 40;

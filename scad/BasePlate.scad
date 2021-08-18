@@ -78,7 +78,7 @@ module baseplateM6BoltPositions(size) {
             children();
 }
 
-module baseCutouts(cncSides = undef, radius = undef) {
+module baseCutouts(cncSides=undef, radius=undef) {
 // set radius=1 to make drill template
 
     size = basePlateSize;
