@@ -1,4 +1,5 @@
 include <NopSCADlib/core.scad>
+use <NopSCADlib/utils/fillet.scad>
 include <../vitamins/bolts.scad>
 
 
@@ -113,23 +114,41 @@ module extrusionChannel(length, bolts, sliding=false, channelWidth=5.8, boltDiam
 
     rotate([-90, 0, 0])
         difference() {
-            linear_extrude(length) {
-                translate([-size1.x/2, 0])
-                    square(size1);
-                hull() {
-                    translate([-size2.x/2, channelDepth])
-                        square(size2);
-                    translate([-size3.x/2, channelDepth])
-                        square(size3);
+            union() {
+                linear_extrude(length) {
+                    *translate([-size1.x/2, 0])
+                        square(size1);
+                    hull() {
+                        translate([-size2.x/2, channelDepth])
+                            square(size2);
+                        translate([-size3.x/2, channelDepth])
+                            square(size3);
+                    }
                 }
+                translate([-size1.x/2, 0, 0])
+                    rounded_cube_xz([size1.x, size1.y, length], 1);
+            }
+            rotate([-90, 0, 0]) {
+                fillet = 1;
+                translate([-size3.x/2, -length, size1.y - eps])
+                    fillet(fillet, size2.y + 2*eps);
+                translate([size3.x/2, -length, size1.y - eps])
+                    rotate(90)
+                        fillet(fillet, size2.y + 2*eps);
+                translate([size3.x/2, 0, size1.y - eps])
+                    rotate(180)
+                        fillet(fillet, size2.y + 2*eps);
+                translate([-size3.x/2, 0, size1.y - eps])
+                    rotate(270)
+                        fillet(fillet, size2.y + 2*eps);
             }
             if (is_list(bolts))
                 for (z = bolts)
                     translate_z(z)
                         rotate([-90, 0, 0])
                             if (boltDiameter == 4)
-                                boltHoleM4Tap(size1.y + size2.y, twist=3);
+                                boltHoleM4Tap(size1.y + size2.y, twist=4);
                             else
-                                boltHoleM3Tap(size1.y + size2.y, twist=3);
+                                boltHoleM3Tap(size1.y + size2.y, twist=4);
         }
 }
