@@ -50,7 +50,7 @@ GT2x20sd_pulley      = ["GT2x20sd_pulley",      "GT2sd", 20, 12.22, GT2x6,  7.0,
 useMotorIdler20 = !is_undef(_useMotorIdler20) && _useMotorIdler20;
 
 basePlateThickness = useMotorIdler20 ? 7 : 6.5;
-partitionExtension = 5;
+partitionExtension = 6;
 bracketThickness = 5;
 bracketHeightRight = eZ - eSize - (coreXYPosBL().z + washer_thickness(M3_washer));
 bracketHeightLeft = bracketHeightRight + coreXYSeparation().z;
