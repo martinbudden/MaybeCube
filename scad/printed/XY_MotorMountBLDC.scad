@@ -20,7 +20,6 @@ NEMA17_60  = ["NEMA17_60",   42.3, 60,     53.6/2, 25,     11,     2,     5,    
 
 NEMA_hole_depth = 5;
 
-sideSupportSizeY = 30;
 bracketHeightRight = eZ - eSize - (coreXYPosBL().z + washer_thickness(M3_washer));
 bracketHeightLeft = bracketHeightRight + coreXYSeparation().z;
 
@@ -38,8 +37,7 @@ module XY_Motor_Mount_4250_Left_stl() {
 
     stl("XY_Motor_Mount_4250_Left")
         color(pp1_colour)
-            translate_z(eZ - eSize - basePlateThickness - bracketHeightLeft)
-                xyMotorMount(motorType, bracketHeightLeft, basePlateThickness, offset, sideSupportSizeY, stepdown=stepdown4250, left=true);
+            xyMotorMount(motorType, basePlateThickness, offset, stepdown=stepdown4250, left=true);
 }
 
 module XY_Motor_Mount_4250_Left_assembly()
@@ -50,9 +48,11 @@ assembly("XY_Motor_Mount_4250_Left", ngb=true) {
     offset = leftDrivePulleyOffset();
     corkDamperThickness = 0;
 
-    stl_colour(pp1_colour)
-        XY_Motor_Mount_4250_Left_stl();
-    XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, sideSupportSizeY, corkDamperThickness, stepdown=stepdown4250, left=true);
+    translate_z(eZ - eSize - basePlateThickness - bracketHeightLeft) {
+        stl_colour(pp1_colour)
+            XY_Motor_Mount_4250_Left_stl();
+        XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, corkDamperThickness, stepdown=stepdown4250, left=true);
+    }
 }
 
 module XY_Motor_Mount_4250_Right_stl() {
@@ -62,9 +62,9 @@ module XY_Motor_Mount_4250_Right_stl() {
 
     stl("XY_Motor_Mount_4250_Right")
         color(pp1_colour)
-            translate([eX + 2*eSize, 0, eZ - eSize - basePlateThickness - bracketHeightRight])
+            translate([eX + 2*eSize, 0, 0])
                 mirror([1, 0, 0])
-                    xyMotorMount(motorType, bracketHeightRight, basePlateThickness, -offset, sideSupportSizeY, stepdown=stepdown4250, left=false);
+                    xyMotorMount(motorType, basePlateThickness, -offset, stepdown=stepdown4250, left=false);
 }
 
 module XY_Motor_Mount_4250_Right_assembly()
@@ -75,9 +75,11 @@ assembly("XY_Motor_Mount_4250_Right", ngb=true) {
     offset = rightDrivePulleyOffset();
     corkDamperThickness = 0;
 
-    stl_colour(pp1_colour)
-        XY_Motor_Mount_4250_Right_stl();
-    XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, sideSupportSizeY, corkDamperThickness, stepdown=stepdown4250, left=false);
+    translate_z(eZ - eSize - basePlateThickness - bracketHeightRight) {
+        stl_colour(pp1_colour)
+            XY_Motor_Mount_4250_Right_stl();
+        XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, corkDamperThickness, stepdown=stepdown4250, left=false);
+    }
 }
 
 module XY_Motor_Mount_4933_Left_stl() {
@@ -87,8 +89,7 @@ module XY_Motor_Mount_4933_Left_stl() {
 
     stl("XY_Motor_Mount_4933_Left")
         color(pp1_colour)
-            translate_z(eZ - eSize - basePlateThickness - bracketHeightLeft)
-                xyMotorMount(motorType, bracketHeightLeft, basePlateThickness, offset, sideSupportSizeY, stepdown=true, left=true);
+            xyMotorMount(motorType, basePlateThickness, offset, stepdown=true, left=true);
 }
 
 module XY_Motor_Mount_4933_Left_assembly()
@@ -99,9 +100,11 @@ assembly("XY_Motor_Mount_4933_Left", ngb=true) {
     offset = [40.303, 0];
     corkDamperThickness = 0;
 
-    stl_colour(pp1_colour)
-        XY_Motor_Mount_4933_Left_stl();
-    XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, sideSupportSizeY, corkDamperThickness, stepdown=true, left=true);
+    translate_z(eZ - eSize - basePlateThickness - bracketHeightLeft) {
+        stl_colour(pp1_colour)
+            XY_Motor_Mount_4933_Left_stl();
+        XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, corkDamperThickness, stepdown=true, left=true);
+    }
 }
 
 module XY_Motor_Mount_4933_Right_stl() {
@@ -111,9 +114,9 @@ module XY_Motor_Mount_4933_Right_stl() {
 
     stl("XY_Motor_Mount_4933_Right")
         color(pp1_colour)
-            translate([eX + 2*eSize, 0, eZ - eSize - basePlateThickness - bracketHeightRight])
+            translate([eX + 2*eSize, 0, 0])
                 mirror([1, 0, 0])
-                    xyMotorMount(motorType, bracketHeightRight, basePlateThickness, -offset, sideSupportSizeY, stepdown=true, left=false);
+                    xyMotorMount(motorType, basePlateThickness, -offset, stepdown=true, left=false);
 }
 
 module XY_Motor_Mount_4933_Right_assembly()
@@ -124,7 +127,9 @@ assembly("XY_Motor_Mount_4933_Right", ngb=true) {
     offset = [-45.3595, 0];
     corkDamperThickness = 0;
 
-    stl_colour(pp1_colour)
-        XY_Motor_Mount_4933_Right_stl();
-    //XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, sideSupportSizeY, corkDamperThickness, stepdown=true, left=false);
+    translate_z(eZ - eSize - basePlateThickness - bracketHeightRight) {
+        stl_colour(pp1_colour)
+            XY_Motor_Mount_4933_Right_stl();
+        XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, corkDamperThickness, stepdown=true, left=false);
+    }
 }

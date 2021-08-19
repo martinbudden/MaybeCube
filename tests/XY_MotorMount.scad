@@ -1,4 +1,6 @@
-//!Display the left and right motormounts.
+//!Display the left and right motor mounts.
+
+include <NopSCADlib/core.scad>
 
 use <../scad/printed/XY_MotorMount.scad>
 use <../scad/utils/CoreXYBelts.scad>
@@ -10,16 +12,16 @@ include <../scad/Parameters_Main.scad>
 //$explode = 1;
 //$pose=1;
 module XY_Motor_Mount_test() {
-    if (is_undef($explode))
-        CoreXYBelts(carriagePosition(), show_pulleys=[1, 0, 0]);
-    XY_Motor_Mount_Left_assembly();
     //XY_Motor_Mount_Left_stl();
-    //XY_Motor_Mount_Left_hardware();
-    XY_Motor_Mount_Right_assembly();
     //XY_Motor_Mount_Right_stl();
-    //XY_Motor_Mount_Right_hardware();
+    translate_z(-eZ + eSize) {
+        if (is_undef($explode))
+            CoreXYBelts(carriagePosition(), show_pulleys=[1, 0, 0]);
+        XY_Motor_Mount_Left_assembly();
+        XY_Motor_Mount_Right_assembly();
+    }
 }
 
 if ($preview)
-    translate([0, -eY - eSize, -eZ + eSize])
+    translate([0, -eY - eSize, 0])
         XY_Motor_Mount_test();
