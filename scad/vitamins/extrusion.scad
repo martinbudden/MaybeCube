@@ -96,6 +96,22 @@ module extrusionOX2040VEndBoltPositions(length, offset=0) {
             }
 }
 
+module extrusionOX2080HEndBoltPositions(length, offset=0, bothEnds=true) {
+    eSize = 20;
+    if ($preview && (is_undef($hide_bolts) || $hide_bolts == false))
+        translate([0, eSize/2, eSize])
+            rotate([90, 0, 90]) {
+                for (x = [0, eSize, 2*eSize, 3*eSize]) {
+                    translate([x, -eSize/2, -offset - extrusion_tab_thickness(E2040)])
+                        vflip()
+                            children();
+                    if (bothEnds)
+                        translate([x, -eSize/2, length + offset + extrusion_tab_thickness(E2040)])
+                            children();
+                }
+            }
+}
+
 module extrusionOX2080VEndBoltPositions(length, offset=0) {
     eSize = 20;
     if ($preview && (is_undef($hide_bolts) || $hide_bolts == false))
@@ -139,6 +155,13 @@ module extrusionOY2080H(length) {
             extrusionOX2080H(length);
 }
 
+module extrusionOY2080HEndBoltPositions(length, offset=0) {
+    translate([0, length, 0])
+        rotate([0, 0, -90])
+            extrusionOX2080HEndBoltPositions(length, offset)
+                children();
+}
+
 module extrusionOY2040V(length) {
     translate([0, length, 0])
         rotate([0, 0, -90])
@@ -165,4 +188,33 @@ module extrusionOZ(length, eSize=20) {
                 translate([length, 0, 0])
                     extrusionOX(0.25, eSize);
         }
+}
+
+module extrusionOZ2080X(length) {
+    eSize = 20;
+    translate([4*eSize, 0, 0])
+        rotate([0, -90, 0])
+            extrusionOX2080V(length);
+}
+
+module extrusionOZ2080XEndBoltPositions(length, offset=0) {
+    translate([0, length, 0])
+        rotate([0, -90, 0])
+            extrusionOX2080VEndBoltPositions(length, offset)
+                children();
+}
+
+module extrusionOZ2080Y(length) {
+    eSize = 20;
+    translate([eSize, 0, 0])
+        rotate([0, -90, 0])
+            extrusionOX2080H(length);
+}
+
+module extrusionOZ2080YEndBoltPositions(length, offset=0, bothEnds=true) {
+    eSize = 20;
+    translate([eSize, 0, 0])
+        rotate([0, -90, 0])
+            extrusionOX2080HEndBoltPositions(length, offset, bothEnds=bothEnds)
+                children();
 }

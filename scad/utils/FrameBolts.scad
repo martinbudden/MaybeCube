@@ -64,3 +64,31 @@ module extrusionOY2040VEndBolts(eY) {
         extrusionOY2040VEndBoltPositions(eY)
             boltM5Buttonhead(_endBoltLength);
 }
+
+module extrusionOY2080HEndBolts(eY) {
+    extrusionOY2080H(eY);
+    if (_useBlindJoints)
+        extrusionOY2080HEndBoltPositions(eY)
+            boltM5Buttonhead(_endBoltLength);
+}
+
+module extrusionOY2080VEndBolts(eY) {
+    extrusionOY2080V(eY);
+    if (_useBlindJoints)
+        extrusionOY2080VEndBoltPositions(eY)
+            boltM5Buttonhead(_endBoltLength);
+}
+
+module extrusionOZ2080XEndBolts(eZ) {
+    extrusionOZ2080X(eZ);
+    if (_useBlindJoints)
+        extrusionOZ2080XEndBoltPositions(eY)
+            boltM5Buttonhead(_endBoltLength);
+}
+
+module extrusionOZ2080YEndBolts(eZ, bothEnds=true) {
+    extrusionOZ2080Y(eZ);
+    if (_useBlindJoints)
+        extrusionOZ2080YEndBoltPositions(eZ, bothEnds=bothEnds)
+            boltM5Buttonhead(_endBoltLength);
+}
