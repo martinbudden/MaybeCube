@@ -74,7 +74,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  BigTreeTech SKR E3 Turbo |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech TFT35 E3 v3.0 |
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
-|   .  |   .  |   .  |   .  |   2  |   2  |   .  |   2  |    6  |  Bolt M3 buttonhead x  8mm |
+|   .  |   .  |   .  |   .  |   .  |   2  |   .  |   2  |    4  |  Bolt M3 buttonhead x  8mm |
 |   .  |   .  |   2  |   5  |   .  |   .  |   .  |   .  |    7  |  Bolt M3 buttonhead x 10mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   8  |   16  |  Bolt M3 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 16mm |
@@ -85,12 +85,13 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   4  |    6  |  Bolt M3 caphead x 25mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 30mm |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 40mm |
+|   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Bolt M3 countersunk x  8mm |
 |   .  |   .  |   2  |   .  |   .  |   2  |   .  |   .  |    4  |  Bolt M3 countersunk x 10mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   2  |    4  |  Bolt M3 countersunk x 12mm |
 |   2  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |   10  |  Bolt M3 countersunk x 25mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M3 countersunk x 30mm |
-|   .  |   .  |   .  |   .  |   8  |   .  |   .  |  24  |   32  |  Bolt M4 buttonhead x  8mm |
-|   .  |   .  |  14  |   .  |   .  |   8  |   2  |  12  |   36  |  Bolt M4 buttonhead x 10mm |
+|   .  |   .  |   .  |   .  |   9  |   .  |   .  |  24  |   33  |  Bolt M4 buttonhead x  8mm |
+|   .  |   .  |  14  |   .  |   .  |   8  |   2  |  14  |   38  |  Bolt M4 buttonhead x 10mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   2  |   .  |    4  |  Bolt M4 buttonhead x 12mm |
 |   .  |   .  |   .  |  18  |   .  |   .  |   .  |   .  |   18  |  Bolt M4 countersunk x  8mm |
 |   .  |   .  |  20  |   .  |   .  |   .  |   8  |   .  |   28  |  Bolt M4 countersunk x 10mm |
@@ -119,8 +120,8 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Linear rod 12mm x 300mm |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  MK10 Dual Pulley Extruder |
 |   .  |   .  |  18  |   .  |   .  |   2  |   .  |   4  |   24  |  Nut M3 hammer |
-|   .  |   .  |  12  |  14  |   6  |   .  |   .  |  36  |   68  |  Nut M4 hammer |
-|   .  |   .  |  20  |   .  |   2  |   8  |  12  |   .  |   42  |  Nut M4 sliding T |
+|   .  |   .  |  12  |  14  |   9  |   .  |   .  |  38  |   73  |  Nut M4 hammer |
+|   .  |   .  |  20  |   .  |   .  |   8  |  12  |   .  |   40  |  Nut M4 sliding T |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE Bowden tube, 600 mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Pillar hex nylon F/F M3x14 |
 |   .  |   .  |   .  |   5  |   .  |   .  |   .  |   .  |    5  |  Pillar hex nylon F/F M3x20 |
@@ -141,7 +142,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   2  |  26  |   .  |   .  |   .  |   .  |   .  |   28  |  Washer  M3 |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer  M4 |
 |   3  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    3  |  Ziptie 2.5mm x 100mm min length |
-|  12  |   4  | 218  |  50  |  47  |  62  |  40  | 123  |  556  | Total vitamins count |
+|  12  |   4  | 218  |  50  |  49  |  62  |  40  | 127  |  562  | Total vitamins count |
 |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_Bracket_TFT35_E3.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_TFT35_E3.stl |
@@ -161,6 +162,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Printbed_Strain_Relief.stl |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Printbed_Strain_Relief_Clamp.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder_Bracket.stl |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  | Top_Corner_Piece.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Wiring_Guide.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Wiring_Guide_Clamp.stl |
@@ -183,7 +185,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Z_Carriage_Right.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |    2  | Z_RodMountGuide_100mm.stl |
-|   3  |   3  |  16  |   3  |   3  |   5  |   3  |  15  |   51  | Total 3D printed parts count |
+|   3  |   3  |  16  |   3  |   3  |   5  |   3  |  16  |   52  | Total 3D printed parts count |
 |      |      |      |      |      |      |      |      |       | **CNC routed parts** |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | Back_Panel.dxf |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | BaseAL.dxf |
@@ -799,8 +801,8 @@ and don't place bolts into the access holes for the hidden bolts used to assembl
 
 |Qty|Description|
 |---:|:----------|
-|2| Bolt M3 buttonhead x  8mm|
 |2| Bolt M3 buttonhead x 16mm|
+|2| Bolt M3 countersunk x  8mm|
 |4| Bolt M4 buttonhead x  8mm|
 |1| Cork damper NEMA 17|
 |1| Filament sensor|
@@ -843,11 +845,10 @@ thermally isolates the motor from the **Extruder_Bracket* and should not be omit
 
 |Qty|Description|
 |---:|:----------|
-|4| Bolt M4 buttonhead x  8mm|
+|5| Bolt M4 buttonhead x  8mm|
 |2| Bolt M4 buttonhead x 12mm|
 |1| IEC320 C14 switched fused inlet module|
-|2| Nut M4 hammer|
-|2| Nut M4 sliding T|
+|5| Nut M4 hammer|
 
 
 ### 3D Printed parts
@@ -1508,15 +1509,16 @@ see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
 |Qty|Description|
 |---:|:----------|
 |16| Bolt M4 buttonhead x  8mm|
-|16| Nut M4 hammer|
+|2| Bolt M4 buttonhead x 10mm|
+|18| Nut M4 hammer|
 |1| Sheet polycarbonate 390mm x 400mm x 3mm|
 
 
 ### 3D Printed parts
 
-| 1 x Spool_Holder.stl |
-|---|
-| ![Spool_Holder.stl](stls/Spool_Holder.png) 
+| 1 x Spool_Holder.stl | 1 x Spool_Holder_Bracket.stl |
+|---|---|
+| ![Spool_Holder.stl](stls/Spool_Holder.png) | ![Spool_Holder_Bracket.stl](stls/Spool_Holder_Bracket.png) 
 
 
 
