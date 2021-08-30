@@ -1,5 +1,4 @@
 include <NopSCADlib/core.scad>
-include <NopSCADlib/vitamins/green_terminals.scad>
 include <NopSCADlib/vitamins/pcbs.scad>
 
 BTT_B1_Box_V1_0 = ["BTT_B1_Box_V1_0", "BTT B1 Box V1.0",

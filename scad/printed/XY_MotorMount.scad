@@ -259,7 +259,7 @@ module xyMotorMountBase(motorType, left, size, offset, sideSupportSizeY, stepdow
                 }
             }
     }
-   if (!cnc && !stepdown)
+    if (!cnc && !stepdown)
         translate([coreXYPosBL.x + separation.x/2, coreXYPosTR.y + offset.y, size.z])
             difference() {
                 union() {
@@ -394,6 +394,12 @@ module xyMotorMount(motorType, basePlateThickness, offset=[0, 0], blockHeightExt
         xyMotorMountBlock(motorType, size, basePlateThickness, offset, sideSupportSizeY, blockHeightExtra, stepdown, left);
 }
 
+module radial_encoder_magnet_6_2p5() {
+    vitamin(str(": Radial encoder magnet 6x2.5mm"));
+    color(silver)
+        cylinder(d=6, h=2.5);
+}
+
 module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], corkDamperThickness=0, blockHeightExtra=0, stepdown=false, left=true) {
     corkDamperThickness = is_undef(corkDamperThickness) ? 0 : corkDamperThickness;
     motorWidth = motorWidth(motorType);
@@ -403,7 +409,8 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
     coreXY_type = coreXY_type();
     sideSupportSizeY = xyMotorMountSize(motorWidth, offset, left).y - eSize + partitionExtension;
 
-    stepper_motor_cable(left ? 500 : 300);
+    if (isNEMAType(motorType))
+        stepper_motor_cable(left ? 500 : 300);
     translate([left ? coreXYPosBL.x + separation.x/2 : coreXYPosTR.x - separation.x/2, coreXYPosTR.y + offset.y, basePlateThickness]) {
         drivePos = [offset.x + (left ? coreXY_drive_pulley_x_alignment(coreXY_type) : -coreXY_drive_pulley_x_alignment(coreXY_type)), 0, 0];
         translate(drivePos) {
@@ -419,6 +426,9 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
                             translate_z(2*eps)
                                 rotate(left ? 0 : 180)
                                     BLDC(motorType);
+                        translate_z(BLDC_shaft_offset(motorType) - BLDC_shaft_length(motorType) - BLDC_prop_shaft_length(motorType))
+                            vflip()
+                                radial_encoder_magnet_6_2p5();
                     }
             }
             if (stepdown) {

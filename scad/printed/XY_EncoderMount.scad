@@ -8,10 +8,14 @@ include <NopSCADlib/vitamins/stepper_motors.scad>
 
 use <../vitamins/bolts.scad>
 use <../vitamins/cables.scad>
+include <../vitamins/AS5048_PCB.scad>
+include <../printed/XY_MotorMountBLDC.scad>
 
 include <../Parameters_Main.scad>
 use <../Parameters_CoreXY.scad>
 
+function xyEncoderMountSize(BLDC_type) = BLDC_type == BLDC4250 ? [48, 48, 61] : [55, 55, 48];
+encoderMountBaseThickness = 5;
 
 module cornerCube(size, fillet, cornerFillet) {
     linear_extrude(size.z) {
@@ -35,6 +39,16 @@ module cornerCube(size, fillet, cornerFillet) {
 }
 
 module XY_Encoder_Mount_hardware(motorType) {
+    size = xyEncoderMountSize(motorType);
+    pcb = AS5048_PCB;
+    offsetY = pcb_holes(pcb)[0].y + pcb_size(pcb).y/2;
+    rotate(90)
+        translate([0, -offsetY, -size.z + encoderMountBaseThickness]) {
+            pcb(pcb);
+            pcb_hole_positions(pcb)
+                translate_z(pcb_size(pcb).z)
+                    boltM2Buttonhead(4);
+        }
 }
 
 module xyEncoderMount(size, cornerSize) {
@@ -86,12 +100,21 @@ module xyEncoderMount(size, cornerSize) {
                     vflip()
                         boltHoleM3Tap(8);
         }
-        translate_z(-size.z)
-            rounded_cube_xy([size.x, size.y, 5], cornerFillet, xy_center=true);
+        translate_z(-size.z) {
+            difference() {
+                rounded_cube_xy([size.x, size.y, encoderMountBaseThickness], cornerFillet, xy_center=true);
+                pcb = AS5048_PCB;
+                offsetY = pcb_holes(pcb)[0].y + pcb_size(pcb).y/2;
+                rotate(90)
+                    translate([0, -offsetY, 1])
+                        pcb_hole_positions(pcb)
+                            boltHoleM2Tap(encoderMountBaseThickness - 1);
+            }
+    }
 }
 
 module XY_Encoder_Mount_4250_stl() {
-    size = [48, 48, 60];
+    size = xyEncoderMountSize(BLDC4250);
     cornerSize = [8, 8, size.z];
 
     stl("XY_Encoder_Mount_4250")
@@ -130,7 +153,7 @@ assembly("XY_Encoder_Mount_4250_Right", ngb=true) {
 }
 
 module XY_Encoder_Mount_4933_stl() {
-    size = [55, 55, 43];
+    size = xyEncoderMountSize(BLDC4933);
     cornerSize = [8, 8, size.z];
 
     stl("XY_Encoder_Mount_4933")
@@ -158,20 +181,14 @@ assembly("XY_Encoder_Mount_4933_Right", ngb=true) {
 
     BLDC_type = BLDC4933;
     motorWidth = motorWidth(BLDC_type);
-    basePlateThickness = 6;
+    motorMountBaseThickness = 6;
     offset = [-45.3595, 0];
 
-    translate([coreXYPosTR(motorWidth).x + offset.x - coreXY_drive_pulley_x_alignment(coreXY_type()), coreXYPosTR(motorWidth).y, coreXYPosBL().z - basePlateThickness]) {
+    translate([coreXYPosTR(motorWidth).x + offset.x - coreXY_drive_pulley_x_alignment(coreXY_type()), coreXYPosTR(motorWidth).y, coreXYPosBL().z - motorMountBaseThickness]) {
         stl_colour(pp2_colour)
             XY_Encoder_Mount_4933_stl();
         XY_Encoder_Mount_hardware(BLDC_type);
     }
-}
-
-module radial_encoder_magnet_6_2p5() {
-    vitamin(str(": Radial encoder magnet 6x2.5mm"));
-    color(silver)
-        cylinder(d=6, h=2.5);
 }
 
 module magnetic_encoder_AS5048() {
