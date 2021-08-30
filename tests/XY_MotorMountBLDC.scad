@@ -14,7 +14,7 @@ include <../scad/Parameters_Main.scad>
 
 //$explode = 1;
 //$pose=1;
-module XY_Motor_Mount_test() {
+module XY_Motor_Mount_BLDC_test() {
     //CoreXYBelts(carriagePosition(), show_pulleys=![1, 0, 0], xyMotorWidth=56, leftDrivePulleyOffset=[0, 3.25], rightDrivePulleyOffset=[0, 3.25]);
     use4250 = false;
     BLDC_type = use4250 ? BLDC4250 : BLDC4933;
@@ -45,4 +45,4 @@ module XY_Motor_Mount_test() {
 
 if ($preview)
     translate([0, -eY - eSize, -eZ + eSize])
-        XY_Motor_Mount_test();
+        XY_Motor_Mount_BLDC_test();
