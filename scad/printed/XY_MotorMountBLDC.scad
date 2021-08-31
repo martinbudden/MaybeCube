@@ -137,19 +137,19 @@ assembly("XY_Motor_Mount_4933_Right", ngb=true) {
 module encoderMagnetHolder(motorType) {
     magnetDiameter = 6;
     magnetHeight = 2.5;
-    diameter = 18;
+    diameter = 20;
     offsetZ = 0.5;
     height = BLDC_prop_shaft_length(motorType) + magnetHeight + offsetZ;
     translate_z(-height)
         difference() {
             cylinder(d=diameter, h=height);
             translate_z(offsetZ-0.1)
-                cylinder(d=magnetDiameter, h=height);
+                poly_cylinder(r=magnetDiameter/2, h=height);
             holes = BLDC_bell_holes(motorType);
             holeOffset = is_list(holes) ? holes[0] : holes / 2;
             for (x = [-holeOffset, holeOffset])
                 translate([x, 0, 0])
-                    boltHoleM2p5HangingCounterboreButtonhead(height, height-2);
+                    boltHoleM2p5HangingCounterboreButtonhead(height, boreDepth=height - 2, boltHeadTolerance=0.2);
         }
 }
 
