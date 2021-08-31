@@ -135,7 +135,7 @@ assembly("XY_Motor_Mount_4933_Right", ngb=true) {
 }
 
 module encoderMagnetHolder(motorType) {
-    magnetDiameter = 6;
+    magnetDiameter = 6 + 0.1;
     magnetHeight = 2.5;
     diameter = 20;
     offsetZ = 0.5;
@@ -149,7 +149,8 @@ module encoderMagnetHolder(motorType) {
             holeOffset = is_list(holes) ? holes[0] : holes / 2;
             for (x = [-holeOffset, holeOffset])
                 translate([x, 0, 0])
-                    boltHoleM2p5HangingCounterboreButtonhead(height, boreDepth=height - 2, boltHeadTolerance=0.2);
+                    rotate(45)
+                        boltHoleM2p5HangingCounterboreButtonhead(height, boreDepth=height - 2, boltHeadTolerance=0.2);
         }
 }
 
