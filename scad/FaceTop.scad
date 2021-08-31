@@ -24,6 +24,9 @@ use <vitamins/extrusion.scad>
 use <Parameters_Positions.scad>
 include <Parameters_Main.scad>
 
+function use2060ForTop() = !is_undef(_use2060ForTop) && _use2060ForTop;
+
+
 //!1. Bolt the two motor mounts and the **Wiring_Guide** to the rear extrusion.
 //!2. Bolt the two idlers to the front extrusion.
 //!3. Screw the bolts into the ends of the front and rear extrusions.
@@ -117,7 +120,7 @@ module faceTopFront() {
                 render(convexity=4)
                     difference() {
                         extrusionOX(eX);
-                        for (x = [eSize/2, eX - eSize/2])
+                        for (x = use2060ForTop() ? [eSize/2, 3*eSize/2, eX - eSize/2, eX - 3*eSize/2] : [eSize/2, eX - eSize/2])
                             translate([x, 0, eSize/2])
                                 rotate([-90, 0, 0])
                                     jointBoltHole();
@@ -146,7 +149,7 @@ module faceTopBack() {
                         else
                             translate_z(-eSize)
                                 extrusionOX2040V(eX);
-                        for (x = [eSize/2, eX - eSize/2])
+                        for (x = use2060ForTop() ? [eSize/2, 3*eSize/2, eX - eSize/2, eX - 3*eSize/2] : [eSize/2, eX - eSize/2])
                             translate([x, eSize, eSize/2])
                                 rotate([90, 0, 0])
                                     jointBoltHole();
@@ -166,7 +169,10 @@ assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
 
     yCarriageType = yCarriageType();
     translate([0, eSize, eZ - eSize])
-        extrusionOY2040HEndBolts(eY);
+        if (use2060ForTop())
+            extrusionOY2060HEndBolts(eY);
+        else
+            extrusionOY2040HEndBolts(eY);
     translate([1.5*eSize, eSize + _yRailLength/2, eZ - eSize])
         explode(-40, true)
             rotate([180, 0, 90])
@@ -192,7 +198,11 @@ assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
 
     yCarriageType = yCarriageType();
     translate([eX, eSize, eZ - eSize])
-        extrusionOY2040HEndBolts(eY);
+        if (use2060ForTop())
+            translate([-eSize, 0, 0])
+                extrusionOY2060HEndBolts(eY);
+        else
+            extrusionOY2040HEndBolts(eY);
 
     translate([eX + eSize/2, eSize + _yRailLength/2, eZ - eSize])
         explode(-40, true)

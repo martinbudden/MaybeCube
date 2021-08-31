@@ -26,6 +26,15 @@ module extrusionOX2040H(length) {
                     extrusion(E2040, length, center=false);
 }
 
+module extrusionOX2060H(length) {
+    eSize = 20;
+    if (is_undef($hide_extrusions) || $hide_extrusions == false)
+        translate([0, 3*eSize/2, eSize/2])
+            rotate([0, 90, 0])
+                color(frameColor())
+                    extrusion(E2060, length, center=false);
+}
+
 module extrusionOX2080H(length) {
     eSize = 20;
     if (is_undef($hide_extrusions) || $hide_extrusions == false)
@@ -96,6 +105,22 @@ module extrusionOX2040VEndBoltPositions(length, offset=0) {
             }
 }
 
+module extrusionOX2060HEndBoltPositions(length, offset=0, bothEnds=true) {
+    eSize = 20;
+    if ($preview && (is_undef($hide_bolts) || $hide_bolts == false))
+        translate([0, eSize/2, eSize])
+            rotate([90, 0, 90]) {
+                for (x = [0, eSize, 2*eSize]) {
+                    translate([x, -eSize/2, -offset - extrusion_tab_thickness(E2040)])
+                        vflip()
+                            children();
+                    if (bothEnds)
+                        translate([x, -eSize/2, length + offset + extrusion_tab_thickness(E2040)])
+                            children();
+                }
+            }
+}
+
 module extrusionOX2080HEndBoltPositions(length, offset=0, bothEnds=true) {
     eSize = 20;
     if ($preview && (is_undef($hide_bolts) || $hide_bolts == false))
@@ -146,6 +171,19 @@ module extrusionOY2040HEndBoltPositions(length, offset=0) {
     translate([0, length, 0])
         rotate([0, 0, -90])
             extrusionOX2040HEndBoltPositions(length, offset)
+                children();
+}
+
+module extrusionOY2060H(length) {
+    translate([0, length, 0])
+        rotate([0, 0, -90])
+            extrusionOX2060H(length);
+}
+
+module extrusionOY2060HEndBoltPositions(length, offset=0) {
+    translate([0, length, 0])
+        rotate([0, 0, -90])
+            extrusionOX2060HEndBoltPositions(length, offset)
                 children();
 }
 

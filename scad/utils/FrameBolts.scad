@@ -65,6 +65,13 @@ module extrusionOY2040VEndBolts(eY) {
             boltM5Buttonhead(_endBoltLength);
 }
 
+module extrusionOY2060HEndBolts(eY) {
+    extrusionOY2060H(eY);
+    if (_useBlindJoints)
+        extrusionOY2060HEndBoltPositions(eY)
+            boltM5Buttonhead(_endBoltLength);
+}
+
 module extrusionOY2080HEndBolts(eY) {
     extrusionOY2080H(eY);
     if (_useBlindJoints)
