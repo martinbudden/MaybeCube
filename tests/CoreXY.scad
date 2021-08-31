@@ -54,9 +54,14 @@ module CoreXY_test() {
         extrusionOX(eX);
     *translate([eSize, eY + eSize, eZ - 2*eSize])
         extrusionOX2040V(eX);
-    *for (x=[0, eX])
-        translate([x, eSize, eZ - eSize])
-            extrusionOY2040H(eY);
+    *if (_use2060ForTop)
+        for (x=[0, eX - eSize])
+            translate([x, eSize, eZ - eSize])
+                extrusionOY2060H(eY);
+    else
+        for (x=[0, eX])
+            translate([x, eSize, eZ - eSize])
+                extrusionOY2040H(eY);
 
     translate([1.5*eSize, eSize + _yRailLength/2, eZ - eSize])
         rotate([180, 0, 90])
