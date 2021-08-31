@@ -235,7 +235,11 @@ module xyMotorMountBase(motorType, left, size, offset, sideSupportSizeY, stepdow
                         mirror([left ? 0 : 1, 0, 0])
                             BLDC_base_screw_positions(motorType)
                                 translate_z(basePlateThickness)
-                                    boltPolyholeM3Countersunk(basePlateThickness, sink=0.25);
+                                    vflip()
+                                        if (motorType[0] == "BLDC4250")
+                                            boltPolyholeM3Countersunk(size.z, sink=0.25);
+                                        else
+                                            boltHoleM2p5CounterboreButtonhead(size.z);
                         rotate(45)
                             BLDC_screw_positions(encoderHolePitch(motorType))
                                 translate_z(basePlateThickness)
@@ -446,7 +450,11 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
                 if (isNEMAType(motorType))
                     boltM3Buttonhead(boltLength);
                 else
-                    boltM3Countersunk(boltLength);
+                    if (motorType[0] == "BLDC4250")
+                        boltM3Countersunk(boltLength);
+                    else
+                        translate_z(-1.7)
+                            boltM2p5Caphead(boltLength);
         }
 
         washer = coreXYIdlerBore() == 3 ? M3_washer : M5_washer;

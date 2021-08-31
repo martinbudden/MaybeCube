@@ -25,9 +25,9 @@ bracketHeightLeft = bracketHeightRight + coreXYSeparation().z;
 
 stepdown4250 = true;
 
-//                                     shaft  shaft shaft      body   base             holes                 base            side  bell             holes          boss  prop shaft   thread
-//                      diameter height diam length offset   colour   diam   h1    h2  diam position         open  wire    colour  diam   h1    h1  d  pos   spokes  d  h  length diam  length  diam
-BLDC4933  = ["BLDC4933",   49.0, 33,      6,    60,    27, grey(20),   38,   5,    5.5,  3,   [32,32,32],     true,  3.0, grey(20),   49,   8,    8,  3, 12,       5, 12, 0,     5,   4,      0,     0];
+//                                     shaft  shaft shaft      body   base             holes                 base            side  bell             holes          boss   prop shaft   thread
+//                      diameter height diam length offset   colour   diam   h1    h2  diam position         open  wire    colour  diam   h1    h1  d  pos  spokes  d  h  length diam  length  diam
+BLDC4933  = ["BLDC4933",   49.0, 33,      6,    60,    27, grey(20),   38,   5,    5.5,2.5,  [32,32,32],     true,  3.0, grey(20),   49,   8,    8, 2.5,12,      5, 12, 0,     5,   4,      0,     0];
 
 
 module XY_Motor_Mount_4250_Left_stl() {
@@ -132,4 +132,31 @@ assembly("XY_Motor_Mount_4933_Right", ngb=true) {
             XY_Motor_Mount_4933_Right_stl();
         XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, corkDamperThickness, stepdown=true, left=false);
     }
+}
+
+module encoderMagnetHolder(motorType) {
+    magnetDiameter = 6;
+    magnetHeight = 2.5;
+    diameter = 18;
+    offsetZ = 0.5;
+    height = BLDC_prop_shaft_length(motorType) + magnetHeight + offsetZ;
+    translate_z(-height)
+        difference() {
+            cylinder(d=diameter, h=height);
+            translate_z(offsetZ-0.1)
+                cylinder(d=magnetDiameter, h=height);
+            holes = BLDC_bell_holes(motorType);
+            holeOffset = is_list(holes) ? holes[0] : holes / 2;
+            for (x = [-holeOffset, holeOffset])
+                translate([x, 0, 0])
+                    boltHoleM2p5HangingCounterboreButtonhead(height, height-2);
+        }
+}
+
+module Encoder_Magnet_Holder_stl() {
+    motorType = BLDC4933;
+
+    stl("Encoder_Magnet_Holder")
+        color(pp3_colour)
+            encoderMagnetHolder(motorType);
 }

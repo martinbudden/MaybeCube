@@ -20,18 +20,32 @@ module XY_Encoder_Mount_test() {
     BLDC_type = use4250 ? BLDC4250 : BLDC4933;
     if (use4250) {
         XY_Encoder_Mount_4250_stl();
+        XY_Encoder_Mount_4250_Cover_stl();
+        vflip()
+            BLDC(BLDC_type);
         //let($hide_bolts=true)
         XY_Encoder_Mount_hardware(BLDC_type);
         //XY_Encoder_Mount_4250_Left_assembly();
         //XY_Encoder_Mount_4250_Right_assembly();
     } else {
         XY_Encoder_Mount_4933_stl();
-        //let($hide_bolts=true)
         XY_Encoder_Mount_hardware(BLDC_type);
+        XY_Encoder_Mount_4933_Cover_stl();
+        vflip()
+            BLDC(BLDC_type);
+        translate_z(-BLDC_height(BLDC_type))
+            Encoder_Magnet_Holder_stl();
+        translate_z(-BLDC_height(BLDC_type) - BLDC_prop_shaft_length(BLDC_type))
+            vflip()
+                radial_encoder_magnet_6_2p5();
+        //let($hide_bolts=true)
         //XY_Encoder_Mount_4933_Left_assembly();
         //XY_Encoder_Mount_4933_Right_assembly();
     }
 }
 
+//XY_Encoder_Mount_4933_Cover_stl();
+//XY_Encoder_Mount_4933_stl();
+//Encoder_Magnet_Holder_stl();
 if ($preview)
     XY_Encoder_Mount_test();
