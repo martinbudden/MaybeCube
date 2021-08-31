@@ -17,24 +17,29 @@ include <../scad/Parameters_Main.scad>
 module XY_Encoder_Mount_test() {
     //CoreXYBelts(carriagePosition(), show_pulleys=![1, 0, 0], xyMotorWidth=56, leftDrivePulleyOffset=[0, 3.25], rightDrivePulleyOffset=[0, 3.25]);
     use4250 = false;
-    BLDC_type = use4250 ? BLDC4250 : BLDC4933;
     if (use4250) {
+        BLDC_type = BLDC4250;
         XY_Encoder_Mount_4250_stl();
+        XY_Encoder_Mount_hardware(BLDC_type);
         XY_Encoder_Mount_4250_Cover_stl();
         vflip()
             BLDC(BLDC_type);
-        //let($hide_bolts=true)
-        XY_Encoder_Mount_hardware(BLDC_type);
+        translate_z(-BLDC_height(BLDC_type))
+            Encoder_Magnet_Holder_4250_stl();
+        translate_z(-BLDC_height(BLDC_type) - BLDC_prop_shaft_length(BLDC_type))
+            vflip()
+                radial_encoder_magnet_6_2p5();
         //XY_Encoder_Mount_4250_Left_assembly();
         //XY_Encoder_Mount_4250_Right_assembly();
     } else {
+        BLDC_type = BLDC4933;
         XY_Encoder_Mount_4933_stl();
         XY_Encoder_Mount_hardware(BLDC_type);
         XY_Encoder_Mount_4933_Cover_stl();
         vflip()
             BLDC(BLDC_type);
         translate_z(-BLDC_height(BLDC_type))
-            Encoder_Magnet_Holder_stl();
+            Encoder_Magnet_Holder_4933_stl();
         translate_z(-BLDC_height(BLDC_type) - BLDC_prop_shaft_length(BLDC_type))
             vflip()
                 radial_encoder_magnet_6_2p5();

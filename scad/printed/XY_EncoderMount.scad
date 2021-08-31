@@ -14,10 +14,10 @@ include <../printed/XY_MotorMountBLDC.scad>
 include <../Parameters_Main.scad>
 use <../Parameters_CoreXY.scad>
 
-function xyEncoderMountSize(BLDC_type) = BLDC_type == BLDC4250 ? [48, 48, 61] : [55, 55, 49];
+function xyEncoderMountSize(BLDC_type) = BLDC_type == BLDC4250 ? [48, 48, 55] : [55, 55, 45];
 encoderMountBaseThickness = 5;
 
-module xyEncoderMountCover(BLDC_type, NEMA=false) {
+module xyEncoderMountCover(BLDC_type, NEMA_holes=false) {
     size = [xyEncoderMountSize(BLDC_type).x, xyEncoderMountSize(BLDC_type).y, 5];
     cornerSize = [8, 8, size.z];
 
@@ -28,7 +28,7 @@ module xyEncoderMountCover(BLDC_type, NEMA=false) {
         for (a = [0, 90, 180, 270])
             rotate(a)
                 translate([(size.x - cornerSize.x)/2, (size.y - cornerSize.y)/2, 0])
-                if (NEMA)
+                if (NEMA_holes)
                     translate_z(size.z)
                         boltPolyholeM3Countersunk(size.z, sink=0.25);
                 else
@@ -40,7 +40,7 @@ module xyEncoderMountCover(BLDC_type, NEMA=false) {
                         boltPolyholeM3Countersunk(size.z, sink=0.25);
                     else
                         boltHoleM2p5CounterboreButtonhead(size.z);
-        if (NEMA)
+        if (NEMA_holes)
             NEMA_screw_positions(NEMA17M)
                 boltHoleM3Tap(size.z);
         *NEMA_screw_positions(NEMA23)
@@ -97,28 +97,32 @@ module xyEncoderMount(size, cornerSize) {
             braceThickness = 1.5;
             translate([(size.x - braceThickness)/2, 0, -size.z/2])
                 hull() {
-                    translate([0, (size.y - 2*cornerSize.y + braceThickness + fillet)/2, 0])
+                    translate([0, (size.y - 2*cornerSize.y + braceThickness)/2, 0])
                         cylinder(d=braceThickness, h = size.z, center=true);
-                    translate([0, -braceThickness/2])
-                        cylinder(d=braceThickness, h = 2.5, center=true);
+                    translate([0, size.y/2 - cornerSize.y + braceThickness + fillet, 0])
+                        cylinder(d=braceThickness, h = size.z, center=true);
+                    translate([0, -braceThickness/2, -2.5/2])
+                        cylinder(d=braceThickness, h = (a == 0 ? size.z/2 - 10 : 2.5), center=false);
                 }
             translate([0, (size.y - braceThickness)/2, -size.z/2])
                 hull() {
-                    translate([(size.x - 2*cornerSize.x + braceThickness + fillet)/2, 0, 0])
+                    translate([(size.x - 2*cornerSize.x + braceThickness)/2, 0, 0])
                         cylinder(d=braceThickness, h = size.z, center=true);
-                    translate([-braceThickness/2, 0])
-                        cylinder(d=braceThickness, h = 2.5, center=true);
+                    translate([size.x/2 - cornerSize.x + braceThickness + fillet, 0, 0])
+                        cylinder(d=braceThickness, h = size.z, center=true);
+                    translate([-braceThickness/2, 0, -2.5/2])
+                        cylinder(d=braceThickness, h = (a == 270 ? size.z/2 - 10 : 2.5), center=false);
                 }
         }
-    translate_z(-size.z)
+    translate_z(-size.z - encoderMountBaseThickness)
         difference() {
             rounded_cube_xy([size.x, size.y, encoderMountBaseThickness], cornerFillet, xy_center=true);
             pcb = AS5048_PCB;
             offsetY = pcb_holes(pcb)[0].y + pcb_size(pcb).y/2;
             rotate(90)
-                translate([0, -offsetY, 1])
+                translate([0, -offsetY, 0])
                     pcb_hole_positions(pcb)
-                        boltHoleM2Tap(encoderMountBaseThickness - 1);
+                        boltHoleM2Tap(encoderMountBaseThickness);
         }
 }
 
@@ -127,11 +131,11 @@ module XY_Encoder_Mount_hardware(motorType) {
     pcb = AS5048_PCB;
     offsetY = pcb_holes(pcb)[0].y + pcb_size(pcb).y/2;
     rotate(90)
-        translate([0, -offsetY, -size.z + encoderMountBaseThickness]) {
+        translate([0, -offsetY, -size.z]) {
             pcb(pcb);
             pcb_hole_positions(pcb)
                 translate_z(pcb_size(pcb).z)
-                    boltM2Buttonhead(4);
+                    boltM2Buttonhead(6);
         }
 }
 
@@ -139,7 +143,7 @@ module XY_Encoder_Mount_4250_Cover_stl() {
     stl("XY_Encoder_Mount_4250_Cover")
         color(pp1_colour)
             translate_z(2*  eps)
-                xyEncoderMountCover(BLDC4250, NEMA=true);
+                xyEncoderMountCover(BLDC4250, NEMA_holes=true);
 }
 
 module XY_Encoder_Mount_4250_stl() {

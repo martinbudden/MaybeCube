@@ -154,10 +154,18 @@ module encoderMagnetHolder(motorType) {
         }
 }
 
-module Encoder_Magnet_Holder_stl() {
+module Encoder_Magnet_Holder_4250_stl() {
+    motorType = BLDC4250;
+
+    stl("Encoder_Magnet_Holder_4250")
+        color(pp3_colour)
+            encoderMagnetHolder(motorType);
+}
+
+module Encoder_Magnet_Holder_4933_stl() {
     motorType = BLDC4933;
 
-    stl("Encoder_Magnet_Holder")
+    stl("Encoder_Magnet_Holder_4933")
         color(pp3_colour)
             encoderMagnetHolder(motorType);
 }
