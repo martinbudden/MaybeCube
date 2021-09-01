@@ -121,8 +121,15 @@ module xyEncoderMount(size, cornerSize) {
             offsetY = pcb_holes(pcb)[0].y + pcb_size(pcb).y/2;
             rotate(90)
                 translate([0, -offsetY, 0])
-                    pcb_hole_positions(pcb)
+                    pcb_hole_positions(pcb) {
                         boltHoleM2Tap(encoderMountBaseThickness);
+                        translate_z(-eps)
+                            cylinder(r=nut_radius(M2_nut), h=nut_thickness(M2_nut) + 2*eps, $fn=6);
+                    }
+            M5StackHoleSpacing = 44;
+            for (x = [-1, 1], y = [-1, 1])
+                translate([x*M5StackHoleSpacing/2, y*M5StackHoleSpacing/2, 0])
+                    boltHoleM3Tap(6);
         }
 }
 
@@ -133,9 +140,12 @@ module XY_Encoder_Mount_hardware(motorType) {
     rotate(90)
         translate([0, -offsetY, -size.z]) {
             pcb(pcb);
-            pcb_hole_positions(pcb)
+            pcb_hole_positions(pcb) {
                 translate_z(pcb_size(pcb).z)
                     boltM2Buttonhead(6);
+                translate_z(-encoderMountBaseThickness)
+                    nut(M2_nut);
+            }
         }
 }
 
