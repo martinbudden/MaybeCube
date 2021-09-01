@@ -22,6 +22,7 @@ scad/bom.scad
 scad/stlimporttemp
 scad/stlimport/eva
 scad/stlimport/jubilee
+scad/stlimport/voron
 
 tests.*
 tests/*.*
