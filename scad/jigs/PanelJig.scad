@@ -1,5 +1,4 @@
 include <NopSCADlib/core.scad>
-include <NopSCADlib/utils/fillet.scad>
 
 include <NopSCADlib/vitamins/extrusions.scad>
 
