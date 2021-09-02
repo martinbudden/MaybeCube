@@ -1,7 +1,7 @@
 include <../global_defs.scad>
 
 include <NopSCADlib/core.scad>
-include <NopSCADlib/utils/fillet.scad>
+use <NopSCADlib/utils/fillet.scad>
 
 use <../vitamins/bolts.scad>
 

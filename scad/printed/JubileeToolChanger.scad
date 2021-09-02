@@ -1,7 +1,7 @@
 include <../global_defs.scad>
 
 include <NopSCADlib/core.scad>
-include <NopSCADlib/utils/fillet.scad>
+use <NopSCADlib/utils/fillet.scad>
 use <NopSCADlib/vitamins/ball_bearing.scad>
 use <NopSCADlib/vitamins/o_ring.scad>
 use <NopSCADlib/vitamins/rod.scad>
@@ -54,7 +54,7 @@ module lock_actuator_base_plate_stl() {
 
 //                                   corner  body    boss    boss          shaft
 //                     side, length, radius, radius, radius, depth, shaft, length,      holes, cap heights
-NEMA11  = ["NEMA11",   27.94,32,     46.4/2, 21,     13.97,    32-eps,     6,     36+20,          26,    [8,     8]];
+NEMA11  = ["NEMA11",   27.94,32,     46.4/2, 21,     13.97,    32-eps,     6,     36+20,          26,    [8,     8], 3,    false, false, 0,       0];
 
 module lock_actuator_base_plate_hardware() {
     translate([54, 0, 27])
