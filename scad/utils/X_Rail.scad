@@ -26,7 +26,7 @@ module xRail(carriagePosition, xCarriageType=undef) {
                 rail_assembly(xCarriageType, _xRailLength, eX - _xRailLength/2 - 5 - carriagePosition.x, carriage_end_colour="green", carriage_wiper_colour="red");
 }
 
-module xRailCarriagePosition(carriagePosition) {
+module xRailCarriagePosition(carriagePosition, rotate=180) {
     xCarriageType = xCarriageType();
     xRailType = carriage_rail(xCarriageType);
     yRailType = yRailType();
@@ -34,6 +34,6 @@ module xRailCarriagePosition(carriagePosition) {
                 carriagePosition.y,
                 eZ - eSize - rail_height(xRailType) - rail_height(yRailType) + carriage_clearance(xCarriageType) + carriage_height(xCarriageType)
             ])
-        rotate(180)
+        rotate(rotate)
             children();
 }
