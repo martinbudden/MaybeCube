@@ -1,14 +1,16 @@
 include <../global_defs.scad>
 
 include <NopSCADlib/core.scad>
-include <NopSCADlib/utils/fillet.scad>
-include <NopSCADlib/utils/tube.scad>
+use <NopSCADlib/utils/fillet.scad>
+use <NopSCADlib/utils/tube.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
 use <../../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 use <X_CarriageAssemblies.scad>
 
+use <../utils/X_Rail.scad>
 use <../vitamins/bolts.scad>
+use <../Parameters_Positions.scad>
 
 
 function evaColorGrey() = grey(25);
@@ -374,4 +376,22 @@ module universal_face_stl() {
     stl("universal_face")
         stl_colour(evaColorGreen())
             evaImportStl("universal_face");
+}
+
+module printheadEVA(rotate=180, explode=0, t=undef) {
+    xRailCarriagePosition(carriagePosition(t), rotate)
+        explode(explode, true) {
+            color(pp4_colour)
+                //evaHotendTop(top="mgn12");
+                //evaHotendTop(top="lgx_bmg_mgn12_a");
+                //evaHotendTop(top="bmg_mgn12");
+                evaHotendTop(top="orbiter_mgn12");
+                //evaHotendTop(top="titan_mgn12");
+            color(pp4_colour)
+                evaHotendBottom();
+            zOffset = 5;
+            translate([0, 19.5, -15.5 - zOffset])
+                color(pp2_colour)
+                    evaImportStl("back_corexy");
+        }
 }

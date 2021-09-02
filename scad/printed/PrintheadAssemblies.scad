@@ -69,33 +69,31 @@ assembly("Printhead_E3DV6_MGN12H", big=true) {
     printheadAssembly();
 }
 
-module printheadBeltSide(rotate=180, explode=0, t=undef) {
+module printheadBeltSide(rotate=0, explode=0, t=undef) {
     xCarriageType = MGN12H_carriage;
 
-    xRailCarriagePosition(carriagePosition(t))
-        explode(explode, true)
-            rotate(rotate) {// for debug, to see belts better
-                explode([0, -20, 0], true)
-                    X_Carriage_Belt_Side_MGN12H_assembly();
-                xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = [ [1, -1], [-1, -1] ]);
-                xCarriageBeltClampAssembly(xCarriageType);
-            }
+    xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
+        explode(explode, true) {
+            explode([0, -20, 0], true)
+                X_Carriage_Belt_Side_MGN12H_assembly();
+            xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = [ [1, -1], [-1, -1] ]);
+            xCarriageBeltClampAssembly(xCarriageType);
+        }
 }
 
-module printheadHotendSide(rotate=180, explode=0, t=undef) {
+module printheadHotendSide(rotate=0, explode=0, t=undef) {
     xCarriageType = MGN12H_carriage;
     xCarriageFrontSize = xCarriageFrontSize(xCarriageType, _beltWidth, clamps=false);
 
-    xRailCarriagePosition(carriagePosition(t))
-        explode(explode, true)
-            rotate(rotate) {// for debug, to see belts better
-                explode([0, -20, 0], true)
-                    xCarriageFrontBolts(xCarriageType, xCarriageFrontSize, topBoltLength=30, bottomBoltLength=30, countersunk=true, offsetT=xCarriageHoleOffsetTop());
-                Printhead_E3DV6_MGN12H_assembly();
-                *translate([xCarriageFrontSize.x/2, 18, -18])
-                    bl_touch_mount();
-                xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = [ [1, 1], [-1, 1] ]);
-            }
+    xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
+        explode(explode, true) {
+            explode([0, -20, 0], true)
+                xCarriageFrontBolts(xCarriageType, xCarriageFrontSize, topBoltLength=30, bottomBoltLength=30, countersunk=true, offsetT=xCarriageHoleOffsetTop());
+            Printhead_E3DV6_MGN12H_assembly();
+            *translate([xCarriageFrontSize.x/2, 18, -18])
+                bl_touch_mount();
+            xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = [ [1, 1], [-1, 1] ]);
+        }
 }
 
 module bl_touch_mount_stl() {
@@ -121,21 +119,20 @@ module bl_touch_mount() {
 module fullPrinthead(rotate=180, explode=0, t=undef, accelerometer=false) {
     xCarriageType = MGN12H_carriage;
 
-    xRailCarriagePosition(carriagePosition(t))
-        explode(explode, true)
-            rotate(rotate) {// for debug, to see belts better
-                explode([0, -20, 0], true) {
-                    X_Carriage_Front_MGN12H_assembly();
-                    xCarriageFrontBolts(xCarriageType, xCarriageFrontSize(xCarriageType, _beltWidth, clamps), topBoltLength=30, bottomBoltLength=30, countersunk=true, offsetT=xCarriageHoleOffsetTop());
-                }
-                Printhead_E3DV6_MGN12H_assembly();
-                xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk);
-                if (accelerometer)
-                    explode(50, true)
-                        printheadAccelerometerAssembly();
-                if (!exploded())
-                    xCarriageBeltFragments(xCarriageType, coreXY_belt(coreXY_type()), beltOffsetZ(), coreXYSeparation().z, coreXY_upper_belt_colour(coreXY_type()), coreXY_lower_belt_colour(coreXY_type()));
+    xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
+        explode(explode, true) {
+            explode([0, -20, 0], true) {
+                X_Carriage_Front_MGN12H_assembly();
+                xCarriageFrontBolts(xCarriageType, xCarriageFrontSize(xCarriageType, _beltWidth, clamps), topBoltLength=30, bottomBoltLength=30, countersunk=true, offsetT=xCarriageHoleOffsetTop());
             }
+            Printhead_E3DV6_MGN12H_assembly();
+            xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk);
+            if (accelerometer)
+                explode(50, true)
+                    printheadAccelerometerAssembly();
+            if (!exploded())
+                xCarriageBeltFragments(xCarriageType, coreXY_belt(coreXY_type()), beltOffsetZ(), coreXYSeparation().z, coreXY_upper_belt_colour(coreXY_type()), coreXY_lower_belt_colour(coreXY_type()));
+        }
 }
 
 module printheadAccelerometerAssembly() {

@@ -19,6 +19,13 @@ use <../scad/Parameters_Positions.scad>
 include <target.scad>
 
 
+module printheadXChange(rotate=0, explode=0, t=undef) {
+    xRailCarriagePosition(carriagePosition(t), rotate)
+        explode(explode, true)
+            X_Carriage_XChange_assembly();
+}
+
+
 module XChange_assembly()
 assembly("XChange", big=true) {
 
@@ -29,25 +36,21 @@ assembly("XChange", big=true) {
         if (!exploded())
             not_on_bom()
                 CoreXYBelts(carriagePosition + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
-        xRailCarriagePosition(carriagePosition)
-            rotate(180) {
-                explode([0, 60, 0])
-                    X_Carriage_XChange_assembly();
-                no_explode() {
-                    not_on_bom() {
-                        X_Carriage_Belt_Side_MGN12H_assembly();
-                        xCarriageBeltClampAssembly(xCarriageType, countersunk=true);
-                    }
+        xRailCarriagePosition(carriagePosition, rotate=180) {
+            explode([0, 60, 0])
+                X_Carriage_XChange_assembly();
+            no_explode()
+                not_on_bom() {
+                    X_Carriage_Belt_Side_MGN12H_assembly();
+                    xCarriageBeltClampAssembly(xCarriageType, countersunk=true);
                 }
-                *translate_z(-carriage_height(xCarriageType))
-                    carriage(xCarriageType);
-            }
+            *translate_z(-carriage_height(xCarriageType))
+                carriage(xCarriageType);
+        }
     }
-
     not_on_bom()
         rail_assembly(xCarriageType, _xRailLength, pos=-2, carriage_end_colour="green", carriage_wiper_colour="red");
 }
-
 
 if ($preview)
     XChange_assembly();

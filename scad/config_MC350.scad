@@ -11,7 +11,7 @@ _xyMotorDescriptor = "NEMA17_48";
 _zMotorDescriptor = "NEMA17_40L280";
 _corkDamperThickness = 2;
 
-_use2060ForTop = false;
+_use2060ForTop = true;
 _xRailLength = eX - 50;
 _yRailLength = eY;
 _xCarriageDescriptor = "MGN12H";

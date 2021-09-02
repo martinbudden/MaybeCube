@@ -12,7 +12,6 @@ use <../vitamins/bolts.scad>
 use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
 
-use <../Parameters_CoreXY.scad>
 include <../Parameters_Main.scad>
 
 
@@ -94,13 +93,14 @@ module X_Carriage_XChange_hardware() {
         }
     }
 }
+
 module X_Carriage_XChange_assembly()
 assembly("X_Carriage_XChange", ngb=true) {
 
     explode([0, 40, 0], true)
-    rotate([0, 90, -90]) {
-        stl_colour(pp1_colour)
-            X_Carriage_XChange_stl();
-        X_Carriage_XChange_hardware();
-    }
+        rotate([0, 90, -90]) {
+            stl_colour(pp1_colour)
+                X_Carriage_XChange_stl();
+            X_Carriage_XChange_hardware();
+        }
 }

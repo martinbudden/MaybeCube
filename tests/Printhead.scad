@@ -5,6 +5,9 @@ include <NopSCADlib/vitamins/rails.scad>
 
 use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/X_CarriageAssemblies.scad>
+use <../scad/printed/X_CarriageEVA.scad>
+use <../scad/MainAssemblyXChange.scad>
+use <../scad/MainAssemblyVoronAfterburner.scad>
 
 use <../scad/utils/carriageTypes.scad>
 use <../scad/utils/CoreXYBelts.scad>
@@ -29,20 +32,24 @@ module Printhead_test() {
     echo(blz=blz(MGN12H_carriage));
     echo(coreXYPosBL=coreXYPosBL());
     echo(coreXYSeparation=coreXYSeparation());
+    carriagePosition = carriagePosition();
 
-    translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
+    translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
+        CoreXYBelts(carriagePosition - [4, 0], x_gap = -25, show_pulleys = [1, 0, 0]);
         //fullPrinthead(accelerometer=true);
         printheadBeltSide();
         printheadHotendSide();
-        CoreXYBelts(carriagePosition() - [4, 0], x_gap = -25, show_pulleys = [1, 0, 0]);
+        //printheadEVA();
+        //printheadVoronAfterburner();
+        //printheadXChange();
         translate_z(eZ)
-            xRail(carriagePosition());
+            xRail(carriagePosition);
     }
-    *translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
-        CoreXYBelts(carriagePosition(), x_gap = -25, show_pulleys = ![1, 0, 0]);
+    *translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
+        CoreXYBelts(carriagePosition, x_gap = -25, show_pulleys = ![1, 0, 0]);
         translate_z(eZ)
-            xRail(carriagePosition());
-        xRailCarriagePosition(carriagePosition()) {
+            xRail(carriagePosition);
+        xRailCarriagePosition(carriagePosition) {
             //Printhead_E3DV6_MGN12H_assembly();
             //X_Carriage_Front_MGN12H_assembly();
             X_Carriage_Belt_Side_MGN12H_assembly();

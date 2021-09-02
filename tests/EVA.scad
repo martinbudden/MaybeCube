@@ -15,7 +15,6 @@ include <NopSCADlib/vitamins/rails.scad>
 use <../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 
 use <../scad/printed/PrintheadAssemblies.scad>
-use <../scad/printed/X_CarriageAssemblies.scad>
 use <../scad/printed/X_CarriageEVA.scad>
 use <../scad/printed/Y_CarriageAssemblies.scad>
 
@@ -35,30 +34,16 @@ t = 2;
 zOffset = 5;
 tensionerOffsetX = X_CarriageEVATensionerOffsetX();
 
+
 module EVA_test() {
-    carriagePosition = carriagePosition(t);
-    translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
-        CoreXYBelts(carriagePosition + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
-        xRailCarriagePosition(carriagePosition(t))
-            rotate(180) {
-                //X_Carriage_Belt_Side_MGN12H_assembly();
-                color(pp4_colour)
-                    //evaHotendTop(top="mgn12");
-                    //evaHotendTop(top="lgx_bmg_mgn12_a");
-                    //evaHotendTop(top="bmg_mgn12");
-                    evaHotendTop(top="orbiter_mgn12");
-                    //evaHotendTop(top="titan_mgn12");
-                color(pp4_colour)
-                    evaHotendBottom();
-                translate([0, 19.5, -15.5 - zOffset])
-                    color(pp2_colour)
-                        evaImportStl("back_corexy");
-            }
+    translate(-[eSize + eX/2, carriagePosition(t).y, eZ - yRailOffset().x - carriage_clearance(xCarriageType())]) {
+        CoreXYBelts(carriagePosition() + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
+        printheadEVA();
         translate_z(eZ)
-            xRail(carriagePosition, MGN12H_carriage);
-        translate([0, carriagePosition.y - carriagePosition().y, eZ - eSize])
+            xRail(carriagePosition(), MGN12H_carriage);
+        translate([0, 0, eZ - eSize])
             Y_Carriage_Left_assembly();
-        translate([2*eSize + eX, carriagePosition.y - carriagePosition().y, eZ - eSize])
+        translate([2*eSize + eX, 0, eZ - eSize])
             Y_Carriage_Right_assembly();
     }
 }
