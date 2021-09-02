@@ -26,6 +26,16 @@ function grooveMountSize(blower_type, hotend_type=0) = [printHeadHotendOffset(ho
 function blower_type() = is_undef(_blowerDescriptor) || _blowerDescriptor == "BL30x10" ? BL30x10 : BL40x10;
 //function accelerometerOffset() = [10, -1, 8];
 function accelerometerOffset() = [6.5, -2, 8];
+function xCarriageHoleOffsetTop() = -1;//[5.65, -1]; // for alignment with EVA
+//function xCarriageHoleOffsetTop() = [4, 0];
+//function xCarriageHoleOffsetBottom() = [9.7, 4.5]; // for alignment with EVA
+//function xCarriageHoleOffsetBottom() = [9.7, 0];
+//function xCarriageHoleOffsetBottom() = [4, 0];
+//evaHoleOffsetBottom = 9.7;
+//evaHoleSeparationBottom = 26;
+evaHoleSeparationTop = 34;
+function xCarriageHoleSeparationTopMGN12H() = evaHoleSeparationTop; //45.4 - 8
+function xCarriageHoleSeparationBottomMGN12H() = 38;//34;//37.4; //45.4 - 8
 
 xCarriageBeltTensionerSizeX = 23;
 
@@ -33,14 +43,15 @@ xCarriageBeltTensionerSizeX = 23;
 module X_Carriage_Belt_Side_MGN12H_stl() {
     xCarriageType = MGN12H_carriage;
     size = xCarriageFrontSize(xCarriageType, _beltWidth, clamps=false);// + [1, 0, 1];
-    holeSeparationTop = xCarriageHoleSeparationTop(xCarriageType);
-    holeSeparationBottom = xCarriageHoleSeparationBottom(xCarriageType);
+    holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
+    holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
+    offsetT = xCarriageHoleOffsetTop();
 
     // orientate for printing
     stl("X_Carriage_Belt_Side_MGN12H")
         color(pp4_colour)
             rotate([90, 0, 0])
-                xCarriageBeltSide(xCarriageType, size, holeSeparationTop, holeSeparationBottom, extraX=1, accelerometerOffset=accelerometerOffset());
+                xCarriageBeltSide(xCarriageType, size, holeSeparationTop, holeSeparationBottom, extraX=1, accelerometerOffset=accelerometerOffset(), offsetT=offsetT);
 }
 
 //!Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensioners into the

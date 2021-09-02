@@ -51,8 +51,8 @@ module va_x_carriage_frame_left() {
 module frameLeft() {
     size = [20, 37.5 - squash, 8];
     fillet = 1;
-    holeSeparationTop = xCarriageHoleSeparationTop(xCarriageType);
-    holeSeparationBottom = xCarriageHoleSeparationBottom(xCarriageType);
+    holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
+    holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
 
     translate([-size.x, -size.y, 0])
         difference() {

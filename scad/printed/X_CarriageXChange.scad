@@ -4,6 +4,7 @@ include <NopSCADlib/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
+use <../printed/X_CarriageAssemblies.scad>
 use <../utils/carriageTypes.scad>
 use <../utils/PrintheadOffsets.scad>
 
@@ -23,8 +24,8 @@ module X_Carriage_XChange_stl() {
     topSizeZ = 18.05 + railCarriageGap - 4.5;
     bottomSizeZ = 13.5 + railCarriageGap - 4.5;
     fillet = 1;
-    holeSeparationTop = xCarriageHoleSeparationTop(xCarriageType);
-    holeSeparationBottom = xCarriageHoleSeparationBottom(xCarriageType);
+    holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
+    holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
 
     stl("X_Carriage_XChange")
         color(pp1_colour)
@@ -67,8 +68,8 @@ module X_Carriage_XChange_hardware() {
     xCarriageType = MGN12H_carriage;
     size = xCarriageBackSize(xCarriageType, _beltWidth, clamps=false);
     topThickness = xCarriageTopThickness();
-    holeSeparationTop = xCarriageHoleSeparationTop(xCarriageType);
-    holeSeparationBottom = xCarriageHoleSeparationBottom(xCarriageType);
+    holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
+    holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
 
     translate([-topThickness, -size.x/2, 6 - 20]) {
         // bolt holes  to connect to the belt side
