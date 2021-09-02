@@ -84,11 +84,13 @@ module printheadBeltSide(rotate=0, explode=0, t=undef) {
 module printheadHotendSide(rotate=0, explode=0, t=undef) {
     xCarriageType = MGN12H_carriage;
     xCarriageFrontSize = xCarriageFrontSize(xCarriageType, _beltWidth, clamps=false);
+    holeSeparationTop = xCarriageHoleSeparationTop(xCarriageType);
+    holeSeparationBottom = xCarriageHoleSeparationBottom(xCarriageType);
 
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
         explode(explode, true) {
             explode([0, -20, 0], true)
-                xCarriageFrontBolts(xCarriageType, xCarriageFrontSize, topBoltLength=30, bottomBoltLength=30, countersunk=true, offsetT=xCarriageHoleOffsetTop());
+                xCarriageFrontBolts(xCarriageType, xCarriageFrontSize, topBoltLength=30, holeSeparationTop=holeSeparationTop, bottomBoltLength=30, holeSeparationBottom=holeSeparationBottom, countersunk=true);
             Printhead_E3DV6_MGN12H_assembly();
             *translate([xCarriageFrontSize.x/2, 18, -18])
                 bl_touch_mount();
@@ -118,12 +120,15 @@ module bl_touch_mount() {
 
 module fullPrinthead(rotate=180, explode=0, t=undef, accelerometer=false) {
     xCarriageType = MGN12H_carriage;
+    holeSeparationTop = xCarriageHoleSeparationTop(xCarriageType);
+    holeSeparationBottom = xCarriageHoleSeparationBottom(xCarriageType);
 
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
         explode(explode, true) {
             explode([0, -20, 0], true) {
                 X_Carriage_Front_MGN12H_assembly();
-                xCarriageFrontBolts(xCarriageType, xCarriageFrontSize(xCarriageType, _beltWidth, clamps), topBoltLength=30, bottomBoltLength=30, countersunk=true, offsetT=xCarriageHoleOffsetTop());
+                xCarriageFrontSize = xCarriageFrontSize(xCarriageType, _beltWidth, clamps=true);
+                xCarriageFrontBolts(xCarriageType, xCarriageFrontSize, topBoltLength=30, holeSeparationTop=holeSeparationTop, bottomBoltLength=30, holeSeparationBottom=holeSeparationBottom, countersunk=true);
             }
             Printhead_E3DV6_MGN12H_assembly();
             xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk);

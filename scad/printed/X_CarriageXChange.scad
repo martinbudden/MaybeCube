@@ -23,6 +23,8 @@ module X_Carriage_XChange_stl() {
     topSizeZ = 18.05 + railCarriageGap - 4.5;
     bottomSizeZ = 13.5 + railCarriageGap - 4.5;
     fillet = 1;
+    holeSeparationTop = xCarriageHoleSeparationTop(xCarriageType);
+    holeSeparationBottom = xCarriageHoleSeparationBottom(xCarriageType);
 
     stl("X_Carriage_XChange")
         color(pp1_colour)
@@ -39,10 +41,10 @@ module X_Carriage_XChange_stl() {
                     }
                     // bolt holes  to connect to the belt side
                     holeOffset = 3;
-                    for (y = xCarriageHolePositions(size.x, xCarriageHoleSeparationTop(xCarriageType)))
+                    for (y = xCarriageHolePositions(size.x, holeSeparationTop))
                         translate([5, y, holeOffset])
                             boltHoleM3Tap(topSizeZ - holeOffset, twist=4);
-                    for (y = xCarriageHolePositions(size.x, xCarriageHoleSeparationBottom(xCarriageType)))
+                    for (y = xCarriageHolePositions(size.x, holeSeparationBottom))
                         translate([size.z - 4, y, holeOffset])
                             boltHoleM3Tap(bottomSizeZ - holeOffset, twist=4);
 
@@ -65,15 +67,17 @@ module X_Carriage_XChange_hardware() {
     xCarriageType = MGN12H_carriage;
     size = xCarriageBackSize(xCarriageType, _beltWidth, clamps=false);
     topThickness = xCarriageTopThickness();
+    holeSeparationTop = xCarriageHoleSeparationTop(xCarriageType);
+    holeSeparationBottom = xCarriageHoleSeparationBottom(xCarriageType);
 
     translate([-topThickness, -size.x/2, 6 - 20]) {
         // bolt holes  to connect to the belt side
         holeOffset = 3;
-        for (y = xCarriageHolePositions(size.x, xCarriageHoleSeparationTop(xCarriageType)))
+        for (y = xCarriageHolePositions(size.x, holeSeparationTop))
             translate([5, y, holeOffset + 30.6])
                 explode(40, true)
                     boltM3Countersunk(30);
-        for (y = xCarriageHolePositions(size.x, xCarriageHoleSeparationBottom(xCarriageType)))
+        for (y = xCarriageHolePositions(size.x, holeSeparationBottom))
             translate([size.z - 4, y, holeOffset + 30.6])
                 explode(40, true)
                     boltM3Countersunk(30);

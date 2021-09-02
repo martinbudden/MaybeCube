@@ -51,6 +51,9 @@ module va_x_carriage_frame_left() {
 module frameLeft() {
     size = [20, 37.5 - squash, 8];
     fillet = 1;
+    holeSeparationTop = xCarriageHoleSeparationTop(xCarriageType);
+    holeSeparationBottom = xCarriageHoleSeparationBottom(xCarriageType);
+
     translate([-size.x, -size.y, 0])
         difference() {
             union() {
@@ -84,10 +87,10 @@ module frameLeft() {
             translate([size.x - vaHoleSeparationBottom/2, 0, -49+9.75])
                 rotate([-90, -90, 0])
                     boltHoleM3Tap(10, horizontal=true);
-            translate([size.x - xCarriageHoleSeparationTop(xCarriageType)/2, size.y, 3])
+            translate([size.x - holeSeparationTop/2, size.y, 3])
                 rotate([90, 90, 0])
                     boltHoleM3Tap(10, horizontal=true);
-            translate([size.x - xCarriageHoleSeparationBottom(xCarriageType)/2, size.y, -49 + size.z/2])
+            translate([size.x - holeSeparationBottom/2, size.y, -49 + size.z/2])
                 rotate([90, 90, 0])
                     boltHoleM3Tap(10, horizontal=true);
         }
