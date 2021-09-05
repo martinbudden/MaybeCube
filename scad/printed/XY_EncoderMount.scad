@@ -124,7 +124,7 @@ module xyEncoderMount(size, cornerSize) {
                     pcb_hole_positions(pcb) {
                         boltHoleM2Tap(encoderMountBaseThickness);
                         translate_z(-eps)
-                            cylinder(r=nut_radius(M2_nut), h=nut_thickness(M2_nut) + 2*eps, $fn=6);
+                            cylinder(r=nut_radius(M2_nut), h=M2_nut_trap_depth, $fn=6);
                     }
             M5StackHoleSpacing = 44;
             for (x = [-1, 1], y = [-1, 1])
