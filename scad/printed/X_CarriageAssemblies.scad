@@ -64,21 +64,24 @@ assembly("X_Carriage_Belt_Side_MGN12H") {
         stl_colour(pp4_colour)
             X_Carriage_Belt_Side_MGN12H_stl();
 
-    offset = 22.5;
     boltLength = 40;
-    translate([offset, -3.5, -31]) {
+    gap = 0.1; // small gap so can see clearance when viewing model
+    offset = [ 22.5,
+               xCarriageBeltTensionerSize().y - beltAttachmentOffsetY() + xCarriageBeltAttachmentCutoutOffset() + gap,
+               -31 ];
+    translate(offset) {
         rotate([0, 0, 180]) {
             explode([-40, 0, 0])
                 stl_colour(pp2_colour)
                     X_Carriage_Belt_Tensioner_stl();
-            X_Carriage_Belt_Tensioner_hardware(boltLength, offset);
+            X_Carriage_Belt_Tensioner_hardware(boltLength, offset.x);
         }
-        translate([-2*offset, 0, -2])
+        translate([-2*offset.x, 0, -2])
             rotate([180, 0, 0]) {
                 explode([-40, 0, 0])
                     stl_colour(pp2_colour)
                         X_Carriage_Belt_Tensioner_stl();
-                X_Carriage_Belt_Tensioner_hardware(boltLength, offset);
+                X_Carriage_Belt_Tensioner_hardware(boltLength, offset.x);
             }
     }
 }
