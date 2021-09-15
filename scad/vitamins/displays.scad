@@ -2,6 +2,7 @@ include <../global_defs.scad>
 
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/displays.scad>
+include <NopSCADlib/vitamins/potentiometers.scad>
 
 BTT_TFT35_E3_V3_0_Potentiometer_PCB = ["","",
     31, 18, 1.6,
@@ -10,7 +11,7 @@ BTT_TFT35_E3_V3_0_Potentiometer_PCB = ["","",
     false,
     [], // hole positions
     [ // components
-        [ 15.5, 10, 0, "-potentiometer", 5, 15 ],
+        [ 15.5, 10, 0, "-potentiometer", BTT_encoder ],
     ],
     [] // accessories
 ];
