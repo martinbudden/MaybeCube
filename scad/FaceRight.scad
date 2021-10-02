@@ -66,34 +66,30 @@ frontAndBackHolePositionsZ = concat([eSize/2, 3*eSize/2, eZ - eSize/2, spoolHeig
 
 module faceRightIdlerUpright() {
     translate([eX + eSize, 0, 0])
-        color(frameColor())
-            render(convexity=2)
-                difference() {
-                    extrusionOZ(eZ, eSize);
-                    for (z = frontAndBackHolePositionsZ)
-                        translate([eSize/2, 0, z])
-                            rotate([-90, 0, 0])
-                                jointBoltHole();
-                    for (z = [eSize/2, 3*eSize/2, 5*eSize/2, 7*eSize/2, eZ - eSize/2])
-                        translate([eSize, eSize/2, z])
-                            rotate([0, -90, 0])
-                                jointBoltHole();
-                }
+        difference() {
+            extrusionOZ(eZ, eSize);
+            for (z = frontAndBackHolePositionsZ)
+                translate([eSize/2, 0, z])
+                    rotate([-90, 0, 0])
+                        jointBoltHole();
+            for (z = [eSize/2, 3*eSize/2, 5*eSize/2, 7*eSize/2, eZ - eSize/2])
+                translate([eSize, eSize/2, z])
+                    rotate([0, -90, 0])
+                        jointBoltHole();
+        }
 }
 
 module faceRightMotorUpright() {
     translate([eX + eSize, eY + eSize, 0])
-        color(frameColor())
-            render(convexity=2)
-                difference() {
-                    extrusionOZ(eZ, eSize);
-                    for (z = frontAndBackHolePositionsZ)
-                        translate([eSize/2, eSize, z])
-                            rotate([90, 0, 0])
-                                jointBoltHole();
-                    for (z = [eSize/2, 3*eSize/2, eZ - 3*eSize/2, eZ - eSize/2])
-                        translate([eSize, eSize/2, z])
-                            rotate([0, -90, 0])
-                                jointBoltHole();
-                }
+        difference() {
+            extrusionOZ(eZ, eSize);
+            for (z = frontAndBackHolePositionsZ)
+                translate([eSize/2, eSize, z])
+                    rotate([90, 0, 0])
+                        jointBoltHole();
+            for (z = [eSize/2, 3*eSize/2, eZ - 3*eSize/2, eZ - eSize/2])
+                translate([eSize, eSize/2, z])
+                    rotate([0, -90, 0])
+                        jointBoltHole();
+        }
 }

@@ -52,34 +52,30 @@ module faceLeftLowerExtrusion(zMotorLength) {
 
 
 module faceLeftIdlerUpright() {
-    color(frameColor())
-        render(convexity=2)
-            difference() {
-                extrusionOZ(eZ, eSize);
-                for (z = [eSize/2, 3*eSize/2, eZ-eSize/2, _upperZRodMountsExtrusionOffsetZ + eSize/2, _upperZRodMountsExtrusionOffsetZ - eSize/2])
-                    translate([eSize/2, 0, z])
-                        rotate([-90, 0, 0])
-                            jointBoltHole();
-                for (z = [eSize/2, 3*eSize/2, 5*eSize/2, 7*eSize/2, eZ - eSize/2])
-                    translate([0, eSize/2, z])
-                        rotate([0, 90, 0])
-                            jointBoltHole();
-            }
+    difference() {
+        extrusionOZ(eZ, eSize);
+        for (z = [eSize/2, 3*eSize/2, eZ-eSize/2, _upperZRodMountsExtrusionOffsetZ + eSize/2, _upperZRodMountsExtrusionOffsetZ - eSize/2])
+            translate([eSize/2, 0, z])
+                rotate([-90, 0, 0])
+                    jointBoltHole();
+        for (z = [eSize/2, 3*eSize/2, 5*eSize/2, 7*eSize/2, eZ - eSize/2])
+            translate([0, eSize/2, z])
+                rotate([0, 90, 0])
+                    jointBoltHole();
+    }
 }
 
 module faceLeftMotorUpright() {
     translate([0, eY + eSize, 0])
-        color(frameColor())
-            render(convexity=2)
-                difference() {
-                    extrusionOZ(eZ, eSize);
-                    for (z = [eSize/2, 3*eSize/2, eZ - eSize/2, _upperZRodMountsExtrusionOffsetZ + eSize/2, _upperZRodMountsExtrusionOffsetZ - eSize/2])
-                        translate([eSize/2, eSize, z])
-                            rotate([90, 0, 0])
-                                jointBoltHole();
-                    for (z = [eSize/2, 3*eSize/2, eZ - 3*eSize/2, eZ - eSize/2])
-                        translate([0, eSize/2, z])
-                            rotate([0, 90, 0])
-                                jointBoltHole();
-                    }
+        difference() {
+            extrusionOZ(eZ, eSize);
+            for (z = [eSize/2, 3*eSize/2, eZ - eSize/2, _upperZRodMountsExtrusionOffsetZ + eSize/2, _upperZRodMountsExtrusionOffsetZ - eSize/2])
+                translate([eSize/2, eSize, z])
+                    rotate([90, 0, 0])
+                        jointBoltHole();
+            for (z = [eSize/2, 3*eSize/2, eZ - 3*eSize/2, eZ - eSize/2])
+                translate([0, eSize/2, z])
+                    rotate([0, 90, 0])
+                        jointBoltHole();
+            }
 }

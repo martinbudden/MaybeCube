@@ -338,7 +338,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
     translate([-_printBedArmSeparation/2, 0, -fSize/2]) {
         for (x = [-fSize/2, _printBedArmSeparation + fSize/2])
             explode([x < 0 ? -50 : 50, 0, 0])
-                color(frameColor()) render(convexity=2) difference() {
+                difference() {
                     translate([x - fSize/2, -yOffset, 0])
                         extrusionOY(size.y, fSize);
                     // access hole for Z_Carriage bolt

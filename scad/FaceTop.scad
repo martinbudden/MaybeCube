@@ -116,15 +116,13 @@ module faceTopFront() {
         explode([0, -120, 0], true) {
             extrusionOXEndBoltPositions(eX)
                 boltM5Buttonhead(_endBoltShortLength);
-            color(frameColor())
-                render(convexity=4)
-                    difference() {
-                        extrusionOX(eX);
-                        for (x = use2060ForTop() ? [eSize/2, 3*eSize/2, eX - eSize/2, eX - 3*eSize/2] : [eSize/2, eX - eSize/2])
-                            translate([x, 0, eSize/2])
-                                rotate([-90, 0, 0])
-                                    jointBoltHole();
-                    }
+            difference() {
+                extrusionOX(eX);
+                for (x = use2060ForTop() ? [eSize/2, 3*eSize/2, eX - eSize/2, eX - 3*eSize/2] : [eSize/2, eX - eSize/2])
+                    translate([x, 0, eSize/2])
+                        rotate([-90, 0, 0])
+                            jointBoltHole();
+            }
         }
     }
 }
@@ -141,19 +139,17 @@ module faceTopBack() {
                 translate_z(-eSize)
                     extrusionOXEndBoltPositions(eX)
                         boltM5Buttonhead(_endBoltLength);
-            color(frameColor())
-                render(convexity=4)
-                    difference() {
-                        if (use2020)
-                            extrusionOX(eX);
-                        else
-                            translate_z(-eSize)
-                                extrusionOX2040V(eX);
-                        for (x = use2060ForTop() ? [eSize/2, 3*eSize/2, eX - eSize/2, eX - 3*eSize/2] : [eSize/2, eX - eSize/2])
-                            translate([x, eSize, eSize/2])
-                                rotate([90, 0, 0])
-                                    jointBoltHole();
-                    }
+            difference() {
+                if (use2020)
+                    extrusionOX(eX);
+                else
+                    translate_z(-eSize)
+                        extrusionOX2040V(eX);
+                for (x = use2060ForTop() ? [eSize/2, 3*eSize/2, eX - eSize/2, eX - 3*eSize/2] : [eSize/2, eX - eSize/2])
+                    translate([x, eSize, eSize/2])
+                        rotate([90, 0, 0])
+                            jointBoltHole();
+            }
         }
     }
 }
@@ -167,7 +163,7 @@ module faceTopBack() {
 module Left_Side_Upper_Extrusion_assembly() pose(a=[180 + 55, 0, 25 + 90])
 assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
 
-    yCarriageType = yCarriageType();
+    yCarriageType = yCarriageType(_yCarriageDescriptor);
     translate([0, eSize, eZ - eSize])
         if (use2060ForTop())
             extrusionOY2060HEndBolts(eY);
@@ -196,7 +192,7 @@ assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
 module Right_Side_Upper_Extrusion_assembly() pose(a=[180 + 55, 0, 25 - 90])
 assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
 
-    yCarriageType = yCarriageType();
+    yCarriageType = yCarriageType(_yCarriageDescriptor);
     translate([eX, eSize, eZ - eSize])
         if (use2060ForTop())
             translate([-eSize, 0, 0])
@@ -208,7 +204,7 @@ assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
         explode(-40, true)
             rotate([180, 0, 90])
                 if (is_undef($hide_rails) || $hide_rails == false) {
-                    rail_assembly(yCarriageType(), _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
+                    rail_assembly(yCarriageType, _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
                     railBoltsAndNuts(carriage_rail(yCarriageType), _yRailLength, 5);
                 }
     translate([eX + 2*eSize, 0, eZ - eSize])
