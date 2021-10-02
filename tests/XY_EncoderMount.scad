@@ -51,6 +51,6 @@ module XY_Encoder_Mount_test() {
 
 //XY_Encoder_Mount_4933_Cover_stl();
 //XY_Encoder_Mount_4933_stl();
-//Encoder_Magnet_Holder_stl();
+//Encoder_Magnet_Holder_4933_stl();
 if ($preview)
     XY_Encoder_Mount_test();
