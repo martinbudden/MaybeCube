@@ -71,7 +71,7 @@ module evaHotendBaseTopHardware(explode=40) {
 
     translate_z(5 - carriage_height(carriageType))
         carriage_hole_positions(MGN12H_carriage)
-            translate_z($exploded ? explode-70 : 0)
+            translate_z(exploded() ? explode-70 : 0)
                 explode(70, true)
                     boltM3Caphead(8);
 }
