@@ -1,5 +1,3 @@
-include <../global_defs.scad>
-
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/blowers.scad>
 include <NopSCADlib/vitamins/e3d.scad>

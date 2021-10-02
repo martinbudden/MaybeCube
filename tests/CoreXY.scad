@@ -36,7 +36,7 @@ module CoreXY_test() {
 
     NEMA_width = _xyMotorDescriptor == "NEMA14" ? 35.2 : 42.3;
     coreXYSize = coreXYPosTR(NEMA_width) - coreXYPosBL();
-    CoreXYBelts(carriagePosition(t), x_gap = -20, show_pulleys = ![1, 0, 0]);
+    #CoreXYBelts(carriagePosition(t), x_gap = -20, show_pulleys = ![1, 0, 0]);
     printheadBeltSide(t=t);
     //fullPrinthead(t=t);
 

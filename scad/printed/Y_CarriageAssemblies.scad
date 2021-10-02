@@ -36,7 +36,7 @@ module Y_Carriage_Left_stl() {
 
     stl("Y_Carriage_Left")
         color(pp2_colour)
-            Y_Carriage(yCarriageType(), idlerHeight, _beltWidth, xRailType(), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), blockOffsetX, endStopOffsetX, tongueOffset(), pulleyOffset(), topInset, left=true, cnc=false);
+            Y_Carriage(yCarriageType(_yCarriageDescriptor), idlerHeight, _beltWidth, xRailType(_xCarriageDescriptor), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), blockOffsetX, endStopOffsetX, tongueOffset(), pulleyOffset(), topInset, left=true, cnc=false);
 }
 
 module Y_Carriage_Right_stl() {
@@ -47,7 +47,7 @@ module Y_Carriage_Right_stl() {
 
     stl("Y_Carriage_Right")
         color(pp2_colour)
-            Y_Carriage(yCarriageType(), idlerHeight, _beltWidth, xRailType(), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), blockOffsetX, endStopOffsetX, tongueOffset(), pulleyOffset(), topInset, left=false, cnc=false);
+            Y_Carriage(yCarriageType(_yCarriageDescriptor), idlerHeight, _beltWidth, xRailType(_xCarriageDescriptor), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), blockOffsetX, endStopOffsetX, tongueOffset(), pulleyOffset(), topInset, left=false, cnc=false);
 }
 
 module Y_Carriage_Left_AL_dxf() {
@@ -60,7 +60,7 @@ module Y_Carriage_Left_AL_dxf() {
 
     dxf("Y_Carriage_Left_AL")
         color(silver)
-            Y_Carriage(yCarriageType(), idlerHeight, _beltWidth, xRailType(), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), blockOffsetX, endStopOffsetX, tongueOffset(), pulleyOffset(), topInset, left=true, cnc=true);
+            Y_Carriage(yCarriageType(_yCarriageDescriptor), idlerHeight, _beltWidth, xRailType(_xCarriageDescriptor), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), blockOffsetX, endStopOffsetX, tongueOffset(), pulleyOffset(), topInset, left=true, cnc=true);
 }
 
 module Y_Carriage_Right_AL_dxf() {
@@ -71,7 +71,7 @@ module Y_Carriage_Right_AL_dxf() {
 
     dxf("Y_Carriage_Right_AL")
         color(silver)
-            Y_Carriage(yCarriageType(), idlerHeight, _beltWidth, xRailType(), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), blockOffsetX, endStopOffsetX, tongueOffset(), pulleyOffset(), topInset, left=false, cnc=true);
+            Y_Carriage(yCarriageType(_yCarriageDescriptor), idlerHeight, _beltWidth, xRailType(_xCarriageDescriptor), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), blockOffsetX, endStopOffsetX, tongueOffset(), pulleyOffset(), topInset, left=false, cnc=true);
 }
 
 module Y_Carriage_Brace_Left_stl() {
@@ -79,7 +79,7 @@ module Y_Carriage_Brace_Left_stl() {
 
     stl("Y_Carriage_Brace_Left")
         color(pp3_colour)
-            yCarriageBrace(yCarriageType(), yCarriageBraceThickness(), pulleyOffset(), holeRadius, left=true);
+            yCarriageBrace(yCarriageType(_yCarriageDescriptor), yCarriageBraceThickness(), pulleyOffset(), holeRadius, left=true);
 }
 
 module Y_Carriage_Brace_Right_stl() {
@@ -87,7 +87,7 @@ module Y_Carriage_Brace_Right_stl() {
 
     stl("Y_Carriage_Brace_Right")
         color(pp3_colour)
-            yCarriageBrace(yCarriageType(), yCarriageBraceThickness(), pulleyOffset(), holeRadius, left=false);
+            yCarriageBrace(yCarriageType(_yCarriageDescriptor), yCarriageBraceThickness(), pulleyOffset(), holeRadius, left=false);
 }
 
 //!1. Bolt the **Y_Carriage_Brace_Left* and the pulleys to the **Y_Carriage_Left** as shown. Note the position of the washers.
@@ -96,7 +96,7 @@ module Y_Carriage_Brace_Right_stl() {
 module Y_Carriage_Left_assembly() pose(a=[55 + 180, 0, 25])
 assembly("Y_Carriage_Left", ngb=true) {
 
-    yCarriageType = yCarriageType();
+    yCarriageType = yCarriageType(_yCarriageDescriptor);
     railOffsetX = 1.5*eSize;
 
     plainIdler = coreXY_plain_idler(coreXY_type());
@@ -122,7 +122,7 @@ assembly("Y_Carriage_Left", ngb=true) {
 module Y_Carriage_Right_assembly() pose(a=[55 + 180, 0, 25])
 assembly("Y_Carriage_Right", ngb=true) {
 
-    yCarriageType = yCarriageType();
+    yCarriageType = yCarriageType(_yCarriageDescriptor);
     railOffsetX = 1.5*eSize;
 
     plainIdler = coreXY_plain_idler(coreXY_type());

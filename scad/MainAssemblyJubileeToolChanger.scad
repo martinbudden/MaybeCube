@@ -86,5 +86,5 @@ assembly("JubileeToolchanger", big=true) {
 
 if ($preview)
     translate(-[eSize + eX/2, carriagePosition.y])
-        translate_z(-(eZ - yRailOffset().x - carriage_clearance(xCarriageType())))
+        translate_z(-(eZ - yRailOffset().x - carriage_clearance(xCarriageType(_xCarriageDescriptor))))
             JubileeToolchanger_assembly();

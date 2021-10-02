@@ -1,5 +1,3 @@
-include <../global_defs.scad>
-
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/pillow_blocks.scad>
 include <NopSCADlib/vitamins/rod.scad>

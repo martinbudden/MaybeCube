@@ -1,5 +1,3 @@
-include <../global_defs.scad>
-
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/washers.scad>
 include <NopSCADlib/vitamins/rails.scad>

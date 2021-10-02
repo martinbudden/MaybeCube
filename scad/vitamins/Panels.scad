@@ -1,5 +1,3 @@
-include <../global_defs.scad>
-
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/iecs.scad>
 use <NopSCADlib/vitamins/sheet.scad>

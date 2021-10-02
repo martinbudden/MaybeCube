@@ -1,5 +1,3 @@
-include <../global_defs.scad>
-
 include <NopSCADlib/core.scad>
 use <NopSCADlib/utils/core_xy.scad>
 
