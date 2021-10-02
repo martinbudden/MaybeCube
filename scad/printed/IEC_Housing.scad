@@ -36,8 +36,8 @@ module IEC_Housing_stl() {
                         right_triangle(triangleSize.x + 2*eps, triangleSize.y + 2*eps, baseThickness + 2*eps, center = false);
             }
             translate([size.x/2, size.y/2, baseThickness])
-                render() difference() {
-                    linear_extrude(size.z - baseThickness)
+                difference() {
+                    linear_extrude(size.z - baseThickness, convexity=8)
                         difference() {
                             rounded_square([size.x, size.y], fillet);
                             rounded_square(cutoutSize, 1);
