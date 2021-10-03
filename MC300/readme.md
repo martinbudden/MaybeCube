@@ -69,8 +69,8 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|------:|:---|
 |      |      |      |      |      |      |      |      |       | **Vitamins** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Aluminium sheet 340mm x 340mm x 3mm |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x nanmm |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x nanmm |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1260mm |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1270mm |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  BigTreeTech SKR E3 Turbo |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech TFT35 E3 v3.0 |
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
@@ -705,8 +705,8 @@ extreme and tighten the bolts on that end of the Y-rail. Finally tighten the rem
 
 |Qty|Description|
 |---:|:----------|
-|1| Belt GT2 x 6mm x nanmm|
-|1| Belt GT2 x 6mm x nanmm|
+|1| Belt GT2 x 6mm x 1260mm|
+|1| Belt GT2 x 6mm x 1270mm|
 |2| Bolt M3 countersunk x 10mm|
 |2| Bolt M3 countersunk x 12mm|
 
