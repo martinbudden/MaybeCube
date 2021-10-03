@@ -1,6 +1,6 @@
 //!Displays the baseplate.
 
-include <NopSCADlib/utils/core/core.scad>
+include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/pcbs.scad>
 
 use <../scad/jigs/PanelJig.scad>
