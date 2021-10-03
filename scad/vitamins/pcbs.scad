@@ -1,5 +1,4 @@
-include <NopSCADlib/core.scad>
-include <NopSCADlib/vitamins/pcbs.scad>
+include <NopSCADlib/utils/core/core.scad>
 
 BTT_B1_Box_V1_0 = ["BTT_B1_Box_V1_0", "BTT B1 Box V1.0",
     80, 30, 1.6, 0, 3, 4.5, grey(20), false,

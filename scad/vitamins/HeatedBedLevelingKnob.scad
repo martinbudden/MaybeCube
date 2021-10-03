@@ -1,7 +1,7 @@
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/inserts.scad>
 
-use <../vitamins/bolts.scad>
+include <../vitamins/bolts.scad>
 use <../vitamins/inserts.scad>
 
 

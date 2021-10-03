@@ -1,6 +1,6 @@
 //!Displays the back face.
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/utils/CoreXYBelts.scad>
 use <../scad/printed/PSU.scad>

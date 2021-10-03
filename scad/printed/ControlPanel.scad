@@ -7,7 +7,7 @@ include <NopSCADlib/vitamins/pcbs.scad>
 use <DisplayHousingAssemblies.scad>
 
 include <../Parameters_Main.scad>
-use <../vitamins/bolts.scad>
+include <../vitamins/bolts.scad>
 
 module controlPanelPosition() {
     translate([0, -eSize, 0])

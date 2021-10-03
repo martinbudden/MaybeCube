@@ -31,7 +31,7 @@ add BTT_B1_Box_V1_0 to baseplate
 z endstop
 */
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/printed/PSU.scad>
 

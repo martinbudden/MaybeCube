@@ -1,6 +1,6 @@
 //!Displays a top corner piece.
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/psus.scad>
 
 use <../scad/printed/TopCornerPiece.scad>

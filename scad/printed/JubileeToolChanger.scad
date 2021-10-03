@@ -16,7 +16,7 @@ use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 use <X_CarriageAssemblies.scad>
 
-use <../vitamins/bolts.scad>
+include <../vitamins/bolts.scad>
 use <../vitamins/inserts.scad>
 use <../vitamins/nuts.scad>
 

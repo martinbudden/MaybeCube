@@ -14,7 +14,7 @@ use <utils/bezierTube.scad>
 use <utils/FrameBolts.scad>
 use <utils/printheadOffsets.scad>
 
-use <vitamins/bolts.scad>
+include <vitamins/bolts.scad>
 use <vitamins/nuts.scad>
 
 use <Parameters_Positions.scad>

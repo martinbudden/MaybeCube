@@ -19,7 +19,7 @@ use <../scad/utils/printParameters.scad>
 use <../scad/utils/CoreXYBelts.scad>
 use <../scad/utils/X_Rail.scad>
 
-use <../scad/vitamins/bolts.scad>
+include <../scad/vitamins/bolts.scad>
 use <../scad/vitamins/extrusion.scad>
 
 use <../scad/Parameters_CoreXY.scad>

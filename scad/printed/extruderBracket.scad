@@ -1,6 +1,6 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
 use <NopSCADlib/utils/fillet.scad>
 
@@ -9,7 +9,7 @@ use <../../../BabyCube/scad/vitamins/CorkDamper.scad>
 
 use <IEC_Housing.scad>
 
-use <../vitamins/bolts.scad>
+include <../vitamins/bolts.scad>
 use <../vitamins/cables.scad>
 use <../vitamins/filament_sensor.scad>
 use <../vitamins/nuts.scad>

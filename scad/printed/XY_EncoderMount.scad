@@ -1,12 +1,12 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 
 include <NopSCADlib/vitamins/bldc_motors.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
 
-use <../vitamins/bolts.scad>
+include <../vitamins/bolts.scad>
 use <../vitamins/cables.scad>
 include <../vitamins/AS5048_PCB.scad>
 include <../printed/XY_MotorMountBLDC.scad>

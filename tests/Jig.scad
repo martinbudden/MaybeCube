@@ -1,6 +1,6 @@
 //!Display the Extrusion Drill Jig
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/FaceLeft.scad>
 use <../scad/FaceRight.scad>

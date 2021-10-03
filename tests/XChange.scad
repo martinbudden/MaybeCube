@@ -2,7 +2,7 @@
 
 include <../scad/global_defs.scad>
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
 use <../scad/printed/PrintheadAssemblies.scad>
@@ -11,7 +11,7 @@ use <../scad/MainAssemblyXChange.scad>
 use <../scad/utils/CoreXYBelts.scad>
 use <../scad/utils/X_Rail.scad>
 
-use <../scad/vitamins/bolts.scad>
+include <../scad/vitamins/bolts.scad>
 
 use <../scad/Parameters_Positions.scad>
 include <../scad/Parameters_Main.scad>

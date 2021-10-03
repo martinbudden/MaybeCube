@@ -6,7 +6,7 @@ include <NopSCADlib/vitamins/bearing_blocks.scad>
 include <NopSCADlib/vitamins/leadnuts.scad>
 include <NopSCADlib/vitamins/linear_bearings.scad>
 
-use <../vitamins/bolts.scad>
+include <../vitamins/bolts.scad>
 use <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>

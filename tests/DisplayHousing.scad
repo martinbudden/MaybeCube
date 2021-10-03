@@ -2,7 +2,7 @@
 
 include <../scad/global_defs.scad>
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 use <NopSCADlib/vitamins/display.scad>
 
 include<../scad/vitamins/displays.scad>

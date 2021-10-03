@@ -1,6 +1,6 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 
 use <NopSCADlib/vitamins/iec.scad>
 
@@ -8,7 +8,7 @@ include <../Parameters_Main.scad>
 
 use <extruderBracket.scad> // for spoolHeight()
 
-use <../vitamins/bolts.scad>
+include <../vitamins/bolts.scad>
 use <../vitamins/iec320c14.scad>
 use <../vitamins/nuts.scad>
 

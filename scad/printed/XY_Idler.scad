@@ -6,7 +6,7 @@ use <NopSCADlib/utils/fillet.scad>
 include <NopSCADlib/vitamins/belts.scad> // required for pulleys
 include <NopSCADlib/vitamins/pulleys.scad>
 
-use <../vitamins/bolts.scad>
+include <../vitamins/bolts.scad>
 use <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>

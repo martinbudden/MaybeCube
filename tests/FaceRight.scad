@@ -1,6 +1,6 @@
 //! Display the right face
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/printed/extruderBracket.scad>
 use <../scad/printed/IEC_Housing.scad>

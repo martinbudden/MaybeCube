@@ -1,9 +1,9 @@
 //!Display the BIQU B1 print head.
 
 include <../scad/global_defs.scad>
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 
-use <../scad/vitamins/bolts.scad>
+include <../scad/vitamins/bolts.scad>
 use <../scad/vitamins/PrintHeadBIQU_B1.scad>
 
 

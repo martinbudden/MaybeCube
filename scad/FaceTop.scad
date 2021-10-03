@@ -1,6 +1,6 @@
 include <global_defs.scad>
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
@@ -18,7 +18,7 @@ use <utils/RailNutsAndBolts.scad>
 use <utils/CoreXYBelts.scad>
 use <utils/X_Rail.scad>
 
-use <vitamins/bolts.scad>
+include <vitamins/bolts.scad>
 use <vitamins/extrusion.scad>
 
 use <Parameters_Positions.scad>

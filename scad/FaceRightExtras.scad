@@ -1,6 +1,6 @@
 include <global_defs.scad>
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 
 use <NopSCADlib/vitamins/iec.scad>
 include <NopSCADlib/vitamins/spools.scad>

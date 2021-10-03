@@ -1,6 +1,6 @@
 //!# Jigs
 //
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 
 use <jigs/E20ThreadTappingJig.scad>
 use <jigs/ExtrusionDrillJig.scad>

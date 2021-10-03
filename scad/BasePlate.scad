@@ -1,6 +1,6 @@
 include <global_defs.scad>
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/displays.scad>
 use <NopSCADlib/vitamins/sheet.scad>
 
@@ -10,7 +10,7 @@ use <printed/DisplayHousingAssemblies.scad>
 
 use <utils/FrameBolts.scad>
 
-use <vitamins/bolts.scad>
+include <vitamins/bolts.scad>
 use <vitamins/extrusion.scad>
 use <vitamins/nuts.scad>
 

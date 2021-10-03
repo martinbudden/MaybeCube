@@ -6,7 +6,7 @@ include <NopSCADlib/vitamins/sk_brackets.scad>
 use <../printed/E20Cover.scad>
 use <../printed/Z_MotorMount.scad>
 
-use <../vitamins/bolts.scad>
+include <../vitamins/bolts.scad>
 use <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>

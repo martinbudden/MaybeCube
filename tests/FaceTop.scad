@@ -1,6 +1,6 @@
 //! Display the top face
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/printed/extruderBracket.scad>
 

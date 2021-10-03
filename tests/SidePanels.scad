@@ -1,5 +1,5 @@
 //!Display a side panel sheet
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 
 include <../scad/vitamins/Panels.scad>
 use <../scad/vitamins/extrusion.scad>

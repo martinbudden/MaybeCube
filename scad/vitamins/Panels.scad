@@ -7,7 +7,7 @@ use <../printed/extruderBracket.scad>
 use <../printed/IEC_Housing.scad>
 use <../printed/XY_MotorMount.scad>
 
-use <../vitamins/bolts.scad>
+include <../vitamins/bolts.scad>
 use <../vitamins/filament_sensor.scad>
 use <../vitamins/nuts.scad>
 

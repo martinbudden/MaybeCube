@@ -1,6 +1,6 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 include <NopSCADlib/vitamins/hot_ends.scad>
 include <NopSCADlib/vitamins/rails.scad>
@@ -10,7 +10,7 @@ use <../../../BabyCube/scad/printed/X_Carriage.scad>
 
 use <X_CarriageAssemblies.scad>
 
-use <../vitamins/bolts.scad>
+include <../vitamins/bolts.scad>
 
 xCarriageType = MGN12H_carriage;
 

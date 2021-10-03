@@ -9,7 +9,7 @@ use <NopSCADlib/vitamins/wire.scad>
 use <../utils/PrintheadOffsets.scad>
 use <../utils/X_rail.scad>
 
-use <../vitamins/bolts.scad>
+include <../vitamins/bolts.scad>
 include <../../../BabyCube/scad/vitamins/pcbs.scad>
 
 use <../../../BabyCube/scad/printed/Printhead.scad>

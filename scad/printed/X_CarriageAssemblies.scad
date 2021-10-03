@@ -9,7 +9,7 @@ include <NopSCADlib/vitamins/rails.scad>
 use <../utils/carriageTypes.scad>
 use <../utils/PrintheadOffsets.scad>
 
-use <../vitamins/bolts.scad>
+include <../vitamins/bolts.scad>
 
 use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>

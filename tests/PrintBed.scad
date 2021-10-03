@@ -1,6 +1,6 @@
 //! Display the printbed
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/utils/Z_Rods.scad>
 use <../scad/PrintBed.scad>

@@ -1,6 +1,6 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 use <NopSCADlib/utils/tube.scad>
 include <NopSCADlib/vitamins/rails.scad>
@@ -9,7 +9,7 @@ use <../../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 use <X_CarriageAssemblies.scad>
 
 use <../utils/X_Rail.scad>
-use <../vitamins/bolts.scad>
+include <../vitamins/bolts.scad>
 use <../Parameters_Positions.scad>
 
 

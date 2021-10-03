@@ -1,6 +1,6 @@
 //! Display the extruder frame bracket
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/printed/ExtruderBracket.scad>
 use <../scad/vitamins/filament_sensor.scad>

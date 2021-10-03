@@ -1,6 +1,6 @@
 //! Display an exploded view of the MaybeCube
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/utils/Z_Rods.scad>

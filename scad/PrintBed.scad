@@ -13,7 +13,7 @@ use <printed/Z_Carriage.scad>
 use <utils/FrameBolts.scad>
 
 use <vitamins/AntiBacklashNut.scad>
-use <vitamins/bolts.scad>
+include <vitamins/bolts.scad>
 use <vitamins/extrusion.scad>
 use <vitamins/extrusionBracket.scad>
 use <vitamins/HeatedBedLevelingKnob.scad>

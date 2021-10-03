@@ -1,4 +1,4 @@
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/displays.scad>
 include <NopSCADlib/vitamins/potentiometers.scad>
 

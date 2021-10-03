@@ -1,6 +1,6 @@
 //!Display the left and right idlers.
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/printed/XY_Idler.scad>
 
