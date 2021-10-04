@@ -93,6 +93,7 @@ supportLengthCenter = heatedBedOffsetY+insetY-braceY()+printBedHoleOffset+heated
 // support lengths 25, 25, 17
 scs_type = _zRodDiameter == 8 ? SCS8LUU : _zRodDiameter == 10 ? SCS10LUU : SCS12LUU;
 dualCrossPieces = true;
+printBedFrameCrossPiece2Offset = -2*_zRodOffsetX - printBedFrameCrossPieceOffset() - (eX < 350 ? 0 : 3*eSize/2);
 
 
 function printBedSize() = [
@@ -352,7 +353,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                                 translate([0, y + printBedFrameCrossPieceOffset(), 0])
                                     jointBoltHole();
                                 if (dualCrossPieces)
-                                    translate([0, -y + eY - 2*_zRodOffsetX - printBedFrameCrossPieceOffset(), 0])
+                                    translate([0, -y + eY + printBedFrameCrossPiece2Offset, 0])
                                         jointBoltHole();
                             }
                     }
@@ -380,7 +381,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
             if (dualCrossPieces)
                 //translate([0, eY - 2*eSize - 6 - printBedFrameCrossPieceOffset(), 0])
                 //translate([0, eY + 2*eSize - _zRodOffsetX - 3*printBedFrameCrossPieceOffset(), 0])
-                translate([0, eY - 2*_zRodOffsetX - printBedFrameCrossPieceOffset(), 0])
+                translate([0, eY + printBedFrameCrossPiece2Offset, 0])
                     rotate(180)
                         printbedFrameCrossPiece();
         }
@@ -427,7 +428,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                     Z_Carriage_Center_assembly();
 
     explode([0, -20, 0], true)
-        translate([0, eX - 2*eSize - 2*_zRodOffsetX - printBedFrameCrossPieceOffset(), -eSize/2])
+        translate([0, eX - 2*eSize + printBedFrameCrossPiece2Offset, -eSize/2])
             rotate([90, 0, 0]) {
                 stl_colour(pp1_colour)
                     Printbed_Strain_Relief_stl();
@@ -481,7 +482,7 @@ assembly("Printbed", big=true) {
                     if (!_printBed4PointSupport)
                         heatedBedHardware(_heatedBedSize, _heatedBedHoleOffset, 3);
                 }
-            translate([0, eX - 2*eSize - 2*_zRodOffsetX - printBedFrameCrossPieceOffset(), -eSize/2])
+            translate([0, eX - 2*eSize + printBedFrameCrossPiece2Offset, -eSize/2])
                 rotate([90, 0, 0]) {
                     stl_colour(pp2_colour)
                         explode(10)
@@ -556,7 +557,7 @@ module Printbed_Strain_Relief_Clamp_hardware() {
 
 module Printbed_Strain_Relief_assembly()
 assembly("Printbed_Strain_Relief") {
-    translate([0, eX - 2*eSize - 2*_zRodOffsetX - printBedFrameCrossPieceOffset(), -eSize/2])
+    translate([0, eX - 2*eSize + printBedFrameCrossPiece2Offset, -eSize/2])
         rotate([90, 0, 0]) {
             stl_colour(pp1_colour)
                 Printbed_Strain_Relief_stl();

@@ -43,8 +43,8 @@ module Right_Side_test() {
     //faceRightSpool();
 
     // always add the panels last, so it is transparent to other items
-    //Right_Side_Panel_assembly();
-    //Partition_assembly();
+    rightSidePanelPC();
+    Partition_assembly();
 }
 
 if ($preview)

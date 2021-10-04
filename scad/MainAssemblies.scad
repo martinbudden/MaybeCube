@@ -172,14 +172,19 @@ module FinalAssembly() {
     // does not use assembly(""), since made into an assembly in Main.scad
     translate([-(eX + 2*eSize)/2, - (eY + 2*eSize)/2, -eZ/2]) {
         Stage_5_assembly();
-        explode([80, 0, 80])
+        explode([100, 0, 80])
             stl_colour(pp2_colour)
                 faceRightSpoolHolder();
-        stl_colour(pp1_colour)
-            faceRightSpoolHolderBracket();
-        faceRightSpoolHolderBracketHardware();
+        explode([80, 0, 0]) {
+            stl_colour(pp1_colour)
+                faceRightSpoolHolderBracket();
+            faceRightSpoolHolderBracketHardware();
+        }
         explode([200, 0, 100])
             faceRightSpool();
+        if (!is_undef(_useSidePanels) && _useSidePanels)
+            explode([50, 0, 0], true)
+                rightSidePanelPC();
         explode([-50, 0, 0], true)
             leftSidePanelPC();
     }
