@@ -7,8 +7,8 @@ $t = 2;
 
 // print size is approx eX-134, eY-115, eZ-219
 __use2060ForTop = !is_undef(_use2060ForTop) && _use2060ForTop;
-_xMin = __use2060ForTop ? eSize + 63 : eSize + 59; // limited by Y_Carriage tongue with X_Carriage belt attachment, was limited by E3D V6 hotend cartridge wiring hitting SK brackets, will differ for other hotends
-_xMax = __use2060ForTop ? eX + 2*eSize - 83 : eX + 2*eSize - 82; // limited by printhead fan hitting Y_Carriage or belt hitting Y_Carriage brace post
+_xMin = __use2060ForTop ? eSize + 62.5 : eSize + 58; // limited by Y_Carriage tongue with X_Carriage belt attachment, was limited by E3D V6 hotend cartridge wiring hitting SK brackets, will differ for other hotends
+_xMax = __use2060ForTop ? eX + 2*eSize - 82.5 : eX + 2*eSize - 78.5; // limited by printhead fan hitting Y_Carriage or belt hitting Y_Carriage brace post
 //_toolSeparation = 70;
 //_xToolPosStart = (eX + 2*eSize)/2 - _toolSeparation;
 //_xToolPos = [_xToolPosStart, _xToolPosStart + _toolSeparation, _xToolPosStart + 2*_toolSeparation];
