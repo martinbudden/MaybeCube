@@ -81,8 +81,8 @@ The canonical form is the MC350 variant.
  --------| -------------- | ---------------- | ------------------- | ---------- | -------------------
  MC250   | x250 y250 z350 | x200 y250 z250   | concept variant     | 180mm      | 290 x 290 x 350
  MC300   | x300 y300 z400 | x250 y300 z300   | 180 x 180 x 200     | 214mm      | 340 x 340 x 400
- MC350   | x350 y350 y400 | x300 y350 z300   | 230 x 230 x 200     | 235mm      | 390 x 390 x 400
- MC400   | x400 y400 y450 | x350 y400 z350   | 280 x 280 x 250     | 310mm      | 440 x 440 x 450
+ MC350   | x350 y350 y400 | x300 y350 z300   | 225 x 225 x 200     | 235mm      | 390 x 390 x 400
+ MC400   | x400 y400 y450 | x350 y400 z350   | 275 x 275 x 250     | 310mm      | 440 x 440 x 450
 
  For reference, the original [HyperCube](https://www.thingiverse.com/thing:1752766) has extrusion sizes of x340 y303 z350 to give a build volume of 200 x 200 x 155.
 
