@@ -32,7 +32,7 @@ module Y_Carriage_Left_stl() {
     //endStopOffsetX = max(0, xMin - 68); // 12
     //endStopOffsetX = max(0, xMin - 75); // 5
     //endStopOffsetX = 5; // set this to zero and instead set software endstop offset (X_MIN_POS in Marlin) to -12
-    endStopOffsetX = 11;
+    endStopOffsetX = 10.15;
 
     stl("Y_Carriage_Left")
         color(pp2_colour)
