@@ -213,7 +213,7 @@ module Z_Carriage_Center_hardware() {
                 color(brassColor)
                     leadnut(leadnut);
                 leadnut_screw_positions(leadnut)
-                    screw(leadnut_screw(leadnut), 8);
+                    screw(leadnut_screw(leadnut), 10);
             }
         for (x = [5, tabSize.x -5])
             translate([x - tabSize.x/2, tabSize.y - printBedFrameCrossPieceOffset(), 0]) {
