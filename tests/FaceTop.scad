@@ -9,6 +9,7 @@ use <../scad/utils/CoreXYBelts.scad>
 use <../scad/FaceTop.scad>
 use <../scad/BackFace.scad>
 use <../scad/printed/WiringGuide.scad>
+use <../scad/utils/printParameters.scad>
 
 use <../scad/Parameters_Positions.scad>
 include <../scad/Parameters_Main.scad>
@@ -17,6 +18,7 @@ include <../scad/Parameters_Main.scad>
 //$explode = 1;
 //$pose = 1;
 module Face_Top_test() {
+    echoPrintSize();
     //if(!exploded()) CoreXYBelts(carriagePosition(), show_pulleys=[1, 0, 0]);
 
     //let($hide_extrusions=true)
@@ -42,6 +44,6 @@ module Face_Top_test() {
 }
 
 if ($preview)
-    rotate(-90 + 30)
+    //rotate(-90 + 30)
         translate([-eX/2 - eSize, -eY/2 - eSize, -eZ])
             Face_Top_test();
