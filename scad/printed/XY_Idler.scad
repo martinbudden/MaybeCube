@@ -184,7 +184,9 @@ module XY_Idler_hardware(left = true) {
 
     rotate([0, -90, 0]) {
         translate([eSize/2, eZ - eSize - size.y, 0]) {
-            XY_Idler_Channel_Nut_stl();
+            explode(-50)
+                stl_colour(pp2_colour)
+                    XY_Idler_Channel_Nut_stl();
             for (y = [lowerBoltOffset, size.y - upperBoltOffset])
                 translate([0, y, size.z])
                     explode(20, true)
