@@ -14,7 +14,7 @@ include <../scad/Parameters_Main.scad>
 module Jig_test() {
     ///Extrusion_Drill_Jig_50_5_stl();
     translate([80, 0, 0])
-        Extrusion_Drill_Jig_Extension_stl();
+        Extrusion_Drill_Jig_E40_stl();
     //Extrusion_Drill_Jig_90_2_stl();
     //Extrusion_Drill_Jig_90_4_stl();
     //Extrusion_Drill_Jig_120_2_stl();

@@ -1,5 +1,7 @@
 //! Display the left face
 
+include <../scad/global_defs.scad>
+
 include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
@@ -41,6 +43,7 @@ module Left_Side_test() {
 
     // always add the panels last, so it is transparent to other items
     //Left_Side_Panel_assembly();
+    //Left_Side_Channel_Nuts();
     leftSidePanelPC();
     //partitionPC();
 }
