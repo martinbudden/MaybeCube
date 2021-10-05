@@ -1,4 +1,4 @@
-include <NopSCADlib/utils/core/core.scad>
+include <NopSCADlib/core.scad>
 include <NopSCADlib/utils/core/global.scad>
 include <NopSCADlib/utils/core/rounded_rectangle.scad>
 

@@ -4,13 +4,13 @@ include <NopSCADlib/utils/core/core.scad>
 
 use <NopSCADlib/vitamins/iec.scad>
 
-include <../Parameters_Main.scad>
-
 use <extruderBracket.scad> // for spoolHeight()
 
 include <../vitamins/bolts.scad>
 use <../vitamins/iec320c14.scad>
 use <../vitamins/nuts.scad>
+
+include <../Parameters_Main.scad>
 
 
 function iecHousingSize() = [70, 50, 42 + 3];
@@ -109,7 +109,7 @@ module iecHousingMountAttachmentHolePositions(z=0) {
         for (x = [eSize/2, size.x - 3*eSize/2])
             translate([x, eSize/2, 0])
                 children();
-        for (y = [eSize, iecHousingSize().y + 3*eSize/2, size.y - eSize/2])
+        for (y = [eSize, size.y - eSize/2])
             translate([size.x - eSize/2, y, 0])
                 children();
         if (size.y >= spoolHeight())
@@ -147,7 +147,7 @@ module IEC_Housing_Mount_stl() {
                 // access holes
                 for (y = [eSize/2, 3*eSize/2])
                     translate([size.x - eSize/2, y - 2*eSize, 0])
-                        boltHoleM4(size.z);
+                        boltHole(5, size.z);
             }
 }
 

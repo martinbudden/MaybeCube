@@ -2,10 +2,11 @@ include <../global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
 
-
 use <extrusionChannels.scad>
 
+
 _useAsserts = is_undef(_useAsserts) ? false : _useAsserts;
+
 
 module Z_RodMountGuide_40mm_stl() {
     color(pp2_colour)

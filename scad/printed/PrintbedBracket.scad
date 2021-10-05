@@ -3,21 +3,22 @@ include <../global_defs.scad>
 include <NopSCADlib/utils/core/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 
-include <../Parameters_Main.scad>
-
 include <extrusionCornerBracket.scad>
 use <../vitamins/AntiBacklashNut.scad>
 
-braceY = eSize + _zLeadScrewOffset+antiBacklashNutSize().z/2;
-function braceY() = braceY;
+include <../Parameters_Main.scad>
+
+
+//braceY = eSize + _zLeadScrewOffset + antiBacklashNutSize().z/2;
+//function braceY() = braceY;
+firstBracketSizeX = _zLeadScrewOffset + antiBacklashNutSize().z/2 - 1;
 
 module printBedBracket() {
     fSize = eSize;
     braceThickness = 3;
     bracketThickness = 4;
-    firstBracketSizeX = braceY-(eSize + 1);
     bracketSizeY = 30;
-    sizeY =  fSize+braceThickness;
+    sizeY = fSize + braceThickness;
     fillet = 1;
 
     no_explode()
@@ -42,7 +43,6 @@ module printBedBracket() {
 
 module Printbed_Corner_Bracket_stl() {
     fillet = 1;
-    firstBracketSizeX = braceY-(eSize + 1);
 
     stl("Printbed_Corner_Bracket")
         color(pp2_colour)
@@ -57,5 +57,6 @@ module printBedBracketLeft_stl() {
 
 module printBedBracketRight_stl() {
     stl("printBedBracketRight")
-        mirror([1, 0, 0]) printBedBracket();
+        mirror([1, 0, 0])
+            printBedBracket();
 }

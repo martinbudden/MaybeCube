@@ -18,7 +18,6 @@ use <../vitamins/cables.scad>
 use <../vitamins/leadscrew.scad>
 use <../vitamins/nuts.scad>
 
-use <../Parameters_Positions.scad>
 include <../Parameters_Main.scad>
 
 

@@ -12,10 +12,10 @@ use <printed/XY_MotorMount.scad>
 use <printed/XY_Idler.scad>
 use <printed/Y_CarriageAssemblies.scad>
 
-use <utils/FrameBolts.scad>
 use <utils/carriageTypes.scad>
-use <utils/RailNutsAndBolts.scad>
 use <utils/CoreXYBelts.scad>
+use <utils/FrameBolts.scad>
+use <utils/RailNutsAndBolts.scad>
 use <utils/X_Rail.scad>
 
 include <vitamins/bolts.scad>

@@ -16,7 +16,7 @@ include <global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
 
-use <MainAssemblies.scad>
+include <MainAssemblies.scad>
 
 //!1. Bolt the polycarbonate sheet to the left face.
 //!2. Attach the spoolholder and filament spool to the right face.
@@ -26,6 +26,5 @@ module main_assembly() assembly("main") {
     FinalAssembly();
 }
 
-if ($preview) {
+if ($preview)
     main_assembly();
-}

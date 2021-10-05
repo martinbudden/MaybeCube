@@ -4,8 +4,8 @@ include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/psus.scad>
 //use <NopSCADlib/printed/psu_shroud.scad>
 
-
 include <../Parameters_Main.scad>
+
 
 //PSUType = [for (i =[0 : len(S_300_12) - 1]) i==1 ? "Switching Power Supply 24V 15A 360W" : S_300_12[i] ];
 

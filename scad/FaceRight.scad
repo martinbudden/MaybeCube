@@ -9,11 +9,8 @@ use <utils/FrameBolts.scad>
 use <utils/Z_Rods.scad>
 
 use <vitamins/extrusion.scad>
-use <vitamins/Panels.scad>
 
 use <FaceRightExtras.scad>
-use <Parameters_CoreXY.scad>
-use <Parameters_Positions.scad>
 include <Parameters_Main.scad>
 
 //!1. On a flat surface, bolt the upper and lower extrusions into the left and right uprights as shown.
@@ -24,7 +21,7 @@ module Right_Side_assembly() pose(a=[55, 0, 25 - 90])
 assembly("Right_Side", big=true) {
 
     // extra extrusion for mounting spool holder
-    translate([eX + eSize, eSize, spoolHeight() - (eX == 350 ? 0 : eSize)])
+    translate([eX + eSize, eSize, spoolHeight()])
         extrusionOY2040VEndBolts(eY);
 
     faceRightLowerExtrusion();
@@ -37,7 +34,6 @@ assembly("Right_Side", big=true) {
     explode([0, -70, 0], true)
         faceRightIdlerUpright();
     faceRightExtras();
-    //Right_Side_Panel_assembly();
 }
 
 module faceRightUpperZRodMountsExtrusion() {

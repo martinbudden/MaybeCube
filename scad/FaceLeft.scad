@@ -7,10 +7,7 @@ use <utils/FrameBolts.scad>
 use <utils/Z_Rods.scad>
 
 use <vitamins/extrusion.scad>
-use <vitamins/antiBacklashNut.scad>
 
-use <Parameters_CoreXY.scad>
-use <Parameters_Positions.scad>
 include <Parameters_Main.scad>
 
 //!1. Attach the SK brackets to the upper extrusion, use the **Z_RodMountGuide** to align the left bracket.

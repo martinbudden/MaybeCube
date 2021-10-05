@@ -17,10 +17,10 @@ use <../../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 use <X_CarriageAssemblies.scad>
 
 include <../vitamins/bolts.scad>
-use <../vitamins/inserts.scad>
 use <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>
+
 
 toolChangerAxelOffsetZ = 15.6 + 5.55/2 + 1.15;
 
@@ -287,6 +287,11 @@ module pen_tool_base_tool_plate_stl() {
                toolChangerPenImportStl("pen_tool_base_tool_plate");
 }
 
+module threadedInsertM3() {
+    boltColorBrass = "#B5A642";
+    if ($preview&&is_undef($hide_bolts)) color(boltColorBrass) insert(F1BM3);
+}
+
 module pen_tool_base_tool_plate_hardware() {
     for (a = [0, 120, 240])
         rotate(a) {
@@ -296,7 +301,7 @@ module pen_tool_base_tool_plate_hardware() {
                     boltM3Countersunk(6);
             }
             translate([0, -12, 8])
-                _threadedInsertM3();
+                threadedInsertM3();
         }
 }
 
@@ -376,7 +381,7 @@ module bondtech_tool_plate_hardware() {
             }
             translate([0, 12, 0])
                 vflip()
-                    _threadedInsertM3();
+                    threadedInsertM3();
         }
 }
 
