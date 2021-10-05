@@ -17,7 +17,6 @@ use <../vitamins/nuts.scad>
 include <../Parameters_Main.scad>
 
 
-
 extruderNEMAType = eX >= 300 ? NEMA17 : NEMA17M;
 
 // height of eZ-118 give clearance to NEMA17M motor (length 40). Long NEMA has length 48, and E3D super whopper has length 60
@@ -27,9 +26,9 @@ function extruderPosition() = [eX + 2*eSize, eY + 2*eSize - 45, eX < 350 ? eZ - 
 function Extruder_Bracket_assembly_bowdenOffset() = [20.5, 5, 10];
 
 // spoolHeight is declared here because it is determined by its supporting extrusion requiring to clear the extruder and filament sensor
-function spoolHeight() = extruderPosition().z - (eX < 350 ? 90 : 80);
+function spoolHeight() = extruderPosition().z - (eX < 350 ? 110 : 80);
 
-function extruderBracketSize() = [3, iecHousingMountSize().x, eZ - spoolHeight() - (eX < 350 ? 0 : eSize)];
+function extruderBracketSize() = [3, iecHousingMountSize().x, eZ - spoolHeight() - eSize];
 //filamentSensorOffset = [20.5, 4.5, -45];
 function filamentSensorOffset() = [extruderFilamentOffset().z + extruderBracketSize().x, extruderFilamentOffset().x, -extruderFilamentOffset().y - filament_sensor_size().x/2 - 4];
 
@@ -64,7 +63,7 @@ module extruderCutouts() {
         for (z = [size.z - eSize/2, size.z - 3*eSize/2])
             translate([0, size.y - eSize/2, z])
                 rotate([0, 90, 0])
-                    boltHoleM4(size.x);
+                    boltHole(5, size.x);
 
     translate(extruderPosition()) {
         rotate([0, 90, 0]) {
@@ -155,7 +154,6 @@ module Extruder_Bracket_hardware(corkDamperThickness, addM4Bolts=false) {
 //
 module Extruder_Bracket_assembly()
 assembly("Extruder_Bracket", ngb=true) {
-
     Extruder_Bracket_hardware(is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, addM4Bolts=true);
 
     rotate([0, -90, 0])

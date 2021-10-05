@@ -88,12 +88,12 @@ module leftSidePanelPC(addBolts=true) {
 
     translate([-size.z/2, size.x/2, size.y/2])
         rotate([90, 0, -90]) {
-            render_2D_sheet(PC3, w=size.x, d=size.y)
-                Left_Side_Panel_dxf();
             if (addBolts)
                 sidePanelBoltHolePositions(size, left=true)
                     translate_z(size.z/2)
                         boltM4ButtonheadHammerNut(_sideBoltLength, nutExplode=10);
+            render_2D_sheet(PC3, w=size.x, d=size.y)
+                Left_Side_Panel_dxf();
         }
 }
 
@@ -103,6 +103,24 @@ assembly("Left_Side_Panel", ngb=true) {
 
     leftSidePanelPC();
 }
+
+module Left_Side_Channel_Nuts() {
+    translate([0, eSize/2, 0]) {
+        rotate([90, 0, -90])
+            Channel_Nut_200_FL_stl();
+        translate_z(eZ)
+            rotate([-90, 0, 90])
+                Channel_Nut_200_FU_stl();
+    }
+    translate([0, eY + 3*eSize/2, 0]) {
+        rotate([90, 0, -90])
+            Channel_Nut_200_B_stl();
+        translate_z(eZ)
+            rotate([-90, 0, 90])
+                Channel_Nut_200_B_stl();
+    }
+}
+
 
 module Right_Side_Panel_dxf() {
     size = sidePanelSize(left=false);
@@ -138,21 +156,22 @@ module Right_Side_Panel_dxf() {
             }
 }
 
-module rightSidePanelPC(addBolts=true) {
-    size = sidePanelSize(left=false);
+module Channel_Nut_200_B_stl() {
+    stl("Channel_Nut_200_B")
+        color(pp2_colour)
+            extrusionChannel(200, boltHoles=[20, 140], accessHoles=[10, 30]);
+}
 
-    translate([size.z/2 + eX + 2*eSize, size.x/2, size.y/2])
-        rotate([90, 0, 90]) {
-            render_2D_sheet(PC3, w=size.x, d=size.y)
-                Right_Side_Panel_dxf();
-            if (addBolts)
-                sidePanelBoltHolePositions(size, left=false)
-                    translate_z(size.z/2)
-                        if (!is_undef(_useExtrusionChannelNuts) && _useExtrusionChannelNuts)
-                            boltM4Buttonhead(_sideBoltLength);
-                        else
-                            boltM4ButtonheadHammerNut(_sideBoltLength);
-        }
+module Channel_Nut_200_BL_stl() {
+    stl("Channel_Nut_200_BL")
+        color(pp2_colour)
+            extrusionChannel(200, boltHoles=[20, iecHousingMountSize().y - eSize/2], accessHoles=[10, 30]);
+}
+
+module Channel_Nut_200_BU_stl() {
+    stl("Channel_Nut_200_BU")
+        color(pp2_colour)
+            extrusionChannel(200, boltHoles=[20, extruderBracketSize().z - eSize/2], accessHoles=[10, 30]);
 }
 
 module Channel_Nut_200_FL_stl() {
@@ -168,13 +187,37 @@ module Channel_Nut_200_FU_stl() {
 }
 
 module Right_Side_Channel_Nuts() {
-    translate([eX + 2*eSize, eSize/2, 0]) {
+    *translate([eX + 2*eSize, eSize/2, 0]) {
         rotate([90, 0, 90])
             Channel_Nut_200_FL_stl();
         translate_z(eZ)
             rotate([-90, 0, -90])
                 Channel_Nut_200_FU_stl();
     }
+    translate([eX + 2*eSize, eY + 3*eSize/2, 0]) {
+        rotate([90, 0, 90])
+            Channel_Nut_200_BL_stl();
+        translate_z(eZ)
+            rotate([-90, 0, -90])
+                Channel_Nut_200_BU_stl();
+    }
+}
+
+module rightSidePanelPC(addBolts=true) {
+    size = sidePanelSize(left=false);
+
+    translate([size.z/2 + eX + 2*eSize, size.x/2, size.y/2])
+        rotate([90, 0, 90]) {
+            if (addBolts)
+                sidePanelBoltHolePositions(size, left=false)
+                    translate_z(size.z/2)
+                        if (!is_undef(_useExtrusionChannelNuts) && _useExtrusionChannelNuts)
+                            boltM4Buttonhead(_sideBoltLength);
+                        else
+                            boltM4ButtonheadHammerNut(_sideBoltLength);
+            render_2D_sheet(PC3, w=size.x, d=size.y)
+                Right_Side_Panel_dxf();
+        }
 }
 
 module Right_Side_Panel_assembly()

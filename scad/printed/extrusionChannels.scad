@@ -107,7 +107,7 @@ module extrusionPiping(length, channelWidth=6.2, channelDepth=1.8) {
 }
 
 module extrusionChannel(length, boltHoles=undef, accessHoles=undef, sliding=false, channelWidth=5.8, boltDiameter=4) {
-    channelDepth = sliding ? 2.5 : boltDiameter == 4 ? 2 : 1.5;
+    channelDepth = sliding ? 2.5 : boltDiameter > 3 ? 2 : 1.5;
     size1 = [channelWidth, channelDepth + eps];
     size2 = [5.8, 3.4];
     size3 = [9, 1];
