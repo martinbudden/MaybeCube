@@ -40,7 +40,7 @@ module extrusionDrillJig(length, holeSize, holes, fixingHoles, endStop=true) {
                 tNutWidth = 10.25;
                 cubeHeight = 1.5;
                 triangleHeight = 4;
-                if (size.x != 120 && endStop == true)
+                *if (size.x != 120 && endStop == true)
                     translate([size.x - fillet, sideThickness, baseThickness + (eSize + triangleHeight - cubeHeight)/2])
                         rotate([-90, 0, 90]) {
                             length = size.x - holes[len(holes) - 1] - fillet - sideThickness - tNutWidth/2;
@@ -87,26 +87,26 @@ module extrusionDrillJig_hardware(length, holes) {
                         boltM4ButtonheadHammerNut(10);
 }
 
-module Extrusion_Drill_Jig_Extension_Pilot_stl() {
+module Extrusion_Drill_Jig_E40_Pilot_stl() {
     holes = [5, 25];
-    stl("Extrusion_Drill_Jig_Extension")
+    stl("Extrusion_Drill_Jig_E40")
         color(jigColor)
             extrusionDrillJig(40, 2, holes, endStop=false);
 }
 
-module Extrusion_Drill_Jig_Extension_Pilot_hardware() {
+module Extrusion_Drill_Jig_E40_Pilot_hardware() {
     holes = [5, 25];
     extrusionDrillJig_hardware(50, holes);
 }
 
-module Extrusion_Drill_Jig_Extension_stl() {
+module Extrusion_Drill_Jig_E40_stl() {
     holes = [5, 25];
-    stl("Extrusion_Drill_Jig_Extension")
+    stl("Extrusion_Drill_Jig_E40")
         color(jigColor)
             extrusionDrillJig(40, 4, holes, endStop=false);
 }
 
-module Extrusion_Drill_Jig_Extension_hardware() {
+module Extrusion_Drill_Jig_E40_hardware() {
     holes = [5, 25];
     extrusionDrillJig_hardware(50, holes);
 }
@@ -149,29 +149,55 @@ module Extrusion_Drill_Jig_90_4_stl() {
 
 module Extrusion_Drill_Jig_Pilot_stl() {
     holes = [eSize/2, 3*eSize/2, 5*eSize/2, 7*eSize/2, 85, 105];
-    holes2 = [eSize/2, 3*eSize/2, 85, 105];
+    fixingHoles = [eSize/2, 3*eSize/2, 85, 105];
 
     stl("Extrusion_Drill_Jig_Pilot")
         color(jigColor)
-            extrusionDrillJig(120, 2, holes, holes2);
+            extrusionDrillJig(120, 2, holes, fixingHoles);
 }
 
 module Extrusion_Drill_Jig_Pilot_hardware() {
-    holes2 = [eSize/2, 3*eSize/2, 85, 105];
-    extrusionDrillJig_hardware(120, holes2);
+    fixingHoles = [eSize/2, 3*eSize/2, 85, 105];
+    extrusionDrillJig_hardware(120, fixingHoles);
 }
 
 module Extrusion_Drill_Jig_stl() {
     holes = [eSize/2, 3*eSize/2, 5*eSize/2, 7*eSize/2, 85, 105];
-    holes2 = [eSize/2, 3*eSize/2, 85, 105];
+    fixingHoles = [eSize/2, 3*eSize/2, 85, 105];
     stl("Extrusion_Drill_Jig")
         color(jigColor)
-            extrusionDrillJig(120, 4, holes, holes2);
+            extrusionDrillJig(120, 4, holes, fixingHoles);
 }
 
 module Extrusion_Drill_Jig_hardware() {
-    holes2 = [eSize/2, 3*eSize/2, 85, 105];
-    extrusionDrillJig_hardware(120, holes2);
+    fixingHoles = [eSize/2, 3*eSize/2, 85, 105];
+    extrusionDrillJig_hardware(120, fixingHoles);
+}
+
+module Extrusion_Drill_Jig_E20_to_E80_Pilot_stl() {
+    holes = [eSize/2, 3*eSize/2, 5*eSize/2, 7*eSize/2];
+    fixingHoles = [eSize/2, 7*eSize/2];
+    stl("Extrusion_Drill_Jig_E20_to_E80_Pilot")
+        color(jigColor)
+            extrusionDrillJig(85, 2, holes, fixingHoles);
+}
+
+module Extrusion_Drill_Jig_E20_to_E80_Pilot_hardware() {
+    fixingHoles = [eSize/2, 7*eSize/2];
+    extrusionDrillJig_hardware(85, fixingHoles);
+}
+
+module Extrusion_Drill_Jig_E20_to_E80_stl() {
+    holes = [eSize/2, 3*eSize/2, 5*eSize/2, 7*eSize/2];
+    fixingHoles = [eSize/2, 7*eSize/2];
+    stl("Extrusion_Drill_Jig_E20_to_E80")
+        color(jigColor)
+            extrusionDrillJig(85, 4, holes, fixingHoles);
+}
+
+module Extrusion_Drill_Jig_E20_to_E80_hardware() {
+    fixingHoles = [eSize/2, 7*eSize/2];
+    extrusionDrillJig_hardware(85, fixingHoles);
 }
 
 module Extrusion_Drill_Jig_E20_to_E40_120_2_stl() {
