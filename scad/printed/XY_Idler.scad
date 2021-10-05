@@ -6,6 +6,8 @@ use <NopSCADlib/utils/fillet.scad>
 include <NopSCADlib/vitamins/belts.scad> // required for pulleys
 include <NopSCADlib/vitamins/pulleys.scad>
 
+use <../printed/extrusionChannels.scad>
+
 include <../vitamins/bolts.scad>
 use <../vitamins/nuts.scad>
 
@@ -154,6 +156,13 @@ module xyIdler() {
     }
 }
 
+module XY_Idler_Channel_Nut_stl() {
+    size = xyIdlerSize();
+    stl("XY_Idler_Channel_Nut")
+        color(pp2_colour)
+            extrusionChannel(size.y, boltHoles=[lowerBoltOffset, size.y - upperBoltOffset]);
+}
+
 module XY_Idler_hardware(left = true) {
 
     module doubleWasher(left) {
@@ -175,10 +184,12 @@ module XY_Idler_hardware(left = true) {
 
     rotate([0, -90, 0]) {
         translate([eSize/2, eZ - eSize - size.y, 0]) {
+            XY_Idler_Channel_Nut_stl();
             for (y = [lowerBoltOffset, size.y - upperBoltOffset])
                 translate([0, y, size.z])
                     explode(20, true)
-                        boltM4ButtonheadHammerNut(_frameBoltLength, rotate=90, nutExplode=60);
+                        boltM4Buttonhead(_frameBoltLength);
+                        //boltM4ButtonheadHammerNut(_frameBoltLength, rotate=90, nutExplode=60);
 
             translate([0, size.y - tabThickness, armSize.z + tabLength - tabBoltOffset])
                 rotate([90, 0, 0])
