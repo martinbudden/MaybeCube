@@ -148,7 +148,7 @@ module rightSidePanelPC(addBolts=true) {
             if (addBolts)
                 sidePanelBoltHolePositions(size, left=false)
                     translate_z(size.z/2)
-                        if (!is_undef(_useExtrusionChannels) && _useExtrusionChannels)
+                        if (!is_undef(_useExtrusionChannelNuts) && _useExtrusionChannelNuts)
                             boltM4Buttonhead(_sideBoltLength);
                         else
                             boltM4ButtonheadHammerNut(_sideBoltLength);
