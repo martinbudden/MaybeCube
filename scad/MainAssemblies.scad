@@ -1,7 +1,6 @@
 include <global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
-include <NopSCADlib/vitamins/rails.scad>
 
 use <printed/E20Cover.scad>
 use <printed/PrintheadAssemblies.scad>
@@ -9,12 +8,8 @@ use <printed/Z_MotorMount.scad>
 
 use <utils/printParameters.scad>
 use <utils/CoreXYBelts.scad>
-use <utils/X_Rail.scad>
 use <utils/Z_Rods.scad>
 
-use <vitamins/AntiBacklashNut.scad>
-use <vitamins/extrusion.scad>
-use <vitamins/PrintHeadBIQU_B1.scad>
 use <vitamins/Panels.scad>
 
 use <BackFace.scad>
@@ -25,7 +20,6 @@ use <FaceRightExtras.scad>
 use <FaceTop.scad>
 use <PrintBed.scad>
 
-use <Parameters_Positions.scad>
 include <Parameters_Main.scad>
 
 
@@ -185,7 +179,9 @@ module FinalAssembly() {
         if (!is_undef(_useSidePanels) && _useSidePanels)
             explode([50, 0, 0], true)
                 rightSidePanelPC();
+        Right_Side_Channel_Nuts();
         explode([-50, 0, 0], true)
             leftSidePanelPC();
+        //Left_Side_Channel_Nuts();
     }
 }
