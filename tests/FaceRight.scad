@@ -1,5 +1,7 @@
 //! Display the right face
 
+include <../scad/global_defs.scad>
+
 include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/printed/extruderBracket.scad>
@@ -43,6 +45,7 @@ module Right_Side_test() {
     //faceRightSpool();
 
     // always add the panels last, so it is transparent to other items
+    Right_Side_Channel_Nuts();
     rightSidePanelPC();
     Partition_assembly();
 }
