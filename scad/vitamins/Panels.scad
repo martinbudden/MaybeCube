@@ -107,17 +107,21 @@ assembly("Left_Side_Panel", ngb=true) {
 module Left_Side_Channel_Nuts() {
     translate([0, eSize/2, 0]) {
         rotate([90, 0, -90])
-            Channel_Nut_200_FL_stl();
+            stl_colour(pp2_colour)
+                Channel_Nut_200_FL_stl();
         translate_z(eZ)
             rotate([-90, 0, 90])
-                Channel_Nut_200_FU_stl();
+                stl_colour(pp2_colour)
+                    Channel_Nut_200_FU_stl();
     }
     translate([0, eY + 3*eSize/2, 0]) {
         rotate([90, 0, -90])
-            Channel_Nut_200_B_stl();
+            stl_colour(pp2_colour)
+                Channel_Nut_200_B_stl();
         translate_z(eZ)
             rotate([-90, 0, 90])
-                Channel_Nut_200_B_stl();
+                stl_colour(pp2_colour)
+                    Channel_Nut_200_B_stl();
     }
 }
 
@@ -189,17 +193,21 @@ module Channel_Nut_200_FU_stl() {
 module Right_Side_Channel_Nuts() {
     *translate([eX + 2*eSize, eSize/2, 0]) {
         rotate([90, 0, 90])
-            Channel_Nut_200_FL_stl();
+            stl_colour(pp2_colour)
+                Channel_Nut_200_FL_stl();
         translate_z(eZ)
             rotate([-90, 0, -90])
-                Channel_Nut_200_FU_stl();
+                stl_colour(pp2_colour)
+                    Channel_Nut_200_FU_stl();
     }
     translate([eX + 2*eSize, eY + 3*eSize/2, 0]) {
         rotate([90, 0, 90])
-            Channel_Nut_200_BL_stl();
+            stl_colour(pp2_colour)
+                Channel_Nut_200_BL_stl();
         translate_z(eZ)
             rotate([-90, 0, -90])
-                Channel_Nut_200_BU_stl();
+                stl_colour(pp2_colour)
+                    Channel_Nut_200_BU_stl();
     }
 }
 
