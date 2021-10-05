@@ -4,6 +4,7 @@ use <NopSCADlib/vitamins/sheet.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
 
 use <../printed/extruderBracket.scad>
+use <../printed/extrusionChannels.scad>
 use <../printed/IEC_Housing.scad>
 use <../printed/XY_MotorMount.scad>
 
@@ -147,8 +148,33 @@ module rightSidePanelPC(addBolts=true) {
             if (addBolts)
                 sidePanelBoltHolePositions(size, left=false)
                     translate_z(size.z/2)
-                        boltM4ButtonheadHammerNut(_sideBoltLength);
+                        if (!is_undef(_useExtrusionChannels) && _useExtrusionChannels)
+                            boltM4Buttonhead(_sideBoltLength);
+                        else
+                            boltM4ButtonheadHammerNut(_sideBoltLength);
         }
+}
+
+module Channel_Nut_200_FL_stl() {
+    stl("Channel_Nut_200_FL")
+        color(pp2_colour)
+            extrusionChannel(200, boltHoles=[20, 140], accessHoles=[10, 30, 50, 70]);
+}
+
+module Channel_Nut_200_FU_stl() {
+    stl("Channel_Nut_200_FU")
+        color(pp2_colour)
+            extrusionChannel(200, boltHoles=[20, 140], accessHoles=[10]);
+}
+
+module Right_Side_Channel_Nuts() {
+    translate([eX + 2*eSize, eSize/2, 0]) {
+        rotate([90, 0, 90])
+            Channel_Nut_200_FL_stl();
+        translate_z(eZ)
+            rotate([-90, 0, -90])
+                Channel_Nut_200_FU_stl();
+    }
 }
 
 module Right_Side_Panel_assembly()
