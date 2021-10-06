@@ -8,6 +8,7 @@ use <NopSCADlib/vitamins/rod.scad>
 use <NopSCADlib/utils/tube.scad>
 include <NopSCADlib/vitamins/blowers.scad>
 include <NopSCADlib/vitamins/e3d.scad>
+include <NopSCADlib/vitamins/inserts.scad>
 include <NopSCADlib/vitamins/rails.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
 include <NopSCADlib/vitamins/washers.scad>
