@@ -1,6 +1,7 @@
 include <../global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
+use <NopSCADlib/utils/fillet.scad>
 
 use <NopSCADlib/vitamins/iec.scad>
 
@@ -27,7 +28,7 @@ module IEC_Housing_stl() {
     baseThickness = 3;
 
     stl("IEC_Housing")
-        color(pp2_colour) {
+        color(pp3_colour) {
             triangleSize = [8, 7];
             difference() {
                 rounded_cube_xy([size.x, size.y, baseThickness], fillet);
@@ -56,7 +57,7 @@ module IEC_Housing_stl() {
                 }
             lugFillet = 1;
             lugSize = [size.x, 10 + fillet + lugFillet, 5];
-            translate([0, size.y - fillet - lugFillet, size.z - lugSize.z])
+            *translate([0, size.y - fillet - lugFillet, size.z - lugSize.z])
                 difference() {
                     hull() {
                         rounded_cube_xy(lugSize, lugFillet);
@@ -109,6 +110,11 @@ module iecHousingMountAttachmentHolePositions(z=0) {
         for (x = [eSize/2, size.x - 3*eSize/2])
             translate([x, eSize/2, 0])
                 children();
+        translate([eSize/2, 3*eSize/2, 0])
+            children();
+        for (x = [eSize/2, 3*eSize/2])
+            translate([x, spoolHeight() + eSize/2, 0])
+                children();
         for (y = [eSize, size.y - eSize/2])
             translate([size.x - eSize/2, y, 0])
                 children();
@@ -125,10 +131,16 @@ module IEC_Housing_Mount_stl() {
     fillet = 3;
 
     stl("IEC_Housing_Mount")
-        color(pp1_colour)
+        color(pp2_colour)
             difference() {
-                translate([0, -2*eSize, 0])
-                    rounded_cube_xy(size, fillet);
+                union() {
+                    translate([0, -2*eSize, 0])
+                        rounded_cube_xy(size, fillet);
+                    size2 = [40, spoolHeight() - eSize, size.z];
+                    rounded_cube_xy(size2, fillet);
+                    translate([size2.x, iecHousingSize.y, 0])
+                        fillet(5, size.z);
+                }
 
                 if (size.y >= spoolHeight()) {
                     // cutout to access TF card
@@ -179,7 +191,7 @@ assembly("IEC_Housing", ngb=true) {
 
     translate([0, -iecHousingSize().x, 0])
         rotate([90, 0, 90]) {
-            stl_colour(pp1_colour)
+            stl_colour(pp2_colour)
                 IEC_Housing_Mount_stl();
             IEC_Housing_Mount_hardware();
         }
@@ -187,7 +199,7 @@ assembly("IEC_Housing", ngb=true) {
     translate([-iecHousingSize().z, -iecHousingSize().x, 0])
         rotate([90, 0, 90]) {
             explode(-30)
-                stl_colour(pp2_colour)
+                stl_colour(pp3_colour)
                     IEC_Housing_stl();
             explode(30, true)
                 IEC_housing_hardware();
