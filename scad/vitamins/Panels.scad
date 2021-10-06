@@ -40,7 +40,7 @@ module sidePanelBoltHolePositionsX(size, left) {
     xPositionsLeft = size.x == 300 + 2*eSize
         ? [-size.x/2 + eSize + 50, 100, 0, size.x/2 - eSize - 50]
         : [-size.x/2 + 1.5*eSize, -(size.x - eSize)/6, (size.x - eSize)/6, size.x/2 - 1.5*eSize];
-    xPositionsRight = [-size.x/2 + 3*eSize/2, 0, size.x/2 - eSize/2];
+    xPositionsRight = [-size.x/2 + 3*eSize/2, eSize/2, size.x/2 - eSize/2];
     for (x = left ? xPositionsLeft : xPositionsRight, y = [(-size.y + eSize)/2, (size.y - eSize)/2])
         translate([x, y])
             rotate(exploded() ? 90 : 0)
@@ -105,6 +105,13 @@ assembly("Left_Side_Panel", ngb=true) {
 }
 
 module Left_Side_Channel_Nuts() {
+    translate([0, eSize, eSize/2]) {
+        rotate([0, -90, 0])
+            Channel_Nut_100_L_stl();
+        translate([0, 100, 0])
+            rotate([0, -90, 0])
+                Channel_Nut_200_L_stl();
+    }
     translate([0, eSize/2, 0]) {
         rotate([90, 0, -90])
             stl_colour(pp2_colour)
@@ -160,53 +167,108 @@ module Right_Side_Panel_dxf() {
             }
 }
 
+module Channel_Nut_100_L_stl() {
+    stl("Channel_Nut_100_L")
+        color(pp3_colour)
+            extrusionChannel(100, boltHoles=[50]);
+}
+
+module Channel_Nut_200_L_stl() {
+    stl("Channel_Nut_200_L")
+        color(pp3_colour)
+            extrusionChannel(200, boltHoles=[50, 150]);
+}
+
 module Channel_Nut_200_B_stl() {
     stl("Channel_Nut_200_B")
-        color(pp2_colour)
+        color(pp3_colour)
             extrusionChannel(200, boltHoles=[20, 140], accessHoles=[10, 30]);
 }
 
 module Channel_Nut_200_BL_stl() {
     stl("Channel_Nut_200_BL")
-        color(pp2_colour)
+        color(pp3_colour)
             extrusionChannel(200, boltHoles=[20, iecHousingMountSize().y - eSize/2], accessHoles=[10, 30]);
 }
 
 module Channel_Nut_200_BU_stl() {
     stl("Channel_Nut_200_BU")
-        color(pp2_colour)
+        color(pp3_colour)
             extrusionChannel(200, boltHoles=[20, extruderBracketSize().z - eSize/2], accessHoles=[10, 30]);
 }
 
 module Channel_Nut_200_FL_stl() {
     stl("Channel_Nut_200_FL")
-        color(pp2_colour)
+        color(pp3_colour)
             extrusionChannel(200, boltHoles=[20, 140], accessHoles=[10, 30, 50, 70]);
 }
 
 module Channel_Nut_200_FU_stl() {
     stl("Channel_Nut_200_FU")
-        color(pp2_colour)
+        color(pp3_colour)
             extrusionChannel(200, boltHoles=[20, 140], accessHoles=[10]);
+}
+
+module Channel_Nut_230_RU_stl() {
+    stl("Channel_Nut_230_RU")
+        color(pp3_colour)
+            extrusionChannel(230, boltHoles=[10, 115, 220]);
+}
+
+module Channel_Nut_70_RU_stl() {
+    stl("Channel_Nut_100_RU")
+        color(pp3_colour)
+            extrusionChannel(70, boltHoles=[7.5]);
+}
+
+module Channel_Nut_90_RM_stl() {
+    stl("Channel_Nut_90_RM")
+        color(pp3_colour)
+            extrusionChannel(90, boltHoles=[10, 27.5]);
+}
+
+module Channel_Nut_70_RL_stl() {
+    stl("Channel_Nut_70_RL")
+        color(pp3_colour)
+            extrusionChannel(70, boltHoles=[10, 60]);
 }
 
 module Right_Side_Channel_Nuts() {
     translate([eX + 2*eSize, eSize/2, 0]) {
         rotate([90, 0, 90])
-            stl_colour(pp2_colour)
+            stl_colour(pp3_colour)
                 Channel_Nut_200_FL_stl();
         translate_z(eZ)
             rotate([-90, 0, -90])
-                stl_colour(pp2_colour)
+                stl_colour(pp3_colour)
                     Channel_Nut_200_FU_stl();
+    }
+    translate([eX+ 2*eSize, eSize, eZ - eSize/2]) {
+        rotate([0, 90, 0])
+            Channel_Nut_230_RU_stl();
+        translate([0, 230, 0])
+            rotate([0, 90, 0])
+                Channel_Nut_70_RU_stl();
+    }
+    translate([eX+ 2*eSize, 210 + eSize, spoolHeight() + 30]) {
+        rotate([0, 90, 0])
+            Channel_Nut_90_RM_stl();
+    }
+    translate([eX+ 2*eSize, 230 + eSize, eSize/2]) {
+        rotate([0, 90, 0])
+            Channel_Nut_70_RL_stl();
+    }
+    translate([eX+ 2*eSize, eSize, eSize/2]) {
+        rotate([0, 90, 0])
+            Channel_Nut_230_RU_stl();
     }
     translate([eX + 2*eSize, eY + 3*eSize/2, 0]) {
         rotate([90, 0, 90])
-            stl_colour(pp2_colour)
+            stl_colour(pp3_colour)
                 Channel_Nut_200_BL_stl();
         translate_z(eZ)
             rotate([-90, 0, -90])
-                stl_colour(pp2_colour)
+                stl_colour(pp3_colour)
                     Channel_Nut_200_BU_stl();
     }
 }
