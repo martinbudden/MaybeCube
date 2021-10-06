@@ -154,6 +154,6 @@ module extrusionChannel(length, boltHoles=undef, accessHoles=undef, sliding=fals
                 for (z = accessHoles)
                     translate_z(z)
                         rotate([-90, 0, 0])
-                            boltHoleM4(size1.y + size2.y, twist=4);
+                            boltHole(4, size1.y + size2.y, twist=4);
         }
 }
