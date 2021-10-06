@@ -29,7 +29,7 @@ module PCB_Hole_Jig_stl() {
                                 }
                                 *for (y = [6, size.y/2, size.y - 6])
                                     translate([eX + 3*eSize/2, y + offsetY -size.y/2])
-                                        poly_circle(r = M4_clearance_radius);
+                                        poly_circle(r=M4_clearance_radius);
                                 translate([backPanelSize().x/2, backPanelSize().y/2]) {
                                     backPanelCutouts(PSUType(), BTT_SKR_V1_4_TURBO, radius=1);
                                     backPanelCutouts(PSUType(), BTT_SKR_E3_TURBO, radius=1);
