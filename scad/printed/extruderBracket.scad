@@ -26,7 +26,7 @@ function extruderPosition() = [eX + 2*eSize, eY + 2*eSize - 45, eX < 350 ? eZ - 
 function Extruder_Bracket_assembly_bowdenOffset() = [20.5, 5, 10];
 
 // spoolHeight is declared here because it is determined by its supporting extrusion requiring to clear the extruder and filament sensor
-function spoolHeight() = extruderPosition().z - (eX < 350 ? 110 : 80);
+function spoolHeight(eX=eX) = extruderPosition().z - (eX < 350 ? 110 : 80);
 
 function extruderBracketSize() = [3, iecHousingMountSize().x, eZ - spoolHeight() - eSize];
 //filamentSensorOffset = [20.5, 4.5, -45];
