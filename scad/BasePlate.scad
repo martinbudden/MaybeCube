@@ -52,7 +52,7 @@ module Base_Plate_stl() {
             translate_z(-size.z)
                 linear_extrude(size.z)
                     difference() {
-                        rounded_square([size.x, size.y], 1.5, center = false);
+                        rounded_square([size.x, size.y], 1.5, center=false);
                         baseCutouts();
                     }
 }
@@ -65,7 +65,7 @@ module Base_Plate_template_stl() {
             translate_z(-size.z)
                 linear_extrude(size.z)
                     difference() {
-                        rounded_square([size.x, size.y], 1.5, center = false);
+                        rounded_square([size.x, size.y], 1.5, center=false);
                         baseCutouts(radius=1);
                     }
 }
@@ -229,6 +229,6 @@ module Standoff_6mm_stl() {
 
     h = PSUStandoffHeight();
     color(pp1_colour)
-        tube(or=6/2, ir = M3_clearance_radius, h=h, center = false);
+        tube(or=6/2, ir = M3_clearance_radius, h=h, center=false);
 }
 */

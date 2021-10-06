@@ -77,9 +77,9 @@ module Left_Side_Panel_dxf() {
             difference() {
                 sheet_2D(sheet, size.x, size.y, fillet);
                 sidePanelAccessHolePositions(size, left=true)
-                    circle(r = accessHoleRadius);
+                    circle(r=accessHoleRadius);
                 sidePanelBoltHolePositions(size, left=true)
-                    circle(r = M4_clearance_radius);
+                    circle(r=M4_clearance_radius);
             }
 }
 
@@ -136,9 +136,9 @@ module Right_Side_Panel_dxf() {
             difference() {
                 sheet_2D(sheet, size.x, size.y, fillet);
                 sidePanelAccessHolePositions(size, left=false)
-                    circle(r = accessHoleRadius);
+                    circle(r=accessHoleRadius);
                 sidePanelBoltHolePositions(size, left=false)
-                    circle(r = M4_clearance_radius);
+                    circle(r=M4_clearance_radius);
                 translate([-size.x/2, -size.y/2]) {
                     translate([extruderPosition().y, extruderPosition().z]) {
                         extruderNEMAType = NEMA17;
@@ -191,7 +191,7 @@ module Channel_Nut_200_FU_stl() {
 }
 
 module Right_Side_Channel_Nuts() {
-    *translate([eX + 2*eSize, eSize/2, 0]) {
+    translate([eX + 2*eSize, eSize/2, 0]) {
         rotate([90, 0, 90])
             stl_colour(pp2_colour)
                 Channel_Nut_200_FL_stl();

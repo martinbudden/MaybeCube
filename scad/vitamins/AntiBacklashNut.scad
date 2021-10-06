@@ -17,27 +17,27 @@ module antiBacklashNut() {
     translate([0, -size.z / 2, -nutHoleOffset])
         rotate([90, 0, 180]) {
             color(grey(20))
-                //render(convexity = 2)
+                //render(convexity=2)
                     difference() {
-                        linear_extrude(size.z, convexity = 2)
+                        linear_extrude(size.z, convexity=2)
                             difference() {
                                 rounded_square([size.x, size.y], 2);
                                 for (x = [boltOffsetX, -boltOffsetX])
                                     translate([x, nutHoleOffset])
-                                        circle(r = M5_clearance_radius);
+                                        circle(r=M5_clearance_radius);
                                 translate([5, -size.y / 2 + slotOffset])
                                     rounded_square([28, 5], 2);
                             }
                         translate_z(size.z / 2) {
                             rotate([90, 0, 0])
-                                cylinder(d = 8, h = size.y + eps, center = true);
+                                cylinder(d=8, h=size.y + eps, center=true);
                             translate([boltOffsetX, -size.y / 2 + slotOffset, 0])
                                 rotate([90, 0, 0])
-                                    cylinder(r = M4_tap_radius, h = slotOffset + eps, center = false);
+                                    cylinder(r=M4_tap_radius, h=slotOffset + eps, center=false);
                         }
                         for (x = [boltOffsetX, -boltOffsetX])
                             translate([x, nutHoleOffset, 0])
-                                cylinder(d = 9, h = hexCutoutDepth, $fn = 6);
+                                cylinder(d=9, h=hexCutoutDepth, $fn=6);
                     }
             translate([boltOffsetX, -size.x / 2 - 3, size.z / 2])
                 rotate([90, 0, 0])

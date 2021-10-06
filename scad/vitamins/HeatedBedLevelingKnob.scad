@@ -23,21 +23,20 @@ module HeatedBedLevelingKnob(color = grey(20)) {
         color(color) {
             linear_extrude(knob_thickness, convexity = 1)
                 difference() {
-                    polygon(points = [ for (a = [0 : 359]) [wave(a) * sin(a), wave(a) * cos(a)] ]);
-                    circle(r = knob_spoke_length);
+                    polygon(points=[ for (a = [0 : 359]) [wave(a) * sin(a), wave(a) * cos(a)] ]);
+                    circle(r=knob_spoke_length);
                 }
             difference() {
                 union() {
-                    cylinder(h = knob_height, r = knob_stem_r);
+                    cylinder(h=knob_height, r=knob_stem_r);
                     spoke_size = [knob_spoke_length, 1.5, 2];
                     for (a = [0 : knob_spokes - 1])
                         rotate(a * 360 / knob_spokes) {
                             translate([spoke_size.x, 0, spoke_size.z])
                                 rotate([90, 0, 180])
                                     right_triangle(spoke_size.x, knob_thickness - spoke_size.z - 2, spoke_size.y);
-                            translate([0, -spoke_size.y / 2, 0]) {
+                            translate([0, -spoke_size.y / 2, 0])
                                 cube(spoke_size);
-                            }
                         }
                 }
                 insert_hole(F1BM3, knob_height);

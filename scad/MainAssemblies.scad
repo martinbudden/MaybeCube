@@ -39,7 +39,7 @@ module echoParameters() {
     echo("extrusion_width", extrusion_width, "r:[ ", 1.1*nozzle, 1.7*nozzle, " ]");
     echo("layer_height", layer_height, "r:[ ", 0.25*extrusion_width, 0.5*extrusion_width, "]");
 
-    echo(nozzle =  nozzle, extrusion_width = extrusion_width, layer_height = layer_height, show_threads = show_threads);
+    echo(nozzle=nozzle, extrusion_width=extrusion_width, layer_height=layer_height, show_threads=show_threads);
 }
 
 staged_assembly = true; // set this to false for faster builds during development
@@ -179,7 +179,7 @@ module FinalAssembly() {
         if (!is_undef(_useSidePanels) && _useSidePanels)
             explode([50, 0, 0], true)
                 rightSidePanelPC();
-        Right_Side_Channel_Nuts();
+        //Right_Side_Channel_Nuts();
         explode([-50, 0, 0], true)
             leftSidePanelPC();
         //Left_Side_Channel_Nuts();

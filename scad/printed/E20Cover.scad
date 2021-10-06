@@ -60,7 +60,7 @@ module zRodMountGuide(length) {
             } else if (length==100) {
                 Z_RodMountGuide_100mm_stl();
             } else {
-                echo(zRodMountGuide_length = length);
+                echo(zRodMountGuide_length=length);
                 color("red")
                     E20Cover(length);
                 if (_useAsserts) assert(false, "Unsupported zRodMountGuide length");

@@ -152,7 +152,7 @@ module molex_400(ways) { //! Draw molex header
     color("silver")
         for (i = [0: ways - 1])
             translate([0, i * pitch - width / 2 + pitch / 2, (above + below) / 2 - below])
-                cube([1, 1, above + below], center = true);
+                cube([1, 1, above + below], center=true);
 }
 
 

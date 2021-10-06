@@ -33,7 +33,7 @@ module IEC_Housing_stl() {
                 rounded_cube_xy([size.x, size.y, baseThickness], fillet);
                 translate([size.x + eps, -eps, -eps])
                     rotate(90)
-                        right_triangle(triangleSize.x + 2*eps, triangleSize.y + 2*eps, baseThickness + 2*eps, center = false);
+                        right_triangle(triangleSize.x + 2*eps, triangleSize.y + 2*eps, baseThickness + 2*eps, center=false);
             }
             translate([size.x/2, size.y/2, baseThickness])
                 difference() {

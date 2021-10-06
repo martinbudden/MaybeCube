@@ -172,24 +172,24 @@ module xyMotorMountBaseCutouts(motorType, left, size, offset, sideSupportSizeY=0
             fillet(fillet);
     for (x = upperBoltPositions(size.x))
         translate([x + eSize, eY + 3*eSize/2])
-            poly_circle(r = screw_head_radius(M4_dome_screw) + boltHeadTolerance);
+            poly_circle(r=screw_head_radius(M4_dome_screw) + boltHeadTolerance);
     if (sideSupportSizeY != 0)
         translate([eSize/2, eY + 5*eSize/2 - size.y])
-            poly_circle(r = screw_head_radius(M4_dome_screw) + boltHeadTolerance);
+            poly_circle(r=screw_head_radius(M4_dome_screw) + boltHeadTolerance);
 
     translate([coreXYPosBL().x + separation.x/2, coreXYPosTR(motorWidth).y + offset.y]) {
         translate([coreXY_drive_pulley_x_alignment(coreXY_type) + offset.x, 0]) {
-            poly_circle(r = isNEMAType(motorType) ? NEMA_boss_radius(motorType) : (pulley_flange_dia(GT2x16_pulley) + 1)/2);
+            poly_circle(r=isNEMAType(motorType) ? NEMA_boss_radius(motorType) : (pulley_flange_dia(GT2x16_pulley) + 1)/2);
             if (cnc) {
                 xyMotorScrewPositions(motorType)
-                    poly_circle(r = M3_clearance_radius);
+                    poly_circle(r=M3_clearance_radius);
             }
         }
         if (cnc) {
             translate(coreXY_drive_plain_idler_offset(coreXY_type) + (left ? leftDrivePlainIdlerOffset : rightDrivePlainIdlerOffset))
-                poly_circle(r = M3_tap_radius);
+                poly_circle(r=M3_tap_radius);
             translate(coreXY_drive_toothed_idler_offset(coreXY_type))
-                poly_circle(r = M3_tap_radius);
+                poly_circle(r=M3_tap_radius);
         }
     }
 }
