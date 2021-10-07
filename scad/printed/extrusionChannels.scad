@@ -114,6 +114,7 @@ module extrusionChannel(length, boltHoles=undef, accessHoles=undef, sliding=fals
 
     rotate([-90, 0, 0])
         difference() {
+            render(convexity=8)
             union() {
                 linear_extrude(length) {
                     *translate([-size1.x/2, 0])
@@ -126,21 +127,36 @@ module extrusionChannel(length, boltHoles=undef, accessHoles=undef, sliding=fals
                     }
                 }
                 translate([-size1.x/2, 0, 0])
-                    rounded_cube_xz([size1.x, size1.y, length], 1);
+                    rounded_cube_xz([size1.x, size1.y + size2.y, length], 1);
             }
             rotate([-90, 0, 0]) {
                 fillet = 1;
-                translate([-size3.x/2, -length, size1.y - eps])
-                    fillet(fillet, size2.y + 2*eps);
-                translate([size3.x/2, -length, size1.y - eps])
+                translate([-size3.x/2, -length, size1.y - 2*eps])
+                    fillet(fillet, size2.y);
+                translate([-size3.x/2 - eps, -length - eps, size3.y + channelDepth])
+                    rotate([0, 33, 0])
+                        fillet(fillet, size2.y + 1);
+                translate([size3.x/2, -length, size1.y - 2*eps])
                     rotate(90)
-                        fillet(fillet, size2.y + 2*eps);
-                translate([size3.x/2, 0, size1.y - eps])
+                        fillet(fillet, size2.y);
+                translate([size3.x/2 + eps, -length - eps, size3.y + channelDepth])
+                    rotate([0, -33, 0])
+                        rotate(90)
+                            fillet(fillet, size2.y + 1);
+                translate([size3.x/2, 0, size1.y - 2*eps])
                     rotate(180)
-                        fillet(fillet, size2.y + 2*eps);
-                translate([-size3.x/2, 0, size1.y - eps])
+                        fillet(fillet, size2.y);
+                translate([size3.x/2 + eps, eps, size3.y + channelDepth])
+                    rotate([0, -33, 0])
+                        rotate(180)
+                            fillet(fillet, size2.y + 1);
+                translate([-size3.x/2, 0, size1.y - 2*eps])
                     rotate(270)
-                        fillet(fillet, size2.y + 2*eps);
+                        fillet(fillet, size2.y);
+                translate([-size3.x/2 - eps, eps, size3.y + channelDepth])
+                    rotate([0, 33, 0])
+                        rotate(270)
+                            fillet(fillet, size2.y + 1);
             }
             if (is_list(boltHoles))
                 for (z = boltHoles)
