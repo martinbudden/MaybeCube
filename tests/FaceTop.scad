@@ -6,6 +6,8 @@ use <../scad/printed/extruderBracket.scad>
 
 use <../scad/utils/CoreXYBelts.scad>
 
+use <../scad/vitamins/Panels.scad>
+
 use <../scad/FaceTop.scad>
 use <../scad/BackFace.scad>
 use <../scad/printed/WiringGuide.scad>
@@ -41,6 +43,7 @@ module Face_Top_test() {
     //Left_Side_Upper_Extrusion_assembly();
     //Right_Side_Upper_Extrusion_assembly();
     //Extruder_Bracket_assembly();
+    Partition_assembly();
 }
 
 if ($preview)
