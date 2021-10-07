@@ -21,7 +21,7 @@ module Spool_Holder_stl() {
 module Spool_Holder_Bracket_stl() {
     size = [3*eSize, 1.5*eSize, 10];
     fillet = 2;
-    thickness = 5;
+    thickness = 4.75;
     catchRadius = 2;
     catchLength = eSize + 1;
 

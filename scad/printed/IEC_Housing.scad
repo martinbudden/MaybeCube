@@ -7,6 +7,8 @@ use <NopSCADlib/vitamins/iec.scad>
 
 use <extruderBracket.scad> // for spoolHeight()
 
+use <../printed/XY_MotorMount.scad>
+
 include <../vitamins/bolts.scad>
 use <../vitamins/iec320c14.scad>
 use <../vitamins/nuts.scad>
@@ -20,6 +22,9 @@ function iecHousingSize() = [70, 50, 42 + 3];
 function iecHousingMountSize() = [iecHousingSize().x + eSize, iecHousingSize().y + 2*eSize, 3];
 function iecCutoutSize() = [50, 27.5];
 function iecType() = iec320c14FusedSwitchedType();
+
+partitionOffsetY = xyMotorMountSize().y;
+
 
 module IEC_Housing_stl() {
     size = iecHousingSize();
@@ -103,7 +108,7 @@ module iecHousing() {
             }
 }
 
-module iecHousingMountAttachmentHolePositions(z=0) {
+module iecHousingMountAttachmentHolePositions(z=0, eX=eX) {
     size = iecHousingMountSize();
 
     translate([0, -2*eSize, z]) {
@@ -113,7 +118,7 @@ module iecHousingMountAttachmentHolePositions(z=0) {
         translate([eSize/2, 3*eSize/2, 0])
             children();
         for (x = [eSize/2, 3*eSize/2])
-            translate([x, spoolHeight() + eSize/2, 0])
+            translate([x, spoolHeight(eX) + eSize/2, 0])
                 children();
         for (y = [eSize, size.y - eSize/2])
             translate([size.x - eSize/2, y, 0])
@@ -125,47 +130,67 @@ module iecHousingMountAttachmentHolePositions(z=0) {
 }
 
 module IEC_Housing_Mount_stl() {
+    stl("IEC_Housing_Mount")
+        color(pp2_colour)
+            iceHousingMount(eX=350);
+}
+
+module IEC_Housing_Mount_300_stl() {
+    stl("IEC_Housing_Mount_300")
+        color(pp2_colour)
+            iceHousingMount(eX=300);
+}
+
+module iceHousingMount(eX) {
     size = iecHousingMountSize();
     iecHousingSize = iecHousingSize();
     iecCutoutSize = [iecCutoutSize().x, iecCutoutSize().y, size.z + 2*eps];
     fillet = 3;
-
-    stl("IEC_Housing_Mount")
-        color(pp2_colour)
-            difference() {
-                union() {
-                    translate([0, -2*eSize, 0])
-                        rounded_cube_xy(size, fillet);
-                    size2 = [40, spoolHeight() - eSize, size.z];
-                    rounded_cube_xy(size2, fillet);
-                    translate([size2.x, iecHousingSize.y, 0])
-                        fillet(5, size.z);
+    vflip()
+        difference() {
+            union() {
+                translate([0, -2*eSize, 0])
+                    rounded_cube_xy(size, fillet);
+                size2 = [size.x - partitionOffsetY + 2, spoolHeight(eX) - eSize, size.z];
+                rounded_cube_xy(size2, fillet);
+                translate([size2.x, iecHousingSize.y, 0])
+                    fillet(5, size.z);
+                size3 = [6, size2.y - iecHousingSize.y - eSize, eSize];
+                panelThickness = 2;
+                translate([size2.x - size3.x, iecHousingSize.y, -size3.z]) {
+                    rounded_cube_xy(size3, 1);
+                    size4 = [(size3.x - panelThickness)/2, size3.y, size3.z + 2];
+                    translate_z(size3.z - size4.z)
+                        rounded_cube_xy(size4, 0.5);
+                    translate([size3.x - size4.x, 0, size3.z - size4.z])
+                        rounded_cube_xy(size4, 0.5);
                 }
+            } // end union
 
-                if (size.y >= spoolHeight()) {
-                    // cutout to access TF card
-                    tfCutoutSize = [40, 50, size.z + 2*eps];
-                    translate([size.x - eSize - tfCutoutSize.x, size.y -3*eSize - tfCutoutSize.y, -eps])
-                        rounded_cube_xy(tfCutoutSize, 2);
-                }
-                translate([iecHousingSize.x/2 - iecCutoutSize.x/2, iecHousingSize.y/2 - iecCutoutSize.y/2, -eps])
-                    rounded_cube_xy(iecCutoutSize, fillet);
-                translate([iecHousingSize.x/2, iecHousingSize.y/2, 0])
-                    rotate(90)
-                        iec_screw_positions(iecType())
-                            boltHoleM4Tap(size.z);
-                iecHousingMountAttachmentHolePositions()
-                    boltHoleM4(size.z);
-                // access holes
-                for (y = [eSize/2, 3*eSize/2])
-                    translate([size.x - eSize/2, y - 2*eSize, 0])
-                        boltHole(5, size.z);
+            if (size.y >= spoolHeight()) {
+                // cutout to access TF card
+                tfCutoutSize = [40, 50, size.z + 2*eps];
+                translate([size.x - eSize - tfCutoutSize.x, size.y -3*eSize - tfCutoutSize.y, -eps])
+                    rounded_cube_xy(tfCutoutSize, 2);
             }
+            translate([iecHousingSize.x/2 - iecCutoutSize.x/2, iecHousingSize.y/2 - iecCutoutSize.y/2, -eps])
+                rounded_cube_xy(iecCutoutSize, fillet);
+            translate([iecHousingSize.x/2, iecHousingSize.y/2, 0])
+                rotate(90)
+                    iec_screw_positions(iecType())
+                        boltHoleM4Tap(size.z);
+            iecHousingMountAttachmentHolePositions(eX=eX)
+                boltHoleM4(size.z);
+            // access holes
+            for (y = [eSize/2, 3*eSize/2])
+                translate([size.x - eSize/2, y - 2*eSize, 0])
+                    boltHole(5, size.z);
+        } // end difference
 }
 
-module IEC_Housing_Mount_hardware() {
+module IEC_Housing_Mount_hardware(eX=eX) {
 
-    iecHousingMountAttachmentHolePositions(iecHousingMountSize().z)
+    iecHousingMountAttachmentHolePositions(iecHousingMountSize().z, eX)
         boltM4ButtonheadHammerNut(_sideBoltLength, rotate=90);
 /*    iecHousingSize = iecHousingSize();
     size = [iecHousingSize.x + eSize, iecHousingSize.y + 2*eSize, 3];
@@ -192,7 +217,17 @@ assembly("IEC_Housing", ngb=true) {
     translate([0, -iecHousingSize().x, 0])
         rotate([90, 0, 90]) {
             stl_colour(pp2_colour)
-                IEC_Housing_Mount_stl();
+                if (eX==300) {
+                    vflip()
+                        IEC_Housing_Mount_300_stl();
+                    hidden()
+                        IEC_Housing_Mount_stl();
+                } else {
+                    vflip()
+                        IEC_Housing_Mount_stl();
+                    hidden()
+                        IEC_Housing_Mount_300_stl();
+                }
             IEC_Housing_Mount_hardware();
         }
 
