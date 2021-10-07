@@ -15,11 +15,12 @@ use <../vitamins/nuts.scad>
 include <../Parameters_Main.scad>
 
 
+PC2 = ["PC2", "Sheet polycarbonate", 2, [1,   1,   1,   0.25], false];
 PC3 = ["PC3", "Sheet polycarbonate", 3, [1,   1,   1,   0.25], false];
 accessHoleRadius = 2.5;
 
 function sidePanelSize(left) = [eY + 2*eSize - (left ? 0 : iecHousingSize().x + eSize), eZ, 3];
-function partitionSize() = [eX, eZ, 3];
+function partitionSize() = [eX, eZ, 2];
 function partitionOffsetY() = xyMotorMountSize().y;
 
 
@@ -209,14 +210,14 @@ module Channel_Nut_200_FU_stl() {
             extrusionChannel(200, boltHoles=[20, 140], accessHoles=[10]);
 }
 
-module Channel_Nut_230_RU_stl() {
-    stl("Channel_Nut_230_RU")
+module Channel_Nut_230_R_stl() {
+    stl("Channel_Nut_230_R")
         color(pp3_colour)
             extrusionChannel(230, boltHoles=[10, 115, 220]);
 }
 
 module Channel_Nut_70_RU_stl() {
-    stl("Channel_Nut_100_RU")
+    stl("Channel_Nut_70_RU")
         color(pp3_colour)
             extrusionChannel(70, boltHoles=[7.5]);
 }
@@ -245,7 +246,7 @@ module Right_Side_Channel_Nuts() {
     }
     translate([eX+ 2*eSize, eSize, eZ - eSize/2]) {
         rotate([0, 90, 0])
-            Channel_Nut_230_RU_stl();
+            Channel_Nut_230_R_stl();
         translate([0, 230, 0])
             rotate([0, 90, 0])
                 Channel_Nut_70_RU_stl();
@@ -260,7 +261,7 @@ module Right_Side_Channel_Nuts() {
     }
     translate([eX+ 2*eSize, eSize, eSize/2]) {
         rotate([0, 90, 0])
-            Channel_Nut_230_RU_stl();
+            Channel_Nut_230_R_stl();
     }
     translate([eX + 2*eSize, eY + 3*eSize/2, 0]) {
         rotate([90, 0, 90])
@@ -304,7 +305,7 @@ assembly("Right_Side_Panel", ngb=true) {
 module Partition_dxf() {
     size = partitionSize();
     fillet = 1;
-    sheet = PC3;
+    sheet = PC2;
 
     dxf("Partition")
         color(sheet_colour(sheet))
@@ -334,7 +335,7 @@ module partitionPC() {
     translate([eSize, eY + 2*eSize - partitionOffsetY() - size.z, 0])
         rotate([90, 0, 0])
             translate([size.x/2, size.y/2, -size.z/2])
-                render_2D_sheet(PC3, w=size.x, d=size.y)
+                render_2D_sheet(PC2, w=size.x, d=size.y)
                     Partition_dxf();
 }
 
