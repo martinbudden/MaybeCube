@@ -12,10 +12,12 @@ use <printed/XY_MotorMount.scad>
 use <printed/XY_Idler.scad>
 use <printed/Y_CarriageAssemblies.scad>
 
+use <utils/bezierTube.scad>
 use <utils/carriageTypes.scad>
 use <utils/CoreXYBelts.scad>
 use <utils/FrameBolts.scad>
 use <utils/RailNutsAndBolts.scad>
+use <utils/printheadOffsets.scad>
 use <utils/X_Rail.scad>
 
 include <vitamins/bolts.scad>
@@ -53,11 +55,6 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
     }
     faceTopFront();
     faceTopBack();
-    wiringGuidePosition(offset=0) {
-        stl_colour(pp1_colour)
-            Wiring_Guide_stl();
-        Wiring_Guide_hardware();
-    }
     *cameraMountPosition() {
         stl_colour(pp1_colour)
             Camera_Mount_stl();
@@ -129,10 +126,10 @@ module faceTopFront() {
 
 module faceTopBack() {
     // add the back top extrusion oriented in the X direction
-    translate([eSize, eY + eSize, eZ - eSize]) {
-        use2020 = is_undef(_use2020TopExtrusion) || _use2020TopExtrusion == false ? false : true;
+    explode([0, 120, 0], true) {
+        translate([eSize, eY + eSize, eZ - eSize]) {
+            use2020 = is_undef(_use2020TopExtrusion) || _use2020TopExtrusion == false ? false : true;
 
-        explode([0, 120, 0], true) {
             extrusionOXEndBoltPositions(eX)
                 boltM5Buttonhead(_endBoltShortLength);
             if (!use2020)
@@ -151,8 +148,43 @@ module faceTopBack() {
                             jointBoltHole();
             }
         }
+        explode([0, -40, 0], true)
+            wiringGuidePosition(offset=0)
+                vflip() {
+                    stl_colour(pp3_colour)
+                        Wiring_Guide_Socket_stl();
+                    Wiring_Guide_Socket_hardware();
+                }
     }
 }
+
+module printHeadWiring() {
+    // don't show the incomplete cable if there are no extrusions to obscure it
+    wireRadius = 2.5;
+    if (is_undef($hide_extrusions))
+        color(grey(20))
+            bezierTube([eX/2 + eSize, eY + eSize - 5, eZ - 2*eSize], [carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(), tubeRadius=wireRadius);
+
+    /*translate([carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset())
+        for (z = [11, 21])
+            translate([0, -3.5, z])
+                rotate([0, 90, 90])
+                    cable_tie(cable_r = 3, thickness = 4.5);*/
+
+    wiringGuidePosition(offset=0) {
+        stl_colour(pp1_colour)
+            Wiring_Guide_stl();
+        Wiring_Guide_hardware();
+    }
+    wiringGuidePosition()
+        explode(20, true)
+            translate_z(wireRadius) {
+                stl_colour(pp2_colour)
+                    Wiring_Guide_Clamp_stl();
+                Wiring_Guide_Clamp_hardware();
+            }
+}
+
 
 //!1. Bolt the MGN linear rail to the extrusion, using the **Rail_Centering_Jig** to align the rail. Fully tighten the
 //!bolts - the left rail is the fixed rail and the right rail will be aligned to it.

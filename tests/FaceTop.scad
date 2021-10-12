@@ -29,10 +29,14 @@ module Face_Top_test() {
     //faceTopBack();
     *if (!exploded())
         printHeadWiring();
-    *translate_z(eZ) {
+    *wiringGuidePosition(offset=0) {
         Wiring_Guide_stl();
         Wiring_Guide_hardware();
-        translate_z(9) {
+        *vflip() {
+            Wiring_Guide_Socket_stl();
+            Wiring_Guide_Socket_hardware();
+        }
+        *translate_z(9) {
             Wiring_Guide_Clamp_stl();
             Wiring_Guide_Clamp_hardware();
         }
@@ -43,7 +47,7 @@ module Face_Top_test() {
     //Left_Side_Upper_Extrusion_assembly();
     //Right_Side_Upper_Extrusion_assembly();
     //Extruder_Bracket_assembly();
-    Partition_assembly();
+    //Partition_assembly();
 }
 
 if ($preview)

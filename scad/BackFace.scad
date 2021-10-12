@@ -8,11 +8,8 @@ use <NopSCADlib/vitamins/sheet.scad>
 
 use <printed/extruderBracket.scad>
 use <printed/PSU.scad>
-use <printed/WiringGuide.scad>
 
-use <utils/bezierTube.scad>
 use <utils/FrameBolts.scad>
-use <utils/printheadOffsets.scad>
 
 include <vitamins/bolts.scad>
 use <vitamins/nuts.scad>
@@ -536,28 +533,6 @@ module pcbPosition(pcbType, z=0) {
                     children();
         }
     }
-}
-
-module printHeadWiring() {
-    // don't show the incomplete cable if there are no extrusions to obscure it
-    wireRadius = 2.5;
-    if (is_undef($hide_extrusions))
-        color(grey(20))
-            bezierTube([eX/2 + eSize, eY + eSize - 5, eZ - 2*eSize], [carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(), tubeRadius=wireRadius);
-
-    /*translate([carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset())
-        for (z = [11, 21])
-            translate([0, -3.5, z])
-                rotate([0, 90, 90])
-                    cable_tie(cable_r = 3, thickness = 4.5);*/
-
-    wiringGuidePosition()
-        explode(20, true)
-            translate_z(wireRadius) {
-                stl_colour(pp2_colour)
-                    Wiring_Guide_Clamp_stl();
-                Wiring_Guide_Clamp_hardware();
-            }
 }
 
 module psuAssembly(psuVertical, useMounts=false) {
