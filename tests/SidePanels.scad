@@ -4,6 +4,7 @@ include <NopSCADlib/utils/core/core.scad>
 include <../scad/vitamins/Panels.scad>
 use <../scad/vitamins/extrusion.scad>
 use <../scad/jigs/PanelJig.scad>
+use <../scad/FaceRightExtras.scad>
 
 include <../scad/Parameters_Main.scad>
 
@@ -21,6 +22,8 @@ module SidePanel_test() {
         rotate([-90, 0, 90])
             Panel_Jig_stl();
     //extrusionOZ(eZ);
+    translate([3, 0, 0])
+        faceRightSpoolHolderBracket();
     Left_Side_Panel_assembly();
     //Left_Side_Panel_dxf();
     Right_Side_Panel_assembly();
