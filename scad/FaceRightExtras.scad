@@ -60,9 +60,8 @@ module BowdenTube() {
 }
 
 module faceRightExtras() {
-    translate([eX + 2*eSize, eY + eSize, 2*eSize])
-        explode([50, 75, 0])
-            IEC_Housing_assembly();
+    explode([50, 75, 0])
+        IEC_Housing_assembly();
 
     explode([50, 75, 0])
         Extruder_Bracket_assembly();

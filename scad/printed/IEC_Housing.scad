@@ -12,6 +12,7 @@ use <../printed/XY_MotorMount.scad>
 include <../vitamins/bolts.scad>
 use <../vitamins/iec320c14.scad>
 use <../vitamins/nuts.scad>
+use <../vitamins/Panels.scad>
 
 include <../Parameters_Main.scad>
 
@@ -149,15 +150,16 @@ module iceHousingMount(eX) {
     vflip()
         difference() {
             union() {
+                guideWidth = 6;
                 translate([0, -2*eSize, 0])
                     rounded_cube_xy(size, fillet);
-                size2 = [size.x - partitionOffsetY + 2, spoolHeight(eX) - eSize, size.z];
+                size2 = [size.x - partitionOffsetY + guideWidth/2 - partitionSize().z/2, spoolHeight(eX) - eSize, size.z];
                 rounded_cube_xy(size2, fillet);
                 translate([size2.x, iecHousingSize.y, 0])
                     fillet(5, size.z);
-                size3 = [6, size2.y - iecHousingSize.y - eSize, eSize];
-                panelThickness = 2;
-                translate([size2.x - size3.x, iecHousingSize.y, -size3.z]) {
+                size3 = [guideWidth, size2.y - iecHousingSize.y - eSize, eSize];
+                panelThickness = 2.5;
+                translate([size.x - partitionOffsetY - partitionSize().z/2 - size3.x/2, iecHousingSize.y, -size3.z]) {
                     rounded_cube_xy(size3, 1);
                     size4 = [(size3.x - panelThickness)/2, size3.y, size3.z + 2];
                     translate_z(size3.z - size4.z)
@@ -214,31 +216,33 @@ module IEC_Housing_Mount_hardware(eX=eX) {
 module IEC_Housing_assembly()
 assembly("IEC_Housing", ngb=true) {
 
-    translate([0, -iecHousingSize().x, 0])
-        rotate([90, 0, 90]) {
-            stl_colour(pp2_colour)
-                if (eX==300) {
-                    vflip()
-                        IEC_Housing_Mount_300_stl();
-                    hidden()
-                        IEC_Housing_Mount_stl();
-                } else {
-                    vflip()
-                        IEC_Housing_Mount_stl();
-                    hidden()
-                        IEC_Housing_Mount_300_stl();
-                }
-            IEC_Housing_Mount_hardware();
-        }
+    translate([eX + 2*eSize, eY + eSize, 2*eSize]) {
+        translate([0, -iecHousingSize().x, 0])
+            rotate([90, 0, 90]) {
+                stl_colour(pp2_colour)
+                    if (eX==300) {
+                        vflip()
+                            IEC_Housing_Mount_300_stl();
+                        hidden()
+                            IEC_Housing_Mount_stl();
+                    } else {
+                        vflip()
+                            IEC_Housing_Mount_stl();
+                        hidden()
+                            IEC_Housing_Mount_300_stl();
+                    }
+                IEC_Housing_Mount_hardware();
+            }
 
-    translate([-iecHousingSize().z, -iecHousingSize().x, 0])
-        rotate([90, 0, 90]) {
-            explode(-30)
-                stl_colour(pp3_colour)
-                    IEC_Housing_stl();
-            explode(30, true)
-                IEC_housing_hardware();
-        }
+        translate([-iecHousingSize().z, -iecHousingSize().x, 0])
+            rotate([90, 0, 90]) {
+                explode(-30)
+                    stl_colour(pp3_colour)
+                        IEC_Housing_stl();
+                explode(30, true)
+                    IEC_housing_hardware();
+            }
+    }
 }
 
 /*
