@@ -180,7 +180,7 @@ module iceHousingMount(eX) {
             translate([iecHousingSize.x/2, iecHousingSize.y/2, 0])
                 rotate(90)
                     iec_screw_positions(iecType())
-                        boltHoleM4Tap(size.z);
+                        boltHoleM4(size.z);
             iecHousingMountAttachmentHolePositions(eX=eX)
                 boltHoleM4(size.z);
             // access holes
