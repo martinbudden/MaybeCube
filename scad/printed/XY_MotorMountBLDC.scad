@@ -144,7 +144,8 @@ module encoderMagnetHolder(motorType) {
         difference() {
             cylinder(d=diameter, h=height);
             translate_z(offsetZ-0.1)
-                poly_cylinder(r=magnetDiameter/2, h=height);
+                rotate(15)
+                    poly_cylinder(r=magnetDiameter/2, h=height);
             holes = BLDC_bell_holes(motorType);
             holeOffset = is_list(holes) ? holes[0] : holes / 2;
             for (x = [-holeOffset, holeOffset])

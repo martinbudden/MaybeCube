@@ -400,8 +400,15 @@ module xyMotorMount(motorType, basePlateThickness, offset=[0, 0], blockHeightExt
 
 module radial_encoder_magnet_6_2p5() {
     vitamin(str(": Radial encoder magnet 6x2.5mm"));
+    or = 6/2;
+    h = 2.5;
+    fillet = 0.5;
     color(silver)
-        cylinder(d=6, h=2.5);
+        rotate_extrude()
+            union () {
+                rounded_square([or, h], fillet, center = false);
+                square([fillet, h]);
+            }
 }
 
 module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], corkDamperThickness=0, blockHeightExtra=0, stepdown=false, left=true) {
