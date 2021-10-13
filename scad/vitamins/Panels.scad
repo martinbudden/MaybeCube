@@ -33,11 +33,11 @@ module sidePanelAccessHolePositions(size, left) {
             children();
     if (left)
         for (y = [3*eSize/2, size.y - 3*eSize/2])
-            translate([left ? -size.x/2 + eSize/2 : size.x/2 - eSize/2, y - size.y/2])
+            translate([-size.x/2 + eSize/2, y - size.y/2])
                 children();
 }
 
-module sidePanelBoltHolePositionsX(size, left) {
+module sidePanelBoltHolePositionsX(size, left, spoolHolder) {
     xPositionsLeft = size.x == 300 + 2*eSize
         ? [-size.x/2 + eSize + 50, 100, 0, size.x/2 - eSize - 50]
         : [-size.x/2 + 1.5*eSize, -(size.x - eSize)/6, (size.x - eSize)/6, size.x/2 - 1.5*eSize];
@@ -46,9 +46,13 @@ module sidePanelBoltHolePositionsX(size, left) {
         translate([x, y])
             rotate(exploded() ? 90 : 0)
                 children();
+    if (spoolHolder)
+        for (x = [0, 40])
+            translate([35 + x, spoolHeight() + 3*eSize/2 - size.y/2])
+                children();
 }
 
-module sidePanelBoltHolePositions(size, left) {
+module sidePanelBoltHolePositions(size, left, spoolHolder=false) {
     for (x = left ? [-size.x/2 + eSize/2, size.x/2 - eSize/2] : [-size.x/2 + eSize/2], y = [-size.y/2 + eSize, size.y/2 - eSize])
         translate([x, y])
             rotate(exploded() ? 0 : 90)
@@ -59,7 +63,7 @@ module sidePanelBoltHolePositions(size, left) {
                 rotate(exploded() ? 0 : 90)
                     children();
 
-    sidePanelBoltHolePositionsX(size, left)
+    sidePanelBoltHolePositionsX(size, left, spoolHolder)
         children();
     //for (x = [-size.x/2 + eSize/2, size.x/2 - eSize/2], y = [(size.y - eSize)/6, -(size.y - eSize)/6])
     for (x = left ? [-size.x/2 + eSize/2, size.x/2 - eSize/2] : [-size.x/2 + eSize/2], y = [size.y/2 - eSize - (size.y - 2*eSize)/3, -size.y/2 + eSize + (size.y - 2*eSize)/3])
@@ -145,7 +149,7 @@ module Right_Side_Panel_dxf() {
                 sheet_2D(sheet, size.x, size.y, fillet);
                 sidePanelAccessHolePositions(size, left=false)
                     circle(r=accessHoleRadius);
-                sidePanelBoltHolePositions(size, left=false)
+                sidePanelBoltHolePositions(size, left=false, spoolHolder=true)
                     circle(r=M4_clearance_radius);
                 translate([-size.x/2, -size.y/2]) {
                     translate([extruderPosition().y, extruderPosition().z]) {
