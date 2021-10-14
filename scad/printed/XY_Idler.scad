@@ -68,7 +68,7 @@ module xyIdlerOld() {
     }
 }
 
-module xyIdler() {
+module xyIdler(M5=false) {
     size = xyIdlerSize();
     sizeY1 = (coreXYPosBL().z - coreXYSeparation().z) - (eZ - eSize - size.y);
     washerClearance = 0.25; // to make assembly easier
@@ -116,20 +116,23 @@ module xyIdler() {
                 }
             translate([eSize/2, 0, 0]) {
                 translate([0, lowerBoltOffset, 0])
-                    boltHoleM4(size.z, horizontal=true, rotate=-90);
+                    boltHole(M5 ? M5_clearance_radius : M4_clearance_radius, size.z, horizontal=true, rotate=-90);
                 translate([0, size.y - upperBoltOffset, armSize.z])
                     vflip()
                         rotate(-90)
-                            boltHoleM4CounterboreButtonhead(armSize.z, boreDepth=armSize.z - 5, horizontal=true);
+                            if (M5)
+                                boltHoleM5CounterboreButtonhead(armSize.z, boreDepth=armSize.z - 5, horizontal=true);
+                            else
+                                boltHoleM4CounterboreButtonhead(armSize.z, boreDepth=armSize.z - 5, horizontal=true);
                 translate([0, size.y - sizeY2, axisOffset])
                     rotate([-90, -90, 0])
                         boltHoleM3Tap(sizeY2/2, horizontal=true, chamfer_both_ends=false);
                 translate([0, size.y, axisOffset])
                     rotate([90, 90, 0])
-                        boltHoleM4Tap(sizeY2/2, horizontal=true, chamfer_both_ends=false);
+                        boltHole(M5 ? M5_tap_radius : M4_tap_radius, sizeY2/2, horizontal=true, chamfer_both_ends=false);
                 translate([0, size.y - tabThickness, armSize.z + tabLength - tabBoltOffset])
                     rotate([-90, -90, 0])
-                        boltHoleM4(tabThickness, horizontal=true);
+                        boltHole(M5 ? M5_clearance_radius : M4_clearance_radius, tabThickness, horizontal=true);
             }
         }
     }
@@ -242,12 +245,28 @@ module XY_Idler_Left_stl() {
                 xyIdler();
 }
 
+module XY_Idler_Left_M5_stl() {
+    // rotate for printing, so that base filament pattern aligns with main diagonal
+    stl("XY_Idler_Left_M5")
+        color(pp1_colour)
+            rotate([90, -90, 0])
+                xyIdler(M5=true);
+}
+
 module XY_Idler_Right_stl() {
     stl("XY_Idler_Right")
         color(pp1_colour)
             rotate([0, 90, 0])
                 mirror([1, 0, 0])
                     xyIdler();
+}
+
+module XY_Idler_Right_M5_stl() {
+    stl("XY_Idler_Right_M5")
+        color(pp1_colour)
+            rotate([0, 90, 0])
+                mirror([1, 0, 0])
+                    xyIdler(M5=true);
 }
 
 //!1. Bolt the pulley stack into the **XY_Idler_Left**. Note that there are 4 washers between the two pulleys and one
@@ -262,8 +281,10 @@ assembly("XY_Idler_Left", big=true, ngb=true) {
 
     translate([eSize, 0, 0]) {
         rotate([0, 90, 90])
-            stl_colour(pp1_colour)
+            stl_colour(pp1_colour) {
                 XY_Idler_Left_stl();
+                //hidden() XY_Idler_Left_M5_stl();
+            }
         rotate([90, 0, 180])
             XY_Idler_hardware(left=true);
     }
@@ -281,8 +302,10 @@ assembly("XY_Idler_Right", big=true, ngb=true) {
 
     translate([eX + eSize, 0, 0])
         rotate([90, 0, 180]) {
-            stl_colour(pp1_colour)
+            stl_colour(pp1_colour) {
                 XY_Idler_Right_stl();
+                //hidden() XY_Idler_Right_M5_stl();
+            }
             translate_z(eSize)
                 hflip()
                     XY_Idler_hardware(left=false);

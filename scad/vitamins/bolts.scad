@@ -5,7 +5,7 @@ include <NopSCADlib/utils/hanging_hole.scad>
 
 // bolt holes
 
-module boltHole(diameter, length, horizontal=false, rotate=0, chamfer=0, chamfer_both_ends=true, cnc=false, twist=0) {
+module boltHole(diameter, length, horizontal=false, rotate=0, chamfer=0.5, chamfer_both_ends=true, cnc=false, twist=0) {
     function boltHoleTwist(radius, twist) = $preview ? 0 : is_undef(twist) ? (radius > M3_tap_radius ? 0 : 4) : twist;
 
     translate_z(-eps)
@@ -134,6 +134,14 @@ module boltHoleM5Tap(length, horizontal=false, rotate=0, chamfer=0.5, chamfer_bo
 
 module boltPolyholeM5Countersunk(length, sink=0) {
     screw_polysink(M5_cs_cap_screw, 2*length + 2*eps, sink=sink);
+}
+
+module boltHoleM5CounterboreButtonhead(length, boreDepth=undef, boltHeadTolerance=0.4, horizontal=false, chamfer=0.5, cnc=false, twist=0) {
+    boltHoleCounterbore(M5_dome_screw, length=length, boreDepth=boreDepth, boltHeadTolerance=boltHeadTolerance, horizontal=horizontal, chamfer=0.5, cnc=cnc, twist=twist);
+}
+
+module boltHoleM5HangingCounterboreButtonhead(length, boreDepth=undef, boltHeadTolerance=0.4) {
+    boltHoleHangingCounterbore(M5_dome_screw, length=length, boreDepth=boreDepth, boltHeadTolerance=boltHeadTolerance);
 }
 
 
