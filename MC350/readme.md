@@ -69,19 +69,18 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|------:|:---|
 |      |      |      |      |      |      |      |      |       | **Vitamins** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Aluminium sheet 390mm x 390mm x 3mm |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x nanmm |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x nanmm |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1460mm |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1460mm |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  BigTreeTech SKR E3 Turbo |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech TFT35 E3 v3.0 |
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   2  |    4  |  Bolt M3 buttonhead x  8mm |
-|   .  |   .  |   2  |   5  |   .  |   .  |   .  |   .  |    7  |  Bolt M3 buttonhead x 10mm |
+|   .  |   .  |   .  |   5  |   .  |   .  |   .  |   .  |    5  |  Bolt M3 buttonhead x 10mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   8  |   16  |  Bolt M3 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 16mm |
 |   .  |   .  |   .  |   5  |   .  |   .  |   .  |   4  |    9  |  Bolt M3 caphead x  6mm |
-|   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M3 caphead x  8mm |
-|   .  |   .  |  28  |   .  |   .  |   .  |   .  |   .  |   28  |  Bolt M3 caphead x 10mm |
-|   .  |   .  |   6  |   .  |   .  |   .  |   .  |   .  |    6  |  Bolt M3 caphead x 16mm |
+|   .  |   .  |  32  |   .  |   .  |   4  |   .  |   .  |   36  |  Bolt M3 caphead x 10mm |
+|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 16mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   4  |    6  |  Bolt M3 caphead x 25mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 30mm |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 40mm |
@@ -90,21 +89,22 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   2  |    4  |  Bolt M3 countersunk x 12mm |
 |   2  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |   10  |  Bolt M3 countersunk x 25mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M3 countersunk x 30mm |
-|   .  |   .  |   .  |   .  |   9  |   .  |   .  |  24  |   33  |  Bolt M4 buttonhead x  8mm |
-|   .  |   .  |  14  |   .  |   .  |   8  |   2  |  14  |   38  |  Bolt M4 buttonhead x 10mm |
+|   .  |   .  |   .  |   .  |  11  |   .  |   .  |  24  |   35  |  Bolt M4 buttonhead x  8mm |
+|   .  |   .  |  16  |   .  |   .  |   8  |   2  |  14  |   40  |  Bolt M4 buttonhead x 10mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   2  |   .  |    4  |  Bolt M4 buttonhead x 12mm |
 |   .  |   .  |   .  |  18  |   .  |   .  |   .  |   .  |   18  |  Bolt M4 countersunk x  8mm |
 |   .  |   .  |  20  |   .  |   .  |   .  |   8  |   .  |   28  |  Bolt M4 countersunk x 10mm |
 |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M4 countersunk x 45mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M5 buttonhead x 10mm |
-|   .  |   .  |  10  |   .  |  12  |   8  |   8  |  12  |   50  |  Bolt M5 buttonhead x 12mm |
+|   .  |   .  |  14  |   .  |  12  |   8  |   8  |  12  |   54  |  Bolt M5 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   .  |   8  |   .  |   .  |    8  |  Bolt M5 countersunk x 12mm |
 |   .  |   .  |   2  |   .  |   1  |   .  |   .  |   1  |    4  |  Cork damper NEMA 17 |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  Extrusion E2020 x 275mm |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Extrusion E2020 x 350mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   2  |   .  |    4  |  Extrusion E2020 x 400mm |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  Extrusion E2040 x 150mm |
-|   .  |   .  |   3  |   .  |   3  |   .  |   2  |   1  |    9  |  Extrusion E2040 x 350mm |
+|   .  |   .  |   1  |   .  |   3  |   .  |   2  |   1  |    7  |  Extrusion E2040 x 350mm |
+|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Extrusion E2060 x 350mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Extrusion E2080 x 350mm |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Fan 30mm x 10mm |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  Filament sensor |
@@ -119,8 +119,8 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   3  |   .  |   .  |   .  |   .  |   .  |    3  |  Linear rail carriage MGN12H |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Linear rod 12mm x 300mm |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  MK10 Dual Pulley Extruder |
-|   .  |   .  |  18  |   .  |   .  |   2  |   .  |   4  |   24  |  Nut M3 hammer |
-|   .  |   .  |  12  |  14  |   9  |   .  |   .  |  38  |   73  |  Nut M4 hammer |
+|   .  |   .  |  16  |   .  |   .  |   2  |   .  |   4  |   22  |  Nut M3 hammer |
+|   .  |   .  |  10  |  14  |  11  |   .  |   .  |  38  |   73  |  Nut M4 hammer |
 |   .  |   .  |  20  |   .  |   .  |   8  |  12  |   .  |   40  |  Nut M4 sliding T |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE Bowden tube, 600 mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Pillar hex nylon F/F M3x14 |
@@ -142,7 +142,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   2  |  26  |   .  |   .  |   .  |   .  |   .  |   28  |  Washer  M3 |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer  M4 |
 |   3  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    3  |  Ziptie 2.5mm x 100mm min length |
-|  12  |   4  | 218  |  50  |  49  |  62  |  40  | 127  |  562  | Total vitamins count |
+|  12  |   4  | 218  |  50  |  53  |  62  |  40  | 127  |  566  | Total vitamins count |
 |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_Bracket_TFT35_E3.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_TFT35_E3.stl |
@@ -156,6 +156,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Hotend_Clamp.stl |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | IEC_Housing.stl |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | IEC_Housing_Mount.stl |
+|   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | IEC_Housing_Mount_300.stl |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | PCB_Mount.stl |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | PSU_Left_Mount.stl |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | PSU_Right_Mount.stl |
@@ -164,8 +165,10 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder_Bracket.stl |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  | Top_Corner_Piece.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Wiring_Guide.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Wiring_Guide.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Wiring_Guide_Clamp.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Wiring_Guide_Socket.stl |
+|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  | XY_Idler_Channel_Nut.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Left.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Right.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Left.stl |
@@ -185,7 +188,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Z_Carriage_Right.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |    2  | Z_RodMountGuide_100mm.stl |
-|   3  |   3  |  16  |   3  |   3  |   5  |   3  |  16  |   52  | Total 3D printed parts count |
+|   3  |   3  |  18  |   3  |   4  |   5  |   3  |  17  |   56  | Total 3D printed parts count |
 |      |      |      |      |      |      |      |      |       | **CNC routed parts** |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | Back_Panel.dxf |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | BaseAL.dxf |
@@ -327,7 +330,7 @@ and should not be omitted.
 |---:|:----------|
 |1| Bolt M3 caphead x 30mm|
 |4| Bolt M4 buttonhead x 10mm|
-|3| Nut M4 hammer|
+|1| Nut M4 hammer|
 |2| Pulley GT2 idler 16 teeth|
 |6| Washer  M3|
 |1| Washer  M4|
@@ -335,9 +338,9 @@ and should not be omitted.
 
 ### 3D Printed parts
 
-| 1 x XY_Idler_Right.stl |
-|---|
-| ![XY_Idler_Right.stl](stls/XY_Idler_Right.png) 
+| 1 x XY_Idler_Channel_Nut.stl | 1 x XY_Idler_Right.stl |
+|---|---|
+| ![XY_Idler_Channel_Nut.stl](stls/XY_Idler_Channel_Nut.png) | ![XY_Idler_Right.stl](stls/XY_Idler_Right.png) 
 
 
 
@@ -416,7 +419,7 @@ and should not be omitted.
 |---:|:----------|
 |1| Bolt M3 caphead x 30mm|
 |4| Bolt M4 buttonhead x 10mm|
-|3| Nut M4 hammer|
+|1| Nut M4 hammer|
 |2| Pulley GT2 idler 16 teeth|
 |6| Washer  M3|
 |1| Washer  M4|
@@ -424,9 +427,9 @@ and should not be omitted.
 
 ### 3D Printed parts
 
-| 1 x XY_Idler_Left.stl |
-|---|
-| ![XY_Idler_Left.stl](stls/XY_Idler_Left.png) 
+| 1 x XY_Idler_Channel_Nut.stl | 1 x XY_Idler_Left.stl |
+|---|---|
+| ![XY_Idler_Channel_Nut.stl](stls/XY_Idler_Channel_Nut.png) | ![XY_Idler_Left.stl](stls/XY_Idler_Left.png) 
 
 
 
@@ -455,7 +458,8 @@ to turn freely again.
 
 |Qty|Description|
 |---:|:----------|
-|3| Bolt M3 caphead x 16mm|
+|2| Bolt M3 caphead x 10mm|
+|1| Bolt M3 caphead x 16mm|
 |1| Bolt M3 caphead x 25mm|
 |1| Pulley GT2 idler 16 teeth|
 |1| Pulley GT2 idler smooth 9.63mm|
@@ -492,8 +496,8 @@ to turn freely again.
 |Qty|Description|
 |---:|:----------|
 |12| Bolt M3 caphead x 10mm|
-|4| Bolt M5 buttonhead x 12mm|
-|1| Extrusion E2040 x 350mm|
+|6| Bolt M5 buttonhead x 12mm|
+|1| Extrusion E2060 x 350mm|
 |1| Linear rail MGN12 x 350mm|
 |1| Linear rail carriage MGN12H|
 |8| Nut M3 hammer|
@@ -530,7 +534,8 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 
 |Qty|Description|
 |---:|:----------|
-|3| Bolt M3 caphead x 16mm|
+|2| Bolt M3 caphead x 10mm|
+|1| Bolt M3 caphead x 16mm|
 |1| Bolt M3 caphead x 25mm|
 |1| Pulley GT2 idler 16 teeth|
 |1| Pulley GT2 idler smooth 9.63mm|
@@ -567,8 +572,8 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 |Qty|Description|
 |---:|:----------|
 |12| Bolt M3 caphead x 10mm|
-|4| Bolt M5 buttonhead x 12mm|
-|1| Extrusion E2040 x 350mm|
+|6| Bolt M5 buttonhead x 12mm|
+|1| Extrusion E2060 x 350mm|
 |1| Linear rail MGN12 x 350mm|
 |1| Linear rail carriage MGN12H|
 |8| Nut M3 hammer|
@@ -606,21 +611,21 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 
 |Qty|Description|
 |---:|:----------|
-|2| Bolt M3 buttonhead x 10mm|
+|2| Bolt M4 buttonhead x 10mm|
 |20| Bolt M4 countersunk x 10mm|
 |4| Bolt M5 buttonhead x 10mm|
 |2| Bolt M5 buttonhead x 12mm|
 |1| Extrusion E2020 x 350mm|
 |1| Extrusion E2040 x 350mm|
-|2| Nut M3 hammer|
+|2| Nut M4 hammer|
 |20| Nut M4 sliding T|
 
 
 ### 3D Printed parts
 
-| 4 x Top_Corner_Piece.stl | 1 x Wiring_Guide.stl |
+| 4 x Top_Corner_Piece.stl | 1 x Wiring_Guide_Socket.stl |
 |---|---|
-| ![Top_Corner_Piece.stl](stls/Top_Corner_Piece.png) | ![Wiring_Guide.stl](stls/Wiring_Guide.png) 
+| ![Top_Corner_Piece.stl](stls/Top_Corner_Piece.png) | ![Wiring_Guide_Socket.stl](stls/Wiring_Guide_Socket.png) 
 
 
 
@@ -701,8 +706,8 @@ extreme and tighten the bolts on that end of the Y-rail. Finally tighten the rem
 
 |Qty|Description|
 |---:|:----------|
-|1| Belt GT2 x 6mm x nanmm|
-|1| Belt GT2 x 6mm x nanmm|
+|1| Belt GT2 x 6mm x 1460mm|
+|1| Belt GT2 x 6mm x 1460mm|
 |2| Bolt M3 countersunk x 10mm|
 |2| Bolt M3 countersunk x 12mm|
 
@@ -845,17 +850,17 @@ thermally isolates the motor from the **Extruder_Bracket* and should not be omit
 
 |Qty|Description|
 |---:|:----------|
-|5| Bolt M4 buttonhead x  8mm|
+|7| Bolt M4 buttonhead x  8mm|
 |2| Bolt M4 buttonhead x 12mm|
 |1| IEC320 C14 switched fused inlet module|
-|5| Nut M4 hammer|
+|7| Nut M4 hammer|
 
 
 ### 3D Printed parts
 
-| 1 x IEC_Housing.stl | 1 x IEC_Housing_Mount.stl |
-|---|---|
-| ![IEC_Housing.stl](stls/IEC_Housing.png) | ![IEC_Housing_Mount.stl](stls/IEC_Housing_Mount.png) 
+| 1 x IEC_Housing.stl | 1 x IEC_Housing_Mount.stl | 1 x IEC_Housing_Mount_300.stl |
+|---|---|---|
+| ![IEC_Housing.stl](stls/IEC_Housing.png) | ![IEC_Housing_Mount.stl](stls/IEC_Housing_Mount.png) | ![IEC_Housing_Mount_300.stl](stls/IEC_Housing_Mount_300.png) 
 
 
 
@@ -1116,7 +1121,7 @@ as a template to drill the holes in the base plate.
 
 |Qty|Description|
 |---:|:----------|
-|4| Bolt M3 caphead x  8mm|
+|4| Bolt M3 caphead x 10mm|
 |4| Bolt M4 buttonhead x 10mm|
 |1| Leadscrew nut 8 x 2|
 |4| Nut M4 sliding T|
@@ -1468,9 +1473,9 @@ the cables in place.
 
 ### 3D Printed parts
 
-| 1 x Wiring_Guide_Clamp.stl |
-|---|
-| ![Wiring_Guide_Clamp.stl](stls/Wiring_Guide_Clamp.png) 
+| 1 x Wiring_Guide.stl | 1 x Wiring_Guide_Clamp.stl |
+|---|---|
+| ![Wiring_Guide.stl](stls/Wiring_Guide.png) | ![Wiring_Guide_Clamp.stl](stls/Wiring_Guide_Clamp.png) 
 
 
 
