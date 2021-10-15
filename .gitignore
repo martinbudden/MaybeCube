@@ -39,6 +39,8 @@ tests/png/*_diff.png
 
 pictures/*.jpg
 
+M5/
+
 nuts/
 
 jigs/assemblies/*

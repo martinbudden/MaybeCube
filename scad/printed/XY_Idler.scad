@@ -281,10 +281,8 @@ assembly("XY_Idler_Left", big=true, ngb=true) {
 
     translate([eSize, 0, 0]) {
         rotate([0, 90, 90])
-            stl_colour(pp1_colour) {
+            stl_colour(pp1_colour)
                 XY_Idler_Left_stl();
-                //hidden() XY_Idler_Left_M5_stl();
-            }
         rotate([90, 0, 180])
             XY_Idler_hardware(left=true);
     }
@@ -302,10 +300,8 @@ assembly("XY_Idler_Right", big=true, ngb=true) {
 
     translate([eX + eSize, 0, 0])
         rotate([90, 0, 180]) {
-            stl_colour(pp1_colour) {
+            stl_colour(pp1_colour)
                 XY_Idler_Right_stl();
-                //hidden() XY_Idler_Right_M5_stl();
-            }
             translate_z(eSize)
                 hflip()
                     XY_Idler_hardware(left=false);
