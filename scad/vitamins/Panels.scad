@@ -6,7 +6,6 @@ include <NopSCADlib/vitamins/stepper_motors.scad>
 use <../printed/extruderBracket.scad>
 use <../printed/extrusionChannels.scad>
 use <../printed/IEC_Housing.scad>
-use <../printed/XY_MotorMount.scad>
 
 include <../vitamins/bolts.scad>
 use <../vitamins/filament_sensor.scad>
@@ -15,13 +14,10 @@ use <../vitamins/nuts.scad>
 include <../Parameters_Main.scad>
 
 
-PC2 = ["PC2", "Sheet polycarbonate", 2, [1,   1,   1,   0.25], false];
 PC3 = ["PC3", "Sheet polycarbonate", 3, [1,   1,   1,   0.25], false];
 accessHoleRadius = 2.5;
 
 function sidePanelSize(left) = [eY + 2*eSize - (left ? 0 : iecHousingSize().x + eSize), eZ, 3];
-function partitionSize() = [eX, eZ, 2];
-function partitionOffsetY() = xyMotorMountSize().y;
 
 
 module sidePanelAccessHolePositions(size, left) {
@@ -151,7 +147,7 @@ module Right_Side_Panel_dxf() {
                     circle(r=accessHoleRadius);
                 sidePanelBoltHolePositions(size, left=false, spoolHolder=true)
                     circle(r=M4_clearance_radius);
-                translate([-size.x/2, -size.y/2]) {
+                /*translate([-size.x/2, -size.y/2]) {
                     translate([extruderPosition().y, extruderPosition().z]) {
                         extruderNEMAType = NEMA17;
                         NEMA_screw_positions(extruderNEMAType)
@@ -168,7 +164,7 @@ module Right_Side_Panel_dxf() {
                             iec_screw_positions(iecType())
                                 poly_circle(r=M4_clearance_radius);
                     }
-                }
+                }*/
             }
 }
 
@@ -299,52 +295,8 @@ module Right_Side_Panel_assembly()
 assembly("Right_Side_Panel", ngb=true) {
     size = sidePanelSize(left=false);
 
-    Extruder_Bracket_hardware(is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness);
-    translate([eX + 2*eSize, eY + eSize, 2*eSize])
-        iecHousing();
+    //translate([eX + 2*eSize, eY + eSize, 2*eSize])
+    //    iecHousing();
 
     rightSidePanelPC();
-}
-
-module Partition_dxf() {
-    size = partitionSize();
-    fillet = 1;
-    sheet = PC2;
-
-    dxf("Partition")
-        color(sheet_colour(sheet))
-            difference() {
-                sheet_2D(sheet, size.x, size.y, fillet);
-                partitionCutouts(cncSides=0);
-            }
-}
-
-module partitionCutouts(cncSides) {
-    size = partitionSize();
-
-    echo(xySize=xyMotorMountSize());
-    leftCutoutSize = [eSize, xyMotorMountSize(left=true).z];
-    rightCutoutSize = [eSize, xyMotorMountSize(left=false).z];
-    translate([-size.x/2, -size.y/2]) {
-        translate([0, size.y - leftCutoutSize.y])
-            square(leftCutoutSize);
-        translate([size.x - eSize, size.y - rightCutoutSize.y])
-            square(rightCutoutSize);
-    }
-}
-
-module partitionPC() {
-    size = partitionSize();
-
-    translate([eSize, eY + 2*eSize - partitionOffsetY() - size.z, 0])
-        rotate([90, 0, 0])
-            translate([size.x/2, size.y/2, -size.z/2])
-                render_2D_sheet(PC2, w=size.x, d=size.y)
-                    Partition_dxf();
-}
-
-module Partition_assembly()
-assembly("Partition", ngb=true) {
-
-    partitionPC();
 }

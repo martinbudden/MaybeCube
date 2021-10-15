@@ -25,7 +25,6 @@ accessHoleRadius = 2.5;
 psuVertical = eX == 300;
 
 function backPanelSize() = [eX + 2*eSize, eZ, 3];
-function partitionSize() = [eX + 2*eSize, eZ-51.5, 3];
 //function pcbType() = BTT_SKR_V1_4_TURBO;
 function pcbType() = eX == 250 ? BTT_SKR_MINI_E3_V2_0 : BTT_SKR_E3_TURBO;
 //function pcbType() = BTT_SKR_MINI_E3_V2_0;

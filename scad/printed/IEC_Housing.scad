@@ -12,10 +12,12 @@ use <../printed/XY_MotorMount.scad>
 include <../vitamins/bolts.scad>
 use <../vitamins/iec320c14.scad>
 use <../vitamins/nuts.scad>
-use <../vitamins/Panels.scad>
 
 include <../Parameters_Main.scad>
 
+function partitionOffsetY() = xyMotorMountSize().y;
+function partitionSize() = [eX, eZ, 2];
+PC2 = ["PC2", "Sheet polycarbonate", 2, [1,   1,   1,   0.25], false];
 
 function iecHousingSize() = [70, 50, 42 + 3];
 //function iecHousingMountSize() = [iecHousingSize().x + eSize, iecHousingSize().y + 2*eSize, 3];
@@ -23,8 +25,6 @@ function iecHousingSize() = [70, 50, 42 + 3];
 function iecHousingMountSize() = [iecHousingSize().x + eSize, iecHousingSize().y + 2*eSize, 3];
 function iecCutoutSize() = [50, 27.5];
 function iecType() = iec320c14FusedSwitchedType();
-
-partitionOffsetY = xyMotorMountSize().y;
 
 
 module IEC_Housing_stl() {
@@ -151,17 +151,17 @@ module iceHousingMount(eX) {
         difference() {
             union() {
                 guideWidth = 6;
+                partitionTolerance = 0.5;
                 translate([0, -2*eSize, 0])
                     rounded_cube_xy(size, fillet);
-                size2 = [size.x - partitionOffsetY + guideWidth/2 - partitionSize().z/2, spoolHeight(eX) - eSize, size.z];
+                size2 = [size.x - partitionOffsetY() + guideWidth/2 - partitionSize().z/2, spoolHeight(eX) - eSize, size.z];
                 rounded_cube_xy(size2, fillet);
                 translate([size2.x, iecHousingSize.y, 0])
                     fillet(5, size.z);
                 size3 = [guideWidth, size2.y - iecHousingSize.y - eSize, eSize];
-                panelThickness = 2.5;
-                translate([size.x - partitionOffsetY - partitionSize().z/2 - size3.x/2, iecHousingSize.y, -size3.z]) {
+                translate([size.x - partitionOffsetY() - partitionSize().z/2 - size3.x/2, iecHousingSize.y, -size3.z]) {
                     rounded_cube_xy(size3, 1);
-                    size4 = [(size3.x - panelThickness)/2, size3.y, size3.z + 2];
+                    size4 = [(size3.x - partitionSize().z - partitionTolerance)/2, size3.y, size3.z + 2];
                     translate_z(size3.z - size4.z)
                         rounded_cube_xy(size4, 0.5);
                     translate([size3.x - size4.x, 0, size3.z - size4.z])
@@ -262,3 +262,46 @@ module IEC320_C14_CutoutWithBoltHoles(boltHoleSpacing) {
     translate([0, boltHoleSpacing/2, 0]) circle(r=M4_tap_radius);
 }
 */
+
+module Partition_dxf() {
+    size = partitionSize();
+    fillet = 1;
+    sheet = PC2;
+
+    dxf("Partition")
+        color(sheet_colour(sheet))
+            difference() {
+                sheet_2D(sheet, size.x, size.y, fillet);
+                partitionCutouts(cncSides=0);
+            }
+}
+
+module partitionCutouts(cncSides) {
+    size = partitionSize();
+
+    echo(xySize=xyMotorMountSize());
+    leftCutoutSize = [eSize, xyMotorMountSize(left=true).z];
+    rightCutoutSize = [eSize, xyMotorMountSize(left=false).z];
+    translate([-size.x/2, -size.y/2]) {
+        translate([0, size.y - leftCutoutSize.y])
+            square(leftCutoutSize);
+        translate([size.x - eSize, size.y - rightCutoutSize.y])
+            square(rightCutoutSize);
+    }
+}
+
+module partitionPC() {
+    size = partitionSize();
+
+    translate([eSize, eY + 2*eSize - partitionOffsetY() - size.z, 0])
+        rotate([90, 0, 0])
+            translate([size.x/2, size.y/2, -size.z/2])
+                render_2D_sheet(PC2, w=size.x, d=size.y)
+                    Partition_dxf();
+}
+
+module Partition_assembly()
+assembly("Partition", ngb=true) {
+
+    partitionPC();
+}
