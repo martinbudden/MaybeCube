@@ -41,12 +41,12 @@ assembly("Jigs") {
             Extrusion_Drill_Jig_E20_to_E80_stl();
         Extrusion_Drill_Jig_E20_to_E80_hardware();
     }
-    translate([120 - 85, 50, 0]) {
+    translate([120 - 90, 50, 0]) {
         stl_colour(pp2_colour)
             Extrusion_Drill_Jig_E40_Pilot_stl();
         Extrusion_Drill_Jig_E40_Pilot_hardware();
     }
-    translate([260 - 85, 50, 0]) {
+    translate([260 - 90, 50, 0]) {
         stl_colour(pp2_colour)
             Extrusion_Drill_Jig_E40_stl();
         Extrusion_Drill_Jig_E40_hardware();
