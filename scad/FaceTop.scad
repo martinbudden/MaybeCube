@@ -148,13 +148,14 @@ module faceTopBack() {
                             jointBoltHole();
             }
         }
-        explode([0, -40, 0], true)
-            wiringGuidePosition(offset=0)
-                vflip() {
-                    stl_colour(pp3_colour)
-                        Wiring_Guide_Socket_stl();
-                    Wiring_Guide_Socket_hardware();
-                }
+        if (_variant != "toolchanger")
+            explode([0, -40, 0], true)
+                wiringGuidePosition(offset=0)
+                    vflip() {
+                        stl_colour(pp3_colour)
+                            Wiring_Guide_Socket_stl();
+                        Wiring_Guide_Socket_hardware();
+                    }
     }
 }
 
