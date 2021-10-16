@@ -1,12 +1,15 @@
 //!# Jigs
-//
+//!
+//!Jigs to aid with the assembly of the MaybeCube.
+
+
 include <NopSCADlib/utils/core/core.scad>
 
 use <jigs/E20ThreadTappingJig.scad>
 use <jigs/ExtrusionDrillJig.scad>
 use <jigs/PanelJig.scad>
-use <jigs/PCB_Hole_Jig.scad>
-use <jigs/PSU_Hole_Jig.scad>
+//use <jigs/PCB_Hole_Jig.scad>
+//use <jigs/PSU_Hole_Jig.scad>
 use <jigs/RailCenteringJig.scad>
 
 
@@ -53,7 +56,10 @@ assembly("Jigs") {
     }
     translate([-115, 0, 0])
         stl_colour(jigColor)
-            Rail_Centering_Jig_stl();
+            Rail_Centering_Jig_MGN12_2040_stl();
+    translate([-115, 50, 0])
+        stl_colour(jigColor)
+            Rail_Centering_Jig_MGN12_2060_stl();
     translate([-40, -60, 0])
         stl_colour(jigColor)
             Panel_Jig_stl();
