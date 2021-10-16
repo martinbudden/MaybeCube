@@ -4,10 +4,14 @@ include <NopSCADlib/utils/core/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 
 use <NopSCADlib/vitamins/iec.scad>
+use <NopSCADlib/vitamins/sheet.scad>
+//include <NopSCADlib/vitamins/stepper_motors.scad>
 
 use <extruderBracket.scad> // for spoolHeight()
 
 use <../printed/XY_MotorMount.scad>
+
+//include <../utils/motorTypes.scad>
 
 include <../vitamins/bolts.scad>
 use <../vitamins/iec320c14.scad>
@@ -16,6 +20,7 @@ use <../vitamins/nuts.scad>
 include <../Parameters_Main.scad>
 
 function partitionOffsetY() = xyMotorMountSize().y;
+//function partitionOffsetY() = eX <=300 ? xyMotorMountSize().y : floor((eY + 2*eSize - extruderPosition().y + motorWidth(motorType(_xyMotorDescriptor))/2 + 4));
 function partitionSize() = [eX, eZ, 2];
 PC2 = ["PC2", "Sheet polycarbonate", 2, [1,   1,   1,   0.25], false];
 
@@ -283,6 +288,12 @@ module partitionCutouts(cncSides) {
     leftCutoutSize = [eSize, xyMotorMountSize(left=true).z];
     rightCutoutSize = [eSize, xyMotorMountSize(left=false).z];
     translate([-size.x/2, -size.y/2]) {
+        if (!is_undef(_use2060ForTop) && _use2060ForTop)
+            translate([0, size.y - eSize]) {
+                square([2*eSize, eSize]);
+                translate([size.x - 2*eSize, 0])
+                    square([2*eSize, eSize]);
+            }
         translate([0, size.y - leftCutoutSize.y])
             square(leftCutoutSize);
         translate([size.x - eSize, size.y - rightCutoutSize.y])

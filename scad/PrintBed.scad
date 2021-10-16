@@ -32,7 +32,7 @@ SK_type = _zRodDiameter == 8 ? SK8 : _zRodDiameter == 10 ? SK10 : SK12;
 skHoleOffsetFromTop = sk_size(SK_type).y - sk_hole_offset(SK_type);
 
 heatedBedOffset = !is_undef(_printBed4PointSupport) && _printBed4PointSupport
-    ? [0, 20, _printBedExtrusionSize/2 + springLength - 8]
+    ? [0, 40, _printBedExtrusionSize/2 + springLength - 8]
     : [0, skHoleOffsetFromTop + 8, _printBedExtrusionSize/2 + 5.5];
 
 
@@ -97,7 +97,7 @@ printBedFrameCrossPiece2Offset = -2*_zRodOffsetX - printBedFrameCrossPieceOffset
 
 function printBedSize() = [
     _heatedBedSize.x,
-    !is_undef(_useDualZRods) && _useDualZRods ? eY - 3 : eY <= 250 ? 225 : eY <= 300 ? 260 : eY <= 350 ? 275 : 375,
+    !is_undef(_useDualZRods) && _useDualZRods ? eY - 3 : eY <= 250 ? 225 : eY <= 300 ? 260 : eY <= 350 ? 300 : 375,
     _printBedExtrusionSize + _heatedBedSize.z
 ];
 
