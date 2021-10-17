@@ -1,4 +1,4 @@
-//!# Parts redone with M5 bolt holes
+//!# MaybeCube parts redone with M5 bolt holes
 //
 include <NopSCADlib/utils/core/core.scad>
 
