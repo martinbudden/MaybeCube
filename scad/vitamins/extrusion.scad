@@ -161,6 +161,13 @@ module extrusionOY(length, eSize=20) {
             extrusionOX(length, eSize);
 }
 
+module extrusionOYEndBoltPositions(length, offset=0) {
+    translate([0, length, 0])
+        rotate([0, 0, -90])
+            extrusionOXEndBoltPositions(length, offset)
+                children();
+}
+
 module extrusionOY2040H(length) {
     translate([0, length, 0])
         rotate([0, 0, -90])
