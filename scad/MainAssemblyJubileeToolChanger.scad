@@ -73,18 +73,20 @@ module toolChanger(t=2) {
         }
 }
 
-module JubileeToolchanger_assembly()
-assembly("JubileeToolchanger", big=true) {
+module JubileeToolChanger_assembly()
+assembly("JubileeToolChanger", big=true) {
     explode(100, true)
         toolChanger(t);
     not_on_bom()
-        Face_Top_Stage_2_assembly();
-    not_on_bom()
-        CoreXYBelts([eX + 2*eSize - 10 - carriagePosition.x, carriagePosition.y]);
+        no_explode()
+            Face_Top_Stage_2_assembly();
+    if (!exploded())
+        not_on_bom()
+            CoreXYBelts([eX + 2*eSize - 10 - carriagePosition.x, carriagePosition.y]);
 }
 
 
 if ($preview)
     translate(-[eSize + eX/2, carriagePosition.y])
         translate_z(-(eZ - yRailOffset().x - carriage_clearance(xCarriageType(_xCarriageDescriptor))))
-            JubileeToolchanger_assembly();
+            JubileeToolChanger_assembly();

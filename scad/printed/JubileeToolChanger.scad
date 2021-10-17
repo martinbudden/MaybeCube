@@ -236,7 +236,7 @@ module toolDockHardware(separation) {
 
 module tool_dock_47mm_stl() {
     stl("tool_dock_47mm")
-        color(pp1_colour)
+        color(pp4_colour)
             toolDock(47);
 }
 
@@ -244,7 +244,7 @@ module tool_dock_47mm_assembly()
 assembly("tool_dock_47mm") {
     translate_z(47.85 - toolChangerAxelOffsetZ)
         rotate([-90, 0, 180]) {
-            stl_colour(pp1_colour)
+            stl_colour(pp4_colour)
                 tool_dock_47mm_stl();
             toolDockHardware(47);
         }
@@ -252,7 +252,7 @@ assembly("tool_dock_47mm") {
 
 module tool_dock_55mm_stl() {
     stl("tool_dock_55mm")
-        color(pp1_colour)
+        color(pp4_colour)
             toolDock(55);
 }
 
@@ -260,7 +260,7 @@ module tool_dock_55mm_assembly()
 assembly("tool_dock_55mm") {
     translate_z(47.85 - toolChangerAxelOffsetZ)
         rotate([-90, 0, 180]) {
-            stl_colour(pp1_colour)
+            stl_colour(pp4_colour)
                 tool_dock_55mm_stl();
             toolDockHardware(55);
         }
