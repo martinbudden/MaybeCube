@@ -37,11 +37,10 @@ assembly("Right_Side", big=true) {
 }
 
 module faceRightUpperZRodMountsExtrusion() {
-    translate([eX + eSize, eSize, _upperZRodMountsExtrusionOffsetZ]) {
-        translate_z(-eSize)
-            extrusionOY2040VEndBolts(eY);
+    translate([eX + eSize, eSize, _upperZRodMountsExtrusionOffsetZ - eSize]) {
+        extrusionOY2040VEndBolts(eY);
         if (useDualZRods())
-            translate([eSize, 0, 0])
+            translate([eSize, 0, eSize])
                 mirror([1, 0, 0])
                     zMountsUpper();
     }
