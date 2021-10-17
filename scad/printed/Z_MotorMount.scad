@@ -158,7 +158,7 @@ module zMotorLeadscrew(zMotorType, zLeadScrewLength) {
 }
 
 module Z_Motor_Mount_Motor_hardware(explode=50) {
-    corkDamperThickness = _corkDamperThickness;
+    corkDamperThickness = is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness;
 
     stepper_motor_cable(eX + eY + 150);// z motor
 
