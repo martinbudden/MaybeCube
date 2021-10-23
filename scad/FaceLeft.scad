@@ -3,12 +3,14 @@ include <global_defs.scad>
 include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
-use <utils/FrameBolts.scad>
-use <utils/Z_Rods.scad>
+include <utils/carriageTypes.scad>
+include <utils/FrameBolts.scad>
+include <utils/Z_Rods.scad>
 
 use <vitamins/extrusion.scad>
 
 include <Parameters_Main.scad>
+
 
 //!1. Attach the SK brackets to the upper extrusion, use the **Z_RodMountGuide** to align the left bracket.
 //!2. Tighten the bolts for the left bracket. Leave the bolts to the right bracket loosely tightened for now.
@@ -30,27 +32,31 @@ assembly("Left_Side", big=true) {
         faceLeftMotorUpright();
     explode([0, -70, 0], true)
         faceLeftIdlerUpright();
+    if (!is_undef(_printBedKinematic) && _printBedKinematic == true)
+        zRails();
 }
 
 module faceLeftUpperZRodMountsExtrusion() {
     translate([0, eSize, _upperZRodMountsExtrusionOffsetZ]) {
         translate_z(-eSize)
             extrusionOY2040VEndBolts(eY);
-        zMountsUpper();
+        if (is_undef(_printBedKinematic) || _printBedKinematic == false)
+            zMountsUpper();
     }
 }
 
 module faceLeftLowerExtrusion(zMotorLength) {
     translate([0, eSize, 0]) {
         extrusionOY2040VEndBolts(eY);
-        zMountsLower(zMotorLength);
+        if (is_undef(_printBedKinematic) || _printBedKinematic == false)
+            zMountsLower(zMotorLength);
     }
 }
 
 
 module faceLeftIdlerUpright() {
     difference() {
-        extrusionOZ(eZ, eSize);
+        extrusionOZ(eZ);
         for (z = [eSize/2, 3*eSize/2, eZ-eSize/2, _upperZRodMountsExtrusionOffsetZ + eSize/2, _upperZRodMountsExtrusionOffsetZ - eSize/2])
             translate([eSize/2, 0, z])
                 rotate([-90, 0, 0])
@@ -65,7 +71,7 @@ module faceLeftIdlerUpright() {
 module faceLeftMotorUpright() {
     translate([0, eY + eSize, 0])
         difference() {
-            extrusionOZ(eZ, eSize);
+            extrusionOZ(eZ);
             for (z = [eSize/2, 3*eSize/2, eZ - eSize/2, _upperZRodMountsExtrusionOffsetZ + eSize/2, _upperZRodMountsExtrusionOffsetZ - eSize/2])
                 translate([eSize/2, eSize, z])
                     rotate([90, 0, 0])

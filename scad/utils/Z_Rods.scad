@@ -4,7 +4,10 @@ include <NopSCADlib/vitamins/rod.scad>
 include <NopSCADlib/vitamins/sk_brackets.scad>
 
 use <../printed/E20Cover.scad>
+use <../printed/JubileeKinematicBed.scad>
 use <../printed/Z_MotorMount.scad>
+
+include <../utils/carriageTypes.scad>
 
 include <../vitamins/bolts.scad>
 use <../vitamins/nuts.scad>
@@ -14,8 +17,6 @@ include <../Parameters_Main.scad>
 
 function useDualZRods() = !is_undef(_useDualZRods) && _useDualZRods;
 function useDualZMotors() = !is_undef(_useDualZMotors) && _useDualZMotors;
-
-SK_type = _zRodDiameter == 8 ? SK8 : _zRodDiameter == 10 ? SK10 : SK12;
 
 
 module sk_bracket_with_bolts(type) {
@@ -59,6 +60,7 @@ module kp_pillow_block_with_bolts(type) {
 }
 
 module zMounts() {
+    SK_type = _zRodDiameter == 8 ? SK8 : _zRodDiameter == 10 ? SK10 : SK12;
     translate([eSize, 0, eSize/2]) {
         explode([30, -100, 0])
             rotate([0, 90, 0])
@@ -108,6 +110,7 @@ module zMountsLower(zMotorLength, includeMotor=false) {
                         Z_Motor_Mount_Motor_hardware();
                 }
 
+            SK_type = _zRodDiameter == 8 ? SK8 : _zRodDiameter == 10 ? SK10 : SK12;
             explode([20, -20, 0])
                 translate([eSize, sk_size(SK_type).x/2, 3*eSize/2])
                     rotate([0, 90, 0])
@@ -127,4 +130,48 @@ module zRods(left=true) {
             translate([0, zRodSeparation(), 0])
                 rod(d=_zRodDiameter, l=_zRodLength);
         }
+}
+
+module zRails(left=true) {
+    bedHeight = 50;
+    if (left) {
+        yOffset = 45;
+        for (y = [0, _printBedArmSeparation])
+            translate([0, y + yOffset, 0]) {
+                translate_z(2*eSize)
+                    extrusionOZ(eZ - 150);
+                translate_z(3*eSize/2)
+                    zRail(bedHeight, left=true);
+                translate([0, 10, 0])
+                    Z_Motor_Mount_assembly();
+            }
+        translate([eSize+13, yOffset + eSize/2-13.5, 3*eSize/2 + bedHeight/2 +7.5]) {
+            rotate([90, 0, 90])
+                front_left_bed_coupling_lift_stl();
+            translate([0, _printBedArmSeparation, 0])
+                rotate([90, 0, 90])
+                    front_right_bed_coupling_lift_stl();
+        }
+    } else {
+        translate([eX + eSize, (305+26+59)/2+15, 0]) {
+            translate_z(2*eSize)
+                extrusionOZ(eZ - 150);
+            translate_z(3*eSize/2)
+                zRail(bedHeight, left=false);
+            translate([eSize, 10, 0])
+                rotate(180)
+                    Z_Motor_Mount_assembly();
+            translate([-13, 20 + eSize/2-6.5, 3*eSize/2 + bedHeight/2 +7.5])
+                rotate([90, 0, -90])
+                    back_bed_coupling_lift_stl();
+        }
+    }
+}
+
+module zRail(carriagePosition, zCarriageType=undef, left=true) {
+    zCarriageType = is_undef(zCarriageType) ? carriageType(_zCarriageDescriptor) : zCarriageType;
+    translate([left ? eSize : 0, eSize/2, _zRailLength/2])
+        rotate([0, 90, left ? 0 : 180])
+            if (is_undef($hide_rails) || $hide_rails == false)
+                rail_assembly(zCarriageType, _zRailLength, -carriagePosition + _zRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
 }

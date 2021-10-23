@@ -12,7 +12,9 @@ include <utils/Z_Rods.scad>
 use <vitamins/extrusion.scad>
 
 use <FaceRightExtras.scad>
+
 include <Parameters_Main.scad>
+
 
 //!1. On a flat surface, bolt the upper and lower extrusions into the left and right uprights as shown.
 //!2. Bolt the **IEC_Housing_assembly** to the lower extrusion and upright.
@@ -21,9 +23,6 @@ include <Parameters_Main.scad>
 module Right_Side_assembly() pose(a=[55, 0, 25 - 90])
 assembly("Right_Side", big=true) {
 
-    // extra extrusion for mounting spool holder
-    translate([eX + eSize, eSize, spoolHeight()])
-        extrusionOY2040VEndBolts(eY);
 
     faceRightLowerExtrusion();
     if (eX >= 350)
@@ -35,11 +34,18 @@ assembly("Right_Side", big=true) {
     explode([0, -70, 0], true)
         faceRightIdlerUpright();
 
-    explode([50, 75, 0])
-        IEC_Housing_assembly();
+    if (is_undef(_printBedKinematic) || _printBedKinematic == false) {
+        // extra extrusion for mounting spool holder
+        translate([eX + eSize, eSize, spoolHeight()])
+            extrusionOY2040VEndBolts(eY);
+        explode([50, 75, 0])
+            IEC_Housing_assembly();
+        explode([50, 75, 0])
+            Extruder_Bracket_assembly();
+    } else {
+        zRails(left=false);
+    }
 
-    explode([50, 75, 0])
-        Extruder_Bracket_assembly();
 }
 
 module faceRightUpperZRodMountsExtrusion() {
