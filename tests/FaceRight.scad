@@ -37,7 +37,6 @@ module Right_Side_test() {
     //IEC_Housing_Mount_stl();
     //IEC_Housing_assembly();
 
-    //faceRightExtras();
     //Extruder_Bracket_stl();
     faceRightSpoolHolder();
     faceRightSpoolHolderBracket();

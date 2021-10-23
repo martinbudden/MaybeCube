@@ -9,7 +9,7 @@ use <NopSCADlib/vitamins/sheet.scad>
 use <printed/extruderBracket.scad>
 use <printed/PSU.scad>
 
-use <utils/FrameBolts.scad>
+include <utils/FrameBolts.scad>
 
 include <vitamins/bolts.scad>
 use <vitamins/nuts.scad>

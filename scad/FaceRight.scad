@@ -3,10 +3,11 @@ include <global_defs.scad>
 include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
+use <printed/IEC_Housing.scad>
 use <printed/extruderBracket.scad>
 
-use <utils/FrameBolts.scad>
-use <utils/Z_Rods.scad>
+include <utils/FrameBolts.scad>
+include <utils/Z_Rods.scad>
 
 use <vitamins/extrusion.scad>
 
@@ -33,7 +34,12 @@ assembly("Right_Side", big=true) {
 
     explode([0, -70, 0], true)
         faceRightIdlerUpright();
-    faceRightExtras();
+
+    explode([50, 75, 0])
+        IEC_Housing_assembly();
+
+    explode([50, 75, 0])
+        Extruder_Bracket_assembly();
 }
 
 module faceRightUpperZRodMountsExtrusion() {
@@ -62,7 +68,7 @@ frontAndBackHolePositionsZ = concat([eSize/2, 3*eSize/2, eZ - eSize/2, spoolHeig
 module faceRightIdlerUpright() {
     translate([eX + eSize, 0, 0])
         difference() {
-            extrusionOZ(eZ, eSize);
+            extrusionOZ(eZ);
             for (z = frontAndBackHolePositionsZ)
                 translate([eSize/2, 0, z])
                     rotate([-90, 0, 0])
@@ -77,7 +83,7 @@ module faceRightIdlerUpright() {
 module faceRightMotorUpright() {
     translate([eX + eSize, eY + eSize, 0])
         difference() {
-            extrusionOZ(eZ, eSize);
+            extrusionOZ(eZ);
             for (z = frontAndBackHolePositionsZ)
                 translate([eSize/2, eSize, z])
                     rotate([90, 0, 0])

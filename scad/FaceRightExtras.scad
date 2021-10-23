@@ -5,8 +5,7 @@ include <NopSCADlib/utils/core/core.scad>
 use <NopSCADlib/vitamins/iec.scad>
 include <NopSCADlib/vitamins/spools.scad>
 
-use <printed/ExtruderBracket.scad>
-use <printed/IEC_Housing.scad>
+use <printed/extruderBracket.scad>
 use <printed/SpoolHolder.scad>
 
 use <utils/bezierTube.scad>
@@ -57,14 +56,6 @@ module BowdenTube() {
                 tubeRadius=2,
                 bowdenTube=true,
                 length = eX + eY - 100);
-}
-
-module faceRightExtras() {
-    explode([50, 75, 0])
-        IEC_Housing_assembly();
-
-    explode([50, 75, 0])
-        Extruder_Bracket_assembly();
 }
 
 /*

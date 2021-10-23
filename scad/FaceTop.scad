@@ -15,7 +15,7 @@ use <printed/Y_CarriageAssemblies.scad>
 use <utils/bezierTube.scad>
 use <utils/carriageTypes.scad>
 use <utils/CoreXYBelts.scad>
-use <utils/FrameBolts.scad>
+include <utils/FrameBolts.scad>
 use <utils/RailNutsAndBolts.scad>
 use <utils/printheadOffsets.scad>
 use <utils/X_Rail.scad>

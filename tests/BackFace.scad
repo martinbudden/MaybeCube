@@ -36,7 +36,6 @@ module BackFace_test() {
     //Base_Plate_assembly();
     //Left_Side_assembly();
     //Right_Side_assembly();
-    //faceRightExtras();
     //Face_Top_Stage_1_assembly();
     //printHeadWiring();
     showPartition = !true;

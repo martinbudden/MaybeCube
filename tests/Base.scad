@@ -29,7 +29,6 @@ module Base_test() {
     //Front_Cover_stl();
     //Left_Side_assembly();
     //Right_Side_assembly();
-    //faceRightExtras();
     //Base_Extrusions_assembly();
     //basePlate();
     //controlPanel();

@@ -10,7 +10,7 @@ use <NopSCADlib/vitamins/o_ring.scad>
 
 use <printed/Z_Carriage.scad>
 
-use <utils/FrameBolts.scad>
+include <utils/FrameBolts.scad>
 
 include <vitamins/bolts.scad>
 use <vitamins/extrusion.scad>
