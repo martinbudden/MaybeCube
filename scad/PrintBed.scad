@@ -471,25 +471,26 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
 module Printbed_assembly()  pose(a=[210, 0, 320])
 assembly("Printbed", big=true) {
 
-    translate([eSize + _zRodOffsetX, eSize + zRodSeparation()/2 + _zRodOffsetY, 0])
-        rotate(-90) {
-            Printbed_Frame_with_Z_Carriages_assembly();
-            // add the heated bed
-            explode(120, true)
-                translate(heatedBedOffset) {
-                    heatedBed(_heatedBedSize, _heatedBedHoleOffset, 3);
-                    if (!_printBed4PointSupport)
-                        heatedBedHardware(_heatedBedSize, _heatedBedHoleOffset, 3);
-                }
-            translate([0, eX - 2*eSize + printBedFrameCrossPiece2Offset, -eSize/2])
-                rotate([90, 0, 0]) {
-                    stl_colour(pp2_colour)
-                        explode(10)
-                            Printbed_Strain_Relief_Clamp_stl();
-                    explode(10, true)
-                        Printbed_Strain_Relief_Clamp_hardware();
-                }
-        }
+    if (is_undef(_printBedKinematic) || _printBedKinematic == false)
+        translate([eSize + _zRodOffsetX, eSize + zRodSeparation()/2 + _zRodOffsetY, 0])
+            rotate(-90) {
+                Printbed_Frame_with_Z_Carriages_assembly();
+                // add the heated bed
+                explode(120, true)
+                    translate(heatedBedOffset) {
+                        heatedBed(_heatedBedSize, _heatedBedHoleOffset, 3);
+                        if (!_printBed4PointSupport)
+                            heatedBedHardware(_heatedBedSize, _heatedBedHoleOffset, 3);
+                    }
+                translate([0, eX - 2*eSize + printBedFrameCrossPiece2Offset, -eSize/2])
+                    rotate([90, 0, 0]) {
+                        stl_colour(pp2_colour)
+                            explode(10)
+                                Printbed_Strain_Relief_Clamp_stl();
+                        explode(10, true)
+                            Printbed_Strain_Relief_Clamp_hardware();
+                    }
+            }
 }
 
 wiringDiameter = 6.5;

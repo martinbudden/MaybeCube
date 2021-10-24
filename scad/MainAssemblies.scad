@@ -5,6 +5,7 @@ include <NopSCADlib/utils/core/core.scad>
 use <printed/E20Cover.scad>
 use <printed/PrintheadAssemblies.scad>
 use <printed/Z_MotorMount.scad>
+use <printed/JubileeKinematicBed.scad>
 
 use <utils/printParameters.scad>
 use <utils/CoreXYBelts.scad>
@@ -23,6 +24,7 @@ use <PrintBed.scad>
 include <Parameters_Main.scad>
 
 
+printBedKinematic = !is_undef(_printBedKinematic) && _printBedKinematic == true;
 _poseMainAssembly = [90 - 15, 0, 90 + 15];
 
 
@@ -74,21 +76,24 @@ module staged_assembly(name, big, ngb) {
 module Stage_1_assembly() pose(a=[55 + 90, 90 - 20, 90])
 staged_assembly("Stage_1", big=true, ngb=true) {
 
-    Left_Side_assembly();
-    zRods();
-    zMotor();
+    Left_Side_assembly(printBedKinematic, bedHeight());
 
-    coverLength = 50;
-    for (y = [eSize + _zRodOffsetY + zRodSeparation()/2 + Z_Motor_MountSize().x/2 + 5, eY + eSize - coverLength - 5])
-        translate([eSize + 2, y, eSize/2])
-            explode([50, 0, 0])
-                rotate([0, 90, 90])
-                    stl_colour(pp2_colour)
-                        E20_ChannelCover_50mm_stl();
+    if (!printBedKinematic) {
+        zRods();
+        zMotor();
 
-    translate_z(bedHeight())
-        explode([200, 0, 0])
-            Printbed_assembly();
+        coverLength = 50;
+        for (y = [eSize + _zRodOffsetY + zRodSeparation()/2 + Z_Motor_MountSize().x/2 + 5, eY + eSize - coverLength - 5])
+            translate([eSize + 2, y, eSize/2])
+                explode([50, 0, 0])
+                    rotate([0, 90, 90])
+                        stl_colour(pp2_colour)
+                            E20_ChannelCover_50mm_stl();
+
+        translate_z(bedHeight())
+            explode([200, 0, 0])
+                Printbed_assembly();
+    }
 }
 
 //!1. Slide the left face into the base plate assembly.
@@ -114,17 +119,18 @@ staged_assembly("Stage_3", big=true, ngb=true) {
     Stage_2_assembly();
 
     explode(150, true) {
-        Right_Side_assembly();
+        Right_Side_assembly(printBedKinematic, bedHeight());
         // add the right side Z rods if using dual Z rods
         if (useDualZRods())
             zRods(left=false);
     }
     coverLength = 50;
     explode([-50, 0, 0])
-        for (y = [eSize + 5, eSize + eY/2 - coverLength/2, eSize + eY - coverLength - 5])
-            translate([eX + eSize-1, y, 3*eSize/2])
-                rotate([-90, -90, 0])
-                    E20_RibbonCover_50mm_stl();
+        if (!printBedKinematic)
+            for (y = [eSize + 5, eSize + eY/2 - coverLength/2, eSize + eY - coverLength - 5])
+                translate([eX + eSize-1, y, 3*eSize/2])
+                    rotate([-90, -90, 0])
+                        E20_RibbonCover_50mm_stl();
 }
 
 //!1. Attach the back face to the rest of the assembly.
@@ -136,7 +142,10 @@ staged_assembly("Stage_4", big=true, ngb=true) {
     Stage_3_assembly();
     explode([0, 150, 0])
         Back_Panel_assembly();
-    //Partition_assembly();
+    if (printBedKinematic)
+        translate_z(bedHeight())
+            jubilee_build_plate();
+   //Partition_assembly();
 }
 
 //!1. Slide the **Face_Top** assembly into the rest of the frame and tighten the hidden bolts.

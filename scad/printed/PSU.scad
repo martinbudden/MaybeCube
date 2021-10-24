@@ -38,7 +38,7 @@ module PSUPosition(psuVertical=false, psuOnBase=false) {
                 rotate([90, 90, 0])
                     children();
         else
-            translate([eSize + psuSize.x/2, eY + 2*eSize, psuSize.y/2 + psuOffsetZ])
+            translate([eSize + psuSize.x/2 + (!is_undef(_printBedKinematic) && _printBedKinematic == true ? 75 : 0), eY + 2*eSize, psuSize.y/2 + psuOffsetZ])
                 rotate([90, 0, 0])
                     children();
     }

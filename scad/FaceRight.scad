@@ -13,6 +13,7 @@ use <vitamins/extrusion.scad>
 
 use <FaceRightExtras.scad>
 
+use <Parameters_Positions.scad>
 include <Parameters_Main.scad>
 
 
@@ -20,9 +21,11 @@ include <Parameters_Main.scad>
 //!2. Bolt the **IEC_Housing_assembly** to the lower extrusion and upright.
 //!3. Bolt the **Extruder_Bracket_assembly** to the upper extrusion and upright.
 //
-module Right_Side_assembly() pose(a=[55, 0, 25 - 90])
+module Right_Side_assembly(printBedKinematic=undef, bedHeight=undef) pose(a=[55, 0, 25 - 90])
 assembly("Right_Side", big=true) {
 
+    printBedKinematic = is_undef(printBedKinematic) ? (!is_undef(_printBedKinematic) && _printBedKinematic == true) : printBedKinematic;
+    bedHeight = is_undef(bedHeight) ? bedHeight() : bedHeight;
 
     faceRightLowerExtrusion();
     if (eX >= 350)
@@ -34,17 +37,19 @@ assembly("Right_Side", big=true) {
     explode([0, -70, 0], true)
         faceRightIdlerUpright();
 
-    if (is_undef(_printBedKinematic) || _printBedKinematic == false) {
-        // extra extrusion for mounting spool holder
+    // extra extrusion for mounting spool holder
+    if (printBedKinematic) {
+        zRails(bedHeight, left=false);
+        translate([eX + eSize, (eY + 3*eSize)/2, spoolHeight()])
+            extrusionOY2040VEndBolts((eY - eSize)/2);
+    } else {
         translate([eX + eSize, eSize, spoolHeight()])
             extrusionOY2040VEndBolts(eY);
-        explode([50, 75, 0])
-            IEC_Housing_assembly();
-        explode([50, 75, 0])
-            Extruder_Bracket_assembly();
-    } else {
-        zRails(left=false);
     }
+    explode([50, 75, 0])
+        IEC_Housing_assembly();
+    explode([50, 75, 0])
+        Extruder_Bracket_assembly();
 
 }
 

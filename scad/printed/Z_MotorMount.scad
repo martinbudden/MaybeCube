@@ -14,6 +14,7 @@ use <../../../BabyCube/scad/vitamins/CorkDamper.scad>
 include <../utils/motorTypes.scad>
 
 include <../vitamins/bolts.scad>
+include <../vitamins/extrusionBracket.scad>
 use <../vitamins/cables.scad>
 use <../vitamins/leadscrew.scad>
 use <../vitamins/nuts.scad>
@@ -55,13 +56,11 @@ module NEMA_baseplate(NEMA_type, size) {
     *translate([0, 0, size.z-0.25]) cube([size.x, size.y, 0.25]); // to bridge the holes for printing
 }
 
-module zMotorMount(zMotorType, eHeight=40) {
+module zMotorMount(zMotorType, eHeight=40, printBedKinematic=false) {
     assert(isNEMAType(zMotorType));
 
     size = Z_Motor_MountSize(NEMA_length(zMotorType));
-
     blockSizeZ = size.z - eHeight;
-    offset = (motorBracketSizeX - NEMA_hole_pitch(zMotorType))/2;
 
     translate([wingSizeX, eSize, size.z - motorBracketSizeZ]) difference() {
         union() {
@@ -94,7 +93,21 @@ module zMotorMount(zMotorType, eHeight=40) {
                 rotate([90, 0, 90])
                         difference() {
                             fillet = 1;
-                            rounded_cube_xz([eSize + fillet, blockSizeZ, size.x], fillet);
+                            if (printBedKinematic)
+                                union() {
+                                    rounded_cube_xz([eSize + fillet, blockSizeZ, (size.x - eSize)/2], fillet);
+                                    translate([eSize, blockSizeZ - motorBracketSizeZ, (size.x - eSize)/2]) {
+                                        rotate([-90, 180, 0])
+                                            fillet(0.5, motorBracketSizeZ);
+                                        translate([0, 0, eSize])
+                                            rotate([-90, 90, 0])
+                                                fillet(0.5, motorBracketSizeZ);
+                                    }
+                                    translate_z((size.x + eSize)/2)
+                                        rounded_cube_xz([eSize + fillet, blockSizeZ, (size.x - eSize)/2], fillet);
+                                }
+                            else
+                                rounded_cube_xz([eSize + fillet, blockSizeZ, size.x], fillet);
                             cutSize = eSize;//min(eSize, blockSizeZ);
                             if (eHeight == 20)
                                 translate([-eps, blockSizeZ + eps, -eps])
@@ -102,8 +115,24 @@ module zMotorMount(zMotorType, eHeight=40) {
                                         linear_extrude(size.x + 2*eps)
                                             right_triangle(cutSize, cutSize);
                         }
-        }
+        } // end union
 
+        if (printBedKinematic)
+            translate([-wingSizeX, -eSize, motorBracketSizeZ - blockSizeZ])
+                rotate([90, 0, 90])
+                    translate([-eps, -eps, (size.x - eSize)/2]) {
+                        fillet = 1;
+                        railCutoutSize = [8 + 2*fillet, blockSizeZ + 2*eps, 12.5];
+                        translate([eSize, 0, (eSize - railCutoutSize.z)/2]) {
+                            translate([-fillet, 0, 0])
+                                rounded_cube_xz(railCutoutSize, fillet);
+                            rotate([-90, 0, 0])
+                                fillet(fillet, blockSizeZ + 2*eps);
+                            translate([0, 0, railCutoutSize.z])
+                                rotate([-90, -90, 0])
+                                    fillet(fillet, blockSizeZ + 2*eps);
+                        }
+                    }
         // fillet the wings
         translate([-wingSizeX, motorBracketSizeZ, -size.z + motorBracketSizeZ])
             rotate(-90)
@@ -121,18 +150,14 @@ module zMotorMount(zMotorType, eHeight=40) {
 
         // add the main boltholes
         translate([0, -eSize/2, motorBracketSizeZ]) {
-            translate([offset, 0, 0])
-                vflip()
-                    if (eHeight==20)
-                        boltHoleM4HangingCounterboreButtonhead(blockSizeZ, boreDepth=blockSizeZ - 5);
-                    else
-                        boltHoleM4(blockSizeZ);
-            translate([motorBracketSizeX - offset, 0, 0])
-                vflip()
-                    if (eHeight==20)
-                        boltHoleM4HangingCounterboreButtonhead(blockSizeZ, boreDepth=blockSizeZ - 5);
-                    else
-                        boltHoleM4(blockSizeZ);
+            topHolePitch = printBedKinematic ? eSize + 27 : NEMA_hole_pitch(zMotorType);
+            for (x = [topHolePitch/2, -topHolePitch/2])
+                translate([motorBracketSizeX/2 + x, 0, 0])
+                    vflip()
+                        if (eHeight==20)
+                            boltHoleM4HangingCounterboreButtonhead(blockSizeZ, boreDepth=blockSizeZ - 5);
+                        else
+                            boltHoleM4(blockSizeZ);
         }
         // add the boltholes on the wings
         for (x = [wingSizeX/2 + 0.75, size.x - wingSizeX/2 - 0.75])
@@ -149,6 +174,15 @@ module Z_Motor_Mount_stl() {
             translate([0, -Z_Motor_MountSize(NEMA_length(zMotorType)).x/2, 0])
                 rotate([180, 0, 90])
                     zMotorMount(zMotorType);
+}
+
+module Z_Motor_Mount_KB_stl() {
+    // invert Z_Motor_Mount so it can be printed without support
+    stl("Z_Motor_Mount_KB")
+        color(pp1_colour)
+            translate([0, -Z_Motor_MountSize(NEMA_length(zMotorType)).x/2, 0])
+                rotate([180, 0, 90])
+                    zMotorMount(zMotorType, printBedKinematic=true);
 }
 
 module zMotorLeadscrew(zMotorType, zLeadScrewLength) {
@@ -202,14 +236,27 @@ module Z_Motor_Mount_Motor_hardware(explode=50) {
             boltM3Buttonhead(screw_shorter_than(5 + motorBracketSizeZ - counterBoreDepth + corkDamperThickness));
 }
 
-module Z_Motor_Mount_hardware() {
+module Z_Motor_Mount_hardware(printBedKinematic=false) {
     size = Z_Motor_MountSize(NEMA_length(zMotorType));
     eHeight = 40;
 
     // add the main bolts
-    for (y = [NEMA_hole_pitch(zMotorType)/2, -NEMA_hole_pitch(zMotorType)/2])
-        translate([eSize/2, y, size.z])
-            boltM4ButtonheadTNut(eHeight==40 ? 12 : _frameBoltLength, rotate=90);
+    topHolePitch = printBedKinematic ? eSize + 20 : NEMA_hole_pitch(zMotorType);
+    if (printBedKinematic) {
+        *for (y = [topHolePitch/2, -topHolePitch/2])
+            translate([eSize/2, y, size.z])
+                boltM4Buttonhead(_frameBoltLength);
+        translate([eSize/2, eSize/2, size.z - 8])
+            rotate([90, 0, 90])
+                extrusionInnerCornerBracket(grubCount=1, boltLength=12, boltOffset=1);
+        translate([eSize/2, -eSize/2, size.z - 8])
+            rotate([90, 0, -90])
+                extrusionInnerCornerBracket(grubCount=1, boltLength=12, boltOffset=1);
+    } else {
+        for (y = [topHolePitch/2, -topHolePitch/2])
+            translate([eSize/2, y, size.z])
+                boltM4ButtonheadTNut(eHeight==40 ? 12 : _frameBoltLength, rotate=90);
+    }
     // add the bolts on the wings
     for (y = [size.x/2 - wingSizeX/2 - 0.75, -size.x/2 + wingSizeX/2 + 0.75])
         translate([eSize + motorBracketSizeZ, y, eSize - 2*motorBracketSizeZ])
@@ -228,6 +275,16 @@ assembly("Z_Motor_Mount", big=true, ngb=true) {
         stl_colour(pp1_colour)
             Z_Motor_Mount_stl();
     Z_Motor_Mount_hardware();
+    Z_Motor_Mount_Motor_hardware();
+}
+
+module Z_Motor_Mount_KB_assembly() pose(a=[55, 0, 25 + 90])
+assembly("Z_Motor_Mount_KB", big=true, ngb=true) {
+
+    vflip()
+        stl_colour(pp1_colour)
+            Z_Motor_Mount_KB_stl();
+    Z_Motor_Mount_hardware(printBedKinematic=true);
     Z_Motor_Mount_Motor_hardware();
 }
 

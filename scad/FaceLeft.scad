@@ -9,6 +9,7 @@ include <utils/Z_Rods.scad>
 
 use <vitamins/extrusion.scad>
 
+use <Parameters_Positions.scad>
 include <Parameters_Main.scad>
 
 
@@ -21,34 +22,36 @@ include <Parameters_Main.scad>
 //!5. On a flat surface, bolt the upper and lower extrusions into the left and right uprights as shown. Tighten the bolts
 //!continuously ensuring the frame is square.
 //
-module Left_Side_assembly() pose(a=[55, 0, 25 + 90])
+module Left_Side_assembly(printBedKinematic=undef, bedHeight=undef) pose(a=[55, 0, 25 + 90])
 assembly("Left_Side", big=true) {
 
-    zMotorLength = 40;
-    faceLeftLowerExtrusion(zMotorLength);
-    faceLeftUpperZRodMountsExtrusion();
+    printBedKinematic = is_undef(printBedKinematic) ? (!is_undef(_printBedKinematic) && _printBedKinematic == true) : printBedKinematic;
+    bedHeight = is_undef(bedHeight) ? bedHeight() : bedHeight;
+
+    faceLeftLowerExtrusion(printBedKinematic, zMotorLength=40);
+    faceLeftUpperZRodMountsExtrusion(printBedKinematic);
 
     explode([0, 70, 0], true)
         faceLeftMotorUpright();
     explode([0, -70, 0], true)
         faceLeftIdlerUpright();
-    if (!is_undef(_printBedKinematic) && _printBedKinematic == true)
-        zRails();
+    if (printBedKinematic)
+        zRails(bedHeight, left=true);
 }
 
-module faceLeftUpperZRodMountsExtrusion() {
+module faceLeftUpperZRodMountsExtrusion(printBedKinematic) {
     translate([0, eSize, _upperZRodMountsExtrusionOffsetZ]) {
         translate_z(-eSize)
             extrusionOY2040VEndBolts(eY);
-        if (is_undef(_printBedKinematic) || _printBedKinematic == false)
+        if (!printBedKinematic)
             zMountsUpper();
     }
 }
 
-module faceLeftLowerExtrusion(zMotorLength) {
+module faceLeftLowerExtrusion(printBedKinematic, zMotorLength) {
     translate([0, eSize, 0]) {
         extrusionOY2040VEndBolts(eY);
-        if (is_undef(_printBedKinematic) || _printBedKinematic == false)
+        if (!printBedKinematic)
             zMountsLower(zMotorLength);
     }
 }

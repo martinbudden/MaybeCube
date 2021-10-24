@@ -78,6 +78,13 @@ module boltHoleM3Tap(length, horizontal=false, rotate=0, chamfer=0.5, chamfer_bo
     boltHole(M3_tap_radius*2, length, horizontal, rotate, chamfer, chamfer_both_ends, cnc, twist);
 }
 
+module boltHoleM3Countersunk(length) {
+    translate_z(-eps)
+        vflip()
+            screw_countersink(M3_cs_cap_screw, 2*length + 2*eps);
+    boltHoleM3(length, cnc=true);
+}
+
 module boltPolyholeM3Countersunk(length, sink=0) {
     screw_polysink(M3_cs_cap_screw, 2*length + 2*eps, sink=sink);
 }
@@ -107,6 +114,13 @@ module boltHoleM4(length, horizontal=false, rotate=0, chamfer=0.5, chamfer_both_
 
 module boltHoleM4Tap(length, horizontal=false, rotate=0, chamfer=0.5, chamfer_both_ends=true, cnc=false, twist=undef) {
     boltHole(M4_tap_radius*2, length, horizontal, rotate, chamfer, chamfer_both_ends, cnc, twist);
+}
+
+module boltHoleM4Countersunk(length) {
+    translate_z(-eps)
+        vflip()
+            screw_countersink(M4_cs_cap_screw, 2*length + 2*eps);
+    boltHoleM4(length, cnc=true);
 }
 
 module boltPolyholeM4Countersunk(length, sink=0) {
