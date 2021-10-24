@@ -15,7 +15,7 @@ include <../Parameters_Main.scad>
 
 fillet = 2;
 countersunk = false;
-lip = 3;
+lip = 0;
 height = 8;
 
 module Front_Cover_stl() {
