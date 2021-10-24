@@ -88,7 +88,7 @@ module Wiring_Guide_Socket_stl() {
                     difference() {
                         union() {
                             rounded_cube_xy([size.x, 5, 3], fillet);
-                            size1 = [eSize, 5, size.z];
+                            size1 = [(size.x - wiringGuideSize.x)/2 + 5, 5, size.z];
                             for (x = [0, size.x - size1.x])
                                 translate([x, 0, 0])
                                     rounded_cube_xy(size1, fillet);
