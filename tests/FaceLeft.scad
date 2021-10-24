@@ -30,7 +30,8 @@ module Left_Side_test() {
     //CoreXYBelts(carriagePosition(t=t), show_pulleys=[1, 0, 0]);
     //let($hide_extrusions=true)
     //let($hide_rails=true)
-    Left_Side_assembly(); zRods();
+    Left_Side_assembly();
+    if (is_undef(_printBedKinematic) || _printBedKinematic == false)zRods();
     //Right_Side_assembly(); if(is_true(_useDualZRods))zRods(left=false);
     //Extruder_Bracket_assembly();
     //let($hide_extrusions=true)
@@ -38,8 +39,7 @@ module Left_Side_test() {
     //let($hide_corexy=true)
     //let($hide_extrusions=true)
     //Face_Top_Stage_1_assembly();
-    //fullPrinthead(t=3);
-    //printheadBeltSide();
+    //printheadBeltSide(t=t);
     //printheadHotendSide(t=t);
 
     // always add the panels last, so it is transparent to other items

@@ -3,6 +3,7 @@ include <../scad/global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/bldc_motors.scad>
+include <NopSCADlib/vitamins/magnets.scad>
 
 include <../scad/printed/XY_MotorMountBLDC.scad>
 include <../scad/printed/XY_EncoderMount.scad>
@@ -28,7 +29,7 @@ module XY_Encoder_Mount_test() {
             Encoder_Magnet_Holder_4250_stl();
         translate_z(-BLDC_height(BLDC_type) - BLDC_prop_shaft_length(BLDC_type))
             vflip()
-                radial_encoder_magnet_6_2p5();
+                magnet(MAGRE6x2p5);
         //XY_Encoder_Mount_4250_Left_assembly();
         //XY_Encoder_Mount_4250_Right_assembly();
     } else {
@@ -42,7 +43,7 @@ module XY_Encoder_Mount_test() {
             Encoder_Magnet_Holder_4933_stl();
         translate_z(-BLDC_height(BLDC_type) - BLDC_prop_shaft_length(BLDC_type))
             vflip()
-                radial_encoder_magnet_6_2p5();
+                magnet(MAGRE6x2p5);
         //let($hide_bolts=true)
         //XY_Encoder_Mount_4933_Left_assembly();
         //XY_Encoder_Mount_4933_Right_assembly();
