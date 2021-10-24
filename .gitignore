@@ -39,8 +39,6 @@ tests/png/*_diff.png
 
 pictures/*.jpg
 
-JubileeKinematicBed/
-
 M5/
 
 nuts/
@@ -121,7 +119,6 @@ JubileeToolChanger/dxfs/*_diff.png
 JubileeToolChanger/stls/*_diff.png
 
 
-
 MC250/assemblies/*
 MC250/bom/
 MC250/dxfs/*
@@ -193,3 +190,11 @@ MC400/*.html
 MC400/assemblies/*_diff.png
 MC400/dxfs/*_diff.png
 MC400/stls/*_diff.png
+
+MC400KB/*.*
+MC400KB/assemblies/*
+MC400KB/bom/
+MC400KB/dxfs/*
+MC400KB/stls/*
+MC400KB/tmp/
+!MC400KB/assemblies/main_assembled.png
