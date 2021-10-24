@@ -18,22 +18,40 @@ countersunk = false;
 lip = 0;
 height = 8;
 
-module Front_Cover_stl() {
-    size = [eX/2, eSize + lip, height];
+module Front_Cover_300_stl() {
 
-    stl("Front_Cover")
+    stl("Front_Cover_300")
         color(pp1_colour)
-            difference() {
-                translate([0, eSize - size.y, 0])
-                    rounded_cube_xy(size, fillet);
-                for (x = [20, size.x - 20])
-                    translate([x, eSize/2, size.z])
-                        if (countersunk)
-                            boltPolyholeM3Countersunk(size.z, sink=0.25);
-                        else
-                            vflip()
-                                boltHoleM3(size.z);
-            }
+            frontCover(300/2);
+}
+
+module Front_Cover_350_stl() {
+
+    stl("Front_Cover_350")
+        color(pp1_colour)
+            frontCover(350/2);
+}
+
+module Front_Cover_400_stl() {
+
+    stl("Front_Cover_400")
+        color(pp1_colour)
+            frontCover(400/2);
+}
+
+module frontCover(sizeX) {
+    size = [sizeX, eSize + lip, height];
+    difference() {
+        translate([0, eSize - size.y, 0])
+            rounded_cube_xy(size, fillet);
+        for (x = [20, size.x - 20])
+            translate([x, eSize/2, size.z])
+                if (countersunk)
+                    boltPolyholeM3Countersunk(size.z, sink=0.25);
+                else
+                    vflip()
+                        boltHoleM3(size.z);
+    }
 }
 
 module Front_Cover_hardware() {
@@ -47,17 +65,33 @@ module Front_Cover_hardware() {
                 boltM3ButtonheadHammerNut(12);
 }
 
-module Front_Display_Wiring_Cover_stl() {
+module Front_Display_Wiring_Cover_300_stl() {
+    stl("Front_Display_Wiring_Cover_300")
+        color(pp2_colour)
+            frontDisplayWiringCover(300/2);
+}
+
+module Front_Display_Wiring_Cover_350_stl() {
+    stl("Front_Display_Wiring_Cover_350")
+        color(pp2_colour)
+            frontDisplayWiringCover(350/2);
+}
+
+module Front_Display_Wiring_Cover_400_stl() {
+    stl("Front_Display_Wiring_Cover_400")
+        color(pp2_colour)
+            frontDisplayWiringCover(400/2);
+}
+
+module frontDisplayWiringCover(sizeX) {
     display_type = BTT_TFT35_E3_V3_0();
     size1 = [displayHousingSize(display_type).x, eSize + 5, height];
     size2 = [displayHousingSize(display_type).x, size1.y - eSize, eSize + size1.z];
-    size3 = [eX/2 - size1.x, eSize + lip, size1.z];
+    size3 = [sizeX - size1.x, eSize + lip, size1.z];
     channelWidth = 20;
     channelDepth = size1.z - 1;
 
 
-    stl("Front_Display_Wiring_Cover")
-        color(pp2_colour)
             vflip()
                 difference() {
                     union() {
