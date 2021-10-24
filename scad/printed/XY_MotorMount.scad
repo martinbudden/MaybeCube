@@ -12,6 +12,7 @@ use <NopSCADlib/vitamins/rod.scad>
 include <NopSCADlib/vitamins/ball_bearings.scad>
 include <NopSCADlib/vitamins/pulleys.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
+include <NopSCADlib/vitamins/magnets.scad>
 
 use <../../../BabyCube/scad/vitamins/CorkDamper.scad>
 
@@ -276,8 +277,10 @@ module xyMotorMountBase(motorType, left, size, offset, sideSupportSizeY, stepdow
                             translate([0, rightDrivePlainIdlerOffset.y/2 - 1, 0] + delta/2)
                                 rounded_cube_xy([sizeP.x - delta.x, sizeP.y - rightDrivePlainIdlerOffset.y -delta.y, sizeP.z], 1, xy_center=true);
                     }
+                    delta = useMotorIdler20 ? [2.5, 2, 0] : [0 , 0, 0];
+                    //translate([pT.x + 1 - sizeT.x/2, eY + 2*eSize - size.y - partitionExtension - coreXYPosTR.y - offset.y, 0] -delta/2)
+                    //    rounded_cube_xy(sizeT - [delta.x, 0, 0], 1, xy_center=false);
                     translate([pT.x, pP.y, 0]) {
-                        delta = useMotorIdler20 ? [2.5, 2, 0] : [0 , 0, 0];
                         if (left)
                             translate([1, -leftDrivePlainIdlerOffset.y, 0] - delta/2)
                                 rounded_cube_xy(sizeT - [delta.x, 0, 0], 1, xy_center=true);
@@ -401,19 +404,6 @@ module xyMotorMount(motorType, basePlateThickness, offset=[0, 0], blockHeightExt
         xyMotorMountBlock(motorType, size, basePlateThickness, offset, sideSupportSizeY, blockHeightExtra, stepdown, left, M5=M5);
 }
 
-module radial_encoder_magnet_6_2p5() {
-    vitamin(str(": Radial encoder magnet 6x2.5mm"));
-    or = 6/2;
-    h = 2.5;
-    fillet = 0.5;
-    color(silver)
-        rotate_extrude()
-            union () {
-                rounded_square([or, h], fillet, center = false);
-                square([fillet, h]);
-            }
-}
-
 module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], corkDamperThickness=0, blockHeightExtra=0, stepdown=false, left=true) {
     corkDamperThickness = is_undef(corkDamperThickness) ? 0 : corkDamperThickness;
     motorWidth = motorWidth(motorType);
@@ -442,7 +432,7 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
                                     BLDC(motorType);
                         translate_z(BLDC_shaft_offset(motorType) - BLDC_shaft_length(motorType) - BLDC_prop_shaft_length(motorType))
                             vflip()
-                                radial_encoder_magnet_6_2p5();
+                                magnet(MAGRE6x2p5);
                     }
             }
             if (stepdown) {
