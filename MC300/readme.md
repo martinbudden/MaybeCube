@@ -109,6 +109,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Fan 30mm x 10mm |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  Filament sensor |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  |  Heated Bed 214mm x 214mm |
+|   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Heatfit insert M3 |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Hot end E3D V6 direct 1.75mm |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  IEC320 C14 switched fused inlet module |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  LED Switching Power Supply 24V 15A 360W |
@@ -144,7 +145,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer  M4 |
 |   .  |   .  |   .  |   .  |   .  |   6  |   .  |   .  |    6  |  Washer penny  M4 |
 |   3  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    3  |  Ziptie 2.5mm x 100mm min length |
-|  12  |   4  | 214  |  50  |  48  |  81  |  40  | 127  |  576  | Total vitamins count |
+|  12  |   4  | 218  |  50  |  48  |  81  |  40  | 127  |  580  | Total vitamins count |
 |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_Bracket_TFT35_E3.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_TFT35_E3.stl |
@@ -153,8 +154,8 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | Extruder_Bracket.stl |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Fan_Duct.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  | Foot_LShaped_12mm.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Front_Cover.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Front_Display_Wiring_Cover.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Front_Cover_300.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Front_Display_Wiring_Cover_300.stl |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Hotend_Clamp.stl |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | IEC_Housing.stl |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | IEC_Housing_Mount.stl |
@@ -464,6 +465,7 @@ to turn freely again.
 |2| Bolt M3 caphead x 10mm|
 |1| Bolt M3 caphead x 16mm|
 |1| Bolt M3 caphead x 25mm|
+|2| Heatfit insert M3|
 |1| Pulley GT2 idler 16 teeth|
 |1| Pulley GT2 idler smooth 9.63mm|
 |3| Washer  M3|
@@ -481,8 +483,11 @@ to turn freely again.
 
 ![Y_Carriage_Right_assembly](assemblies/Y_Carriage_Right_assembly_tn.png)
 
-1. Bolt the **Y_Carriage_Brace_Right* and the pulleys to the **Y_Carriage_Right** as shown. Note the position of the washers.
-2. Tighten the bolts until the pulleys no longer turn freely and then loosen by about 1/4 turn so the pulleys can again turn.
+1. Insert the threaded inserts into the **Y_Carriage_Right** as shown.
+2. Drive a long M3 bolt through the Y carriage from the insert side to self tap the part of the hole after the insert. Once this
+hole is tapped, remove the bolt.
+3. Bolt the **Y_Carriage_Brace_Right* and the pulleys to the **Y_Carriage_Right** as shown. Note the position of the washers.
+4. Tighten the bolts until the pulleys no longer turn freely and then loosen by about 1/4 turn so the pulleys can again turn.
 
 ![Y_Carriage_Right_assembled](assemblies/Y_Carriage_Right_assembled_tn.png)
 
@@ -540,6 +545,7 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 |2| Bolt M3 caphead x 10mm|
 |1| Bolt M3 caphead x 16mm|
 |1| Bolt M3 caphead x 25mm|
+|2| Heatfit insert M3|
 |1| Pulley GT2 idler 16 teeth|
 |1| Pulley GT2 idler smooth 9.63mm|
 |3| Washer  M3|
@@ -557,8 +563,11 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 
 ![Y_Carriage_Left_assembly](assemblies/Y_Carriage_Left_assembly_tn.png)
 
-1. Bolt the **Y_Carriage_Brace_Left* and the pulleys to the **Y_Carriage_Left** as shown. Note the position of the washers.
-2. Tighten the bolts until the pulleys no longer turn freely and then loosen by about 1/4 turn so the pulleys can again turn.
+1. Insert the threaded inserts into the **Y_Carriage_Left** as shown.
+2. Drive a long M3 bolt through the Y carriage from the insert side to self tap the part of the hole after the insert. Once this
+hole is tapped, remove the bolt.
+3. Bolt the **Y_Carriage_Brace_Left* and the pulleys to the **Y_Carriage_Left** as shown. Note the position of the washers.
+4. Tighten the bolts until the pulleys no longer turn freely and then loosen by about 1/4 turn so the pulleys can again turn.
 
 ![Y_Carriage_Left_assembled](assemblies/Y_Carriage_Left_assembled_tn.png)
 
@@ -1015,9 +1024,9 @@ as a template to drill the holes in the base plate.
 
 ### 3D Printed parts
 
-| 1 x Display_Housing_Bracket_TFT35_E3.stl | 1 x Front_Cover.stl | 1 x Front_Display_Wiring_Cover.stl |
+| 1 x Display_Housing_Bracket_TFT35_E3.stl | 1 x Front_Cover_300.stl | 1 x Front_Display_Wiring_Cover_300.stl |
 |---|---|---|
-| ![Display_Housing_Bracket_TFT35_E3.stl](stls/Display_Housing_Bracket_TFT35_E3.png) | ![Front_Cover.stl](stls/Front_Cover.png) | ![Front_Display_Wiring_Cover.stl](stls/Front_Display_Wiring_Cover.png) 
+| ![Display_Housing_Bracket_TFT35_E3.stl](stls/Display_Housing_Bracket_TFT35_E3.png) | ![Front_Cover_300.stl](stls/Front_Cover_300.png) | ![Front_Display_Wiring_Cover_300.stl](stls/Front_Display_Wiring_Cover_300.png) 
 
 
 
