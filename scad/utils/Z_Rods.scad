@@ -1,5 +1,6 @@
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/pillow_blocks.scad>
+include <NopSCADlib/vitamins/rails.scad>
 include <NopSCADlib/vitamins/rod.scad>
 include <NopSCADlib/vitamins/sk_brackets.scad>
 
@@ -10,6 +11,7 @@ use <../printed/Z_MotorMount.scad>
 include <../utils/carriageTypes.scad>
 
 include <../vitamins/bolts.scad>
+use <../vitamins/extrusion.scad>
 use <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>
@@ -132,46 +134,59 @@ module zRods(left=true) {
         }
 }
 
-module zRails(left=true) {
-    bedHeight = 50;
+module zRails(bedHeight=100, left=true) {
+    railZPos = bedHeight - 34;
+    carriageHeight = carriage_height(is_undef(_zCarriageDescriptor) ? MGN12C_carriage : carriageType(_zCarriageDescriptor));
     if (left) {
-        yOffset = 45;
         for (y = [0, _printBedArmSeparation])
-            translate([0, y + yOffset, 0]) {
+            translate([0, y + _zRodOffsetY, 0]) {
                 translate_z(2*eSize)
                     extrusionOZ(eZ - 150);
+                translate([eSize/2, eSize, eZ - 150 + 2*eSize])
+                    rotate([-90, 0, 90])
+                        extrusionInnerCornerBracket();
+                translate([eSize/2, 0, eZ - 150 + 2*eSize])
+                    rotate([-90, 0, -90])
+                        extrusionInnerCornerBracket();
                 translate_z(3*eSize/2)
-                    zRail(bedHeight, left=true);
+                    zRail(railZPos, left=true);
                 translate([0, 10, 0])
-                    Z_Motor_Mount_assembly();
+                    Z_Motor_Mount_KB_assembly();
             }
-        translate([eSize+13, yOffset + eSize/2-13.5, 3*eSize/2 + bedHeight/2 +7.5]) {
-            rotate([90, 0, 90])
-                front_left_bed_coupling_lift_stl();
+        translate([eSize + carriageHeight, _zRodOffsetY + eSize/2, railZPos + 12.5]) {
+            //rotate([90, 0, 90]) Z_Carriage_Left_Front_stl();
+            Z_Carriage_Left_Front_assembly();
             translate([0, _printBedArmSeparation, 0])
-                rotate([90, 0, 90])
-                    front_right_bed_coupling_lift_stl();
+                //rotate([90, 0, 90]) Z_Carriage_Left_Back_stl();
+                Z_Carriage_Left_Back_assembly();
         }
     } else {
-        translate([eX + eSize, (305+26+59)/2+15, 0]) {
+        translate([eX + eSize, _zRodOffsetY + _printBedArmSeparation/2, 0]) {
             translate_z(2*eSize)
                 extrusionOZ(eZ - 150);
+            translate([eSize/2, eSize, eZ - 150 + 2*eSize])
+                rotate([-90, 0, 90])
+                    extrusionInnerCornerBracket();
+            translate([eSize/2, 0, eZ - 150 + 2*eSize])
+                rotate([-90, 0, -90])
+                    extrusionInnerCornerBracket();
             translate_z(3*eSize/2)
-                zRail(bedHeight, left=false);
+                zRail(railZPos, left=false);
             translate([eSize, 10, 0])
                 rotate(180)
-                    Z_Motor_Mount_assembly();
-            translate([-13, 20 + eSize/2-6.5, 3*eSize/2 + bedHeight/2 +7.5])
-                rotate([90, 0, -90])
-                    back_bed_coupling_lift_stl();
+                    Z_Motor_Mount_KB_assembly();
+            translate([-carriageHeight + 15, eSize/2, railZPos + 12.5])
+                //rotate([90, 0, -90]) Z_Carriage_Right_Center_stl();
+                Z_Carriage_Right_Center_assembly();
         }
     }
 }
 
 module zRail(carriagePosition, zCarriageType=undef, left=true) {
-    zCarriageType = is_undef(zCarriageType) ? carriageType(_zCarriageDescriptor) : zCarriageType;
-    translate([left ? eSize : 0, eSize/2, _zRailLength/2])
+    zCarriageType = is_undef(zCarriageType) ? (is_undef(_zCarriageDescriptor) ? MGN12C_carriage : carriageType(_zCarriageDescriptor)) : zCarriageType;
+    zRailLength = is_undef(_zRailLength) ? eZ - 100 : _zRailLength;
+    translate([left ? eSize : 0, eSize/2, zRailLength/2])
         rotate([0, 90, left ? 0 : 180])
             if (is_undef($hide_rails) || $hide_rails == false)
-                rail_assembly(zCarriageType, _zRailLength, -carriagePosition + _zRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
+                rail_assembly(zCarriageType, zRailLength, -carriagePosition + zRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
 }
