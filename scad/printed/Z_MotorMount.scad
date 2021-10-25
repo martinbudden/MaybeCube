@@ -33,18 +33,17 @@ zMotorType = motorType(is_undef(_zMotorDescriptor) ? "NEMA17_40" : _zMotorDescri
 wingSizeX = 7;
 motorBracketSizeZ = 5;
 motorBracketSizeX = NEMA_motorWidth + 2*motorBracketSizeZ;
-motorBracketSizeY = _zLeadScrewOffset + NEMA_motorWidth/2 - 1;
 counterBoreDepth = 0;//1.5;
 
-function Z_Motor_MountSize(motorLength=NEMA_length(zMotorType))
-    = [2*wingSizeX + motorBracketSizeX, motorBracketSizeY + eSize, motorLength + motorBracketSizeZ + 1 + (is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness)];
+function Z_Motor_MountSize(motorLength=NEMA_length(zMotorType), zLeadScrewOffset=_zLeadScrewOffset)
+    = [2*wingSizeX + motorBracketSizeX, zLeadScrewOffset + NEMA_motorWidth/2 - 1 + eSize, motorLength + motorBracketSizeZ + 1 + (is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness)];
 
-module NEMA_baseplate(NEMA_type, size) {
+module NEMA_baseplate(NEMA_type, size, zLeadScrewOffset=_zLeadScrewOffset) {
     assert(isNEMAType(NEMA_type));
 
     difference() {
         cube(size);
-        translate([size.x/2, _zLeadScrewOffset, 0]) {
+        translate([size.x/2, zLeadScrewOffset, 0]) {
             // center circle for the motor axle
             translate_z(-eps)
                 poly_cylinder(r=NEMA_boss_radius(NEMA_type), h=size.z + 2*eps);
@@ -59,14 +58,16 @@ module NEMA_baseplate(NEMA_type, size) {
 module zMotorMount(zMotorType, eHeight=40, printBedKinematic=false) {
     assert(isNEMAType(zMotorType));
 
-    size = Z_Motor_MountSize(NEMA_length(zMotorType));
+    zLeadScrewOffset = printBedKinematic ? 30 : _zLeadScrewOffset;
+    size = Z_Motor_MountSize(NEMA_length(zMotorType), zLeadScrewOffset);
+    motorBracketSizeY = zLeadScrewOffset + NEMA_motorWidth/2 - 1;
     blockSizeZ = size.z - eHeight;
 
     translate([wingSizeX, eSize, size.z - motorBracketSizeZ]) difference() {
         union() {
             reduce = 1;
             translate([reduce, 0, 0])
-                NEMA_baseplate(zMotorType, [motorBracketSizeX-2*reduce, motorBracketSizeY, motorBracketSizeZ]);
+                NEMA_baseplate(zMotorType, [motorBracketSizeX-2*reduce, motorBracketSizeY, motorBracketSizeZ], zLeadScrewOffset);
             *translate([0, 5, -size.z+motorBracketSizeZ + 4]) rotate([0, 0, 90]) fillet(2, size.z-4);
             *translate([motorBracketSizeX, 5, -size.z+motorBracketSizeZ + 4]) fillet(2, size.z-4);
             // add the braces
@@ -191,13 +192,13 @@ module zMotorLeadscrew(zMotorType, zLeadScrewLength) {
         leadscrewX(_zLeadScrewDiameter, zLeadScrewLength);
 }
 
-module Z_Motor_Mount_Motor_hardware(explode=50) {
+module Z_Motor_Mount_Motor_hardware(explode=50, zLeadScrewOffset=_zLeadScrewOffset) {
     corkDamperThickness = is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness;
 
     stepper_motor_cable(eX + eY + 150);// z motor
 
     size = Z_Motor_MountSize(NEMA_length(zMotorType));
-    translate([eSize + _zLeadScrewOffset, 0, size.z - motorBracketSizeZ - corkDamperThickness]) {
+    translate([eSize + zLeadScrewOffset, 0, size.z - motorBracketSizeZ - corkDamperThickness]) {
         if (corkDamperThickness)
             explode(-explode + 10)
                 corkDamper(zMotorType, corkDamperThickness);
@@ -232,7 +233,7 @@ module Z_Motor_Mount_Motor_hardware(explode=50) {
         }
     }
     NEMA_screw_positions(zMotorType)
-        translate([eSize + _zLeadScrewOffset, 0, size.z - counterBoreDepth])
+        translate([eSize + zLeadScrewOffset, 0, size.z - counterBoreDepth])
             boltM3Buttonhead(screw_shorter_than(5 + motorBracketSizeZ - counterBoreDepth + corkDamperThickness));
 }
 
@@ -285,7 +286,7 @@ assembly("Z_Motor_Mount_KB", big=true, ngb=true) {
         stl_colour(pp1_colour)
             Z_Motor_Mount_KB_stl();
     Z_Motor_Mount_hardware(printBedKinematic=true);
-    Z_Motor_Mount_Motor_hardware();
+    Z_Motor_Mount_Motor_hardware(zLeadScrewOffset=30);
 }
 
 //!1. Bolt the motor and the cork damper to the **Z_Motor_Mount**. Note that the cork damper thermally insulates the motor

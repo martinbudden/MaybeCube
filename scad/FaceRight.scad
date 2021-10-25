@@ -26,16 +26,17 @@ assembly("Right_Side", big=true) {
 
     printBedKinematic = is_undef(printBedKinematic) ? (!is_undef(_printBedKinematic) && _printBedKinematic == true) : printBedKinematic;
     bedHeight = is_undef(bedHeight) ? bedHeight() : bedHeight;
+    upperZRodMountsExtrusionOffsetZ = printBedKinematic ? eZ - 90 : _upperZRodMountsExtrusionOffsetZ;
 
     faceRightLowerExtrusion();
-    if (eX >= 350)
-        faceRightUpperZRodMountsExtrusion();
+    if (eX >= 350 || printBedKinematic)
+        faceRightUpperZRodMountsExtrusion(upperZRodMountsExtrusionOffsetZ);
 
     explode([0, 70, 0], true)
-        faceRightMotorUpright();
+        faceRightMotorUpright(upperZRodMountsExtrusionOffsetZ);
 
     explode([0, -70, 0], true)
-        faceRightIdlerUpright();
+        faceRightIdlerUpright(upperZRodMountsExtrusionOffsetZ);
 
     // extra extrusion for mounting spool holder
     if (printBedKinematic) {
@@ -53,8 +54,8 @@ assembly("Right_Side", big=true) {
 
 }
 
-module faceRightUpperZRodMountsExtrusion() {
-    translate([eX + eSize, eSize, _upperZRodMountsExtrusionOffsetZ - eSize]) {
+module faceRightUpperZRodMountsExtrusion(upperZRodMountsExtrusionOffsetZ) {
+    translate([eX + eSize, eSize,  upperZRodMountsExtrusionOffsetZ - eSize]) {
         extrusionOY2040VEndBolts(eY);
         if (useDualZRods())
             translate([eSize, 0, eSize])
@@ -74,13 +75,13 @@ module faceRightLowerExtrusion() {
     }
 }
 
-frontAndBackHolePositionsZ = concat([eSize/2, 3*eSize/2, eZ - eSize/2, spoolHeight() + eSize/2, spoolHeight() - (eX == 350 ? -3*eSize/2 : eSize/2)], eX < 350 ? [] : [_upperZRodMountsExtrusionOffsetZ + eSize/2, _upperZRodMountsExtrusionOffsetZ - eSize/2]);
+function frontAndBackHolePositionsZ(upperZRodMountsExtrusionOffsetZ) = concat([eSize/2, 3*eSize/2, eZ - eSize/2, spoolHeight() + eSize/2, spoolHeight() - (eX == 350 ? -3*eSize/2 : eSize/2)], eX < 350 ? [] : [upperZRodMountsExtrusionOffsetZ + eSize/2, upperZRodMountsExtrusionOffsetZ - eSize/2]);
 
-module faceRightIdlerUpright() {
+module faceRightIdlerUpright(upperZRodMountsExtrusionOffsetZ) {
     translate([eX + eSize, 0, 0])
         difference() {
             extrusionOZ(eZ);
-            for (z = frontAndBackHolePositionsZ)
+            for (z = frontAndBackHolePositionsZ(upperZRodMountsExtrusionOffsetZ))
                 translate([eSize/2, 0, z])
                     rotate([-90, 0, 0])
                         jointBoltHole();
@@ -91,11 +92,11 @@ module faceRightIdlerUpright() {
         }
 }
 
-module faceRightMotorUpright() {
+module faceRightMotorUpright(upperZRodMountsExtrusionOffsetZ) {
     translate([eX + eSize, eY + eSize, 0])
         difference() {
             extrusionOZ(eZ);
-            for (z = frontAndBackHolePositionsZ)
+            for (z = frontAndBackHolePositionsZ(upperZRodMountsExtrusionOffsetZ))
                 translate([eSize/2, eSize, z])
                     rotate([90, 0, 0])
                         jointBoltHole();

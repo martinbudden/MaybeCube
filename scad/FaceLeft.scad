@@ -27,20 +27,21 @@ assembly("Left_Side", big=true) {
 
     printBedKinematic = is_undef(printBedKinematic) ? (!is_undef(_printBedKinematic) && _printBedKinematic == true) : printBedKinematic;
     bedHeight = is_undef(bedHeight) ? bedHeight() : bedHeight;
+    upperZRodMountsExtrusionOffsetZ = printBedKinematic ? eZ - 90 : _upperZRodMountsExtrusionOffsetZ;
 
     faceLeftLowerExtrusion(printBedKinematic, zMotorLength=40);
-    faceLeftUpperZRodMountsExtrusion(printBedKinematic);
+    faceLeftUpperZRodMountsExtrusion(printBedKinematic, upperZRodMountsExtrusionOffsetZ);
 
     explode([0, 70, 0], true)
-        faceLeftMotorUpright();
+        faceLeftMotorUpright(upperZRodMountsExtrusionOffsetZ);
     explode([0, -70, 0], true)
-        faceLeftIdlerUpright();
+        faceLeftIdlerUpright(upperZRodMountsExtrusionOffsetZ);
     if (printBedKinematic)
         zRails(bedHeight, left=true);
 }
 
-module faceLeftUpperZRodMountsExtrusion(printBedKinematic) {
-    translate([0, eSize, _upperZRodMountsExtrusionOffsetZ]) {
+module faceLeftUpperZRodMountsExtrusion(printBedKinematic, upperZRodMountsExtrusionOffsetZ) {
+    translate([0, eSize, upperZRodMountsExtrusionOffsetZ]) {
         translate_z(-eSize)
             extrusionOY2040VEndBolts(eY);
         if (!printBedKinematic)
@@ -57,10 +58,10 @@ module faceLeftLowerExtrusion(printBedKinematic, zMotorLength) {
 }
 
 
-module faceLeftIdlerUpright() {
+module faceLeftIdlerUpright(upperZRodMountsExtrusionOffsetZ) {
     difference() {
         extrusionOZ(eZ);
-        for (z = [eSize/2, 3*eSize/2, eZ-eSize/2, _upperZRodMountsExtrusionOffsetZ + eSize/2, _upperZRodMountsExtrusionOffsetZ - eSize/2])
+        for (z = [eSize/2, 3*eSize/2, eZ-eSize/2, upperZRodMountsExtrusionOffsetZ + eSize/2, upperZRodMountsExtrusionOffsetZ - eSize/2])
             translate([eSize/2, 0, z])
                 rotate([-90, 0, 0])
                     jointBoltHole();
@@ -71,11 +72,11 @@ module faceLeftIdlerUpright() {
     }
 }
 
-module faceLeftMotorUpright() {
+module faceLeftMotorUpright(upperZRodMountsExtrusionOffsetZ) {
     translate([0, eY + eSize, 0])
         difference() {
             extrusionOZ(eZ);
-            for (z = [eSize/2, 3*eSize/2, eZ - eSize/2, _upperZRodMountsExtrusionOffsetZ + eSize/2, _upperZRodMountsExtrusionOffsetZ - eSize/2])
+            for (z = [eSize/2, 3*eSize/2, eZ - eSize/2, upperZRodMountsExtrusionOffsetZ + eSize/2, upperZRodMountsExtrusionOffsetZ - eSize/2])
                 translate([eSize/2, eSize, z])
                     rotate([90, 0, 0])
                         jointBoltHole();

@@ -34,7 +34,7 @@ module KinematicBed_test() {
     Right_Side_assembly(printBedKinematic=true, bedHeight=bedHeight);
     Base_Plate_Stage_1_assembly();
     //Face_Top_Stage_1_assembly();
-    translate_z(bedHeight) jubilee_build_plate();
+    //translate_z(bedHeight) jubilee_build_plate();
     //let($hide_bolts=true)
     //let($hide_rails=true)
     //let($hide_extrusions=true)
