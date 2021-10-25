@@ -19,7 +19,7 @@ function pulleyOffset() = [-yRailShiftX(), 0, undef];
 function tongueOffset() = (eX + 2*eSize - _xRailLength - 2*yRailOffset().x)/2;
 
 topInset = 0;
-yCarriageInserts = !true;
+yCarriageInserts = true;
 
 module Y_Carriage_Left_stl() {
     idlerHeight = pulley_height(coreXY_toothed_idler(coreXY_type()));
@@ -90,8 +90,11 @@ module Y_Carriage_Brace_Right_stl() {
             yCarriageBrace(yCarriageType(_yCarriageDescriptor), yCarriageBraceThickness(), pulleyOffset(), holeRadius, left=false);
 }
 
-//!1. Bolt the **Y_Carriage_Brace_Left* and the pulleys to the **Y_Carriage_Left** as shown. Note the position of the washers.
-//!2. Tighten the bolts until the pulleys no longer turn freely and then loosen by about 1/4 turn so the pulleys can again turn.
+//!1. Insert the threaded inserts into the **Y_Carriage_Left** as shown.
+//!2. Drive a long M3 bolt through the Y carriage from the insert side to self tap the part of the hole after the insert. Once this
+//!hole is tapped, remove the bolt.
+//!3. Bolt the **Y_Carriage_Brace_Left* and the pulleys to the **Y_Carriage_Left** as shown. Note the position of the washers.
+//!4. Tighten the bolts until the pulleys no longer turn freely and then loosen by about 1/4 turn so the pulleys can again turn.
 //
 module Y_Carriage_Left_assembly() pose(a=[55 + 180, 0, 25])
 assembly("Y_Carriage_Left", ngb=true) {
@@ -118,8 +121,11 @@ assembly("Y_Carriage_Left", ngb=true) {
        }
 }
 
-//!1. Bolt the **Y_Carriage_Brace_Right* and the pulleys to the **Y_Carriage_Right** as shown. Note the position of the washers.
-//!2. Tighten the bolts until the pulleys no longer turn freely and then loosen by about 1/4 turn so the pulleys can again turn.
+//!1. Insert the threaded inserts into the **Y_Carriage_Right** as shown.
+//!2. Drive a long M3 bolt through the Y carriage from the insert side to self tap the part of the hole after the insert. Once this
+//!hole is tapped, remove the bolt.
+//!3. Bolt the **Y_Carriage_Brace_Right* and the pulleys to the **Y_Carriage_Right** as shown. Note the position of the washers.
+//!4. Tighten the bolts until the pulleys no longer turn freely and then loosen by about 1/4 turn so the pulleys can again turn.
 //
 module Y_Carriage_Right_assembly() pose(a=[55 + 180, 0, 25])
 assembly("Y_Carriage_Right", ngb=true) {
