@@ -197,4 +197,5 @@ MC400KB/bom/
 MC400KB/dxfs/*
 MC400KB/stls/*
 MC400KB/tmp/
+!MC400KB/readme.md
 !MC400KB/assemblies/main_assembled.png
