@@ -37,7 +37,13 @@ tests/tmp
 //!tests/png/*.png
 tests/png/*_diff.png
 
-pictures/*.jpg
+pictures/*
+!pictures/MC_front.jpg
+!pictures/MC_left.jpg
+!pictures/MC_back.jpg
+!pictures/MC_right.jpg
+!pictures/MC_top.jpg
+!pictures/MC_wiring.jpg
 
 M5/
 

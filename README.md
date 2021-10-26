@@ -132,6 +132,15 @@ compatible with the E3D tool changer. I have a proof of concept showing that thi
 
 ![JubileeToolChanger Assembly](JubileeToolChanger/assemblies/JubileeToolChanger_assembled.png)
 
+## Pictures
+
+![Front](pictures/MC_front.jpg)
+![Left](pictures/MC_left.jpg)
+![Right](pictures/MC_right.jpg)
+![Back](pictures/MC_back.jpg)
+![Top](pictures/MC_top.jpg)
+![Map](pictures/MC_wiring.jpg)
+
 ## License
 
 MaybeCube is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence](https://creativecommons.org/licenses/by-nc-sa/4.0/)
