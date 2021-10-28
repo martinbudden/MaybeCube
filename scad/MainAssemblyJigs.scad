@@ -26,33 +26,33 @@ assembly("Jigs") {
             E20_Thread_Tapping_Jig_6mm_stl();
     translate([120, 0, 0]) {
         stl_colour(jigColor)
-            Extrusion_Drill_Jig_Pilot_stl();
-        Extrusion_Drill_Jig_Pilot_hardware();
+            Extrusion_Drill_Jig_Z_Rods_Pilot_stl();
+        Extrusion_Drill_Jig_Z_Rods_Pilot_hardware();
     }
     translate([260, 0, 0]) {
         stl_colour(jigColor)
-            Extrusion_Drill_Jig_stl();
-        Extrusion_Drill_Jig_hardware();
+            Extrusion_Drill_Jig_Z_Rods_stl();
+        Extrusion_Drill_Jig_Z_Rods_hardware();
     }
     translate([120, 50, 0]) {
         stl_colour(jigColor)
-            Extrusion_Drill_Jig_E20_to_E80_Pilot_stl();
-        Extrusion_Drill_Jig_E20_to_E80_Pilot_hardware();
+            Extrusion_Drill_Jig_Corner_Pilot_stl();
+        Extrusion_Drill_Jig_Corner_Pilot_hardware();
     }
     translate([260, 50, 0]) {
         stl_colour(jigColor)
-            Extrusion_Drill_Jig_E20_to_E80_stl();
-        Extrusion_Drill_Jig_E20_to_E80_hardware();
+            Extrusion_Drill_Jig_Corner_stl();
+        Extrusion_Drill_Jig_Corner_hardware();
     }
     translate([120 - 90, 50, 0]) {
         stl_colour(pp2_colour)
-            Extrusion_Drill_Jig_E40_Pilot_stl();
-        Extrusion_Drill_Jig_E40_Pilot_hardware();
+            Extrusion_Drill_Jig_Pilot_stl();
+        Extrusion_Drill_Jig_Pilot_hardware();
     }
     translate([260 - 90, 50, 0]) {
         stl_colour(pp2_colour)
-            Extrusion_Drill_Jig_E40_stl();
-        Extrusion_Drill_Jig_E40_hardware();
+            Extrusion_Drill_Jig_stl();
+        Extrusion_Drill_Jig_hardware();
     }
     translate([-115, 0, 0])
         stl_colour(jigColor)
