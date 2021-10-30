@@ -53,6 +53,15 @@ module extrusionOX2040V(length) {
                     extrusion(E2040, length, center=false);
 }
 
+module extrusionOX2060V(length) {
+    eSize = 20;
+    if (is_undef($hide_extrusions) || $hide_extrusions == false)
+        translate([0, eSize/2, 3*eSize/2])
+            rotate([90, 0, 90])
+                color(frameColor())
+                    extrusion(E2060, length, center=false);
+}
+
 module extrusionOX2080V(length) {
     eSize = 20;
     if (is_undef($hide_extrusions) || $hide_extrusions == false)
@@ -233,6 +242,20 @@ module extrusionOZ(length, eSize=20) {
                 translate([length, 0, 0])
                     extrusionOX(0.25, eSize);
         }
+}
+
+module extrusionOZ2040X(length) {
+    eSize = 20;
+    translate([2*eSize, 0, 0])
+        rotate([0, -90, 0])
+            extrusionOX2040V(length);
+}
+
+module extrusionOZ2060X(length) {
+    eSize = 20;
+    translate([3*eSize, 0, 0])
+        rotate([0, -90, 0])
+            extrusionOX2060V(length);
 }
 
 module extrusionOZ2080X(length) {
