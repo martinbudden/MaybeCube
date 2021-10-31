@@ -9,8 +9,8 @@ include <NopSCADlib/vitamins/rails.scad>
 
 use <printed/X_CarriageVoronAfterburner.scad>
 
-use <utils/CoreXYBelts.scad>
-use <utils/X_Rail.scad>
+include <utils/CoreXYBelts.scad>
+include <utils/X_Rail.scad>
 
 use <../scad/Parameters_Positions.scad>
 include <target.scad>

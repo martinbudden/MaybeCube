@@ -18,8 +18,8 @@ include <NopSCADlib/vitamins/rails.scad>
 use <../scad/printed/JubileeToolChanger.scad>
 
 use <utils/carriageTypes.scad>
-use <utils/CoreXYBelts.scad>
-use <utils/X_Rail.scad>
+include <utils/CoreXYBelts.scad>
+include <utils/X_Rail.scad>
 
 use <FaceTop.scad>
 

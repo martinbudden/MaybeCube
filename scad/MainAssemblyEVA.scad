@@ -27,7 +27,7 @@ include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
 use <printed/X_CarriageEVA.scad>
-use <utils/CoreXYBelts.scad>
+include <utils/CoreXYBelts.scad>
 
 use <../scad/Parameters_Positions.scad>
 include <target.scad>

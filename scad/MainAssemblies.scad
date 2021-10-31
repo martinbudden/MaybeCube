@@ -7,9 +7,9 @@ use <printed/PrintheadAssemblies.scad>
 use <printed/Z_MotorMount.scad>
 use <printed/JubileeKinematicBed.scad>
 
-use <utils/printParameters.scad>
-use <utils/CoreXYBelts.scad>
-use <utils/Z_Rods.scad>
+include <utils/printParameters.scad>
+include <utils/CoreXYBelts.scad>
+include <utils/Z_Rods.scad>
 
 use <vitamins/Panels.scad>
 

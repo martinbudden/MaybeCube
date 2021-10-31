@@ -7,7 +7,7 @@ include <NopSCADlib/vitamins/blowers.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
 use <../utils/carriageTypes.scad>
-use <../utils/PrintheadOffsets.scad>
+include <../utils/PrintheadOffsets.scad>
 
 include <../vitamins/bolts.scad>
 

@@ -6,7 +6,7 @@ include <NopSCADlib/vitamins/rails.scad>
 
 use <../printed/X_CarriageAssemblies.scad>
 use <../utils/carriageTypes.scad>
-use <../utils/PrintheadOffsets.scad>
+include <../utils/PrintheadOffsets.scad>
 
 include <../vitamins/bolts.scad>
 

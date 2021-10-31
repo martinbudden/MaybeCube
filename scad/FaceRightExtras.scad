@@ -9,7 +9,7 @@ use <printed/extruderBracket.scad>
 use <printed/SpoolHolder.scad>
 
 use <utils/bezierTube.scad>
-use <utils/printheadOffsets.scad>
+include <utils/printheadOffsets.scad>
 
 use <vitamins/Panels.scad>
 

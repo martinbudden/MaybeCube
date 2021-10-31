@@ -8,7 +8,7 @@ include <NopSCADlib/vitamins/rails.scad>
 use <../../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 use <X_CarriageAssemblies.scad>
 
-use <../utils/X_Rail.scad>
+include <../utils/X_Rail.scad>
 include <../vitamins/bolts.scad>
 use <../Parameters_Positions.scad>
 
