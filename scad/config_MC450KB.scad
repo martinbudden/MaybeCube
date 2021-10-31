@@ -23,6 +23,7 @@ _zCarriageDescriptor = "MGN12C";
 _beltWidth = 6;
 
 _use2060ForTop = true;
+_useXYDirectDrive = true;
 
 _printBedSize = [355, 350, 6.35];
 _printBedHoleOffset = [8, 30];
