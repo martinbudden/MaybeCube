@@ -73,13 +73,22 @@ module echoPrintParameters() {
 }
 
 module echoPrintSize() {
+    echo("========");
     echo(Variant = _variant);
-    echo(Print_size = [_xMax-_xMin, _yMax-_yMin, _zMax-_zMin]);
+    echo(Print_size = [_xMax - _xMin, _yMax - _yMin, _zMax - _zMin]);
     echo(Sizes = [eX + 2*eSize, eY + 2*eSize, eZ]);
-    echo(Motors = _xyMotorDescriptor, is_undef(_zMotorDescriptor) ? "" : _zMotorDescriptor);
-    echo(Rails = _xRailLength, _yRailLength);
-    echo(Carriages = _xCarriageDescriptor, _yCarriageDescriptor);
-    echo(Rods  = _zRodDiameter, _zRodLength);
+    echo(Motors = _xyMotorDescriptor, _zMotorDescriptor);
+    if (is_undef(_zRailLength))
+        echo(Rails = _xRailLength, _yRailLength);
+    else
+        echo(Rails = _xRailLength, _yRailLength, _zRailLength);
+    if (is_undef(_zCarriageDescriptor))
+        echo(Carriages = _xCarriageDescriptor, _yCarriageDescriptor);
+    else
+        echo(Carriages = _xCarriageDescriptor, _yCarriageDescriptor, _zCarriageDescriptor);
+    if (!is_undef(_zRodLength))
+        echo(Rods  = _zRodDiameter, _zRodLength);
     if (!is_undef(_zRodOffsetY))
         echo(_zRodOffsetY = _zRodOffsetY);
+    echo("========");
 }
