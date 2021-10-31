@@ -5,7 +5,6 @@ use <NopSCADlib/utils/fillet.scad>
 use <NopSCADlib/vitamins/ball_bearing.scad>
 use <NopSCADlib/vitamins/o_ring.scad>
 use <NopSCADlib/vitamins/rod.scad>
-use <NopSCADlib/utils/tube.scad>
 include <NopSCADlib/vitamins/blowers.scad>
 include <NopSCADlib/vitamins/e3d.scad>
 include <NopSCADlib/vitamins/inserts.scad>
@@ -14,8 +13,6 @@ include <NopSCADlib/vitamins/stepper_motors.scad>
 include <NopSCADlib/vitamins/washers.scad>
 
 use <../../../BabyCube/scad/printed/Printhead.scad>
-use <../../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
-use <X_CarriageAssemblies.scad>
 
 include <../vitamins/bolts.scad>
 use <../vitamins/nuts.scad>
