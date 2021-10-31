@@ -77,14 +77,39 @@ If you would like to build a smaller printer, you may be interested in the Maybe
 
 The canonical form is the MC350 variant.
 
- variant | ExtrusionSizes | Rail/rod lengths | Approx Build Volume | Bed Size   | Exterior Dimensions
- --------| -------------- | ---------------- | ------------------- | ---------- | -------------------
- MC250   | x250 y250 z350 | x200 y250 z250   | concept variant     | 180mm      | 290 x 290 x 350
- MC300   | x300 y300 z400 | x250 y300 z300   | 180 x 180 x 200     | 214mm      | 340 x 340 x 400
- MC350   | x350 y350 y400 | x300 y350 z300   | 225 x 225 x 200     | 235mm      | 390 x 390 x 400
- MC400   | x400 y400 y450 | x350 y400 z350   | 275 x 275 x 250     | 310mm      | 440 x 440 x 450
+variant | ExtrusionSizes | Rail/rod lengths | Approx Build Volume | Bed Size   | Exterior Dimensions
+------- | -------------- | ---------------- | ------------------- | ---------- | -------------------
+MC250   | x250 y250 z350 | x200 y250 z250   | concept variant     | 180mm      | 290 x 290 x 350
+MC300   | x300 y300 z400 | x250 y300 z300   | 180 x 180 x 200     | 214mm      | 340 x 340 x 400
+MC350   | x350 y350 y400 | x300 y350 z300   | 225 x 225 x 200     | 235mm      | 390 x 390 x 400
+MC400   | x400 y400 y450 | x350 y400 z350   | 275 x 275 x 250     | 310mm      | 440 x 440 x 450
 
  For reference, the original [HyperCube](https://www.thingiverse.com/thing:1752766) has extrusion sizes of x340 y303 z350 to give a build volume of 200 x 200 x 155.
+
+## Comparisons
+
+The following table compares the sizes and build volumes of various CoreXY 3D printers.
+
+Printer           | EType | Extrusion lengths | Build Volume     | Exterior Dimensions
+------------------|------ | ----------------- | ---------------- | -------------------
+MC300             | 2040  | 300 x 300 x 400   | 180 x 180 x 200  | 340 x 340 x 400
+MC350             | 2040  | 350 x 350 x 400   | 225 x 225 x 200  | 390 x 390 x 400
+MC400             | 2040  | 400 x 400 x 450   | 275 x 275 x 250  | 440 x 440 x 450
+MC450             | 2040  | 450 x 450 x 500   | 325 x 325 x 300  | 490 x 490 x 500
+[BLV MGN Cube](https://www.blvprojects.com/blv-mgn-cube-3d-printer) | 2040 | 496 x 496 x 560 | 300 x 300 x 365 | 576 x 536 x 560
+[HyperCube](https://www.thingiverse.com/thing:1752766) | 2020 | 340 x 303 x 350  | 200 x 200 x 155  | 380 x 343 x 350
+[HEVO](https://www.thingiverse.com/thing:2254103) | 2030 |420 x 410 x 500 | 300 x 300 x 300 | 480 x 470 x 500
+[Jubilee](https://www.jubilee3d.com/index.php?title=Main_Page) | 2020 | 409 x 604 x 430 | 300 x 300 x 300 | 476 x 604 x 558
+[RatRig V-Core3 300](https://v-core.ratrig.com/#customization) | 3030 | 440 x 505 x 510 | 300 x 300 x 300  | 518 x 583 x 560
+RatRig V-Core3 400 | 3030 | 540 x 605 x 610 | 400 x 400 x 400  | 618 x 683 x 660
+RatRig V-Core3 500 | 3030 | 640 x 705 x 710 | 500 x 500 x 500  | 718 x 783 x 760
+[RailCore II 300ZL](https://railcore.org/) | 1515 |400 x 370 x 360 | 250 x 250 x 280 | 522 x 445 x 496
+RailCore II 300ZL  | 1515 | 460 x 425 x 445 | 300 x 300 x 330 | 572 x 495 x 546
+RailCore II 300ZLT | 1515 | 460 x 425 x 745 | 300 x 300 x 600 | 572 x 495 x 830
+[Ultra MegaMax Dominator](https://drmrehorst.blogspot.com/2017/07/ultra-megamax-dominator-3d-printer.html) | 4040 | | 300 x 300 x 695 | 610 x 530 x 1500
+[Voron2 v2.4 250](https://vorondesign.com/voron2.4) | 2020 | 410 x 410 x 430 | 250 x 250 x 230 | 450 x 450 x 430
+Voron2 v2.4 300    | 2020 | 460 x 460 x 480 | 300 x 300 x 280 | 500 x 500 x 480
+Voron2 v2.4 350    | 2020 | 510 x 510 x 530 | 350 x 350 x 330 | 550 x 550 x 530
 
 ## Frame stiffness
 
