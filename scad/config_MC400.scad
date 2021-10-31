@@ -11,20 +11,23 @@ _xyMotorDescriptor = "NEMA17_40";
 _zMotorDescriptor = "NEMA17_40L330";
 _corkDamperThickness = 2;
 
-_use2060ForTop = true;
 _xRailLength = eX - 50;
 _yRailLength = eY;
+_zRodLength = eZ - 100;
+
 _xCarriageDescriptor = "MGN12H";
 _xCarriageCountersunk = true;
 _yCarriageDescriptor = "MGN12H";
 
+
 _beltWidth = 6;
 
-_useSidePanels = false;
-
+_use2060ForTop = true;
 _useDualZRods = true;
 _useDualZMotors = true;
-_printBedSize = 310;
+_useSidePanels = false;
+
+_printBedSize = [310, 310, 3] : // CR-10 size
 _printBedArmSeparation = 225;
 _printBed4PointSupport = true;
 

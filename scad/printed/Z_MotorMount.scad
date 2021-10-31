@@ -180,7 +180,7 @@ module Z_Motor_Mount_stl() {
 module Z_Motor_Mount_KB_stl() {
     // invert Z_Motor_Mount so it can be printed without support
     stl("Z_Motor_Mount_KB")
-        color(pp1_colour)
+        color(pp3_colour)
             translate([0, -Z_Motor_MountSize(NEMA_length(zMotorType)).x/2, 0])
                 rotate([180, 0, 90])
                     zMotorMount(zMotorType, printBedKinematic=true);
@@ -283,7 +283,7 @@ module Z_Motor_Mount_KB_assembly() pose(a=[55, 0, 25 + 90])
 assembly("Z_Motor_Mount_KB", big=true, ngb=true) {
 
     vflip()
-        stl_colour(pp1_colour)
+        stl_colour(pp3_colour)
             Z_Motor_Mount_KB_stl();
     Z_Motor_Mount_hardware(printBedKinematic=true);
     Z_Motor_Mount_Motor_hardware(zLeadScrewOffset=30);

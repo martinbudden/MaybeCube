@@ -1,7 +1,6 @@
 include <target.scad>
 
 _useBlindJoints = true;
-_reducedBOM = false;
 
 _boltTogether = true;
 _useAsserts = true;
@@ -12,7 +11,6 @@ _basePlateThickness = 3;
 
 // Z
 _zRodDiameter = 12;
-_zRodLength = eZ - 100;
 _zRodOffsetX = _zRodDiameter == 8 ? 20 : _zRodDiameter == 10 ? 20 : 23; // 20 is SK8 and SK10 hole offset, 23 is SK12 hole offset
 _zLeadScrewDiameter = 8;
 

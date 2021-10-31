@@ -132,14 +132,14 @@ module jubilee_build_plate() {
     //
     //Jubilee size = [340, 305, 6.35];
     //
-    size = [305, 300, 6.35];
+    size = _printBedSize;
     //bedOffset = [47.7, 24.675, 48];
-    bedOffset = [42.7, 24.675, 18];
-    holeOffset = [8, 8];
+    bedOffset = [68.7, 36 + 35, 18];
+    holeOffset = _printBedHoleOffset;
     boltHoles = [ [holeOffset.x, holeOffset.y, 0], [holeOffset.x, size.y - holeOffset.y, 0], [size.x - holeOffset.x, size.y/2, 0] ];
     //translate([60, 25+(26+59)/2, 50+48])
     explode(50)
-        translate(bedOffset + [eSize+13-holeOffset.x, eSize/2 - holeOffset.y + _zRodOffsetY, 0]) {
+        translate(bedOffset) {
             color("silver")
                 difference() {
                     rounded_cube_xy(size, 1);

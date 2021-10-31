@@ -257,14 +257,14 @@ module xyMotorMountBase(motorType, left, size, offset, sideSupportSizeY, stepdow
                         translate_z(basePlateThickness - 0.5)
                             poly_cylinder(r=pulley_flange_dia(GT2x20sd_pulley)/2 + 0.5, h=0.5 + eps);
                     }
-                } else {
+                } else if (offset.x !=0) {
                     for (pos = [pP, pT, [pP.x, pT.y], [pT.x, pP.y]])
                         translate(pos)
                             boltHoleM3Tap(basePlateThickness);
                 }
             }
     }
-    if (!cnc && !stepdown)
+    if (!cnc && !stepdown && offset.x != 0)
         translate([coreXYPosBL.x + separation.x/2, coreXYPosTR.y + offset.y, size.z])
             difference() {
                 union() {
@@ -487,7 +487,7 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
                     vflip()
                         pulley(GT2x20ob_pulley);
             }
-        } else {
+        } else if (offset.x != 0) {
             explode(20, true) {
                 translate(plainIdlerPos) {
                     translate_z(pulleyStackHeight + braceThickness + eps)
@@ -609,8 +609,9 @@ assembly("XY_Motor_Mount_Left", ngb=true) {
         stl_colour(pp1_colour)
             XY_Motor_Mount_Left_stl();
         XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, blockHeightExtra, left=true);
-        stl_colour(pp2_colour)
-            XY_Motor_Mount_Brace_Left_stl();
+        if (offset.x != 0)
+            stl_colour(pp2_colour)
+                XY_Motor_Mount_Brace_Left_stl();
     }
 }
 
@@ -655,7 +656,8 @@ assembly("XY_Motor_Mount_Right", ngb=true) {
         stl_colour(pp1_colour)
             XY_Motor_Mount_Right_stl();
         XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, blockHeightExtra, left=false);
-        stl_colour(pp2_colour)
-            XY_Motor_Mount_Brace_Right_stl();
+        if (offset.x != 0)
+            stl_colour(pp2_colour)
+                XY_Motor_Mount_Brace_Right_stl();
     }
 }

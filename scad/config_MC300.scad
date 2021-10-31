@@ -13,17 +13,21 @@ _corkDamperThickness = 2;
 
 _xRailLength = eX - 50;
 _yRailLength = eY;
+_zRodLength = eZ - 100;
+
 _xCarriageDescriptor = "MGN12H";
 _xCarriageCountersunk = true;
 _yCarriageDescriptor = "MGN12H";
 
+
 _beltWidth = 6;
 
-_useSidePanels = false;
 
 _useDualZRods = false;
 _useDualZMotors = false;
-_printBedSize = 214;
+_useSidePanels = false;
+
+_printBedSize = [214, 214, 4];
 _printBedArmSeparation = 188;
 _printBed4PointSupport = !true;
 

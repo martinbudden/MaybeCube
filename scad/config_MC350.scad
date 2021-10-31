@@ -11,20 +11,23 @@ _xyMotorDescriptor = "NEMA17_48";
 _zMotorDescriptor = "NEMA17_40L280";
 _corkDamperThickness = 2;
 
-_use2060ForTop = true;
 _xRailLength = eX - 50;
 _yRailLength = eY;
+_zRodLength = eZ - 100;
+
 _xCarriageDescriptor = "MGN12H";
 _xCarriageCountersunk = true;
 _yCarriageDescriptor = "MGN12H";
 
+
 _beltWidth = 6;
 
-_useSidePanels = false;
-
+_use2060ForTop = true;
 _useDualZRods = false;
 _useDualZMotors = false;
-_printBedSize = 235;
+_useSidePanels = false;
+
+_printBedSize = [235, 235, 4]; // Ender 3 size
 _printBedArmSeparation = 150;
 _printBed4PointSupport = true;
 

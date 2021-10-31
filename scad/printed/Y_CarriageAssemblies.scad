@@ -100,7 +100,7 @@ module Y_Carriage_Left_assembly() pose(a=[55 + 180, 0, 25])
 assembly("Y_Carriage_Left", ngb=true) {
 
     yCarriageType = yCarriageType(_yCarriageDescriptor);
-    railOffsetX = 1.5*eSize;
+    railOffsetX = coreXYPosBL().x;
 
     plainIdler = coreXY_plain_idler(coreXY_type());
     toothedIdler = coreXY_toothed_idler(coreXY_type());
@@ -131,7 +131,7 @@ module Y_Carriage_Right_assembly() pose(a=[55 + 180, 0, 25])
 assembly("Y_Carriage_Right", ngb=true) {
 
     yCarriageType = yCarriageType(_yCarriageDescriptor);
-    railOffsetX = 1.5*eSize;
+    railOffsetX = coreXYPosBL().x;
 
     plainIdler = coreXY_plain_idler(coreXY_type());
     toothedIdler = coreXY_toothed_idler(coreXY_type());
@@ -153,7 +153,7 @@ assembly("Y_Carriage_Right", ngb=true) {
 }
 
 module Y_Carriage_bolts(yCarriageType, thickness, left) {
-    railOffsetX = 1.5*eSize;
+    railOffsetX = coreXYPosBL().x;
 
     translate([left ? railOffsetX : -railOffsetX, carriagePosition().y, -carriage_height(yCarriageType)])
         rotate([180, 0, left ? 0 : 180])

@@ -35,8 +35,8 @@ heatedBedOffset = !is_undef(_printBed4PointSupport) && _printBed4PointSupport
     ? [0, 40, _printBedExtrusionSize/2 + springLength - 8]
     : [0, skHoleOffsetFromTop + 8, _printBedExtrusionSize/2 + 5.5];
 
-
-_heatedBedSize = is_undef(_printBedSize) || _printBedSize == 100 ? [100, 100, 1.6] : // Openbuilds mini heated bed size
+_heatedBedSize = _printBedSize;
+/*_heatedBedSize = is_undef(_printBedSize) || _printBedSize == 100 ? [100, 100, 1.6] : // Openbuilds mini heated bed size
                 _printBedSize == 120 ? [120, 120, 6] : // Voron 0 size
                 _printBedSize == 180 ? [180, 180, 3] :
                 _printBedSize == 210 ? [210, 210, 4] :
@@ -44,17 +44,17 @@ _heatedBedSize = is_undef(_printBedSize) || _printBedSize == 100 ? [100, 100, 1.
                 _printBedSize == 235 ? [235, 235, 4] : // Ender 3 size
                 _printBedSize == 300 ? [300, 300, 4] :
                 _printBedSize == 310 ? [310, 310, 3] : // CR-10 size
-                undef;
+                undef;*/
 
 // values marked undef are not currently reliably known
-_heatedBedHoleOffset = is_undef(_printBedSize) || _printBedSize == 100 ? 4 :
-                    _printBedSize == 120 ? 5 :
-                    _printBedSize == 180 ? 3 : // !!estimate
-                    _printBedSize == 210 ? undef :
-                    _printBedSize == 214 ? 3 :
-                    _printBedSize == 235 ? 32.5 :
-                    _printBedSize == 300 ? 3 : // !!estimate
-                    _printBedSize == 310 ? 35 : // hole spacing is 240x240 on CR-10
+_heatedBedHoleOffset = is_undef(_heatedBedSize) || _heatedBedSize.x == 100 ? 4 :
+                    _heatedBedSize.x == 120 ? 5 :
+                    _heatedBedSize.x == 180 ? 3 : // !!estimate
+                    _heatedBedSize.x == 210 ? undef :
+                    _heatedBedSize.x == 214 ? 3 :
+                    _heatedBedSize.x == 235 ? 32.5 :
+                    _heatedBedSize.x == 300 ? 3 : // !!estimate
+                    _heatedBedSize.x == 310 ? 35 : // hole spacing is 240x240 on CR-10
                     undef;
 
 

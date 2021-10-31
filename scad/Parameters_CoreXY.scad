@@ -28,8 +28,8 @@ function yCarriageBraceThickness() = 1; // brace to support cantilevered pulleys
 function beltOffsetZ() = yCarriageThickness() - coreXYSeparation().z - 30.5;
 //function beltOffsetZ() = yCarriageThickness() + carriage_height(MGN12H_carriage) + coreXYSeparation().z - 55;
 
-function leftDrivePulleyOffset() = [38, 0];
-function rightDrivePulleyOffset() = [eX >= 350 ? -38 : -42.5, 0]; // need to give clearance to extruder motor
+function leftDrivePulleyOffset() = [eX >= 450 ? 0 : 38, 0];
+function rightDrivePulleyOffset() = [eX >=450 ? 0 : (eX >= 350 ? -38 : -42.5), 0]; // need to give clearance to extruder motor
 
 
 // use -12.75 for separation.x to make y-carriage idlers coincident vertically
@@ -45,7 +45,7 @@ function motorClearance() = [0, 14];
 
 
 function coreXYPosBL() = [
-    1.5*eSize, // this aligns of the center of the pulley with the center of the Y rail
+    eX >= 450 ? 2.5*eSize : 1.5*eSize, // this aligns of the center of the pulley with the center of the Y rail
     eSize/2,
     // choose Z so the belts align with the Y_Carriage pulleys
     eZ - yCarriageThickness() - yCarriageBraceThickness()/2  - (_beltWidth == 6 ? 42.5 : 42.5 + pulley_height(coreXY_toothed_idler(coreXY_type())) - 7.5)

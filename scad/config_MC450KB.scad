@@ -1,6 +1,6 @@
-_variant = "MC400KB";
+_variant = "MC450KB";
 
-__extrusionLengths = [400, 400, 450];
+__extrusionLengths = [450, 450, 450];
 eX = __extrusionLengths.x;
 eY = __extrusionLengths.y;
 eZ = __extrusionLengths.z;
@@ -24,7 +24,7 @@ _beltWidth = 6;
 
 _use2060ForTop = true;
 
-_printBedSize = [305, 300, 6.35];
+_printBedSize = [355, 350, 6.35];
 _printBedHoleOffset = [8, 30];
 _printBedArmSeparation = 50 + _printBedSize.y - 2*_printBedHoleOffset.y;
 _printBedKinematic = true;

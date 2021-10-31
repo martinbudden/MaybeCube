@@ -23,6 +23,7 @@ use <utils/X_Rail.scad>
 include <vitamins/bolts.scad>
 use <vitamins/extrusion.scad>
 
+use <Parameters_CoreXY.scad>
 use <Parameters_Positions.scad>
 include <Parameters_Main.scad>
 
@@ -202,7 +203,7 @@ assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
             extrusionOY2060HEndBolts(eY);
         else
             extrusionOY2040HEndBolts(eY);
-    translate([1.5*eSize, eSize + _yRailLength/2, eZ - eSize])
+    translate([coreXYPosBL().x, eSize + _yRailLength/2, eZ - eSize])
         explode(-40, true)
             rotate([180, 0, 90])
                 if (is_undef($hide_rails) || $hide_rails == false) {
@@ -233,7 +234,7 @@ assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
         else
             extrusionOY2040HEndBolts(eY);
 
-    translate([eX + eSize/2, eSize + _yRailLength/2, eZ - eSize])
+    translate([eX + 2*eSize - coreXYPosBL().x, eSize + _yRailLength/2, eZ - eSize])
         explode(-40, true)
             rotate([180, 0, 90])
                 if (is_undef($hide_rails) || $hide_rails == false) {
