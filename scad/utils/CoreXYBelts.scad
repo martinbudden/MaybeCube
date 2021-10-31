@@ -1,7 +1,7 @@
 include <NopSCADlib/utils/core/core.scad>
 use <NopSCADlib/utils/core_xy.scad>
 
-include <../Parameters_CoreXY.scad>
+use <../Parameters_CoreXY.scad>
 
 
 module CoreXYBelts(carriagePosition, x_gap=0, show_pulleys=false, xyMotorWidth=undef, leftDrivePulleyOffset=leftDrivePulleyOffset(), rightDrivePulleyOffset=rightDrivePulleyOffset()) {
