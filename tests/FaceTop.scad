@@ -4,14 +4,14 @@ include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/printed/extruderBracket.scad>
 
-use <../scad/utils/CoreXYBelts.scad>
+include <../scad/utils/CoreXYBelts.scad>
 
 use <../scad/vitamins/Panels.scad>
 
 use <../scad/FaceTop.scad>
 use <../scad/BackFace.scad>
 use <../scad/printed/WiringGuide.scad>
-use <../scad/utils/printParameters.scad>
+include <../scad/utils/printParameters.scad>
 
 use <../scad/Parameters_Positions.scad>
 include <../scad/Parameters_Main.scad>
@@ -51,6 +51,6 @@ module Face_Top_test() {
 }
 
 if ($preview)
-    //rotate(-90 + 30)
+    rotate($vpr.z == 315 ? -90 + 30 : 0)
         translate([-eX/2 - eSize, -eY/2 - eSize, -eZ])
             Face_Top_test();

@@ -3,8 +3,8 @@
 use <../scad/Main.scad>
 use <../scad/MainAssemblies.scad>
 
-use <../scad/utils/printParameters.scad>
-use <../scad/utils/CoreXYBelts.scad>
+include <../scad/utils/printParameters.scad>
+include <../scad/utils/CoreXYBelts.scad>
 
 use <../scad/Parameters_Positions.scad>
 include <../scad/Parameters_Main.scad>
@@ -27,10 +27,10 @@ module main_test() {
     //let($hide_extrusions=true)
     //let($hide_rails=true)
     //Stage_5_assembly();
-    main_assembly();
+    translate([eX/2 + eSize, eY/2 + eSize, eZ/2]) main_assembly();
 }
 
 if ($preview)
-    rotate(-90 + 30)
-        //translate([-eX/2 - eSize, -eY/2 - eSize, 0])
+    rotate($vpr.z == 315 ? -90 + 30 : 0)
+        translate([-eX/2 - eSize, -eY/2 - eSize, -eZ/2])
             main_test();

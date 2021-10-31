@@ -2,7 +2,7 @@
 
 include <NopSCADlib/utils/core/core.scad>
 
-use <../scad/utils/Z_Rods.scad>
+include <../scad/utils/Z_Rods.scad>
 use <../scad/PrintBed.scad>
 
 include <../scad/Parameters_main.scad>

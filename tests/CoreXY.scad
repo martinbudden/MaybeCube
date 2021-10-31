@@ -15,9 +15,9 @@ use <../scad/printed/XY_Idler.scad>
 use <../scad/printed/XY_MotorMount.scad>
 use <../scad/printed/X_CarriageEVA.scad>
 
-use <../scad/utils/printParameters.scad>
-use <../scad/utils/CoreXYBelts.scad>
-use <../scad/utils/X_Rail.scad>
+include <../scad/utils/printParameters.scad>
+include <../scad/utils/CoreXYBelts.scad>
+include <../scad/utils/X_Rail.scad>
 
 include <../scad/vitamins/bolts.scad>
 use <../scad/vitamins/extrusion.scad>
@@ -26,6 +26,8 @@ use <../scad/Parameters_CoreXY.scad>
 use <../scad/Parameters_Positions.scad>
 include <../scad/Parameters_Main.scad>
 
+//$vpr = [55,0,25];
+//$vpr = [70,0,315]; // for tests
 yCarriageType = MGN12H_carriage;
 rail_type = MGN12;
 t = 2;
@@ -33,6 +35,7 @@ t = 2;
 module CoreXY_test() {
 
     echoPrintSize();
+    echo(vpr=$vpr);
 
     NEMA_width = _xyMotorDescriptor == "NEMA14" ? 35.2 : 42.3;
     coreXYSize = coreXYPosTR(NEMA_width) - coreXYPosBL();
@@ -83,6 +86,6 @@ module CoreXY_test() {
 }
 
 if ($preview)
-    rotate(-90 + 30)
+    rotate($vpr.z == 315 ? -90 + 30 : 0)
         translate([-eX/2 - eSize, -eY/2 - eSize, -coreXYPosBL().z])
             CoreXY_test();

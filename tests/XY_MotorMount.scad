@@ -3,7 +3,7 @@
 include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/printed/XY_MotorMount.scad>
-use <../scad/utils/CoreXYBelts.scad>
+include <../scad/utils/CoreXYBelts.scad>
 
 use <../scad/Parameters_Positions.scad>
 include <../scad/Parameters_Main.scad>

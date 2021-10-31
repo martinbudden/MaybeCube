@@ -2,7 +2,7 @@
 
 include <NopSCADlib/utils/core/core.scad>
 
-use <../scad/utils/CoreXYBelts.scad>
+include <../scad/utils/CoreXYBelts.scad>
 use <../scad/printed/PSU.scad>
 use <../scad/printed/XY_MotorMount.scad>
 use <../scad/BackFace.scad>

@@ -10,8 +10,8 @@ use <../scad/printed/Y_CarriageAssemblies.scad>
 use <../scad/MainAssemblyVoronAfterburner.scad>
 
 use <../scad/utils/carriageTypes.scad>
-use <../scad/utils/CoreXYBelts.scad>
-use <../scad/utils/X_Rail.scad>
+include <../scad/utils/CoreXYBelts.scad>
+include <../scad/utils/X_Rail.scad>
 
 
 use <../scad/Parameters_Positions.scad>

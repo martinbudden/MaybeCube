@@ -6,7 +6,7 @@ include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
 use <../scad/utils/carriageTypes.scad>
-use <../scad/utils/X_Rail.scad>
+include <../scad/utils/X_Rail.scad>
 use <../scad/printed/PrintheadAssemblies.scad>
 
 use <../scad/Parameters_CoreXY.scad>

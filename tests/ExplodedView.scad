@@ -3,7 +3,7 @@
 include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/printed/PrintheadAssemblies.scad>
-use <../scad/utils/Z_Rods.scad>
+include <../scad/utils/Z_Rods.scad>
 
 use <../scad/BackFace.scad>
 use <../scad/BasePlate.scad>
@@ -46,6 +46,6 @@ module Exploded_View_test() {
 }
 
 if ($preview)
-    rotate(-90 + 30)
+    rotate($vpr.z == 315 ? -90 + 30 : 0)
         translate([-eX/2 - eSize, -eY/2 - eSize, 0])
             Exploded_View_test();

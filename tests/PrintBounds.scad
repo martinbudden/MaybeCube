@@ -35,9 +35,9 @@ include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/printed/PSU.scad>
 
-use <../scad/utils/printParameters.scad>
-use <../scad/utils/CoreXYBelts.scad>
-use <../scad/utils/X_Rail.scad>
+include <../scad/utils/printParameters.scad>
+include <../scad/utils/CoreXYBelts.scad>
+include <../scad/utils/X_Rail.scad>
 
 use <../scad/vitamins/PrintHeadBIQU_B1.scad>
 

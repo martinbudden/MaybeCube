@@ -7,8 +7,8 @@ include <NopSCADlib/utils/core/core.scad>
 use <../scad/printed/extruderBracket.scad>
 use <../scad/printed/IEC_Housing.scad>
 
-use <../scad/utils/Z_Rods.scad>
-use <../scad/utils/CoreXYBelts.scad>
+include <../scad/utils/Z_Rods.scad>
+include <../scad/utils/CoreXYBelts.scad>
 
 use <../scad/vitamins/Panels.scad>
 
@@ -43,8 +43,8 @@ module Right_Side_test() {
     faceRightSpoolHolderBracketHardware();
     //faceRightSpool();
 
-    // always add the panels last, so it is transparent to other items
-    Right_Side_Channel_Nuts();
+    //Right_Side_Channel_Nuts();
+    // always add the panels last, so they are transparent to other items
     rightSidePanelPC();
     Partition_assembly();
 }

@@ -9,8 +9,8 @@ use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/XY_MotorMount.scad>
 
 use <../scad/utils/carriageTypes.scad>
-use <../scad/utils/CoreXYBelts.scad>
-use <../scad/utils/X_Rail.scad>
+include <../scad/utils/CoreXYBelts.scad>
+include <../scad/utils/X_Rail.scad>
 
 use <../scad/vitamins/extrusion.scad>
 
