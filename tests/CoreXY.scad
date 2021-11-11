@@ -17,7 +17,7 @@ include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/X_Rail.scad>
 
 include <../scad/vitamins/bolts.scad>
-use <../scad/vitamins/extrusion.scad>
+include <../scad/vitamins/extrusion.scad>
 
 include <../scad/Parameters_CoreXY.scad>
 use <../scad/Parameters_Positions.scad>

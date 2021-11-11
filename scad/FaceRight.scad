@@ -9,7 +9,7 @@ use <printed/extruderBracket.scad>
 include <utils/FrameBolts.scad>
 include <utils/Z_Rods.scad>
 
-use <vitamins/extrusion.scad>
+include <vitamins/extrusion.scad>
 
 use <FaceRightExtras.scad>
 

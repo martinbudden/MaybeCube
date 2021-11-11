@@ -11,7 +11,7 @@ use <../scad/utils/carriageTypes.scad>
 include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/X_Rail.scad>
 
-use <../scad/vitamins/extrusion.scad>
+include <../scad/vitamins/extrusion.scad>
 
 use <../scad/MainAssemblyJubileeToolChanger.scad>
 

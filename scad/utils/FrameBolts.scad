@@ -1,6 +1,6 @@
 include <NopSCADlib/utils/core/core.scad>
 
-use <../vitamins/extrusion.scad>
+include <../vitamins/extrusion.scad>
 include <../vitamins/bolts.scad>
 include <../Parameters_Main.scad>
 

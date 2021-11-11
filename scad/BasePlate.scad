@@ -8,10 +8,10 @@ use <printed/BaseFoot.scad>
 use <printed/BaseFrontCover.scad>
 use <printed/DisplayHousingAssemblies.scad>
 
-use <utils/FrameBolts.scad>
+include <utils/FrameBolts.scad>
 
 include <vitamins/bolts.scad>
-use <vitamins/extrusion.scad>
+include <vitamins/extrusion.scad>
 use <vitamins/nuts.scad>
 
 include <Parameters_Main.scad>

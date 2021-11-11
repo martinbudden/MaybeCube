@@ -5,7 +5,7 @@
 
 include <NopSCADlib/vitamins/rails.scad>
 
-use <vitamins/extrusion.scad>
+include <vitamins/extrusion.scad>
 use <jigs/E20ThreadTappingJig.scad>
 use <jigs/ExtrusionDrillJig.scad>
 use <jigs/PanelJig.scad>

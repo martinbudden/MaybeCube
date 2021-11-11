@@ -11,7 +11,7 @@ use <../printed/Z_MotorMount.scad>
 include <../utils/carriageTypes.scad>
 
 include <../vitamins/bolts.scad>
-use <../vitamins/extrusion.scad>
+include <../vitamins/extrusion.scad>
 use <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>

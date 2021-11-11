@@ -15,12 +15,12 @@ use <utils/bezierTube.scad>
 use <utils/carriageTypes.scad>
 include <utils/CoreXYBelts.scad>
 include <utils/FrameBolts.scad>
-use <utils/RailNutsAndBolts.scad>
+include <utils/RailNutsAndBolts.scad>
 include <utils/printheadOffsets.scad>
 include <utils/X_Rail.scad>
 
 include <vitamins/bolts.scad>
-use <vitamins/extrusion.scad>
+include <vitamins/extrusion.scad>
 
 include <Parameters_CoreXY.scad>
 use <Parameters_Positions.scad>
