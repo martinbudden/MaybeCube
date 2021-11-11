@@ -14,7 +14,6 @@ include <../vitamins/bolts.scad>
 use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
 use <../../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
-use <../../../BabyCube/scad/printed/X_CarriageBeltClamps.scad>
 include <../../../BabyCube/scad/printed/X_CarriageFanDuct.scad>
 
 use <../Parameters_CoreXY.scad>
@@ -42,7 +41,7 @@ xCarriageBeltTensionerSizeX = 23;
 
 module X_Carriage_Belt_Side_MGN12H_stl() {
     xCarriageType = MGN12H_carriage;
-    size = xCarriageFrontSize(xCarriageType, _beltWidth, clamps=false);// + [1, 0, 1];
+    size = xCarriageFrontSize(xCarriageType, beltWidth());// + [1, 0, 1];
     holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
     holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
     offsetT = xCarriageHoleOffsetTop();
@@ -123,7 +122,7 @@ module X_Carriage_Belt_Clamp_stl() {
 module xCarriageBeltClampAssembly(xCarriageType, countersunk=true) {
     assert(is_list(xCarriageType));
 
-    size = xCarriageFrontSize(xCarriageType, _beltWidth, clamps=false);
+    size = xCarriageFrontSize(xCarriageType, beltWidth());
 
     xCarriageBeltClampPosition(xCarriageType, size) {
         stl_colour(pp2_colour)
@@ -146,10 +145,10 @@ module X_Carriage_Groovemount_MGN12H_stl() {
     stl("X_Carriage_Groovemount_MGN12H")
         color(pp1_colour)
             rotate([0, 90, 0]) {
-                size = xCarriageBackSize(xCarriageType, _beltWidth, clamps=false);
+                size = xCarriageBackSize(xCarriageType, beltWidth());
                 difference() {
                     union() {
-                        xCarriageBack(xCarriageType, size, _beltWidth, beltOffsetZ(), coreXYSeparation().z, clamps=false, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), accelerometerOffset=accelerometerOffset());
+                        xCarriageBack(xCarriageType, size, beltWidth(), beltOffsetZ(), coreXYSeparation().z, clamps=false, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), accelerometerOffset=accelerometerOffset());
                         hotEndHolder(xCarriageType, grooveMountSize, hotendOffset, hotend_type, blower_type, baffle=false, left=false);
                     }
                     // bolt holes for Z probe mount
@@ -190,107 +189,6 @@ module X_Carriage_Groovemount_MGN12H_assembly() {
                     Fan_Duct_hardware(xCarriageType, hotend_type);
                 }
 }
-
-/*
-module X_Carriage_Front_MGN12H_stl() {
-    xCarriageType = MGN12H_carriage;
-
-    // orientate for printing
-    stl("X_Carriage_Front_MGN12H")
-        color(pp4_colour)
-            rotate([0, -90, 0])
-                xCarriageFront(xCarriageType, _beltWidth, beltOffsetZ(), coreXYSeparation().z);
-}
-
-//!1. Bolt the Belt_Clamps to the X_Carriage_Front, leaving them loose for later insertion of the belts.
-//!2. Insert the Belt_tensioners into the X_Carriage_Front, and use the 20mm bolts to secure them in place.
-module X_Carriage_Front_MGN12H_assembly()
-assembly("X_Carriage_Front_MGN12H", big=true) {
-
-    xCarriageType = MGN12H_carriage;
-    size = xCarriageFrontSize(xCarriageType, _beltWidth, clamps=true);
-    beltOffsetZ = beltOffsetZ();
-
-    rotate([0, 90, 0])
-        stl_colour(pp4_colour)
-            X_Carriage_Front_MGN12H_stl();
-
-    translate([-size.x/2, -xCarriageFrontOffsetY(xCarriageType), 0]) {
-        for (i= [
-                    [beltClampOffsetX(), -1.5, beltOffsetZ - coreXYSeparation().z/2],
-                    [size.x - beltClampOffsetX(), -1.5, beltOffsetZ + coreXYSeparation().z/2]
-                ])
-            translate(i)
-                rotate([0, -90, 90])
-                    explode(20, true) {
-                        stl_colour(pp2_colour)
-                            Belt_Clamp_stl();
-                        Belt_Clamp_hardware(_beltWidth);
-                    }
-        translate([size.x/2, -1.5, beltOffsetZ])
-            rotate([0, -90, 90])
-                explode(20, true) {
-                    stl_colour(pp2_colour)
-                        Belt_Tidy_stl();
-                    Belt_Tidy_hardware(_beltWidth);
-                }
-
-        translate([12, (size.y + beltInsetFront(undef))/2, beltOffsetZ - coreXYSeparation().z/2]) {
-            explode([0, -10, 0])
-                stl_colour(pp3_colour)
-                    Belt_Tensioner_stl();
-            Belt_Tensioner_hardware(_beltWidth);
-        }
-
-        translate([size.x - 12, (size.y + beltInsetFront(undef))/2, beltOffsetZ + coreXYSeparation().z/2])
-            rotate(180) {
-                explode([0, 10, 0])
-                    stl_colour(pp3_colour)
-                        Belt_Tensioner_stl();
-                Belt_Tensioner_hardware(_beltWidth);
-            }
-    }
-}
-
-module xCarriageBeltClamps(xCarriageType) {
-    assert(is_list(xCarriageType));
-
-    sizeX = xCarriageBackSize(xCarriageType, _beltWidth).x;
-
-    translate([-sizeX/2 - 1, 0, -coreXYSeparation().z/2])
-        rotate([0, 90, 180])
-            explode(10, true) {
-                stl_colour(pp2_colour)
-                    Belt_Clamp_stl();
-                Belt_Clamp_hardware(_beltWidth);
-            }
-    translate([sizeX/2 + 1, 0, coreXYSeparation().z/2])
-        rotate([0, 90, 0])
-            explode(10, true) {
-                stl_colour(pp2_colour)
-                    Belt_Clamp_stl();
-                Belt_Clamp_hardware(_beltWidth);
-            }
-}
-
-module Belt_Tidy_stl() {
-    stl("Belt_Tidy")
-        color(pp2_colour)
-            beltTidy(_beltWidth);
-}
-
-module Belt_Clamp_stl() {
-    stl("Belt_Clamp")
-        color(pp2_colour)
-            beltClamp(_beltWidth);
-}
-
-module Belt_Tensioner_stl() {
-    stl("Belt_Tensioner")
-        color(pp3_colour)
-            beltTensioner(_beltWidth);
-}
-*/
 
 module Fan_Duct_stl() {
     stl("Fan_Duct")

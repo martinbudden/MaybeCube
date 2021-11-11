@@ -176,6 +176,9 @@ module XY_Idler_hardware(left = true) {
                         washer(M3_washer)
                             explode([left ? -20 : 20, 0, 0], true)
                                 children();
+        else if (coreXYIdlerBore() == 4)
+            washer(M4_washer)
+                children();
         else
             washer(M5_washer)
                 children();

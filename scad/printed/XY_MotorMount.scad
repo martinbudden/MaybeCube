@@ -57,7 +57,7 @@ bracketHeightRight = eZ - eSize - (coreXYPosBL().z + washer_thickness(M3_washer)
 bracketHeightLeft = bracketHeightRight + coreXYSeparation().z;
 braceThickness = 5;
 braceCountersunk = true;
-pulleyStackHeight = 2*washer_thickness(coreXYIdlerBore() == 3 ? M3_washer : M5_washer) + pulley_height(coreXY_plain_idler(coreXY_type()));
+pulleyStackHeight = 2*washer_thickness(coreXYIdlerBore() == 3 ? M3_washer : coreXYIdlerBore() == 4 ? M4_washer : M5_washer) + pulley_height(coreXY_plain_idler(coreXY_type()));
 sizeP = [9, 8.5, pulleyStackHeight + 0.5];
 sizeT = [8.5, 9, sizeP.z];
 
@@ -461,8 +461,9 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
                         boltM3Buttonhead(10);
         }
 
-        washer = coreXYIdlerBore() == 3 ? M3_washer : M5_washer;
-        screw = coreXYIdlerBore() == 3 ? (braceCountersunk ? M3_cs_cap_screw : M3_dome_screw) : (braceCountersunk ? M5_cs_cap_screw : M5_dome_screw);
+        coreXYIdlerBore = coreXYIdlerBore();
+        washer = coreXYIdlerBore == 3 ? M3_washer : coreXYIdlerBore == 4 ? M4_washer : M5_washer;
+        screw = coreXYIdlerBore == 3 ? (braceCountersunk ? M3_cs_cap_screw : M3_dome_screw) : coreXYIdlerBore == 4 ? (braceCountersunk ? M4_cs_cap_screw : M4_dome_screw) : (braceCountersunk ? M5_cs_cap_screw : M5_dome_screw);
         screwLength = screw_longer_than(pulleyStackHeight + braceThickness + basePlateThickness);
         plainIdlerPos = left ? coreXY_drive_plain_idler_offset(coreXY_type) + (stepdown ? [0 ,0, 0] : leftDrivePlainIdlerOffset)
                        : [-coreXY_drive_plain_idler_offset(coreXY_type).x, coreXY_drive_plain_idler_offset(coreXY_type).y, 0]  + (stepdown ? [0, 0, 0] : rightDrivePlainIdlerOffset);

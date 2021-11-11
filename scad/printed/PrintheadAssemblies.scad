@@ -83,7 +83,7 @@ module printheadBeltSide(rotate=0, explode=0, t=undef) {
 
 module printheadHotendSide(rotate=0, explode=0, t=undef) {
     xCarriageType = MGN12H_carriage;
-    xCarriageFrontSize = xCarriageFrontSize(xCarriageType, _beltWidth, clamps=false);
+    xCarriageFrontSize = xCarriageFrontSize(xCarriageType, beltWidth());
     holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
     holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
     offsetT = xCarriageHoleOffsetTop();
@@ -119,6 +119,7 @@ module bl_touch_mount() {
     }
 }
 
+/*
 module fullPrinthead(rotate=180, explode=0, t=undef, accelerometer=false) {
     xCarriageType = MGN12H_carriage;
     holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
@@ -128,7 +129,7 @@ module fullPrinthead(rotate=180, explode=0, t=undef, accelerometer=false) {
         explode(explode, true) {
             explode([0, -20, 0], true) {
                 X_Carriage_Front_MGN12H_assembly();
-                xCarriageFrontSize = xCarriageFrontSize(xCarriageType, _beltWidth, clamps=true);
+                xCarriageFrontSize = xCarriageFrontSize(xCarriageType, _beltWidth);
                 xCarriageFrontBolts(xCarriageType, xCarriageFrontSize, topBoltLength=30, holeSeparationTop=holeSeparationTop, bottomBoltLength=30, holeSeparationBottom=holeSeparationBottom, countersunk=true);
             }
             Printhead_E3DV6_MGN12H_assembly();
@@ -140,6 +141,7 @@ module fullPrinthead(rotate=180, explode=0, t=undef, accelerometer=false) {
                 xCarriageBeltFragments(xCarriageType, coreXY_belt(coreXY_type()), beltOffsetZ(), coreXYSeparation().z, coreXY_upper_belt_colour(coreXY_type()), coreXY_lower_belt_colour(coreXY_type()));
         }
 }
+*/
 
 module printheadAccelerometerAssembly() {
     translate(accelerometerOffset() + [0, 0, 1])

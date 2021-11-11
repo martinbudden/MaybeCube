@@ -20,7 +20,7 @@ _xCarriageCountersunk = true;
 _yCarriageDescriptor = "MGN12H";
 _zCarriageDescriptor = "MGN12C";
 
-_beltWidth = 6;
+_coreXYDescriptor = "GT2_20_16";
 
 _use2060ForTop = true;
 

@@ -15,7 +15,7 @@ _xCarriageDescriptor = "MGN12H";
 _xCarriageCountersunk = true;
 _yCarriageDescriptor = "MGN12H";
 
-_beltWidth = 6;
+_coreXYDescriptor = "GT2_20_16";
 
 __skBracketWidth = 42; // same for SK8, SK10, and SK12
 _zRodOffsetY = __skBracketWidth/2 + 40;

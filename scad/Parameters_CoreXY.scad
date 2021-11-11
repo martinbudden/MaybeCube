@@ -15,8 +15,9 @@ GT2x20x11_plain_idler   = ["GT2x20x11_plain_idler",   "GT2",    0, 12.0,  GT2x9,
 coreXY_GT2x9_20_20=["coreXY_20_20", GT2x9, GT2x20x11_pulley, GT2x20x11_toothed_idler, GT2x20x11_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
 useXYDirectDrive = !is_undef(_useXYDirectDrive) && _useXYDirectDrive;
 
-function coreXY_type() = _beltWidth == 6 ? coreXY_GT2_20_16 : coreXY_GT2x9_20_20;
-function coreXYIdlerBore() = _beltWidth == 6 ? 3 : 5;
+function coreXY_type() = _coreXYDescriptor == "GT2_20_16" ? coreXY_GT2_20_16 : _coreXYDescriptor == "GT2_20_20" ? coreXY_GT2_20_20 : coreXY_GT2x9_20_20;
+function coreXYIdlerBore() = pulley_bore(coreXY_toothed_idler(coreXY_type()));
+function beltWidth() = _coreXYDescriptor == "coreXY_GT2x9_20_20" ? 9 : 6;
 
 function yRailSupportThickness() = 3;
 function yRailShiftX() = 0; // limit it this to [-0.5, +1.25] avoid problems with yCarriage bolt interference
@@ -38,7 +39,7 @@ function  coreXYSeparation() = [
     0,
     coreXY_coincident_separation( coreXY_type() ).y, // make Y carriage pulleys coincident in Y
     // Z separation is a pulley with a washer either side and an optional brace for the yCarriage pulleys
-    pulley_height(coreXY_toothed_idler( coreXY_type() )) + 2*washer_thickness(_beltWidth == 6 ? M3_washer : M5_washer) + yCarriageBraceThickness()
+    pulley_height(coreXY_toothed_idler( coreXY_type() )) + 2*washer_thickness(coreXYIdlerBore() == 3 ? M3_washer : coreXYIdlerBore() == 4 ? M4_washer : M5_washer) + yCarriageBraceThickness()
 ];
 
 
@@ -49,7 +50,7 @@ function coreXYPosBL() = [
     useXYDirectDrive ? 2.5*eSize : 1.5*eSize, // this aligns of the center of the pulley with the center of the Y rail
     eSize/2,
     // choose Z so the belts align with the Y_Carriage pulleys
-    eZ - yCarriageThickness() - yCarriageBraceThickness()/2  - (_beltWidth == 6 ? 42.5 : 42.5 + pulley_height(coreXY_toothed_idler(coreXY_type())) - 7.5)
+    eZ - yCarriageThickness() - yCarriageBraceThickness()/2  - (beltWidth() == 6 ? 42.5 : 42.5 + pulley_height(coreXY_toothed_idler(coreXY_type())) - 7.5)
 ];
 
 function coreXYPosTR(motorWidth) = [

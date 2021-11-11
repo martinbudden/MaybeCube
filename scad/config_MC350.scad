@@ -20,11 +20,12 @@ _xCarriageCountersunk = true;
 _yCarriageDescriptor = "MGN12H";
 
 
-_beltWidth = 6;
+_coreXYDescriptor = "GT2_20_16";
 
 _use2060ForTop = true;
 _useDualZRods = false;
 _useDualZMotors = false;
+_useFrontDisplay = true;
 _useSidePanels = false;
 
 _printBedSize = [235, 235, 4]; // Ender 3 size

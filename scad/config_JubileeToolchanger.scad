@@ -16,7 +16,7 @@ _xCarriageDescriptor = "MGN12H";
 _xCarriageCountersunk = true;
 _yCarriageDescriptor = "MGN12H";
 
-_beltWidth = 6;
+_coreXYDescriptor = "GT2_20_16";
 
 _printBedArmSeparation = 150;
 
