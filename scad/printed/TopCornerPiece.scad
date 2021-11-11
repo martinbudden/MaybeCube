@@ -12,7 +12,7 @@ include <../Parameters_Main.scad>
 topCornerPieceHoles = [ [eSize/2, 3*eSize/2], [eSize/2, 5*eSize/2], [3*eSize/2, eSize/2], [3*eSize/2, 3*eSize/2], [5*eSize/2, eSize/2] ];
 topCornerPieceSize = [3*eSize, 3*eSize, 5];
 
-module topCornerPiece() {
+module topCornerPiece(guide=true) {
     size = topCornerPieceSize;
     fillet = 2;
 
@@ -34,15 +34,17 @@ module topCornerPiece() {
                 translate([offset, eSize, 0])
                     rounded_cube_xy([eSize - offset, size.y - eSize, size.z], fillet);
             }
-            // guide for top cover and placing Face_Top_assembly upside down on top of frame
-            guideSize = [5, 7.5, 5 + size.z];
-            translate([eSize + 0.5, eSize + 0.5 - guideSize.y, 0])
-                rounded_cube_xy([guideSize.x, guideSize.x + guideSize.y - offset, guideSize.z], 1.5);
-            translate([eSize + 0.5 - guideSize.y, eSize + 0.5, 0])
-                rounded_cube_xy([guideSize.x + guideSize.y - offset, guideSize.x, guideSize.z], 1.5);
-            translate([eSize + 0.5, eSize + 0.5, 0])
-                rotate(180)
-                    fillet(0.5, guideSize.z);
+            if (guide) {
+                // guide for top cover and placing Face_Top_assembly upside down on top of frame
+                guideSize = [5, 7.5, 5 + size.z];
+                translate([eSize + 0.5, eSize + 0.5 - guideSize.y, 0])
+                    rounded_cube_xy([guideSize.x, guideSize.x + guideSize.y - offset, guideSize.z], 1.5);
+                translate([eSize + 0.5 - guideSize.y, eSize + 0.5, 0])
+                    rounded_cube_xy([guideSize.x + guideSize.y - offset, guideSize.x, guideSize.z], 1.5);
+                translate([eSize + 0.5, eSize + 0.5, 0])
+                    rotate(180)
+                        fillet(0.5, guideSize.z);
+            }
         }
         for (i = topCornerPieceHoles)
             translate(i)
@@ -57,6 +59,12 @@ module Top_Corner_Piece_stl() {
             topCornerPiece();
 }
 
+module Top_Corner_Piece_Flat_stl() {
+    stl("Top_Corner_Piece_Flat")
+        color(pp1_colour)
+            topCornerPiece(guide=false);
+}
+
 module Top_Corner_Piece_hardware(rotate=0) {
     translate_z(topCornerPieceSize.z)
         for (i = [0 : len(topCornerPieceHoles) - 1])
@@ -68,7 +76,10 @@ module topCornerPieceAssembly(rotate=0) {
     explode(50, true)
         rotate(rotate) {
             stl_colour(pp1_colour)
-                Top_Corner_Piece_stl();
+                if (is_undef(_useBackMounts) || _useBackMounts == false)
+                    Top_Corner_Piece_stl();
+                else
+                    Top_Corner_Piece_Flat_stl();
             Top_Corner_Piece_hardware(rotate);
         }
 }
