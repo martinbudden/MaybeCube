@@ -17,6 +17,7 @@ use <../vitamins/nuts.scad>
 include <../Parameters_Main.scad>
 
 
+function useBackMounts() = !is_undef(_useBackMounts) && _useBackMounts;
 function useDualZRods() = !is_undef(_useDualZRods) && _useDualZRods;
 function useDualZMotors() = !is_undef(_useDualZMotors) && _useDualZMotors;
 
@@ -96,7 +97,7 @@ module zMountsUpper() {
 }
 
 module zMountsLower(zMotorLength, includeMotor=false) {
-    translate_z(eSize)
+    translate_z(useBackMounts() ? 0 : eSize)
         zMounts();
 
     if (zMotorLength)
@@ -127,7 +128,7 @@ module zMotor(explode=_zRodLength + 40) {
 
 module zRods(left=true) {
     explode(-_zRodLength + 100)
-        translate([left ? eSize + _zRodOffsetX: eX + eSize -_zRodOffsetX, eSize + _zRodOffsetY, _zRodLength/2 + 2.5 + eSize]) {
+        translate([left ? eSize + _zRodOffsetX: eX + eSize -_zRodOffsetX, eSize + _zRodOffsetY, _zRodLength/2 + 2.5 + (useBackMounts() ? 0 : eSize)]) {
             rod(d=_zRodDiameter, l=_zRodLength);
             translate([0, zRodSeparation(), 0])
                 rod(d=_zRodDiameter, l=_zRodLength);
