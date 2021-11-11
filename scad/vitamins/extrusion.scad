@@ -272,6 +272,20 @@ module extrusionOZ2080XEndBoltPositions(length, offset=0) {
                 children();
 }
 
+module extrusionOZ2040Y(length) {
+    eSize = 20;
+    translate([eSize, 0, 0])
+        rotate([0, -90, 0])
+            extrusionOX2040H(length);
+}
+
+module extrusionOZ2060Y(length) {
+    eSize = 20;
+    translate([eSize, 0, 0])
+        rotate([0, -90, 0])
+            extrusionOX2060H(length);
+}
+
 module extrusionOZ2080Y(length) {
     eSize = 20;
     translate([eSize, 0, 0])
