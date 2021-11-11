@@ -17,7 +17,7 @@ include <../scad/utils/Z_Rods.scad>
 include <../scad/FaceLeft.scad>
 //include <../scad/FaceRight.scad>
 include <../scad/FaceTop.scad>
-//use <../scad/PrintBed.scad>
+use <../scad/PrintBed.scad>
 
 use <../scad/Parameters_Positions.scad>
 include <../scad/Parameters_Main.scad>
@@ -36,7 +36,9 @@ module Left_Side_test() {
     //Right_Side_assembly(); if(is_true(_useDualZRods))zRods(left=false);
     //Extruder_Bracket_assembly();
     //let($hide_extrusions=true)
-    //translate_z(bedHeight(t=t)) Printbed_assembly();
+    echo(bh0=bedHeight(t=3));
+    echo(bh1=bedHeight(t=7)-20);
+    translate_z(bedHeight(t=7)-20) Printbed_assembly();
     //translate_z(bedHeight(t=t)) jubilee_build_plate();
     //let($hide_corexy=true)
     //let($hide_extrusions=true)

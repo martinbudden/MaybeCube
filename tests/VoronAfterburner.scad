@@ -23,7 +23,7 @@ t = 2;
 
 module VoronAfterburner_test() {
     carriagePosition = carriagePosition();
-    translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType(_xCarriageDescriptor))]) {
+    translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
         //CoreXYBelts(carriagePosition + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
         rotate = 180;
         printheadBeltSide(rotate + 180);

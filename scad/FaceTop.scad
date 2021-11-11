@@ -197,7 +197,7 @@ module printHeadWiring() {
 module Left_Side_Upper_Extrusion_assembly() pose(a=[180 + 55, 0, 25 + 90])
 assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
 
-    yCarriageType = yCarriageType(_yCarriageDescriptor);
+    yCarriageType = carriageType(_yCarriageDescriptor);
     translate([0, eSize, eZ - eSize])
         if (use2060ForTop())
             extrusionOY2060HEndBolts(eY);
@@ -226,7 +226,7 @@ assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
 module Right_Side_Upper_Extrusion_assembly() pose(a=[180 + 55, 0, 25 - 90])
 assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
 
-    yCarriageType = yCarriageType(_yCarriageDescriptor);
+    yCarriageType = carriageType(_yCarriageDescriptor);
     translate([eX, eSize, eZ - eSize])
         if (use2060ForTop())
             translate([-eSize, 0, 0])

@@ -36,7 +36,7 @@ tensionerOffsetX = X_CarriageEVATensionerOffsetX();
 
 
 module EVA_test() {
-    translate(-[eSize + eX/2, carriagePosition(t).y, eZ - yRailOffset().x - carriage_clearance(xCarriageType(_xCarriageDescriptor))]) {
+    translate(-[eSize + eX/2, carriagePosition(t).y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
         CoreXYBelts(carriagePosition() + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
         printheadEVA();
         translate_z(eZ)
