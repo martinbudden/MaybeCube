@@ -80,7 +80,7 @@ The canonical form is the MC350 variant.
 variant | ExtrusionSizes | Rail/rod lengths | Approx Build Volume | Bed Size   | Exterior Dimensions
 ------- | -------------- | ---------------- | ------------------- | ---------- | -------------------
 MC250   | x250 y250 z350 | x200 y250 z250   | concept variant     | 180mm      | 290 x 290 x 350
-MC300   | x300 y300 z400 | x250 y300 z300   | 180 x 180 x 200     | 214mm      | 340 x 340 x 400
+MC300   | x300 y300 z400 | x250 y300 z300   | 185 x 185 x 200     | 214mm      | 340 x 340 x 400
 MC350   | x350 y350 y400 | x300 y350 z300   | 225 x 225 x 200     | 235mm      | 390 x 390 x 400
 MC400   | x400 y400 y450 | x350 y400 z350   | 275 x 275 x 250     | 310mm      | 440 x 440 x 450
 
