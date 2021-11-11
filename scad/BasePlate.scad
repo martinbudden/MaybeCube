@@ -203,51 +203,53 @@ assembly("Base_Plate", big=true, ngb=true) {
 
     Base_Plate_Stage_1_assembly();
 
-    explode([0, -50, 0], true)
-        displayHousingTFT35E3Assembly();
+    if (!is_undef(_useFrontDisplay) && _useFrontDisplay) {
+        explode([0, -50, 0], true)
+            displayHousingTFT35E3Assembly();
 
-    translate([eSize, 0, 0]) {
-        translate_z(4*eSize + 2*eps)
-            explode(75, true) {
-                if (eX==300) {
-                    stl_colour(pp1_colour)
-                        Front_Cover_300_stl();
-                    //hidden() Front_Cover_350_stl();
-                    //hidden() Front_Cover_400_stl();
-                } else if (eX==350) {
-                    //hidden() Front_Cover_300_stl();
-                    stl_colour(pp1_colour)
-                        Front_Cover_350_stl();
-                    //hidden() Front_Cover_400_stl();
-                } else {
-                    //hidden() Front_Cover_300_stl();
-                    //hidden() Front_Cover_350_stl();
-                    stl_colour(pp1_colour)
-                        Front_Cover_400_stl();
-                }
-                Front_Cover_hardware();
-            }
-        translate([eX/2, 2*eps, 4*eSize + 2*eps])
-            explode(75, true)
-                vflip() {
+        translate([eSize, 0, 0]) {
+            translate_z(4*eSize + 2*eps)
+                explode(75, true) {
                     if (eX==300) {
-                        stl_colour(pp2_colour)
-                            Front_Display_Wiring_Cover_300_stl();
-                        //hidden() Front_Display_Wiring_Cover_350_stl();
-                        //hidden() Front_Display_Wiring_Cover_400_stl();
+                        stl_colour(pp1_colour)
+                            Front_Cover_300_stl();
+                        //hidden() Front_Cover_350_stl();
+                        //hidden() Front_Cover_400_stl();
                     } else if (eX==350) {
-                        //hidden() Front_Display_Wiring_Cover_300_stl();
-                        stl_colour(pp2_colour)
-                            Front_Display_Wiring_Cover_350_stl();
-                        //hidden() Front_Display_Wiring_Cover_400_stl();
+                        //hidden() Front_Cover_300_stl();
+                        stl_colour(pp1_colour)
+                            Front_Cover_350_stl();
+                        //hidden() Front_Cover_400_stl();
                     } else {
-                        //hidden() Front_Display_Wiring_Cover_300_stl();
-                        //hidden() Front_Display_Wiring_Cover_350_stl();
-                        stl_colour(pp2_colour)
-                            Front_Display_Wiring_Cover_400_stl();
+                        //hidden() Front_Cover_300_stl();
+                        //hidden() Front_Cover_350_stl();
+                        stl_colour(pp1_colour)
+                            Front_Cover_400_stl();
                     }
-                    Front_Display_Wiring_Cover_hardware();
+                    Front_Cover_hardware();
                 }
+            translate([eX/2, 2*eps, 4*eSize + 2*eps])
+                explode(75, true)
+                    vflip() {
+                        if (eX==300) {
+                            stl_colour(pp2_colour)
+                                Front_Display_Wiring_Cover_300_stl();
+                            //hidden() Front_Display_Wiring_Cover_350_stl();
+                            //hidden() Front_Display_Wiring_Cover_400_stl();
+                        } else if (eX==350) {
+                            //hidden() Front_Display_Wiring_Cover_300_stl();
+                            stl_colour(pp2_colour)
+                                Front_Display_Wiring_Cover_350_stl();
+                            //hidden() Front_Display_Wiring_Cover_400_stl();
+                        } else {
+                            //hidden() Front_Display_Wiring_Cover_300_stl();
+                            //hidden() Front_Display_Wiring_Cover_350_stl();
+                            stl_colour(pp2_colour)
+                                Front_Display_Wiring_Cover_400_stl();
+                        }
+                        Front_Display_Wiring_Cover_hardware();
+                    }
+        }
     }
 }
 

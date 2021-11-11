@@ -166,8 +166,9 @@ staged_assembly("Stage_5", big=true, ngb=true) {
             printheadHotendSide();
             printHeadWiring();
         }
-        explode([100, 0, 100])
-            BowdenTube();
+        if (is_undef(_useBackMounts) || _useBackMounts == false)
+            explode([100, 0, 100])
+                BowdenTube();
     }
 }
 
@@ -175,22 +176,25 @@ module FinalAssembly() {
     // does not use assembly(""), since made into an assembly in Main.scad
     translate([-(eX + 2*eSize)/2, - (eY + 2*eSize)/2, -eZ/2]) {
         Stage_5_assembly();
-        explode([100, 0, 80])
-            stl_colour(pp2_colour)
-                faceRightSpoolHolder();
-        explode([80, 0, 0]) {
-            stl_colour(pp1_colour)
-                faceRightSpoolHolderBracket();
-            faceRightSpoolHolderBracketHardware();
+        if (is_undef(_useBackMounts) || _useBackMounts == false) {
+            explode([100, 0, 80])
+                stl_colour(pp2_colour)
+                    faceRightSpoolHolder();
+            explode([80, 0, 0]) {
+                stl_colour(pp1_colour)
+                    faceRightSpoolHolderBracket();
+                faceRightSpoolHolderBracketHardware();
+            }
+            explode([200, 0, 100])
+                faceRightSpool();
         }
-        explode([200, 0, 100])
-            faceRightSpool();
         if (!is_undef(_useSidePanels) && _useSidePanels)
             explode([50, 0, 0], true)
                 rightSidePanelPC();
         //Right_Side_Channel_Nuts();
-        explode([-50, 0, 0], true)
-            leftSidePanelPC();
+        if (!is_undef(_useSidePanels) && _useSidePanels)
+            explode([-50, 0, 0], true)
+                leftSidePanelPC();
         //Left_Side_Channel_Nuts();
     }
 }
