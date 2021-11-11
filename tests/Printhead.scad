@@ -1,6 +1,5 @@
 //! Display the print head
 
-include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
 use <../scad/printed/PrintheadAssemblies.scad>
@@ -16,9 +15,8 @@ include <../scad/vitamins/bolts.scad>
 
 use <../../BabyCube/scad/printed/X_Carriage.scad>
 
-use <../scad/Parameters_CoreXY.scad>
+include <../scad/Parameters_CoreXY.scad>
 use <../scad/Parameters_Positions.scad>
-include <../scad/Parameters_Main.scad>
 
 
 function  blzX(yCarriageType) = coreXYSeparation().z + yRailSupportThickness() + yCarriageThickness() + carriage_height(yCarriageType);

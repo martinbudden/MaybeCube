@@ -1,8 +1,5 @@
-include <NopSCADlib/core.scad>
-include <NopSCADlib/utils/core_xy.scad>
-include <NopSCADlib/vitamins/washers.scad>
-include <NopSCADlib/vitamins/pulleys.scad>
 include <NopSCADlib/vitamins/rails.scad>
+include <NopSCADlib/utils/core_xy.scad>
 
 include <Parameters_Main.scad>
 

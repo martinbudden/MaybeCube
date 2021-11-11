@@ -14,8 +14,6 @@
 //
 include <global_defs.scad>
 
-include <NopSCADlib/utils/core/core.scad>
-
 include <MainAssemblies.scad>
 
 //!1. Bolt the polycarbonate sheet to the left face.

@@ -2,11 +2,8 @@
 
 include <../scad/global_defs.scad>
 
-include <NopSCADlib/core.scad>
-
 include <NopSCADlib/vitamins/rails.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
-include <NopSCADlib/vitamins/belts.scad>
 include <NopSCADlib/vitamins/pulleys.scad>
 
 use <../scad/printed/PrintheadAssemblies.scad>
@@ -22,9 +19,8 @@ include <../scad/utils/X_Rail.scad>
 include <../scad/vitamins/bolts.scad>
 use <../scad/vitamins/extrusion.scad>
 
-use <../scad/Parameters_CoreXY.scad>
+include <../scad/Parameters_CoreXY.scad>
 use <../scad/Parameters_Positions.scad>
-include <../scad/Parameters_Main.scad>
 
 //$vpr = [55,0,25];
 //$vpr = [70,0,315]; // for tests

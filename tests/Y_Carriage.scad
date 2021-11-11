@@ -2,7 +2,6 @@
 
 include <../scad/global_defs.scad>
 
-include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
 use <../scad/printed/Y_CarriageAssemblies.scad>
@@ -10,9 +9,8 @@ use <../scad/printed/Y_CarriageAssemblies.scad>
 include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/X_Rail.scad>
 
-use <../scad/Parameters_CoreXY.scad>
+include <../scad/Parameters_CoreXY.scad>
 use <../scad/Parameters_Positions.scad>
-include <../scad/Parameters_Main.scad>
 
 
 yCarriageType = MGN12H_carriage;

@@ -1,9 +1,8 @@
 //!! This is a copy of the BabyCube file with alterations
 include <../global_defs.scad>
 
-include <NopSCADlib/core.scad>
-include <NopSCADlib/vitamins/blowers.scad>
 include <NopSCADlib/vitamins/rails.scad>
+include <NopSCADlib/vitamins/blowers.scad>
 use <NopSCADlib/vitamins/wire.scad>
 
 include <../utils/PrintheadOffsets.scad>
@@ -17,9 +16,8 @@ use <../../../BabyCube/scad/printed/X_Carriage.scad>
 use <../../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 use <X_CarriageAssemblies.scad>
 
-use <../Parameters_CoreXY.scad>
+include <../Parameters_CoreXY.scad>
 use <../Parameters_Positions.scad>
-include <../Parameters_Main.scad>
 
 
 function hotendClampOffset(xCarriageType, hotend_type=0) =  [hotendOffset(xCarriageType, hotend_type).x, 18 + xCarriageBackOffsetY(xCarriageType) + grooveMountOffsetX(hotend_type), hotendOffset(xCarriageType, hotend_type).z];

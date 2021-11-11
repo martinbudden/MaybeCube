@@ -1,9 +1,8 @@
 //! Display the X carriage
 
 include <../scad/global_defs.scad>
-include <NopSCADlib/core.scad>
-include <NopSCADlib/vitamins/blowers.scad>
 include <NopSCADlib/vitamins/rails.scad>
+include <NopSCADlib/vitamins/blowers.scad>
 
 use <../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 

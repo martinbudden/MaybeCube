@@ -1,6 +1,5 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/utils/core/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 use <NopSCADlib/utils/tube.scad>
 include <NopSCADlib/vitamins/rails.scad>

@@ -2,7 +2,6 @@
 
 include <../scad/global_defs.scad>
 
-include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
 use <../scad/printed/PrintheadAssemblies.scad>
@@ -16,9 +15,8 @@ use <../scad/vitamins/extrusion.scad>
 
 use <../scad/MainAssemblyJubileeToolChanger.scad>
 
-use <../scad/Parameters_CoreXY.scad>
+include <../scad/Parameters_CoreXY.scad>
 use <../scad/Parameters_Positions.scad>
-include <../scad/Parameters_Main.scad>
 
 //$explode = 1;
 //$pose = 1;

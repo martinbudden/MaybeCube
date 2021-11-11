@@ -3,7 +3,6 @@
 //!Jigs to aid with the assembly of the MaybeCube.
 
 
-include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
 use <vitamins/extrusion.scad>

@@ -46,9 +46,8 @@ use <../scad/FaceLeft.scad>
 use <../scad/FaceRight.scad>
 use <../scad/PrintBed.scad>
 
-use <../scad/Parameters_CoreXY.scad>
+include <../scad/Parameters_CoreXY.scad>
 use <../scad/Parameters_Positions.scad>
-include <../scad/Parameters_Main.scad>
 
 
 //$explode = 1;

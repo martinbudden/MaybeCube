@@ -15,8 +15,7 @@ include <vitamins/bolts.scad>
 use <vitamins/nuts.scad>
 
 use <Parameters_Positions.scad>
-use <Parameters_CoreXY.scad>
-include <Parameters_Main.scad>
+include <Parameters_CoreXY.scad>
 
 
 PC3 = ["PC3", "Sheet polycarbonate", 3, [1,   1,   1,   0.25], false];

@@ -1,6 +1,5 @@
 include <global_defs.scad>
 
-include <NopSCADlib/utils/core/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
@@ -23,9 +22,8 @@ include <utils/X_Rail.scad>
 include <vitamins/bolts.scad>
 use <vitamins/extrusion.scad>
 
-use <Parameters_CoreXY.scad>
+include <Parameters_CoreXY.scad>
 use <Parameters_Positions.scad>
-include <Parameters_Main.scad>
 
 function use2060ForTop() = !is_undef(_use2060ForTop) && _use2060ForTop;
 

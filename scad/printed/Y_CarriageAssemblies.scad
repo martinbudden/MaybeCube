@@ -1,18 +1,15 @@
 //!! This is a copy of the BabyCube file with alterations
 include <../global_defs.scad>
 
-include <NopSCADlib/core.scad>
-
-include <NopSCADlib/vitamins/pulleys.scad>
 include <NopSCADlib/vitamins/rails.scad>
+include <NopSCADlib/vitamins/pulleys.scad>
 
 use <../utils/carriageTypes.scad>
 
 use <../../../BabyCube/scad/printed/Y_Carriage.scad>
 
-use <../Parameters_CoreXY.scad>
+include <../Parameters_CoreXY.scad>
 use <../Parameters_Positions.scad>
-include <../Parameters_Main.scad>
 
 
 function pulleyOffset() = [-yRailShiftX(), 0, undef];

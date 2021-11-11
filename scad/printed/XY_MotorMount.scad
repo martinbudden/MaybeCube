@@ -23,8 +23,7 @@ use <../vitamins/cables.scad>
 use <../vitamins/extrusionBracket.scad>
 use <../vitamins/nuts.scad>
 
-include <../Parameters_Main.scad>
-use <../Parameters_CoreXY.scad>
+include <../Parameters_CoreXY.scad>
 
 
 NEMA17_60  = ["NEMA17_60",   42.3, 60,     53.6/2, 25,     11,     2,     5,     24,          31,    [11.5,  9]];
