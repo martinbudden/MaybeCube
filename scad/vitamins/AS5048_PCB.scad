@@ -1,5 +1,4 @@
-include <NopSCADlib/utils/core/core.scad>
-include <NopSCADlib/vitamins/pcbs.scad>
+use <NopSCADlib/vitamins/pcb.scad>
 
 AS5048_PCB = [
     "AS5048", "AS5048",
