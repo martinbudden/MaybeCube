@@ -71,7 +71,7 @@ If you would like to build a smaller printer, you may be interested in the Maybe
      * The open design of the frame and the easy accessibility of parts means the MaybeCube is fairly easy to customise - most parts can be changed without the need to disassemble large parts of the frame
      * The design of the X_Carriage means it is easy to customise to support different hotends and extruders
      * Support other printhead systems, including EVA, XChange, and, in principle, the Jubilee and E3D toolchangers
-     * The independence of the XY motion system and the Z motion system means that in principle the Z motion system could be replaced (with, say, an autotramming 3-point leveling system)
+     * The independence of the XY motion system and the Z motion system means that in principle the Z motion system could be replaced (with, say, an auto-tramming 3-point leveling system)
 
 ## Variations
 
@@ -84,7 +84,7 @@ MC300   | x300 y300 z400 | x250 y300 z300   | 185 x 185 x 200     | 214mm      |
 MC350   | x350 y350 y400 | x300 y350 z300   | 225 x 225 x 200     | 235mm      | 390 x 390 x 400
 MC400   | x400 y400 y450 | x350 y400 z350   | 275 x 275 x 250     | 310mm      | 440 x 440 x 450
 
- For reference, the original [HyperCube](https://www.thingiverse.com/thing:1752766) has extrusion sizes of x340 y303 z350 to give a build volume of 200 x 200 x 155.
+ For reference, the original [HyperCube](https://www.thingiverse.com/thing:1752766) has extrusion lengths of x340 y303 z350 to give a build volume of 200 x 200 x 155.
 
 ## Comparisons
 
@@ -97,15 +97,21 @@ MC350             | 2040  | 350 x 350 x 400   | 225 x 225 x 200  | 390 x 390 x 4
 MC400             | 2040  | 400 x 400 x 450   | 275 x 275 x 250  | 440 x 440 x 450
 MC450             | 2040  | 450 x 450 x 500   | 325 x 325 x 300  | 490 x 490 x 500
 [BLV MGN Cube](https://www.blvprojects.com/blv-mgn-cube-3d-printer) | 2040 | 496 x 496 x 560 | 300 x 300 x 365 | 576 x 536 x 560
+[Denali 200](https://github.com/Annex-Engineering/Denali) | 2020 | 320 x 320 x 590 | 200 x 200 x 200 | 380 x 380 x 620 (est)
+Denali 250 | 2020 | 370 x 370 x 590 | 250 x 250 x 200 | 430 x 430 x 620 (est)
+Denali 350 | 2020 | 470 x 470 x 690 | 350 x 350 x 300 | 530 x 530 x 720 (est)
+[FuseBox3](https://github.com/alexyu132/fusebox3) | 2020 | 310 x 332 x 407 | 235 x 235 x 235 | 350 x 372 x 427
 [HyperCube](https://www.thingiverse.com/thing:1752766) | 2020 | 340 x 303 x 350  | 200 x 200 x 155  | 380 x 343 x 350
-[HEVO](https://www.thingiverse.com/thing:2254103) | 2030 |420 x 410 x 500 | 300 x 300 x 300 | 480 x 470 x 500
+[HEVO](https://www.thingiverse.com/thing:2254103) | 3030 | 420 x 410 x 500 | 300 x 300 x 300 | 480 x 470 x 500
 [Jubilee](https://www.jubilee3d.com/index.php?title=Main_Page) | 2020 | 409 x 604 x 430 | 300 x 300 x 300 | 476 x 604 x 558
 [RatRig V-Core3 300](https://v-core.ratrig.com/#customization) | 3030 | 440 x 505 x 510 | 300 x 300 x 300  | 518 x 583 x 560
 RatRig V-Core3 400 | 3030 | 540 x 605 x 610 | 400 x 400 x 400  | 618 x 683 x 660
 RatRig V-Core3 500 | 3030 | 640 x 705 x 710 | 500 x 500 x 500  | 718 x 783 x 760
-[RailCore II 300ZL](https://railcore.org/) | 1515 |400 x 370 x 360 | 250 x 250 x 280 | 522 x 445 x 496
+[RailCore II 300ZL](https://railcore.org/) | 1515 | 400 x 370 x 360 | 250 x 250 x 280 | 522 x 445 x 496
 RailCore II 300ZL  | 1515 | 460 x 425 x 445 | 300 x 300 x 330 | 572 x 495 x 546
 RailCore II 300ZLT | 1515 | 460 x 425 x 745 | 300 x 300 x 600 | 572 x 495 x 830
+[SnakeOil XY 180](https://github.com/ChipCE/SnakeOil-XY) | 3030 | 310 x 310 x 500 | 180 x 180 x 180 | 400 x 390 x 520 (est)
+SnakeOil XY 250 | 3030 | 400 x 370 x 550 | 250 x 240 x 230 | 490 x 450 x 570 (est)
 [Ultra MegaMax Dominator](https://drmrehorst.blogspot.com/2017/07/ultra-megamax-dominator-3d-printer.html) | 4040 | | 300 x 300 x 695 | 610 x 530 x 1500
 [Voron2 v2.4 250](https://vorondesign.com/voron2.4) | 2020 | 410 x 410 x 430 | 250 x 250 x 230 | 450 x 450 x 430
 Voron2 v2.4 300    | 2020 | 460 x 460 x 480 | 300 x 300 x 280 | 500 x 500 x 480
@@ -168,7 +174,7 @@ compatible with the E3D tool changer. I have a proof of concept showing that thi
 
 ## License
 
-MaybeCube is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+MaybeCube is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 (CC BY-NC-SA 4.0)<br />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
