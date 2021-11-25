@@ -59,7 +59,7 @@ If you would like to build a smaller printer, you may be interested in the Maybe
      * The printhead is quite compact, so does not significantly restrict travel in the X and Y directions
 7. **Enable a fully enclosed print volume**
      * The cubic shape makes enclosure straightforward.
-     * Additionally a panel can be placed between the electronics and stepper motors on the back face and the build volume
+     * A panel can be used to isolate the electronics and stepper motors from the build volume
      * A slide-in front panel can be added
      * A top enclosure can be placed on the frame
 8. **Try and keep the costs down**
