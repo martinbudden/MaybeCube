@@ -76,7 +76,7 @@ module JubileeToolChanger_assembly()
 assembly("JubileeToolChanger", big=true) {
     explode(100, true)
         toolChanger(t);
-    not_on_bom()
+    //not_on_bom()
         no_explode()
             Face_Top_Stage_2_assembly();
     if (!exploded())

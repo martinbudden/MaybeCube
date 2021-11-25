@@ -10,11 +10,15 @@ eSize = 20;
 _xyMotorDescriptor = "NEMA17_48";
 _zMotorDescriptor = "NEMA17_40L280";
 
+
 _xRailLength = eX - 50;
 _yRailLength = eY;
+_zRodLength = eZ - 100;
+
 _xCarriageDescriptor = "MGN12H";
 _xCarriageCountersunk = true;
 _yCarriageDescriptor = "MGN12H";
+
 
 _coreXYDescriptor = "GT2_20_16";
 
