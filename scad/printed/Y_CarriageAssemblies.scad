@@ -14,13 +14,14 @@ use <../Parameters_Positions.scad>
 
 function pulleyOffset() = [-yRailShiftX(), 0, undef];
 function tongueOffset() = (eX + 2*eSize - _xRailLength - 2*yRailOffset().x)/2;
+function pulleyWasherHeight() = 2*washer_thickness(coreXYIdlerBore() == 3 ? M3_washer : coreXYIdlerBore() == 4 ? M4_washer : M5_washer);
 
 topInset = 0;
 yCarriageInserts = true;
 
 module Y_Carriage_Left_stl() {
     idlerHeight = pulley_height(coreXY_toothed_idler(coreXY_type()));
-    pulleyStackHeight = pulleyStackHeight(idlerHeight);
+    pulleyStackHeight = idlerHeight + pulleyWasherHeight();
     assert(pulleyStackHeight + yCarriageBraceThickness() == coreXYSeparation().z);
 
     blockOffsetX = 0.5;
@@ -101,7 +102,7 @@ assembly("Y_Carriage_Left", ngb=true) {
 
     plainIdler = coreXY_plain_idler(coreXY_type());
     toothedIdler = coreXY_toothed_idler(coreXY_type());
-    pulleyStackHeight = pulleyStackHeight(pulley_height(plainIdler));
+    pulleyStackHeight = pulley_height(plainIdler) + pulleyWasherHeight();
 
     translate([railOffsetX, carriagePosition().y, -carriage_height(yCarriageType)])
         rotate([180, 0, 0]) {
@@ -132,7 +133,7 @@ assembly("Y_Carriage_Right", ngb=true) {
 
     plainIdler = coreXY_plain_idler(coreXY_type());
     toothedIdler = coreXY_toothed_idler(coreXY_type());
-    pulleyStackHeight = pulleyStackHeight(pulley_height(plainIdler));
+    pulleyStackHeight = pulley_height(plainIdler) + pulleyWasherHeight();
 
     translate([-railOffsetX, carriagePosition().y, -carriage_height(yCarriageType)])
         rotate([180, 0, 180]) {

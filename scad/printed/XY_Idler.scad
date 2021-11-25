@@ -3,8 +3,6 @@ include <../global_defs.scad>
 include <NopSCADlib/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 
-include <NopSCADlib/vitamins/pulleys.scad>
-
 use <../printed/extrusionChannels.scad>
 
 include <../vitamins/bolts.scad>
@@ -208,7 +206,7 @@ module XY_Idler_hardware(left = true) {
                 }
         }
 
-        washer = coreXYIdlerBore() == 3 ? M3_washer : M5_washer;
+        washer = coreXYIdlerBore() == 3 ? M3_washer : coreXYIdlerBore() == 4 ? M4_washer : M5_washer;
         translate([eSize/2, coreXYPosBL().z - coreXYSeparation().z + yCarriageBraceThickness()/2, axisOffset])
             rotate([-90, 0, 0]) {
                 vflip()
