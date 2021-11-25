@@ -17,6 +17,9 @@ Thumbs.db
 times.txt
 
 .vscode/
+
+documents/notes.md
+
 scad/target.scad
 scad/bom.scad
 scad/stlimporttemp
@@ -142,6 +145,8 @@ MC250/*.html
 MC250/assemblies/*_diff.png
 MC250/dxfs/*_diff.png
 MC250/stls/*_diff.png
+
+MC290/
 
 MC300/assemblies/*
 MC300/bom/
