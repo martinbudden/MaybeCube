@@ -39,7 +39,7 @@ module KP_PillowBlockSpacer_stl() {
 }
 
 module kp_pillow_block_spacer(type) {
-    size =[eSize, kp_size(type).x + 1, _zRodOffsetX-kp_hole_offset(type)];
+    size =[eSize, kp_size(type).x + 1, _zRodOffsetX - kp_hole_offset(type)];
     translate([0, -kp_hole_offset(type), 0])
         rotate([90, 90, 0])
             difference() {
