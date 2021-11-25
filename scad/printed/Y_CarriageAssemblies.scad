@@ -2,7 +2,6 @@
 include <../global_defs.scad>
 
 include <NopSCADlib/vitamins/rails.scad>
-include <NopSCADlib/vitamins/pulleys.scad>
 
 use <../utils/carriageTypes.scad>
 

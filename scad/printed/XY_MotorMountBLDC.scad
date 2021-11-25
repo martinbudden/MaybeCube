@@ -3,7 +3,6 @@ include <../global_defs.scad>
 include <NopSCADlib/core.scad>
 
 include <NopSCADlib/vitamins/bldc_motors.scad>
-include <NopSCADlib/vitamins/pulleys.scad>
 
 include <../utils/motorTypes.scad>
 
