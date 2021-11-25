@@ -1,7 +1,7 @@
 //! Display the IEC housing
 
 include <NopSCADlib/utils/core/core.scad>
-use <../scad/FaceRightExtras.scad>
+include <../scad/vitamins/BTT_Relay.scad>
 use <../scad/printed/IEC_Housing.scad>
 use <../scad/vitamins/Panels.scad>
 
@@ -17,6 +17,7 @@ module IEC_Housing_test() {
         IEC_Housing_Mount_300_stl();
     }
     IEC_Housing_assembly();
+    //pcb(BTT_RELAY_V1_0);
     //Partition_assembly();
 }
 
