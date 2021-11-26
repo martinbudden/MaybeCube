@@ -4,7 +4,6 @@ include <../scad/global_defs.scad>
 
 include <NopSCADlib/vitamins/rails.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
-include <NopSCADlib/vitamins/pulleys.scad>
 
 use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/Y_CarriageAssemblies.scad>

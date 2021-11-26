@@ -1,9 +1,8 @@
 //!Display the left and right idlers.
+include <../scad/printed/XY_Idler.scad>
+include <../scad/utils/CoreXYBelts.scad>
 
-include <NopSCADlib/utils/core/core.scad>
-
-use <../scad/printed/XY_Idler.scad>
-
+use <../scad/Parameters_Positions.scad>
 include <../scad/Parameters_Main.scad>
 
 
@@ -12,6 +11,7 @@ include <../scad/Parameters_Main.scad>
 module XY_Idler_test() {
     XY_Idler_Left_assembly();
     XY_Idler_Right_assembly();
+    CoreXYBelts(carriagePosition(), show_pulleys=[1, 0, 0]);
 
     *translate(-[0, eZ - eSize - 60, 0])
         xyIdler();
