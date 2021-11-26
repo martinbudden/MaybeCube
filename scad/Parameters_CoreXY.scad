@@ -33,7 +33,7 @@ function beltOffsetZ() = yCarriageThickness() - coreXYSeparation().z - 30.5;
 
 function leftDrivePulleyOffset() = [useXYDirectDrive ? 0 : 38, -largePulleyOffset];
 function rightDrivePulleyOffset() = [useXYDirectDrive ? 0 : (eX >= 350 ? -38 : -42.5), -largePulleyOffset]; // need to give clearance to extruder motor
-
+function plainIdlerPulleyOffset() = largePulleyOffset ? [5, -1] : [0, 0];
 
 // use -12.75 for separation.x to make y-carriage idlers coincident vertically
 function  coreXYSeparation() = [
