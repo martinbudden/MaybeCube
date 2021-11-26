@@ -14,8 +14,8 @@ include <../Parameters_CoreXY.scad>
 axisOffset = coreXYPosBL().x - eSize;
 upperBoltOffset = 11;
 lowerBoltOffset = 6;
-frontOffset = 1; // so idler does not interfere with sliding front panel
-function xyIdlerSize() = [eSize - 1 - frontOffset, 60, 5]; // eSize -1 to allow for imprecisely cut Y rails
+frontOffset = 0.5; // so idler does not interfere with sliding front panel
+function xyIdlerSize() = [eSize - 1 - frontOffset + (pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 4 : 0), pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 65 : 60, 5]; // eSize -1 to allow for imprecisely cut Y rails
 armSize = [xyIdlerSize().x, 5.5, 17.5]; // 5.5 y size so 30mm bolt fits exactly
 tabLength = xyIdlerSize().y - armSize.z; //was 27
 tabThickness = 5;
@@ -110,32 +110,30 @@ module xyIdler(M5=false) {
                                 cube([triangleHeight, cubeHeight, size.y - lowerBoltOffset - upperBoltOffset - tNutWidth]);
                         }
                 }
-            translate([eSize/2, 0, 0]) {
-                translate([0, lowerBoltOffset, 0])
-                    boltHole(M5 ? M5_clearance_radius : M4_clearance_radius, size.z, horizontal=true, rotate=-90);
-                translate([0, size.y - upperBoltOffset, armSize.z])
-                    vflip()
-                        rotate(-90)
-                            if (M5)
-                                boltHoleM5CounterboreButtonhead(armSize.z, boreDepth=armSize.z - 5, horizontal=true);
-                            else
-                                boltHoleM4CounterboreButtonhead(armSize.z, boreDepth=armSize.z - 5, horizontal=true);
-                translate([0, size.y - sizeY2, axisOffset])
-                    rotate([-90, -90, 0])
-                        boltHoleM3Tap(sizeY2/2, horizontal=true, chamfer_both_ends=false);
-                translate([0, size.y, axisOffset])
-                    rotate([90, 90, 0])
-                        boltHole(M5 ? M5_tap_radius : M4_tap_radius, sizeY2/2, horizontal=true, chamfer_both_ends=false);
-                translate([0, size.y - tabThickness, armSize.z + tabLength - tabBoltOffset])
-                    rotate([-90, -90, 0])
-                        boltHole(M5 ? M5_clearance_radius : M4_clearance_radius, tabThickness, horizontal=true);
-            }
+            translate([eSize/2, lowerBoltOffset, 0])
+                boltHole(M5 ? M5_clearance_radius : M4_clearance_radius, size.z, horizontal=true, rotate=-90);
+            translate([eSize/2, size.y - upperBoltOffset, armSize.z])
+                vflip()
+                    rotate(-90)
+                        if (M5)
+                            boltHoleM5CounterboreButtonhead(armSize.z, boreDepth=armSize.z - 5, horizontal=true);
+                        else
+                            boltHoleM4CounterboreButtonhead(armSize.z, boreDepth=armSize.z - 5, horizontal=true);
+            translate([axisOffset, size.y - sizeY2, axisOffset])
+                rotate([-90, -90, 0])
+                    boltHoleM3Tap(sizeY2/2, horizontal=true, chamfer_both_ends=false);
+            translate([eSize/2, size.y, eSize/2])
+                rotate([90, 90, 0])
+                    boltHole(M5 ? M5_tap_radius : M4_tap_radius, sizeY2/2, horizontal=true, chamfer_both_ends=false);
+            translate([eSize/2, size.y - tabThickness, armSize.z + tabLength - tabBoltOffset])
+                rotate([-90, -90, 0])
+                    boltHole(M5 ? M5_clearance_radius : M4_clearance_radius, tabThickness, horizontal=true);
         }
     }
     translate([frontOffset, coreXYPosBL().z - coreXYSeparation().z - armSize.y + yCarriageBraceThickness()/2, 0]) {
         difference() {
             rounded_cube_yz(armSize, fillet);
-            translate([eSize/2 - frontOffset, 0, axisOffset])
+            translate([axisOffset - frontOffset, 0, axisOffset])
                 rotate([-90, -90, 0])
                     boltHoleM3(armSize.y, horizontal=true);
         }
@@ -198,7 +196,7 @@ module XY_Idler_hardware(left = true) {
             translate([0, size.y - tabThickness, armSize.z + tabLength - tabBoltOffset])
                 rotate([90, 0, 0])
                     boltM4ButtonheadHammerNut(_frameBoltLength, rotate=90);
-            translate([0, size.y + 2, axisOffset])
+            translate([0, size.y + 2, eSize/2])
                 rotate([-90, 0, 0]) {
                     explode(10, true)
                         washer(M4_washer)
@@ -207,12 +205,12 @@ module XY_Idler_hardware(left = true) {
         }
 
         washer = coreXYIdlerBore() == 3 ? M3_washer : coreXYIdlerBore() == 4 ? M4_washer : M5_washer;
-        translate([eSize/2, coreXYPosBL().z - coreXYSeparation().z + yCarriageBraceThickness()/2, axisOffset])
+        translate([left ? axisOffset : eSize - axisOffset, coreXYPosBL().z - coreXYSeparation().z + yCarriageBraceThickness()/2, axisOffset])
             rotate([-90, 0, 0]) {
                 vflip()
                     translate_z(armSize.y + eps)
                         explode(20, true)
-                            boltM3Caphead(30);
+                            boltM3Caphead(pulley_height(toothed_idler) >= 11 ? 35 : 30);
                 explode = 35;
                 explode([left ? explode + 20 : -explode - 20, 0, 0])
                     washer(washer);

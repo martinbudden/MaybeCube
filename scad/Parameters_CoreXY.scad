@@ -11,6 +11,7 @@ coreXY_GT2_20_25   =["coreXY_20_25",   GT2x6, GT2x20ob_pulley, GT2x25x7x3_toothe
 coreXY_GT2x9_20_20= ["coreXY_20_20x9", GT2x9, GT2x20x11_pulley, GT2x20x11x5_toothed_idler, GT2x20x11x5_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
 useXYDirectDrive = !is_undef(_useXYDirectDrive) && _useXYDirectDrive;
 largePulleyOffset = (_coreXYDescriptor == "GT2_20_25" ? 3 : 0);
+largePulleyOffsetTop = (_coreXYDescriptor == "GT2_20_25" ? 5 : 0);
 
 function coreXY_type() = _coreXYDescriptor == "GT2_20_16" ? coreXY_GT2_20_16 :
                          _coreXYDescriptor == "GT2_20_20" ? coreXY_GT2_20_20 :
@@ -31,9 +32,9 @@ function yCarriageBraceThickness() = 1; // brace to support cantilevered pulleys
 function beltOffsetZ() = yCarriageThickness() - coreXYSeparation().z - 30.5;
 //function beltOffsetZ() = yCarriageThickness() + carriage_height(MGN12H_carriage) + coreXYSeparation().z - 55;
 
-function leftDrivePulleyOffset() = [useXYDirectDrive ? 0 : 38, -largePulleyOffset];
-function rightDrivePulleyOffset() = [useXYDirectDrive ? 0 : (eX >= 350 ? -38 : -42.5), -largePulleyOffset]; // need to give clearance to extruder motor
-function plainIdlerPulleyOffset() = largePulleyOffset ? [5, -1] : [0, 0];
+function leftDrivePulleyOffset() = [useXYDirectDrive ? 0 : 38 + 3*largePulleyOffset, -largePulleyOffsetTop];
+function rightDrivePulleyOffset() = [useXYDirectDrive ? 0 : (eX >= 350 ? -38 : -42.5) - 3*largePulleyOffset, -largePulleyOffsetTop]; // need to give clearance to extruder motor
+function plainIdlerPulleyOffset() = largePulleyOffset ? [5.5, -1.5] : [0, 0];
 
 // use -12.75 for separation.x to make y-carriage idlers coincident vertically
 function  coreXYSeparation() = [
@@ -56,6 +57,6 @@ function coreXYPosBL() = [
 
 function coreXYPosTR(motorWidth) = [
     eX + 2*eSize - coreXYPosBL().x,
-    eY + 2*eSize - motorWidth/2 - motorClearance().y + largePulleyOffset,
+    eY + 2*eSize - motorWidth/2 - motorClearance().y + largePulleyOffsetTop,
     coreXYPosBL().z
 ];
