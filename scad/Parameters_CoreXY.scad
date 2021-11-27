@@ -11,7 +11,7 @@ coreXY_GT2_20_25   =["coreXY_20_25",   GT2x6, GT2x20ob_pulley, GT2x25x7x3_toothe
 coreXY_GT2x9_20_20= ["coreXY_20_20x9", GT2x9, GT2x20x11_pulley, GT2x20x11x5_toothed_idler, GT2x20x11x5_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
 useXYDirectDrive = !is_undef(_useXYDirectDrive) && _useXYDirectDrive;
 largePulleyOffset = (_coreXYDescriptor == "GT2_20_25" ? 3 : 0);
-largePulleyOffsetTop = (_coreXYDescriptor == "GT2_20_25" ? 5 : 0);
+largePulleyOffsetTop = (_coreXYDescriptor == "GT2_20_25" ? 5.5 : 0);
 
 function coreXY_type() = _coreXYDescriptor == "GT2_20_16" ? coreXY_GT2_20_16 :
                          _coreXYDescriptor == "GT2_20_20" ? coreXY_GT2_20_20 :
@@ -34,7 +34,7 @@ function beltOffsetZ() = yCarriageThickness() - coreXYSeparation().z - 30.5;
 
 function leftDrivePulleyOffset() = [useXYDirectDrive ? 0 : 38 + 3*largePulleyOffset, -largePulleyOffsetTop];
 function rightDrivePulleyOffset() = [useXYDirectDrive ? 0 : (eX >= 350 ? -38 : -42.5) - 3*largePulleyOffset, -largePulleyOffsetTop]; // need to give clearance to extruder motor
-function plainIdlerPulleyOffset() = largePulleyOffset ? [5.5, -1.5] : [0, 0];
+function plainIdlerPulleyOffset() = largePulleyOffset ? [3, -3] : [0, 0];
 
 // use -12.75 for separation.x to make y-carriage idlers coincident vertically
 function  coreXYSeparation() = [
@@ -52,7 +52,7 @@ function coreXYPosBL() = [
     useXYDirectDrive ? 2.5*eSize : 1.5*eSize + largePulleyOffset, // this aligns of the center of the pulley with the center of the Y rail
     eSize/2 + largePulleyOffset,
     // choose Z so the belts align with the Y_Carriage pulleys
-    eZ - yCarriageThickness() - yCarriageBraceThickness()/2 - (beltWidth() == 6 ? 42.5 : 42.5 + pulley_height(coreXY_toothed_idler(coreXY_type())) - 7.5)
+    eZ - yCarriageThickness() - yCarriageBraceThickness()/2 - (beltWidth() == 6 ? 34 + pulley_height(coreXY_toothed_idler(coreXY_type())) : 35 + pulley_height(coreXY_toothed_idler(coreXY_type())))
 ];
 
 function coreXYPosTR(motorWidth) = [
