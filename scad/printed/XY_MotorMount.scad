@@ -290,9 +290,9 @@ module xyMotorMountBase(motorType, left, size, offset, sideSupportSizeY, stepdow
                     // add guide for threading belts
                     hull() {
                         if (offset.y) {
-                            translate([pP.x - 3, pT.y, 0])
+                            translate([pP.x, pT.y, 0])
                                 cylinder(r=0.5, h=sizeP.z);
-                            translate([pT.x + 3, pP.y, 0])
+                            translate([pT.x, pP.y, 0])
                                 cylinder(r=0.5, h=sizeP.z);
                         } else {
                             translate([pP.x + 0.75, pT.y, 0])
@@ -446,7 +446,7 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
             } else {
                 drivePulley = isNEMAType(motorType) ? coreXY_drive_pulley(coreXY_type) : GT2x20ob_pulley;
                 vflip()
-                    translate_z(-pulley_height(drivePulley))
+                    translate_z(-pulley_height(drivePulley) + 0.8 - pulley_flange_thickness(coreXY_toothed_idler(coreXY_type)))
                         pulley(drivePulley);
             }
             boltLength = screw_shorter_than(NEMA_hole_depth + basePlateThickness + corkDamperThickness);
