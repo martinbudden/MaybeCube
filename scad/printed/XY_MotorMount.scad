@@ -46,9 +46,9 @@ GT2x20sd_pulley      = ["GT2x20sd_pulley",      "GT2sd", 20, 12.22, GT2x6,  7.0,
 //GT2x20ob_pulley    = ["GT2x20ob_pulley",      "GT2OB", 20, 12.22, GT2x6,  7.5,  16, 5.5, 5, 16.0, 1.0, 6, 3.25, M3_grub_screw, 2]; //Openbuilds
 
 
-useMotorIdler20 = !is_undef(_useMotorIdler20) && _useMotorIdler20;
+useMotorIdlerLarge = pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15;
 
-basePlateThickness = useMotorIdler20 ? 7 : 6.5;
+basePlateThickness = 6.5;
 partitionExtension = 6;
 bracketThickness = 5;
 bracketHeightRight = eZ - eSize - (coreXYPosBL().z + washer_thickness(M3_washer));
@@ -56,20 +56,20 @@ bracketHeightLeft = bracketHeightRight + coreXYSeparation().z;
 braceThickness = 5;
 braceCountersunk = true;
 pulleyStackHeight = 2*washer_thickness(coreXYIdlerBore() == 3 ? M3_washer : coreXYIdlerBore() == 4 ? M4_washer : M5_washer) + pulley_height(coreXY_plain_idler(coreXY_type()));
-sizeP = [9, 8.5, pulleyStackHeight + 0.5];
+sizeP = [useMotorIdlerLarge ? 8.5 : 9, 8.5, pulleyStackHeight + 0.5];
 sizeT = [8.5, 9, sizeP.z];
+offsetP = useMotorIdlerLarge ? [-4.5, -4.5, 0] : [-4.5, -5.25, 0];
+offsetT = useMotorIdlerLarge ? [-4.5, -5, 0] : [-3.25, -4.5, 0];
 
 function xyMotorMountSize(motorWidth = motorWidth(motorType(_xyMotorDescriptor)), offset = [0, 0], left=true)
     = [ eX + 2*eSize + coreXY_drive_pulley_x_alignment(coreXY_type()) + motorWidth/2 + offset.x,
-        eY + 2*eSize + motorWidth/2 - (left ? offset.y : -offset.y),
+        eY + 2*eSize + motorWidth/2 - (left ? offset.y : -offset.y) + (pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 1 : 0),
         eZ + basePlateThickness - bracketHeightRight + (left ? bracketHeightLeft : bracketHeightRight)] - coreXYPosTR(motorWidth);
 
 function upperBoltPositions(sizeX) = [eSize/2 + 3, sizeX - 3*eSize/2 - 3];
-leftDrivePlainIdlerOffset    = useMotorIdler20 ? [1.19, -2, 0] :  [plainIdlerPulleyOffset().x, plainIdlerPulleyOffset().y, 0];
-leftDriveToothedIdlerOffset  = useMotorIdler20 ? [1.19, 1, 0] : [0, 0, 0];
+leftDrivePlainIdlerOffset    = [plainIdlerPulleyOffset().x, plainIdlerPulleyOffset().y, 0];
+rightDrivePlainIdlerOffset   = [-plainIdlerPulleyOffset().x, plainIdlerPulleyOffset().y, 0];
 
-rightDrivePlainIdlerOffset   = useMotorIdler20 ? [-1.19, -2, 0] : [-plainIdlerPulleyOffset().x, plainIdlerPulleyOffset().y, 0];
-rightDriveToothedIdlerOffset = useMotorIdler20 ? [-1.19, 1, 0] : [0, 0, 0];
 frameBoltOffsetZ = 12.5; // this allows an inner corner bracket to be used
 blockHeightExtra = is_undef(_use2020TopExtrusion) || _use2020TopExtrusion == false ? 0 : eSize;
 boltHeadTolerance = 0.1;
@@ -116,30 +116,20 @@ module Stepdown_Pulley_40x20_stl() {
 module xyMotorMountBrace(thickness, offset=[0,0], left=true) {
     pP = coreXY_drive_plain_idler_offset(coreXY_type()) + (left ? leftDrivePlainIdlerOffset : rightDrivePlainIdlerOffset);
     pT = coreXY_drive_toothed_idler_offset(coreXY_type());
-    extra = [2, 2];
     fillet = 1;
+    extra = [2, 2, 0];
 
     explode(25)
         difference() {
             union() {
-                if (left)
-                    translate([pT.x + 1 - sizeT.x/2 - extra.x, pP.y - sizeT.y/2, 0]) {
-                        size = [(pP.x - sizeP.x/2) - (pT.x + 1 - sizeT.x/2) + sizeP.x + extra.x, (pT.y - 1 - sizeP.y/2) - (pP.y - sizeT.y/2) + sizeP.y + extra.y, thickness];
-                        rounded_cube_xy(size, fillet, xy_center=false);
-                        // add orientation indicator
-                        translate([size.x/4, size.y, 0])
-                            rotate(45)
-                                rounded_cube_xy([3, 3, thickness], 0.5, xy_center=true);
-                    }
-                else
-                    translate([pT.x + 1 - sizeT.x/2, pP.y - sizeT.y/2, 0]) {
-                        size = [sizeT.x + extra.x, sizeT.y + extra.y, thickness];
-                        rounded_cube_xy(size, fillet, xy_center=false);
-                        // add orientation indicator
-                        translate([3*size.x/4, size.y, 0])
-                            rotate(45)
-                                rounded_cube_xy([3, 3, thickness], 0.5, xy_center=true);
-                    }
+                size = [sizeP.x, sizeP.y, thickness] + [pP.x, pT.y, 0] + offsetP - [pT.x, pP.y, 0] - offsetT + extra;
+                translate([pT.x, pP.y, 0] + offsetT - extra/2) {
+                    rounded_cube_xy(size, fillet);
+                    // add orientation indicator
+                    translate([left ? size.x/4 : 3*size.x/4, size.y, 0])
+                        rotate(45)
+                            rounded_cube_xy([3, 3, thickness], 0.5, xy_center=true);
+                }
             }
             for (pos = [pP, pT, [pP.x, pT.y], [pT.x, pP.y]])
                 translate(pos)
@@ -200,8 +190,8 @@ module xyMotorMountBase(motorType, left, size, offset, sideSupportSizeY, stepdow
     coreXYPosTR = coreXYPosTR(motorWidth(motorType));
     separation = coreXYSeparation();
     coreXY_type = coreXY_type();
-    pP = coreXY_drive_plain_idler_offset(coreXY_type) + (stepdown ? [0, 0, 0] : (left ? leftDrivePlainIdlerOffset : [-rightDrivePlainIdlerOffset.x, rightDrivePlainIdlerOffset.y, 0]));
-    pT = coreXY_drive_toothed_idler_offset(coreXY_type) + (stepdown ? [0, 0, 0] : (left ? leftDriveToothedIdlerOffset : [-rightDriveToothedIdlerOffset.x ,rightDriveToothedIdlerOffset.y, 0]));
+    pP = coreXY_drive_plain_idler_offset(coreXY_type) + (stepdown ? [0, 0, 0] : plainIdlerPulleyOffset());
+    pT = coreXY_drive_toothed_idler_offset(coreXY_type);
 
     difference() {
         linear_extrude(size.z, convexity=2) {
@@ -266,41 +256,18 @@ module xyMotorMountBase(motorType, left, size, offset, sideSupportSizeY, stepdow
         translate([coreXYPosBL.x + separation.x/2, coreXYPosTR.y, size.z])
             difference() {
                 union() {
-                    translate([pP.x, pT.y, 0]) {
-                        delta = useMotorIdler20 ? [1.8, 1.8, 0] : [0 , 0, 0];
-                        if (left)
-                            translate([0, leftDrivePlainIdlerOffset.y/2 - 1, 0] + delta/2)
-                                rounded_cube_xy([sizeP.x - delta.x, sizeP.y - leftDrivePlainIdlerOffset.y - delta.y, sizeP.z], 1, xy_center=true);
-                        else
-                            translate([0, rightDrivePlainIdlerOffset.y/2 - 1, 0] + delta/2)
-                                rounded_cube_xy([sizeP.x - delta.x, sizeP.y - rightDrivePlainIdlerOffset.y -delta.y, sizeP.z], 1, xy_center=true);
-                    }
-                    delta = useMotorIdler20 ? [2.5, 2, 0] : [0 , 0, 0];
-                    //translate([pT.x + 1 - sizeT.x/2, eY + 2*eSize - size.y - partitionExtension - coreXYPosTR.y - offset.y, 0] -delta/2)
-                    //    rounded_cube_xy(sizeT - [delta.x, 0, 0], 1, xy_center=false);
-                    translate([pT.x, pP.y, 0]) {
-                        if (left)
-                            translate([1, -leftDrivePlainIdlerOffset.y, 0] - delta/2)
-                                rounded_cube_xy(sizeT - [delta.x, 0, 0], 1, xy_center=true);
-                        else
-                            translate([1, -rightDrivePlainIdlerOffset.y, 0] - delta/2)
-                                rounded_cube_xy(sizeT - [delta.x, 0, 0], 1, xy_center=true);
-                    }
-                    //!!TODO - fix the positioning of this for the useMotorIdler20 case
-                    // add guide for threading belts
-                    hull() {
-                        if (offset.y) {
+                    fillet = 1;
+                    translate([pP.x, pT.y, 0] + offsetP)
+                        rounded_cube_xy(sizeP, fillet);
+                    translate([pT.x, pP.y, 0] + offsetT)
+                        rounded_cube_xy(sizeT, fillet);
+                    translate([offset.y ? 0 : 0.75, 0, 0])
+                        hull() {
                             translate([pP.x, pT.y, 0])
-                                cylinder(r=0.5, h=sizeP.z);
+                                cylinder(r=offset.y ? 0.5 : 0.75, h=sizeP.z);
                             translate([pT.x, pP.y, 0])
-                                cylinder(r=0.5, h=sizeP.z);
-                        } else {
-                            translate([pP.x + 0.75, pT.y, 0])
-                                cylinder(r=0.75, h=sizeP.z);
-                            translate([pT.x + 0.75, pP.y, 0])
-                                cylinder(r=0.75, h=sizeP.z);
+                                cylinder(r=offset.y ? 0.5 : 0.75, h=sizeP.z);
                         }
-                    }
                 } // end union
                 translate([pP.x, pT.y, 0])
                     boltHoleM3Tap(sizeP.z);
@@ -409,7 +376,6 @@ module xyMotorMount(motorType, basePlateThickness, offset=[0, 0], blockHeightExt
 }
 
 module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], corkDamperThickness=0, blockHeightExtra=0, stepdown=false, left=true) {
-    corkDamperThickness = is_undef(corkDamperThickness) ? 0 : corkDamperThickness;
     motorWidth = motorWidth(motorType);
     coreXYPosBL = coreXYPosBL();
     coreXYPosTR = coreXYPosTR(motorWidth);
@@ -501,11 +467,11 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
                     explode(-10, true)
                         washer(washer)
                             explode(5, true)
-                                pulley(useMotorIdler20 ? GT2x20_plain_idler : coreXY_plain_idler(coreXY_type))
+                                pulley(coreXY_plain_idler(coreXY_type))
                                     explode(5)
                                         washer(washer);
                 }
-                toothedIdlerPos = coreXY_drive_toothed_idler_offset(coreXY_type) + (left ? leftDriveToothedIdlerOffset : rightDriveToothedIdlerOffset);
+                toothedIdlerPos = coreXY_drive_toothed_idler_offset(coreXY_type);
                 translate(toothedIdlerPos) {
                     translate_z(pulleyStackHeight + braceThickness + eps)
                         if ($preview && (is_undef($hide_bolts) || $hide_bolts == false))
@@ -513,7 +479,7 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
                     explode(-10, true)
                         washer(washer)
                             explode(5, true)
-                                pulley(useMotorIdler20 ? GT2x20_toothed_idler : coreXY_toothed_idler(coreXY_type))
+                                pulley(coreXY_toothed_idler(coreXY_type))
                                     explode(5)
                                         washer(washer);
                 }
