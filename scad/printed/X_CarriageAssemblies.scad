@@ -51,6 +51,20 @@ module X_Carriage_Belt_Side_MGN12H_stl() {
                 xCarriageBeltSide(xCarriageType, size, holeSeparationTop, holeSeparationBottom, extraX=1, accelerometerOffset=accelerometerOffset(), offsetT=offsetT);
 }
 
+module X_Carriage_Belt_Side_MGN12H_25_stl() {
+    xCarriageType = MGN12H_carriage;
+    size = xCarriageFrontSize(xCarriageType, beltWidth()) + [1, 0, 4];
+    holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
+    holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
+    offsetT = xCarriageHoleOffsetTop();
+
+    // orientate for printing
+    stl("X_Carriage_Belt_Side_MGN12H_25")
+        color(pp4_colour)
+            rotate([90, 0, 0])
+                xCarriageBeltSide(xCarriageType, size, holeSeparationTop, holeSeparationBottom, extraX=1, accelerometerOffset=accelerometerOffset(), offsetT=offsetT);
+}
+
 //!Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensioners into the
 //!**X_Carriage_Belt_Side_MGN12H** part as shown. Note the belts are not shown in this diagram.
 //
@@ -146,7 +160,7 @@ module X_Carriage_Groovemount_MGN12H_stl() {
                 size = xCarriageBackSize(xCarriageType, beltWidth());
                 difference() {
                     union() {
-                        xCarriageBack(xCarriageType, size, beltWidth(), beltOffsetZ(), coreXYSeparation().z, clamps=false, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), accelerometerOffset=accelerometerOffset());
+                        xCarriageBack(xCarriageType, size, coreXYSeparation().z, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), accelerometerOffset=accelerometerOffset());
                         hotEndHolder(xCarriageType, grooveMountSize, hotendOffset, hotend_type, blower_type, baffle=false, left=false);
                     }
                     // bolt holes for Z probe mount
@@ -170,9 +184,6 @@ module X_Carriage_Groovemount_MGN12H_assembly() {
     rotate([0, -90, 0])
         stl_colour(pp1_colour)
             X_Carriage_Groovemount_MGN12H_stl();
-
-    *translate([0, carriage_size(xCarriageType).y/2 + xCarriageBackSize(xCarriageType).y - beltInsetBack(undef), beltOffsetZ()])
-        xCarriageBeltClamps(xCarriageType);
 
     grooveMountSize = grooveMountSize(blower_type, hotend_type);
 
