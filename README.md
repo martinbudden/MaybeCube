@@ -118,6 +118,7 @@ SnakeOil XY 250 | 3030 | 400 x 370 x 550 | 250 x 240 x 230 | 490 x 450 x 570 (es
 [Voron2 v2.4 250](https://vorondesign.com/voron2.4) | 2020 | 410 x 410 x 430 | 250 x 250 x 230 | 450 x 450 x 430
 Voron2 v2.4 300    | 2020 | 460 x 460 x 480 | 300 x 300 x 280 | 500 x 500 x 480
 Voron2 v2.4 350    | 2020 | 510 x 510 x 530 | 350 x 350 x 330 | 550 x 550 x 530
+[VzBot](https://github.com/VzBot3D/VzBot) | 2020/2040 | 530 x 460 x 530 | 330 x 330 x 400 | 530 x 500 x 570
 
 ## Frame stiffness
 
