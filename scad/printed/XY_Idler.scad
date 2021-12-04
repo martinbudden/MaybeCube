@@ -70,6 +70,9 @@ module xyIdler(M5=false) {
     washerClearance = 0.25; // to make assembly easier
     sizeY2 = size.y - sizeY1 - 2*coreXYSeparation().z  - washerClearance + yCarriageBraceThickness()/2;
     baseThickness = 2;
+    // cutout for y rail
+    cutoutFillet = 0.5;
+    cutoutSize = [size.x >= eSize ? 4 : 0, 8.5 + cutoutFillet, 13];
 
     fillet = 0.5;
     translate([0, eZ - eSize - size.y, 0]) {
@@ -82,7 +85,7 @@ module xyIdler(M5=false) {
                     translate([0, size.y - sizeY2, 0])
                         rounded_cube_yz([size.x, sizeY2, armSize.z], fillet);
                     translate([0, size.y - tabThickness, 0])
-                        rounded_cube_yz([size.x, tabThickness, armSize.z + tabLength], fillet);
+                        rounded_cube_yz([size.x - cutoutSize.x, tabThickness, armSize.z + tabLength], fillet);
                     *translate([0, sizeY1 - armSize.y, 0])
                         rounded_cube_yz([sideThickness, size.y - sizeY1 + armSize.y, armSize.z], fillet);
                     rotate([0, -90, 0])
@@ -91,7 +94,7 @@ module xyIdler(M5=false) {
                                 offset(fillet) offset(-fillet)
                                     //polygon([ [0, 0], [0, size.y], [armSize.z + tabLength, size.y], [armSize.z + tabLength, size.y-tabThickness], [armSize.z, sizeY1 - armSize.y], [size.z, 0] ]);
                                     polygon([ [0, 0], [0, size.y], [armSize.z + tabLength, size.y], [armSize.z + tabLength, size.y-tabThickness], [size.z, 0] ]);
-                    translate([sideThickness, size.y-sizeY2, baseThickness])
+                    translate([sideThickness, size.y - sizeY2, baseThickness])
                         rotate([90, 0, 0])
                             fillet(6, size.y - sizeY1 -sizeY2);
                     translate([0, size.y-sizeY2, baseThickness])
@@ -110,6 +113,17 @@ module xyIdler(M5=false) {
                                 cube([triangleHeight, cubeHeight, size.y - lowerBoltOffset - upperBoltOffset - tNutWidth]);
                         }
                 }
+            // cutout for y rail
+            if (size.x >= eSize) {
+                translate([frontOffset + size.x - cutoutSize.x, size.y - cutoutSize.y + cutoutFillet, size.z + 1.5])
+                    rounded_cube_yz(cutoutSize + [eps, 0, 0], cutoutFillet);
+                translate([frontOffset + size.x - cutoutSize.x, size.y, size.z + 1.5])
+                    rotate([90, 180, 90])
+                        fillet(cutoutFillet, cutoutSize.x + eps);
+                translate([frontOffset + size.x - cutoutSize.x, size.y - cutoutSize.y + cutoutFillet, size.z + cutoutSize.z - cutoutFillet + eps])
+                    rotate([90, 180, 90])
+                        fillet(cutoutFillet, cutoutSize.x + eps);
+            }
             translate([eSize/2, lowerBoltOffset, 0])
                 boltHole(M5 ? M5_clearance_radius : M4_clearance_radius, size.z, horizontal=true, rotate=-90);
             translate([eSize/2, size.y - upperBoltOffset, armSize.z])
@@ -242,6 +256,14 @@ module XY_Idler_Left_stl() {
                 xyIdler();
 }
 
+module XY_Idler_Left_25_stl() {
+    // rotate for printing, so that base filament pattern aligns with main diagonal
+    stl("XY_Idler_Left_25")
+        color(pp1_colour)
+            rotate([90, -90, 0])
+                xyIdler();
+}
+
 module XY_Idler_Left_M5_stl() {
     // rotate for printing, so that base filament pattern aligns with main diagonal
     stl("XY_Idler_Left_M5")
@@ -252,6 +274,14 @@ module XY_Idler_Left_M5_stl() {
 
 module XY_Idler_Right_stl() {
     stl("XY_Idler_Right")
+        color(pp1_colour)
+            rotate([0, 90, 0])
+                mirror([1, 0, 0])
+                    xyIdler();
+}
+
+module XY_Idler_Right_25_stl() {
+    stl("XY_Idler_Right_25")
         color(pp1_colour)
             rotate([0, 90, 0])
                 mirror([1, 0, 0])
@@ -279,7 +309,10 @@ assembly("XY_Idler_Left", big=true, ngb=true) {
     translate([eSize, 0, 0]) {
         rotate([0, 90, 90])
             stl_colour(pp1_colour)
-                XY_Idler_Left_stl();
+                if (_coreXYDescriptor == "GT2_20_25")
+                    XY_Idler_Left_25_stl();
+                else
+                    XY_Idler_Left_stl();
         rotate([90, 0, 180])
             XY_Idler_hardware(left=true);
     }
@@ -298,7 +331,10 @@ assembly("XY_Idler_Right", big=true, ngb=true) {
     translate([eX + eSize, 0, 0])
         rotate([90, 0, 180]) {
             stl_colour(pp1_colour)
-                XY_Idler_Right_stl();
+                if (_coreXYDescriptor == "GT2_20_25")
+                    XY_Idler_Right_25_stl();
+                else
+                    XY_Idler_Right_stl();
             translate_z(eSize)
                 hflip()
                     XY_Idler_hardware(left=false);

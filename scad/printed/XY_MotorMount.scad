@@ -113,8 +113,8 @@ module Stepdown_Pulley_40x20_stl() {
             }
 }
 
-module xyMotorMountBrace(thickness, offset=[0,0], left=true) {
-    pP = coreXY_drive_plain_idler_offset(coreXY_type()) + (left ? leftDrivePlainIdlerOffset : rightDrivePlainIdlerOffset);
+module xyMotorMountBrace(thickness, offset=[0,0]) {
+    pP = coreXY_drive_plain_idler_offset(coreXY_type()) + leftDrivePlainIdlerOffset;
     pT = coreXY_drive_toothed_idler_offset(coreXY_type());
     fillet = 1;
     extra = [2, 2, 0];
@@ -126,7 +126,7 @@ module xyMotorMountBrace(thickness, offset=[0,0], left=true) {
                 translate([pT.x, pP.y, 0] + offsetT - extra/2) {
                     rounded_cube_xy(size, fillet);
                     // add orientation indicator
-                    translate([left ? size.x/4 : 3*size.x/4, size.y, 0])
+                    translate([size.x/4, size.y, 0])
                         rotate(45)
                             rounded_cube_xy([3, 3, thickness], 0.5, xy_center=true);
                 }
@@ -520,44 +520,57 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
 }
 
 module XY_Motor_Mount_Brace_Left_stl() {
-    motorType = motorType(_xyMotorDescriptor);
-    offset = leftDrivePulleyOffset();
-
     stl("XY_Motor_Mount_Brace_Left"); // note - need semicolon to ensure explode of xyMotorMountBrace works
     color(pp2_colour)
-        translate([coreXYPosBL().x + coreXYSeparation().x/2, coreXYPosTR(motorWidth(motorType)).y, basePlateThickness + pulleyStackHeight + washer_thickness(M3_washer)])
-            xyMotorMountBrace(braceThickness, offset, left=true);
+        translate([coreXYPosBL().x + coreXYSeparation().x/2, coreXYPosTR(motorWidth(motorType(_xyMotorDescriptor))).y, basePlateThickness + pulleyStackHeight + washer_thickness(M3_washer)])
+            xyMotorMountBrace(braceThickness, leftDrivePulleyOffset());
+}
+
+module XY_Motor_Mount_Brace_Left_25_stl() {
+    stl("XY_Motor_Mount_Brace_Left_25"); // note - need semicolon to ensure explode of xyMotorMountBrace works
+    color(pp2_colour)
+        translate([coreXYPosBL().x + coreXYSeparation().x/2, coreXYPosTR(motorWidth(motorType(_xyMotorDescriptor))).y, basePlateThickness + pulleyStackHeight + washer_thickness(M3_washer)])
+            xyMotorMountBrace(braceThickness, leftDrivePulleyOffset());
 }
 
 module XY_Motor_Mount_Brace_Right_stl() {
-    motorType = motorType(_xyMotorDescriptor);
-    offset = rightDrivePulleyOffset();
-
     stl("XY_Motor_Mount_Brace_Right"); // note - need semicolon to ensure explode of xyMotorMountBrace works
     color(pp2_colour)
         translate([eX + 2*eSize, 0, 0])
             mirror([1, 0, 0])
-                translate([coreXYPosBL().x + coreXYSeparation().x/2, coreXYPosTR(motorWidth(motorType)).y, basePlateThickness + pulleyStackHeight + washer_thickness(M3_washer)])
-                    xyMotorMountBrace(braceThickness, -offset, left=true);
+                translate([coreXYPosBL().x + coreXYSeparation().x/2, coreXYPosTR(motorWidth(motorType(_xyMotorDescriptor))).y, basePlateThickness + pulleyStackHeight + washer_thickness(M3_washer)])
+                    xyMotorMountBrace(braceThickness, -rightDrivePulleyOffset());
 }
 
+module XY_Motor_Mount_Brace_Right_25_stl() {
+    stl("XY_Motor_Mount_Brace_Right_25"); // note - need semicolon to ensure explode of xyMotorMountBrace works
+    color(pp2_colour)
+        translate([eX + 2*eSize, 0, 0])
+            mirror([1, 0, 0])
+                translate([coreXYPosBL().x + coreXYSeparation().x/2, coreXYPosTR(motorWidth(motorType(_xyMotorDescriptor))).y, basePlateThickness + pulleyStackHeight + washer_thickness(M3_washer)])
+                    xyMotorMountBrace(braceThickness, -rightDrivePulleyOffset());
+}
 
-module XY_Motor_Mount_Left_stl() {
+module xyMotorMountLeftStl(M5=false) {
     motorType = motorType(_xyMotorDescriptor);
     offset = leftDrivePulleyOffset();
+    color(pp1_colour)
+        xyMotorMount(motorType, basePlateThickness, offset, blockHeightExtra, left=true);
+}
 
+module XY_Motor_Mount_Left_stl() {
     stl("XY_Motor_Mount_Left")
-        color(pp1_colour)
-            xyMotorMount(motorType, basePlateThickness, offset, blockHeightExtra, left=true);
+        xyMotorMountLeftStl();
+}
+
+module XY_Motor_Mount_Left_25_stl() {
+    stl("XY_Motor_Mount_Left_25")
+        xyMotorMountLeftStl();
 }
 
 module XY_Motor_Mount_Left_M5_stl() {
-    motorType = motorType(_xyMotorDescriptor);
-    offset = leftDrivePulleyOffset();
-
     stl("XY_Motor_Mount_Left_M5")
-        color(pp1_colour)
-            xyMotorMount(motorType, basePlateThickness, offset, blockHeightExtra, left=true, M5=true);
+        xyMotorMountLeftStl(M5=true);
 }
 
 
@@ -578,34 +591,43 @@ assembly("XY_Motor_Mount_Left", ngb=true) {
 
     translate_z(eZ - eSize - basePlateThickness - bracketHeightLeft) {
         stl_colour(pp1_colour)
-            XY_Motor_Mount_Left_stl();
+            if (useMotorIdlerLarge)
+                XY_Motor_Mount_Left_25_stl();
+            else
+                XY_Motor_Mount_Left_stl();
         XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, blockHeightExtra, left=true);
         if (offset.x != 0)
             stl_colour(pp2_colour)
-                XY_Motor_Mount_Brace_Left_stl();
+                if (useMotorIdlerLarge)
+                    XY_Motor_Mount_Brace_Left_stl();
+                else
+                    XY_Motor_Mount_Brace_Left_25_stl();
     }
 }
 
-module XY_Motor_Mount_Right_stl() {
+module xyMotorMountRightStl(M5=false) {
     motorType = motorType(_xyMotorDescriptor);
     offset = rightDrivePulleyOffset();
 
+    color(pp1_colour)
+        translate([eX + 2*eSize, 0, 0])
+            mirror([1, 0, 0])
+                xyMotorMount(motorType, basePlateThickness, -offset, blockHeightExtra, left=false);
+}
+
+module XY_Motor_Mount_Right_stl() {
     stl("XY_Motor_Mount_Right")
-        color(pp1_colour)
-            translate([eX + 2*eSize, 0, 0])
-                mirror([1, 0, 0])
-                    xyMotorMount(motorType, basePlateThickness, -offset, blockHeightExtra, left=false);
+        xyMotorMountRightStl();
+}
+
+module XY_Motor_Mount_Right_25_stl() {
+    stl("XY_Motor_Mount_Right_25")
+        xyMotorMountRightStl();
 }
 
 module XY_Motor_Mount_Right_M5_stl() {
-    motorType = motorType(_xyMotorDescriptor);
-    offset = rightDrivePulleyOffset();
-
     stl("XY_Motor_Mount_Right_M5")
-        color(pp1_colour)
-            translate([eX + 2*eSize, 0, 0])
-                mirror([1, 0, 0])
-                    xyMotorMount(motorType, basePlateThickness, -offset, blockHeightExtra, left=false, M5=true);
+        xyMotorMountRightStl(M5=true);
 }
 
 //!1. Bolt the idler pulleys and the **XY_Motor_Mount_Brace_Right** to the **XY_Motor_Mount_Right**. Note the brace is not
@@ -625,10 +647,16 @@ assembly("XY_Motor_Mount_Right", ngb=true) {
 
     translate_z(eZ - eSize - basePlateThickness - bracketHeightRight) {
         stl_colour(pp1_colour)
-            XY_Motor_Mount_Right_stl();
+            if (useMotorIdlerLarge)
+                XY_Motor_Mount_Right_25_stl();
+            else
+                XY_Motor_Mount_Right_stl();
         XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, blockHeightExtra, left=false);
         if (offset.x != 0)
             stl_colour(pp2_colour)
-                XY_Motor_Mount_Brace_Right_stl();
+                if (useMotorIdlerLarge)
+                    XY_Motor_Mount_Brace_Right_25_stl();
+                else
+                    XY_Motor_Mount_Brace_Right_stl();
     }
 }
