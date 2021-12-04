@@ -63,7 +63,7 @@ module frameLeft() {
                         sizeA = [size.x - 2, min(19, 29.5 - squash), 17.75];
                         translate_z(2)
                             rounded_cube_yz(sizeA, fillet);
-                        #translate([size.x - vaExtruderMotorPlateHoleSeparation/2, sizeA.y, 12])
+                        translate([size.x - vaExtruderMotorPlateHoleSeparation/2, sizeA.y, 12])
                             rotate([90, 90, 0])
                                 boltHoleM3Counterbore(sizeA.y, horizontal=true);
                     }

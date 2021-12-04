@@ -25,7 +25,7 @@ module Rail_Centering_Jig_MGN12_2060_stl() {
 module railCenteringJig(size, rail_type) {
     translate([0, -eSize, 0])
         linear_extrude(size.z)
-            #offset(1.5) offset(-1.5) difference() {
+            offset(1.5) offset(-1.5) difference() {
                 translate([-eSize/2, 0])
                     square([size.x, size.y]);
                 offset = size.x == 80 ? 20 : 0;
