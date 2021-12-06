@@ -68,8 +68,8 @@ module zMotorMount(zMotorType, eHeight=40, printBedKinematic=false) {
             reduce = 1;
             translate([reduce, 0, 0])
                 NEMA_baseplate(zMotorType, [motorBracketSizeX-2*reduce, motorBracketSizeY, motorBracketSizeZ], zLeadScrewOffset);
-            *translate([0, 5, -size.z+motorBracketSizeZ + 4]) rotate([0, 0, 90]) fillet(2, size.z-4);
-            *translate([motorBracketSizeX, 5, -size.z+motorBracketSizeZ + 4]) fillet(2, size.z-4);
+            *translate([0, 5, -size.z + motorBracketSizeZ + 4]) rotate([0, 0, 90]) fillet(2, size.z-4);
+            *translate([motorBracketSizeX, 5, -size.z + motorBracketSizeZ + 4]) fillet(2, size.z-4);
             // add the braces
             braceSize = [motorBracketSizeY - motorBracketSizeZ, size.z - motorBracketSizeZ-7, motorBracketSizeZ - reduce];
             for (x = [motorBracketSizeZ, motorBracketSizeX - reduce])
@@ -84,9 +84,9 @@ module zMotorMount(zMotorType, eHeight=40, printBedKinematic=false) {
                 translate([-wingSizeX, 0, -2*eSize])
                     cube([wingSizeX + motorBracketSizeZ, motorBracketSizeZ, 2*eSize]);
                 translate([motorBracketSizeX - motorBracketSizeZ, , 0])
-                    cube([wingSizeX+motorBracketSizeZ, motorBracketSizeZ, wingSizeZ]);
+                    cube([wingSizeX + motorBracketSizeZ, motorBracketSizeZ, wingSizeZ]);
                 translate([motorBracketSizeX - motorBracketSizeZ, 0, -2*eSize])
-                    cube([wingSizeX+motorBracketSizeZ, motorBracketSizeZ, 2*eSize]);
+                    cube([wingSizeX + motorBracketSizeZ, motorBracketSizeZ, 2*eSize]);
             }
 
             // add the block

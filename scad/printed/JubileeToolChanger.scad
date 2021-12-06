@@ -213,7 +213,7 @@ module toolDock(separation) {
             rounded_cube_xy(size, fillet);
         for (x = [-separation/2, separation/2])
             translate([x, 4.75, 0])
-                boltHole(5, size.z+10);
+                boltHole(5, size.z + 10);
         for (x = [-toolDockBoltSeparation/2, toolDockBoltSeparation/2])
             translate([x, eSize/2, 0])
                 boltHoleM4(size.z);

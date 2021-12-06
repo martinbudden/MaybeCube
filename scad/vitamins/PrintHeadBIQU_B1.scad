@@ -153,7 +153,7 @@ probing = false;
                 //left face
                 cube([frontSize.y, topSize.y, frontSize.z]);
                 //right face
-                translate([frontSize.z+frontSize.y, 0, 0])
+                translate([frontSize.z + frontSize.y, 0, 0])
                     cube([frontSize.y, topSize.y, frontSize.z]);
             }
             // back
