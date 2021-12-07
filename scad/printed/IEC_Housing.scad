@@ -39,7 +39,7 @@ module IEC_Housing_stl() {
     baseThickness = 3;
 
     stl("IEC_Housing")
-        color(pp3_colour) {
+        color(pp4_colour) {
             triangleSize = [8, 7];
             difference() {
                 rounded_cube_xy([size.x, size.y, baseThickness], fillet);
@@ -102,7 +102,7 @@ module iecHousing() {
     explode([-30, 0, 0])
         translate([-iecHousingSize.z, -iecHousingSize().x, 0])
             rotate([90, 0, 90])
-                stl_colour(pp2_colour)
+                stl_colour(pp4_colour)
                     IEC_Housing_stl();
     explode([40, 0, 0], true)
         translate([sidePanelSizeZ + 2*eps, -iecHousingSize.x/2, iecHousingSize.y/2])
@@ -242,7 +242,7 @@ assembly("IEC_Housing", ngb=true) {
         translate([-iecHousingSize().z, -iecHousingSize().x, 0])
             rotate([90, 0, 90]) {
                 explode(-30)
-                    stl_colour(pp3_colour)
+                    stl_colour(pp4_colour)
                         IEC_Housing_stl();
                 explode(30, true)
                     IEC_housing_hardware();
