@@ -64,7 +64,8 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
         for (x = [3*eSize/2, eX + eSize/2])
             translate([x, eY/2 + eSize, eZ])
                 rotate([0, -90, 0]) {
-                    Handle_stl();
+                    stl_colour(pp1_colour)
+                        Handle_stl();
                     Handle_hardware();
                 }
     translate_z(eZ)
