@@ -8,16 +8,13 @@ use <../vitamins/nuts.scad>
 
 module handleCrossSection(size, fillet) {
     hull() {
-        translate([fillet, fillet])
-            rotate(180)
+        for (x = [fillet, size.x - fillet]) {
+            translate([x, fillet])
+                rotate(180)
+                    teardrop(0, fillet);
+            translate([x, size.y - fillet])
                 teardrop(0, fillet);
-        translate([size.x - fillet, fillet])
-            rotate(180)
-                teardrop(0, fillet);
-        translate([fillet, size.y - fillet])
-            teardrop(0, fillet);
-        translate([size.x - fillet, size.y - fillet])
-            teardrop(0, fillet);
+        }
     }
 }
 
@@ -43,7 +40,7 @@ module Handle_stl() {
                         handleCrossSection(size, fillet);
     }
 
-    module side(length=height - size.x - internalRadius) {
+    module side(length) {
         translate([-height + size.x, 0, 0])
             rotate([0, 90, 0])
                 linear_extrude(length)
@@ -56,7 +53,7 @@ module Handle_stl() {
                 topCorner();
                 hull() {
                     translate_z(size.x)
-                        side();
+                        side(height - size.x - internalRadius);
                     side(eps);
                 }
                 hull() {
