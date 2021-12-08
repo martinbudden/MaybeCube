@@ -599,9 +599,9 @@ assembly("XY_Motor_Mount_Left", ngb=true) {
         if (offset.x != 0)
             stl_colour(pp2_colour)
                 if (useMotorIdlerLarge)
-                    XY_Motor_Mount_Brace_Left_stl();
-                else
                     XY_Motor_Mount_Brace_Left_25_stl();
+                else
+                    XY_Motor_Mount_Brace_Left_stl();
     }
 }
 
