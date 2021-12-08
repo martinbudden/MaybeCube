@@ -51,13 +51,13 @@ module Spool_Holder_Bracket_stl() {
                 }
 }
 
-module Spool_Holder_Bracket_hardware() {
+module Spool_Holder_Bracket_hardware(offsetX=0) {
     size = [3*eSize, 1.5*eSize, 10];
 
     for (x = [eSize/2, size.x - eSize/2])
         translate([x - size.x/2, eSize/2, size.z - 5])
             vflip()
-                boltM4ButtonheadHammerNut(!is_undef(_useSidePanels) && _useSidePanels ? 12 : _frameBoltLength);
+                boltM4ButtonheadHammerNut(offsetX ? 12 : _frameBoltLength, nutExplode=40);
 }
 
 //use <NopSCADlib/utils/fillet.scad>

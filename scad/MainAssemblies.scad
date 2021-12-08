@@ -174,27 +174,27 @@ staged_assembly("Stage_5", big=true, ngb=true) {
 
 module FinalAssembly() {
     // does not use assembly(""), since made into an assembly in Main.scad
+    useSidePanels = true;//!is_undef(_useSidePanels) && _useSidePanels;
     translate([-(eX + 2*eSize)/2, - (eY + 2*eSize)/2, -eZ/2]) {
         Stage_5_assembly();
         if (is_undef(_useBackMounts) || _useBackMounts == false) {
+            offsetX = useSidePanels ? sidePanelSize().z : 0;
             explode([100, 0, 80])
                 stl_colour(pp2_colour)
-                    faceRightSpoolHolder();
-            explode([80, 0, 0]) {
+                    faceRightSpoolHolder(offsetX);
+            explode([80, 0, 0], true) {
                 stl_colour(pp1_colour)
-                    faceRightSpoolHolderBracket();
-                faceRightSpoolHolderBracketHardware();
+                    faceRightSpoolHolderBracket(offsetX);
+                faceRightSpoolHolderBracketHardware(offsetX);
             }
             explode([200, 0, 100])
-                faceRightSpool();
+                faceRightSpool(offsetX);
         }
-        if (!is_undef(_useSidePanels) && _useSidePanels)
+        if (useSidePanels) {
             explode([50, 0, 0], true)
                 rightSidePanelPC();
-        //Right_Side_Channel_Nuts();
-        if (!is_undef(_useSidePanels) && _useSidePanels)
             explode([-50, 0, 0], true)
                 leftSidePanelPC();
-        //Left_Side_Channel_Nuts();
+        }
     }
 }

@@ -17,31 +17,31 @@ use <Parameters_Positions.scad>
 include <Parameters_Main.scad>
 
 
-spoolHolderPosition = [eX + 2*eSize + 10 + (!is_undef(_useSidePanels) && _useSidePanels ? 3 : 0), eY/2 + (eY < 350 ? 30 : 55), spoolHeight() + 2*eSize];
+function spoolHolderPosition(offsetX) = [eX + 2*eSize + 10 + offsetX, eY/2 + (eY < 350 ? 30 : 55), spoolHeight() + 2*eSize];
 
-module faceRightSpoolHolder() {
+module faceRightSpoolHolder(offsetX) {
    // add the spool holder, place it to the back of the right side, so that the feed to the extruder is as straight as possible
-    translate(spoolHolderPosition)
+    translate(spoolHolderPosition(offsetX))
     //translate([-eSize - 5,  - 10, 0])
         rotate([90, 0, 0])
             Spool_Holder_stl();
 }
 
-module faceRightSpoolHolderBracket() {
-    translate(spoolHolderPosition)
+module faceRightSpoolHolderBracket(offsetX) {
+    translate(spoolHolderPosition(offsetX))
         rotate([-90, 0, 90])
             Spool_Holder_Bracket_stl();
 }
 
-module faceRightSpoolHolderBracketHardware() {
-    translate(spoolHolderPosition)
+module faceRightSpoolHolderBracketHardware(offsetX) {
+    translate(spoolHolderPosition(offsetX))
         rotate([-90, 0, 90])
-            Spool_Holder_Bracket_hardware();
+            Spool_Holder_Bracket_hardware(offsetX);
 }
 
-module faceRightSpool() {
+module faceRightSpool(offsetX) {
     spool = spool_200x60;
-    translate(spoolHolderPosition + spoolOffset())
+    translate(spoolHolderPosition(offsetX) + spoolOffset())
         translate([0.1 + spool_width(spool)/2 + spool_rim_thickness(spool), 0, -spool_hub_bore(spool)/2])
             rotate([0, 90, 0])
                 not_on_bom()
