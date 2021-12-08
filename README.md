@@ -4,7 +4,7 @@ The **MaybeCube** is a CoreXY 3D printer with a linear rails motion system.
 
 ![Main Assembly](MC300/assemblies/main_assembled.png)
 
-![MaybeCube300](pictures/maybecube300_1000.jpg)
+![MaybeCube300](pictures/MaybeCube-2021-12-08_1000.jpg)
 
 The MaybeCube MC350 variant has a print volume of approximately 230mm by 230mm by 200mm.
 
