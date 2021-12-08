@@ -9,7 +9,7 @@ use <../scad/FaceRightExtras.scad>
 include <../scad/Parameters_Main.scad>
 
 //$explode = 1;
-module SidePanel_test() {
+module SidePanel_Jig_test() {
     translate([-3, 0, eZ])
         rotate([0, 90, 0])
             Panel_Jig_stl();
@@ -30,7 +30,24 @@ module SidePanel_test() {
     //Right_Side_Panel_dxf();
 }
 
+module SidePanel_test() {
+    //Left_Side_Channel_Spacers();
+    //Left_Side_Panel_assembly(hammerNut=false);
+    Right_Side_Channel_Spacers();
+    Right_Side_Panel_assembly(hammerNut=false);
+    Extruder_Bracket_assembly();
+}
+
 if ($preview)
     SidePanel_test();
 else
     Panel_Jig_stl();
+    // left side
+    //Channel_Spacer_43p5_stl();
+    //Channel_Spacer_88_stl();
+    // right side
+    //Channel_Spacer_6_stl();
+    //Channel_Spacer_13p5_stl();
+    //Channel_Spacer_56_stl();
+    //Channel_Spacer_83_stl();
+    //Channel_Spacer_93_stl();

@@ -16,8 +16,10 @@ module IEC_Housing_test() {
             rounded_cube_xy([36, 40, 30], 2);
         IEC_Housing_Mount_300_stl();
     }
-    IEC_Housing_assembly();
-    //pcb(BTT_RELAY_V1_0);
+    //IEC_Housing_assembly();
+    IEC_Housing_stl();
+    //pcb(BTT_RELAY_V1_2);
+    //btt_relay_v1_2_pcb();
     //Partition_assembly();
 }
 
