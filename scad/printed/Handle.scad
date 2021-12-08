@@ -6,14 +6,26 @@ include <../vitamins/bolts.scad>
 use <../vitamins/nuts.scad>
 
 
-module handleCrossSection(size, fillet) {
+
+module handleCrossSection(size, fillet, angle) {
+    module teardrop(r, angle) {
+        hull() {
+            circle4n(r);
+            if (angle > 0) {
+                square_size = [2*r*(sin(angle) - (1 - cos(angle))/tan(angle)), r];
+                translate([0, square_size.y / 2])
+                    square(square_size, center = true);
+            }
+        }
+    }
+
     hull() {
         for (x = [fillet, size.x - fillet]) {
             translate([x, fillet])
                 rotate(180)
-                    teardrop(0, fillet);
+                    teardrop(fillet, angle);
             translate([x, size.y - fillet])
-                teardrop(0, fillet);
+                teardrop(fillet, angle);
         }
     }
 }
@@ -24,27 +36,28 @@ module Handle_stl() {
     internalRadius = 10;
     size = [15, 15];
     fillet = 4;
+    filletAngle = 55;
     baseHeight = 5;
 
     module top() {
         translate_z(size.x + internalRadius)
             linear_extrude(length - 2*internalRadius)
-                handleCrossSection(size, fillet);
+                handleCrossSection(size, fillet, filletAngle);
     }
 
     module topCorner(angle=90) {
         translate([-internalRadius, size.y/2, size.x + internalRadius])
             rotate([-90, angle==90 ? 0 : angle, 0])
-                rotate_extrude(angle=angle == 90 ? 90 : eps, convexity=2)
+                rotate_extrude(angle=angle == 90 ? 90 : eps, convexity=2, $fn = r2sides4n(internalRadius))
                     translate([internalRadius, -size.y/2])
-                        handleCrossSection(size, fillet);
+                        handleCrossSection(size, fillet, filletAngle);
     }
 
     module side(length) {
         translate([-height + size.x, 0, 0])
             rotate([0, 90, 0])
                 linear_extrude(length)
-                    handleCrossSection(size, fillet);
+                    handleCrossSection(size, fillet, filletAngle);
     }
 
     module corner() {
