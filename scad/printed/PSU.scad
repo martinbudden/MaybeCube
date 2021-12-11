@@ -3,6 +3,7 @@ include <../global_defs.scad>
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/psus.scad>
 //use <NopSCADlib/printed/psu_shroud.scad>
+include <../vitamins/psus.scad>
 
 include <../Parameters_Main.scad>
 
@@ -10,13 +11,14 @@ include <../Parameters_Main.scad>
 //PSUType = [for (i =[0 : len(S_300_12) - 1]) i==1 ? "Switching Power Supply 24V 15A 360W" : S_300_12[i] ];
 
 function PSUType() = S_300_12;
+//function PSUType() = NG_CB_500W;
 function PSUStandoffHeight() = 0;
 function psuShroudCableDiameter() = 8;
 function psuOffset(PSUType) = [eSize + 3 + psu_width(PSUType)/2, eY + 2*eSize, psu_length(PSUType)/2 + 2*eSize + 15];
 
 module PSUBoltPositions() {//! Position children at the bolt positions on the bottom face
     for (pos = psu_face_holes(psu_faces(PSUType())[f_bottom]))
-        translate([pos.x, pos.y + psu_right_bay(PSUType()), 0])
+        translate([-pos.x, pos.y + psu_right_bay(PSUType()), 0])
             children();
 }
 
