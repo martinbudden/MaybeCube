@@ -6,6 +6,7 @@ include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/printed/extruderBracket.scad>
 use <../scad/printed/IEC_Housing.scad>
+use <../scad/printed/XY_MotorMount.scad>
 
 include <../scad/utils/Z_Rods.scad>
 include <../scad/utils/CoreXYBelts.scad>
@@ -38,10 +39,12 @@ module Right_Side_test() {
     //IEC_Housing_assembly();
 
     //Extruder_Bracket_stl();
-    faceRightSpoolHolder();
-    faceRightSpoolHolderBracket();
-    faceRightSpoolHolderBracketHardware();
+    faceRightSpoolHolder(0);
+    faceRightSpoolHolderBracket(0);
+    faceRightSpoolHolderBracketHardware(0);
     //faceRightSpool();
+    //XY_Motor_Mount_Left_assembly();
+    XY_Motor_Mount_Right_assembly();
 
     //Right_Side_Channel_Nuts();
     // always add the panels last, so they are transparent to other items
