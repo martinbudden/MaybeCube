@@ -62,11 +62,11 @@ offsetP = useMotorIdlerLarge ? [-4.5, -4.5, 0] : [-4.5, -5.25, 0];
 offsetT = useMotorIdlerLarge ? [-4.5, -5, 0] : [-3.25, -4.5, 0];
 
 function xyMotorMountSize(motorWidth = motorWidth(motorType(_xyMotorDescriptor)), offset = [0, 0], left=true)
-    = [ eX + 2*eSize + coreXY_drive_pulley_x_alignment(coreXY_type()) + motorWidth/2 + offset.x,
-        eY + 2*eSize + motorWidth/2 - (left ? offset.y : -offset.y) + (pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 1 : 0),
+    = [ eX + 2*eSize + coreXY_drive_pulley_x_alignment(coreXY_type()) + motorWidth/2 + offset.x + 5,
+        eY + 2*eSize + motorWidth/2 - (left ? offset.y : -offset.y) + (pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 1 : 1),
         eZ + basePlateThickness - bracketHeightRight + (left ? bracketHeightLeft : bracketHeightRight)] - coreXYPosTR(motorWidth);
 
-function upperBoltPositions(sizeX) = [eSize/2 + 3, sizeX - 3*eSize/2 - 3];
+function upperBoltPositions(sizeX) = [eSize/2 + 3, sizeX - 3*eSize/2 - 8];
 leftDrivePlainIdlerOffset    = [plainIdlerPulleyOffset().x, plainIdlerPulleyOffset().y, 0];
 rightDrivePlainIdlerOffset   = [-plainIdlerPulleyOffset().x, plainIdlerPulleyOffset().y, 0];
 
@@ -494,7 +494,7 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
     }
 
     if (left) {
-        size = [offset.x + eX + 2*eSize + coreXY_drive_pulley_x_alignment(coreXY_type()) + motorWidth/2, -offset.y + eY + 2*eSize + motorWidth/2, eZ + basePlateThickness] - coreXYPosTR;
+        size = [xyMotorMountSize(motorWidth, offset, left).x, -offset.y + eY + 2*eSize + motorWidth/2 - coreXYPosTR.y, eZ + basePlateThickness - coreXYPosTR.z];
         for (x = upperBoltPositions(size.x))
             translate([x + eSize, eY + 3*eSize/2, basePlateThickness + bracketHeightLeft - eSize - 5 + blockHeightExtra])
                 vflip()
@@ -508,9 +508,9 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
                 rotate([90, 0, 0])
                     boltM4ButtonheadHammerNut(_frameBoltLength, rotate=90);
     } else {
-        size = [-offset.x + eX + 2*eSize + coreXY_drive_pulley_x_alignment(coreXY_type()) + motorWidth/2, -offset.y + eY + 2*eSize + motorWidth/2, eZ + basePlateThickness]  - coreXYPosTR;
+        size = [xyMotorMountSize(motorWidth, offset, left).x - 2*offset.x, -offset.y + eY + 2*eSize + motorWidth/2 - coreXYPosTR.y, eZ + basePlateThickness - coreXYPosTR.z];
         for (x = upperBoltPositions(size.x))
-            translate([x + eX + 2*eSize - size.x, eY + 3*eSize/2, basePlateThickness + bracketHeightRight - eSize - 5 + blockHeightExtra])
+            translate([eX + eSize - x, eY + 3*eSize/2, basePlateThickness + bracketHeightRight - eSize - 5 + blockHeightExtra])
                 vflip()
                     boltM4ButtonheadHammerNut(_frameBoltLength);
         translate([eX + 3*eSize/2, eY + 5*eSize/2 - size.y,  basePlateThickness + bracketHeightRight - 5])
