@@ -1,4 +1,5 @@
 use <NopSCADlib/vitamins/pcb.scad>
+use <NopSCADlib/vitamins/psu.scad>
 
 
 BTT_RELAY_V1_2 = [
@@ -15,8 +16,8 @@ BTT_RELAY_V1_2 = [
     [ // components
         [  44.5,  10.0,    0, "block", 25,  20,    15.8, grey(25) ],
         [  47.5,  -7.6,    0, "block", 19,  15.25, 15.8, "SkyBlue" ],
-        [ -14.5,  18.15,   0, "block", 16,  30,    17.0, grey(25) ],
-        [ -14.5,  18.15,   0, "block", 15,  25.5,  17.1, "PaleGoldenrod" ],
+        //[ -14.5,  18.15,   0, "block", 16,  30,    17.0, grey(25) ],
+        //[ -14.5,  18.15,   0, "block", 15,  25.5,  17.1, "PaleGoldenrod" ],
         [   2.5,  10.65, 270, "jst_xh", 2, false, grey(20), ],
         [   2.5,  18.15, 270, "jst_xh", 2, false, grey(20), ],
         [   2.5,  25.65, 270, "jst_xh", 2, false, grey(20), ],
@@ -27,3 +28,16 @@ BTT_RELAY_V1_2 = [
     [], // accessories
     [], // grid
 ];
+
+btt_relay_v1_2_terminals = [10, 1.33, 13.2, 16, 7, 13];
+
+module btt_relay_v1_2_pcb() {
+    pcb(BTT_RELAY_V1_2);
+
+    pcbSize = pcb_size(BTT_RELAY_V1_2);
+    terminalType = btt_relay_v1_2_terminals;
+    ways = 3;
+    translate([pcbSize.x/2 - 6.5, -terminal_block_length(terminalType, ways)/2, pcbSize.z])
+        rotate(180)
+            terminal_block(terminalType, ways);
+}
