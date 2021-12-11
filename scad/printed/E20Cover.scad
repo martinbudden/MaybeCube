@@ -14,6 +14,12 @@ module Z_RodMountGuide_40mm_stl() {
             E20Cover(40);
 }
 
+module Z_RodMountGuide_48mm_stl() {
+    color(pp2_colour)
+        stl("Z_RodMountGuide_48mm")
+            E20Cover(48);
+}
+
 module Z_RodMountGuide_50mm_stl() {
     color(pp2_colour)
         stl("Z_RodMountGuide_50mm")
@@ -53,6 +59,8 @@ module zRodMountGuide(length) {
                 // do nothing
             } else if (length==40) {
                 Z_RodMountGuide_40mm_stl();
+            } else if (length==48) {
+                Z_RodMountGuide_48mm_stl();
             } else if (length==50) {
                 Z_RodMountGuide_50mm_stl();
             } else if (length==70) {
