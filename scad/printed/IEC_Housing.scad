@@ -285,8 +285,8 @@ module partitionCutouts(cncSides) {
     size = partitionSize();
 
     echo(xySize=xyMotorMountSize());
-    leftCutoutSize = [eSize, xyMotorMountSize(left=true).z];
-    rightCutoutSize = [eSize, xyMotorMountSize(left=false).z];
+    leftCutoutSize = [size.x - eSize - xyMotorMountSize(left=false).x, xyMotorMountSize(left=true).z - 2.5];
+    rightCutoutSize = [eSize + xyMotorMountSize(left=false).x, xyMotorMountSize(left=false).z - 2.5];
     translate([-size.x/2, -size.y/2]) {
         if (!is_undef(_use2060ForTop) && _use2060ForTop)
             translate([0, size.y - eSize]) {
@@ -296,7 +296,7 @@ module partitionCutouts(cncSides) {
             }
         translate([0, size.y - leftCutoutSize.y])
             square(leftCutoutSize);
-        translate([size.x - eSize, size.y - rightCutoutSize.y])
+        translate(size - rightCutoutSize)
             square(rightCutoutSize);
     }
 }
