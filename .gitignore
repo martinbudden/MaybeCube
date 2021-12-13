@@ -18,7 +18,9 @@ times.txt
 
 .vscode/
 
-documents/notes.md
+documents/*
+!documents/MarlinConfiguration.md
+!documents/klipper_btt_skr_v1_4.cfg
 
 scad/target.scad
 scad/bom.scad
@@ -48,6 +50,8 @@ pictures/*
 !pictures/MC_top.jpg
 !pictures/MC_wiring.jpg
 !pictures/MaybeCube-2021-12-08_1000.jpg
+!pictures/shaper_calibrate_x.png
+!pictures/shaper_calibrate_y.png
 
 M5/
 
