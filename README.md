@@ -134,6 +134,11 @@ The MaybeCube uses 2040 extrusions, these provide significantly more joint rigid
 
 The front face of the MaybeCube is the most subject to shearing, since it needs to be open to allow access to the printbed. Two measures are taken to counteract this: 2080 rather than 2040 extrusion is used at the bottom of the face, and the idler mounts at the top are extended to provide some triangulation and reinforcement of the upper joints.
 
+## Input shaper test results (MC300 Variant)
+
+![X-Axis](pictures/shaper_calibrate_x.png)
+![Y-Axis](pictures/shaper_calibrate_y.png)
+
 ## Customisations
 
 ### EVA module printhead system
