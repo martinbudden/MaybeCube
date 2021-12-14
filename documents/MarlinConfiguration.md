@@ -24,8 +24,12 @@ This allows babystepping to be used with manual probing.
 ## Configuration.h
 
 ```h
+C
+#define SERIAL_PORT 3
 E
 #define SERIAL_PORT_2 -1
+E&C
+#define SERIAL_PORT_3 0
 C
 #define MOTHERBOARD BOARD_BTT_SKR_V1_4_TURBO
 E&C
@@ -61,7 +65,7 @@ C
 #define X_BED_SIZE 184
 #define Y_BED_SIZE 184
 C
-#define Z_MAX_POS 203.66
+#define Z_MAX_POS 202.61
 E
 #define FILAMENT_RUNOUT_SENSOR
 E
