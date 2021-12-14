@@ -50,8 +50,10 @@ pictures/*
 !pictures/MC_top.jpg
 !pictures/MC_wiring.jpg
 !pictures/MaybeCube-2021-12-08_1000.jpg
+!pictures/MaybeCube300_1000.jpg
 !pictures/shaper_calibrate_x.png
 !pictures/shaper_calibrate_y.png
+!pictures/social_preview.png
 
 M5/
 
@@ -69,8 +71,8 @@ jigs/*.md
 #!jigs/assemblies/*.png
 #!jigs/dxfs/*.dxf
 #!jigs/dxfs/*.png
-!jigs/stls/*.stl
-!jigs/stls/*.png
+#!jigs/stls/*.stl
+#!jigs/stls/*.png
 jigs/assemblies/*_diff.png
 jigs/dxfs/*_diff.png
 jigs/stls/*_diff.png
@@ -87,7 +89,6 @@ EVA/*.md
 !EVA/assemblies/*.png
 #!EVA/dxfs/*.dxf
 #!EVA/dxfs/*.png
-
 #!EVA/stls/*.stl
 !EVA/stls/*.png
 EVA/assemblies/*_diff.png
