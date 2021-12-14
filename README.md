@@ -34,8 +34,8 @@ If you would like to build a smaller printer, you may be interested in the Maybe
 2. **Make the MaybeCube more easily usable in home environment (as opposed to garage or workshop)**
      * try and make it easy to transport and store the MaybeCube, so:
      * integrated design, everything is enclosed within the printer's frame with. This includes the motors,
-       the motion system, the power supply, and the circuit boards. The only exceptions are the
-       extruder motor and the spool holder, both of which can be removed for transport and storage.
+       the motion system, the power supply, and the circuit boards. The only exceptions are the spool
+       holder, which can be removed for transport and storage, and the extruder.
      * include base plate so underside of printer is not exposed
      * all protrusions from frame (filament spool, extruder, power connector) are on the right hand side to minimise desk clutter
        and allow the back of the MaybeCube to be pushed right against a wall
@@ -83,8 +83,6 @@ MC250   | x250 y250 z350 | x200 y250 z250   | concept variant     | 180mm      |
 MC300   | x300 y300 z400 | x250 y300 z300   | 185 x 185 x 200     | 214mm      | 340 x 340 x 400
 MC350   | x350 y350 y400 | x300 y350 z300   | 225 x 225 x 200     | 235mm      | 390 x 390 x 400
 MC400   | x400 y400 y450 | x350 y400 z350   | 275 x 275 x 250     | 310mm      | 440 x 440 x 450
-
- For reference, the original [HyperCube](https://www.thingiverse.com/thing:1752766) has extrusion lengths of x340 y303 z350 to give a build volume of 200 x 200 x 155.
 
 ## Comparisons
 
