@@ -17,6 +17,8 @@ include <../../../BabyCube/scad/printed/X_CarriageFanDuct.scad>
 
 include <../Parameters_CoreXY.scad>
 
+useMotorIdlerLarge = pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15;
+
 xCarriageFrontSize = [30, 4, 40.5];
 function xCarriageFrontSize(xCarriageType, beltWidth) =  [max(carriage_size(xCarriageType).x, xCarriageFrontSize.x), xCarriageFrontSize.y, 36 + carriage_height(xCarriageType) + xCarriageTopThickness() + (!is_undef(beltWidth) && beltWidth == 9 ? 4.5 : 0)]; //has the belt tensioners
 function xCarriageBackSize(xCarriageType, beltWidth) = [xCarriageFrontSize(xCarriageType, beltWidth).x, 5, xCarriageFrontSize(xCarriageType, beltWidth).z];
