@@ -21,11 +21,11 @@ include <Parameters_CoreXY.scad>
 PC3 = ["PC3", "Sheet polycarbonate", 3, [1,   1,   1,   0.25], false];
 //PC3 = ["PC3", "Sheet polycarbonate", 3, "red", false];
 accessHoleRadius = 2.5;
-psuVertical = eX == 300;
+psuVertical = psu_size(PSUType()).y > 100 && eX == 300;
 
 function backPanelSize() = [eX + 2*eSize, eZ, 3];
-//function pcbType() = BTT_SKR_V1_4_TURBO;
-function pcbType() = eX == 250 ? BTT_SKR_MINI_E3_V2_0 : BTT_SKR_E3_TURBO;
+function pcbType() = BTT_SKR_V1_4_TURBO;
+//function pcbType() = eX == 250 ? BTT_SKR_MINI_E3_V2_0 : BTT_SKR_E3_TURBO;
 //function pcbType() = BTT_SKR_MINI_E3_V2_0;
 pcbOffsetZ = eX == 250 ? 155 : 100;
 
