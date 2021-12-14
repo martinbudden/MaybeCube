@@ -15,7 +15,7 @@ module CoreXYBelts(carriagePosition, x_gap=0, show_pulleys=false, xyMotorWidth=u
         coreXYPosTR = coreXYPosTR(xyMotorWidth),
         separation = coreXYSeparation(),
         x_gap = x_gap,
-        //plain_idler_offset = plainIdlerPulleyOffset,
+        plain_idler_offset = plainIdlerPulleyOffset,
         upper_drive_pulley_offset = [-rightDrivePulleyOffset.x, rightDrivePulleyOffset.y],
         lower_drive_pulley_offset = [-leftDrivePulleyOffset.x, leftDrivePulleyOffset.y],
         left_lower = true,
