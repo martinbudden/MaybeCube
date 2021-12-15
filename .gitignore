@@ -107,12 +107,20 @@ XChange/*.md
 !XChange/assemblies/*.png
 #!XChange/dxfs/*.dxf
 #!XChange/dxfs/*.png
-
 #!XChange/stls/*.stl
 !XChange/stls/*.png
 XChange/assemblies/*_diff.png
 XChange/dxfs/*_diff.png
 XChange/stls/*_diff.png
+
+DualZRods/assemblies/*
+DualZRods/bom/
+DualZRods/dxfs/*
+DualZRods/stls/*
+DualZRods/tmp/
+DualZRods/*.html
+DualZRods/*.md
+!DualZRods/assemblies/DualZRods_assembled.png
 
 JubileeToolChanger/assemblies/*
 JubileeToolChanger/bom/
@@ -121,18 +129,7 @@ JubileeToolChanger/stls/*
 JubileeToolChanger/tmp/
 JubileeToolChanger/*.html
 JubileeToolChanger/*.md
-#!JubileeToolChanger/readme.md
 !JubileeToolChanger/assemblies/JubileeToolChanger_assembled.png
-#!JubileeToolChanger/assemblies/*.png
-#!JubileeToolChanger/dxfs/*.dxf
-#!JubileeToolChanger/dxfs/*.png
-
-#!JubileeToolChanger/stls/*.stl
-#!JubileeToolChanger/stls/*.png
-JubileeToolChanger/assemblies/*_diff.png
-JubileeToolChanger/dxfs/*_diff.png
-JubileeToolChanger/stls/*_diff.png
-
 
 KinematicBed/assemblies/*
 KinematicBed/bom/
@@ -141,17 +138,7 @@ KinematicBed/stls/*
 KinematicBed/tmp/
 KinematicBed/*.html
 KinematicBed/*.md
-#!KinematicBed/readme.md
 !KinematicBed/assemblies/KinematicBed_assembled.png
-#!KinematicBed/assemblies/*.png
-#!KinematicBed/dxfs/*.dxf
-#!KinematicBed/dxfs/*.png
-
-#!KinematicBed/stls/*.stl
-#!KinematicBed/stls/*.png
-KinematicBed/assemblies/*_diff.png
-KinematicBed/dxfs/*_diff.png
-KinematicBed/stls/*_diff.png
 
 
 MC250/assemblies/*
