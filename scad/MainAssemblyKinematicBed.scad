@@ -18,18 +18,14 @@ use <../scad/Parameters_Positions.scad>
 include <Parameters_Main.scad>
 
 
-printBedKinematic = !is_undef(_printBedKinematic) && _printBedKinematic == true;
-_poseMainAssembly = [90 - 15, 0, 90 + 15];
-
 module KinematicBed_assembly()
 assembly("KinematicBed", big=true) {
 
-    Left_Side_assembly(printBedKinematic, bedHeight());
-        Right_Side_assembly(printBedKinematic, bedHeight());
+    Left_Side_assembly(bedHeight=bedHeight(), printBedKinematic=true);
+    Right_Side_assembly(bedHeight=bedHeight(), printBedKinematic=true, sideAssemblies=false);
     Base_Plate_assembly();
-    if (printBedKinematic)
-        translate_z(bedHeight())
-            jubilee_build_plate();
+    translate_z(bedHeight())
+        jubilee_build_plate();
 }
 
 if ($preview)

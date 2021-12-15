@@ -21,7 +21,7 @@ include <Parameters_Main.scad>
 //!5. On a flat surface, bolt the upper and lower extrusions into the left and right uprights as shown. Tighten the bolts
 //!continuously ensuring the frame is square.
 //
-module Left_Side_assembly(printBedKinematic=undef, bedHeight=undef) pose(a=[55, 0, 25 + 90])
+module Left_Side_assembly(bedHeight=undef, printBedKinematic=undef) pose(a=[55, 0, 25 + 90])
 assembly("Left_Side", big=true) {
 
     printBedKinematic = is_undef(printBedKinematic) ? (!is_undef(_printBedKinematic) && _printBedKinematic == true) : printBedKinematic;

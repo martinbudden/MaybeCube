@@ -21,11 +21,12 @@ include <Parameters_Main.scad>
 //!2. Bolt the **IEC_Housing_assembly** to the lower extrusion and upright.
 //!3. Bolt the **Extruder_Bracket_assembly** to the upper extrusion and upright.
 //
-module Right_Side_assembly(printBedKinematic=undef, bedHeight=undef) pose(a=[55, 0, 25 - 90])
+module Right_Side_assembly(bedHeight=undef, printBedKinematic=undef, sideAssemblies=undef) pose(a=[55, 0, 25 - 90])
 assembly("Right_Side", big=true) {
 
     printBedKinematic = is_undef(printBedKinematic) ? (!is_undef(_printBedKinematic) && _printBedKinematic == true) : printBedKinematic;
     bedHeight = is_undef(bedHeight) ? bedHeight() : bedHeight;
+    sideAssemblies = is_undef(sideAssemblies) ? (!is_undef(_useBackMounts) && _useBackMounts == true) : sideAssemblies;
     upperZRodMountsExtrusionOffsetZ = printBedKinematic ? eZ - 90 : _upperZRodMountsExtrusionOffsetZ;
 
     faceRightLowerExtrusion();
@@ -47,7 +48,7 @@ assembly("Right_Side", big=true) {
         translate([eX + eSize, eSize, spoolHeight()])
             extrusionOY2040VEndBolts(eY);
     }
-    if (is_undef(_useBackMounts) || _useBackMounts == false) {
+    if (sideAssemblies) {
         explode([50, 75, 0])
             IEC_Housing_assembly();
         explode([50, 75, 0])
