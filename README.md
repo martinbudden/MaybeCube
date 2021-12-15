@@ -169,6 +169,12 @@ compatible with the E3D tool changer. I have a proof of concept showing that thi
 
 ![JubileeToolChanger Assembly](JubileeToolChanger/assemblies/JubileeToolChanger_assembled.png)
 
+### Dual Z rods
+
+The MC300 variant uses a cantilevered print bed. For larger variants it is possible to use dual sets of Z-rods to support the print bed.
+
+![DualZRods Assembly](DualZRods/assemblies/DualZRods_assembled.png)
+
 ### 3-point Kinematic Bed
 
 It is possible to configure the MaybeCube to use a 3-point Kinematic Bed
