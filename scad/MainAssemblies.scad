@@ -76,7 +76,7 @@ module staged_assembly(name, big, ngb) {
 module Stage_1_assembly() pose(a=[55 + 90, 90 - 20, 90])
 staged_assembly("Stage_1", big=true, ngb=true) {
 
-    Left_Side_assembly(printBedKinematic, bedHeight());
+    Left_Side_assembly(bedHeight(), printBedKinematic);
 
     if (!printBedKinematic) {
         zRods();
@@ -119,7 +119,7 @@ staged_assembly("Stage_3", big=true, ngb=true) {
     Stage_2_assembly();
 
     explode(150, true) {
-        Right_Side_assembly(printBedKinematic, bedHeight());
+        Right_Side_assembly(bedHeight(), printBedKinematic);
         // add the right side Z rods if using dual Z rods
         if (useDualZRods())
             zRods(left=false);
@@ -144,7 +144,7 @@ staged_assembly("Stage_4", big=true, ngb=true) {
         Back_Panel_assembly();
     if (printBedKinematic)
         translate_z(bedHeight())
-            jubilee_build_plate();
+            jubilee_build_plate(_printBedHoleOffset);
    //Partition_assembly();
 }
 

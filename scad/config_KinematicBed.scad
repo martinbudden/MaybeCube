@@ -22,8 +22,6 @@ _zCarriageDescriptor = "MGN12C";
 
 _coreXYDescriptor = "GT2_20_25";
 
-_useBackMounts= true;
-
 _printBedSize = [305, 300, 6.35];
 _printBedHoleOffset = [8, 30];
 _printBedArmSeparation = 50 + _printBedSize.y - 2*_printBedHoleOffset.y;
