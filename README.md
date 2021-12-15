@@ -167,7 +167,7 @@ The [Jubilee 3D printer](https://www.jubilee3d.com/index.php?title=Main_Page)
 has a [tool changer](https://www.jubilee3d.com/index.php?title=Tools)
 compatible with the E3D tool changer. I have a proof of concept showing that this tool changer system can be used on the MaybeCube. Note that this is incomplete and still requires an X_Carriage adaptor for the Jubilee plates.
 
-![JubileeToolChanger Assembly](JubileeToolchanger/assemblies/JubileeToolchanger_assembled.png)
+![JubileeToolChanger Assembly](JubileeToolChanger/assemblies/JubileeToolChanger_assembled.png)
 
 ## Pictures
 
