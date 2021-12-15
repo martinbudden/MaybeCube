@@ -1,4 +1,4 @@
-_variant = "toolchanger";
+_variant = "JubileeToolChanger";
 
 __extrusionLengths = [400, 400, 400];
 eX = __extrusionLengths.x;
