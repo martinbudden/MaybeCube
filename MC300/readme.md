@@ -71,14 +71,14 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Aluminium sheet 340mm x 340mm x 3mm |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1260mm |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1270mm |
-|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  BigTreeTech SKR E3 Turbo |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  BigTreeTech SKR v1.4 Turbo |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech TFT35 E3 v3.0 |
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   2  |    4  |  Bolt M3 buttonhead x  8mm |
-|   .  |   .  |   .  |   5  |   .  |   .  |   .  |   .  |    5  |  Bolt M3 buttonhead x 10mm |
+|   .  |   .  |   .  |   4  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 buttonhead x 10mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   8  |   16  |  Bolt M3 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 16mm |
-|   .  |   .  |   .  |   5  |   .  |   .  |   .  |   4  |    9  |  Bolt M3 caphead x  6mm |
+|   .  |   .  |   .  |   4  |   .  |   .  |   .  |   4  |    8  |  Bolt M3 caphead x  6mm |
 |   .  |   .  |  32  |   .  |   .  |   4  |   .  |   .  |   36  |  Bolt M3 caphead x 10mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 16mm |
 |   .  |   .  |   .  |   .  |   .  |   3  |   .  |   .  |    3  |  Bolt M3 caphead x 20mm |
@@ -90,9 +90,9 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   2  |    4  |  Bolt M3 countersunk x 12mm |
 |   2  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |   10  |  Bolt M3 countersunk x 25mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M3 countersunk x 30mm |
-|   .  |   .  |   .  |   .  |  11  |   .  |   .  |  24  |   35  |  Bolt M4 buttonhead x  8mm |
-|   .  |   .  |  16  |   .  |   .  |   8  |   2  |  14  |   40  |  Bolt M4 buttonhead x 10mm |
-|   .  |   .  |   .  |   .  |   2  |   .  |   2  |   .  |    4  |  Bolt M4 buttonhead x 12mm |
+|   .  |   .  |   .  |   .  |  11  |   .  |   .  |  35  |   46  |  Bolt M4 buttonhead x  8mm |
+|   .  |   .  |  16  |   .  |   .  |   8  |   2  |  12  |   38  |  Bolt M4 buttonhead x 10mm |
+|   .  |   .  |   8  |   .  |   2  |   .  |   2  |   2  |   14  |  Bolt M4 buttonhead x 12mm |
 |   .  |   .  |   .  |  18  |   .  |   .  |   .  |   .  |   18  |  Bolt M4 countersunk x  8mm |
 |   .  |   .  |  20  |   .  |   .  |   .  |   8  |   .  |   28  |  Bolt M4 countersunk x 10mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M5 buttonhead x 10mm |
@@ -121,17 +121,18 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  MK10 Dual Pulley Extruder |
 |   .  |   .  |  16  |   .  |   .  |   2  |   .  |   4  |   22  |  Nut M3 hammer |
 |   .  |   .  |   .  |   .  |   .  |   3  |   .  |   .  |    3  |  Nut M3 sliding T |
-|   .  |   .  |  10  |  14  |  11  |   .  |   .  |  38  |   73  |  Nut M4 hammer |
-|   .  |   .  |  20  |   .  |   .  |   8  |  12  |   .  |   40  |  Nut M4 sliding T |
+|   .  |   .  |  10  |  14  |  11  |   .  |   .  |  49  |   84  |  Nut M4 hammer |
+|   .  |   .  |  28  |   .  |   .  |   8  |  12  |   .  |   48  |  Nut M4 sliding T |
 |   .  |   .  |   .  |   .  |   .  |   9  |   .  |   .  |    9  |  O-ring nitrile 4mm x 2mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE Bowden tube, 500 mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Pillar hex nylon F/F M3x14 |
-|   .  |   .  |   .  |   5  |   .  |   .  |   .  |   .  |    5  |  Pillar hex nylon F/F M3x20 |
+|   .  |   .  |   .  |   4  |   .  |   .  |   .  |   .  |    4  |  Pillar hex nylon F/F M3x20 |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |    8  |  Pulley GT2 idler 16 teeth |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Pulley GT2 idler smooth 9.63mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Pulley GT2OB 20 teeth |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  SCS12LUU bearing block |
 |   .  |   .  |   .  |   .  |   .  |   .  |   4  |   .  |    4  |  SK12 shaft support bracket |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Sheet polycarbonate 250mm x 400mm x 3mm |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   1  |    2  |  Sheet polycarbonate 340mm x 400mm x 3mm |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Square radial fan 3010 |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Stepper motor NEMA17 x 40mm |
@@ -145,7 +146,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer  M4 |
 |   .  |   .  |   .  |   .  |   .  |   6  |   .  |   .  |    6  |  Washer penny  M4 |
 |   3  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    3  |  Ziptie 2.5mm x 100mm min length |
-|  12  |   4  | 218  |  50  |  48  |  81  |  40  | 127  |  580  | Total vitamins count |
+|  12  |   4  | 234  |  47  |  48  |  81  |  40  | 150  |  616  | Total vitamins count |
 |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_Bracket_TFT35_E3.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_TFT35_E3.stl |
@@ -156,6 +157,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  | Foot_LShaped_12mm.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Front_Cover_300.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Front_Display_Wiring_Cover_300.stl |
+|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  | Handle.stl |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Hotend_Clamp.stl |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | IEC_Housing.stl |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | IEC_Housing_Mount.stl |
@@ -191,13 +193,14 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Z_Carriage_Right.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_MountGuide_19mm.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |    2  | Z_RodMountGuide_50mm.stl |
-|   3  |   3  |  18  |   3  |   4  |   5  |   4  |  17  |   57  | Total 3D printed parts count |
+|   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |    2  | Z_RodMountGuide_48mm.stl |
+|   3  |   3  |  20  |   3  |   4  |   5  |   4  |  17  |   59  | Total 3D printed parts count |
 |      |      |      |      |      |      |      |      |       | **CNC routed parts** |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | Back_Panel.dxf |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | BaseAL.dxf |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Left_Side_Panel.dxf |
-|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   2  |    3  | Total CNC routed parts count |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Right_Side_Panel.dxf |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   3  |    4  | Total CNC routed parts count |
 
 <span></span>
 [Top](#TOP)
@@ -624,20 +627,21 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 |Qty|Description|
 |---:|:----------|
 |2| Bolt M4 buttonhead x 10mm|
+|8| Bolt M4 buttonhead x 12mm|
 |20| Bolt M4 countersunk x 10mm|
 |4| Bolt M5 buttonhead x 10mm|
 |2| Bolt M5 buttonhead x 12mm|
 |1| Extrusion E2020 x 300mm|
 |1| Extrusion E2040 x 300mm|
 |2| Nut M4 hammer|
-|20| Nut M4 sliding T|
+|28| Nut M4 sliding T|
 
 
 ### 3D Printed parts
 
-| 4 x Top_Corner_Piece.stl | 1 x Wiring_Guide_Socket.stl |
-|---|---|
-| ![Top_Corner_Piece.stl](stls/Top_Corner_Piece.png) | ![Wiring_Guide_Socket.stl](stls/Wiring_Guide_Socket.png) 
+| 2 x Handle.stl | 4 x Top_Corner_Piece.stl | 1 x Wiring_Guide_Socket.stl |
+|---|---|---|
+| ![Handle.stl](stls/Handle.png) | ![Top_Corner_Piece.stl](stls/Top_Corner_Piece.png) | ![Wiring_Guide_Socket.stl](stls/Wiring_Guide_Socket.png) 
 
 
 
@@ -763,13 +767,13 @@ using the **X_Carriage_Belt_Clamp**s
 
 |Qty|Description|
 |---:|:----------|
-|1| BigTreeTech SKR E3 Turbo|
-|5| Bolt M3 buttonhead x 10mm|
-|5| Bolt M3 caphead x  6mm|
+|1| BigTreeTech SKR v1.4 Turbo|
+|4| Bolt M3 buttonhead x 10mm|
+|4| Bolt M3 caphead x  6mm|
 |18| Bolt M4 countersunk x  8mm|
 |1| LED Switching Power Supply 24V 15A 360W|
 |14| Nut M4 hammer|
-|5| Pillar hex nylon F/F M3x20|
+|4| Pillar hex nylon F/F M3x20|
 |1| Sheet polycarbonate 340mm x 400mm x 3mm|
 
 
@@ -1301,9 +1305,9 @@ the Z carriages are added.
 
 ### 3D Printed parts
 
-| 1 x Z_Motor_Mount.stl | 1 x Z_Motor_MountGuide_19mm.stl | 2 x Z_RodMountGuide_50mm.stl |
+| 1 x Z_Motor_Mount.stl | 1 x Z_Motor_MountGuide_19mm.stl | 2 x Z_RodMountGuide_48mm.stl |
 |---|---|---|
-| ![Z_Motor_Mount.stl](stls/Z_Motor_Mount.png) | ![Z_Motor_MountGuide_19mm.stl](stls/Z_Motor_MountGuide_19mm.png) | ![Z_RodMountGuide_50mm.stl](stls/Z_RodMountGuide_50mm.png) 
+| ![Z_Motor_Mount.stl](stls/Z_Motor_Mount.png) | ![Z_Motor_MountGuide_19mm.stl](stls/Z_Motor_MountGuide_19mm.png) | ![Z_RodMountGuide_48mm.stl](stls/Z_RodMountGuide_48mm.png) 
 
 
 
@@ -1528,9 +1532,10 @@ see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
 
 |Qty|Description|
 |---:|:----------|
-|16| Bolt M4 buttonhead x  8mm|
-|2| Bolt M4 buttonhead x 10mm|
-|18| Nut M4 hammer|
+|27| Bolt M4 buttonhead x  8mm|
+|2| Bolt M4 buttonhead x 12mm|
+|29| Nut M4 hammer|
+|1| Sheet polycarbonate 250mm x 400mm x 3mm|
 |1| Sheet polycarbonate 340mm x 400mm x 3mm|
 
 
@@ -1544,9 +1549,9 @@ see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
 
 ### CNC Routed parts
 
-| 1 x Left_Side_Panel.dxf |
-|---|
-| ![Left_Side_Panel.dxf](dxfs/Left_Side_Panel.png) 
+| 1 x Left_Side_Panel.dxf | 1 x Right_Side_Panel.dxf |
+|---|---|
+| ![Left_Side_Panel.dxf](dxfs/Left_Side_Panel.png) | ![Right_Side_Panel.dxf](dxfs/Right_Side_Panel.png) 
 
 
 
