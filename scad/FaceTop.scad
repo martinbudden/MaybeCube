@@ -156,7 +156,7 @@ module faceTopBack() {
                             jointBoltHole();
             }
         }
-        if (_variant != "toolchanger")
+        if (_variant != "JubileeToolChanger")
             explode([0, -40, 0], true)
                 wiringGuidePosition(offset=0)
                     vflip() {
