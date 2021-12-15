@@ -134,6 +134,26 @@ JubileeToolChanger/dxfs/*_diff.png
 JubileeToolChanger/stls/*_diff.png
 
 
+KinematicBed/assemblies/*
+KinematicBed/bom/
+KinematicBed/dxfs/*
+KinematicBed/stls/*
+KinematicBed/tmp/
+KinematicBed/*.html
+KinematicBed/*.md
+#!KinematicBed/readme.md
+!KinematicBed/assemblies/KinematicBed_assembled.png
+#!KinematicBed/assemblies/*.png
+#!KinematicBed/dxfs/*.dxf
+#!KinematicBed/dxfs/*.png
+
+#!KinematicBed/stls/*.stl
+#!KinematicBed/stls/*.png
+KinematicBed/assemblies/*_diff.png
+KinematicBed/dxfs/*_diff.png
+KinematicBed/stls/*_diff.png
+
+
 MC250/assemblies/*
 MC250/bom/
 MC250/dxfs/*
