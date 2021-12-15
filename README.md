@@ -169,6 +169,12 @@ compatible with the E3D tool changer. I have a proof of concept showing that thi
 
 ![JubileeToolChanger Assembly](JubileeToolChanger/assemblies/JubileeToolChanger_assembled.png)
 
+### 3-point Kinematic Bed
+
+It is possible to configure the MaybeCube to use a 3-point Kinematic Bed
+
+![KinematicBed Assembly](KinematicBed/assemblies/KinematicBed_assembled.png)
+
 ## Pictures
 
 ![Front](pictures/MC_front.jpg)
