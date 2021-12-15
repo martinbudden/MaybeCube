@@ -128,7 +128,7 @@ module zMotor(explode=_zRodLength + 40) {
 
 module zRods(left=true) {
     explode(-_zRodLength + 100)
-        translate([left ? eSize + _zRodOffsetX: eX + eSize -_zRodOffsetX, eSize + _zRodOffsetY, _zRodLength/2 + 2.5 + (useBackMounts() ? 0 : eSize)]) {
+        translate([left ? eSize + _zRodOffsetX : eX + eSize -_zRodOffsetX, eSize + _zRodOffsetY, _zRodLength/2 + 2.5 + (useBackMounts() ? 0 : eSize)]) {
             rod(d=_zRodDiameter, l=_zRodLength);
             translate([0, zRodSeparation(), 0])
                 rod(d=_zRodDiameter, l=_zRodLength);
