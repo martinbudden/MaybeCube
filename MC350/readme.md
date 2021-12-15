@@ -71,14 +71,14 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Aluminium sheet 390mm x 390mm x 3mm |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1460mm |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1460mm |
-|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  BigTreeTech SKR E3 Turbo |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  BigTreeTech SKR v1.4 Turbo |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech TFT35 E3 v3.0 |
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   2  |    4  |  Bolt M3 buttonhead x  8mm |
-|   .  |   .  |   .  |   5  |   .  |   .  |   .  |   .  |    5  |  Bolt M3 buttonhead x 10mm |
+|   .  |   .  |   .  |   4  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 buttonhead x 10mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   8  |   16  |  Bolt M3 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 16mm |
-|   .  |   .  |   .  |   5  |   .  |   .  |   .  |   4  |    9  |  Bolt M3 caphead x  6mm |
+|   .  |   .  |   .  |   4  |   .  |   .  |   .  |   4  |    8  |  Bolt M3 caphead x  6mm |
 |   .  |   .  |  32  |   .  |   .  |   4  |   .  |   .  |   36  |  Bolt M3 caphead x 10mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 16mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   4  |    6  |  Bolt M3 caphead x 25mm |
@@ -125,7 +125,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |  28  |   .  |   .  |   8  |  12  |   .  |   48  |  Nut M4 sliding T |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE Bowden tube, 600 mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Pillar hex nylon F/F M3x14 |
-|   .  |   .  |   .  |   5  |   .  |   .  |   .  |   .  |    5  |  Pillar hex nylon F/F M3x20 |
+|   .  |   .  |   .  |   4  |   .  |   .  |   .  |   .  |    4  |  Pillar hex nylon F/F M3x20 |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |    8  |  Pulley GT2 idler 16 teeth |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Pulley GT2 idler smooth 9.63mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Pulley GT2OB 20 teeth |
@@ -144,7 +144,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   2  |  26  |   .  |   .  |   .  |   .  |   .  |   28  |  Washer  M3 |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer  M4 |
 |   3  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    3  |  Ziptie 2.5mm x 100mm min length |
-|  12  |   4  | 238  |  50  |  53  |  62  |  40  | 150  |  609  | Total vitamins count |
+|  12  |   4  | 238  |  47  |  53  |  62  |  40  | 150  |  606  | Total vitamins count |
 |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_Bracket_TFT35_E3.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_TFT35_E3.stl |
@@ -764,13 +764,13 @@ using the **X_Carriage_Belt_Clamp**s
 
 |Qty|Description|
 |---:|:----------|
-|1| BigTreeTech SKR E3 Turbo|
-|5| Bolt M3 buttonhead x 10mm|
-|5| Bolt M3 caphead x  6mm|
+|1| BigTreeTech SKR v1.4 Turbo|
+|4| Bolt M3 buttonhead x 10mm|
+|4| Bolt M3 caphead x  6mm|
 |18| Bolt M4 countersunk x  8mm|
 |1| LED Switching Power Supply 24V 15A 360W|
 |14| Nut M4 hammer|
-|5| Pillar hex nylon F/F M3x20|
+|4| Pillar hex nylon F/F M3x20|
 |1| Sheet polycarbonate 390mm x 400mm x 3mm|
 
 
