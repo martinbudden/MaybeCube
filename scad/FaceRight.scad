@@ -26,7 +26,7 @@ assembly("Right_Side", big=true) {
 
     printBedKinematic = is_undef(printBedKinematic) ? (!is_undef(_printBedKinematic) && _printBedKinematic == true) : printBedKinematic;
     bedHeight = is_undef(bedHeight) ? bedHeight() : bedHeight;
-    sideAssemblies = is_undef(sideAssemblies) ? (!is_undef(_useBackMounts) && _useBackMounts == true) : sideAssemblies;
+    sideAssemblies = is_undef(sideAssemblies) ? (is_undef(_useBackMounts) || _useBackMounts == false) : sideAssemblies;
     upperZRodMountsExtrusionOffsetZ = printBedKinematic ? eZ - 90 : _upperZRodMountsExtrusionOffsetZ;
 
     faceRightLowerExtrusion();
