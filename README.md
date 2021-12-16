@@ -98,7 +98,7 @@ MC450             | 2040  | 450 x 450 x 500   | 325 x 325 x 300  | 490 x 490 x 5
 [Denali 200](https://github.com/Annex-Engineering/Denali) | 2020 | 320 x 320 x 590 | 200 x 200 x 200 | 380 x 380 x 620 (est)
 Denali 250 | 2020 | 370 x 370 x 590 | 250 x 250 x 200 | 430 x 430 x 620 (est)
 Denali 350 | 2020 | 470 x 470 x 690 | 350 x 350 x 300 | 530 x 530 x 720 (est)
-[E3D Toolchanger](https://e3d-online.com/pages/toolchanger) | 2040 | Z: 500 |  200 x 300 x 300  | 530 x 505 x 500
+[E3D ToolChanger](https://e3d-online.com/pages/toolchanger) | 2040 | Z: 500 |  200 x 300 x 300  | 530 x 505 x 500
 [FuseBox3](https://github.com/alexyu132/fusebox3) | 2020 | 310 x 332 x 407 | 235 x 235 x 235 | 350 x 372 x 427
 [HyperCube](https://www.thingiverse.com/thing:1752766) | 2020 | 340 x 303 x 350  | 200 x 200 x 155  | 380 x 343 x 350
 [HEVO](https://www.thingiverse.com/thing:2254103) | 3030 | 420 x 410 x 500 | 300 x 300 x 300 | 480 x 470 x 500
