@@ -14,6 +14,9 @@ sideThickness = 6.5;
 wiringGuideSize = [30, 15, 5];
 wiringGuideClampSize = [wiringDiameter + 2*sideThickness, wiringGuideSize.y, 2.5];
 
+function wiringGuidePosition(offsetX=0, offsetY=0, offsetZ=0) = [eX/2 + eSize - (wiringGuideSize.x + eSize)/2 - offsetX, eY + eSize - offsetY, eZ - eSize - offsetZ];
+
+
 module Wiring_Guide_stl() {
     stl("Wiring_Guide")
         color(pp1_colour)
@@ -116,8 +119,8 @@ module Wiring_Guide_Socket_hardware() {
                 boltM4ButtonheadHammerNut(_frameBoltLength);
 }
 
-module wiringGuidePosition(offset=wiringDiameter) {
-    translate([eX/2 + eSize, eY + eSize - offset, eZ - eSize])
+module wiringGuidePosition(offsetX=0, offsetY=0) {
+    translate(wiringGuidePosition(offsetX, offsetY))
         rotate([90, 0, 0])
             children();
 }
