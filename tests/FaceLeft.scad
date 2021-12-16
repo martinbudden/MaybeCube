@@ -25,19 +25,22 @@ include <../scad/Parameters_Main.scad>
 //$explode = 1;
 //$pose = 1;
 module Left_Side_test() {
-    t = 3;
+    t = 2;
     echoPrintSize();
     //CoreXYBelts(carriagePosition(t=t), show_pulleys=[1, 0, 0]);
     //let($hide_extrusions=true)
     //let($hide_rails=true)
     Left_Side_assembly();
     if (is_undef(_printBedKinematic) || _printBedKinematic == false) zRods();
+    //faceTopBack(fov_distance=0);
+    //printHeadWiring();
     //Right_Side_assembly(); if(is_true(_useDualZRods))zRods(left=false);
     //Extruder_Bracket_assembly();
     //let($hide_extrusions=true)
     echo(bh0=bedHeight(t=3));
     echo(bh1=bedHeight(t=7)-20);
-    translate_z(bedHeight(t=7)-20) Printbed_assembly();
+    //translate_z(bedHeight(t=7)-20) Printbed_assembly();
+    translate_z(bedHeight(t)) Printbed_assembly();
     //translate_z(bedHeight(t=t)) jubilee_build_plate();
     //let($hide_corexy=true)
     //let($hide_extrusions=true)

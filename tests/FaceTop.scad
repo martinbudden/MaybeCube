@@ -29,7 +29,7 @@ module Face_Top_test() {
     //faceTopBack();
     *if (!exploded())
         printHeadWiring();
-    *wiringGuidePosition(offset=0) {
+    *wiringGuidePosition() {
         Wiring_Guide_stl();
         Wiring_Guide_hardware();
         *vflip() {
