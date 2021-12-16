@@ -13,8 +13,7 @@ include <../Parameters_Main.scad>
 fan_colour = grey(20);
 
 module fanDuct() {
-    color(grey(90))
-        import("../stlimport/BIQU_B1_Air guide-0519.STL");
+    //color(grey(90)) import("../stlimport/BIQU_B1_Air guide-0519.STL");
 }
 
 module insetCube(size, baseHeight=1.5, color=grey(30), boltLength=6) {
