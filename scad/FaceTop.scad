@@ -3,7 +3,7 @@ include <global_defs.scad>
 use <NopSCADlib/utils/fillet.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
-use <printed/CameraMount.scad>
+include <printed/CameraMount.scad>
 use <printed/Handle.scad>
 use <printed/PrintheadAssemblies.scad>
 use <printed/TopCornerPiece.scad>
@@ -29,7 +29,7 @@ use <Parameters_Positions.scad>
 function use2060ForTop() = !is_undef(_use2060ForTop) && _use2060ForTop;
 
 
-//!1. Bolt the two motor mounts and the **Wiring_Guide** to the rear extrusion.
+//!1. Bolt the two motor mounts, the **Wiring_Guide**, and optionally **Camera_Mount** to the rear extrusion.
 //!2. Bolt the two idlers to the front extrusion.
 //!3. Screw the bolts into the ends of the front and rear extrusions.
 //!4. Insert the t-nuts for the **Top_Corner_Piece**s into the extrusions.
@@ -55,11 +55,6 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
     }
     faceTopFront();
     faceTopBack();
-    *cameraMountPosition() {
-        stl_colour(pp1_colour)
-            Camera_Mount_stl();
-        Camera_Mount_hardware();
-    }
     explode(20, true)
         for (x = [3*eSize/2, eX + eSize/2])
             translate([x, eY/2 + eSize, eZ])
@@ -132,7 +127,7 @@ module faceTopFront() {
     }
 }
 
-module faceTopBack() {
+module faceTopBack(fov_distance=0) {
     // add the back top extrusion oriented in the X direction
     explode([0, 120, 0], true) {
         translate([eSize, eY + eSize, eZ - eSize]) {
@@ -158,21 +153,27 @@ module faceTopBack() {
         }
         if (_variant != "JubileeToolChanger")
             explode([0, -40, 0], true)
-                wiringGuidePosition(offset=0)
+                wiringGuidePosition(offsetX=cameraMountBaseSize.x/2)
                     vflip() {
                         stl_colour(pp3_colour)
                             Wiring_Guide_Socket_stl();
                         Wiring_Guide_Socket_hardware();
                     }
+        cameraMountPosition() {
+            stl_colour(pp1_colour)
+                Camera_Mount_stl();
+            Camera_Mount_hardware(fov_distance);
+        }
     }
 }
 
 module printHeadWiring() {
     // don't show the incomplete cable if there are no extrusions to obscure it
     wireRadius = 2.5;
+    bezierPos = wiringGuidePosition(cameraMountBaseSize.x/2, 5, eSize);
     if (is_undef($hide_extrusions))
         color(grey(20))
-            bezierTube([eX/2 + eSize, eY + eSize - 5, eZ - 2*eSize], [carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(), tubeRadius=wireRadius);
+            bezierTube(bezierPos, [carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(), tubeRadius=wireRadius);
 
     /*translate([carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset())
         for (z = [11, 21])
@@ -180,18 +181,17 @@ module printHeadWiring() {
                 rotate([0, 90, 90])
                     cable_tie(cable_r = 3, thickness = 4.5);*/
 
-    wiringGuidePosition(offset=0) {
+    wiringGuidePosition(offsetX=cameraMountBaseSize.x/2) {
         stl_colour(pp1_colour)
             Wiring_Guide_stl();
         Wiring_Guide_hardware();
-    }
-    wiringGuidePosition()
         explode(20, true)
-            translate_z(wireRadius) {
+            translate_z(9) {
                 stl_colour(pp2_colour)
                     Wiring_Guide_Clamp_stl();
                 Wiring_Guide_Clamp_hardware();
             }
+    }
 }
 
 
