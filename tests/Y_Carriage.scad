@@ -39,6 +39,9 @@ module Y_Carriage_test1() {
         Y_Carriage_Right_assembly();
 }
 
-//Y_Carriage_Left_assembly();
+//translate([-15.5, 0, 0]) Y_Carriage_Left_stl();
+//translate([-15.5, 55, 0]) Y_Carriage_Right_stl();
+//translate([-15.5, carriagePosition().y, -13]) vflip() Y_Carriage_Left_assembly();
+//translate([180, carriagePosition().y, -13]) vflip() Y_Carriage_Right_assembly();
 if ($preview)
     Y_Carriage_test0();
