@@ -71,6 +71,8 @@ assembly("Back_Panel") {
 
     pcbAssembly(pcbType());
 
+    pcbAssembly(RPI4);
+
     psuAssembly(psuVertical);
 
     PSUPosition(psuVertical)
@@ -164,6 +166,14 @@ module backPanelCutouts(psuType, pcbType, cncSides = undef, radius = undef) {
                                     rounded_square([4, cutoutWidth], 0.25, center=true);
                     }*/
 
+        translate([eX/2 + eSize, eZ - 100]) {
+            pcbType = RPI4;
+            pcbSize = pcb_size(pcbType);
+            rotate(-90)
+                translate([pcbSize.x/2, pcbSize.y/2])
+                    pcb_screw_positions(pcbType)
+                        poly_circle(r=is_undef(radius) ? M3_clearance_radius : radius, sides=cncSides);
+        }
         translate([eX + eSize, pcbOffsetZ])
             if (pcbType == BTT_SKR_E3_TURBO || pcbType == BTT_SKR_MINI_E3_V2_0) {
                 pcbSize = pcb_size(BTT_SKR_E3_TURBO);
@@ -476,9 +486,11 @@ assembly("PSU_Right_Mount") {
 */
 
 M3x20_nylon_hex_pillar = ["M3x20_nylon_hex_pillar", "hex nylon", 3, 20, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -6, -6 + eps];
+M3x10_nylon_hex_pillar = ["M3x20_nylon_hex_pillar", "hex nylon", 3, 20, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -6, -6 + eps];
 
 module pcbAssembly(pcbType, useMounts=false) {
-    pcbOffsetFromBase = 20;
+    rpi = (pcbType == RPI0 || pcbType == RPI3 || pcbType == RPI4);
+    pcbOffsetFromBase = rpi ? 10 : 20;
 
     explode = 40;
     if (is_undef($hide_pcb) || $hide_pcb == false)
@@ -491,7 +503,7 @@ module pcbAssembly(pcbType, useMounts=false) {
                         boltM3Caphead(6);
                 translate_z(-pcbOffsetFromBase) {
                     explode(10)
-                        pillar(M3x20_nylon_hex_pillar);
+                        pillar(rpi ? M3x10_nylon_hex_pillar : M3x20_nylon_hex_pillar);
                     translate_z(-_basePlateThickness)
                         vflip()
                             boltM3Buttonhead(10);
@@ -501,11 +513,11 @@ module pcbAssembly(pcbType, useMounts=false) {
     if (useMounts)
         PCB_Mounting_Plate_assembly();
     else
-        hidden() PCB_Mount_stl();
+        if (!rpi)
+            hidden() PCB_Mount_stl();
 }
 
 module pcbPosition(pcbType, z=0) {
-    pcbStandOffHeight = 20;
 
     pcbOnBase = false;
     if (pcbOnBase) {
@@ -519,13 +531,21 @@ module pcbPosition(pcbType, z=0) {
                 rotate(90)
                     children();
     } else {
-        if (pcbType == BTT_SKR_E3_TURBO || pcbType == BTT_SKR_MINI_E3_V2_0) {
+        if (pcbType == RPI0 || pcbType == RPI3 || pcbType == RPI4) {
+            pcbSize = pcb_size(pcbType);
+            pcbStandOffHeight = 10;
+            translate([eX/2 + eSize + pcbSize.y/2, eY + 2*eSize - pcbStandOffHeight, eZ - 100 - pcbSize.x/2])
+                rotate([90, 90, 0])
+                    children();
+        } else if (pcbType == BTT_SKR_E3_TURBO || pcbType == BTT_SKR_MINI_E3_V2_0) {
             pcbSize = pcb_size(BTT_SKR_E3_TURBO);
+            pcbStandOffHeight = 20;
             translate([eX + eSize - pcbSize.x/2, eY + 2*eSize - pcbStandOffHeight, pcbSize.y/2 + pcbOffsetZ])
                 rotate([90, 0, 0])
                     children();
         } else {
             pcbSize = pcb_size(pcbType);
+            pcbStandOffHeight = 20;
             translate([eX + eSize - pcbSize.y/2, eY + 2*eSize - pcbStandOffHeight, pcbSize.x/2 + pcbOffsetZ])
                 rotate([90, -90, 0])
                     children();
