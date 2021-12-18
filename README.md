@@ -133,10 +133,27 @@ The MaybeCube uses 2040 extrusions, these provide significantly more joint rigid
 
 The front face of the MaybeCube is the most subject to shearing, since it needs to be open to allow access to the printbed. Two measures are taken to counteract this: 2080 rather than 2040 extrusion is used at the bottom of the face, and the idler mounts at the top are extended to provide some triangulation and reinforcement of the upper joints.
 
-## Input shaper test results (MC300 Variant)
+## Input shaper test results (MC300 variant with side panels)
 
 ![X-Axis](pictures/shaper_calibrate_x.png)
 ![Y-Axis](pictures/shaper_calibrate_y.png)
+
+### Comparison of input shaper test results
+
+Printer                                                    | X frequency | X amplitude | X acc limit | Y frequency | Y amplitude | Y acc limit
+---------------------------------------------------------- | ----------- | ----------- | ------------| ----------- | ----------- | -----------
+MC300                                                      |         114 |       1,720 |      51,200 |          88 |       4,500 | 32,800
+[SnakeOil XY](https://github.com/ChipCE/SnakeOil-XY)       |          83 |     110,000 |      27,400 |          56 |      49,500 | 12,100
+[VzBot](https://youtu.be/eNraKK7ukzU?t=1484)               |          80 |      51,000 |      30,200 |         N/A |         N/A | N/A
+[Voron Switchwire](https://youtu.be/OoWQUcFimX8?t=635)     |          70 |       1,100 |         N/A |          48 |      16,200 | N/A
+[Ender 3](https://www.youmaketech.com/klipper-on-ender-3/) |     30 & 88 |       4,100 |       3,800 |     32 & 57 |      19,000 |  9,300
+[Prusa i3 MKS+](https://forum.prusaprinters.org/forum/original-prusa-i3-mk3s-mk3-general-discussion-announcements-and-releases/prusa-i3-mks3-resonance-profiles-input-shaper/) | 38 & 58 | 3900 | N/A | 32 & 78 | 4200 | N/A
+
+These input shaper results give a rough idea of the rigidity of various printers. The acc limit is the value of the max acceleration for the ZV shaper for each printer and axis - it is not that meaningful in itself, but it does form some basis for comparison.
+
+Unfortunately there are discrepancies in the X and Y amplitude values, I presume this is because at some point the scaling was changed, so these values are not really useful for comparisons.
+
+Having said that, it does seem that the MC300 compares very favourably with the other printers for which I have found results published.
 
 ## Customisations
 
