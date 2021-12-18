@@ -2,6 +2,7 @@ include <global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
 
+use <printed/AccessPanel.scad>
 use <printed/E20Cover.scad>
 use <printed/PrintheadAssemblies.scad>
 use <printed/Z_MotorMount.scad>
@@ -191,8 +192,10 @@ module FinalAssembly() {
                 faceRightSpool(offsetX);
         }
         if (useSidePanels) {
-            explode([50, 0, 0], true)
+            explode([50, 0, 0], true) {
                 rightSidePanelPC();
+                Access_Panel_assembly();
+            }
             explode([-50, 0, 0], true)
                 leftSidePanelPC();
         }
