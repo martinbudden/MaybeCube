@@ -24,7 +24,7 @@ module Access_Panel_stl() {
 module accessPanel() {
     toleranceX = 0.5;
     size = [spoolHeight(eX) - iecHousingSize().y - eSize - toleranceX, partitionOffsetY() - 2, 3];
-        stl_colour(pp4_colour)
+        color(pp4_colour)
             difference() {
                 translate([toleranceX, 0, 0])
                     rounded_cube_xy(size, 5);
@@ -39,10 +39,11 @@ module Access_Panel_assembly()
 assembly("Access_Panel", ngb=true) {
     translate([eX + 2*eSize, eY + 2*eSize - partitionOffsetY() + 2, spoolHeight(eX) + eSize])
         rotate([0, 90, 0]) {
-            if (eX == 300)
-                Access_Panel_300_stl();
-            else
-                Access_Panel_stl();
+            stl_colour(pp4_colour)
+                if (eX == 300)
+                    Access_Panel_300_stl();
+                else
+                    Access_Panel_stl();
             size = [spoolHeight(eX) - iecHousingSize().y - eSize, partitionOffsetY() - 2, 3];
             if ($preview)
                 for (pos = [ [eSize/2, eSize/2, size.z], [eSize/2, size.y - eSize/2, size.z], [size.x - eSize/2, size.y - eSize/2, size.z]])
