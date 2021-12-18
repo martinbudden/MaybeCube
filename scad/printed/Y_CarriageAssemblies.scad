@@ -19,7 +19,7 @@ function pulleyWasherHeight(coreXYIdlerBore=coreXYIdlerBore()) = 2*washer_thickn
 topInset = 0;
 yCarriageInserts = true;
 blockOffsetX = _coreXYDescriptor == "GT2_20_25" ? 2 : 0;
-blockOffset = _coreXYDescriptor == "GT2_20_25" ? [2, 0.5] : 0.5;
+blockOffset = _coreXYDescriptor == "GT2_20_25" ? [blockOffsetX, 0.5] : 0.5;
 
 module Y_Carriage_Left_stl() {
     idlerHeight = pulley_height(coreXY_toothed_idler(coreXY_type()));
@@ -72,18 +72,20 @@ module Y_Carriage_Right_AL_dxf() {
 
 module Y_Carriage_Brace_Left_stl() {
     holeRadius = coreXYIdlerBore() == 3 ? M3_tap_radius : coreXYIdlerBore() == 4 ? M4_tap_radius : M5_tap_radius;
+    blockOffset = _coreXYDescriptor == "GT2_20_25" ? blockOffsetX : undef;
 
     stl("Y_Carriage_Brace_Left")
         color(pp3_colour)
-            yCarriageBrace(carriageType(_yCarriageDescriptor), yCarriageBraceThickness(), plainIdlerOffset(), holeRadius, blockOffsetX, left=true);
+            yCarriageBrace(carriageType(_yCarriageDescriptor), yCarriageBraceThickness(), plainIdlerOffset(), holeRadius, blockOffset, left=true);
 }
 
 module Y_Carriage_Brace_Right_stl() {
     holeRadius = coreXYIdlerBore() == 3 ? M3_tap_radius : coreXYIdlerBore() == 4 ? M4_tap_radius : M5_tap_radius;
+    blockOffset = _coreXYDescriptor == "GT2_20_25" ? blockOffsetX : undef;
 
     stl("Y_Carriage_Brace_Right")
         color(pp3_colour)
-            yCarriageBrace(carriageType(_yCarriageDescriptor), yCarriageBraceThickness(), plainIdlerOffset(), holeRadius, blockOffsetX, left=false);
+            yCarriageBrace(carriageType(_yCarriageDescriptor), yCarriageBraceThickness(), plainIdlerOffset(), holeRadius, blockOffset, left=false);
 }
 
 //!1. Insert the threaded inserts into the **Y_Carriage_Left** as shown.
