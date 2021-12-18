@@ -248,9 +248,9 @@ module XY_Idler_hardware(left = true) {
     }
 }
 
-module XY_Idler_Left_stl() {
+module XY_Idler_Left_16_stl() {
     // rotate for printing, so that base filament pattern aligns with main diagonal
-    stl("XY_Idler_Left")
+    stl("XY_Idler_Left_16")
         color(pp1_colour)
             rotate([90, -90, 0])
                 xyIdler();
@@ -272,8 +272,8 @@ module XY_Idler_Left_M5_stl() {
                 xyIdler(M5=true);
 }
 
-module XY_Idler_Right_stl() {
-    stl("XY_Idler_Right")
+module XY_Idler_Right_16_stl() {
+    stl("XY_Idler_Right_16")
         color(pp1_colour)
             rotate([0, 90, 0])
                 mirror([1, 0, 0])
@@ -312,7 +312,7 @@ assembly("XY_Idler_Left", big=true, ngb=true) {
                 if (_coreXYDescriptor == "GT2_20_25")
                     XY_Idler_Left_25_stl();
                 else
-                    XY_Idler_Left_stl();
+                    XY_Idler_Left_16_stl();
         rotate([90, 0, 180])
             XY_Idler_hardware(left=true);
     }
@@ -334,7 +334,7 @@ assembly("XY_Idler_Right", big=true, ngb=true) {
                 if (_coreXYDescriptor == "GT2_20_25")
                     XY_Idler_Right_25_stl();
                 else
-                    XY_Idler_Right_stl();
+                    XY_Idler_Right_16_stl();
             translate_z(eSize)
                 hflip()
                     XY_Idler_hardware(left=false);
