@@ -4,6 +4,7 @@ include <../scad/global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
 
+use <../scad/printed/AccessPanel.scad>
 use <../scad/printed/extruderBracket.scad>
 use <../scad/printed/IEC_Housing.scad>
 use <../scad/printed/XY_MotorMount.scad>
@@ -27,6 +28,7 @@ include <../scad/Parameters_Main.scad>
 module Right_Side_test() {
     //CoreXYBelts(carriagePosition(), show_pulleys=!true);
     Right_Side_assembly();
+    Access_Panel_assembly();
     //Left_Side_assembly();
     //Face_Top_assembly();
     //faceRightSpoolHolder();
