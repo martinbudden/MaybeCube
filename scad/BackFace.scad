@@ -58,6 +58,7 @@ module backPanelPC() {
 //!templates to drill the holes in the back sheet.
 //!
 //!Once you have the back sheet prepared:
+//!
 //!1. Bolt the PSU to the back sheet.
 //!2. Bolt the mainboard to the back sheet, using the nylon standoffs.
 //!3. Add the bolts and t-nuts in preparation for later attachment to the frame. Take take to use the correct holes
