@@ -118,7 +118,7 @@ module evaBeltClampPosition() {
 module evaBeltClamp() {
     evaBeltClampPosition()
         translate_z(4.5)
-            X_Carriage_Belt_Clamp_stl();
+            X_Carriage_Belt_Clamp_16_stl();
 }
 
 module evaBeltClampHardware() {
