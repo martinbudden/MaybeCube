@@ -97,7 +97,7 @@ printBedFrameCrossPiece2Offset = -2*_zRodOffsetX - printBedFrameCrossPieceOffset
 
 function printBedSize() = [
     _heatedBedSize.x,
-    !is_undef(_useDualZRods) && _useDualZRods ? eY - 3 : eY <= 250 ? 225 : eY <= 300 ? 260 : eY <= 350 ? 300 : 375,
+    !is_undef(_useDualZRods) && _useDualZRods ? eY - 3 : eY <= 250 ? 225 : eY <= 300 ? 265 : eY <= 350 ? 300 : 375,
     _printBedExtrusionSize + _heatedBedSize.z
 ];
 
@@ -161,7 +161,7 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
 
     boltHoles = _printBed4PointSupport
         ? [ [holeOffset, holeOffset, 0], [size.x - holeOffset, holeOffset, 0], [size.x - holeOffset, size.y - holeOffset, 0], [holeOffset, size.y - holeOffset, 0] ]
-        : [ [holeOffset, size.y/2, 0], [size.x - holeOffset, size.y - holeOffset, 0], [size.x - holeOffset, holeOffset, 0] ];
+        : [ [size.x - holeOffset, size.y/2, 0], [holeOffset, size.y - holeOffset, 0], [holeOffset, holeOffset, 0] ];
     translate([-_heatedBedSize.y/2, 0, 0]) {
         if (size.x == 235)
             translate([_heatedBedSize.x - 20, 0, 1])
@@ -237,7 +237,7 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
 module heatedBedHardware(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayThickness=0) {
     boltHoles = _printBed4PointSupport
         ? [ [holeOffset, holeOffset, 0], [size.x - holeOffset, holeOffset, 0], [size.x - holeOffset, size.y - holeOffset, 0], [holeOffset, size.y - holeOffset, 0] ]
-        : [ [holeOffset, size.y/2, 0], [size.x - holeOffset, size.y - holeOffset, 0], [size.x - holeOffset, holeOffset, 0] ];
+        : [ [size.x - holeOffset, size.y/2, 0], [holeOffset, size.y - holeOffset, 0], [holeOffset, holeOffset, 0] ];
 
     module oRing() {
         thickness = 2;
@@ -368,7 +368,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                                     cylinder(h=4, r=5);
                             }
                     } else {
-                        for (y = x == -fSize/2 ? [_heatedBedSize.y/2] : [_heatedBedHoleOffset, _heatedBedSize.y - _heatedBedHoleOffset])
+                        for (y = x == -fSize/2 ? [_heatedBedHoleOffset, _heatedBedSize.y - _heatedBedHoleOffset] : [_heatedBedSize.y/2])
                             translate([x, y + heatedBedOffset.y, 0])
                                 cylinder(h=eSize, r=M4_clearance_radius);
                     }
