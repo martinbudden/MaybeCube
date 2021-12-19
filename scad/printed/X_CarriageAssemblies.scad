@@ -24,8 +24,8 @@ function xCarriageFrontSize(xCarriageType, beltWidth) =  [max(carriage_size(xCar
 function xCarriageBackSize(xCarriageType, beltWidth) = [xCarriageFrontSize(xCarriageType, beltWidth).x, 5, xCarriageFrontSize(xCarriageType, beltWidth).z];
 function xCarriageBackOffsetY(xCarriageType) = carriage_size(xCarriageType).y/2 + xCarriageBackSize(xCarriageType).y;
 
-function hotendOffset(xCarriageType, hotend_type=0) = printHeadHotendOffset(hotend_type) + [-xCarriageBackSize(xCarriageType).x/2, xCarriageBackOffsetY(xCarriageType), 0];
-function grooveMountSize(blower_type, hotend_type=0) = [printHeadHotendOffset(hotend_type).x, blower_size(blower_type).x + 6.25, 12];
+function hotendOffset(xCarriageType, hotendDescriptor="E3DV6") = printHeadHotendOffset(hotendDescriptor) + [-xCarriageBackSize(xCarriageType).x/2, xCarriageBackOffsetY(xCarriageType), 0];
+function grooveMountSize(blower_type, hotendDescriptor="E3DV6") = [printHeadHotendOffset(hotendDescriptor).x, blower_size(blower_type).x + 6.25, 12];
 function blower_type() = is_undef(_blowerDescriptor) || _blowerDescriptor == "BL30x10" ? BL30x10 : BL40x10;
 //function accelerometerOffset() = [10, -1, 8];
 function accelerometerOffset() = [6.5, -2, 8];
@@ -165,9 +165,9 @@ module xCarriageBeltClampAssembly(xCarriageType, countersunk=true) {
 module X_Carriage_Groovemount_16_stl() {
     xCarriageType = MGN12H_carriage;
     blower_type = blower_type();
-    hotend_type = 0;
-    grooveMountSize = grooveMountSize(blower_type, hotend_type);
-    hotendOffset = hotendOffset(xCarriageType, hotend_type);
+    hotendDescriptor = "E3DV6";
+    grooveMountSize = grooveMountSize(blower_type, hotendDescriptor);
+    hotendOffset = hotendOffset(xCarriageType, hotendDescriptor);
 
     stl("X_Carriage_Groovemount_16")
         color(pp1_colour)
@@ -176,7 +176,7 @@ module X_Carriage_Groovemount_16_stl() {
                 difference() {
                     union() {
                         xCarriageBack(xCarriageType, size, coreXYSeparation().z, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), accelerometerOffset=accelerometerOffset());
-                        hotEndHolder(xCarriageType, grooveMountSize, hotendOffset, hotend_type, blower_type, baffle=false, left=false);
+                        hotEndHolder(xCarriageType, grooveMountSize, hotendOffset, hotendDescriptor, blower_type, baffle=false, left=false);
                     }
                     // bolt holes for Z probe mount
                     for (z = [0, -8])
@@ -191,8 +191,8 @@ module xCarriageGroovemountAssembly() {
 
     xCarriageType = MGN12H_carriage;
     blower_type = blower_type();
-    hotend_type = 0;
-    hotendOffset = hotendOffset(xCarriageType, hotend_type);
+    hotendDescriptor = "E3DV6";
+    hotendOffset = hotendOffset(xCarriageType, hotendDescriptor);
 
     rotate([0, -90, 0])
         stl_colour(pp1_colour)
@@ -201,7 +201,7 @@ module xCarriageGroovemountAssembly() {
             else
                 X_Carriage_Groovemount_16_stl();
 
-    grooveMountSize = grooveMountSize(blower_type, hotend_type);
+    grooveMountSize = grooveMountSize(blower_type, hotendDescriptor);
 
     explode([40, 0, 0], true)
         hotEndPartCoolingFan(xCarriageType, grooveMountSize, hotendOffset, blower_type, left=false);
@@ -211,7 +211,7 @@ module xCarriageGroovemountAssembly() {
                 rotate([-90, 0, 0]) {
                     stl_colour(pp2_colour)
                         Fan_Duct_stl();
-                    Fan_Duct_hardware(xCarriageType, hotend_type);
+                    Fan_Duct_hardware(xCarriageType, hotendDescriptor);
                 }
 }
 
