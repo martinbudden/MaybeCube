@@ -28,7 +28,7 @@ include <../scad/Parameters_Main.scad>
 module Right_Side_test() {
     //CoreXYBelts(carriagePosition(), show_pulleys=!true);
     Right_Side_assembly();
-    Access_Panel_assembly();
+    accessPanelAssembly();
     //Left_Side_assembly();
     //Face_Top_assembly();
     //faceRightSpoolHolder();

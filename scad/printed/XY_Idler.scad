@@ -167,9 +167,16 @@ module xyIdler(M5=false) {
     }
 }
 
-module XY_Idler_Channel_Nut_stl() {
+module XY_Idler_Channel_Nut_16_stl() {
     size = xyIdlerSize();
-    stl("XY_Idler_Channel_Nut")
+    stl("XY_Idler_Channel_Nut_16")
+        color(pp2_colour)
+            extrusionChannel(size.y, boltHoles=[lowerBoltOffset, size.y - upperBoltOffset]);
+}
+
+module XY_Idler_Channel_Nut_25_stl() {
+    size = xyIdlerSize();
+    stl("XY_Idler_Channel_Nut_25")
         color(pp2_colour)
             extrusionChannel(size.y, boltHoles=[lowerBoltOffset, size.y - upperBoltOffset]);
 }
@@ -200,7 +207,10 @@ module XY_Idler_hardware(left = true) {
         translate([eSize/2, eZ - eSize - size.y, 0]) {
             explode(-50)
                 stl_colour(pp2_colour)
-                    XY_Idler_Channel_Nut_stl();
+                    if (_coreXYDescriptor == "GT2_20_25")
+                        XY_Idler_Channel_Nut_25_stl();
+                    else
+                        XY_Idler_Channel_Nut_16_stl();
             for (y = [lowerBoltOffset, size.y - upperBoltOffset])
                 translate([0, y, size.z])
                     explode(20, true)

@@ -35,8 +35,7 @@ module accessPanel() {
             }
 }
 
-module Access_Panel_assembly()
-assembly("Access_Panel", ngb=true) {
+module accessPanelAssembly() {
     translate([eX + 2*eSize, eY + 2*eSize - partitionOffsetY() + 2, spoolHeight(eX) + eSize])
         rotate([0, 90, 0]) {
             stl_colour(pp4_colour)

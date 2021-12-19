@@ -55,15 +55,15 @@ module printheadAssembly() {
                         cable_tie(cable_r = 3, thickness = 4.5);
 }
 
-//!1. Bolt the fan onto the side of the **X_Carriage_Groovemount_MGN12H**, secure the fan wire with a ziptie.
-//!2. Ensure a good fit between the fan and the fan duct and bolt the fan duct to the X_Carriage.
+//!1. Bolt the fan onto the side of the **X_Carriage_Groovemount**, secure the fan wire with a ziptie.
+//!2. Ensure a good fit between the fan and the **Fan_Duct** and bolt the fan duct to the X_Carriage.
 //!3. Assemble the E3D hotend, including fan, thermistor cartridge and heater cartridge.
 //!4. Use the **Hotend_Clamp** to attach the E3D hotend to the X_Carriage.
 //!5. Collect the wires together, wrap them in spiral wrap, and secure them to the X_Carriage using the zipties. Note that the wiring is not shown in this diagram.
-module Printhead_E3DV6_MGN12H_assembly() pose(a=[55, 0, 25 + 180])
-assembly("Printhead_E3DV6_MGN12H", big=true) {
+module Printhead_E3DV6_assembly() pose(a=[55, 0, 25 + 180])
+assembly("Printhead_E3DV6", big=true) {
 
-    X_Carriage_Groovemount_MGN12H_assembly();
+    xCarriageGroovemountAssembly();
     printheadAssembly();
 }
 
@@ -73,7 +73,7 @@ module printheadBeltSide(rotate=0, explode=0, t=undef) {
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
         explode(explode, true) {
             explode([0, -20, 0], true)
-                X_Carriage_Belt_Side_MGN12H_assembly();
+                X_Carriage_Belt_Side_assembly();
             xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = [ [1, -1], [-1, -1] ]);
             xCarriageBeltClampAssembly(xCarriageType);
         }
@@ -90,7 +90,7 @@ module printheadHotendSide(rotate=0, explode=0, t=undef) {
         explode(explode, true) {
             explode([0, -20, 0], true)
                 xCarriageFrontBolts(xCarriageType, xCarriageFrontSize, topBoltLength=30, holeSeparationTop=holeSeparationTop, bottomBoltLength=30, holeSeparationBottom=holeSeparationBottom, countersunk=true, offsetT=offsetT);
-            Printhead_E3DV6_MGN12H_assembly();
+            Printhead_E3DV6_assembly();
             *translate([xCarriageFrontSize.x/2, 18, -18])
                 bl_touch_mount();
             xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = [ [1, 1], [-1, 1] ]);
@@ -126,11 +126,10 @@ module fullPrinthead(rotate=180, explode=0, t=undef, accelerometer=false) {
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
         explode(explode, true) {
             explode([0, -20, 0], true) {
-                X_Carriage_Front_MGN12H_assembly();
                 xCarriageFrontSize = xCarriageFrontSize(xCarriageType, _beltWidth);
                 xCarriageFrontBolts(xCarriageType, xCarriageFrontSize, topBoltLength=30, holeSeparationTop=holeSeparationTop, bottomBoltLength=30, holeSeparationBottom=holeSeparationBottom, countersunk=true);
             }
-            Printhead_E3DV6_MGN12H_assembly();
+            Printhead_E3DV6_assembly();
             xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk);
             if (accelerometer)
                 explode(50, true)
