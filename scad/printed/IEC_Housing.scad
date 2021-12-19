@@ -225,17 +225,11 @@ assembly("IEC_Housing", ngb=true) {
         translate([0, -iecHousingSize().x, 0])
             rotate([90, 0, 90]) {
                 stl_colour(pp2_colour)
-                    if (eX==300) {
-                        vflip()
+                    vflip()
+                        if (eX==300)
                             IEC_Housing_Mount_300_stl();
-                        hidden()
+                        else
                             IEC_Housing_Mount_stl();
-                    } else {
-                        vflip()
-                            IEC_Housing_Mount_stl();
-                        hidden()
-                            IEC_Housing_Mount_300_stl();
-                    }
                 IEC_Housing_Mount_hardware();
             }
 
