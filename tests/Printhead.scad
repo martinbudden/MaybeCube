@@ -48,17 +48,15 @@ module Printhead_test() {
         translate_z(eZ)
             xRail(carriagePosition);
         xRailCarriagePosition(carriagePosition) {
-            //Printhead_E3DV6_MGN12H_assembly();
-            //X_Carriage_Front_MGN12H_assembly();
-            X_Carriage_Belt_Side_MGN12H_assembly();
-            X_Carriage_Groovemount_MGN12H_assembly();
+            //Printhead_E3DV6_assembly();
+            X_Carriage_Belt_Side_assembly();
+            xCarriageGroovemountAssembly();
         }
     }
-    *let($hide_bolts=true) Printhead_E3DV6_MGN12H_assembly();
+    *let($hide_bolts=true) Printhead_E3DV6_assembly();
     //translate([-11.4, 0, 8]) rotate(180) xCarriageTopTest();
-    //X_Carriage_Front_MGN12H_assembly();
-    //X_Carriage_Groovemount_MGN12H_assembly();
-    //X_Carriage_Groovemount_MGN12H_stl();
+    //xCarriageGroovemountAssembly();
+    //X_Carriage_Groovemount_16_stl();
     //Fan_Duct_stl();
     //rotate([90, 0, -90]) Hotend_Clamp_stl();
     //Hotend_Clamp_hardware();

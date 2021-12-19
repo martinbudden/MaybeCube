@@ -17,8 +17,9 @@ include <global_defs.scad>
 include <MainAssemblies.scad>
 
 //!1. Bolt the polycarbonate sheet to the left face.
+//!2. Bolt the polycarbonate sheet and the **Access_Panel** to the right face.
 //!2. Attach the spoolholder and filament spool to the right face.
-//!3. You are now ready to level the bed and  calibrate the printer.
+//!3. You are now ready to level the bed and calibrate the printer.
 //
 module main_assembly() assembly("main") {
     FinalAssembly();

@@ -40,7 +40,7 @@ assembly("XChange", big=true) {
                 X_Carriage_XChange_assembly();
             no_explode()
                 not_on_bom() {
-                    X_Carriage_Belt_Side_MGN12H_assembly();
+                    X_Carriage_Belt_Side_assembly();
                     xCarriageBeltClampAssembly(xCarriageType, countersunk=true);
                 }
             *translate_z(-carriage_height(xCarriageType))
