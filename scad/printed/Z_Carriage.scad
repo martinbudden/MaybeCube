@@ -17,7 +17,8 @@ _useSCSBearingBlocksForZAxis = true;
 scsType = _zRodDiameter == 8 ? SCS8LUU : _zRodDiameter == 10 ? SCS10LUU : SCS12LUU;
 baseSize = [scs_size(scsType).x + 1, scs_size(scsType).z, _zCarriageSCS_sizeZ];
 shelfThickness = 5;
-tabRightLength = 9.5;
+useTab = true;
+tabRightLength = useTab ? 9.5 : 0;
 //tabRightLength = 20.5; // use 20.5 for alignment with internal corner bracket
 boltOffset = 26;
 leadnut = LSN8x2;
@@ -39,25 +40,27 @@ module zCarriageSCS(cnc=false) {
             linear_extrude(baseSize.z, convexity=2) {
                 translate([-baseSize.x/2, -baseSize.y/2])
                     rounded_square([baseSize.x + 1, baseSize.y], fillet, center=false);
-                difference() {
-                    union() {
-                        if (tabRightLength > shelfExtension + 1)
-                            translate([baseSize.x/2 + shelfExtension, baseSize.y/2 - eSize])
-                                rotate(-90)
-                                    fillet(1);
-                        translate([baseSize.x/2 - 2*fillet, baseSize.y/2 - eSize])
-                            rounded_square([tabRightLength + 2*fillet, eSize], fillet, center=false);
-                        hull() {
-                            translate([baseSize.x/2 - 2*fillet, baseSize.y/2 - eSize - shelfThickness]) {
-                                rounded_square([shelfExtension + 2*fillet, eSize + shelfThickness], uprightFillet, center=false);
-                                translate([0, -shelfExtension + shelfThickness])
-                                    circle(r=fillet + 1);
+                if (useTab)
+                    difference() {
+                        union() {
+                            if (tabRightLength > shelfExtension + 1)
+                                translate([baseSize.x/2 + shelfExtension, baseSize.y/2 - eSize])
+                                    rotate(-90)
+                                        fillet(1);
+                                translate([baseSize.x/2 - 2*fillet, baseSize.y/2 - eSize])
+                                    rounded_square([tabRightLength + 2*fillet, eSize], fillet, center=false);
+                            hull() {
+                                translate([baseSize.x/2 - 2*fillet, baseSize.y/2 - eSize - shelfThickness]) {
+                                    rounded_square([shelfExtension + 2*fillet, eSize + shelfThickness], uprightFillet, center=false);
+                                    translate([0, -shelfExtension + shelfThickness])
+                                        circle(r=fillet + 1);
+                                }
                             }
                         }
+                        if (useTab)
+                            translate([boltOffset, scs_screw_separation_z(scsType)/2])
+                                poly_circle(r=M4_clearance_radius);
                     }
-                    translate([boltOffset, scs_screw_separation_z(scsType)/2])
-                        poly_circle(r=M4_clearance_radius);
-                }
                 /*tabLeftLength = 10;
                 difference() {
                     hull()
@@ -71,12 +74,14 @@ module zCarriageSCS(cnc=false) {
                         circle(r=M4_clearance_radius);
                 }*/
             }
-            translate(holes[0])
-                vflip() {
-                    //boltHoleM5(baseSize.z);
-                    boltPolyholeM5Countersunk(baseSize.z, sink=0.25);
-                }
-            for (i = [1, 2, 3])
+            for (i = [0, 1])
+                translate(holes[i])
+                    vflip()
+                        if (useTab)
+                            boltPolyholeM5Countersunk(baseSize.z, sink=0.25);
+                        else
+                            boltHoleM5(baseSize.z);
+            for (i = [2, 3])
                 translate(holes[i])
                     vflip()
                         boltPolyholeM5Countersunk(baseSize.z, sink=0.25);
@@ -95,18 +100,25 @@ module zCarriageSCS(cnc=false) {
 
 module zCarriageSCS_hardware(cnc=false) {
     translate_z(scs_hole_offset(scsType)) {
-        translate([boltOffset, scs_screw_separation_z(scsType)/2, 0])
-            vflip()
-                boltM4ButtonheadTNut(_frameBoltLength, 3.25);
+        if (useTab)
+            translate([boltOffset, scs_screw_separation_z(scsType)/2, 0])
+                vflip()
+                    boltM4ButtonheadTNut(_frameBoltLength, 3.25);
         if (!cnc)
             translate([10 - baseSize.x/2, baseSize.y/2 - eSize -shelfThickness, baseSize.z + eSize/2])
                 rotate([-90, 0, 0])
                     vflip()
                         boltM4ButtonheadTNut(_frameBoltLength);
 
-        //translate(holes[0] + [0, 0, 2])
-        //    boltM5Buttonhead(12);
-        for (i = [0, 1, 2, 3])
+        for (i = [0, 1])
+            translate(holes[i])
+                explode(20, true)
+                    if (useTab)
+                        boltM5Countersunk(12);
+                    else
+                        translate_z(2) // offset for extrusion channel
+                            boltM5Buttonhead(12);
+        for (i = [2, 3])
             translate(holes[i])
                 explode(20, true)
                     boltM5Countersunk(12);
