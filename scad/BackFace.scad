@@ -52,16 +52,19 @@ module backPanelPC() {
                 Back_Panel_dxf();
 }
 
-//!There are three options for the back panel: use a polycarbonate sheet, use an aluminium sheet, or use the three
-//!mounts **PCB_Mount**, **PSU_Lower_Mount**, and **PSU_Upper_Mount**. If you have access to a CNC, you can machine
-//!the back sheet using **Back_Panel.dxf**, if not you can use the **Panel_Jig** and the PCB and PSU mounts as
-//!templates to drill the holes in the back sheet.
+//!You can use either a polycarbonate sheet or an aluminium sheet for the back panel.
+//!If you have access to a CNC, you can machine the back sheet using **Back_Panel.dxf**,
+//!if not you can use the **Panel_Jig** to drill the mounting and access holes, and manually position
+//!position the holes for the PCB(s) and the PSU. When positioning the mainboard, ensure that there is
+//!side access to the SD card and USB port. When positioning the PSU, ensure that there is clearance
+//!between the terminals and the frame, so that the wiring can be accommodated.
 //!
 //!Once you have the back sheet prepared:
 //!
 //!1. Bolt the PSU to the back sheet.
 //!2. Bolt the mainboard to the back sheet, using the nylon standoffs.
-//!3. Add the bolts and t-nuts in preparation for later attachment to the frame. Take take to use the correct holes
+//!3. Optionally bolt the Raspberry Pi to the back sheet.
+//!4. Add the bolts and t-nuts in preparation for later attachment to the frame. Take take to use the correct holes
 //!and don't place bolts into the access holes for the hidden bolts used to assemble the frame.
 //
 module Back_Panel_assembly()
@@ -513,9 +516,6 @@ module pcbAssembly(pcbType, useMounts=false) {
         }
     if (useMounts)
         PCB_Mounting_Plate_assembly();
-    else
-        if (!rpi)
-            hidden() PCB_Mount_stl();
 }
 
 module pcbPosition(pcbType, z=0) {
@@ -565,17 +565,11 @@ module psuAssembly(psuVertical, useMounts=false) {
         if (useMounts) {
             PSU_Upper_Mount_assembly();
             PSU_Lower_Mount_assembly();
-        } else {
-            hidden() PSU_Lower_Mount_stl();
-            hidden() PSU_Upper_Mount_stl();
         }
     } else {
         if (useMounts) {
             PSU_Left_Mount_assembly();
             PSU_Right_Mount_assembly();
-        } else {
-            hidden() PSU_Left_Mount_stl();
-            hidden() PSU_Right_Mount_stl();
         }
     }
 }
