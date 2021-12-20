@@ -22,8 +22,8 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 
 1. [Parts list](#Parts_list)
 
-1. [Printhead_E3DV6_MGN12H assembly](#Printhead_E3DV6_MGN12H_assembly)
-1. [X_Carriage_Belt_Side_MGN12H assembly](#X_Carriage_Belt_Side_MGN12H_assembly)
+1. [Printhead_E3DV6 assembly](#Printhead_E3DV6_assembly)
+1. [X_Carriage_Belt_Side assembly](#X_Carriage_Belt_Side_assembly)
 1. [XY_Motor_Mount_Right assembly](#XY_Motor_Mount_Right_assembly)
 1. [XY_Idler_Right assembly](#XY_Idler_Right_assembly)
 1. [XY_Motor_Mount_Left assembly](#XY_Motor_Mount_Left_assembly)
@@ -65,7 +65,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 ## Parts list
 
 
-| <span style="writing-mode: vertical-rl; text-orientation: mixed;">Printhead E3DV6 MGN12H</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">X Carriage Belt Side MGN12H</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Face Top</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Back Panel</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Right Side</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Printbed</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Left Side</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Main</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">TOTALS</span> |  |
+| <span style="writing-mode: vertical-rl; text-orientation: mixed;">Printhead E3DV6</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">X Carriage Belt Side</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Face Top</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Back Panel</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Right Side</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Printbed</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Left Side</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Main</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">TOTALS</span> |  |
 |-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|------:|:---|
 |      |      |      |      |      |      |      |      |       | **Vitamins** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Aluminium sheet 340mm x 340mm x 3mm |
@@ -74,11 +74,12 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  BigTreeTech SKR v1.4 Turbo |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech TFT35 E3 v3.0 |
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
+|   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  8mm |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   2  |    4  |  Bolt M3 buttonhead x  8mm |
-|   .  |   .  |   .  |   4  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 buttonhead x 10mm |
+|   .  |   .  |   2  |   8  |   .  |   .  |   .  |   .  |   10  |  Bolt M3 buttonhead x 10mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   8  |   16  |  Bolt M3 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 16mm |
-|   .  |   .  |   .  |   4  |   .  |   .  |   .  |   4  |    8  |  Bolt M3 caphead x  6mm |
+|   .  |   .  |   .  |   8  |   .  |   .  |   .  |   4  |   12  |  Bolt M3 caphead x  6mm |
 |   .  |   .  |  32  |   .  |   .  |   4  |   .  |   .  |   36  |  Bolt M3 caphead x 10mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 16mm |
 |   .  |   .  |   .  |   .  |   .  |   3  |   .  |   .  |    3  |  Bolt M3 caphead x 20mm |
@@ -93,14 +94,14 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |  11  |   .  |   .  |  35  |   46  |  Bolt M4 buttonhead x  8mm |
 |   .  |   .  |  16  |   .  |   .  |   8  |   2  |  12  |   38  |  Bolt M4 buttonhead x 10mm |
 |   .  |   .  |   8  |   .  |   2  |   .  |   2  |   2  |   14  |  Bolt M4 buttonhead x 12mm |
-|   .  |   .  |   .  |  18  |   .  |   .  |   .  |   .  |   18  |  Bolt M4 countersunk x  8mm |
+|   .  |   .  |   .  |  18  |   .  |   .  |   .  |   3  |   21  |  Bolt M4 countersunk x  8mm |
 |   .  |   .  |  20  |   .  |   .  |   .  |   8  |   .  |   28  |  Bolt M4 countersunk x 10mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M5 buttonhead x 10mm |
 |   .  |   .  |  10  |   .  |   8  |   8  |   8  |  12  |   46  |  Bolt M5 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   .  |   8  |   .  |   .  |    8  |  Bolt M5 countersunk x 12mm |
 |   .  |   .  |   2  |   .  |   1  |   .  |   .  |   1  |    4  |  Cork damper NEMA 17 |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  |  Cork underlay 214mm x 214mm |
-|   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  Extrusion E2020 x 260mm |
+|   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  Extrusion E2020 x 265mm |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Extrusion E2020 x 300mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   2  |   .  |    4  |  Extrusion E2020 x 400mm |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  Extrusion E2040 x 188mm |
@@ -119,17 +120,21 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   3  |   .  |   .  |   .  |   .  |   .  |    3  |  Linear rail carriage MGN12H |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Linear rod 12mm x 300mm |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  MK10 Dual Pulley Extruder |
-|   .  |   .  |  16  |   .  |   .  |   2  |   .  |   4  |   22  |  Nut M3 hammer |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Micro SD card |
+|   .  |   .  |  18  |   .  |   .  |   2  |   .  |   4  |   24  |  Nut M3 hammer |
 |   .  |   .  |   .  |   .  |   .  |   3  |   .  |   .  |    3  |  Nut M3 sliding T |
-|   .  |   .  |  10  |  14  |  11  |   .  |   .  |  49  |   84  |  Nut M4 hammer |
+|   .  |   .  |  10  |  14  |  11  |   .  |   .  |  52  |   87  |  Nut M4 hammer |
 |   .  |   .  |  28  |   .  |   .  |   8  |  12  |   .  |   48  |  Nut M4 sliding T |
 |   .  |   .  |   .  |   .  |   .  |   9  |   .  |   .  |    9  |  O-ring nitrile 4mm x 2mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE Bowden tube, 500 mm |
+|   .  |   .  |   .  |   4  |   .  |   .  |   .  |   .  |    4  |  Pillar hex nylon F/F M3x10 |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Pillar hex nylon F/F M3x14 |
 |   .  |   .  |   .  |   4  |   .  |   .  |   .  |   .  |    4  |  Pillar hex nylon F/F M3x20 |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   .  |    8  |  Pulley GT2 idler 16 teeth |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Pulley GT2 idler smooth 9.63mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Pulley GT2OB 20 teeth |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Raspberry Pi 4 |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Raspberry Pi camera V2 |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  SCS12LUU bearing block |
 |   .  |   .  |   .  |   .  |   .  |   .  |   4  |   .  |    4  |  SK12 shaft support bracket |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Sheet polycarbonate 250mm x 400mm x 3mm |
@@ -146,8 +151,10 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer  M4 |
 |   .  |   .  |   .  |   .  |   .  |   6  |   .  |   .  |    6  |  Washer penny  M4 |
 |   3  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    3  |  Ziptie 2.5mm x 100mm min length |
-|  12  |   4  | 234  |  47  |  48  |  81  |  40  | 150  |  616  | Total vitamins count |
+|  12  |   4  | 243  |  61  |  48  |  81  |  40  | 156  |  645  | Total vitamins count |
 |      |      |      |      |      |      |      |      |       | **3D printed parts** |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Access_Panel_300.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Camera_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_Bracket_TFT35_E3.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_TFT35_E3.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  | E20_ChannelCover_50mm.stl |
@@ -160,11 +167,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  | Handle.stl |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Hotend_Clamp.stl |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | IEC_Housing.stl |
-|   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | IEC_Housing_Mount.stl |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | IEC_Housing_Mount_300.stl |
-|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | PCB_Mount.stl |
-|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | PSU_Lower_Mount.stl |
-|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | PSU_Upper_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Printbed_Strain_Relief.stl |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Printbed_Strain_Relief_Clamp.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder.stl |
@@ -173,28 +176,28 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Wiring_Guide.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Wiring_Guide_Clamp.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Wiring_Guide_Socket.stl |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  | XY_Idler_Channel_Nut.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Left.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Right.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Left.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Right.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Left.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Right.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Belt_Clamp.stl |
-|   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Belt_Side_MGN12H.stl |
+|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  | XY_Idler_Channel_Nut_16.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Left_16.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Right_16.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Left_16.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Right_16.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Left_16.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Right_16.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Belt_Clamp_16.stl |
+|   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Belt_Side_16.stl |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  | X_Carriage_Belt_Tensioner.stl |
-|   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Groovemount_MGN12H.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Brace_Left.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Brace_Right.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Left.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Right.stl |
+|   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Groovemount_16.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Brace_Left_16.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Brace_Right_16.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Left_16.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Right_16.stl |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Z_Carriage_Center.stl |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Z_Carriage_Left.stl |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Z_Carriage_Right.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_MountGuide_19mm.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |    2  | Z_RodMountGuide_48mm.stl |
-|   3  |   3  |  20  |   3  |   4  |   5  |   4  |  17  |   59  | Total 3D printed parts count |
+|   3  |   3  |  21  |   .  |   3  |   5  |   4  |  18  |   57  | Total 3D printed parts count |
 |      |      |      |      |      |      |      |      |       | **CNC routed parts** |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | Back_Panel.dxf |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | BaseAL.dxf |
@@ -206,9 +209,9 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 [Top](#TOP)
 
 ---
-<a name="Printhead_E3DV6_MGN12H_assembly"></a>
+<a name="Printhead_E3DV6_assembly"></a>
 
-## Printhead_E3DV6_MGN12H assembly
+## Printhead_E3DV6 assembly
 
 ### Vitamins
 
@@ -224,31 +227,31 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 
 ### 3D Printed parts
 
-| 1 x Fan_Duct.stl | 1 x Hotend_Clamp.stl | 1 x X_Carriage_Groovemount_MGN12H.stl |
+| 1 x Fan_Duct.stl | 1 x Hotend_Clamp.stl | 1 x X_Carriage_Groovemount_16.stl |
 |---|---|---|
-| ![Fan_Duct.stl](stls/Fan_Duct.png) | ![Hotend_Clamp.stl](stls/Hotend_Clamp.png) | ![X_Carriage_Groovemount_MGN12H.stl](stls/X_Carriage_Groovemount_MGN12H.png) 
+| ![Fan_Duct.stl](stls/Fan_Duct.png) | ![Hotend_Clamp.stl](stls/Hotend_Clamp.png) | ![X_Carriage_Groovemount_16.stl](stls/X_Carriage_Groovemount_16.png) 
 
 
 
 ### Assembly instructions
 
-![Printhead_E3DV6_MGN12H_assembly](assemblies/Printhead_E3DV6_MGN12H_assembly.png)
+![Printhead_E3DV6_assembly](assemblies/Printhead_E3DV6_assembly.png)
 
-1. Bolt the fan onto the side of the **X_Carriage_Groovemount_MGN12H**, secure the fan wire with a ziptie.
-2. Ensure a good fit between the fan and the fan duct and bolt the fan duct to the X_Carriage.
+1. Bolt the fan onto the side of the **X_Carriage_Groovemount**, secure the fan wire with a ziptie.
+2. Ensure a good fit between the fan and the **Fan_Duct** and bolt the fan duct to the X_Carriage.
 3. Assemble the E3D hotend, including fan, thermistor cartridge and heater cartridge.
 4. Use the **Hotend_Clamp** to attach the E3D hotend to the X_Carriage.
 5. Collect the wires together, wrap them in spiral wrap, and secure them to the X_Carriage using the zipties. Note that the wiring is not shown in this diagram.
 
-![Printhead_E3DV6_MGN12H_assembled](assemblies/Printhead_E3DV6_MGN12H_assembled.png)
+![Printhead_E3DV6_assembled](assemblies/Printhead_E3DV6_assembled.png)
 
 <span></span>
 [Top](#TOP)
 
 ---
-<a name="X_Carriage_Belt_Side_MGN12H_assembly"></a>
+<a name="X_Carriage_Belt_Side_assembly"></a>
 
-## X_Carriage_Belt_Side_MGN12H assembly
+## X_Carriage_Belt_Side assembly
 
 ### Vitamins
 
@@ -260,20 +263,20 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 
 ### 3D Printed parts
 
-| 1 x X_Carriage_Belt_Side_MGN12H.stl | 2 x X_Carriage_Belt_Tensioner.stl |
+| 1 x X_Carriage_Belt_Side_16.stl | 2 x X_Carriage_Belt_Tensioner.stl |
 |---|---|
-| ![X_Carriage_Belt_Side_MGN12H.stl](stls/X_Carriage_Belt_Side_MGN12H.png) | ![X_Carriage_Belt_Tensioner.stl](stls/X_Carriage_Belt_Tensioner.png) 
+| ![X_Carriage_Belt_Side_16.stl](stls/X_Carriage_Belt_Side_16.png) | ![X_Carriage_Belt_Tensioner.stl](stls/X_Carriage_Belt_Tensioner.png) 
 
 
 
 ### Assembly instructions
 
-![X_Carriage_Belt_Side_MGN12H_assembly](assemblies/X_Carriage_Belt_Side_MGN12H_assembly_tn.png)
+![X_Carriage_Belt_Side_assembly](assemblies/X_Carriage_Belt_Side_assembly_tn.png)
 
 Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensioners into the
-**X_Carriage_Belt_Side_MGN12H** part as shown. Note the belts are not shown in this diagram.
+**X_Carriage_Belt_Side** part as shown. Note the belts are not shown in this diagram.
 
-![X_Carriage_Belt_Side_MGN12H_assembled](assemblies/X_Carriage_Belt_Side_MGN12H_assembled_tn.png)
+![X_Carriage_Belt_Side_assembled](assemblies/X_Carriage_Belt_Side_assembled_tn.png)
 
 <span></span>
 [Top](#TOP)
@@ -302,9 +305,9 @@ Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensi
 
 ### 3D Printed parts
 
-| 1 x XY_Motor_Mount_Brace_Right.stl | 1 x XY_Motor_Mount_Right.stl |
+| 1 x XY_Motor_Mount_Brace_Right_16.stl | 1 x XY_Motor_Mount_Right_16.stl |
 |---|---|
-| ![XY_Motor_Mount_Brace_Right.stl](stls/XY_Motor_Mount_Brace_Right.png) | ![XY_Motor_Mount_Right.stl](stls/XY_Motor_Mount_Right.png) 
+| ![XY_Motor_Mount_Brace_Right_16.stl](stls/XY_Motor_Mount_Brace_Right_16.png) | ![XY_Motor_Mount_Right_16.stl](stls/XY_Motor_Mount_Right_16.png) 
 
 
 
@@ -345,9 +348,9 @@ and should not be omitted.
 
 ### 3D Printed parts
 
-| 1 x XY_Idler_Channel_Nut.stl | 1 x XY_Idler_Right.stl |
+| 1 x XY_Idler_Channel_Nut_16.stl | 1 x XY_Idler_Right_16.stl |
 |---|---|
-| ![XY_Idler_Channel_Nut.stl](stls/XY_Idler_Channel_Nut.png) | ![XY_Idler_Right.stl](stls/XY_Idler_Right.png) 
+| ![XY_Idler_Channel_Nut_16.stl](stls/XY_Idler_Channel_Nut_16.png) | ![XY_Idler_Right_16.stl](stls/XY_Idler_Right_16.png) 
 
 
 
@@ -391,9 +394,9 @@ to turn freely again.
 
 ### 3D Printed parts
 
-| 1 x XY_Motor_Mount_Brace_Left.stl | 1 x XY_Motor_Mount_Left.stl |
+| 1 x XY_Motor_Mount_Brace_Left_16.stl | 1 x XY_Motor_Mount_Left_16.stl |
 |---|---|
-| ![XY_Motor_Mount_Brace_Left.stl](stls/XY_Motor_Mount_Brace_Left.png) | ![XY_Motor_Mount_Left.stl](stls/XY_Motor_Mount_Left.png) 
+| ![XY_Motor_Mount_Brace_Left_16.stl](stls/XY_Motor_Mount_Brace_Left_16.png) | ![XY_Motor_Mount_Left_16.stl](stls/XY_Motor_Mount_Left_16.png) 
 
 
 
@@ -434,9 +437,9 @@ and should not be omitted.
 
 ### 3D Printed parts
 
-| 1 x XY_Idler_Channel_Nut.stl | 1 x XY_Idler_Left.stl |
+| 1 x XY_Idler_Channel_Nut_16.stl | 1 x XY_Idler_Left_16.stl |
 |---|---|
-| ![XY_Idler_Channel_Nut.stl](stls/XY_Idler_Channel_Nut.png) | ![XY_Idler_Left.stl](stls/XY_Idler_Left.png) 
+| ![XY_Idler_Channel_Nut_16.stl](stls/XY_Idler_Channel_Nut_16.png) | ![XY_Idler_Left_16.stl](stls/XY_Idler_Left_16.png) 
 
 
 
@@ -476,9 +479,9 @@ to turn freely again.
 
 ### 3D Printed parts
 
-| 1 x Y_Carriage_Brace_Right.stl | 1 x Y_Carriage_Right.stl |
+| 1 x Y_Carriage_Brace_Right_16.stl | 1 x Y_Carriage_Right_16.stl |
 |---|---|
-| ![Y_Carriage_Brace_Right.stl](stls/Y_Carriage_Brace_Right.png) | ![Y_Carriage_Right.stl](stls/Y_Carriage_Right.png) 
+| ![Y_Carriage_Brace_Right_16.stl](stls/Y_Carriage_Brace_Right_16.png) | ![Y_Carriage_Right_16.stl](stls/Y_Carriage_Right_16.png) 
 
 
 
@@ -489,7 +492,7 @@ to turn freely again.
 1. Insert the threaded inserts into the **Y_Carriage_Right** as shown.
 2. Drive a long M3 bolt through the Y carriage from the insert side to self tap the part of the hole after the insert. Once this
 hole is tapped, remove the bolt.
-3. Bolt the **Y_Carriage_Brace_Right* and the pulleys to the **Y_Carriage_Right** as shown. Note the position of the washers.
+3. Bolt the **Y_Carriage_Brace_Right** and the pulleys to the **Y_Carriage_Right** as shown. Note the position of the washers.
 4. Tighten the bolts until the pulleys no longer turn freely and then loosen by about 1/4 turn so the pulleys can again turn.
 
 ![Y_Carriage_Right_assembled](assemblies/Y_Carriage_Right_assembled_tn.png)
@@ -556,9 +559,9 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 
 ### 3D Printed parts
 
-| 1 x Y_Carriage_Brace_Left.stl | 1 x Y_Carriage_Left.stl |
+| 1 x Y_Carriage_Brace_Left_16.stl | 1 x Y_Carriage_Left_16.stl |
 |---|---|
-| ![Y_Carriage_Brace_Left.stl](stls/Y_Carriage_Brace_Left.png) | ![Y_Carriage_Left.stl](stls/Y_Carriage_Left.png) 
+| ![Y_Carriage_Brace_Left_16.stl](stls/Y_Carriage_Brace_Left_16.png) | ![Y_Carriage_Left_16.stl](stls/Y_Carriage_Left_16.png) 
 
 
 
@@ -569,7 +572,7 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 1. Insert the threaded inserts into the **Y_Carriage_Left** as shown.
 2. Drive a long M3 bolt through the Y carriage from the insert side to self tap the part of the hole after the insert. Once this
 hole is tapped, remove the bolt.
-3. Bolt the **Y_Carriage_Brace_Left* and the pulleys to the **Y_Carriage_Left** as shown. Note the position of the washers.
+3. Bolt the **Y_Carriage_Brace_Left** and the pulleys to the **Y_Carriage_Left** as shown. Note the position of the washers.
 4. Tighten the bolts until the pulleys no longer turn freely and then loosen by about 1/4 turn so the pulleys can again turn.
 
 ![Y_Carriage_Left_assembled](assemblies/Y_Carriage_Left_assembled_tn.png)
@@ -626,6 +629,8 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 
 |Qty|Description|
 |---:|:----------|
+|4| Bolt M2 caphead x  8mm|
+|2| Bolt M3 buttonhead x 10mm|
 |2| Bolt M4 buttonhead x 10mm|
 |8| Bolt M4 buttonhead x 12mm|
 |20| Bolt M4 countersunk x 10mm|
@@ -633,15 +638,22 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 |2| Bolt M5 buttonhead x 12mm|
 |1| Extrusion E2020 x 300mm|
 |1| Extrusion E2040 x 300mm|
+|2| Nut M3 hammer|
 |2| Nut M4 hammer|
 |28| Nut M4 sliding T|
+|1| Raspberry Pi camera V2|
 
 
 ### 3D Printed parts
 
-| 2 x Handle.stl | 4 x Top_Corner_Piece.stl | 1 x Wiring_Guide_Socket.stl |
+| 1 x Camera_Mount.stl | 2 x Handle.stl | 4 x Top_Corner_Piece.stl |
 |---|---|---|
-| ![Handle.stl](stls/Handle.png) | ![Top_Corner_Piece.stl](stls/Top_Corner_Piece.png) | ![Wiring_Guide_Socket.stl](stls/Wiring_Guide_Socket.png) 
+| ![Camera_Mount.stl](stls/Camera_Mount.png) | ![Handle.stl](stls/Handle.png) | ![Top_Corner_Piece.stl](stls/Top_Corner_Piece.png) 
+
+
+| 1 x Wiring_Guide_Socket.stl |
+|---|
+| ![Wiring_Guide_Socket.stl](stls/Wiring_Guide_Socket.png) 
 
 
 
@@ -662,7 +674,7 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 
 ![Face_Top_Stage_1_assembly](assemblies/Face_Top_Stage_1_assembly.png)
 
-1. Bolt the two motor mounts and the **Wiring_Guide** to the rear extrusion.
+1. Bolt the two motor mounts, the **Wiring_Guide**, and optionally **Camera_Mount** to the rear extrusion.
 2. Bolt the two idlers to the front extrusion.
 3. Screw the bolts into the ends of the front and rear extrusions.
 4. Insert the t-nuts for the **Top_Corner_Piece**s into the extrusions.
@@ -730,17 +742,17 @@ extreme and tighten the bolts on that end of the Y-rail. Finally tighten the rem
 
 ### 3D Printed parts
 
-| 1 x X_Carriage_Belt_Clamp.stl |
+| 1 x X_Carriage_Belt_Clamp_16.stl |
 |---|
-| ![X_Carriage_Belt_Clamp.stl](stls/X_Carriage_Belt_Clamp.png) 
+| ![X_Carriage_Belt_Clamp_16.stl](stls/X_Carriage_Belt_Clamp_16.png) 
 
 
 
 ### Sub-assemblies
 
-| 1 x Face_Top_Stage_2_assembly | 1 x X_Carriage_Belt_Side_MGN12H_assembly |
+| 1 x Face_Top_Stage_2_assembly | 1 x X_Carriage_Belt_Side_assembly |
 |---|---|
-| ![Face_Top_Stage_2_assembled](assemblies/Face_Top_Stage_2_assembled_tn.png) | ![X_Carriage_Belt_Side_MGN12H_assembled](assemblies/X_Carriage_Belt_Side_MGN12H_assembled_tn.png) 
+| ![Face_Top_Stage_2_assembled](assemblies/Face_Top_Stage_2_assembled_tn.png) | ![X_Carriage_Belt_Side_assembled](assemblies/X_Carriage_Belt_Side_assembled_tn.png) 
 
 
 
@@ -748,8 +760,8 @@ extreme and tighten the bolts on that end of the Y-rail. Finally tighten the rem
 
 ![Face_Top_assembly](assemblies/Face_Top_assembly.png)
 
-1. Bolt the **X_Carriage_Belt_Side_MGN12H_assembly** to the MGN carriage.
-2. Thread the belts as shown and attach them to the **X_Carriage_Belt_Side_MGN12H_assembly**
+1. Bolt the **X_Carriage_Belt_Side_assembly** to the MGN carriage.
+2. Thread the belts as shown and attach them to the **X_Carriage_Belt_Side_assembly**
 using the **X_Carriage_Belt_Clamp**s
 3. Leave the belts fairly loose - tensioning of the belts is done after the frame is assembled.
 
@@ -768,21 +780,16 @@ using the **X_Carriage_Belt_Clamp**s
 |Qty|Description|
 |---:|:----------|
 |1| BigTreeTech SKR v1.4 Turbo|
-|4| Bolt M3 buttonhead x 10mm|
-|4| Bolt M3 caphead x  6mm|
+|8| Bolt M3 buttonhead x 10mm|
+|8| Bolt M3 caphead x  6mm|
 |18| Bolt M4 countersunk x  8mm|
 |1| LED Switching Power Supply 24V 15A 360W|
+|1| Micro SD card|
 |14| Nut M4 hammer|
+|4| Pillar hex nylon F/F M3x10|
 |4| Pillar hex nylon F/F M3x20|
+|1| Raspberry Pi 4|
 |1| Sheet polycarbonate 340mm x 400mm x 3mm|
-
-
-### 3D Printed parts
-
-| 1 x PCB_Mount.stl | 1 x PSU_Lower_Mount.stl | 1 x PSU_Upper_Mount.stl |
-|---|---|---|
-| ![PCB_Mount.stl](stls/PCB_Mount.png) | ![PSU_Lower_Mount.stl](stls/PSU_Lower_Mount.png) | ![PSU_Upper_Mount.stl](stls/PSU_Upper_Mount.png) 
-
 
 
 ### CNC Routed parts
@@ -797,15 +804,19 @@ using the **X_Carriage_Belt_Clamp**s
 
 ![Back_Panel_assembly](assemblies/Back_Panel_assembly.png)
 
-There are three options for the back panel: use a polycarbonate sheet, use an aluminium sheet, or use the three
-mounts **PCB_Mount**, **PSU_Lower_Mount**, and **PSU_Upper_Mount**. If you have access to a CNC, you can machine
-the back sheet using **Back_Panel.dxf**, if not you can use the **Panel_Jig** and the PCB and PSU mounts as
-templates to drill the holes in the back sheet.
+You can use either a polycarbonate sheet or an aluminium sheet for the back panel.
+If you have access to a CNC, you can machine the back sheet using **Back_Panel.dxf**,
+if not you can use the **Panel_Jig** to drill the mounting and access holes, and manually position
+position the holes for the PCB(s) and the PSU. When positioning the mainboard, ensure that there is
+side access to the SD card and USB port. When positioning the PSU, ensure that there is clearance
+between the terminals and the frame, so that the wiring can be accommodated.
 
 Once you have the back sheet prepared:
+
 1. Bolt the PSU to the back sheet.
 2. Bolt the mainboard to the back sheet, using the nylon standoffs.
-3. Add the bolts and t-nuts in preparation for later attachment to the frame. Take take to use the correct holes
+3. Optionally bolt the Raspberry Pi to the back sheet.
+4. Add the bolts and t-nuts in preparation for later attachment to the frame. Take take to use the correct holes
 and don't place bolts into the access holes for the hidden bolts used to assemble the frame.
 
 ![Back_Panel_assembled](assemblies/Back_Panel_assembled.png)
@@ -847,7 +858,7 @@ and don't place bolts into the access holes for the hidden bolts used to assembl
 ![Extruder_Bracket_assembly](assemblies/Extruder_Bracket_assembly.png)
 
 1. Bolt the stepper motor and cork damper through the **Extruder_Bracket** to the extruder as shown. The cork damper
-thermally isolates the motor from the **Extruder_Bracket* and should not be omitted.
+thermally isolates the motor from the **Extruder_Bracket** and should not be omitted.
 2. Align the hobb gear on the stepper motor shaft with the the hobb gear in the extruder and tighten the grub screws.
 3. Bolt the filament sensor to the hex pillars and bolt them to the **Extruder_Bracket**.
 4. Add the bolts and t-nuts in preparation for later attachment to the frame.
@@ -874,9 +885,9 @@ thermally isolates the motor from the **Extruder_Bracket* and should not be omit
 
 ### 3D Printed parts
 
-| 1 x IEC_Housing.stl | 1 x IEC_Housing_Mount.stl | 1 x IEC_Housing_Mount_300.stl |
-|---|---|---|
-| ![IEC_Housing.stl](stls/IEC_Housing.png) | ![IEC_Housing_Mount.stl](stls/IEC_Housing_Mount.png) | ![IEC_Housing_Mount_300.stl](stls/IEC_Housing_Mount_300.png) 
+| 1 x IEC_Housing.stl | 1 x IEC_Housing_Mount_300.stl |
+|---|---|
+| ![IEC_Housing.stl](stls/IEC_Housing.png) | ![IEC_Housing_Mount_300.stl](stls/IEC_Housing_Mount_300.png) 
 
 
 
@@ -1174,7 +1185,7 @@ as a template to drill the holes in the base plate.
 |---:|:----------|
 |2| Bolt M3 countersunk x 10mm|
 |8| Bolt M5 buttonhead x 12mm|
-|2| Extrusion E2020 x 260mm|
+|2| Extrusion E2020 x 265mm|
 |2| Extrusion E2040 x 188mm|
 |2| Nut M3 hammer|
 
@@ -1500,9 +1511,9 @@ the cables in place.
 
 ### Sub-assemblies
 
-| 1 x Face_Top_assembly | 1 x Printhead_E3DV6_MGN12H_assembly | 1 x Stage_4_assembly |
+| 1 x Face_Top_assembly | 1 x Printhead_E3DV6_assembly | 1 x Stage_4_assembly |
 |---|---|---|
-| ![Face_Top_assembled](assemblies/Face_Top_assembled_tn.png) | ![Printhead_E3DV6_MGN12H_assembled](assemblies/Printhead_E3DV6_MGN12H_assembled_tn.png) | ![Stage_4_assembled](assemblies/Stage_4_assembled_tn.png) 
+| ![Face_Top_assembled](assemblies/Face_Top_assembled_tn.png) | ![Printhead_E3DV6_assembled](assemblies/Printhead_E3DV6_assembled_tn.png) | ![Stage_4_assembled](assemblies/Stage_4_assembled_tn.png) 
 
 
 
@@ -1513,7 +1524,7 @@ the cables in place.
 1. Slide the **Face_Top** assembly into the rest of the frame and tighten the hidden bolts.
 2. Check that the print head slides freely on the Y-axis. If it doesn't, then re-rack the Y-axis,
 see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
-4. Bolt the **Printhead_E3DV6_MGN12H_assembly** to MGN carriage.
+4. Bolt the **Printhead_E3DV6_assembly** to the MGN carriage.
 5. Route the wiring from the print head to the mainboard and secure it with the **Wiring_Guide_Clamp**.
 6. Adjust the belt tension.
 7. Connect the Bowden tube between the extruder and the printhead.
@@ -1534,16 +1545,17 @@ see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
 |---:|:----------|
 |27| Bolt M4 buttonhead x  8mm|
 |2| Bolt M4 buttonhead x 12mm|
-|29| Nut M4 hammer|
+|3| Bolt M4 countersunk x  8mm|
+|32| Nut M4 hammer|
 |1| Sheet polycarbonate 250mm x 400mm x 3mm|
 |1| Sheet polycarbonate 340mm x 400mm x 3mm|
 
 
 ### 3D Printed parts
 
-| 1 x Spool_Holder.stl | 1 x Spool_Holder_Bracket.stl |
-|---|---|
-| ![Spool_Holder.stl](stls/Spool_Holder.png) | ![Spool_Holder_Bracket.stl](stls/Spool_Holder_Bracket.png) 
+| 1 x Access_Panel_300.stl | 1 x Spool_Holder.stl | 1 x Spool_Holder_Bracket.stl |
+|---|---|---|
+| ![Access_Panel_300.stl](stls/Access_Panel_300.png) | ![Spool_Holder.stl](stls/Spool_Holder.png) | ![Spool_Holder_Bracket.stl](stls/Spool_Holder_Bracket.png) 
 
 
 
@@ -1568,8 +1580,9 @@ see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
 ![main_assembly](assemblies/main_assembly.png)
 
 1. Bolt the polycarbonate sheet to the left face.
+2. Bolt the polycarbonate sheet and the **Access_Panel** to the right face.
 2. Attach the spoolholder and filament spool to the right face.
-3. You are now ready to level the bed and  calibrate the printer.
+3. You are now ready to level the bed and calibrate the printer.
 
 ![main_assembled](assemblies/main_assembled.png)
 
