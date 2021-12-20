@@ -341,10 +341,12 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                 difference() {
                     translate([x - fSize/2, -yOffset, 0])
                         extrusionOY(size.y, fSize);
-                    // access hole for Z_Carriage bolt
-                    *translate([x + fSize/2, -yOffset + (scs_size(scs_type).x - scs_screw_separation_x(scs_type))/2, fSize/2])
-                        rotate([0, -90, 0])
-                            jointBoltHole();
+                    // access holes for Z_Carriage bolts
+                    if (!is_undef(_useTablessZCarriage) && _useTablessZCarriage==true)
+                        for (y = [scs_screw_separation_x(scs_type), -scs_screw_separation_x(scs_type)])
+                            translate([x + fSize/2, -yOffset + (scs_size(scs_type).x - y)/2, fSize/2])
+                                rotate([0, -90, 0])
+                                    jointBoltHole();
                     // access holes for crosspiece
                     translate([x + fSize/2, 0, fSize/2]) {
                         for (y = [fSize/2, 3*fSize/2])
