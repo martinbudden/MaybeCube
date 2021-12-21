@@ -17,7 +17,7 @@ include <../Parameters_Main.scad>
 
 module X_Carriage_XChange_stl() {
     xCarriageType = MGN12H_carriage;
-    size = xCarriageBackSize(xCarriageType, beltWidth=6);
+    size = xCarriageBackSizeM(xCarriageType, beltWidth=6, beltSeparation());
     topThickness = xCarriageTopThickness();
     railCarriageGap = 0.5;
     topSizeZ = 18.05 + railCarriageGap - 4.5;
@@ -65,7 +65,7 @@ module X_Carriage_XChange_stl() {
 
 module X_Carriage_XChange_hardware() {
     xCarriageType = MGN12H_carriage;
-    size = xCarriageBackSize(xCarriageType, beltWidth=6);
+    size = xCarriageBackSizeM(xCarriageType, beltWidth=6, beltSeparation());
     topThickness = xCarriageTopThickness();
     holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
     holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();

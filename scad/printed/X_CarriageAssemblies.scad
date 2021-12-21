@@ -20,11 +20,11 @@ include <../Parameters_CoreXY.scad>
 useMotorIdlerLarge = pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15;
 
 xCarriageFrontSize = [30, 4, 40.5];
-function xCarriageFrontSize(xCarriageType, beltWidth) =  [max(carriage_size(xCarriageType).x, xCarriageFrontSize.x), xCarriageFrontSize.y, 36 + carriage_height(xCarriageType) + xCarriageTopThickness() + (!is_undef(beltWidth) && beltWidth == 9 ? 4.5 : 0)]; //has the belt tensioners
-function xCarriageBackSize(xCarriageType, beltWidth) = [xCarriageFrontSize(xCarriageType, beltWidth).x, 5, xCarriageFrontSize(xCarriageType, beltWidth).z];
-function xCarriageBackOffsetY(xCarriageType) = carriage_size(xCarriageType).y/2 + xCarriageBackSize(xCarriageType).y;
+function xCarriageFrontSizeM(xCarriageType, beltWidth, beltSeparation) =  [max(carriage_size(xCarriageType).x, xCarriageFrontSize.x), xCarriageFrontSize.y, 36 + beltSeparation - 4.5 + (beltSeparation ==7 ? 2 : 0) +carriage_height(xCarriageType) + xCarriageTopThickness() + (!is_undef(beltWidth) && beltWidth == 9 ? 4.5 : 0)]; //has the belt tensioners
+function xCarriageBackSizeM(xCarriageType, beltWidth, beltSeparation) = [xCarriageFrontSizeM(xCarriageType, beltWidth, beltSeparation).x, 5, xCarriageFrontSizeM(xCarriageType, beltWidth, beltSeparation).z];
+function xCarriageBackOffsetY(xCarriageType) = carriage_size(xCarriageType).y/2 + xCarriageBackSizeM(xCarriageType, 0, 0).y;
 
-function hotendOffset(xCarriageType, hotendDescriptor="E3DV6") = printHeadHotendOffset(hotendDescriptor) + [-xCarriageBackSize(xCarriageType).x/2, xCarriageBackOffsetY(xCarriageType), 0];
+function hotendOffset(xCarriageType, hotendDescriptor="E3DV6") = printHeadHotendOffset(hotendDescriptor) + [-xCarriageBackSizeM(xCarriageType, 0, 0).x/2, xCarriageBackOffsetY(xCarriageType), 0];
 function grooveMountSize(blower_type, hotendDescriptor="E3DV6") = [printHeadHotendOffset(hotendDescriptor).x, blower_size(blower_type).x + 6.25, 12];
 function blower_type() = is_undef(_blowerDescriptor) || _blowerDescriptor == "BL30x10" ? BL30x10 : BL40x10;
 //function accelerometerOffset() = [10, -1, 8];
@@ -45,7 +45,7 @@ xCarriageBeltTensionerSizeX = 23;
 
 module X_Carriage_Belt_Side_16_stl() {
     xCarriageType = MGN12H_carriage;
-    size = xCarriageFrontSize(xCarriageType, beltWidth());// + [1, 0, 1];
+    size = xCarriageFrontSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 1];
     holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
     holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
     offsetT = xCarriageHoleOffsetTop();
@@ -54,12 +54,12 @@ module X_Carriage_Belt_Side_16_stl() {
     stl("X_Carriage_Belt_Side_16")
         color(pp4_colour)
             rotate([90, 0, 0])
-                xCarriageBeltSide(xCarriageType, size, holeSeparationTop, holeSeparationBottom, extraOverlap=1, accelerometerOffset=accelerometerOffset(), offsetT=offsetT);
+                xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), holeSeparationTop, holeSeparationBottom, extraOverlap=1, accelerometerOffset=accelerometerOffset(), offsetT=offsetT);
 }
 
 module X_Carriage_Belt_Side_25_stl() {
     xCarriageType = MGN12H_carriage;
-    size = xCarriageFrontSize(xCarriageType, beltWidth()) + [1, 0, 4];
+    size = xCarriageFrontSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 4];
     holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
     holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
     offsetT = xCarriageHoleOffsetTop();
@@ -68,7 +68,7 @@ module X_Carriage_Belt_Side_25_stl() {
     stl("X_Carriage_Belt_Side_25")
         color(pp4_colour)
             rotate([90, 0, 0])
-                xCarriageBeltSide(xCarriageType, size, holeSeparationTop, holeSeparationBottom, extraOverlap=1, accelerometerOffset=accelerometerOffset(), offsetT=offsetT);
+                xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), holeSeparationTop, holeSeparationBottom, extraOverlap=1, accelerometerOffset=accelerometerOffset(), offsetT=offsetT);
 }
 
 //!Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensioners into the
@@ -84,11 +84,11 @@ assembly("X_Carriage_Belt_Side") {
             else
                 X_Carriage_Belt_Side_16_stl();
 
-    beltTensionerSize = xCarriageBeltTensionerSize();
+    beltTensionerSize = xCarriageBeltTensionerSize(beltWidth());
     boltLength = 40;
     gap = 0.1; // small gap so can see clearance when viewing model
     offset = [ 22.5,
-               xCarriageBeltTensionerSize().y - beltAttachmentOffsetY() + xCarriageBeltAttachmentCutoutOffset() + gap,
+               xCarriageBeltTensionerSize(beltWidth()).y - beltAttachmentOffsetY() + xCarriageBeltAttachmentCutoutOffset() + gap,
                -31 ];
     translate(offset) {
         rotate([0, 0, 180]) {
@@ -110,7 +110,7 @@ assembly("X_Carriage_Belt_Side") {
 module X_Carriage_Belt_Tensioner_stl() {
     stl("X_Carriage_Belt_Tensioner")
         color(pp2_colour)
-            xCarriageBeltTensioner(xCarriageBeltTensionerSize(xCarriageBeltTensionerSizeX));
+            xCarriageBeltTensioner(xCarriageBeltTensionerSize(beltWidth(), xCarriageBeltTensionerSizeX));
 }
 
 module X_Carriage_Belt_Clamp_Buttonhead_16_stl() {
@@ -133,7 +133,7 @@ module X_Carriage_Belt_Clamp_Buttonhead_16_stl() {
 }
 
 module X_Carriage_Belt_Clamp_16_stl() {
-    size = [xCarriageBeltAttachmentSize().x - 0.5, 25, 4.5];
+    size = [xCarriageBeltAttachmentSize(beltWidth(), beltSeparation()).x - 0.5, 25, 4.5];
 
     stl("X_Carriage_Belt_Clamp_16")
         color(pp2_colour)
@@ -142,7 +142,7 @@ module X_Carriage_Belt_Clamp_16_stl() {
 }
 
 module X_Carriage_Belt_Clamp_25_stl() {
-    size = [xCarriageBeltAttachmentSize(0, beltSeparation=4.5).x - 0.5, 25, 4.5];
+    size = [xCarriageBeltAttachmentSize(beltWidth(), beltSeparation()).x - 0.5, 25, 4.5];
 
     stl("X_Carriage_Belt_Clamp_25")
         color(pp2_colour)
@@ -153,9 +153,9 @@ module X_Carriage_Belt_Clamp_25_stl() {
 module xCarriageBeltClampAssembly(xCarriageType, countersunk=true) {
     assert(is_list(xCarriageType));
 
-    size = xCarriageFrontSize(xCarriageType, beltWidth());
+    size = xCarriageFrontSizeM(xCarriageType, beltWidth(), beltSeparation());
 
-    xCarriageBeltClampPosition(xCarriageType, size) {
+    xCarriageBeltClampPosition(xCarriageType, size, beltWidth(), beltSeparation()) {
         stl_colour(pp2_colour)
             if (countersunk)
                 vflip()
@@ -168,7 +168,7 @@ module xCarriageBeltClampAssembly(xCarriageType, countersunk=true) {
                     X_Carriage_Belt_Clamp_Buttonhead_25_stl();
                 else
                     X_Carriage_Belt_Clamp_Buttonhead_16_stl();
-        X_Carriage_Belt_Clamp_hardware(countersunk=countersunk);
+        X_Carriage_Belt_Clamp_hardware(beltWidth(), beltSeparation(), countersunk=countersunk);
     }
 }
 
@@ -182,11 +182,36 @@ module X_Carriage_Groovemount_16_stl() {
     stl("X_Carriage_Groovemount_16")
         color(pp1_colour)
             rotate([0, 90, 0]) {
-                size = xCarriageBackSize(xCarriageType, beltWidth());
+                size = xCarriageBackSizeM(xCarriageType, beltWidth(), beltSeparation());
                 difference() {
                     union() {
-                        xCarriageBack(xCarriageType, size, coreXYSeparation().z, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), accelerometerOffset=accelerometerOffset());
-                        hotEndHolder(xCarriageType, grooveMountSize, hotendOffset, hotendDescriptor, blower_type, baffle=false, left=false);
+                        xCarriageBack(xCarriageType, size, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), accelerometerOffset=accelerometerOffset());
+                        hotEndHolder(xCarriageType, xCarriageBackSizeM(xCarriageType, 0, 0).x, grooveMountSize, hotendOffset, hotendDescriptor, blower_type, baffle=false, left=false);
+                    }
+                    // bolt holes for Z probe mount
+                    for (z = [0, -8])
+                        translate([size.x/2, 18, z - 26])
+                            rotate([0, -90, 0])
+                                boltHoleM3Tap(9);
+                }
+            }
+}
+
+module X_Carriage_Groovemount_25_stl() {
+    xCarriageType = MGN12H_carriage;
+    blower_type = blower_type();
+    hotendDescriptor = "E3DV6";
+    grooveMountSize = grooveMountSize(blower_type, hotendDescriptor);
+    hotendOffset = hotendOffset(xCarriageType, hotendDescriptor);
+
+    stl("X_Carriage_Groovemount_25")
+        color(pp1_colour)
+            rotate([0, 90, 0]) {
+                size = xCarriageBackSizeM(xCarriageType, beltWidth(), beltSeparation());
+                difference() {
+                    union() {
+                        xCarriageBack(xCarriageType, size, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), accelerometerOffset=accelerometerOffset());
+                        hotEndHolder(xCarriageType, xCarriageBackSizeM(xCarriageType, 0, 0).x, grooveMountSize, hotendOffset, hotendDescriptor, blower_type, baffle=false, left=false);
                     }
                     // bolt holes for Z probe mount
                     for (z = [0, -8])
@@ -207,7 +232,7 @@ module xCarriageGroovemountAssembly() {
     rotate([0, -90, 0])
         stl_colour(pp1_colour)
             if (_coreXYDescriptor == "GT2_20_25")
-                *X_Carriage_Groovemount_V2_stl();
+                X_Carriage_Groovemount_25_stl();
             else
                 X_Carriage_Groovemount_16_stl();
 
