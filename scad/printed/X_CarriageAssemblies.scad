@@ -84,6 +84,7 @@ assembly("X_Carriage_Belt_Side") {
             else
                 X_Carriage_Belt_Side_16_stl();
 
+    beltTensionerSize = xCarriageBeltTensionerSize();
     boltLength = 40;
     gap = 0.1; // small gap so can see clearance when viewing model
     offset = [ 22.5,
@@ -94,14 +95,14 @@ assembly("X_Carriage_Belt_Side") {
             explode([-40, 0, 0])
                 stl_colour(pp2_colour)
                     X_Carriage_Belt_Tensioner_stl();
-            X_Carriage_Belt_Tensioner_hardware(boltLength, offset.x);
+            X_Carriage_Belt_Tensioner_hardware(beltTensionerSize, boltLength, offset.x);
         }
         translate([-2*offset.x, 0, -2])
             rotate([180, 0, 0]) {
                 explode([-40, 0, 0])
                     stl_colour(pp2_colour)
                         X_Carriage_Belt_Tensioner_stl();
-                X_Carriage_Belt_Tensioner_hardware(boltLength, offset.x);
+                X_Carriage_Belt_Tensioner_hardware(beltTensionerSize, boltLength, offset.x);
             }
     }
 }
@@ -109,7 +110,7 @@ assembly("X_Carriage_Belt_Side") {
 module X_Carriage_Belt_Tensioner_stl() {
     stl("X_Carriage_Belt_Tensioner")
         color(pp2_colour)
-            xCarriageBeltTensioner(xCarriageBeltTensionerSizeX);
+            xCarriageBeltTensioner(xCarriageBeltTensionerSize(xCarriageBeltTensionerSizeX));
 }
 
 module X_Carriage_Belt_Clamp_Buttonhead_16_stl() {
@@ -135,6 +136,15 @@ module X_Carriage_Belt_Clamp_16_stl() {
     size = [xCarriageBeltAttachmentSize().x - 0.5, 25, 4.5];
 
     stl("X_Carriage_Belt_Clamp_16")
+        color(pp2_colour)
+            vflip()
+                xCarriageBeltClamp(size, countersunk=true);
+}
+
+module X_Carriage_Belt_Clamp_25_stl() {
+    size = [xCarriageBeltAttachmentSize(0, beltSeparation=4.5).x - 0.5, 25, 4.5];
+
+    stl("X_Carriage_Belt_Clamp_25")
         color(pp2_colour)
             vflip()
                 xCarriageBeltClamp(size, countersunk=true);
@@ -197,7 +207,7 @@ module xCarriageGroovemountAssembly() {
     rotate([0, -90, 0])
         stl_colour(pp1_colour)
             if (_coreXYDescriptor == "GT2_20_25")
-                X_Carriage_Groovemount_25_stl();
+                *X_Carriage_Groovemount_V2_stl();
             else
                 X_Carriage_Groovemount_16_stl();
 
