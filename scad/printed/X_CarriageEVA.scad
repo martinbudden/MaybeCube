@@ -111,7 +111,7 @@ module evaHotendBaseFrontHardware(explode=40) {
 }
 
 module evaBeltClampPosition() {
-    xCarriageBeltClampPosition(MGN12H_carriage, bottomMgn12Size)
+    xCarriageBeltClampPosition(MGN12H_carriage, bottomMgn12Size, beltWidth(), beltSeparation())
         children();
 }
 
@@ -125,7 +125,7 @@ module evaBeltClampHardware() {
     evaBeltClampPosition()
         translate_z(4.5)
             vflip()
-                X_Carriage_Belt_Clamp_hardware(countersunk=true);
+                X_Carriage_Belt_Clamp_hardware(beltWidth(), beltSeparation(), countersunk=true);
 }
 
 module evaBeltTensionerPositions(explode=0) {
@@ -144,7 +144,7 @@ module evaBeltTensioners() {
 }
 module evaBeltTensionersHardware() {
     evaBeltTensionerPositions(explode=70)
-        X_Carriage_Belt_Tensioner_hardware(xCarriageBeltTensionerSize(), 40, 18.5);
+        X_Carriage_Belt_Tensioner_hardware(xCarriageBeltTensionerSize(beltWidth()), 40, 18.5);
 }
 
 module EVA_MC_BottomMgn12(ductSizeY=undef, airflowSplit=false) {

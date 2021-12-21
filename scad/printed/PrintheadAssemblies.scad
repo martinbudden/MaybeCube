@@ -81,7 +81,7 @@ module printheadBeltSide(rotate=0, explode=0, t=undef) {
 
 module printheadHotendSide(rotate=0, explode=0, t=undef) {
     xCarriageType = MGN12H_carriage;
-    xCarriageFrontSize = xCarriageFrontSize(xCarriageType, beltWidth());
+    xCarriageFrontSize = xCarriageFrontSizeM(xCarriageType, beltWidth(), beltSeparation());
     holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
     holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
     offsetT = xCarriageHoleOffsetTop();
@@ -126,7 +126,7 @@ module fullPrinthead(rotate=180, explode=0, t=undef, accelerometer=false) {
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
         explode(explode, true) {
             explode([0, -20, 0], true) {
-                xCarriageFrontSize = xCarriageFrontSize(xCarriageType, _beltWidth);
+                xCarriageFrontSize = xCarriageFrontSizeM(xCarriageType, _beltWidth);
                 xCarriageFrontBolts(xCarriageType, xCarriageFrontSize, topBoltLength=30, holeSeparationTop=holeSeparationTop, bottomBoltLength=30, holeSeparationBottom=holeSeparationBottom, countersunk=true);
             }
             Printhead_E3DV6_assembly();
