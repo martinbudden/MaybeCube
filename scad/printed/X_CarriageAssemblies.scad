@@ -43,7 +43,7 @@ function xCarriageHoleSeparationBottomMGN12H() = 38;//34;//37.4; //45.4 - 8
 xCarriageBeltTensionerSizeX = 23;
 
 
-module X_Carriage_Belt_Side_16_stl() {
+module X_Carriage_Belt_Side_HC_16_stl() {
     xCarriageType = MGN12H_carriage;
     size = xCarriageFrontSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 1];
     holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
@@ -51,7 +51,7 @@ module X_Carriage_Belt_Side_16_stl() {
     offsetT = xCarriageHoleOffsetTop();
 
     // orientate for printing
-    stl("X_Carriage_Belt_Side_16")
+    stl("X_Carriage_Belt_Side_HC_16")
         color(pp4_colour)
             rotate([90, 0, 0])
                 xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), holeSeparationTop, holeSeparationBottom, extraOverlap=1, accelerometerOffset=accelerometerOffset(), offsetT=offsetT);
@@ -82,7 +82,7 @@ assembly("X_Carriage_Belt_Side") {
             if (_coreXYDescriptor == "GT2_20_25")
                 X_Carriage_Belt_Side_25_stl();
             else
-                X_Carriage_Belt_Side_16_stl();
+                X_Carriage_Belt_Side_HC_16_stl();
 
     beltTensionerSize = xCarriageBeltTensionerSize(beltWidth());
     boltLength = 40;
@@ -172,14 +172,14 @@ module xCarriageBeltClampAssembly(xCarriageType, countersunk=true) {
     }
 }
 
-module X_Carriage_Groovemount_16_stl() {
+module X_Carriage_Groovemount_HC_16_stl() {
     xCarriageType = MGN12H_carriage;
     blower_type = blower_type();
     hotendDescriptor = "E3DV6";
     grooveMountSize = grooveMountSize(blower_type, hotendDescriptor);
     hotendOffset = hotendOffset(xCarriageType, hotendDescriptor);
 
-    stl("X_Carriage_Groovemount_16")
+    stl("X_Carriage_Groovemount_HC_16")
         color(pp1_colour)
             rotate([0, 90, 0]) {
                 size = xCarriageBackSizeM(xCarriageType, beltWidth(), beltSeparation());
@@ -234,7 +234,7 @@ module xCarriageGroovemountAssembly() {
             if (_coreXYDescriptor == "GT2_20_25")
                 X_Carriage_Groovemount_25_stl();
             else
-                X_Carriage_Groovemount_16_stl();
+                X_Carriage_Groovemount_HC_16_stl();
 
     grooveMountSize = grooveMountSize(blower_type, hotendDescriptor);
 
