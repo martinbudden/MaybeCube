@@ -26,6 +26,7 @@ function  blz(yCarriageType) = yCarriageThickness() + carriage_height(yCarriageT
 //$explode = 1;
 //$pose = 1;
 module Printhead_test() {
+    echo(beltSeparation=beltSeparation());
     echo(beltOffsetZ=beltOffsetZ());
     echo(blz=blz(MGN12H_carriage));
     echo(coreXYPosBL=coreXYPosBL());
@@ -56,7 +57,7 @@ module Printhead_test() {
     *let($hide_bolts=true) Printhead_E3DV6_assembly();
     //translate([-11.4, 0, 8]) rotate(180) xCarriageTopTest();
     //xCarriageGroovemountAssembly();
-    //X_Carriage_Groovemount_16_stl();
+    //X_Carriage_Groovemount_HC_16_stl();
     //Fan_Duct_stl();
     //rotate([90, 0, -90]) Hotend_Clamp_stl();
     //Hotend_Clamp_hardware();
@@ -68,10 +69,10 @@ module xCarriageTopTest() {
     topThickness = xCarriageTopThickness();
     fillet = 1;
 
-    extraY = xCarriageFrontOffsetY(xCarriageType) - carriage_size(xCarriageType).y/2 - xCarriageFrontSize(xCarriageType).y;
+    extraY = xCarriageFrontOffsetY(xCarriageType) - carriage_size(xCarriageType).y/2 - xCarriageBeltSideSizeM(xCarriageType).y;
     carriageSize = carriage_size(xCarriageType);
     carriageOffsetY = carriageSize.y/2;
-    size =  [xCarriageBackSize(xCarriageType).x/2, extraY + carriageSize.y + xCarriageBackSize(xCarriageType).y, 4];
+    size =  [xCarriageHotendSideSizeM(xCarriageType).x/2, extraY + carriageSize.y + xCarriageHotendSideSizeM(xCarriageType).y, 4];
 
     difference() {
         translate([-size.x/2, 10.5 - extraY - carriageSize.y, 0]) {
