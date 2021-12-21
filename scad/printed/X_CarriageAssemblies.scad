@@ -46,29 +46,34 @@ xCarriageBeltTensionerSizeX = 23;
 module X_Carriage_Belt_Side_HC_16_stl() {
     xCarriageType = MGN12H_carriage;
     size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 1];
-    holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
-    holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
-    offsetT = xCarriageHoleOffsetTop();
 
     // orientate for printing
     stl("X_Carriage_Belt_Side_HC_16")
         color(pp4_colour)
             rotate([90, 0, 0])
-                xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), holeSeparationTop, holeSeparationBottom, extraOverlap=1, accelerometerOffset=accelerometerOffset(), offsetT=offsetT);
+                xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), extraOverlap=1, accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop());
+}
+
+module X_Carriage_Belt_Side_16_stl() {
+    xCarriageType = MGN12H_carriage;
+    size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 1];
+
+    // orientate for printing
+    stl("X_Carriage_Belt_Side_HC_16")
+        color(pp4_colour)
+            rotate([90, 0, 0])
+                xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), extraOverlap=1, accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop());
 }
 
 module X_Carriage_Belt_Side_25_stl() {
     xCarriageType = MGN12H_carriage;
     size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 4];
-    holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
-    holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
-    offsetT = xCarriageHoleOffsetTop();
 
     // orientate for printing
     stl("X_Carriage_Belt_Side_25")
         color(pp4_colour)
             rotate([90, 0, 0])
-                xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), holeSeparationTop, holeSeparationBottom, extraOverlap=1, accelerometerOffset=accelerometerOffset(), offsetT=offsetT);
+                xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), extraOverlap=1, accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop());
 }
 
 //!Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensioners into the
