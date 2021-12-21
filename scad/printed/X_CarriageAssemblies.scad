@@ -54,7 +54,7 @@ module X_Carriage_Belt_Side_16_stl() {
     stl("X_Carriage_Belt_Side_16")
         color(pp4_colour)
             rotate([90, 0, 0])
-                xCarriageBeltSide(xCarriageType, size, holeSeparationTop, holeSeparationBottom, extraX=1, accelerometerOffset=accelerometerOffset(), offsetT=offsetT);
+                xCarriageBeltSide(xCarriageType, size, holeSeparationTop, holeSeparationBottom, extraOverlap=1, accelerometerOffset=accelerometerOffset(), offsetT=offsetT);
 }
 
 module X_Carriage_Belt_Side_25_stl() {
@@ -68,7 +68,7 @@ module X_Carriage_Belt_Side_25_stl() {
     stl("X_Carriage_Belt_Side_25")
         color(pp4_colour)
             rotate([90, 0, 0])
-                xCarriageBeltSide(xCarriageType, size, holeSeparationTop, holeSeparationBottom, extraX=1, accelerometerOffset=accelerometerOffset(), offsetT=offsetT);
+                xCarriageBeltSide(xCarriageType, size, holeSeparationTop, holeSeparationBottom, extraOverlap=1, accelerometerOffset=accelerometerOffset(), offsetT=offsetT);
 }
 
 //!Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensioners into the
