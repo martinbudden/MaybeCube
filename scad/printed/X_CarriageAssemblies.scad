@@ -20,7 +20,7 @@ include <../Parameters_CoreXY.scad>
 useMotorIdlerLarge = pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15;
 
 xCarriageFrontSize = [30, 4, 40.5];
-function xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation) =  [max(carriage_size(xCarriageType).x, xCarriageFrontSize.x), xCarriageFrontSize.y, 36 + beltSeparation - 4.5 + (beltSeparation ==7 ? 2 : 0) +carriage_height(xCarriageType) + xCarriageTopThickness() + (!is_undef(beltWidth) && beltWidth == 9 ? 4.5 : 0)];
+function xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation) =  [max(carriage_size(xCarriageType).x, xCarriageFrontSize.x), xCarriageFrontSize.y, 36 + beltSeparation - 4.5 + (beltSeparation == 7 ? 1.25 : 0) +carriage_height(xCarriageType) + xCarriageTopThickness() + (!is_undef(beltWidth) && beltWidth == 9 ? 4.5 : 0)];
 function xCarriageHotendSideSizeM(xCarriageType, beltWidth, beltSeparation) = [xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation).x, 5.5, xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation).z];
 function xCarriageHotendOffsetY(xCarriageType) = carriage_size(xCarriageType).y/2 + xCarriageHotendSideSizeM(xCarriageType, 0, 0).y;
 
@@ -51,7 +51,7 @@ module X_Carriage_Belt_Side_HC_16_stl() {
     stl("X_Carriage_Belt_Side_HC_16")
         color(pp4_colour)
             rotate([90, 0, 0])
-                xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), extraOverlap=1, accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop());
+                xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), endCube=true, HC=true);
 }
 
 module X_Carriage_Belt_Side_16_stl() {
@@ -59,50 +59,62 @@ module X_Carriage_Belt_Side_16_stl() {
     size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 1];
 
     // orientate for printing
-    stl("X_Carriage_Belt_Side_HC_16")
+    stl("X_Carriage_Belt_Side_16")
         color(pp4_colour)
             rotate([90, 0, 0])
-                xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), extraOverlap=1, accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop());
+                xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), HC=false);
 }
 
 module X_Carriage_Belt_Side_25_stl() {
     xCarriageType = MGN12H_carriage;
     size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 4];
+    echo(size=size);
 
     // orientate for printing
     stl("X_Carriage_Belt_Side_25")
         color(pp4_colour)
             rotate([90, 0, 0])
-                xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), extraOverlap=1, accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop());
+                xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), endCube=true, pulley25=true);
 }
 
 //!Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensioners into the
 //!**X_Carriage_Belt_Side** part as shown. Note the belts are not shown in this diagram.
 //
-module X_Carriage_Belt_Side_assembly()
+module X_Carriage_Belt_Side_assembly(HC=true)
 assembly("X_Carriage_Belt_Side") {
+
+    isPulley25 = (_coreXYDescriptor == "GT2_20_25");
+    offsetY25 = 2.6;
+    //echo(dTooth=pulley_pr(GT2x25x7x3_toothed_idler)-pulley_pr(GT2x16_toothed_idler));
+    //echo(dPlain=pulley_pr(GT2x25x7x3_plain_idler)-pulley_pr(GT2x16_plain_idler));
 
     rotate([-90, 0, 0])
         stl_colour(pp4_colour)
-            if (_coreXYDescriptor == "GT2_20_25")
-                X_Carriage_Belt_Side_25_stl();
+            if (isPulley25)
+                translate([0, 0, -offsetY25])
+                    X_Carriage_Belt_Side_25_stl();
             else
-                X_Carriage_Belt_Side_HC_16_stl();
+                if (HC)
+                    X_Carriage_Belt_Side_HC_16_stl();
+                else
+                    X_Carriage_Belt_Side_16_stl();
 
+    size = xCarriageBeltSideSizeM(MGN12H_carriage, beltWidth(), beltSeparation());// + [1, 0, 4];
     beltTensionerSize = xCarriageBeltTensionerSize(beltWidth());
     boltLength = 40;
     gap = 0.1; // small gap so can see clearance when viewing model
     offset = [ 22.5,
-               xCarriageBeltTensionerSize(beltWidth()).y - beltAttachmentOffsetY() + xCarriageBeltAttachmentCutoutOffset() + gap,
-               -31 ];
+               beltTensionerSize.y - beltAttachmentOffsetY() + xCarriageBeltAttachmentCutoutOffset() + gap - (isPulley25 ? offsetY25 : 0),
+               -size.z + xCarriageTopThickness() + xCarriageBaseThickness() + 0.75];
     translate(offset) {
-        rotate([0, 0, 180]) {
-            explode([-40, 0, 0])
-                stl_colour(pp2_colour)
-                    X_Carriage_Belt_Tensioner_stl();
-            X_Carriage_Belt_Tensioner_hardware(beltTensionerSize, boltLength, offset.x);
-        }
-        translate([-2*offset.x, 0, -2])
+        translate([0, 0, beltWidth() + beltSeparation() - (beltTensionerSize.z - beltWidth())])
+            rotate([0, 0, 180]) {
+                explode([-40, 0, 0])
+                    stl_colour(pp2_colour)
+                        X_Carriage_Belt_Tensioner_stl();
+                X_Carriage_Belt_Tensioner_hardware(beltTensionerSize, boltLength, offset.x);
+            }
+        translate([-2*offset.x, 0, beltTensionerSize.z])
             rotate([180, 0, 0]) {
                 explode([-40, 0, 0])
                     stl_colour(pp2_colour)
@@ -227,7 +239,7 @@ module X_Carriage_Groovemount_stl() {
             }
 }
 
-module X_Carriage_Groovemount_25_stl() {
+/*module X_Carriage_Groovemount_25_stl() {
     xCarriageType = MGN12H_carriage;
     blower_type = blower_type();
     hotendDescriptor = "E3DV6";
@@ -251,8 +263,9 @@ module X_Carriage_Groovemount_25_stl() {
                 }
             }
 }
+*/
 
-module xCarriageGroovemountAssembly() {
+module xCarriageGroovemountAssembly(HC=false) {
 
     xCarriageType = MGN12H_carriage;
     blower_type = blower_type();
@@ -262,9 +275,12 @@ module xCarriageGroovemountAssembly() {
     rotate([0, -90, 0])
         stl_colour(pp1_colour)
             if (_coreXYDescriptor == "GT2_20_25")
-                X_Carriage_Groovemount_25_stl();
+                X_Carriage_Groovemount_stl();
             else
-                X_Carriage_Groovemount_HC_16_stl();
+                if (HC)
+                    X_Carriage_Groovemount_HC_16_stl();
+                else
+                    X_Carriage_Groovemount_stl();
 
     grooveMountSize = grooveMountSize(blower_type, hotendDescriptor);
 
