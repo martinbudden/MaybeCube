@@ -5,19 +5,22 @@ include <vitamins/pulleys.scad>
 include <Parameters_Main.scad>
 
 
-
 coreXY_GT2_20_20_sf=["coreXY_20_20sf", GT2x6, GT2x20ob_pulley, GT2x20x3_toothed_idler_sf, GT2x20x3_plain_idler_sf, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
 coreXY_GT2_20_25   =["coreXY_20_25",   GT2x6, GT2x20ob_pulley, GT2x25x7x3_toothed_idler, GT2x25x7x3_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
-coreXY_GT2x9_20_20= ["coreXY_20_20x9", GT2x9, GT2x20x11_pulley, GT2x20x11x5_toothed_idler, GT2x20x11x5_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
+coreXY_GT2x9_20_20= ["coreXY_20_20x9", GT2x9, GT2x20x11_pulley, GT2x20x11x3_toothed_idler, GT2x20x11x3_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
+coreXY_GT2x9_20_25= ["coreXY_20_25x9", GT2x9, GT2x20x11_pulley, GT2x25x11x3_toothed_idler, GT2x25x11x3_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
+
 useXYDirectDrive = !is_undef(_useXYDirectDrive) && _useXYDirectDrive;
-largePulleyOffset = (_coreXYDescriptor == "GT2_20_25" ? 3 : 0);
-largePulleyOffsetTop = (_coreXYDescriptor == "GT2_20_25" ? 5.5 : 0);
+largePulleyOffset = (_coreXYDescriptor == "GT2_20_25" || _coreXYDescriptor == "GT2_20_25x9") ? 3 : 0;
+largePulleyOffsetTop = (_coreXYDescriptor == "GT2_20_25" || _coreXYDescriptor == "GT2_20_25x9") ? 5.5 : 0;
 
 function coreXY_type() = _coreXYDescriptor == "GT2_20_16" ? coreXY_GT2_20_16 :
                          _coreXYDescriptor == "GT2_20_20" ? coreXY_GT2_20_20 :
                          _coreXYDescriptor == "GT2_20_20_sf" ? coreXY_GT2_20_20_sf :
                          _coreXYDescriptor == "GT2_20_25" ? coreXY_GT2_20_25 :
-                         coreXY_GT2x9_20_20;
+                         _coreXYDescriptor == "GT2_20_20x9" ? coreXY_GT2x9_20_20 :
+                         coreXY_GT2x9_20_25;
+
 function coreXYIdlerBore() = pulley_bore(coreXY_toothed_idler(coreXY_type()));
 function beltWidth() = belt_width(coreXY_belt(coreXY_type()));
 function beltSeparation() = coreXYSeparation().z - beltWidth();
