@@ -34,23 +34,27 @@ module Printhead_test() {
     carriagePosition = carriagePosition();
 
     translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
-        CoreXYBelts(carriagePosition - [4, 0], x_gap = -25, show_pulleys = [1, 0, 0]);
+        CoreXYBelts(carriagePosition - [4, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
         //fullPrinthead(accelerometer=true);
-        printheadBeltSide();
-        printheadHotendSide();
+        HC = true;
+        printheadBeltSide(HC=HC);
+        printheadHotendSide(HC=HC);
         //printheadEVA();
         //printheadVoronAfterburner();
         //printheadXChange();
-        translate_z(eZ)
+        translate_z(eZ) {
             xRail(carriagePosition);
+            xRailBoltPositions(carriagePosition)
+                boltM3Caphead(10);
+        }
     }
     *translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
         CoreXYBelts(carriagePosition, x_gap = -25, show_pulleys = ![1, 0, 0]);
         translate_z(eZ)
             xRail(carriagePosition);
         xRailCarriagePosition(carriagePosition) {
-            //Printhead_E3DV6_assembly();
-            X_Carriage_Belt_Side_assembly();
+            //Printhead_E3DV6_assembly(HC=HC);
+            X_Carriage_Belt_Side_assembly(HC=HC);
             xCarriageGroovemountAssembly();
         }
     }
