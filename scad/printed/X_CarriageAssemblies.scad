@@ -24,8 +24,8 @@ function xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation) =  [ma
 function xCarriageHotendSideSizeM(xCarriageType, beltWidth, beltSeparation) = [xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation).x, 5.5, xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation).z];
 function xCarriageHotendOffsetY(xCarriageType) = carriage_size(xCarriageType).y/2 + xCarriageHotendSideSizeM(xCarriageType, 0, 0).y;
 
-function hotendOffset(xCarriageType, hotendDescriptor="E3DV6") = printHeadHotendOffset(hotendDescriptor) + [-xCarriageHotendSideSizeM(xCarriageType, 0, 0).x/2, xCarriageHotendOffsetY(xCarriageType), 0];
-function grooveMountSize(blower_type, hotendDescriptor="E3DV6") = [printHeadHotendOffset(hotendDescriptor).x, blower_size(blower_type).x + 6.25, 12];
+function hotendOffset(xCarriageType, hotendDescriptor="E3DV6") = printheadHotendOffset(hotendDescriptor) + [-xCarriageHotendSideSizeM(xCarriageType, 0, 0).x/2, xCarriageHotendOffsetY(xCarriageType), 0];
+function grooveMountSize(blower_type, hotendDescriptor="E3DV6") = [printheadHotendOffset(hotendDescriptor).x, blower_size(blower_type).x + 6.25, 12];
 function blower_type() = is_undef(_blowerDescriptor) || _blowerDescriptor == "BL30x10" ? BL30x10 : BL40x10;
 //function accelerometerOffset() = [10, -1, 8];
 function accelerometerOffset() = [6.5, -2, 8];
@@ -301,5 +301,5 @@ module Fan_Duct_stl() {
         color(pp2_colour)
             translate([26, 0, 0])
                 mirror([1, 0, 0])
-                    fanDuct(printHeadHotendOffset().x, jetOffset=-0.5, chimneySizeZ=17);
+                    fanDuct(printheadHotendOffset().x, jetOffset=-0.5, chimneySizeZ=17);
 }

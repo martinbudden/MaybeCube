@@ -37,7 +37,7 @@ module BackFace_test() {
     //Left_Side_assembly();
     //Right_Side_assembly();
     //Face_Top_Stage_1_assembly();
-    //printHeadWiring();
+    //printheadWiring();
     showPartition = !true;
     if (showPartition) {
         CoreXYBelts(carriagePosition());

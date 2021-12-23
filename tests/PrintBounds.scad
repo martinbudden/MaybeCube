@@ -39,7 +39,7 @@ include <../scad/utils/printParameters.scad>
 include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/X_Rail.scad>
 
-use <../scad/vitamins/PrintHeadBIQU_B1.scad>
+use <../scad/vitamins/PrintheadBIQU_B1.scad>
 
 use <../scad/BasePlate.scad>
 use <../scad/FaceLeft.scad>
@@ -77,8 +77,8 @@ module PrintBounds_test() {
     translate_z(eZ) {
         xRail(carriagePosition());
         //xRailCarriagePosition(carriagePosition())
-        //    xCarriagePrintHeadOffset()
-        //        PrintHeadBIQU_B1();
+        //    xCarriagePrintheadOffset()
+        //        PrintheadBIQU_B1();
     }
 }
 

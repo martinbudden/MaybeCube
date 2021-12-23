@@ -33,7 +33,7 @@ module Left_Side_test() {
     Left_Side_assembly();
     if (is_undef(_printBedKinematic) || _printBedKinematic == false) zRods();
     //faceTopBack(fov_distance=0);
-    //printHeadWiring();
+    //printheadWiring();
     //Right_Side_assembly(); if(is_true(_useDualZRods))zRods(left=false);
     //Extruder_Bracket_assembly();
     //let($hide_extrusions=true)

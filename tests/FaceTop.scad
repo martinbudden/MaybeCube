@@ -28,7 +28,7 @@ module Face_Top_test() {
     //let($hide_corexy=true)
     //faceTopBack();
     *if (!exploded())
-        printHeadWiring();
+        printheadWiring();
     *wiringGuidePosition() {
         Wiring_Guide_stl();
         Wiring_Guide_hardware();

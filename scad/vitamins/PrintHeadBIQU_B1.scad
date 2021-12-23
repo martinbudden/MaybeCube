@@ -92,7 +92,7 @@ module nozzle() {
 topSize = [46, 51, 3];
 topBackSize = [topSize.x-6, 5, topSize.z];
 
-module PrintHeadBIQU_B1_boltPositions() {
+module PrintheadBIQU_B1_boltPositions() {
     translate([-topBackSize.x/2, 0, 0])
         rotate([90, 0, 0])
             for (x = [-10, 10])
@@ -100,8 +100,8 @@ module PrintHeadBIQU_B1_boltPositions() {
                     children();
 }
 
-module PrintHeadBIQU_B1() {
-    vitamin(str("PrintHeadBIQU_B1(): BIQU B1 print head"));
+module PrintheadBIQU_B1() {
+    vitamin(str("PrintheadBIQU_B1(): BIQU B1 printhead"));
     color = grey(25);
 
     usb_c_to_c_cable(500);
