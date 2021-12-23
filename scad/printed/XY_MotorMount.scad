@@ -119,26 +119,25 @@ module xyMotorMountBrace(thickness, offset=[0,0]) {
     fillet = 1;
     extra = [2, 2, 0];
 
-    explode(25)
-        difference() {
-            union() {
-                size = [sizeP.x, sizeP.y, thickness] + [pP.x, pT.y, 0] + offsetP - [pT.x, pP.y, 0] - offsetT + extra;
-                translate([pT.x, pP.y, 0] + offsetT - extra/2) {
-                    rounded_cube_xy(size, fillet);
-                    // add orientation indicator
-                    translate([size.x/4, size.y, 0])
-                        rotate(45)
-                            rounded_cube_xy([3, 3, thickness], 0.5, xy_center=true);
-                }
+    difference() {
+        union() {
+            size = [sizeP.x, sizeP.y, thickness] + [pP.x, pT.y, 0] + offsetP - [pT.x, pP.y, 0] - offsetT + extra;
+            translate([pT.x, pP.y, 0] + offsetT - extra/2) {
+                rounded_cube_xy(size, fillet);
+                // add orientation indicator
+                translate([size.x/4, size.y, 0])
+                    rotate(45)
+                        rounded_cube_xy([3, 3, thickness], 0.5, xy_center=true);
             }
-            for (pos = [pP, pT, [pP.x, pT.y], [pT.x, pP.y]])
-                translate(pos)
-                    if (braceCountersunk)
-                        translate_z(thickness)
-                            boltPolyholeM3Countersunk(thickness);
-                    else
-                        boltHoleM3Tap(thickness);
         }
+        for (pos = [pP, pT, [pP.x, pT.y], [pT.x, pP.y]])
+            translate(pos)
+                if (braceCountersunk)
+                    translate_z(thickness)
+                        boltPolyholeM3Countersunk(thickness);
+                else
+                    boltHoleM3Tap(thickness);
+    }
 }
 
 module xyMotorMountBaseCutouts(motorType, left, size, offset, sideSupportSizeY=0, cnc=false, M5=false) {
@@ -598,10 +597,11 @@ assembly("XY_Motor_Mount_Left", ngb=true) {
         XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, blockHeightExtra, left=true);
         if (offset.x != 0)
             stl_colour(pp2_colour)
-                if (useMotorIdlerLarge)
-                    XY_Motor_Mount_Brace_Left_25_stl();
-                else
-                    XY_Motor_Mount_Brace_Left_16_stl();
+                explode(25)
+                    if (useMotorIdlerLarge)
+                        XY_Motor_Mount_Brace_Left_25_stl();
+                    else
+                        XY_Motor_Mount_Brace_Left_16_stl();
     }
 }
 
@@ -654,9 +654,10 @@ assembly("XY_Motor_Mount_Right", ngb=true) {
         XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, blockHeightExtra, left=false);
         if (offset.x != 0)
             stl_colour(pp2_colour)
-                if (useMotorIdlerLarge)
-                    XY_Motor_Mount_Brace_Right_25_stl();
-                else
-                    XY_Motor_Mount_Brace_Right_16_stl();
+                explode(25)
+                    if (useMotorIdlerLarge)
+                        XY_Motor_Mount_Brace_Right_25_stl();
+                    else
+                        XY_Motor_Mount_Brace_Right_16_stl();
     }
 }
