@@ -226,32 +226,6 @@ module X_Carriage_Groovemount_stl() {
             }
 }
 
-/*module X_Carriage_Groovemount_25_stl() {
-    xCarriageType = MGN12H_carriage;
-    blower_type = blower_type();
-    hotendDescriptor = "E3DV6";
-    grooveMountSize = grooveMountSize(blower_type, hotendDescriptor);
-    hotendOffset = hotendOffset(xCarriageType, hotendDescriptor);
-
-    stl("X_Carriage_Groovemount_25")
-        color(pp1_colour)
-            rotate([0, 90, 0]) {
-                size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
-                difference() {
-                    union() {
-                        xCarriageBack(xCarriageType, size, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), accelerometerOffset=accelerometerOffset());
-                        hotEndHolder(xCarriageType, xCarriageHotendSideSizeM(xCarriageType, 0, 0).x, grooveMountSize, hotendOffset, hotendDescriptor, blower_type, baffle=false, left=false);
-                    }
-                    // bolt holes for Z probe mount
-                    for (z = [0, -8])
-                        translate([size.x/2, 18, z - 26])
-                            rotate([0, -90, 0])
-                                boltHoleM3Tap(9);
-                }
-            }
-}
-*/
-
 module xCarriageGroovemountAssembly(HC=false) {
 
     xCarriageType = MGN12H_carriage;
