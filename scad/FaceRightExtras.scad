@@ -49,13 +49,12 @@ module faceRightSpool(offsetX) {
 }
 
 module BowdenTube() {
-    explode([0, 200, 0])
-        color("white")
-            bezierTube(extruderPosition() + Extruder_Bracket_assembly_bowdenOffset(),
-                [carriagePosition().x, carriagePosition().y, eZ] + printheadBowdenOffset(),
-                tubeRadius=2,
-                bowdenTube=true,
-                length = eX + eY - 100);
+    color("white")
+        bezierTube(extruderPosition() + Extruder_Bracket_assembly_bowdenOffset(),
+            [carriagePosition().x, carriagePosition().y, eZ] + printheadBowdenOffset(),
+            tubeRadius=2,
+            bowdenTube=true,
+            length = eX + eY - 100);
 }
 
 /*
