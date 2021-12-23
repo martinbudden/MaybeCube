@@ -41,16 +41,16 @@ function xCarriageHoleSeparationTopMGN12H() = evaHoleSeparationTop; //45.4 - 8
 function xCarriageHoleSeparationBottomMGN12H() = 38;//34;//37.4; //45.4 - 8
 
 xCarriageBeltTensionerSizeX = 23;
+beltClampSize = [25, xCarriageBeltAttachmentSize(beltWidth(), beltSeparation()).x - 0.5, 4.5];
 
 
 module X_Carriage_Belt_Side_HC_16_stl() {
     xCarriageType = MGN12H_carriage;
     size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 1];
 
-    // orientate for printing
     stl("X_Carriage_Belt_Side_HC_16")
         color(pp4_colour)
-            rotate([90, 0, 0])
+            rotate([90, 0, 180])// orientate for printing
                 xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), endCube=true, HC=true);
 }
 
@@ -61,20 +61,18 @@ module X_Carriage_Belt_Side_16_stl() {
     // orientate for printing
     stl("X_Carriage_Belt_Side_16")
         color(pp4_colour)
-            rotate([90, 0, 0])
+            rotate([90, 0, 180])// orientate for printing
                 xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), HC=false);
 }
 
 module X_Carriage_Belt_Side_25_stl() {
     xCarriageType = MGN12H_carriage;
     size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 4];
-    echo(size=size);
 
-    // orientate for printing
     stl("X_Carriage_Belt_Side_25")
         color(pp4_colour)
-            rotate([90, 0, 0])
-                xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), endCube=true, pulley25=true);
+            rotate([90, 0, 180])// orientate for printing
+                xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), endCube=true, pulley25=true, HC=false);
 }
 
 //!Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensioners into the
@@ -88,7 +86,7 @@ assembly("X_Carriage_Belt_Side") {
     //echo(dTooth=pulley_pr(GT2x25x7x3_toothed_idler)-pulley_pr(GT2x16_toothed_idler));
     //echo(dPlain=pulley_pr(GT2x25x7x3_plain_idler)-pulley_pr(GT2x16_plain_idler));
 
-    rotate([-90, 0, 0])
+    rotate([-90, 180, 0])
         stl_colour(pp4_colour)
             if (isPulley25)
                 translate([0, 0, -offsetY25])
@@ -130,41 +128,28 @@ module X_Carriage_Belt_Tensioner_stl() {
             xCarriageBeltTensioner(xCarriageBeltTensionerSize(beltWidth(), xCarriageBeltTensionerSizeX));
 }
 
-module X_Carriage_Belt_Clamp_Buttonhead_16_stl() {
-    size = [xCarriageBeltAttachmentSize().x - 0.5, 25, 4.5];
-
-    stl("X_Carriage_Belt_Clamp_Buttonhead_16")
-        color(pp2_colour)
-            xCarriageBeltClamp(size);
-            /*translate([0, -size.y/2, 0])
-                difference() {
-                    fillet = 1;
-                    rounded_cube_xy(size, fillet);
-                    *for (x = [0, xCarriageBeltClampHoleSeparation()])
-                        translate([x + 3.2, size.y/2, 0])
-                            boltHoleM3(size.z, twist=4);
-                    for (y = [-xCarriageBeltClampHoleSeparation()/2, xCarriageBeltClampHoleSeparation()/2])
-                        translate([size.x/2 + 1.25, y + size.y/2, 0])
-                            boltHoleM3(size.z, twist=4);
-                }*/
-}
-
 module X_Carriage_Belt_Clamp_16_stl() {
-    size = [xCarriageBeltAttachmentSize(beltWidth(), beltSeparation()).x - 0.5, 25, 4.5];
-
     stl("X_Carriage_Belt_Clamp_16")
         color(pp2_colour)
-            vflip()
-                xCarriageBeltClamp(size, countersunk=true);
+            xCarriageBeltClamp(beltClampSize, offset=-1.75, countersunk=true);
+}
+
+module X_Carriage_Belt_Clamp_Buttonhead_16_stl() {
+    stl("X_Carriage_Belt_Clamp_Buttonhead_16")
+        color(pp2_colour)
+            xCarriageBeltClamp(beltClampSize, offset=-1.75);
 }
 
 module X_Carriage_Belt_Clamp_25_stl() {
-    size = [xCarriageBeltAttachmentSize(beltWidth(), beltSeparation()).x - 0.5, 25, 4.5];
-
     stl("X_Carriage_Belt_Clamp_25")
         color(pp2_colour)
-            vflip()
-                xCarriageBeltClamp(size, countersunk=true);
+            xCarriageBeltClamp(beltClampSize, offset=-1.75, countersunk=true);
+}
+
+module X_Carriage_Belt_Clamp_Buttonhead_25_stl() {
+    stl("X_Carriage_Belt_Clamp_Buttonhead_25")
+        color(pp2_colour)
+            xCarriageBeltClamp(beltClampSize, offset=-1.75);
 }
 
 module xCarriageBeltClampAssembly(xCarriageType, countersunk=true) {
@@ -172,21 +157,23 @@ module xCarriageBeltClampAssembly(xCarriageType, countersunk=true) {
 
     size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());
 
-    xCarriageBeltClampPosition(xCarriageType, size, beltWidth(), beltSeparation()) {
-        stl_colour(pp2_colour)
-            if (countersunk)
-                vflip()
+    isPulley25 = (_coreXYDescriptor == "GT2_20_25");
+    offsetY25 = isPulley25 ? 2.6 : 0;
+    translate([0, 5 + offsetY25, -size.z + xCarriageTopThickness() + xCarriageBaseThickness() + 0.5])
+        rotate([-90, 180, 0]) {
+            stl_colour(pp2_colour)
+                if (countersunk)
                     if (_coreXYDescriptor == "GT2_20_25")
                         X_Carriage_Belt_Clamp_25_stl();
                     else
                         X_Carriage_Belt_Clamp_16_stl();
-            else
-                if (_coreXYDescriptor == "GT2_20_25")
-                    X_Carriage_Belt_Clamp_Buttonhead_25_stl();
                 else
-                    X_Carriage_Belt_Clamp_Buttonhead_16_stl();
-        X_Carriage_Belt_Clamp_hardware(beltWidth(), beltSeparation(), countersunk=countersunk);
-    }
+                    if (_coreXYDescriptor == "GT2_20_25")
+                        X_Carriage_Belt_Clamp_Buttonhead_25_stl();
+                    else
+                        X_Carriage_Belt_Clamp_Buttonhead_16_stl();
+            X_Carriage_Belt_Clamp_hardware(beltClampSize, offset=-1.75, countersunk=countersunk);
+        }
 }
 
 module X_Carriage_Groovemount_HC_16_stl() {
