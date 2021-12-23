@@ -81,15 +81,13 @@ module X_Carriage_Belt_Side_25_stl() {
 module X_Carriage_Belt_Side_assembly(HC=true)
 assembly("X_Carriage_Belt_Side") {
 
-    isPulley25 = (_coreXYDescriptor == "GT2_20_25");
-    offsetY25 = 2.6;
     //echo(dTooth=pulley_pr(GT2x25x7x3_toothed_idler)-pulley_pr(GT2x16_toothed_idler));
     //echo(dPlain=pulley_pr(GT2x25x7x3_plain_idler)-pulley_pr(GT2x16_plain_idler));
 
     rotate([-90, 180, 0])
         stl_colour(pp4_colour)
-            if (isPulley25)
-                translate([0, 0, -offsetY25])
+            if (usePulley25())
+                translate([0, 0, -pulley25Offset])
                     X_Carriage_Belt_Side_25_stl();
             else
                 if (HC)
@@ -102,7 +100,7 @@ assembly("X_Carriage_Belt_Side") {
     boltLength = 40;
     gap = 0.1; // small gap so can see clearance when viewing model
     offset = [ 22.5,
-               beltTensionerSize.y - beltAttachmentOffsetY() + xCarriageBeltAttachmentCutoutOffset() + gap - (isPulley25 ? offsetY25 : 0),
+               beltTensionerSize.y - beltAttachmentOffsetY() + xCarriageBeltAttachmentCutoutOffset() + gap - pulley25Offset,
                -size.z + xCarriageTopThickness() + xCarriageBaseThickness() + 0.75];
     translate(offset) {
         translate([0, 0, beltWidth() + beltSeparation() - (beltTensionerSize.z - beltWidth())])
@@ -157,9 +155,7 @@ module xCarriageBeltClampAssembly(xCarriageType, countersunk=true) {
 
     size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());
 
-    isPulley25 = (_coreXYDescriptor == "GT2_20_25");
-    offsetY25 = isPulley25 ? 2.6 : 0;
-    translate([0, 5 + offsetY25, -size.z + xCarriageTopThickness() + xCarriageBaseThickness() + 0.5])
+    translate([0, 5 + pulley25Offset, -size.z + xCarriageTopThickness() + xCarriageBaseThickness() + 0.5])
         rotate([-90, 180, 0]) {
             stl_colour(pp2_colour)
                 if (countersunk)
@@ -235,13 +231,10 @@ module xCarriageGroovemountAssembly(HC=false) {
 
     rotate([0, -90, 0])
         stl_colour(pp1_colour)
-            if (_coreXYDescriptor == "GT2_20_25")
-                X_Carriage_Groovemount_stl();
+            if (HC)
+                X_Carriage_Groovemount_HC_16_stl();
             else
-                if (HC)
-                    X_Carriage_Groovemount_HC_16_stl();
-                else
-                    X_Carriage_Groovemount_stl();
+                X_Carriage_Groovemount_stl();
 
     grooveMountSize = grooveMountSize(blower_type, hotendDescriptor);
 

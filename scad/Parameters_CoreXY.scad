@@ -24,6 +24,8 @@ function coreXY_type() = _coreXYDescriptor == "GT2_20_16" ? coreXY_GT2_20_16 :
 function coreXYIdlerBore() = pulley_bore(coreXY_toothed_idler(coreXY_type()));
 function beltWidth() = belt_width(coreXY_belt(coreXY_type()));
 function beltSeparation() = coreXYSeparation().z - beltWidth();
+function usePulley25() = _coreXYDescriptor == "GT2_20_25" || _coreXYDescriptor == "GT2_20_25x9";
+pulley25Offset = usePulley25() ? 2.6 : 0;
 
 function yRailSupportThickness() = 3;
 function yRailShiftX() = 0; // limit it this to [-0.5, +1.25] avoid problems with yCarriage bolt interference
