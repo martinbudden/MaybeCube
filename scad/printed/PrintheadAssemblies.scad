@@ -82,20 +82,18 @@ module printheadBeltSide(rotate=0, explode=0, t=undef, HC=true) {
 module printheadHotendSide(rotate=0, explode=0, t=undef, HC=true) {
     xCarriageType = MGN12H_carriage;
     xCarriageBeltSideSize = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());
-    isPulley25 = (_coreXYDescriptor == "GT2_20_25");
-    offsetY25 = isPulley25 ? 2.6 : 0;
-    boltLength = isPulley25 ? 40 : (HC ? 30 : 40);
+    boltLength = usePulley25() ? 40 : (HC ? 30 : 40);
 
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
         explode(explode, true) {
             Printhead_E3DV6_assembly(HC=HC);
 
             explode([0, -20, 0], true)
-                translate([0, -offsetY25 + (isPulley25 ? 1 : 0), 0])
+                translate([0, -pulley25Offset + (usePulley25() ? 1 : 0), 0])
                     xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), countersunk=true, offsetT=xCarriageHoleOffsetTop());
             *translate([xCarriageFrontSize.x/2, 18, -18])
                 bl_touch_mount();
-            if (HC && !isPulley25)
+            if (HC && !usePulley25())
                 xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = [ [1, 1], [-1, 1] ]);
         }
 }
