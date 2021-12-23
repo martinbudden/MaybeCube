@@ -167,7 +167,7 @@ module faceTopBack(fov_distance=0) {
     }
 }
 
-module printHeadWiring() {
+module printheadWiring() {
     // don't show the incomplete cable if there are no extrusions to obscure it
     wireRadius = 2.5;
     bezierPos = wiringGuidePosition(cameraMountBaseSize.x/2, 5, eSize);

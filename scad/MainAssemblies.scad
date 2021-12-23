@@ -165,7 +165,7 @@ staged_assembly("Stage_5", big=true, ngb=true) {
         Face_Top_assembly();
         explode(50, true) {
             printheadHotendSide();
-            printHeadWiring();
+            printheadWiring();
         }
         if (is_undef(_useBackMounts) || _useBackMounts == false)
             explode([100, 0, 100])
