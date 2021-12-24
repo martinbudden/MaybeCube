@@ -21,8 +21,8 @@ include <Parameters_Main.scad>
 module KinematicBed_assembly()
 assembly("KinematicBed", big=true) {
 
-    Left_Side_assembly(bedHeight=bedHeight(), printBedKinematic=true);
-    Right_Side_assembly(bedHeight=bedHeight(), printBedKinematic=true, sideAssemblies=false);
+    Left_Side_assembly(bedHeight());
+    Right_Side_assembly(bedHeight());
     Base_Plate_assembly();
     translate_z(bedHeight())
         jubilee_build_plate();
