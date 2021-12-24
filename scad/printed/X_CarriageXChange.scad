@@ -12,12 +12,13 @@ include <../vitamins/bolts.scad>
 use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
 
+include <../Parameters_CoreXY.scad>
 include <../Parameters_Main.scad>
 
 
 module X_Carriage_XChange_stl() {
     xCarriageType = MGN12H_carriage;
-    size = xCarriageHotendSideSizeM(xCarriageType, beltWidth=6, beltSeparation());
+    size = xCarriageHotendSideSizeM(xCarriageType, beltWidth=6, beltSeparation=beltSeparation());
     topThickness = xCarriageTopThickness();
     railCarriageGap = 0.5;
     topSizeZ = 18.05 + railCarriageGap - 4.5;
@@ -65,7 +66,7 @@ module X_Carriage_XChange_stl() {
 
 module X_Carriage_XChange_hardware() {
     xCarriageType = MGN12H_carriage;
-    size = xCarriageHotendSideSizeM(xCarriageType, beltWidth=6, beltSeparation());
+    size = xCarriageHotendSideSizeM(xCarriageType, beltWidth=6, beltSeparation=beltSeparation());
     topThickness = xCarriageTopThickness();
     holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
     holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
