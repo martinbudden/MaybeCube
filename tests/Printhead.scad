@@ -33,12 +33,12 @@ module Printhead_test() {
     echo(coreXYSeparation=coreXYSeparation());
     carriagePosition = carriagePosition();
 
+    halfCarriage = true;
     translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
         CoreXYBelts(carriagePosition - [4, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
         //fullPrinthead(accelerometer=true);
-        HC = true;
-        printheadBeltSide(HC=HC);
-        printheadHotendSide(HC=HC);
+        printheadBeltSide(halfCarriage);
+        printheadHotendSide(halfCarriage=halfCarriage);
         //printheadEVA();
         //printheadVoronAfterburner();
         //printheadXChange();
@@ -53,8 +53,8 @@ module Printhead_test() {
         translate_z(eZ)
             xRail(carriagePosition);
         xRailCarriagePosition(carriagePosition) {
-            //Printhead_E3DV6_assembly(HC=HC);
-            X_Carriage_Belt_Side_assembly(HC=HC);
+            //Printhead_E3DV6_assembly();
+            X_Carriage_Belt_Side_assembly();
             xCarriageGroovemountAssembly();
         }
     }
