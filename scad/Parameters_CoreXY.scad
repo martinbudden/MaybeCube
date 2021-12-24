@@ -11,8 +11,10 @@ coreXY_GT2x9_20_20= ["coreXY_20_20x9", GT2x9, GT2x20x11_pulley, GT2x20x11x3_toot
 coreXY_GT2x9_20_25= ["coreXY_20_25x9", GT2x9, GT2x20x11_pulley, GT2x25x11x3_toothed_idler, GT2x25x11x3_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
 
 useXYDirectDrive = !is_undef(_useXYDirectDrive) && _useXYDirectDrive;
-largePulleyOffset = (_coreXYDescriptor == "GT2_20_25" || _coreXYDescriptor == "GT2_20_25x9") ? 3 : 0;
-largePulleyOffsetTop = (_coreXYDescriptor == "GT2_20_25" || _coreXYDescriptor == "GT2_20_25x9") ? 5.5 : 0;
+function usePulley25() = _coreXYDescriptor == "GT2_20_25" || _coreXYDescriptor == "GT2_20_25x9";
+pulley25Offset = usePulley25() ? 2.6 : 0;
+largePulleyOffset = usePulley25() ? 3 : 0;
+largePulleyOffsetTop = usePulley25() ? 5.5 : 0;
 
 function coreXY_type() = _coreXYDescriptor == "GT2_20_16" ? coreXY_GT2_20_16 :
                          _coreXYDescriptor == "GT2_20_20" ? coreXY_GT2_20_20 :
@@ -24,8 +26,6 @@ function coreXY_type() = _coreXYDescriptor == "GT2_20_16" ? coreXY_GT2_20_16 :
 function coreXYIdlerBore() = pulley_bore(coreXY_toothed_idler(coreXY_type()));
 function beltWidth() = belt_width(coreXY_belt(coreXY_type()));
 function beltSeparation() = coreXYSeparation().z - beltWidth();
-function usePulley25() = _coreXYDescriptor == "GT2_20_25" || _coreXYDescriptor == "GT2_20_25x9";
-pulley25Offset = usePulley25() ? 2.6 : 0;
 
 function yRailSupportThickness() = 3;
 function yRailShiftX() = 0; // limit it this to [-0.5, +1.25] avoid problems with yCarriage bolt interference

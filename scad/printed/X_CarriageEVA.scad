@@ -210,11 +210,13 @@ module EVA_MC_BottomMgn12(ductSizeY=undef, airflowSplit=false) {
             translate([0, (size.y - 1.5)/2, 0])
                 cube([tabSize.x, 1.5, tabSize.z]);
 
+        beltAttachmentSize = xCarriageBeltAttachmentSize(beltWidth(), beltSeparation(), size.y);
         extraZ = 0.5;
         translate_z(extraZ)
-            xCarriageBeltAttachment(size.y);
-        translate([-xCarriageBeltAttachmentSize().x, 0, 0])
-            cube([xCarriageBeltAttachmentSize().x, size.y, extraZ]);
+            rotate(90)
+                xCarriageBeltAttachment(beltAttachmentSize, beltWidth(), beltSeparation());
+        translate([-beltAttachmentSize.x, 0, 0])
+            cube([beltAttachmentSize.x, size.y, extraZ]);
     }
 }
 

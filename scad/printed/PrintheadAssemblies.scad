@@ -60,40 +60,40 @@ module printheadAssembly() {
 //!3. Assemble the E3D hotend, including fan, thermistor cartridge and heater cartridge.
 //!4. Use the **Hotend_Clamp** to attach the E3D hotend to the X_Carriage.
 //!5. Collect the wires together, wrap them in spiral wrap, and secure them to the X_Carriage using the zipties. Note that the wiring is not shown in this diagram.
-module Printhead_E3DV6_assembly(HC=true) pose(a=[55, 0, 25 + 180])
+module Printhead_E3DV6_assembly() pose(a=[55, 0, 25 + 180])
 assembly("Printhead_E3DV6", big=true) {
 
-    xCarriageGroovemountAssembly(HC);
+    xCarriageGroovemountAssembly();
     printheadAssembly();
 }
 
-module printheadBeltSide(rotate=0, explode=0, t=undef, HC=true) {
+module printheadBeltSide(halfCarriage=false, rotate=0, explode=0, t=undef) {
     xCarriageType = MGN12H_carriage;
 
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
         explode(explode, true) {
             explode([0, -20, 0], true)
-                X_Carriage_Belt_Side_assembly(HC);
-            xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = HC ? [ [1, -1], [-1, -1] ] : [ [1, -1], [-1, -1], [1, 1], [-1, 1] ]);
+                X_Carriage_Belt_Side_assembly();
+            xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = halfCarriage ? [ [1, -1], [-1, -1] ] : [ [1, -1], [-1, -1], [1, 1], [-1, 1] ]);
             xCarriageBeltClampAssembly(xCarriageType);
         }
 }
 
-module printheadHotendSide(rotate=0, explode=0, t=undef, HC=true) {
+module printheadHotendSide(rotate=0, explode=0, t=undef, halfCarriage=false) {
     xCarriageType = MGN12H_carriage;
     xCarriageBeltSideSize = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());
-    boltLength = usePulley25() ? 40 : (HC ? 30 : 40);
+    boltLength = usePulley25() ? 40 : (halfCarriage ? 30 : 40);
 
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
         explode(explode, true) {
-            Printhead_E3DV6_assembly(HC=HC);
+            Printhead_E3DV6_assembly();
 
             explode([0, -20, 0], true)
                 translate([0, -pulley25Offset + (usePulley25() ? 1 : 0), 0])
                     xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), countersunk=true, offsetT=xCarriageHoleOffsetTop());
             *translate([xCarriageFrontSize.x/2, 18, -18])
                 bl_touch_mount();
-            if (HC && !usePulley25())
+            if (halfCarriage && !usePulley25())
                 xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = [ [1, 1], [-1, 1] ]);
         }
 }

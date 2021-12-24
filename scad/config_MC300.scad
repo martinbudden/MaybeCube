@@ -27,6 +27,7 @@ _useDualZRods = false;
 _useDualZMotors = false;
 _useFrontDisplay = true;
 _useSidePanels = false;
+_useHalfCarriage = true;
 
 _printBedSize = [214, 214, 4];
 _printBedArmSeparation = 188;

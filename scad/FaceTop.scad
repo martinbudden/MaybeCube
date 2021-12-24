@@ -105,7 +105,8 @@ assembly("Face_Top", big=true) {
 
     Face_Top_Stage_2_assembly();
 
-    printheadBeltSide(explode=100);
+    halfCarriage = (!is_undef(_useHalfCarriage) && _useHalfCarriage==true);
+    printheadBeltSide(halfCarriage=halfCarriage, explode=100);
     if (!exploded())
         CoreXYBelts(carriagePosition());
 }
