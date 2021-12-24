@@ -75,7 +75,6 @@ module CoreXY_test() {
     XY_Idler_Left_assembly();
     XY_Idler_Right_assembly();
 
-    //XY_Motor_Mount_Left_stl();
     XY_Motor_Mount_Left_assembly();
     XY_Motor_Mount_Right_assembly();
 }
