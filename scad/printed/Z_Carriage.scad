@@ -90,8 +90,9 @@ module zCarriageSCS(cnc=false) {
         if (!cnc)
             translate([-baseSize.x/2, baseSize.y/2 - eSize - shelfThickness, 0])
                 difference() {
-                    rounded_cube_xy([baseSize.x + shelfExtension, shelfThickness, eSize + baseSize.z], uprightFillet);
-                    translate([10, 0, baseSize.z + eSize/2])
+                    sizeX = baseSize.x + shelfExtension + (useTab ? 0 : 1);
+                    rounded_cube_xy([sizeX, shelfThickness, eSize + baseSize.z], uprightFillet);
+                    translate([useTab ? 10 : sizeX/2, 0, baseSize.z + eSize/2])
                         rotate([-90, 180, 0])
                             boltHoleM4(shelfThickness, horizontal=true);
                 }
@@ -105,7 +106,7 @@ module zCarriageSCS_hardware(cnc=false) {
                 vflip()
                     boltM4ButtonheadTNut(_frameBoltLength, 3.25);
         if (!cnc)
-            translate([10 - baseSize.x/2, baseSize.y/2 - eSize -shelfThickness, baseSize.z + eSize/2])
+            translate([useTab ? (10 - baseSize.x/2) : 0.5, baseSize.y/2 - eSize -shelfThickness, baseSize.z + eSize/2])
                 rotate([-90, 0, 0])
                     vflip()
                         boltM4ButtonheadTNut(_frameBoltLength);
