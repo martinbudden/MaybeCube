@@ -233,7 +233,7 @@ module X_Carriage_Groovemount_stl() {
                 difference() {
                     union() {
                         xCarriageBack(xCarriageType, size, 0, holeSeparationTop, holeSeparationBottom, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), accelerometerOffset=accelerometerOffset());
-                        hotEndHolder(xCarriageType, xCarriageHotendSideSizeM(xCarriageType, 0, 0), grooveMountSize, hotendOffset, hotendDescriptor, blower_type, baffle=false, left=false);
+                        hotEndHolder(xCarriageType, xCarriageHotendSideSizeM(xCarriageType, 0, 0), grooveMountSize, hotendOffset, hotendDescriptor, blower_type, baffle=true, left=false);
                     }
                     xCarriageHotendSideHolePositions()
                         insertHoleM3(size.y, horizontal=true);
@@ -264,7 +264,7 @@ module xCarriageGroovemountAssembly() {
                 X_Carriage_Groovemount_stl();
         xCarriageHotendSideHolePositions()
             vflip()
-                _threadedInsertM3();
+                threadedInsertM3();
     }
 
     grooveMountSize = grooveMountSize(blower_type, hotendDescriptor);
