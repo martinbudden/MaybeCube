@@ -278,7 +278,6 @@ module Partition_dxf() {
 module partitionCutouts(cncSides) {
     size = partitionSize();
 
-    echo(xySize=xyMotorMountSize());
     leftCutoutSize = [size.x - eSize - xyMotorMountSize(left=false).x, xyMotorMountSize(left=true).z - 2.5];
     rightCutoutSize = [eSize + xyMotorMountSize(left=false).x, xyMotorMountSize(left=false).z - 2.5];
     translate([-size.x/2, -size.y/2]) {
