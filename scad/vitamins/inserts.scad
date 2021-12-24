@@ -32,13 +32,12 @@ module brassKnurlHoleM3Bridged(length=0, tolerance=brassKnurlTolerance, nutDepth
     *boltHoleM3(length, tolerance);
 }
 
-module _threadedInsertM3() {
+module threadedInsertM3() {
     boltColorBrass = "#B5A642";
-    if ($preview&&is_undef($hide_bolts)) color(boltColorBrass) insert(F1BM3);
+    if ($preview && is_undef($hide_bolts)) color(boltColorBrass) insert(F1BM3);
 }
 
 module insertHoleM3(length, horizontal=false) {
-    insert_type = F1BM3;
-    boltHole(2*insert_hole_radius(insert_type), 5, horizontal=horizontal);
+    boltHole(2*insert_hole_radius(F1BM3), 5, horizontal=horizontal);
     boltHoleM3(length, horizontal=horizontal, twist=4);
 }
