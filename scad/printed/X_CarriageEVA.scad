@@ -4,6 +4,7 @@ use <NopSCADlib/utils/fillet.scad>
 use <NopSCADlib/utils/tube.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
+use <../../../BabyCube/scad/printed/X_Carriage.scad>
 use <../../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 use <X_CarriageAssemblies.scad>
 
@@ -111,21 +112,26 @@ module evaHotendBaseFrontHardware(explode=40) {
 }
 
 module evaBeltClampPosition() {
-    xCarriageBeltClampPosition(MGN12H_carriage, bottomMgn12Size, beltWidth(), beltSeparation())
-        children();
+//    xCarriageBeltClampPosition(MGN12H_carriage, bottomMgn12Size, beltWidth(), beltSeparation())
+    pulley25Offset = 0;
+    size = xCarriageBeltSideSizeM(MGN12H_carriage, beltWidth(), beltSeparation());
+
+    translate([0, -5 + pulley25Offset, -size.z + xCarriageTopThickness() + xCarriageBaseThickness() + 0.5])
+        rotate([90, 0, 0])
+            children();
 }
 
 module evaBeltClamp() {
     evaBeltClampPosition()
-        translate_z(4.5)
-            X_Carriage_Belt_Clamp_16_stl();
+        X_Carriage_Belt_Clamp_16_stl();
 }
 
 module evaBeltClampHardware() {
-    evaBeltClampPosition()
-        translate_z(4.5)
-            vflip()
-                X_Carriage_Belt_Clamp_hardware(beltWidth(), beltSeparation(), countersunk=true);
+    size = xCarriageBeltSideSizeM(MGN12H_carriage, beltWidth(), beltSeparation());
+    echo(xxx=size);
+    translate([0, 52, 6])
+        evaBeltClampPosition()
+            X_Carriage_Belt_Clamp_hardware(size, countersunk=true);
 }
 
 module evaBeltTensionerPositions(explode=0) {

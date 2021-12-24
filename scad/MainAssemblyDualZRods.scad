@@ -21,12 +21,12 @@ include <Parameters_Main.scad>
 module DualZRods_assembly()
 assembly("DualZRods", big=true) {
 
-    Left_Side_assembly(bedHeight=bedHeight(), printBedKinematic=false);
+    Left_Side_assembly(bedHeight());
     zRods();
     zMotor();
     translate_z(bedHeight())
         Printbed_assembly();
-    Right_Side_assembly(bedHeight=bedHeight(), printBedKinematic=false, sideAssemblies=false);
+    Right_Side_assembly(bedHeight());
     zRods(left=false);
     Base_Plate_assembly();
 }

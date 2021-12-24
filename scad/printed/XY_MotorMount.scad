@@ -45,9 +45,6 @@ GT2x20sd_pulley      = ["GT2x20sd_pulley",      "GT2sd", 20, 12.22, GT2x6,  7.0,
 //GT2x20um_pulley    = ["GT2x20um_pulley",      "GT2UM", 20, 12.22, GT2x6,  7.5,  18, 6.5, 5, 18.0, 1.0, 6, 3.75, M3_grub_screw, 2]; //Ultimaker
 //GT2x20ob_pulley    = ["GT2x20ob_pulley",      "GT2OB", 20, 12.22, GT2x6,  7.5,  16, 5.5, 5, 16.0, 1.0, 6, 3.25, M3_grub_screw, 2]; //Openbuilds
 
-
-useMotorIdlerLarge = pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15;
-
 basePlateThickness = 6.5;
 partitionExtension = 6;
 bracketThickness = 5;
@@ -56,15 +53,15 @@ bracketHeightLeft = bracketHeightRight + coreXYSeparation().z;
 braceThickness = 5;
 braceCountersunk = true;
 pulleyStackHeight = 2*washer_thickness(coreXYIdlerBore() == 3 ? M3_washer : coreXYIdlerBore() == 4 ? M4_washer : M5_washer) + pulley_height(coreXY_plain_idler(coreXY_type()));
-sizeP = [useMotorIdlerLarge ? 8.5 : 9, 8.5, pulleyStackHeight + 0.5];
+sizeP = [usePulley25() ? 8.5 : 9, 8.5, pulleyStackHeight + 0.5];
 sizeT = [8.5, 9, sizeP.z];
-offsetP = useMotorIdlerLarge ? [-4.5, -4.5, 0] : [-4.5, -5.25, 0];
-offsetT = useMotorIdlerLarge ? [-4.5, -5, 0] : [-3.25, -4.5, 0];
+offsetP = usePulley25() ? [-4.5, -4.5, 0] : [-4.5, -5.25, 0];
+offsetT = usePulley25() ? [-4.5, -5, 0] : [-3.25, -4.5, 0];
 
 function xyMotorMountSize(motorWidth = motorWidth(motorType(_xyMotorDescriptor)), offset = [0, 0], left=true)
     = [ eX + 2*eSize + coreXY_drive_pulley_x_alignment(coreXY_type()) + motorWidth/2 + offset.x + 5,
-        eY + 2*eSize + motorWidth/2 - (left ? offset.y : -offset.y) + (pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 1 : 1),
-        eZ + basePlateThickness - bracketHeightRight + (left ? bracketHeightLeft : bracketHeightRight)] - coreXYPosTR(motorWidth);
+        eY + 2*eSize + motorWidth/2 - (left ? offset.y : -offset.y) + 1,
+        eZ + basePlateThickness + (left ? coreXYSeparation().z : 0)] - coreXYPosTR(motorWidth);
 
 function upperBoltPositions(sizeX) = [eSize/2 + 3, sizeX - 3*eSize/2 - 8];
 leftDrivePlainIdlerOffset    = [plainIdlerPulleyOffset().x, plainIdlerPulleyOffset().y, 0];
@@ -590,7 +587,7 @@ assembly("XY_Motor_Mount_Left", ngb=true) {
 
     translate_z(eZ - eSize - basePlateThickness - bracketHeightLeft) {
         stl_colour(pp1_colour)
-            if (useMotorIdlerLarge)
+            if (usePulley25())
                 XY_Motor_Mount_Left_25_stl();
             else
                 XY_Motor_Mount_Left_16_stl();
@@ -598,7 +595,7 @@ assembly("XY_Motor_Mount_Left", ngb=true) {
         if (offset.x != 0)
             stl_colour(pp2_colour)
                 explode(25)
-                    if (useMotorIdlerLarge)
+                    if (usePulley25())
                         XY_Motor_Mount_Brace_Left_25_stl();
                     else
                         XY_Motor_Mount_Brace_Left_16_stl();
@@ -647,7 +644,7 @@ assembly("XY_Motor_Mount_Right", ngb=true) {
 
     translate_z(eZ - eSize - basePlateThickness - bracketHeightRight) {
         stl_colour(pp1_colour)
-            if (useMotorIdlerLarge)
+            if (usePulley25())
                 XY_Motor_Mount_Right_25_stl();
             else
                 XY_Motor_Mount_Right_16_stl();
@@ -655,7 +652,7 @@ assembly("XY_Motor_Mount_Right", ngb=true) {
         if (offset.x != 0)
             stl_colour(pp2_colour)
                 explode(25)
-                    if (useMotorIdlerLarge)
+                    if (usePulley25())
                         XY_Motor_Mount_Brace_Right_25_stl();
                     else
                         XY_Motor_Mount_Brace_Right_16_stl();
