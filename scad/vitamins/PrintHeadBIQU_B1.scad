@@ -5,7 +5,7 @@ include <NopSCADlib/vitamins/fans.scad>
 include <NopSCADlib/vitamins/microswitches.scad>
 
 include <../vitamins/bolts.scad>
-use <../vitamins/cables.scad>
+include <../vitamins/cables.scad>
 
 include <../Parameters_Main.scad>
 

@@ -7,7 +7,7 @@ include <NopSCADlib/vitamins/bldc_motors.scad>
 include <../utils/motorTypes.scad>
 
 include <../vitamins/bolts.scad>
-use <../vitamins/cables.scad>
+include <../vitamins/cables.scad>
 
 use <XY_MotorMount.scad>
 
