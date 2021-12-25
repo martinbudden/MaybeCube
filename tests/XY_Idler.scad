@@ -1,11 +1,9 @@
 //!Display the left and right idlers.
 include <../scad/printed/XY_Idler.scad>
 include <../scad/utils/CoreXYBelts.scad>
-include <NopSCADlib/vitamins/rails.scad>
 
-use <../scad/utils/carriageTypes.scad>
+include <../scad/utils/carriageTypes.scad>
 use <../scad/Parameters_Positions.scad>
-include <../scad/Parameters_Main.scad>
 
 
 //$pose = 1;

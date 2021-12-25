@@ -2,8 +2,6 @@
 
 include <../scad/global_defs.scad>
 
-include <NopSCADlib/vitamins/rails.scad>
-
 //use <../scad/printed/extruderBracket.scad>
 //use <../scad/printed/IEC_Housing.scad>
 use <../scad/printed/JubileeKinematicBed.scad>
@@ -13,9 +11,9 @@ include <../scad/utils/printParameters.scad>
 include <../scad/utils/Z_Rods.scad>
 //use <../scad/vitamins/Panels.scad>
 
-include <../scad/FaceLeft.scad>
-//include <../scad/FaceRight.scad>
-include <../scad/FaceTop.scad>
+use <../scad/FaceLeft.scad>
+//use <../scad/FaceRight.scad>
+//use <../scad/FaceTop.scad>
 use <../scad/PrintBed.scad>
 
 use <../scad/Parameters_Positions.scad>

@@ -7,7 +7,6 @@ include <../scad/utils/printParameters.scad>
 include <../scad/utils/CoreXYBelts.scad>
 
 use <../scad/Parameters_Positions.scad>
-include <../scad/Parameters_Main.scad>
 
 
 //$pose = 1;

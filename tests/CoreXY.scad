@@ -18,7 +18,6 @@ include <../scad/utils/X_Rail.scad>
 include <../scad/vitamins/bolts.scad>
 include <../scad/vitamins/extrusion.scad>
 
-include <../scad/Parameters_CoreXY.scad>
 use <../scad/Parameters_Positions.scad>
 
 //$vpr = [55,0,25];

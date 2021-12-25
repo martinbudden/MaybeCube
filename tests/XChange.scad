@@ -13,7 +13,6 @@ include <../scad/utils/X_Rail.scad>
 include <../scad/vitamins/bolts.scad>
 
 use <../scad/Parameters_Positions.scad>
-include <../scad/Parameters_Main.scad>
 
 //$explode = 1;
 //$pose = 1;

@@ -1,6 +1,5 @@
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/pillow_blocks.scad>
-include <NopSCADlib/vitamins/rails.scad>
 include <NopSCADlib/vitamins/rod.scad>
 include <NopSCADlib/vitamins/sk_brackets.scad>
 
@@ -8,13 +7,9 @@ use <../printed/E20Cover.scad>
 use <../printed/JubileeKinematicBed.scad>
 use <../printed/Z_MotorMount.scad>
 
-include <../utils/carriageTypes.scad>
-
 include <../vitamins/bolts.scad>
 include <../vitamins/extrusion.scad>
 include <../vitamins/nuts.scad>
-
-include <../Parameters_Main.scad>
 
 
 function useBackMounts() = !is_undef(_useBackMounts) && _useBackMounts;

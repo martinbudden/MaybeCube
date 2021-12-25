@@ -6,7 +6,7 @@ $pp2_colour = "limegreen";
 $pp3_colour = grey(25);
 $pp4_colour = "steelblue";
 
-include <NopSCADlib/vitamins/rails.scad>
+include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/blowers.scad>
 include <NopSCADlib/vitamins/e3d.scad>
 include <NopSCADlib/vitamins/fans.scad>
@@ -17,13 +17,11 @@ use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/X_CarriageEVA.scad>
 use <../scad/printed/Y_CarriageAssemblies.scad>
 
-use <../scad/utils/carriageTypes.scad>
 include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/X_Rail.scad>
 
 include <../scad/vitamins/bolts.scad>
 
-include <../scad/Parameters_CoreXY.scad>
 use <../scad/Parameters_Positions.scad>
 
 //$explode = 1;

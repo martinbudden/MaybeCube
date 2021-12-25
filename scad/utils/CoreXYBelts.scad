@@ -1,4 +1,3 @@
-include <NopSCADlib/utils/core/core.scad>
 use <NopSCADlib/utils/core_xy.scad>
 
 include <../Parameters_CoreXY.scad>

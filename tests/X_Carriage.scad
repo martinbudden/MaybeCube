@@ -1,15 +1,13 @@
 //! Display the X carriage
 
 include <../scad/global_defs.scad>
-include <NopSCADlib/vitamins/rails.scad>
-include <NopSCADlib/vitamins/blowers.scad>
 
 use <../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 
 use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/X_CarriageAssemblies.scad>
 
-use <../scad/utils/carriageTypes.scad>
+include <../scad/utils/carriageTypes.scad>
 
 include <../scad/Parameters_Main.scad>
 

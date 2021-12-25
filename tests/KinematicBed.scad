@@ -7,17 +7,10 @@ include <../scad/global_defs.scad>
 include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/printed/JubileeKinematicBed.scad>
-use <../scad/printed/Z_MotorMount.scad>
-include <../scad/utils/Z_Rods.scad>
-include <../scad/vitamins/bolts.scad>
-
 use <../scad/BasePlate.scad>
 use <../scad/FaceLeft.scad>
 use <../scad/FaceRight.scad>
 //use <../scad/FaceTop.scad>
-
-include <../scad/Parameters_Positions.scad>
-include <../scad/Parameters_Main.scad>
 
 //$explode = 1;
 //$pose = 1;

@@ -46,7 +46,6 @@ use <../scad/FaceLeft.scad>
 use <../scad/FaceRight.scad>
 use <../scad/PrintBed.scad>
 
-include <../scad/Parameters_CoreXY.scad>
 use <../scad/Parameters_Positions.scad>
 
 

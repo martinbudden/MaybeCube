@@ -6,13 +6,13 @@ use <../scad/printed/XY_MotorMount.scad>
 include <../scad/utils/CoreXYBelts.scad>
 
 use <../scad/Parameters_Positions.scad>
-include <../scad/Parameters_Main.scad>
 
 
 //$explode = 1;
 //$pose=1;
 module XY_Motor_Mount_test() {
     //XY_Motor_Mount_Left_16_stl();
+    //XY_Motor_Mount_Brace_Left_16_stl();
     //XY_Motor_Mount_Right_16_stl();
     translate_z(-eZ + eSize) {
         if (is_undef($explode))

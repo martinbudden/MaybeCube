@@ -18,11 +18,11 @@ use <BackFace.scad>
 use <BasePlate.scad>
 use <FaceLeft.scad>
 use <FaceRight.scad>
-use <FaceRightExtras.scad>
+include <FaceRightExtras.scad>
 use <FaceTop.scad>
 use <PrintBed.scad>
 
-include <Parameters_Main.scad>
+use <Parameters_Positions.scad>
 
 
 printBedKinematic = !is_undef(_printBedKinematic) && _printBedKinematic == true;
@@ -170,7 +170,7 @@ staged_assembly("Stage_5", big=true, ngb=true) {
         }
         if (is_undef(_useBackMounts) || _useBackMounts == false)
             explode([100, 0, 100])
-                BowdenTube();
+                BowdenTube(carriagePosition());
     }
 }
 

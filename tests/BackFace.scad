@@ -7,14 +7,13 @@ use <../scad/printed/PSU.scad>
 use <../scad/printed/XY_MotorMount.scad>
 use <../scad/BackFace.scad>
 use <../scad/BasePlate.scad>
-use <../scad/FaceLeft.scad>
-use <../scad/FaceRight.scad>
-use <../scad/FaceRightExtras.scad>
-use <../scad/FaceTop.scad>
+//use <../scad/FaceLeft.scad>
+//use <../scad/FaceRight.scad>
+//include <../scad/FaceRightExtras.scad>
+//use <../scad/FaceTop.scad>
 use <../scad/vitamins/Panels.scad>
 
 use <../scad/Parameters_Positions.scad>
-include <../scad/Parameters_Main.scad>
 
 //$explode = 1;
 //$pose = 1;

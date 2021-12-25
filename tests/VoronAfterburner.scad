@@ -2,19 +2,15 @@
 
 include <../scad/global_defs.scad>
 
-include <NopSCADlib/vitamins/rails.scad>
-
 use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/Y_CarriageAssemblies.scad>
 use <../scad/MainAssemblyVoronAfterburner.scad>
 
-use <../scad/utils/carriageTypes.scad>
 include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/X_Rail.scad>
 
 
 use <../scad/Parameters_Positions.scad>
-include <../scad/Parameters_Main.scad>
 
 //$explode = 1;
 //$pose = 1;

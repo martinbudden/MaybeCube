@@ -1,7 +1,6 @@
 include <global_defs.scad>
 
 use <NopSCADlib/utils/fillet.scad>
-include <NopSCADlib/vitamins/rails.scad>
 
 include <printed/CameraMount.scad>
 use <printed/Handle.scad>
@@ -12,8 +11,8 @@ use <printed/XY_MotorMount.scad>
 use <printed/XY_Idler.scad>
 use <printed/Y_CarriageAssemblies.scad>
 
-use <utils/bezierTube.scad>
-use <utils/carriageTypes.scad>
+include <utils/bezierTube.scad>
+include <utils/carriageTypes.scad>
 include <utils/CoreXYBelts.scad>
 include <utils/FrameBolts.scad>
 include <utils/RailNutsAndBolts.scad>
@@ -23,7 +22,6 @@ include <utils/X_Rail.scad>
 include <vitamins/bolts.scad>
 include <vitamins/extrusion.scad>
 
-include <Parameters_CoreXY.scad>
 use <Parameters_Positions.scad>
 
 function use2060ForTop() = !is_undef(_use2060ForTop) && _use2060ForTop;

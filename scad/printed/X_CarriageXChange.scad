@@ -1,10 +1,9 @@
 include <../global_defs.scad>
 
 use <NopSCADlib/utils/fillet.scad>
-include <NopSCADlib/vitamins/rails.scad>
 
 use <../printed/X_CarriageAssemblies.scad>
-use <../utils/carriageTypes.scad>
+include <../utils/carriageTypes.scad>
 include <../utils/PrintheadOffsets.scad>
 
 include <../vitamins/bolts.scad>
