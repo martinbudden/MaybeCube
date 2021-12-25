@@ -1,21 +1,17 @@
 //! Display the print head
 
-include <NopSCADlib/vitamins/rails.scad>
-
 use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/X_CarriageAssemblies.scad>
 use <../scad/printed/X_CarriageEVA.scad>
 use <../scad/MainAssemblyXChange.scad>
 use <../scad/MainAssemblyVoronAfterburner.scad>
 
-use <../scad/utils/carriageTypes.scad>
 include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/X_Rail.scad>
 include <../scad/vitamins/bolts.scad>
 
 use <../../BabyCube/scad/printed/X_Carriage.scad>
 
-include <../scad/Parameters_CoreXY.scad>
 use <../scad/Parameters_Positions.scad>
 
 

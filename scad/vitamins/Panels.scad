@@ -8,7 +8,7 @@ use <../printed/extrusionChannels.scad>
 use <../printed/IEC_Housing.scad>
 
 include <../vitamins/bolts.scad>
-use <../vitamins/filament_sensor.scad>
+include <../vitamins/filament_sensor.scad>
 include <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>

@@ -15,12 +15,11 @@ include <../scad/utils/CoreXYBelts.scad>
 use <../scad/vitamins/Panels.scad>
 
 use <../scad/FaceRight.scad>
-use <../scad/FaceRightExtras.scad>
-use <../scad/FaceLeft.scad>
-use <../scad/FaceTop.scad>
+include <../scad/FaceRightExtras.scad>
+//use <../scad/FaceLeft.scad>
+//use <../scad/FaceTop.scad>
 
 use <../scad/Parameters_Positions.scad>
-include <../scad/Parameters_Main.scad>
 
 
 //$explode = 1;

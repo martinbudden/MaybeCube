@@ -1,20 +1,12 @@
-include <global_defs.scad>
-
-include <NopSCADlib/utils/core/core.scad>
-
-use <NopSCADlib/vitamins/iec.scad>
 include <NopSCADlib/vitamins/spools.scad>
 
 use <printed/extruderBracket.scad>
 use <printed/SpoolHolder.scad>
 
-use <utils/bezierTube.scad>
+include <utils/bezierTube.scad>
 include <utils/printheadOffsets.scad>
 
 use <vitamins/Panels.scad>
-
-use <Parameters_Positions.scad>
-include <Parameters_Main.scad>
 
 
 function spoolHolderPosition(offsetX) = [eX + 2*eSize + 10 + offsetX, eY/2 + (eY < 350 ? 30 : 55), spoolHeight() + 2*eSize];
@@ -48,10 +40,10 @@ module faceRightSpool(offsetX) {
                     spool(spool, 46, "DeepSkyBlue", 1.75);
 }
 
-module BowdenTube() {
+module BowdenTube(carriagePosition) {
     color("white")
         bezierTube(extruderPosition() + Extruder_Bracket_assembly_bowdenOffset(),
-            [carriagePosition().x, carriagePosition().y, eZ] + printheadBowdenOffset(),
+            [carriagePosition.x, carriagePosition.y, eZ] + printheadBowdenOffset(),
             tubeRadius=2,
             bowdenTube=true,
             length = eX + eY - 100);

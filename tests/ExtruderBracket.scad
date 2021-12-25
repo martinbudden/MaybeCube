@@ -3,7 +3,7 @@
 include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/printed/ExtruderBracket.scad>
-use <../scad/vitamins/filament_sensor.scad>
+include <../scad/vitamins/filament_sensor.scad>
 use <../../BabyCube/scad/vitamins/extruder.scad>
 
 

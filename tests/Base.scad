@@ -10,9 +10,9 @@ use <../scad/printed/BaseFrontCover.scad>
 use <../scad/printed/ControlPanel.scad>
 
 use <../scad/BasePlate.scad>
-use <../scad/FaceLeft.scad>
-use <../scad/FaceRight.scad>
-use <../scad/FaceRightExtras.scad>
+//use <../scad/FaceLeft.scad>
+//use <../scad/FaceRight.scad>
+//include <../scad/FaceRightExtras.scad>
 
 include <../scad/Parameters_Main.scad>
 

@@ -4,7 +4,7 @@ include <NopSCADlib/utils/core/core.scad>
 include <../scad/vitamins/Panels.scad>
 include <../scad/vitamins/extrusion.scad>
 use <../scad/jigs/PanelJig.scad>
-use <../scad/FaceRightExtras.scad>
+include <../scad/FaceRightExtras.scad>
 
 include <../scad/Parameters_Main.scad>
 

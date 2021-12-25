@@ -2,12 +2,9 @@
 
 include <../scad/global_defs.scad>
 
-include <NopSCADlib/vitamins/rails.scad>
-
 use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/XY_MotorMount.scad>
 
-use <../scad/utils/carriageTypes.scad>
 include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/X_Rail.scad>
 
@@ -15,7 +12,6 @@ include <../scad/vitamins/extrusion.scad>
 
 use <../scad/MainAssemblyJubileeToolChanger.scad>
 
-include <../scad/Parameters_CoreXY.scad>
 use <../scad/Parameters_Positions.scad>
 
 //$explode = 1;

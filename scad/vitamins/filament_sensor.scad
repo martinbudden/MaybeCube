@@ -1,4 +1,3 @@
-include <NopSCADlib/core.scad>
 use <NopSCADlib/utils/tube.scad>
 include <NopSCADlib/vitamins/pin_headers.scad>
 

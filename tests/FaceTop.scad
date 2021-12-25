@@ -14,7 +14,6 @@ use <../scad/printed/WiringGuide.scad>
 include <../scad/utils/printParameters.scad>
 
 use <../scad/Parameters_Positions.scad>
-include <../scad/Parameters_Main.scad>
 
 
 //$explode = 1;
