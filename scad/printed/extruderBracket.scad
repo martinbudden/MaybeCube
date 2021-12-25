@@ -10,7 +10,7 @@ use <../../../BabyCube/scad/vitamins/CorkDamper.scad>
 include <../vitamins/bolts.scad>
 include <../vitamins/cables.scad>
 use <../vitamins/filament_sensor.scad>
-use <../vitamins/nuts.scad>
+include <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>
 

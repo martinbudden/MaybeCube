@@ -12,7 +12,7 @@ use <printed/PSU.scad>
 include <utils/FrameBolts.scad>
 
 include <vitamins/bolts.scad>
-use <vitamins/nuts.scad>
+include <vitamins/nuts.scad>
 
 use <Parameters_Positions.scad>
 include <Parameters_CoreXY.scad>

@@ -1,6 +1,6 @@
 include <NopSCADlib/vitamins/rails.scad>
 
-use <../vitamins/nuts.scad>
+include <../vitamins/nuts.scad>
 include <../Parameters_Main.scad>
 
 

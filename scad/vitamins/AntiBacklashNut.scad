@@ -1,7 +1,7 @@
 include <NopSCADlib/utils/core/core.scad>
 
 include <bolts.scad>
-use <nuts.scad>
+include <nuts.scad>
 
 function antiBacklashNutSize() = [34, 33, 12];
 function antiBacklashNutBoltSeparation() = 20;
