@@ -17,7 +17,7 @@ include <../vitamins/bolts.scad>
 include <../vitamins/extrusionBracket.scad>
 include <../vitamins/cables.scad>
 use <../vitamins/leadscrew.scad>
-use <../vitamins/nuts.scad>
+include <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>
 

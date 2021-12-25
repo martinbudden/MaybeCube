@@ -3,7 +3,7 @@ include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/extrusions.scad>
 
 include <../vitamins/bolts.scad>
-use <../vitamins/nuts.scad>
+include <../vitamins/nuts.scad>
 
 
 eSize = 20;

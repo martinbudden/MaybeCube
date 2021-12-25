@@ -7,7 +7,7 @@ use <NopSCADlib/vitamins/pcb.scad>
 
 include <../vitamins/bolts.scad>
 use <../vitamins/displays.scad>
-use <../vitamins/nuts.scad>
+include <../vitamins/nuts.scad>
 use <../../../BabyCube/scad/printed/DisplayHousing.scad>
 
 include <../Parameters_Main.scad>

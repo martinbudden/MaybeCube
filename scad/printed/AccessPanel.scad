@@ -6,7 +6,7 @@ use <../printed/extruderBracket.scad> // for spoolHeight
 use <../printed/IEC_Housing.scad>
 
 include <../vitamins/bolts.scad>
-use <../vitamins/nuts.scad>
+include <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>
 

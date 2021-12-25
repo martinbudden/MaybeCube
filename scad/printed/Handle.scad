@@ -3,7 +3,7 @@ include <../global_defs.scad>
 include <NopSCADlib/utils/core/core.scad>
 
 include <../vitamins/bolts.scad>
-use <../vitamins/nuts.scad>
+include <../vitamins/nuts.scad>
 
 
 

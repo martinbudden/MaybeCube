@@ -1,5 +1,4 @@
 include <NopSCADlib/vitamins/nuts.scad>
-include <bolts.scad>
 
 nutHoleTolerance = 0.2;
 

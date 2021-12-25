@@ -5,7 +5,7 @@ use <NopSCADlib/utils/fillet.scad>
 
 use <../vitamins/displays.scad>
 include <../vitamins/bolts.scad>
-use <../vitamins/nuts.scad>
+include <../vitamins/nuts.scad>
 
 use <../../../BabyCube/scad/printed/DisplayHousing.scad>
 use <DisplayHousingAssemblies.scad>

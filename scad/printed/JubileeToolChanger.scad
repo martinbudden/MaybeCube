@@ -13,7 +13,7 @@ include <NopSCADlib/vitamins/stepper_motors.scad>
 use <../../../BabyCube/scad/printed/Printhead.scad>
 
 include <../vitamins/bolts.scad>
-use <../vitamins/nuts.scad>
+include <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>
 

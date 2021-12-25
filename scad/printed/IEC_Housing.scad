@@ -12,7 +12,7 @@ use <../utils/XY_MotorMount.scad> // for xyMotorMountSize().y
 
 include <../vitamins/bolts.scad>
 use <../vitamins/iec320c14.scad>
-use <../vitamins/nuts.scad>
+include <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>
 

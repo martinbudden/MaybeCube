@@ -6,7 +6,7 @@ use <NopSCADlib/utils/fillet.scad>
 use <../printed/extrusionChannels.scad>
 
 include <../vitamins/bolts.scad>
-use <../vitamins/nuts.scad>
+include <../vitamins/nuts.scad>
 
 include <../Parameters_CoreXY.scad>
 

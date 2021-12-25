@@ -4,7 +4,7 @@ include <NopSCADlib/utils/core/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 
 include <../vitamins/bolts.scad>
-use <../vitamins/nuts.scad>
+include <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>
 
