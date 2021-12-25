@@ -10,42 +10,21 @@ use <NopSCADlib/utils/rounded_triangle.scad>
 use <NopSCADlib/vitamins/bldc_motor.scad>
 use <NopSCADlib/vitamins/rod.scad>
 include <NopSCADlib/vitamins/ball_bearings.scad>
-include <NopSCADlib/vitamins/stepper_motors.scad>
 include <NopSCADlib/vitamins/magnets.scad>
 
 use <../../../BabyCube/scad/vitamins/CorkDamper.scad>
 
-include <../utils/motorTypes.scad>
+include <../utils/XY_MotorMount.scad>
 
 include <../vitamins/bolts.scad>
-use <../vitamins/cables.scad>
-use <../vitamins/extrusionBracket.scad>
+include <../vitamins/cables.scad>
 use <../vitamins/nuts.scad>
-
-include <../Parameters_CoreXY.scad>
 
 
 NEMA17_60  = ["NEMA17_60",   42.3, 60,     53.6/2, 25,     11,     2,     5,     24,          31,    [11.5,  9]];
 
 NEMA_hole_depth = 5;
 
-//
-//                                               n       t   o      b         w    h  h    b     f    f  s   s    s              s
-//                                               a       e   d      e         i    u  u    o     l    l  c   c    c              c
-//                                               m       e          l         d    b  b    r     a    a  r   r    r              r
-//                                               e       t          t         t            e     n    n  e   e    e              e
-//                                                       h                    h    d  l          g    g  w   w    w              w
-//                                                                                               e    e                          s
-//                                                                                                       l   z
-//                                                                                               d    t
-//
-//GT2x40_pulley      = ["GT2x40_pulley",        "GT2",   40, 24.95, GT2x6,  7.1,  18, 7.0, 5, 28.15,1.5, 6, 3.5,  M4_grub_screw, 2];
-GT2x40sd_pulley      = ["GT2x40sd_pulley",      "GT2sd", 40, 24.95, GT2x6,  7.0,  18, 0.0, 5, 28.15-1.6,0.8, 0, 0,  false, 0];
-GT2x20sd_pulley      = ["GT2x20sd_pulley",      "GT2sd", 20, 12.22, GT2x6,  7.0,  18, 0.0, 5, 14.02,0.8, 0, 0, false, 0];
-//GT2x20um_pulley    = ["GT2x20um_pulley",      "GT2UM", 20, 12.22, GT2x6,  7.5,  18, 6.5, 5, 18.0, 1.0, 6, 3.75, M3_grub_screw, 2]; //Ultimaker
-//GT2x20ob_pulley    = ["GT2x20ob_pulley",      "GT2OB", 20, 12.22, GT2x6,  7.5,  16, 5.5, 5, 16.0, 1.0, 6, 3.25, M3_grub_screw, 2]; //Openbuilds
-
-basePlateThickness = 6.5;
 partitionExtension = 6;
 bracketThickness = 5;
 bracketHeightRight = eZ - eSize - (coreXYPosBL().z + washer_thickness(M3_washer));
@@ -58,10 +37,6 @@ sizeT = [8.5, 9, sizeP.z];
 offsetP = usePulley25() ? [-4.5, -4.5, 0] : [-4.5, -5.25, 0];
 offsetT = usePulley25() ? [-4.5, -5, 0] : [-3.25, -4.5, 0];
 
-function xyMotorMountSize(motorWidth = motorWidth(motorType(_xyMotorDescriptor)), offset = [0, 0], left=true)
-    = [ eX + 2*eSize + coreXY_drive_pulley_x_alignment(coreXY_type()) + motorWidth/2 + offset.x + 5,
-        eY + 2*eSize + motorWidth/2 - (left ? offset.y : -offset.y) + 1,
-        eZ + basePlateThickness + (left ? coreXYSeparation().z : 0)] - coreXYPosTR(motorWidth);
 
 function upperBoltPositions(sizeX) = [eSize/2 + 3, sizeX - 3*eSize/2 - 8];
 leftDrivePlainIdlerOffset    = [plainIdlerPulleyOffset().x, plainIdlerPulleyOffset().y, 0];
@@ -116,25 +91,26 @@ module xyMotorMountBrace(thickness, offset=[0,0]) {
     fillet = 1;
     extra = [2, 2, 0];
 
-    difference() {
-        union() {
-            size = [sizeP.x, sizeP.y, thickness] + [pP.x, pT.y, 0] + offsetP - [pT.x, pP.y, 0] - offsetT + extra;
-            translate([pT.x, pP.y, 0] + offsetT - extra/2) {
-                rounded_cube_xy(size, fillet);
-                // add orientation indicator
-                translate([size.x/4, size.y, 0])
-                    rotate(45)
-                        rounded_cube_xy([3, 3, thickness], 0.5, xy_center=true);
+    explode(25)
+        difference() {
+            union() {
+                size = [sizeP.x, sizeP.y, thickness] + [pP.x, pT.y, 0] + offsetP - [pT.x, pP.y, 0] - offsetT + extra;
+                translate([pT.x, pP.y, 0] + offsetT - extra/2) {
+                    rounded_cube_xy(size, fillet);
+                    // add orientation indicator
+                    translate([size.x/4, size.y, 0])
+                        rotate(45)
+                            rounded_cube_xy([3, 3, thickness], 0.5, xy_center=true);
+                }
             }
+            for (pos = [pP, pT, [pP.x, pT.y], [pT.x, pP.y]])
+                translate(pos)
+                    if (braceCountersunk)
+                        translate_z(thickness)
+                            boltPolyholeM3Countersunk(thickness);
+                    else
+                        boltHoleM3Tap(thickness);
         }
-        for (pos = [pP, pT, [pP.x, pT.y], [pT.x, pP.y]])
-            translate(pos)
-                if (braceCountersunk)
-                    translate_z(thickness)
-                        boltPolyholeM3Countersunk(thickness);
-                else
-                    boltHoleM3Tap(thickness);
-    }
 }
 
 module xyMotorMountBaseCutouts(motorType, left, size, offset, sideSupportSizeY=0, cnc=false, M5=false) {
@@ -594,11 +570,10 @@ assembly("XY_Motor_Mount_Left", ngb=true) {
         XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, blockHeightExtra, left=true);
         if (offset.x != 0)
             stl_colour(pp2_colour)
-                explode(25)
-                    if (usePulley25())
-                        XY_Motor_Mount_Brace_Left_25_stl();
-                    else
-                        XY_Motor_Mount_Brace_Left_16_stl();
+                if (usePulley25())
+                    XY_Motor_Mount_Brace_Left_25_stl();
+                else
+                    XY_Motor_Mount_Brace_Left_16_stl();
     }
 }
 
@@ -651,10 +626,9 @@ assembly("XY_Motor_Mount_Right", ngb=true) {
         XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, blockHeightExtra, left=false);
         if (offset.x != 0)
             stl_colour(pp2_colour)
-                explode(25)
-                    if (usePulley25())
-                        XY_Motor_Mount_Brace_Right_25_stl();
-                    else
-                        XY_Motor_Mount_Brace_Right_16_stl();
+                if (usePulley25())
+                    XY_Motor_Mount_Brace_Right_25_stl();
+                else
+                    XY_Motor_Mount_Brace_Right_16_stl();
     }
 }

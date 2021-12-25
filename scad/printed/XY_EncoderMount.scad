@@ -7,7 +7,7 @@ include <NopSCADlib/vitamins/bldc_motors.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
 
 include <../vitamins/bolts.scad>
-use <../vitamins/cables.scad>
+include <../vitamins/cables.scad>
 include <../vitamins/AS5048_PCB.scad>
 include <../printed/XY_MotorMountBLDC.scad>
 

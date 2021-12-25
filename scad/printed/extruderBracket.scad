@@ -7,10 +7,8 @@ use <NopSCADlib/utils/fillet.scad>
 use <../../../BabyCube/scad/vitamins/extruder.scad>
 use <../../../BabyCube/scad/vitamins/CorkDamper.scad>
 
-use <IEC_Housing.scad>
-
 include <../vitamins/bolts.scad>
-use <../vitamins/cables.scad>
+include <../vitamins/cables.scad>
 use <../vitamins/filament_sensor.scad>
 use <../vitamins/nuts.scad>
 
@@ -27,6 +25,13 @@ function Extruder_Bracket_assembly_bowdenOffset() = [20.5, 5, 10];
 
 // spoolHeight is declared here because it is determined by its supporting extrusion requiring to clear the extruder and filament sensor
 function spoolHeight(eX=eX) = extruderPosition(eX).z - (eX < 350 ? 110 : 80);
+
+// iecHousing sizes here, since the extruder bracket and IEC housing sizes must match,
+// and placing IEC housing size here minimises cross dependencies.
+function iecHousingSize() = [70, 50, 42 + 3];
+function iecHousingMountSize() = [iecHousingSize().x + eSize, iecHousingSize().y + 2*eSize, 3];
+//function iecHousingMountSize() = [iecHousingSize().x + eSize, iecHousingSize().y + 2*eSize, 3];
+//function iecHousingMountSize() = [iecHousingSize().x + eSize, spoolHeight() + (eX < 350 ? 0 : eSize), 3];
 
 function extruderBracketSize() = [3, iecHousingMountSize().x, eZ - spoolHeight() - eSize];
 //filamentSensorOffset = [20.5, 4.5, -45];

@@ -5,13 +5,10 @@ use <NopSCADlib/utils/fillet.scad>
 
 use <NopSCADlib/vitamins/iec.scad>
 use <NopSCADlib/vitamins/sheet.scad>
-//include <NopSCADlib/vitamins/stepper_motors.scad>
 
 use <extruderBracket.scad> // for spoolHeight()
 
-use <../printed/XY_MotorMount.scad>
-
-//include <../utils/motorTypes.scad>
+use <../utils/XY_MotorMount.scad> // for xyMotorMountSize().y
 
 include <../vitamins/bolts.scad>
 use <../vitamins/iec320c14.scad>
@@ -24,10 +21,6 @@ function partitionOffsetY() = xyMotorMountSize().y;
 function partitionSize() = [eX, eZ, 2];
 PC2 = ["PC2", "Sheet polycarbonate", 2, [1,   1,   1,   0.25], false];
 
-function iecHousingSize() = [70, 50, 42 + 3];
-//function iecHousingMountSize() = [iecHousingSize().x + eSize, iecHousingSize().y + 2*eSize, 3];
-//function iecHousingMountSize() = [iecHousingSize().x + eSize, spoolHeight() + (eX < 350 ? 0 : eSize), 3];
-function iecHousingMountSize() = [iecHousingSize().x + eSize, iecHousingSize().y + 2*eSize, 3];
 function iecCutoutSize() = [50, 27.5];
 function iecType() = iec320c14FusedSwitchedType();
 

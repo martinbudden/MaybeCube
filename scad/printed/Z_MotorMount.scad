@@ -15,7 +15,7 @@ include <../utils/motorTypes.scad>
 
 include <../vitamins/bolts.scad>
 include <../vitamins/extrusionBracket.scad>
-use <../vitamins/cables.scad>
+include <../vitamins/cables.scad>
 use <../vitamins/leadscrew.scad>
 use <../vitamins/nuts.scad>
 
