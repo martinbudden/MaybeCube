@@ -30,11 +30,12 @@ function use2060ForTop() = !is_undef(_use2060ForTop) && _use2060ForTop;
 //!1. Bolt the two motor mounts, the **Wiring_Guide**, and optionally the **Camera_Mount** to the rear extrusion.
 //!2. Bolt the two idlers to the front extrusion.
 //!3. Screw the bolts into the ends of the front and rear extrusions.
-//!4. Insert the t-nuts for the **Top_Corner_Piece**s into the extrusions.
-//!5. Bolt the front and rear extrusions to the side extrusions, leaving the bolts slightly loose.
-//!6. Bolt the **Top_Corner_Piece**s to the extrusions leaving the bolts slightly loose.
-//!7. Turn the top face upside down and place on a flat surface. Ensure it is square and tighten the hidden bolts.
-//!8. Turn the top face the right way up and tighten the bolts on the **Top_Corner_Piece**s.
+//!4. Insert the t-nuts for the **Handle** into the extrusions.
+//!5. Insert the t-nuts for the **Top_Corner_Piece**s into the extrusions.
+//!6. Bolt the front and rear extrusions to the side extrusions, leaving the bolts slightly loose.
+//!7. Bolt the **Top_Corner_Piece**s to the extrusions leaving the bolts slightly loose.
+//!8. Turn the top face upside down and place on a flat surface. Ensure it is square and tighten the hidden bolts.
+//!9. Turn the top face the right way up and tighten the bolts on the **Top_Corner_Piece**s.
 //
 module Face_Top_Stage_1_assembly()
 assembly("Face_Top_Stage_1", big=true, ngb=true) {
@@ -53,14 +54,10 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
     }
     faceTopFront();
     faceTopBack();
-    explode(20, true)
-        for (x = [3*eSize/2, eX + eSize/2])
-            translate([x, eY/2 + eSize, eZ])
-                rotate([0, -90, 0]) {
-                    stl_colour(pp1_colour)
-                        Handle_stl();
-                    Handle_hardware();
-                }
+    for (x = [3*eSize/2, eX + eSize/2])
+        translate([x, eY/2 + eSize, eZ])
+            rotate([0, -90, 0])
+                Handle_hardware(bolt=false, TNut=true);
     translate_z(eZ)
         topCornerPieceAssembly(0);
     translate([eX + 2*eSize, 0, eZ])
@@ -76,6 +73,7 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
 //!to one extreme of the frame and tighten the bolts on that end of the Y-rail. Then move the X-rail to the other
 //!extreme and tighten the bolts on that end of the Y-rail. Finally tighten the remaining bolts on the Y-rail.
 //!3. Ensure the X-rail moves freely, if it doesn't loosen the bolts you have just tightened and repeat step 2.
+//!4. Turn the top face the right way up and bolt the handle to the previously inserted t-nuts.
 //
 module Face_Top_Stage_2_assembly()
 assembly("Face_Top_Stage_2", big=true, ngb=true) {
@@ -83,6 +81,15 @@ assembly("Face_Top_Stage_2", big=true, ngb=true) {
     Face_Top_Stage_1_assembly();
     //hidden() Y_Carriage_Left_AL_dxf();
     //hidden() Y_Carriage_Right_AL_dxf();
+
+    explode(20, true)
+        for (x = [3*eSize/2, eX + eSize/2])
+            translate([x, eY/2 + eSize, eZ])
+                rotate([0, -90, 0]) {
+                    stl_colour(pp1_colour)
+                        Handle_stl();
+                    Handle_hardware(bolt=true, TNut=false);
+                }
 
     translate_z(eZ)
         explode(100, true) {
