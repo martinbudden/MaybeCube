@@ -27,7 +27,7 @@ use <Parameters_Positions.scad>
 function use2060ForTop() = !is_undef(_use2060ForTop) && _use2060ForTop;
 
 
-//!1. Bolt the two motor mounts, the **Wiring_Guide**, and optionally **Camera_Mount** to the rear extrusion.
+//!1. Bolt the two motor mounts, the **Wiring_Guide**, and optionally the **Camera_Mount** to the rear extrusion.
 //!2. Bolt the two idlers to the front extrusion.
 //!3. Screw the bolts into the ends of the front and rear extrusions.
 //!4. Insert the t-nuts for the **Top_Corner_Piece**s into the extrusions.
