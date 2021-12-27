@@ -27,7 +27,6 @@ _useDualZRods = false;
 _useDualZMotors = false;
 _useFrontDisplay = true;
 _useSidePanels = false;
-_useTablessZCarriage = true;
 
 _printBedSize = [235, 235, 4]; // Ender 3 size
 _printBedArmSeparation = 150;
