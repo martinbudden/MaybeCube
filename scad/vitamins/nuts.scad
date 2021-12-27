@@ -122,8 +122,12 @@ module boltM3CountersunkHammerNut(length, nutOffset=2.98, rotate=0, nutExplode=2
 }
 
 module boltM4ButtonheadTNut(length, nutOffset=2.98, rotate=0, nutExplode=20) {
+    boltM4Buttonhead(length);
+    boltM4TNut(length, nutOffset, rotate, nutExplode);
+}
+
+module boltM4TNut(length, nutOffset=2.98, rotate=0, nutExplode=0) {
     if ($preview && (is_undef($hide_bolts) || $hide_bolts == false)) {
-        boltM4Buttonhead(length);
         vflip()
             translate_z(length - nutOffset)
                 rotate(rotate)
