@@ -6,7 +6,7 @@ $pp2_colour = "limegreen";
 $pp3_colour = grey(25);
 $pp4_colour = "steelblue";
 
-include <NopSCADlib/core.scad>
+include <../scad/vitamins/bolts.scad>
 include <NopSCADlib/vitamins/blowers.scad>
 include <NopSCADlib/vitamins/e3d.scad>
 include <NopSCADlib/vitamins/fans.scad>
@@ -20,7 +20,6 @@ use <../scad/printed/Y_CarriageAssemblies.scad>
 include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/X_Rail.scad>
 
-include <../scad/vitamins/bolts.scad>
 
 use <../scad/Parameters_Positions.scad>
 

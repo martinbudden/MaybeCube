@@ -1,7 +1,5 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/core.scad>
-
 use <../printed/extruderBracket.scad> // for spoolHeight
 use <../printed/IEC_Housing.scad>
 

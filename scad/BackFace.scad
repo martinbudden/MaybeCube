@@ -11,7 +11,6 @@ use <printed/PSU.scad>
 
 include <utils/FrameBolts.scad>
 
-include <vitamins/bolts.scad>
 include <vitamins/nuts.scad>
 
 use <Parameters_Positions.scad>

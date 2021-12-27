@@ -5,7 +5,6 @@ include <utils/FrameBolts.scad>
 include <utils/Z_Rods.scad>
 
 use <Parameters_Positions.scad>
-include <Parameters_Main.scad>
 
 
 //!1. Attach the SK brackets to the upper extrusion, use the **Z_RodMountGuide** to align the left bracket.

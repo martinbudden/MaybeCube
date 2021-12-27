@@ -1,10 +1,7 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/utils/core/core.scad>
-
 include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>
-
 
 
 module handleCrossSection(size, fillet, angle) {

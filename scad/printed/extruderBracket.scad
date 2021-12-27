@@ -1,6 +1,5 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
 use <NopSCADlib/utils/fillet.scad>
 

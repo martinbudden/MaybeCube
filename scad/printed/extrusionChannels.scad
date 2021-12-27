@@ -1,4 +1,3 @@
-include <NopSCADlib/utils/core/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 include <../vitamins/bolts.scad>
 

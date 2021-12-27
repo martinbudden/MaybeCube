@@ -1,6 +1,5 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/displays.scad>
 
 use <DisplayHousingAssemblies.scad>

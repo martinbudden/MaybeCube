@@ -12,13 +12,9 @@ use <printed/Z_Carriage.scad>
 
 include <utils/FrameBolts.scad>
 
-include <vitamins/bolts.scad>
-include <vitamins/extrusion.scad>
 use <vitamins/extrusionBracket.scad>
 use <vitamins/HeatedBedLevelingKnob.scad>
 include <vitamins/nuts.scad>
-
-include <Parameters_Main.scad>
 
 
 function is_true(x) = !is_undef(x) && x == true;

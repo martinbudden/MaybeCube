@@ -1,12 +1,12 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/core.scad>
+include <../vitamins/bolts.scad>
+
 use <NopSCADlib/utils/fillet.scad>
 include <NopSCADlib/vitamins/bearing_blocks.scad>
 include <NopSCADlib/vitamins/leadnuts.scad>
 include <NopSCADlib/vitamins/linear_bearings.scad>
 
-include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>

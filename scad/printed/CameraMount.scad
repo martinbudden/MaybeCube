@@ -1,14 +1,15 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/utils/core/core.scad>
+include <../vitamins/bolts.scad>
+
 use <NopSCADlib/utils/fillet.scad>
 include <NopSCADlib/vitamins/cameras.scad>
 use <NopSCADlib/vitamins/pcb.scad>
 
-include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>
+
 
 cameraType = rpi_camera_v2;
 cameraMountBaseSize = [30, 2*eSize, 5];

@@ -1,7 +1,4 @@
-include <NopSCADlib/vitamins/rails.scad>
-
 include <../vitamins/nuts.scad>
-include <../Parameters_Main.scad>
 
 
 module railBoltsAndNuts(type, length, thickness) { //! Place bolts and tNuts in the rail
