@@ -338,7 +338,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                     translate([x - fSize/2, -yOffset, 0])
                         extrusionOY(size.y, fSize);
                     // access holes for Z_Carriage bolts
-                    if (!is_undef(_useTablessZCarriage) && _useTablessZCarriage==true)
+                    if (!zCarriageTab())
                         for (y = [scs_screw_separation_x(scs_type), -scs_screw_separation_x(scs_type)])
                             translate([x + fSize/2, -yOffset + (scs_size(scs_type).x - y)/2, fSize/2])
                                 rotate([0, -90, 0])
@@ -446,19 +446,33 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
 
     translate([-zRodSeparation()/2, 0, 0]) {
         explode([0, -120, 0])
-            Z_Carriage_Left_assembly();
+            if (zCarriageTab())
+                Z_Carriage_Left_assembly();
+            else
+                mirror([1, 0, 0])
+                    Z_Carriage_assembly();
         if (is_true(_useDualZRods))
             translate([0, yRight, 0])
                 rotate(180)
-                    Z_Carriage_Right_assembly();
+                    if (zCarriageTab())
+                        Z_Carriage_Right_assembly();
+                    else
+                        Z_Carriage_assembly();
     }
     translate([zRodSeparation()/2, 0, 0]) {
         explode([0, -120, 0])
-            Z_Carriage_Right_assembly();
+            if (zCarriageTab())
+                Z_Carriage_Right_assembly();
+            else
+                Z_Carriage_assembly();
         if (is_true(_useDualZRods))
             translate([0, yRight, 0])
                 rotate(180)
-                    Z_Carriage_Left_assembly();
+                    if (zCarriageTab())
+                        Z_Carriage_Left_assembly();
+                    else
+                mirror([1, 0, 0])
+                        Z_Carriage_assembly();
     }
 }
 
