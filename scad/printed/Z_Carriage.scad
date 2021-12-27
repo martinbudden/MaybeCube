@@ -15,16 +15,17 @@ include <../Parameters_Main.scad>
 _useSCSBearingBlocksForZAxis = true;
 
 scsType = _zRodDiameter == 8 ? SCS8LUU : _zRodDiameter == 10 ? SCS10LUU : SCS12LUU;
-baseSize = [scs_size(scsType).x + 1, scs_size(scsType).z, _zCarriageSCS_sizeZ];
+baseSize = [scs_size(scsType).x, scs_size(scsType).z, _zCarriageSCS_sizeZ];
 shelfThickness = 5;
-useTab = is_undef(_useTablessZCarriage) || _useTablessZCarriage==false;
+function zCarriageTab() = false;
+useTab = zCarriageTab();
 tabRightLength = useTab ? 9.5 : 0;
 //tabRightLength = 20.5; // use 20.5 for alignment with internal corner bracket
 boltOffset = 26;
 leadnut = LSN8x2;
 leadnutInset = leadnut_flange_t(leadnut);
 
-function printBedFrameCrossPieceOffset() = baseSize.x/2 + tabRightLength;// + 9.75;
+function printBedFrameCrossPieceOffset() = baseSize.x/2 + tabRightLength + (useTab ? 0 : 1);// + 9.75;
 
 holes = [for (i=[ [-1, 1], [1, 1], [-1, -1], [1, -1] ]) [i.x*scs_screw_separation_x(scsType)/2, i.y*scs_screw_separation_z(scsType)/2, baseSize.z] ];
 
@@ -39,7 +40,7 @@ module zCarriageSCS(cnc=false) {
         difference() {
             linear_extrude(baseSize.z, convexity=2) {
                 translate([-baseSize.x/2, -baseSize.y/2])
-                    rounded_square([baseSize.x + 1, baseSize.y], fillet, center=false);
+                    rounded_square([baseSize.x, baseSize.y], fillet, center=false);
                 if (useTab)
                     difference() {
                         union() {
@@ -90,7 +91,7 @@ module zCarriageSCS(cnc=false) {
         if (!cnc)
             translate([-baseSize.x/2, baseSize.y/2 - eSize - shelfThickness, 0])
                 difference() {
-                    sizeX = baseSize.x + shelfExtension + (useTab ? 0 : 1);
+                    sizeX = baseSize.x + shelfExtension;
                     rounded_cube_xy([sizeX, shelfThickness, eSize + baseSize.z], uprightFillet);
                     translate([useTab ? 10 : sizeX/2, 0, baseSize.z + eSize/2])
                         rotate([-90, 180, 0])
@@ -139,6 +140,12 @@ module Z_Carriage_Right_stl() {
             zCarriageSCS();
 }
 
+module Z_Carriage_stl() {
+    stl("Z_Carriage")
+        color(pp1_colour)
+            zCarriageSCS();
+}
+
 
 //!1. Bolt the SCS bearing block to the **Z_Carriage_Left**.
 //!2. Add the bolts and t-nuts in preparation for connection to the printbed.
@@ -169,6 +176,24 @@ assembly("Z_Carriage_Right", ngb=true) {
         rotate([90, 0, 90]) {
             stl_colour(pp1_colour)
                 Z_Carriage_Right_stl();
+            zCarriageSCS_hardware();
+        }
+        explode([-30, 0, 0])
+            rotate(90)
+                scs_bearing_block(scsType);
+    }
+}
+
+//!1. Bolt the SCS bearing block to the **Z_Carriage**.
+//!2. Add the bolts and t-nuts in preparation for connection to the printbed.
+//
+module Z_Carriage_assembly()
+assembly("Z_Carriage", ngb=true) {
+
+    translate_z(-scs_screw_separation_z(scsType)/2) {
+        rotate([90, 0, 90]) {
+            stl_colour(pp1_colour)
+                Z_Carriage_stl();
             zCarriageSCS_hardware();
         }
         explode([-30, 0, 0])
