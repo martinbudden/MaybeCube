@@ -143,8 +143,10 @@ The front face of the MaybeCube is the most subject to shearing, since it needs 
 Printer                                                    | X frequency | X amplitude | X acc limit | Y frequency | Y amplitude | Y acc limit
 ---------------------------------------------------------- | ----------- | ----------- | ------------| ----------- | ----------- | -----------
 MC300                                                      |         114 |       1,720 |      51,200 |          88 |       4,500 | 32,800
+[RatRig V-Core3 300](https://youtu.be/ZAN9zTTPUq8?t=765)   |          62 |       4,750 |      15,300 |         N/A |         N/A | N/A
 [SnakeOil XY](https://github.com/ChipCE/SnakeOil-XY)       |          83 |     110,000 |      27,400 |          56 |      49,500 | 12,100
 [VzBot](https://youtu.be/eNraKK7ukzU?t=1484)               |          80 |      51,000 |      30,200 |         N/A |         N/A | N/A
+[Voron 2.4](https://youtu.be/a775O9luKgA?t=7100)           |     52 & 82 |       1,540 |      26,500 |     38 & 63 |       1,160 |  9,900
 [Voron Switchwire](https://youtu.be/OoWQUcFimX8?t=635)     |          70 |       1,100 |         N/A |          48 |      16,200 | N/A
 [Ender 3](https://www.youmaketech.com/klipper-on-ender-3/) |     30 & 88 |       4,100 |       3,800 |     32 & 57 |      19,000 |  9,300
 [Prusa i3 MKS+](https://forum.prusaprinters.org/forum/original-prusa-i3-mk3s-mk3-general-discussion-announcements-and-releases/prusa-i3-mks3-resonance-profiles-input-shaper/) | 38 & 58 | 3,900 | N/A | 32 & 78 | 4,200 | N/A
