@@ -1,7 +1,5 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/core.scad>
-
 include <NopSCADlib/printed/printed_pulleys.scad>
 
 use <NopSCADlib/utils/fillet.scad>

@@ -1,10 +1,7 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 
-include <NopSCADlib/vitamins/leadnuts.scad>
-include <NopSCADlib/vitamins/pin_headers.scad>
 include <NopSCADlib/vitamins/shaft_couplings.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
 use <NopSCADlib/utils/rounded_triangle.scad>

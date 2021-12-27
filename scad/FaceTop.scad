@@ -19,9 +19,6 @@ include <utils/RailNutsAndBolts.scad>
 include <utils/printheadOffsets.scad>
 include <utils/X_Rail.scad>
 
-include <vitamins/bolts.scad>
-include <vitamins/extrusion.scad>
-
 use <Parameters_Positions.scad>
 
 function use2060ForTop() = !is_undef(_use2060ForTop) && _use2060ForTop;
@@ -102,7 +99,7 @@ assembly("Face_Top_Stage_2", big=true, ngb=true) {
 
 //!1. Bolt the **X_Carriage_Belt_Side_assembly** to the MGN carriage.
 //!2. Thread the belts as shown and attach them to the **X_Carriage_Belt_Side_assembly**
-//! using the **X_Carriage_Belt_Clamp**s
+//! using the **X_Carriage_Belt_Clamp**.
 //!3. Leave the belts fairly loose - tensioning of the belts is done after the frame is assembled.
 //
 module Face_Top_assembly()
@@ -112,7 +109,8 @@ assembly("Face_Top", big=true) {
 
     halfCarriage = (!is_undef(_useHalfCarriage) && _useHalfCarriage==true);
     printheadBeltSide(halfCarriage=halfCarriage, explode=100);
-    if (!exploded())
+    //if (!exploded())
+    explode(350)
         CoreXYBelts(carriagePosition());
 }
 

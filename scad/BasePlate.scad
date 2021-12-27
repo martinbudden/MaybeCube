@@ -1,20 +1,12 @@
 include <global_defs.scad>
 
-include <NopSCADlib/utils/core/core.scad>
-include <NopSCADlib/vitamins/displays.scad>
+include <printed/DisplayHousingAssemblies.scad>
 use <NopSCADlib/vitamins/sheet.scad>
 
 use <printed/BaseFoot.scad>
 use <printed/BaseFrontCover.scad>
-use <printed/DisplayHousingAssemblies.scad>
 
 include <utils/FrameBolts.scad>
-
-include <vitamins/bolts.scad>
-include <vitamins/extrusion.scad>
-include <vitamins/nuts.scad>
-
-include <Parameters_Main.scad>
 
 
 AL3 = ["AL3", "Aluminium sheet", 3, [0.9, 0.9, 0.9, 1], false];

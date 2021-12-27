@@ -1,6 +1,5 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 
 use <../printed/extrusionChannels.scad>

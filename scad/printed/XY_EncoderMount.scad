@@ -1,6 +1,5 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/utils/core/core.scad>
 use <NopSCADlib/utils/fillet.scad>
 
 include <NopSCADlib/vitamins/bldc_motors.scad>

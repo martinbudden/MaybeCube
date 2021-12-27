@@ -1,7 +1,6 @@
 include <global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
-include <NopSCADlib/vitamins/rails.scad>
 
 use <printed/IEC_Housing.scad>
 use <printed/extruderBracket.scad>
@@ -12,8 +11,6 @@ include <utils/Z_Rods.scad>
 include <FaceRightExtras.scad>
 
 use <Parameters_Positions.scad>
-include <Parameters_Main.scad>
-
 
 //!1. On a flat surface, bolt the upper and lower extrusions into the left and right uprights as shown.
 //!2. Bolt the **IEC_Housing_assembly** to the lower extrusion and upright.
