@@ -4,7 +4,7 @@ include <NopSCADlib/utils/core/core.scad>
 
 include <../scad/utils/Z_Rods.scad>
 use <../scad/PrintBed.scad>
-
+use <../scad/jigs/ExtrusionDrillJig.scad>
 include <../scad/Parameters_main.scad>
 
 
@@ -23,6 +23,9 @@ module Printbed_test() {
             zRods(left=false);
         }
     //Printbed_Frame_assembly();
+    *translate([_printBedArmSeparation/2 + 2*eSize - 5, 0, eSize/2 + 5])
+        rotate([90, 0, -90])
+            Extrusion_Drill_Jig_Printbed_stl();
     //Printbed_Strain_Relief_stl();
     //Printbed_Strain_Relief_assembly();
 }
