@@ -1,5 +1,6 @@
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/pillow_blocks.scad>
+include <NopSCADlib/vitamins/rails.scad>
 include <NopSCADlib/vitamins/rod.scad>
 include <NopSCADlib/vitamins/sk_brackets.scad>
 
