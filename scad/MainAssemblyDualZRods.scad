@@ -12,7 +12,7 @@ use <printed/JubileeKinematicBed.scad>
 use <BasePlate.scad>
 use <FaceLeft.scad>
 use <FaceRight.scad>
-use <PrintBed.scad>
+use <Printbed.scad>
 
 use <../scad/Parameters_Positions.scad>
 include <Parameters_Main.scad>
