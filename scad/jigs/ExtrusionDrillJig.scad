@@ -1,6 +1,7 @@
-include <NopSCADlib/utils/core/core.scad>
-
 include <../vitamins/bolts.scad>
+include <NopSCADlib/vitamins/bearing_blocks.scad>
+
+include <../printed/Z_Carriage.scad>
 include <../vitamins/nuts.scad>
 
 
@@ -33,10 +34,10 @@ module extrusionDrillJig(length, holeSize, holes, fixingHoles, endStop=true) {
                 if (endStop)
                     rounded_cube_xy([sideThickness, size.y, size.z], fillet);
                 rounded_cube_xy([size.x, sideThickness, size.z], fillet);
-                tNutWidth = 10.25;
-                cubeHeight = 1.5;
-                triangleHeight = 4;
-                *if (size.x != 120 && endStop == true)
+                *if (size.x != 120 && endStop == true) {
+                    tNutWidth = 10.25;
+                    cubeHeight = 1.5;
+                    triangleHeight = 4;
                     translate([size.x - fillet, sideThickness, baseThickness + (eSize + triangleHeight - cubeHeight)/2])
                         rotate([-90, 0, 90]) {
                             length = size.x - holes[len(holes) - 1] - fillet - sideThickness - tNutWidth/2;
@@ -52,6 +53,7 @@ module extrusionDrillJig(length, holeSize, holes, fixingHoles, endStop=true) {
                                 }
                             }
                         }
+                }
             }
             if (endStop)
                 translate([sideThickness, sideThickness, 0])
@@ -210,6 +212,26 @@ module Extrusion_Drill_Jig_E20_to_E40_120_7_stl() {
         color(jigColor)
             extrusionDrillJig(120, 7, holes);
     extrusionDrillJig_hardware(120, holes);
+}
+
+module Extrusion_Drill_Jig_Printbed_stl() {
+    scsType = SCS12LUU;
+    scsSize = scs_size(scsType);
+    echo(scsSize=scsSize);
+    //holes = [eSize/2, 3*eSize/2, 5*eSize/2, 7*eSize/2, 85, 105];
+    holes = [scsSize.x/2 - scs_screw_separation_x(scsType)/2, scsSize.x/2 + scs_screw_separation_x(scsType)/2,
+        scsSize.x/2 + printBedFrameCrossPieceOffset() + eSize/2, scsSize.x/2 + printBedFrameCrossPieceOffset() + 3*eSize/2];
+    fixingHoles = [eSize/2, 90 - eSize];
+    stl("Extrusion_Drill_Jig_Printbed")
+        color(jigColor)
+        translate([scsSize.x/2 + 5, 0, 0])
+            extrusionDrillJig(90, 4, holes, fixingHoles);
+}
+
+module Extrusion_Drill_Jig_Printbed_hardware() {
+    fixingHoles = [eSize/2, 90 - eSize];
+    translate([scs_size(SCS12LUU).x/2 + 5, 0, 0])
+        extrusionDrillJig_hardware(120, fixingHoles);
 }
 
 if ($preview)

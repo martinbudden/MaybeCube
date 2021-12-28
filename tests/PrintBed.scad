@@ -3,7 +3,7 @@
 include <NopSCADlib/utils/core/core.scad>
 
 include <../scad/utils/Z_Rods.scad>
-use <../scad/PrintBed.scad>
+use <../scad/Printbed.scad>
 use <../scad/jigs/ExtrusionDrillJig.scad>
 include <../scad/Parameters_main.scad>
 
