@@ -1,11 +1,11 @@
 include <../global_defs.scad>
 
+include <../vitamins/bolts.scad>
+
 include <NopSCADlib/vitamins/leadnuts.scad>
 include <NopSCADlib/vitamins/rod.scad>
 
 include <../utils/carriageTypes.scad>
-
-include <../vitamins/bolts.scad>
 
 include <../Parameters_Main.scad>
 
