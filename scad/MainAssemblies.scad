@@ -20,7 +20,7 @@ use <FaceLeft.scad>
 use <FaceRight.scad>
 include <FaceRightExtras.scad>
 use <FaceTop.scad>
-use <PrintBed.scad>
+use <Printbed.scad>
 
 use <Parameters_Positions.scad>
 
