@@ -420,21 +420,21 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
                 Z_Carriage_Left_assembly();
             else
                 mirror([1, 0, 0])
-                    Z_Carriage_assembly();
+                    Z_Carriage_Side_assembly();
         if (is_true(_useDualZRods))
             translate([0, yRight, 0])
                 rotate(180)
                     if (zCarriageTab())
                         Z_Carriage_Right_assembly();
                     else
-                        Z_Carriage_assembly();
+                        Z_Carriage_Side_assembly();
     }
     translate([zRodSeparation()/2, 0, 0]) {
         explode([0, -120, 0])
             if (zCarriageTab())
                 Z_Carriage_Right_assembly();
             else
-                Z_Carriage_assembly();
+                Z_Carriage_Side_assembly();
         if (is_true(_useDualZRods))
             translate([0, yRight, 0])
                 rotate(180)
@@ -442,7 +442,7 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
                         Z_Carriage_Left_assembly();
                     else
                 mirror([1, 0, 0])
-                        Z_Carriage_assembly();
+                        Z_Carriage_Side_assembly();
     }
 }
 
