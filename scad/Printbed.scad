@@ -56,36 +56,6 @@ _heatedBedHoleOffset = is_undef(_heatedBedSize) || _heatedBedSize.x == 100 ? 4 :
 
 holeSeparationY = _heatedBedSize.y - 2*_heatedBedHoleOffset;
 
-
-// how far the print bed is inset from the ends of the extrusion, y direction
-//insetY = _variant==200 ? 49.5 - 1 : 54.5;// !!TODO 200 _variant limited by support, needs new type of support
-//heatedBedOffsetY = 2;
-//    : [-supportLengthLeft+printBedSupportBoltHoleOffset()-heatedBedHoleOffset, insetY-heatedBedHoleOffset+supportLengthCenter-printBedSupportBoltHoleOffset(), _printBedExtrusionSize];
-
-/*
-printBedHoleOffset = printBedSupportBoltHoleOffset();
-supportLengthLeft = printBedHoleOffset-heatedBedHoleOffset+(printBedSize().x-_printBedArmSeparation-_printBedExtrusionSize)/2 - _printBedOffsetX;
-supportLengthRight = supportLengthLeft + 2*_printBedOffsetX;
-supportLengthCenter = heatedBedOffsetY+insetY-braceY()+printBedHoleOffset+heatedBedHoleOffset;
-//yOffset = 22;
-//supportLengthCenter = yOffset+insetY-braceY()-extrusionSize+printBedHoleOffset+heatedBedHoleOffset;
-*/
-
-// 200 _variant
-// OX=135, OY=275
-// 214 heatbed
-// when _printBedOffsetX==0 support lengths are 22, 22, 13
-// when _printBedOffsetX==10 support lengths are 32, 12, 13
-// 220 heatbed
-// when _printBedOffsetX==0 support lengths are 25, 25, 13
-// when _printBedOffsetX==10 support lengths are 35, 15, 13
-
-// 220 _variant
-// OX=135, OY=275
-// 214 heatbed
-// support lengths 22, 22, 17
-// 220 heatbed
-// support lengths 25, 25, 17
 scs_type = _zRodDiameter == 8 ? SCS8LUU : _zRodDiameter == 10 ? SCS10LUU : SCS12LUU;
 dualCrossPieces = true;
 printbedFrameCrossPiece2Offset = -2*_zRodOffsetX - printbedFrameCrossPieceOffset() - (eX < 350 ? 0 : 3*eSize/2);
