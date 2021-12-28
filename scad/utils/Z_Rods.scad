@@ -135,7 +135,7 @@ module zRails(bedHeight=100, left=true) {
     railZPos = bedHeight - 34;
     carriageHeight = carriage_height(is_undef(_zCarriageDescriptor) ? MGN12C_carriage : carriageType(_zCarriageDescriptor));
     if (left) {
-        for (y = [0, _printBedArmSeparation])
+        for (y = [0, _printbedArmSeparation])
             translate([0, y + _zRodOffsetY, 0]) {
                 translate_z(2*eSize)
                     extrusionOZ(eZ - 150);
@@ -153,12 +153,12 @@ module zRails(bedHeight=100, left=true) {
         translate([eSize + carriageHeight, _zRodOffsetY + eSize/2, railZPos + 12.5]) {
             //rotate([90, 0, 90]) Z_Carriage_Left_Front_stl();
             Z_Carriage_Left_Front_assembly();
-            translate([0, _printBedArmSeparation, 0])
+            translate([0, _printbedArmSeparation, 0])
                 //rotate([90, 0, 90]) Z_Carriage_Left_Back_stl();
                 Z_Carriage_Left_Back_assembly();
         }
     } else {
-        translate([eX + eSize, _zRodOffsetY + _printBedArmSeparation/2, 0]) {
+        translate([eX + eSize, _zRodOffsetY + _printbedArmSeparation/2, 0]) {
             translate_z(2*eSize)
                 extrusionOZ(eZ - 150);
             translate([eSize/2, eSize, eZ - 150 + 2*eSize])

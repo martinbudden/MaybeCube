@@ -52,10 +52,10 @@ module NEMA_baseplate(NEMA_type, size, zLeadScrewOffset=_zLeadScrewOffset) {
     *translate([0, 0, size.z-0.25]) cube([size.x, size.y, 0.25]); // to bridge the holes for printing
 }
 
-module zMotorMount(zMotorType, eHeight=40, printBedKinematic=false) {
+module zMotorMount(zMotorType, eHeight=40, printbedKinematic=false) {
     assert(isNEMAType(zMotorType));
 
-    zLeadScrewOffset = printBedKinematic ? 30 : _zLeadScrewOffset;
+    zLeadScrewOffset = printbedKinematic ? 30 : _zLeadScrewOffset;
     size = Z_Motor_MountSize(NEMA_length(zMotorType), zLeadScrewOffset);
     motorBracketSizeY = zLeadScrewOffset + NEMA_motorWidth/2 - 1;
     blockSizeZ = size.z - eHeight;
@@ -91,7 +91,7 @@ module zMotorMount(zMotorType, eHeight=40, printBedKinematic=false) {
                 rotate([90, 0, 90])
                         difference() {
                             fillet = 1;
-                            if (printBedKinematic)
+                            if (printbedKinematic)
                                 union() {
                                     rounded_cube_xz([eSize + fillet, blockSizeZ, (size.x - eSize)/2], fillet);
                                     translate([eSize, blockSizeZ - motorBracketSizeZ, (size.x - eSize)/2]) {
@@ -115,7 +115,7 @@ module zMotorMount(zMotorType, eHeight=40, printBedKinematic=false) {
                         }
         } // end union
 
-        if (printBedKinematic)
+        if (printbedKinematic)
             translate([-wingSizeX, -eSize, motorBracketSizeZ - blockSizeZ])
                 rotate([90, 0, 90])
                     translate([-eps, -eps, (size.x - eSize)/2]) {
@@ -148,7 +148,7 @@ module zMotorMount(zMotorType, eHeight=40, printBedKinematic=false) {
 
         // add the main boltholes
         translate([0, -eSize/2, motorBracketSizeZ]) {
-            topHolePitch = printBedKinematic ? eSize + 27 : NEMA_hole_pitch(zMotorType);
+            topHolePitch = printbedKinematic ? eSize + 27 : NEMA_hole_pitch(zMotorType);
             for (x = [topHolePitch/2, -topHolePitch/2])
                 translate([motorBracketSizeX/2 + x, 0, 0])
                     vflip()
@@ -180,7 +180,7 @@ module Z_Motor_Mount_KB_stl() {
         color(pp3_colour)
             translate([0, -Z_Motor_MountSize(NEMA_length(zMotorType)).x/2, 0])
                 rotate([180, 0, 90])
-                    zMotorMount(zMotorType, printBedKinematic=true);
+                    zMotorMount(zMotorType, printbedKinematic=true);
 }
 
 module zMotorLeadscrew(zMotorType, zLeadScrewLength) {
@@ -234,13 +234,13 @@ module Z_Motor_Mount_Motor_hardware(explode=50, zLeadScrewOffset=_zLeadScrewOffs
             boltM3Buttonhead(screw_shorter_than(5 + motorBracketSizeZ - counterBoreDepth + corkDamperThickness));
 }
 
-module Z_Motor_Mount_hardware(printBedKinematic=false) {
+module Z_Motor_Mount_hardware(printbedKinematic=false) {
     size = Z_Motor_MountSize(NEMA_length(zMotorType));
     eHeight = 40;
 
     // add the main bolts
-    topHolePitch = printBedKinematic ? eSize + 20 : NEMA_hole_pitch(zMotorType);
-    if (printBedKinematic) {
+    topHolePitch = printbedKinematic ? eSize + 20 : NEMA_hole_pitch(zMotorType);
+    if (printbedKinematic) {
         *for (y = [topHolePitch/2, -topHolePitch/2])
             translate([eSize/2, y, size.z])
                 boltM4Buttonhead(_frameBoltLength);
@@ -282,7 +282,7 @@ assembly("Z_Motor_Mount_KB", big=true, ngb=true) {
     vflip()
         stl_colour(pp3_colour)
             Z_Motor_Mount_KB_stl();
-    Z_Motor_Mount_hardware(printBedKinematic=true);
+    Z_Motor_Mount_hardware(printbedKinematic=true);
     Z_Motor_Mount_Motor_hardware(zLeadScrewOffset=30);
 }
 

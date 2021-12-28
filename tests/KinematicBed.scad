@@ -23,8 +23,8 @@ module KinematicBed_test() {
     //front_right_bed_coupling_lift_assembly();
     //back_bed_coupling_lift_assembly();
     //back_bed_coupling_lift_stl();
-    Left_Side_assembly(bedHeight=bedHeight, printBedKinematic=true);
-    Right_Side_assembly(bedHeight=bedHeight, printBedKinematic=true, sideAssemblies=false);
+    Left_Side_assembly(bedHeight=bedHeight, printbedKinematic=true);
+    Right_Side_assembly(bedHeight=bedHeight, printbedKinematic=true, sideAssemblies=false);
     Base_Plate_Stage_1_assembly();
     //Face_Top_Stage_1_assembly();
     //translate_z(bedHeight) jubilee_build_plate();

@@ -23,7 +23,7 @@ module Printbed_test() {
             zRods(left=false);
         }
     //Printbed_Frame_assembly();
-    *translate([_printBedArmSeparation/2 + 2*eSize - 5, 0, eSize/2 + 5])
+    *translate([_printbedArmSeparation/2 + 2*eSize - 5, 0, eSize/2 + 5])
         rotate([90, 0, -90])
             Extrusion_Drill_Jig_Printbed_stl();
     //Printbed_Strain_Relief_stl();

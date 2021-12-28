@@ -28,9 +28,9 @@ _useDualZMotors = false;
 _useFrontDisplay = true;
 _useSidePanels = false;
 
-_printBedSize = [180, 180, 3];
-_printBedArmSeparation = 150;
-_printBed4PointSupport = false;
+_printbedSize = [180, 180, 3];
+_printbedArmSeparation = 150;
+_printbed4PointSupport = false;
 
 _blowerDescriptor = "BL30x10";
 

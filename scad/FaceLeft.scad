@@ -16,37 +16,37 @@ use <Parameters_Positions.scad>
 //!5. On a flat surface, bolt the upper and lower extrusions into the left and right uprights as shown. Tighten the bolts
 //!continuously ensuring the frame is square.
 //
-module Left_Side_assembly(bedHeight=undef, printBedKinematic=undef) pose(a=[55, 0, 25 + 90])
+module Left_Side_assembly(bedHeight=undef, printbedKinematic=undef) pose(a=[55, 0, 25 + 90])
 assembly("Left_Side", big=true) {
 
-    printBedKinematic = is_undef(printBedKinematic) ? (!is_undef(_printBedKinematic) && _printBedKinematic == true) : printBedKinematic;
+    printbedKinematic = is_undef(printbedKinematic) ? (!is_undef(_printbedKinematic) && _printbedKinematic == true) : printbedKinematic;
     bedHeight = is_undef(bedHeight) ? bedHeight() : bedHeight;
-    upperZRodMountsExtrusionOffsetZ = printBedKinematic ? eZ - 90 : _upperZRodMountsExtrusionOffsetZ;
+    upperZRodMountsExtrusionOffsetZ = printbedKinematic ? eZ - 90 : _upperZRodMountsExtrusionOffsetZ;
 
-    faceLeftLowerExtrusion(printBedKinematic, zMotorLength=40);
-    faceLeftUpperZRodMountsExtrusion(printBedKinematic, upperZRodMountsExtrusionOffsetZ);
+    faceLeftLowerExtrusion(printbedKinematic, zMotorLength=40);
+    faceLeftUpperZRodMountsExtrusion(printbedKinematic, upperZRodMountsExtrusionOffsetZ);
 
     explode([0, 70, 0], true)
         faceLeftMotorUpright(upperZRodMountsExtrusionOffsetZ);
     explode([0, -70, 0], true)
         faceLeftIdlerUpright(upperZRodMountsExtrusionOffsetZ);
-    if (printBedKinematic)
+    if (printbedKinematic)
         zRails(bedHeight, left=true);
 }
 
-module faceLeftUpperZRodMountsExtrusion(printBedKinematic, upperZRodMountsExtrusionOffsetZ) {
+module faceLeftUpperZRodMountsExtrusion(printbedKinematic, upperZRodMountsExtrusionOffsetZ) {
     translate([0, eSize, upperZRodMountsExtrusionOffsetZ]) {
         translate_z(-eSize)
             extrusionOY2040VEndBolts(eY);
-        if (!printBedKinematic)
+        if (!printbedKinematic)
             zMountsUpper();
     }
 }
 
-module faceLeftLowerExtrusion(printBedKinematic, zMotorLength) {
+module faceLeftLowerExtrusion(printbedKinematic, zMotorLength) {
     translate([0, eSize, 0]) {
         extrusionOY2040VEndBolts(eY);
-        if (!printBedKinematic)
+        if (!printbedKinematic)
             zMountsLower(zMotorLength);
     }
 }

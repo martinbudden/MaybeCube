@@ -29,9 +29,9 @@ _useFrontDisplay = true;
 _useSidePanels = false;
 _useHalfCarriage = true;
 
-_printBedSize = [214, 214, 4];
-_printBedArmSeparation = 188;
-_printBed4PointSupport = !true;
+_printbedSize = [214, 214, 4];
+_printbedArmSeparation = 188;
+_printbed4PointSupport = !true;
 
 _blowerDescriptor = "BL30x10";
 

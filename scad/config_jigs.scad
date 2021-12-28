@@ -10,9 +10,9 @@ eSize = 20; // for 2020, 2040  etc extrusion
 _useDualZRods = false;
 _useDualZMotors = false;
 
-_printBedSize = [214, 214, 4];
-_printBedArmSeparation = 188;
-_printBed4PointSupport = !true;
+_printbedSize = [214, 214, 4];
+_printbedArmSeparation = 188;
+_printbed4PointSupport = !true;
 
 __skBracketWidth = 42; // same for SK8, SK10, and SK12
 _zRodOffsetY = __skBracketWidth/2 + 40;

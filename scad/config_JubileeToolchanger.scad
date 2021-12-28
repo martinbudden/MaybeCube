@@ -22,7 +22,7 @@ _yCarriageDescriptor = "MGN12H";
 
 _coreXYDescriptor = "GT2_20_16";
 
-_printBedArmSeparation = 150;
+_printbedArmSeparation = 150;
 
 _blowerDescriptor = "BL30x10";
 

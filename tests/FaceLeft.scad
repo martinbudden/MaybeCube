@@ -29,7 +29,7 @@ module Left_Side_test() {
     //let($hide_extrusions=true)
     //let($hide_rails=true)
     Left_Side_assembly();
-    if (is_undef(_printBedKinematic) || _printBedKinematic == false) zRods();
+    if (is_undef(_printbedKinematic) || _printbedKinematic == false) zRods();
     //faceTopBack(fov_distance=0);
     //printheadWiring();
     //Right_Side_assembly(); if(is_true(_useDualZRods))zRods(left=false);
