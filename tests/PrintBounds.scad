@@ -44,7 +44,7 @@ use <../scad/vitamins/PrintheadBIQU_B1.scad>
 use <../scad/BasePlate.scad>
 use <../scad/FaceLeft.scad>
 use <../scad/FaceRight.scad>
-use <../scad/PrintBed.scad>
+use <../scad/Printbed.scad>
 
 use <../scad/Parameters_Positions.scad>
 

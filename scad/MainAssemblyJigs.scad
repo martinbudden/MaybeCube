@@ -55,6 +55,11 @@ assembly("Jigs") {
             Extrusion_Drill_Jig_stl();
         Extrusion_Drill_Jig_hardware();
     }
+    translate([260 - 90 + 24, 100, 0]) {
+        stl_colour(pp2_colour)
+            Extrusion_Drill_Jig_Printbed_stl();
+        Extrusion_Drill_Jig_Printbed_hardware();
+    }
     translate([-115, 0, 0])
         stl_colour(jigColor)
             Rail_Centering_Jig_MGN12_2040_stl();

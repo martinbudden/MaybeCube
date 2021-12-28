@@ -10,7 +10,7 @@ use <../scad/BasePlate.scad>
 use <../scad/FaceLeft.scad>
 use <../scad/FaceRight.scad>
 use <../scad/FaceTop.scad>
-use <../scad/PrintBed.scad>
+use <../scad/Printbed.scad>
 
 use <../scad/Parameters_Positions.scad>
 include <../scad/Parameters_Main.scad>
