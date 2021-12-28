@@ -28,9 +28,9 @@ _useDualZMotors = true;
 _useFrontDisplay = true;
 _useSidePanels = false;
 
-_printBedSize = [310, 310, 3] : // CR-10 size
-_printBedArmSeparation = 225;
-_printBed4PointSupport = true;
+_printbedSize = [310, 310, 3] : // CR-10 size
+_printbedArmSeparation = 225;
+_printbed4PointSupport = true;
 
 _blowerDescriptor = "BL40x10";
 

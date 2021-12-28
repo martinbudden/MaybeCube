@@ -25,7 +25,7 @@ boltOffset = 26;
 leadnut = LSN8x2;
 leadnutInset = leadnut_flange_t(leadnut);
 
-function printBedFrameCrossPieceOffset() = baseSize.x/2 + tabRightLength + (useTab ? 0 : 1);// + 9.75;
+function printbedFrameCrossPieceOffset() = baseSize.x/2 + tabRightLength + (useTab ? 0 : 1);// + 9.75;
 
 holes = [for (i=[ [-1, 1], [1, 1], [-1, -1], [1, -1] ]) [i.x*scs_screw_separation_x(scsType)/2, i.y*scs_screw_separation_z(scsType)/2, baseSize.z] ];
 
@@ -204,13 +204,13 @@ assembly("Z_Carriage", ngb=true) {
 
 module zCarriageCenter() {
     baseThickness = 5;
-    size = [30, printBedFrameCrossPieceOffset() + 15, eSize + baseThickness];
+    size = [30, printbedFrameCrossPieceOffset() + 15, eSize + baseThickness];
     tabSize = [size.x + 20, 5, size.z];
     fillet = 2;
 
     translate_z(-eSize/2 - baseThickness)
         difference() {
-            translate([-size.x/2, printBedFrameCrossPieceOffset() - size.y, 0])
+            translate([-size.x/2, printbedFrameCrossPieceOffset() - size.y, 0])
                 rounded_cube_xy(size, fillet);
             translate_z(-leadnut_flange_t(leadnut))
                 leadnut_screw_positions(leadnut)
@@ -221,7 +221,7 @@ module zCarriageCenter() {
                     poly_cylinder(r=leadnut_flange_dia(leadnut)/2, h=leadnutInset + eps);
             }
         }
-    translate([-tabSize.x/2, printBedFrameCrossPieceOffset() - tabSize.y, 0]) {
+    translate([-tabSize.x/2, printbedFrameCrossPieceOffset() - tabSize.y, 0]) {
         difference() {
             translate_z(-eSize/2 - baseThickness)
                 rounded_cube_xy(tabSize, 1);
@@ -254,7 +254,7 @@ module Z_Carriage_Center_hardware() {
                     screw(leadnut_screw(leadnut), 10);
             }
         for (x = [5, tabSize.x -5])
-            translate([x - tabSize.x/2, tabSize.y - printBedFrameCrossPieceOffset(), 0]) {
+            translate([x - tabSize.x/2, tabSize.y - printbedFrameCrossPieceOffset(), 0]) {
                 rotate([-90, 0, 0])
                     boltM4ButtonheadTNut(_frameBoltLength);
                 translate([0, -eSize/2 - 5, eSize/2 + baseThickness])

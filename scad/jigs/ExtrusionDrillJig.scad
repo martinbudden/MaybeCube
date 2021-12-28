@@ -220,7 +220,7 @@ module Extrusion_Drill_Jig_Printbed_stl() {
     echo(scsSize=scsSize);
     //holes = [eSize/2, 3*eSize/2, 5*eSize/2, 7*eSize/2, 85, 105];
     holes = [scsSize.x/2 - scs_screw_separation_x(scsType)/2, scsSize.x/2 + scs_screw_separation_x(scsType)/2,
-        scsSize.x/2 + printBedFrameCrossPieceOffset() + eSize/2, scsSize.x/2 + printBedFrameCrossPieceOffset() + 3*eSize/2];
+        scsSize.x/2 + printbedFrameCrossPieceOffset() + eSize/2, scsSize.x/2 + printbedFrameCrossPieceOffset() + 3*eSize/2];
     fixingHoles = [eSize/2, 90 - eSize];
     stl("Extrusion_Drill_Jig_Printbed")
         color(jigColor)

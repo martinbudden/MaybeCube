@@ -16,16 +16,16 @@ use <Parameters_Positions.scad>
 //!2. Bolt the **IEC_Housing_assembly** to the lower extrusion and upright.
 //!3. Bolt the **Extruder_Bracket_assembly** to the upper extrusion and upright.
 //
-module Right_Side_assembly(bedHeight=undef, printBedKinematic=undef, sideAssemblies=undef) pose(a=[55, 0, 25 - 90])
+module Right_Side_assembly(bedHeight=undef, printbedKinematic=undef, sideAssemblies=undef) pose(a=[55, 0, 25 - 90])
 assembly("Right_Side", big=true) {
 
-    printBedKinematic = is_undef(printBedKinematic) ? (!is_undef(_printBedKinematic) && _printBedKinematic == true) : printBedKinematic;
+    printbedKinematic = is_undef(printbedKinematic) ? (!is_undef(_printbedKinematic) && _printbedKinematic == true) : printbedKinematic;
     bedHeight = is_undef(bedHeight) ? bedHeight() : bedHeight;
     sideAssemblies = is_undef(sideAssemblies) ? (is_undef(_useBackMounts) || _useBackMounts == false) : sideAssemblies;
-    upperZRodMountsExtrusionOffsetZ = printBedKinematic ? eZ - 90 : _upperZRodMountsExtrusionOffsetZ;
+    upperZRodMountsExtrusionOffsetZ = printbedKinematic ? eZ - 90 : _upperZRodMountsExtrusionOffsetZ;
 
     faceRightLowerExtrusion();
-    if (eX >= 350 || printBedKinematic)
+    if (eX >= 350 || printbedKinematic)
         faceRightUpperZRodMountsExtrusion(upperZRodMountsExtrusionOffsetZ);
 
     explode([0, 70, 0], true)
@@ -35,7 +35,7 @@ assembly("Right_Side", big=true) {
         faceRightIdlerUpright(upperZRodMountsExtrusionOffsetZ);
 
     // extra extrusion for mounting spool holder
-    if (printBedKinematic) {
+    if (printbedKinematic) {
         zRails(bedHeight, left=false);
         translate([eX + eSize, (eY + 3*eSize)/2, spoolHeight()])
             extrusionOY2040VEndBolts((eY - eSize)/2);

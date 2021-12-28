@@ -25,7 +25,7 @@ use <Printbed.scad>
 use <Parameters_Positions.scad>
 
 
-printBedKinematic = !is_undef(_printBedKinematic) && _printBedKinematic == true;
+printbedKinematic = !is_undef(_printbedKinematic) && _printbedKinematic == true;
 _poseMainAssembly = [90 - 15, 0, 90 + 15];
 
 
@@ -77,9 +77,9 @@ module staged_assembly(name, big, ngb) {
 module Stage_1_assembly() pose(a=[55 + 90, 90 - 20, 90])
 staged_assembly("Stage_1", big=true, ngb=true) {
 
-    Left_Side_assembly(bedHeight(), printBedKinematic);
+    Left_Side_assembly(bedHeight(), printbedKinematic);
 
-    if (!printBedKinematic) {
+    if (!printbedKinematic) {
         zRods();
         zMotor();
 
@@ -120,14 +120,14 @@ staged_assembly("Stage_3", big=true, ngb=true) {
     Stage_2_assembly();
 
     explode(150, true) {
-        Right_Side_assembly(bedHeight(), printBedKinematic);
+        Right_Side_assembly(bedHeight(), printbedKinematic);
         // add the right side Z rods if using dual Z rods
         if (useDualZRods())
             zRods(left=false);
     }
     coverLength = 50;
     explode([-50, 0, 0])
-        if (!printBedKinematic)
+        if (!printbedKinematic)
             for (y = [eSize + 5, eSize + eY/2 - coverLength/2, eSize + eY - coverLength - 5])
                 translate([eX + eSize-1, y, 3*eSize/2])
                     rotate([-90, -90, 0])
@@ -143,9 +143,9 @@ staged_assembly("Stage_4", big=true, ngb=true) {
     Stage_3_assembly();
     explode([0, 150, 0])
         Back_Panel_assembly();
-    if (printBedKinematic)
+    if (printbedKinematic)
         translate_z(bedHeight())
-            jubilee_build_plate(_printBedHoleOffset);
+            jubilee_build_plate(_printbedHoleOffset);
    //Partition_assembly();
 }
 

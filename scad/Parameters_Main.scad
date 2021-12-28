@@ -6,7 +6,7 @@ _boltTogether = true;
 _useAsserts = true;
 
 
-_printBedExtrusionSize = 20;
+_printbedExtrusionSize = 20;
 _basePlateThickness = 3;
 
 // Z
@@ -18,7 +18,7 @@ __scs_hole_offset = _zRodDiameter == 8 ? 11 : _zRodDiameter == 10 ? 13 : 15;
 _zCarriageSCS_sizeZ = 5.5;
 __zCarriageYOffset =  __scs_hole_offset + _zCarriageSCS_sizeZ;
 
-function zRodSeparation() = -__zCarriageYOffset*2 + (is_undef(_printBedArmSeparation) ? 150 : _printBedArmSeparation);
+function zRodSeparation() = -__zCarriageYOffset*2 + (is_undef(_printbedArmSeparation) ? 150 : _printbedArmSeparation);
 
 // Bolts
 _frameBoltLength = 10;

@@ -24,10 +24,10 @@ _coreXYDescriptor = "GT2_20_25";
 
 _use2060ForTop = true;
 
-_printBedSize = [305, 300, 6.35];
-_printBedHoleOffset = [8, 30];
-_printBedArmSeparation = 50 + _printBedSize.y - 2*_printBedHoleOffset.y;
-_printBedKinematic = true;
+_printbedSize = [305, 300, 6.35];
+_printbedHoleOffset = [8, 30];
+_printbedArmSeparation = 50 + _printbedSize.y - 2*_printbedHoleOffset.y;
+_printbedKinematic = true;
 
 _zRodOffsetY = 66;
 _zLeadScrewOffset = 30;// ensures clearance of zMotor from frame and zRail

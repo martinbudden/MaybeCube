@@ -27,19 +27,19 @@ springLength = 18; // 25 uncompressed
 SK_type = _zRodDiameter == 8 ? SK8 : _zRodDiameter == 10 ? SK10 : SK12;
 skHoleOffsetFromTop = sk_size(SK_type).y - sk_hole_offset(SK_type);
 
-heatedBedOffset = !is_undef(_printBed4PointSupport) && _printBed4PointSupport
-    ? [0, 40, _printBedExtrusionSize/2 + springLength - 8]
-    : [0, skHoleOffsetFromTop + 8, _printBedExtrusionSize/2 + 5.5];
+heatedBedOffset = !is_undef(_printbed4PointSupport) && _printbed4PointSupport
+    ? [0, 40, _printbedExtrusionSize/2 + springLength - 8]
+    : [0, skHoleOffsetFromTop + 8, _printbedExtrusionSize/2 + 5.5];
 
-_heatedBedSize = _printBedSize;
-/*_heatedBedSize = is_undef(_printBedSize) || _printBedSize == 100 ? [100, 100, 1.6] : // Openbuilds mini heated bed size
-                _printBedSize == 120 ? [120, 120, 6] : // Voron 0 size
-                _printBedSize == 180 ? [180, 180, 3] :
-                _printBedSize == 210 ? [210, 210, 4] :
-                _printBedSize == 214 ? [214, 214, 4] :
-                _printBedSize == 235 ? [235, 235, 4] : // Ender 3 size
-                _printBedSize == 300 ? [300, 300, 4] :
-                _printBedSize == 310 ? [310, 310, 3] : // CR-10 size
+_heatedBedSize = _printbedSize;
+/*_heatedBedSize = is_undef(_printbedSize) || _printbedSize == 100 ? [100, 100, 1.6] : // Openbuilds mini heated bed size
+                _printbedSize == 120 ? [120, 120, 6] : // Voron 0 size
+                _printbedSize == 180 ? [180, 180, 3] :
+                _printbedSize == 210 ? [210, 210, 4] :
+                _printbedSize == 214 ? [214, 214, 4] :
+                _printbedSize == 235 ? [235, 235, 4] : // Ender 3 size
+                _printbedSize == 300 ? [300, 300, 4] :
+                _printbedSize == 310 ? [310, 310, 3] : // CR-10 size
                 undef;*/
 
 // values marked undef are not currently reliably known
@@ -88,13 +88,13 @@ supportLengthCenter = heatedBedOffsetY+insetY-braceY()+printBedHoleOffset+heated
 // support lengths 25, 25, 17
 scs_type = _zRodDiameter == 8 ? SCS8LUU : _zRodDiameter == 10 ? SCS10LUU : SCS12LUU;
 dualCrossPieces = true;
-printBedFrameCrossPiece2Offset = -2*_zRodOffsetX - printBedFrameCrossPieceOffset() - (eX < 350 ? 0 : 3*eSize/2);
+printbedFrameCrossPiece2Offset = -2*_zRodOffsetX - printbedFrameCrossPieceOffset() - (eX < 350 ? 0 : 3*eSize/2);
 
 
-function printBedSize() = [
+function printbedSize() = [
     _heatedBedSize.x,
     !is_undef(_useDualZRods) && _useDualZRods ? eY - 3 : eY <= 250 ? 225 : eY <= 300 ? 265 : eY <= 350 ? 300 : 375,
-    _printBedExtrusionSize + _heatedBedSize.z
+    _printbedExtrusionSize + _heatedBedSize.z
 ];
 
 extrusion_inner_corner_bracket_hole_offset = 15;
@@ -155,7 +155,7 @@ module molex_400(ways) { //! Draw molex header
 module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayThickness=0) {
     vitamin(str("heatedBed(", size, ", ", holeOffset, ", ", underlayThickness, "): Heated Bed ", size.x, "mm x ", size.y, "mm"));
 
-    boltHoles = _printBed4PointSupport
+    boltHoles = _printbed4PointSupport
         ? [ [holeOffset, holeOffset, 0], [size.x - holeOffset, holeOffset, 0], [size.x - holeOffset, size.y - holeOffset, 0], [holeOffset, size.y - holeOffset, 0] ]
         : [ [size.x - holeOffset, size.y/2, 0], [holeOffset, size.y - holeOffset, 0], [holeOffset, holeOffset, 0] ];
     translate([-_heatedBedSize.y/2, 0, 0]) {
@@ -164,13 +164,13 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
                 rotate([90, 90, 0])
                     molex_400(6);
 
-        translate_z(_printBed4PointSupport ? 0 : underlayThickness)
+        translate_z(_printbed4PointSupport ? 0 : underlayThickness)
         color("silver")
             difference() {
                 rounded_cube_xy(size, 1);
                 for (i = boltHoles)
                     translate(i)
-                        if (_printBed4PointSupport)
+                        if (_printbed4PointSupport)
                             translate_z(size.z + eps)
                                 rotate([180, 0, 0]) {
                                     boltHoleM3(size.z, cnc=true);
@@ -183,8 +183,8 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
                         boltHoleM3(size.z - underlayThickness);
             }
         // add magnetic layer
-        translate_z(size.z + (_printBed4PointSupport ? 0 : underlayThickness))
-            if (_printBed4PointSupport) {
+        translate_z(size.z + (_printbed4PointSupport ? 0 : underlayThickness))
+            if (_printbed4PointSupport) {
                 color(grey(20))
                     difference() {
                         magneticBaseSize = [size.x, size.y, 1];
@@ -202,23 +202,23 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
             }
 
         // add underlay
-        if (_printBed4PointSupport)
+        if (_printbed4PointSupport)
             foamUnderlay(size, holeOffset, 7);
         else
             explode(-40)
                 corkUnderlay(size, boltHoles, underlayThickness);
 
         spring  = ["spring", 8, 0.9, 20, 10, 1, false, 0, "lightblue"];
-        supportBoltLength = _printBed4PointSupport ? 45 : 12;
-        if (_printBed4PointSupport) for (i=boltHoles) {
+        supportBoltLength = _printbed4PointSupport ? 45 : 12;
+        if (_printbed4PointSupport) for (i=boltHoles) {
             translate(i) {
                 explode(0.1, false)
                     translate_z(size.z + eps)
-                        if (_printBed4PointSupport)
+                        if (_printbed4PointSupport)
                             boltM4Countersunk(supportBoltLength);
                         else
                             boltM3Caphead(supportBoltLength);
-                if (_printBed4PointSupport) {
+                if (_printbed4PointSupport) {
                     translate_z(-springLength + underlayThickness)
                         explode(-70)
                             comp_spring(spring, springLength);
@@ -231,7 +231,7 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
     }
 }
 module heatedBedHardware(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayThickness=0) {
-    boltHoles = _printBed4PointSupport
+    boltHoles = _printbed4PointSupport
         ? [ [holeOffset, holeOffset, 0], [size.x - holeOffset, holeOffset, 0], [size.x - holeOffset, size.y - holeOffset, 0], [holeOffset, size.y - holeOffset, 0] ]
         : [ [size.x - holeOffset, size.y/2, 0], [holeOffset, size.y - holeOffset, 0], [holeOffset, holeOffset, 0] ];
 
@@ -273,12 +273,12 @@ module heatedBedHardware(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, u
 }
 
 module printbedFrameCrossPiece() {
-    fSize = _printBedExtrusionSize;
-    translate([-_printBedArmSeparation/2, 0, 0]) {
-        extrusionOX2040HEndBolts(_printBedArmSeparation);
+    fSize = _printbedExtrusionSize;
+    translate([-_printbedArmSeparation/2, 0, 0]) {
+        extrusionOX2040HEndBolts(_printbedArmSeparation);
         if (!_useBlindJoints) {
             translate([0, 2*fSize, fSize/2]) {
-                translate([_printBedArmSeparation, 0, 0])
+                translate([_printbedArmSeparation, 0, 0])
                     explode([40, 0, 0])
                         rotate([0, 0, 90])
                             extrusionInnerCornerBracket();
@@ -287,7 +287,7 @@ module printbedFrameCrossPiece() {
                         extrusionInnerCornerBracket();
             }
             translate([0, 0, fSize/2]) {
-                translate([_printBedArmSeparation, 0, 0])
+                translate([_printbedArmSeparation, 0, 0])
                     rotate([180, 0, -90])
                         extrusionInnerCornerBracket(1);
                 rotate([0, 0, -90])
@@ -301,7 +301,7 @@ module printbedFrameCrossPiece() {
             vflip()
                 antiBacklashNut();
         translate([antiBacklashNutBoltSeparation()/2, 0, 0]) {
-            explode([_printBedArmSeparation/2 + 10, 0, 0])
+            explode([_printbedArmSeparation/2 + 10, 0, 0])
                 rotate([-90, 0, 0])
                     nutM4SlidingT();
             rotate([90, 0, 0])
@@ -309,7 +309,7 @@ module printbedFrameCrossPiece() {
                     boltM4Buttonhead(12);
         }
         translate([-antiBacklashNutBoltSeparation()/2, 0, 0]) {
-            explode([-_printBedArmSeparation/2 - 10, 0, 0])
+            explode([-_printbedArmSeparation/2 - 10, 0, 0])
                 rotate([-90, 0, 0])
                     nutM4SlidingT();
             rotate([90, 0, 0])
@@ -327,12 +327,12 @@ module printbedFrameCrossPiece() {
 //
 module Printbed_Frame_assembly()
 assembly("Printbed_Frame", big=true, ngb=true) {
-    size = printBedSize();
-    fSize = _printBedExtrusionSize;
+    size = printbedSize();
+    fSize = _printbedExtrusionSize;
     yOffset = scs_size(scs_type).x/2; // 42/2
 
-    translate([-_printBedArmSeparation/2, 0, -fSize/2]) {
-        for (x = [-fSize/2, _printBedArmSeparation + fSize/2])
+    translate([-_printbedArmSeparation/2, 0, -fSize/2]) {
+        for (x = [-fSize/2, _printbedArmSeparation + fSize/2])
             explode([x < 0 ? -50 : 50, 0, 0])
                 difference() {
                     translate([x - fSize/2, -yOffset, 0])
@@ -347,14 +347,14 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                     translate([x + fSize/2, 0, fSize/2]) {
                         for (y = [fSize/2, 3*fSize/2])
                             rotate([0, -90, 0]) {
-                                translate([0, y + printBedFrameCrossPieceOffset(), 0])
+                                translate([0, y + printbedFrameCrossPieceOffset(), 0])
                                     jointBoltHole();
                                 if (dualCrossPieces)
-                                    translate([0, -y + eY + printBedFrameCrossPiece2Offset, 0])
+                                    translate([0, -y + eY + printbedFrameCrossPiece2Offset, 0])
                                         jointBoltHole();
                             }
                     }
-                    if (_printBed4PointSupport) {
+                    if (_printbed4PointSupport) {
                         for (y = [_heatedBedHoleOffset, _heatedBedSize.y - _heatedBedHoleOffset])
                             translate([x, y + heatedBedOffset.y, 0]) {
                                 // hole for bolt
@@ -372,20 +372,20 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                     }
             }
 
-        translate([_printBedArmSeparation/2, 0]) {
-            translate([0, printBedFrameCrossPieceOffset(), 0])
+        translate([_printbedArmSeparation/2, 0]) {
+            translate([0, printbedFrameCrossPieceOffset(), 0])
                 printbedFrameCrossPiece();
             if (dualCrossPieces)
-                //translate([0, eY - 2*eSize - 6 - printBedFrameCrossPieceOffset(), 0])
-                //translate([0, eY + 2*eSize - _zRodOffsetX - 3*printBedFrameCrossPieceOffset(), 0])
-                translate([0, eY + printBedFrameCrossPiece2Offset, 0])
+                //translate([0, eY - 2*eSize - 6 - printbedFrameCrossPieceOffset(), 0])
+                //translate([0, eY + 2*eSize - _zRodOffsetX - 3*printbedFrameCrossPieceOffset(), 0])
+                translate([0, eY + printbedFrameCrossPiece2Offset, 0])
                     rotate(180)
                         printbedFrameCrossPiece();
         }
-    *if (!_printBed4PointSupport) {
+    *if (!_printbed4PointSupport) {
         translate([-fSize/2, heatedBedOffset.y + _heatedBedSize.y/2, 27])
             boltM3Caphead(20);
-        translate([fSize/2 + _printBedArmSeparation, - yOffset, 27]) {
+        translate([fSize/2 + _printbedArmSeparation, - yOffset, 27]) {
             //boltM3Caphead(20);
             translate([0, yOffset + heatedBedOffset.y + _heatedBedHoleOffset, 0])
                 boltM3Caphead(20);
@@ -395,7 +395,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
         }
     }
     /*
-    translate([_printBedArmSeparation, 0, fSize])
+    translate([_printbedArmSeparation, 0, fSize])
         explode([50, -40, 0], true)
             rotate([-90, 90, 90])
                 Printbed_Corner_Bracket_stl();
@@ -408,7 +408,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
             explode([50, -40, 0], true)
                 rotate([-90, 90, -90])
                     Printbed_Corner_Bracket_stl();
-        translate([_printBedArmSeparation, 0, -fSize])
+        translate([_printbedArmSeparation, 0, -fSize])
             explode([-50, -40, 0], true)
                 rotate([-90, -90, 90])
                     Printbed_Corner_Bracket_stl();
@@ -425,7 +425,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                     Z_Carriage_Center_assembly();
 
     explode([0, -20, 0], true)
-        translate([0, eX - 2*eSize + printBedFrameCrossPiece2Offset, -eSize/2])
+        translate([0, eX - 2*eSize + printbedFrameCrossPiece2Offset, -eSize/2])
             rotate([90, 0, 0]) {
                 stl_colour(pp1_colour)
                     Printbed_Strain_Relief_stl();
@@ -483,7 +483,7 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
 module Printbed_assembly()  pose(a=[210, 0, 320])
 assembly("Printbed", big=true) {
 
-    if (is_undef(_printBedKinematic) || _printBedKinematic == false)
+    if (is_undef(_printbedKinematic) || _printbedKinematic == false)
         translate([eSize + _zRodOffsetX, eSize + zRodSeparation()/2 + _zRodOffsetY, 0])
             rotate(-90) {
                 Printbed_Frame_with_Z_Carriages_assembly();
@@ -491,10 +491,10 @@ assembly("Printbed", big=true) {
                 explode(120, true)
                     translate(heatedBedOffset) {
                         heatedBed(_heatedBedSize, _heatedBedHoleOffset, 3);
-                        if (!_printBed4PointSupport)
+                        if (!_printbed4PointSupport)
                             heatedBedHardware(_heatedBedSize, _heatedBedHoleOffset, 3);
                     }
-                translate([0, eX - 2*eSize + printBedFrameCrossPiece2Offset, -eSize/2])
+                translate([0, eX - 2*eSize + printbedFrameCrossPiece2Offset, -eSize/2])
                     rotate([90, 0, 0]) {
                         stl_colour(pp2_colour)
                             explode(10)
@@ -569,7 +569,7 @@ module Printbed_Strain_Relief_Clamp_hardware() {
 
 module Printbed_Strain_Relief_assembly()
 assembly("Printbed_Strain_Relief") {
-    translate([0, eX - 2*eSize + printBedFrameCrossPiece2Offset, -eSize/2])
+    translate([0, eX - 2*eSize + printbedFrameCrossPiece2Offset, -eSize/2])
         rotate([90, 0, 0]) {
             stl_colour(pp1_colour)
                 Printbed_Strain_Relief_stl();

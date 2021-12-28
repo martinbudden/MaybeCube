@@ -28,9 +28,9 @@ _useDualZMotors = false;
 _useFrontDisplay = false;
 _useSidePanels = false;
 
-_printBedSize = [235, 235, 4]; // Ender 3 size
-_printBedArmSeparation = 150;
-_printBed4PointSupport = true;
+_printbedSize = [235, 235, 4]; // Ender 3 size
+_printbedArmSeparation = 150;
+_printbed4PointSupport = true;
 
 _blowerDescriptor = "BL30x10";
 

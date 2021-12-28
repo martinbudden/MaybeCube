@@ -122,7 +122,7 @@ assembly("Z_Carriage_Right_Center") {
                     rod(4, 20, center=false);
 }
 
-module jubilee_build_plate(printBedHoleOffset=[8, 30]) {
+module jubilee_build_plate(printbedHoleOffset=[8, 30]) {
     // RatRig build plate is 329x329x4 with 4 x 6mm holes offset by 10mm(guess)
     //
     // Voron V2 build plate is 300.8x304.9x6 with holes offset 7mm in Y direction and 75 mm from center in X direction.
@@ -130,10 +130,10 @@ module jubilee_build_plate(printBedHoleOffset=[8, 30]) {
     //
     //Jubilee size = [340, 305, 6.35];
     //
-    size = _printBedSize;
+    size = _printbedSize;
     //bedOffset = [47.7, 24.675, 48];
     bedOffset = [68.7, 36 + 35, 18];
-    holeOffset = printBedHoleOffset;
+    holeOffset = printbedHoleOffset;
     boltHoles = [ [holeOffset.x, holeOffset.y, 0], [holeOffset.x, size.y - holeOffset.y, 0], [size.x - holeOffset.x, size.y/2, 0] ];
     //translate([60, 25+(26+59)/2, 50+48])
     explode(50)

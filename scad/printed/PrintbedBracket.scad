@@ -13,7 +13,7 @@ include <../Parameters_Main.scad>
 //function braceY() = braceY;
 firstBracketSizeX = _zLeadScrewOffset + antiBacklashNutSize().z/2 - 1;
 
-module printBedBracket() {
+module printbedBracket() {
     fSize = eSize;
     braceThickness = 3;
     bracketThickness = 4;
@@ -50,13 +50,13 @@ module Printbed_Corner_Bracket_stl() {
     extrusionCornerBracketTNutsAndBolts(size=[eSize, firstBracketSizeX, 30], holeOffsetFromTop=7, holeOffsetFromSide=10);
 }
 
-module printBedBracketLeft_stl() {
-    stl("printBedBracketLeft")
-        printBedBracket();
+module printbedBracketLeft_stl() {
+    stl("printbedBracketLeft")
+        printbedBracket();
 }
 
-module printBedBracketRight_stl() {
-    stl("printBedBracketRight")
+module printbedBracketRight_stl() {
+    stl("printbedBracketRight")
         mirror([1, 0, 0])
-            printBedBracket();
+            printbedBracket();
 }
