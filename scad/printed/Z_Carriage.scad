@@ -119,7 +119,7 @@ module zCarriageSCS_hardware(cnc=false) {
                         boltM5Countersunk(12);
                     else
                         translate_z(2) // offset for extrusion channel
-                            boltM5Buttonhead(12);
+                            boltM5Buttonhead(16);
         for (i = [2, 3])
             translate(holes[i])
                 explode(20, true)
@@ -140,8 +140,8 @@ module Z_Carriage_Right_stl() {
             zCarriageSCS();
 }
 
-module Z_Carriage_stl() {
-    stl("Z_Carriage")
+module Z_Carriage_Side_stl() {
+    stl("Z_Carriage_Side")
         color(pp1_colour)
             zCarriageSCS();
 }
@@ -187,13 +187,13 @@ assembly("Z_Carriage_Right", ngb=true) {
 //!1. Bolt the SCS bearing block to the **Z_Carriage**.
 //!2. Add the bolts and t-nuts in preparation for connection to the printbed.
 //
-module Z_Carriage_assembly()
-assembly("Z_Carriage", ngb=true) {
+module Z_Carriage_Side_assembly()
+assembly("Z_Carriage_Side", ngb=true) {
 
     translate_z(-scs_screw_separation_z(scsType)/2) {
         rotate([90, 0, 90]) {
             stl_colour(pp1_colour)
-                Z_Carriage_stl();
+                Z_Carriage_Side_stl();
             zCarriageSCS_hardware();
         }
         explode([-30, 0, 0])
