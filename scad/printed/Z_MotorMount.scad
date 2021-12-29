@@ -39,14 +39,19 @@ module NEMA_baseplate(NEMA_type, size, zLeadScrewOffset=_zLeadScrewOffset) {
     assert(isNEMAType(NEMA_type));
 
     difference() {
-        cube(size);
-        translate([size.x/2, zLeadScrewOffset, 0]) {
-            // center circle for the motor axle
-            translate_z(-eps)
-                poly_cylinder(r=NEMA_boss_radius(NEMA_type), h=size.z + 2*eps);
+        rounded_cube_xy(size, 1);
+        translate([size.x/2, zLeadScrewOffset, -eps]) {
+            tolerance = 1.0;
+            // center circle for the motor boss
+            poly_cylinder(r=NEMA_boss_radius(NEMA_type) + tolerance, h=size.z + 2*eps);
             // motor boltholes
             NEMA_screw_positions(NEMA_type)
-                boltHoleM3(size.z);
+                hull() {
+                    translate([0, -tolerance/2, 0])
+                        poly_cylinder(r=M3_clearance_radius, h=size.z + 2*eps, sides=8, twist=0);
+                    translate([0, tolerance/2, 0])
+                        poly_cylinder(r=M3_clearance_radius, h=size.z + 2*eps, sides=8, twist=0);
+                }
         }
     }
     *translate([0, 0, size.z-0.25]) cube([size.x, size.y, 0.25]); // to bridge the holes for printing
@@ -57,7 +62,7 @@ module zMotorMount(zMotorType, eHeight=40, printbedKinematic=false) {
 
     zLeadScrewOffset = printbedKinematic ? 30 : _zLeadScrewOffset;
     size = Z_Motor_MountSize(NEMA_length(zMotorType), zLeadScrewOffset);
-    motorBracketSizeY = zLeadScrewOffset + NEMA_motorWidth/2 - 1;
+    motorBracketSizeY = zLeadScrewOffset + NEMA_motorWidth/2;
     blockSizeZ = size.z - eHeight;
 
     translate([wingSizeX, eSize, size.z - motorBracketSizeZ]) difference() {
@@ -68,7 +73,7 @@ module zMotorMount(zMotorType, eHeight=40, printbedKinematic=false) {
             *translate([0, 5, -size.z + motorBracketSizeZ + 4]) rotate([0, 0, 90]) fillet(2, size.z-4);
             *translate([motorBracketSizeX, 5, -size.z + motorBracketSizeZ + 4]) fillet(2, size.z-4);
             // add the braces
-            braceSize = [motorBracketSizeY - motorBracketSizeZ, size.z - motorBracketSizeZ-7, motorBracketSizeZ - reduce];
+            braceSize = [motorBracketSizeY - motorBracketSizeZ - 1, size.z - motorBracketSizeZ - 7, motorBracketSizeZ - reduce];
             for (x = [motorBracketSizeZ, motorBracketSizeX - reduce])
                 translate([x, motorBracketSizeZ, 0])
                     rotate([-90, 0, 90])
@@ -132,12 +137,12 @@ module zMotorMount(zMotorType, eHeight=40, printbedKinematic=false) {
                         }
                     }
         // fillet the wings
-        translate([-wingSizeX, motorBracketSizeZ, -size.z + motorBracketSizeZ])
+        translate([-wingSizeX, motorBracketSizeZ, -size.z + motorBracketSizeZ + eps])
             rotate(-90)
-                fillet(1, size.z);
-        translate([size.x - wingSizeX, motorBracketSizeZ, -size.z + motorBracketSizeZ])
+                fillet(1, size.z + 2*eps);
+        translate([size.x - wingSizeX, motorBracketSizeZ, -size.z + motorBracketSizeZ + eps])
             rotate(180)
-                fillet(1, size.z);
+                fillet(1, size.z + 2*eps);
         // fillet the base
         translate([0, motorBracketSizeY, -1])
             rotate(-90)
