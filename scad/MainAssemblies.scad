@@ -67,12 +67,13 @@ module staged_assembly(name, big, ngb) {
 //!5. Slide the print bed to the bottom of the rods and tighten the bolts on the bottom right rod bracket
 //!(you will have tightened the bolts on the bottom left bracket in a previous step).
 //!
-//!6. Thread the motor's lead screw through the lead nut on the **Z_Carriage_Center** and bolt the motor to
-//! the **Z_Motor_Mount**.
+//!6. Thread the motor's lead screw through the lead nut on the **Z_Carriage_Center** and loosely bolt the motor to
+//!the **Z_Motor_Mount**.
+//!
+//!8. Ensure the **Z_Carriage_Center** is aligned with the lead screw and tighten the bolts on the **Z_Carriage_Center**
+//!and the **Z_Motor_Mount**. The bolt holes on the **Z_Motor_Mount** are oval to allow some adjustment.
 //!
 //!7. Route the motor wire through the lower extrusion channel and use the **E20_ChannelCover_50mm**s to hold it in place.
-//!
-//!8. Ensure the **Z_Carriage_Center** is aligned with the lead screw and tighten the bolts on the **Z_Carriage_Center**.
 //
 module Stage_1_assembly() pose(a=[55 + 90, 90 - 20, 90])
 staged_assembly("Stage_1", big=true, ngb=true) {
