@@ -9,11 +9,12 @@ function NIUGUY_CB_PSU(id, name, s /*size*/, terminals, ways_dc=4, ways_ac=3, c=
     M3_pan_screw, M3_clearance_radius, // Screw type and clearance hole
     false, // true if ATX
     0, 0, // left and right bays
-    [ways_dc, [5, (s.y - terminal_block_length(terminals, ways_dc))/2], terminals, ways_ac, [5, (s.y - terminal_block_length(terminals, ways_ac))/2], terminals], // terminals, count and offset
-    //[ways_dc, (s.y - terminal_block_length(terminals, ways_dc))/2, terminals, ways_ac, (s.y - terminal_block_length(terminals, ways_ac))/2, terminals], // terminals, count and offset
+    //CHANGE TO THIS ONCE NEW PSUs in NopSCADlib: [ways_dc, [5, (s.y - terminal_block_length(terminals, ways_dc))/2], terminals, ways_ac, [5, (s.y - terminal_block_length(terminals, ways_ac))/2], terminals], // terminals, count and offset
+    [ways_dc, 5, terminals],
     [ // parameters are: holes, thickness, cutouts, grill, fans, iec, switch, vents, panel cutout
         // bottom
-        [ [[s.x/2 - 4, -s.y/2 + 5, [5, 0]], [-s.x/2 + 4, s.y/2 - 5, [-5, 0] ], ], 1.5, [] ], // two slots cutout for screws
+        //CHANGE TO THIS ONCE NEW PSUs in NopSCADlib: [ [[s.x/2 - 4, -s.y/2 + 5, [5, 0]], [-s.x/2 + 4, s.y/2 - 5, [-5, 0] ], ], 1.5, [] ], // two slots cutout for screws
+        [ [[s.x/2 - 4, -s.y/2 + 5], [-s.x/2 + 4, s.y/2 - 5], ], 1.5, [] ], // two slots cutout for screws
         // top
         [ [], 0.5,  [
                         [ [-s.x/2+20,-s.y/2], [-s.x/2+20,s.y/2], [-s.x/2,s.y/2], [-s.x/2,-s.y/2] ],
