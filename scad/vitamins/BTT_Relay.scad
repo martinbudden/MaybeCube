@@ -41,3 +41,16 @@ module btt_relay_v1_2_pcb() {
         rotate(180)
             terminal_block(terminalType, ways);
 }
+
+module BTT_Relay_Base_stl() {
+    pcbSize = pcb_size(BTT_RELAY_V1_2);
+    size = [pcbSize.x + 2, pcbSize.y + 2, 3];
+
+    stl("BTT_Relay_Base")
+        translate_z(-size.z)
+            difference() {
+                rounded_cube_xy(size, 1, xy_center=true);
+                pcb_hole_positions(BTT_RELAY_V1_2)
+                    boltHoleM3(size.z);
+            }
+}
