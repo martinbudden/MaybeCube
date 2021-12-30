@@ -74,7 +74,7 @@ module IEC_Housing_stl() {
         }
 }
 
-module IEC_housing_hardware() {
+module IEC_Housing_hardware() {
     iecHousingSize = iecHousingSize();
     sidePanelSizeZ = 3;
 
@@ -87,6 +87,7 @@ module IEC_housing_hardware() {
         }
 }
 
+/*
 module iecHousing() {
     iecHousingSize = iecHousingSize();
     sidePanelSizeZ = 3;
@@ -105,6 +106,7 @@ module iecHousing() {
                         boltM4Buttonhead(12);
             }
 }
+*/
 
 module iecHousingMountAttachmentHolePositions(z=0, eX=eX) {
     size = iecHousingMountSize();
@@ -231,7 +233,7 @@ assembly("IEC_Housing", ngb=true) {
                     stl_colour(pp4_colour)
                         IEC_Housing_stl();
                 explode(30, true)
-                    IEC_housing_hardware();
+                    IEC_Housing_hardware();
             }
     }
 }
