@@ -1,11 +1,9 @@
 include <NopSCADlib/core.scad>
-include <NopSCADlib/vitamins/iecs.scad>
 use <NopSCADlib/vitamins/sheet.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
 
-use <../printed/extruderBracket.scad>
+use <../printed/extruderBracket.scad> // for spoolHeight()
 use <../printed/extrusionChannels.scad>
-use <../printed/IEC_Housing.scad>
 
 include <../vitamins/bolts.scad>
 include <../vitamins/filament_sensor.scad>
