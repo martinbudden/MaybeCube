@@ -6,11 +6,11 @@ include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/printed/AccessPanel.scad>
 use <../scad/printed/extruderBracket.scad>
-use <../scad/printed/IEC_Housing.scad>
-use <../scad/printed/XY_MotorMount.scad>
+//use <../scad/printed/IEC_Housing.scad>
+//use <../scad/printed/XY_MotorMount.scad>
 
-include <../scad/utils/Z_Rods.scad>
-include <../scad/utils/CoreXYBelts.scad>
+//include <../scad/utils/Z_Rods.scad>
+//include <../scad/utils/CoreXYBelts.scad>
 
 use <../scad/vitamins/Panels.scad>
 
