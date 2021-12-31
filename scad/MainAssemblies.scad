@@ -5,10 +5,8 @@ include <NopSCADlib/utils/core/core.scad>
 use <printed/AccessPanel.scad>
 use <printed/E20Cover.scad>
 use <printed/PrintheadAssemblies.scad>
-use <printed/Z_MotorMount.scad>
 use <printed/JubileeKinematicBed.scad>
 
-include <utils/printParameters.scad>
 include <utils/CoreXYBelts.scad>
 include <utils/Z_Rods.scad>
 
@@ -28,22 +26,6 @@ use <Parameters_Positions.scad>
 printbedKinematic = !is_undef(_printbedKinematic) && _printbedKinematic == true;
 _poseMainAssembly = [90 - 15, 0, 90 + 15];
 
-
-if (_useAsserts) {
-    assert(extrusion_width >= 1.1*nozzle, "extrusion_width too small for nozzle");
-    assert(extrusion_width <= 1.7*nozzle, "extrusion_width too large for nozzle");
-    assert(layer_height <= 0.5*extrusion_width, "layer_height too large for extrusion_width");
-    assert(layer_height >= 0.25*extrusion_width, "layer_height too small for extrusion_width"); // not sure this one is correct
-}
-
-module echoParameters() {
-    echo("_variant=", _variant);
-    echo("nozzle", nozzle);
-    echo("extrusion_width", extrusion_width, "r:[ ", 1.1*nozzle, 1.7*nozzle, " ]");
-    echo("layer_height", layer_height, "r:[ ", 0.25*extrusion_width, 0.5*extrusion_width, "]");
-
-    echo(nozzle=nozzle, extrusion_width=extrusion_width, layer_height=layer_height, show_threads=show_threads);
-}
 
 staged_assembly = true; // set this to false for faster builds during development
 
