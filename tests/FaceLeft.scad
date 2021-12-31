@@ -4,7 +4,7 @@ include <../scad/global_defs.scad>
 
 //use <../scad/printed/extruderBracket.scad>
 //use <../scad/printed/IEC_Housing.scad>
-use <../scad/printed/JubileeKinematicBed.scad>
+//use <../scad/printed/JubileeKinematicBed.scad>
 //use <../scad/printed/PrintheadAssemblies.scad>
 //include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/printParameters.scad>
@@ -46,6 +46,7 @@ module Left_Side_test() {
     //printheadBeltSide(t=t);
     //printheadHotendSide(t=t);
 
+    //Partition_Guide_assembly();
     // always add the panels last, so they are transparent to other items
     //Left_Side_Panel_assembly();
     //Left_Side_Channel_Nuts();

@@ -22,7 +22,9 @@ module IEC_Housing_test() {
     //btt_relay_v1_2_pcb();
     //BTT_Relay_Base_stl();
     //Partition_assembly();
+    //Partition_Guide_stl();
+    //Partition_Guide_assembly();
 }
 
-if ($preview)
+//if ($preview)
     IEC_Housing_test();
