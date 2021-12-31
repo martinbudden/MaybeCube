@@ -1,14 +1,15 @@
 # MaybeCube
 
-The **MaybeCube** is a CoreXY 3D printer with a linear rails motion system.
+The **MaybeCube** is a fully-featured, rigid, high speed, and affordable CoreXY 3D printer with a linear rails motion system.
+
+It can be built in a variety of sizes: the standard size is the MC350, which has external dimensions of approximately
+405mm by 475mm by 415mm and a build volume of approximately 225mm x 225mm x 200mm.
+
+The self-sourcing BOM cost of the MC300 variant is approximately £430 with a genuine E3D hotend (or about £400 with a generic E3D compatible hotend), this does not include the cost of filament for printing parts, see [spreadsheet](documents/BOM_MC300.ods). The MC350 variant is slightly more expensive.
 
 ![Main Assembly](MC300/assemblies/main_assembled.png)
 
 ![MaybeCube300](pictures/MaybeCube-2021-12-08_1000.jpg)
-
-The MaybeCube MC350 variant has a print volume of approximately 230mm by 230mm by 200mm.
-
-The dimensions of the main MC350 cuboid are 390mm by 390mm by 400mm, and the enclosing volume (including the display, extruder, and feet, but excluding the spool holder, Bowden tube and hotend wiring) is about 405mm by 475mm by 415mm.
 
 ## Assembly instructions
 
