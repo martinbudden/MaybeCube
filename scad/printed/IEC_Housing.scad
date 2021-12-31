@@ -23,6 +23,8 @@ PC2 = ["PC2", "Sheet polycarbonate", 2, [1,   1,   1,   0.25], false];
 function iecCutoutSize() = [50, 27.5];
 function iecType() = iec320c14FusedSwitchedType();
 
+guideWidth = 7;
+guideLength = (_upperZRodMountsExtrusionOffsetZ - 3 * eSize)/2;
 
 module IEC_Housing_stl() {
     size = iecHousingSize();
@@ -141,6 +143,15 @@ module IEC_Housing_Mount_300_stl() {
             iceHousingMount(eX=300);
 }
 
+module partitionGuide(size, gapWidth, gapHeight, tolerance) {
+    rounded_cube_xy(size, 1);
+    size2 = [(size.x - gapWidth - tolerance)/2, size.y, size.z + gapHeight];
+    translate_z(size.z - size2.z)
+        rounded_cube_xy(size2, 0.5);
+    translate([size.x - size2.x, 0, size.z - size2.z])
+        rounded_cube_xy(size2, 0.5);
+}
+
 module iceHousingMount(eX) {
     size = iecHousingMountSize();
     iecHousingSize = iecHousingSize();
@@ -149,7 +160,6 @@ module iceHousingMount(eX) {
     vflip()
         difference() {
             union() {
-                guideWidth = 6;
                 partitionTolerance = 0.5;
                 translate([0, -2*eSize, 0])
                     rounded_cube_xy(size, fillet);
@@ -158,14 +168,8 @@ module iceHousingMount(eX) {
                 translate([size2.x, iecHousingSize.y, 0])
                     fillet(5, size.z);
                 size3 = [guideWidth, size2.y - iecHousingSize.y - eSize, eSize];
-                translate([size.x - partitionOffsetY() - partitionSize().z/2 - size3.x/2, iecHousingSize.y, -size3.z]) {
-                    rounded_cube_xy(size3, 1);
-                    size4 = [(size3.x - partitionSize().z - partitionTolerance)/2, size3.y, size3.z + 2];
-                    translate_z(size3.z - size4.z)
-                        rounded_cube_xy(size4, 0.5);
-                    translate([size3.x - size4.x, 0, size3.z - size4.z])
-                        rounded_cube_xy(size4, 0.5);
-                }
+                translate([size.x - partitionOffsetY() - partitionSize().z/2 - size3.x/2, iecHousingSize.y, -size3.z])
+                    partitionGuide(size3, partitionSize().z, 2, partitionTolerance);
             } // end union
 
             if (size.y >= spoolHeight()) {
@@ -255,6 +259,58 @@ module IEC320_C14_CutoutWithBoltHoles(boltHoleSpacing) {
     translate([0, boltHoleSpacing/2, 0]) circle(r=M4_tap_radius);
 }
 */
+
+module partition(length) {
+    size = [partitionOffsetY() - eSize + guideWidth/2 + 1, length, eSize];
+    supportWidth = 15;
+    partitionSize = [guideWidth, size.y, eSize];
+    fillet = 1;
+    partitionTolerance = 0.5;
+    translate([-size.x, 0, 0]) {
+        difference() {
+            union() {
+                rounded_cube_xy([size.x, size.y, 3], fillet);
+                for (y = [0, size.y - supportWidth])
+                    translate([0, y, 0])
+                        rounded_cube_xy([size.x, supportWidth, size.z], fillet);
+                translate([0, size.y, size.z])
+                    rotate([180, 0, 0])
+                        partitionGuide([guideWidth, size.y, size.z], 3, 2, partitionTolerance);
+            }
+            for (y = [supportWidth/2, size.y - supportWidth/2])
+                translate([0, y, eSize/2])
+                    rotate([90, 0, 90])
+                        boltHoleM3Counterbore(size.x, boreDepth=size.x - 3, horizontal=true);
+        }
+    }
+}
+
+module Partition_Guide_hardware(length) {
+    size = [partitionOffsetY() - eSize + guideWidth/2 + 1, length, eSize];
+    supportWidth = 15;
+
+    for (y = [supportWidth/2, size.y - supportWidth/2])
+        translate([-3, y, eSize/2])
+            rotate([90, 0, -90])
+                explode(35, true)
+                    boltM3ButtonheadHammerNut(8, nutExplode=55);
+}
+
+module Partition_Guide_stl() {
+    stl("Partition_Guide")
+        color(pp1_colour)
+            partition(guideLength);
+}
+
+module partitionGuideAssembly() {
+    for (z = [0, guideLength])
+        translate([0, eY + eSize, 2*eSize + z])
+            rotate([90, 0, 90]) {
+                color(z == 0 ? pp1_colour : pp2_colour)
+                    Partition_Guide_stl();
+                Partition_Guide_hardware(guideLength);
+            }
+}
 
 module Partition_dxf() {
     size = partitionSize();
