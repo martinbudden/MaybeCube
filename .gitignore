@@ -21,6 +21,7 @@ times.txt
 documents/*
 !documents/MarlinConfiguration.md
 !documents/klipper_btt_skr_v1_4.cfg
+!documents/BOM_MC300.ods
 
 scad/target.scad
 scad/bom.scad
