@@ -280,7 +280,7 @@ module partition(length) {
             for (y = [supportWidth/2, size.y - supportWidth/2])
                 translate([0, y, eSize/2])
                     rotate([90, 0, 90])
-                        boltHoleM3Counterbore(size.x, boreDepth=size.x - 3, horizontal=true);
+                        boltHoleM3CounterboreButtonhead(size.x, boreDepth=size.x - 3, horizontal=true);
         }
     }
 }
