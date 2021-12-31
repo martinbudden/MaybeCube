@@ -74,7 +74,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech TFT35 E3 v3.0 |
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  8mm |
-|   .  |   .  |   .  |   .  |   .  |   2  |   .  |   2  |    4  |  Bolt M3 buttonhead x  8mm |
+|   .  |   .  |   .  |   .  |   .  |   2  |   4  |   2  |    8  |  Bolt M3 buttonhead x  8mm |
 |   .  |   .  |   2  |   8  |   .  |   .  |   .  |   .  |   10  |  Bolt M3 buttonhead x 10mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   8  |   16  |  Bolt M3 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 16mm |
@@ -122,7 +122,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Linear rod 12mm x 300mm |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  MK10 Dual Pulley Extruder |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Micro SD card |
-|   .  |   .  |  18  |   .  |   .  |   2  |   .  |   4  |   24  |  Nut M3 hammer |
+|   .  |   .  |  18  |   .  |   .  |   2  |   4  |   4  |   28  |  Nut M3 hammer |
 |   .  |   .  |  10  |  14  |  11  |   .  |   .  |  52  |   87  |  Nut M4 hammer |
 |   .  |   .  |  36  |   .  |   .  |   6  |  12  |   .  |   54  |  Nut M4 sliding T |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE Bowden tube, 600 mm |
@@ -149,7 +149,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   2  |  26  |   .  |   .  |   .  |   .  |   .  |   28  |  Washer  M3 |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer  M4 |
 |   3  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    3  |  Ziptie 2.5mm x 100mm min length |
-|  16  |   4  | 257  |  61  |  53  |  58  |  40  | 154  |  643  | Total vitamins count |
+|  16  |   4  | 257  |  61  |  53  |  58  |  48  | 154  |  651  | Total vitamins count |
 |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Access_Panel.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Camera_Mount.stl |
@@ -166,6 +166,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Hotend_Clamp.stl |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | IEC_Housing.stl |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | IEC_Housing_Mount.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |    2  | Partition_Guide.stl |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Printbed_Strain_Relief.stl |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Printbed_Strain_Relief_Clamp.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder.stl |
@@ -193,7 +194,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  | Z_Carriage_Side.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |    2  | Z_RodMountGuide_100mm.stl |
-|   3  |   3  |  21  |   .  |   3  |   5  |   3  |  18  |   56  | Total 3D printed parts count |
+|   3  |   3  |  21  |   .  |   3  |   5  |   5  |  18  |   58  | Total 3D printed parts count |
 |      |      |      |      |      |      |      |      |       | **CNC routed parts** |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | Back_Panel.dxf |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | BaseAL.dxf |
@@ -1270,21 +1271,23 @@ the Z carriages are added.
 
 |Qty|Description|
 |---:|:----------|
+|4| Bolt M3 buttonhead x  8mm|
 |2| Bolt M4 buttonhead x 10mm|
 |2| Bolt M4 buttonhead x 12mm|
 |8| Bolt M4 countersunk x 10mm|
 |8| Bolt M5 buttonhead x 12mm|
 |2| Extrusion E2020 x 400mm|
 |2| Extrusion E2040 x 350mm|
+|4| Nut M3 hammer|
 |12| Nut M4 sliding T|
 |4| SK12 shaft support bracket|
 
 
 ### 3D Printed parts
 
-| 1 x Z_Motor_Mount.stl | 2 x Z_RodMountGuide_100mm.stl |
-|---|---|
-| ![Z_Motor_Mount.stl](stls/Z_Motor_Mount.png) | ![Z_RodMountGuide_100mm.stl](stls/Z_RodMountGuide_100mm.png) 
+| 2 x Partition_Guide.stl | 1 x Z_Motor_Mount.stl | 2 x Z_RodMountGuide_100mm.stl |
+|---|---|---|
+| ![Partition_Guide.stl](stls/Partition_Guide.png) | ![Z_Motor_Mount.stl](stls/Z_Motor_Mount.png) | ![Z_RodMountGuide_100mm.stl](stls/Z_RodMountGuide_100mm.png) 
 
 
 
