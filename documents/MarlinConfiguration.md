@@ -25,13 +25,13 @@ This allows babystepping to be used with manual probing.
 
 ```h
 C
+#define MOTHERBOARD BOARD_BTT_SKR_V1_4_TURBO
+C
 #define SERIAL_PORT 3
 E
 #define SERIAL_PORT_2 -1
 E&C
 #define SERIAL_PORT_3 0
-C
-#define MOTHERBOARD BOARD_BTT_SKR_V1_4_TURBO
 E&C
 #define CUSTOM_MACHINE_NAME "MaybeCube"
 E
