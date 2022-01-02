@@ -52,10 +52,10 @@ module staged_assembly(name, big, ngb) {
 //!6. Thread the motor's lead screw through the lead nut on the **Z_Carriage_Center** and loosely bolt the motor to
 //!the **Z_Motor_Mount**.
 //!
-//!8. Ensure the **Z_Carriage_Center** is aligned with the lead screw and tighten the bolts on the **Z_Carriage_Center**
+//!7. Ensure the **Z_Carriage_Center** is aligned with the lead screw and tighten the bolts on the **Z_Carriage_Center**
 //!and the **Z_Motor_Mount**. The bolt holes on the **Z_Motor_Mount** are oval to allow some adjustment.
 //!
-//!7. Route the motor wire through the lower extrusion channel and use the **E20_ChannelCover_50mm**s to hold it in place.
+//!8. Route the motor wire through the lower extrusion channel and use the **E20_ChannelCover_50mm**s to hold it in place.
 //
 module Stage_1_assembly() pose(a=[55 + 90, 90 - 20, 90])
 staged_assembly("Stage_1", big=true, ngb=true) {
@@ -135,10 +135,10 @@ staged_assembly("Stage_4", big=true, ngb=true) {
 //!1. Slide the **Face_Top** assembly into the rest of the frame and tighten the hidden bolts.
 //!2. Check that the print head slides freely on the Y-axis. If it doesn't, then re-rack the Y-axis,
 //!see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
-//!4. Bolt the **Printhead_E3DV6_assembly** to the MGN carriage.
-//!5. Route the wiring from the print head to the mainboard and secure it with the **Wiring_Guide_Clamp**.
-//!6. Adjust the belt tension.
-//!7. Connect the Bowden tube between the extruder and the printhead.
+//!3. Bolt the **Printhead_E3DV6_assembly** to the MGN carriage.
+//!4. Route the wiring from the print head to the mainboard and secure it with the **Wiring_Guide_Clamp**.
+//!5. Adjust the belt tension.
+//!6. Connect the Bowden tube between the extruder and the printhead.
 //
 module Stage_5_assembly()
 staged_assembly("Stage_5", big=true, ngb=true) {
