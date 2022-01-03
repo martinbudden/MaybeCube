@@ -228,7 +228,7 @@ module X_Carriage_Groovemount_stl() {
 
     stl("X_Carriage_Groovemount")
         color(pp1_colour)
-            rotate([0, 90, 0]) {
+            rotate([0, 90, -90]) {
                 size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
                 difference() {
                     union() {
@@ -260,7 +260,7 @@ module xCarriageGroovemountAssembly() {
                 X_Carriage_Groovemount_HC_16_stl();
     } else {
         stl_colour(pp1_colour)
-            rotate([0, -90, 0])
+            rotate([-90, 0, 90])
                 X_Carriage_Groovemount_stl();
         xCarriageHotendSideHolePositions()
             vflip()
