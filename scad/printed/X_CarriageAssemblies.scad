@@ -50,7 +50,7 @@ module X_Carriage_Belt_Side_HC_16_stl() {
 
     stl("X_Carriage_Belt_Side_HC_16")
         color(pp4_colour)
-            rotate([90, 0, 180])// orientate for printing
+            rotate([90, 0, 0])// orientate for printing
                 xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), endCube=true, halfCarriage=true);
 }
 
@@ -61,7 +61,7 @@ module X_Carriage_Belt_Side_16_stl() {
     // orientate for printing
     stl("X_Carriage_Belt_Side_16")
         color(pp4_colour)
-            rotate([90, 0, 180])// orientate for printing
+            rotate([90, 0, 0])// orientate for printing
                 xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), halfCarriage=false);
 }
 
@@ -71,7 +71,7 @@ module X_Carriage_Belt_Side_25_stl() {
 
     stl("X_Carriage_Belt_Side_25")
         color(pp4_colour)
-            rotate([90, 0, 180])// orientate for printing
+            rotate([90, 0, 0])// orientate for printing
                 xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), endCube=true, pulley25=true, halfCarriage=false);
 }
 
@@ -84,7 +84,7 @@ assembly("X_Carriage_Belt_Side") {
     //echo(dTooth=pulley_pr(GT2x25x7x3_toothed_idler)-pulley_pr(GT2x16_toothed_idler));
     //echo(dPlain=pulley_pr(GT2x25x7x3_plain_idler)-pulley_pr(GT2x16_plain_idler));
 
-    rotate([-90, 180, 0])
+    rotate([-90, 0, 0])
         stl_colour(pp4_colour)
             if (usePulley25())
                 translate([0, 0, -pulley25Offset])
