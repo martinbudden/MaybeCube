@@ -21,12 +21,12 @@ include <../Parameters_CoreXY.scad>
 halfCarriage = (!is_undef(_useHalfCarriage) && _useHalfCarriage==true);
 
 function xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation) =  [max(carriage_size(xCarriageType).x, 30), 4, 36 + beltSeparation - 4.5 + (beltSeparation == 7 ? 1.25 : 0) +carriage_height(xCarriageType) + xCarriageTopThickness() + (!is_undef(beltWidth) && beltWidth == 9 ? 4.5 : 0)];
-function xCarriageHotendSideSizeM(xCarriageType, beltWidth, beltSeparation) = [xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation).x, halfCarriage ? 5 : 6, xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation).z];
+function xCarriageHotendSideSizeM(xCarriageType, beltWidth, beltSeparation) = [xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation).x, halfCarriage ? 5 : 7, xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation).z];
 function xCarriageHotendOffsetY(xCarriageType) = carriage_size(xCarriageType).y/2 + xCarriageHotendSideSizeM(xCarriageType, 0, 0).y + 0.5;
 
 function hotendOffset(xCarriageType, hotendDescriptor="E3DV6") = printheadHotendOffset(hotendDescriptor) + [-xCarriageHotendSideSizeM(xCarriageType, 0, 0).x/2, xCarriageHotendOffsetY(xCarriageType), 0];
-function grooveMountSize(blower_type, hotendDescriptor="E3DV6") = [printheadHotendOffset(hotendDescriptor).x, blower_size(blower_type).x + 6.25, 12];
-function blower_type() = is_undef(_blowerDescriptor) || _blowerDescriptor == "BL30x10" ? BL30x10 : BL40x10;
+function grooveMountSize(blowerType, hotendDescriptor="E3DV6") = [printheadHotendOffset(hotendDescriptor).x, blower_size(blowerType).x + 6.25, 12];
+function blowerType() = is_undef(_blowerDescriptor) || _blowerDescriptor == "BL30x10" ? BL30x10 : BL40x10;
 //function accelerometerOffset() = [10, -1, 8];
 function accelerometerOffset() = [6.5, -2, 8];
 function xCarriageHoleOffsetTop() = halfCarriage ? -1 : 0;//[5.65, -1]; // for alignment with EVA
@@ -172,31 +172,6 @@ module xCarriageBeltClampAssembly(xCarriageType, countersunk=true) {
         }
 }
 
-module X_Carriage_Groovemount_HC_16_stl() {
-    xCarriageType = MGN12H_carriage;
-    blower_type = blower_type();
-    hotendDescriptor = "E3DV6";
-    grooveMountSize = grooveMountSize(blower_type, hotendDescriptor);
-    hotendOffset = hotendOffset(xCarriageType, hotendDescriptor);
-
-    stl("X_Carriage_Groovemount_HC_16")
-        color(pp1_colour)
-            rotate([0, 90, 0]) {
-                size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
-                difference() {
-                    union() {
-                        xCarriageBack(xCarriageType, size, 0, xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), halfCarriage=true, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), accelerometerOffset=accelerometerOffset());
-                        hotEndHolder(xCarriageType, xCarriageHotendSideSizeM(xCarriageType, 0, 0), grooveMountSize, hotendOffset, hotendDescriptor, blower_type, baffle=false, left=false);
-                    }
-                    // bolt holes for Z probe mount
-                    for (z = [0, -8])
-                        translate([size.x/2, 18, z - 26])
-                            rotate([0, -90, 0])
-                                boltHoleM3Tap(9);
-                }
-            }
-}
-
 module xCarriageHotendSideHolePositions() {
     xCarriageType = MGN12H_carriage;
     size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
@@ -216,40 +191,61 @@ module xCarriageHotendSideHolePositions() {
                 children();
 }
 
-module X_Carriage_Groovemount_stl() {
+module X_Carriage_Groovemount_HC_16_stl() {
     xCarriageType = MGN12H_carriage;
-    blower_type = blower_type();
+    blowerType = blowerType();
     hotendDescriptor = "E3DV6";
-    grooveMountSize = grooveMountSize(blower_type, hotendDescriptor);
+    halfCarriage = true;
+    inserts = false;
+
+    stl("X_Carriage_Groovemount_HC_16")
+        color(pp1_colour)
+            xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCarriage, inserts);
+}
+
+module xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCarriage, inserts) {
+    size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
+    grooveMountSize = grooveMountSize(blowerType, hotendDescriptor);
     hotendOffset = hotendOffset(xCarriageType, hotendDescriptor);
     holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
     holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
-    railCarriageGap = 0.5;
+
+    rotate([0, 90, -90]) {
+        difference() {
+            union() {
+                xCarriageBack(xCarriageType, size, 0, holeSeparationTop, holeSeparationBottom, halfCarriage=halfCarriage, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), accelerometerOffset=accelerometerOffset());
+                hotEndHolder(xCarriageType, xCarriageHotendSideSizeM(xCarriageType, 0, 0), grooveMountSize, hotendOffset, hotendDescriptor, blowerType, baffle=true, left=false);
+            }
+            xCarriageHotendSideHolePositions()
+                if (inserts)
+                    insertHoleM3(size.y, horizontal=true);
+                else
+                    boltHoleM3Tap(size.y, horizontal=true);
+            // bolt holes for Z probe mount
+            for (z = [0, -8])
+                translate([size.x/2, 18, z - 26])
+                    rotate([0, -90, 0])
+                        boltHoleM3Tap(9);
+        }
+    }
+}
+
+module X_Carriage_Groovemount_stl() {
+    xCarriageType = MGN12H_carriage;
+    blowerType = blowerType();
+    hotendDescriptor = "E3DV6";
+    halfCarriage = false;
+    inserts = false;
 
     stl("X_Carriage_Groovemount")
         color(pp1_colour)
-            rotate([0, 90, -90]) {
-                size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
-                difference() {
-                    union() {
-                        xCarriageBack(xCarriageType, size, 0, holeSeparationTop, holeSeparationBottom, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), accelerometerOffset=accelerometerOffset());
-                        hotEndHolder(xCarriageType, xCarriageHotendSideSizeM(xCarriageType, 0, 0), grooveMountSize, hotendOffset, hotendDescriptor, blower_type, baffle=true, left=false);
-                    }
-                    xCarriageHotendSideHolePositions()
-                        insertHoleM3(size.y, horizontal=true);
-                    // bolt holes for Z probe mount
-                    for (z = [0, -8])
-                        translate([size.x/2, 18, z - 26])
-                            rotate([0, -90, 0])
-                                boltHoleM3Tap(9);
-                }
-            }
+            xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCarriage, inserts);
 }
 
 module xCarriageGroovemountAssembly() {
 
     xCarriageType = MGN12H_carriage;
-    blower_type = blower_type();
+    blowerType = blowerType();
     hotendDescriptor = "E3DV6";
     hotendOffset = hotendOffset(xCarriageType, hotendDescriptor);
 
@@ -267,13 +263,13 @@ module xCarriageGroovemountAssembly() {
                 threadedInsertM3();
     }
 
-    grooveMountSize = grooveMountSize(blower_type, hotendDescriptor);
+    grooveMountSize = grooveMountSize(blowerType, hotendDescriptor);
 
     explode([40, 0, 0], true)
-        hotEndPartCoolingFan(xCarriageType, grooveMountSize, hotendOffset, blower_type, left=false);
+        hotEndPartCoolingFan(xCarriageType, grooveMountSize, hotendOffset, blowerType, left=false);
     explode([40, 0, -10], true)
         hotEndHolderAlign(hotendOffset, left=false)
-            blowerTranslate(xCarriageType, grooveMountSize, hotendOffset, blower_type)
+            blowerTranslate(xCarriageType, grooveMountSize, hotendOffset, blowerType)
                 rotate([-90, 0, 0]) {
                     stl_colour(pp2_colour)
                         Fan_Duct_stl();
