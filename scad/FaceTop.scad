@@ -70,7 +70,6 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
 //!to one extreme of the frame and tighten the bolts on that end of the Y-rail. Then move the X-rail to the other
 //!extreme and tighten the bolts on that end of the Y-rail. Finally tighten the remaining bolts on the Y-rail.
 //!3. Ensure the X-rail moves freely, if it doesn't loosen the bolts you have just tightened and repeat step 2.
-//!4. Turn the top face the right way up and bolt the handle to the previously inserted t-nuts.
 //
 module Face_Top_Stage_2_assembly()
 assembly("Face_Top_Stage_2", big=true, ngb=true) {
@@ -78,15 +77,6 @@ assembly("Face_Top_Stage_2", big=true, ngb=true) {
     Face_Top_Stage_1_assembly();
     //hidden() Y_Carriage_Left_AL_dxf();
     //hidden() Y_Carriage_Right_AL_dxf();
-
-    explode(20, true)
-        for (x = [3*eSize/2, eX + eSize/2])
-            translate([x, eY/2 + eSize, eZ])
-                rotate([0, -90, 0]) {
-                    stl_colour(pp1_colour)
-                        Handle_stl();
-                    Handle_hardware(bolt=true, TNut=false);
-                }
 
     translate_z(eZ)
         explode(100, true) {
@@ -101,6 +91,7 @@ assembly("Face_Top_Stage_2", big=true, ngb=true) {
 //!2. Thread the belts as shown and attach them to the **X_Carriage_Belt_Side_assembly**
 //! using the **X_Carriage_Belt_Clamp**.
 //!3. Leave the belts fairly loose - tensioning of the belts is done after the frame is assembled.
+//!4. Bolt the handle to the previously inserted t-nuts.
 //
 module Face_Top_assembly()
 assembly("Face_Top", big=true) {
@@ -109,9 +100,19 @@ assembly("Face_Top", big=true) {
 
     halfCarriage = (!is_undef(_useHalfCarriage) && _useHalfCarriage==true);
     printheadBeltSide(halfCarriage=halfCarriage, explode=100);
+
     //if (!exploded())
     explode(350)
         CoreXYBelts(carriagePosition());
+
+    explode(20, true)
+        for (x = [3*eSize/2, eX + eSize/2])
+            translate([x, eY/2 + eSize, eZ])
+                rotate([0, -90, 0]) {
+                    stl_colour(pp1_colour)
+                        Handle_stl();
+                    Handle_hardware(bolt=true, TNut=false);
+                }
 }
 
 module faceTopFront() {
