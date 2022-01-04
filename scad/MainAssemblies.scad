@@ -57,8 +57,8 @@ module staged_assembly(name, big, ngb) {
 //!
 //!8. Route the motor wire through the lower extrusion channel and use the **E20_ChannelCover_50mm**s to hold it in place.
 //
-module Stage_1_assembly() pose(a=[55 + 90, 90 - 20, 90])
-staged_assembly("Stage_1", big=true, ngb=true) {
+module Left_Side_with_Printbed_assembly() pose(a=[55 + 90, 90 - 20, 90])
+staged_assembly("Left_Side_with_Printbed", big=true, ngb=true) {
 
     Left_Side_assembly(bedHeight(), printbedKinematic);
 
@@ -83,11 +83,11 @@ staged_assembly("Stage_1", big=true, ngb=true) {
 //!1. Slide the left face into the base plate assembly.
 //!2. Ensuring the frame remains square, tighten the hidden bolts and the bolts under the baseplate.
 //
-module Stage_2_assembly() //pose(a=_poseMainAssembly)
-staged_assembly("Stage_2", big=true, ngb=true) {
+module Stage_1_assembly() //pose(a=_poseMainAssembly)
+staged_assembly("Stage_1", big=true, ngb=true) {
 
     explode(150)
-        Stage_1_assembly();
+        Left_Side_with_Printbed_assembly();
     Base_Plate_assembly();
 }
 
@@ -97,10 +97,10 @@ staged_assembly("Stage_2", big=true, ngb=true) {
 //!the ribbon cable along the bottom of the extrusion and cover with the **E20_RibbonCover_50mm**s to keep
 //!the cables in place.
 //
-module Stage_3_assembly() //pose(a=_poseMainAssembly)
-staged_assembly("Stage_3", big=true, ngb=true) {
+module Stage_2_assembly() //pose(a=_poseMainAssembly)
+staged_assembly("Stage_2", big=true, ngb=true) {
 
-    Stage_2_assembly();
+    Stage_1_assembly();
 
     explode(150, true) {
         Right_Side_assembly(bedHeight(), printbedKinematic);
@@ -120,10 +120,10 @@ staged_assembly("Stage_3", big=true, ngb=true) {
 //!1. Attach the back face to the rest of the assembly.
 //!2. Tighten the bolts on the back face.
 //
-module Stage_4_assembly() //pose(a=_poseMainAssembly)
-staged_assembly("Stage_4", big=true, ngb=true) {
+module Stage_3_assembly() //pose(a=_poseMainAssembly)
+staged_assembly("Stage_3", big=true, ngb=true) {
 
-    Stage_3_assembly();
+    Stage_2_assembly();
     explode([0, 150, 0])
         Back_Panel_assembly();
     if (printbedKinematic)
@@ -140,10 +140,10 @@ staged_assembly("Stage_4", big=true, ngb=true) {
 //!5. Adjust the belt tension.
 //!6. Connect the Bowden tube between the extruder and the printhead.
 //
-module Stage_5_assembly()
-staged_assembly("Stage_5", big=true, ngb=true) {
+module Stage_4_assembly()
+staged_assembly("Stage_4", big=true, ngb=true) {
 
-    Stage_4_assembly();
+    Stage_3_assembly();
     explode(150, true) {
         Face_Top_assembly();
         explode(50, true) {
@@ -161,7 +161,7 @@ module FinalAssembly() {
     // does not use assembly(""), since made into an assembly in Main.scad
     useSidePanels = true;//!is_undef(_useSidePanels) && _useSidePanels;
     translate([-(eX + 2*eSize)/2, - (eY + 2*eSize)/2, -eZ/2]) {
-        Stage_5_assembly();
+        Stage_4_assembly();
         if (is_undef(_useBackMounts) || _useBackMounts == false) {
             offsetX = useSidePanels ? sidePanelSize().z : 0;
             explode([100, 0, 80])
