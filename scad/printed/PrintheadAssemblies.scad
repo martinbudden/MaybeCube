@@ -22,11 +22,11 @@ use <../Parameters_Positions.scad>
 
 function hotendClampOffset(xCarriageType, hotendDescriptor="E3DV6") =  [hotendOffset(xCarriageType, hotendDescriptor).x, 18 + xCarriageHotendOffsetY(xCarriageType) + grooveMountOffsetX(hotendDescriptor), hotendOffset(xCarriageType, hotendDescriptor).z];
 grooveMountFillet = 1;
-function grooveMountClampSize(blower_type, hotendDescriptor) = [grooveMountSize(blower_type, hotendDescriptor).y - 2*grooveMountFillet - grooveMountClampOffsetX(), 12, 15];
+function grooveMountClampSize(blowerType, hotendDescriptor) = [grooveMountSize(blowerType, hotendDescriptor).y - 2*grooveMountFillet - grooveMountClampOffsetX(), 12, 15];
 
 module printheadAssembly() {
     xCarriageType = MGN12H_carriage;
-    blower_type = blower_type();
+    blowerType = blowerType();
     hotendDescriptor = "E3DV6";
     hotendOffset = hotendOffset(xCarriageType, hotendDescriptor);
 
@@ -39,11 +39,11 @@ module printheadAssembly() {
                 rotate([90, 0, -90])
                     explode(-40, true) {
                         stl_colour(pp2_colour)
-                            if (blower_size(blower_type).x == 30)
+                            if (blower_size(blowerType).x == 30)
                                 Hotend_Clamp_stl();
                             else
                                 Hotend_Clamp_40_stl();
-                        Hotend_Clamp_hardware(xCarriageType, blower_type, hotendDescriptor);
+                        Hotend_Clamp_hardware(xCarriageType, blowerType, hotendDescriptor);
                     }
         }
 
@@ -202,7 +202,7 @@ module Hotend_Clamp_40_stl() {
                 grooveMountClamp(grooveMountClampSize(BL40x10));
 }
 
-module Hotend_Clamp_hardware(xCarriageType, blower_type, hotendDescriptor) {
+module Hotend_Clamp_hardware(xCarriageType, blowerType, hotendDescriptor) {
     mirror([1, 0, 0])
-        grooveMountClampHardware(grooveMountClampSize(blower_type, hotendDescriptor), countersunk=true);
+        grooveMountClampHardware(grooveMountClampSize(blowerType, hotendDescriptor), countersunk=true);
 }
