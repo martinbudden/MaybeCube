@@ -20,7 +20,7 @@ module main_test() {
     }
 
     echoPrintSize();
-    echoParameters();
+    echoPrintParameters();
 
     //CoreXYBelts(carriagePosition(), show_pulleys=false);
     //Stage_1_assembly();

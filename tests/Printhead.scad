@@ -29,11 +29,11 @@ module Printhead_test() {
     echo(coreXYSeparation=coreXYSeparation());
     carriagePosition = carriagePosition();
 
-    halfCarriage = true;
+    halfCarriage = false;
     translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
         CoreXYBelts(carriagePosition - [4, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
         //fullPrinthead(accelerometer=true);
-        printheadBeltSide(halfCarriage);
+        //printheadBeltSide(halfCarriage);
         printheadHotendSide(halfCarriage=halfCarriage);
         //printheadEVA();
         //printheadVoronAfterburner();
