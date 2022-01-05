@@ -23,7 +23,7 @@ NEMA17_60  = ["NEMA17_60",   42.3, 60,     53.6/2, 25,     11,     2,     5,    
 
 NEMA_hole_depth = 5;
 
-partitionExtension = 6;
+partitionExtension = 5;
 bracketThickness = 5;
 bracketHeightRight = eZ - eSize - (coreXYPosBL().z + washer_thickness(M3_washer));
 bracketHeightLeft = bracketHeightRight + coreXYSeparation().z;
@@ -184,8 +184,9 @@ module xyMotorMountBase(motorType, left, size, offset, sideSupportSizeY, stepdow
         }
         // groove for partition
         grooveSize = [partitionExtensionX - eSize, 2.5, 2];
+        partitionTolerance = 0.5;
         if (partitionExtension > 0)
-            translate([eSize, eY + 2*eSize - size.y - grooveSize.y, -eps])
+            translate([eSize, eY + 2*eSize - partitionOffsetY() - grooveSize.y + partitionTolerance/2, -eps])
                 rounded_cube_xy(grooveSize, 0.5);
         if (!cnc)
             translate([coreXYPosBL.x + separation.x/2, coreXYPosTR.y, 0]) {
