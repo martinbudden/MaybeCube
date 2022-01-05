@@ -6,7 +6,6 @@ include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/printed/AccessPanel.scad>
 use <../scad/printed/extruderBracket.scad>
-//use <../scad/printed/IEC_Housing.scad>
 use <../scad/printed/XY_MotorMount.scad>
 
 //include <../scad/utils/Z_Rods.scad>
@@ -46,6 +45,7 @@ module Right_Side_test() {
     //faceRightSpool();
     //XY_Motor_Mount_Left_assembly();
     XY_Motor_Mount_Right_assembly();
+    //partitionTopAssembly();
 
     //Right_Side_Channel_Nuts();
     // always add the panels last, so they are transparent to other items
