@@ -1,7 +1,7 @@
 include <../global_defs.scad>
 
 use <../printed/extruderBracket.scad> // for spoolHeight()
-use <../printed/IEC_Housing.scad> // for partitionOffsetY()
+use <../utils/XY_MotorMount.scad> // for partitionOffsetY()
 
 include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>

@@ -15,8 +15,6 @@ include <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>
 
-function partitionOffsetY() = xyMotorMountSize().y;
-//function partitionOffsetY() = eX <=300 ? xyMotorMountSize().y : floor((eY + 2*eSize - extruderPosition().y + motorWidth(motorType(_xyMotorDescriptor))/2 + 4));
 function partitionSize() = [eX, eZ, 2];
 PC2 = ["PC2", "Sheet polycarbonate", 2, [1,   1,   1,   0.25], false];
 
@@ -25,6 +23,7 @@ function iecType() = iec320c14FusedSwitchedType();
 
 guideWidth = 7;
 guideLength = (_upperZRodMountsExtrusionOffsetZ - 3 * eSize)/2;
+partitionTolerance = 0.5;
 
 module IEC_Housing_stl() {
     size = iecHousingSize();
@@ -143,9 +142,9 @@ module IEC_Housing_Mount_300_stl() {
             iceHousingMount(eX=300);
 }
 
-module partitionGuideTabs(size, gapWidth, gapHeight, tolerance) {
+module partitionGuideTabs(size, gapWidth=partitionSize().z + partitionTolerance, gapHeight=2.5) {
     rounded_cube_xy(size, 1);
-    size2 = [(size.x - gapWidth - tolerance)/2, size.y, size.z + gapHeight];
+    size2 = [(size.x - gapWidth)/2, size.y, size.z + gapHeight];
     translate_z(size.z - size2.z)
         rounded_cube_xy(size2, 0.5);
     translate([size.x - size2.x, 0, size.z - size2.z])
@@ -169,7 +168,7 @@ module iceHousingMount(eX) {
                     fillet(5, size.z);
                 size3 = [guideWidth, size2.y - iecHousingSize.y - eSize, eSize];
                 translate([size.x - partitionOffsetY() - partitionSize().z/2 - size3.x/2, iecHousingSize.y, -size3.z])
-                    partitionGuideTabs(size3, partitionSize().z, 2, partitionTolerance);
+                    partitionGuideTabs(size3);
             } // end union
 
             if (size.y >= spoolHeight()) {
@@ -265,7 +264,6 @@ module partitionGuide(length) {
     supportWidth = 15;
     partitionSize = [guideWidth, size.y, eSize];
     fillet = 1;
-    partitionTolerance = 0.5;
     translate([-size.x, 0, 0]) {
         difference() {
             union() {
@@ -275,7 +273,7 @@ module partitionGuide(length) {
                         rounded_cube_xy([size.x, supportWidth, size.z], fillet);
                 translate([0, size.y, size.z])
                     rotate([180, 0, 0])
-                        partitionGuideTabs([guideWidth, size.y, size.z], 3, 2, partitionTolerance);
+                        partitionGuideTabs([guideWidth, size.y, size.z]);
             }
             for (y = [supportWidth/2, size.y - supportWidth/2])
                 translate([0, y, eSize/2])
