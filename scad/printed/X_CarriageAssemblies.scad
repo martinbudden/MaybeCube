@@ -191,18 +191,6 @@ module xCarriageHotendSideHolePositions() {
                 children();
 }
 
-module X_Carriage_Groovemount_HC_16_stl() {
-    xCarriageType = MGN12H_carriage;
-    blowerType = blowerType();
-    hotendDescriptor = "E3DV6";
-    halfCarriage = true;
-    inserts = false;
-
-    stl("X_Carriage_Groovemount_HC_16")
-        color(pp1_colour)
-            xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCarriage, inserts);
-}
-
 module xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCarriage, inserts) {
     size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
     grooveMountSize = grooveMountSize(blowerType, hotendDescriptor);
@@ -230,6 +218,18 @@ module xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCar
     }
 }
 
+module X_Carriage_Groovemount_HC_16_stl() {
+    xCarriageType = MGN12H_carriage;
+    blowerType = blowerType();
+    hotendDescriptor = "E3DV6";
+    halfCarriage = true;
+    inserts = false;
+
+    stl("X_Carriage_Groovemount_HC_16")
+        color(pp1_colour)
+            xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCarriage, inserts);
+}
+
 module X_Carriage_Groovemount_stl() {
     xCarriageType = MGN12H_carriage;
     blowerType = blowerType();
@@ -242,7 +242,19 @@ module X_Carriage_Groovemount_stl() {
             xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCarriage, inserts);
 }
 
-module xCarriageGroovemountAssembly() {
+module X_Carriage_Groovemount_I_stl() {
+    xCarriageType = MGN12H_carriage;
+    blowerType = blowerType();
+    hotendDescriptor = "E3DV6";
+    halfCarriage = false;
+    inserts = true;
+
+    stl("X_Carriage_Groovemount_I")
+        color(pp1_colour)
+            xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCarriage, inserts);
+}
+
+module xCarriageGroovemountAssembly(inserts=false) {
 
     xCarriageType = MGN12H_carriage;
     blowerType = blowerType();
@@ -257,10 +269,14 @@ module xCarriageGroovemountAssembly() {
     } else {
         stl_colour(pp1_colour)
             rotate([-90, 0, 90])
-                X_Carriage_Groovemount_stl();
-        xCarriageHotendSideHolePositions()
-            vflip()
-                threadedInsertM3();
+                if (inserts)
+                    X_Carriage_Groovemount_I_stl();
+                else
+                    X_Carriage_Groovemount_stl();
+        if (inserts)
+            xCarriageHotendSideHolePositions()
+                vflip()
+                    threadedInsertM3();
     }
 
     grooveMountSize = grooveMountSize(blowerType, hotendDescriptor);
