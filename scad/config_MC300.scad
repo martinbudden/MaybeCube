@@ -7,7 +7,7 @@ eZ = __extrusionLengths.z;
 
 eSize = 20; // for 2020, 2040  etc extrusion
 
-_xyMotorDescriptor = "NEMA17_40";
+_xyMotorDescriptor = "NEMA17_48";
 _zMotorDescriptor = "NEMA17_40L280";
 _corkDamperThickness = 2;
 
@@ -27,7 +27,6 @@ _useDualZRods = false;
 _useDualZMotors = false;
 _useFrontDisplay = true;
 _useSidePanels = false;
-_useHalfCarriage = true;
 
 _printbedSize = [214, 214, 4];
 _printbedArmSeparation = 188;
