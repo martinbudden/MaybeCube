@@ -162,6 +162,7 @@ module xyMotorMountBase(motorType, left, size, offset, sideSupportSizeY, stepdow
     coreXY_type = coreXY_type();
     pP = coreXY_drive_plain_idler_offset(coreXY_type) + (stepdown ? [0, 0, 0] : plainIdlerPulleyOffset());
     pT = coreXY_drive_toothed_idler_offset(coreXY_type);
+    partitionExtensionX = size.x;
 
     difference() {
         linear_extrude(size.z, convexity=2) {
@@ -171,19 +172,21 @@ module xyMotorMountBase(motorType, left, size, offset, sideSupportSizeY, stepdow
                         rounded_square([size.x, size.y], baseFillet, center=false);
                         if (partitionExtension > 0)
                             translate([0, eY + 2*eSize - size.y - partitionExtension, 0]) {
-                                rounded_square([2*eSize, partitionExtension + 2*baseFillet], baseFillet, center=false);
-                                translate([2*eSize, partitionExtension])
-                                    rotate(270)
-                                        fillet(2);
+                                rounded_square([partitionExtensionX, partitionExtension + 2*baseFillet], baseFillet, center=false);
+                                if (partitionExtensionX + 2 < size.x)
+                                    translate([partitionExtensionX, partitionExtension])
+                                        rotate(270)
+                                            fillet(2);
                             }
                 }
                 xyMotorMountBaseCutouts(motorType=motorType, left=left, size=size, offset=offset, sideSupportSizeY=sideSupportSizeY, cnc=cnc, M5=M5);
             }
         }
         // groove for partition
-        grooveSize = [eSize + 3, 3, 2];
-        translate([eSize, eY + 2*eSize - size.y - grooveSize.y, -eps])
-            rounded_cube_xy(grooveSize, 0.5);
+        grooveSize = [partitionExtensionX - eSize, 2.5, 2];
+        if (partitionExtension > 0)
+            translate([eSize, eY + 2*eSize - size.y - grooveSize.y, -eps])
+                rounded_cube_xy(grooveSize, 0.5);
         if (!cnc)
             translate([coreXYPosBL.x + separation.x/2, coreXYPosTR.y, 0]) {
                 translate([coreXY_drive_pulley_x_alignment(coreXY_type) + offset.x, (left ? offset.y : -offset.y)]) {
