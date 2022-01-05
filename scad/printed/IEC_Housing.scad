@@ -143,7 +143,7 @@ module IEC_Housing_Mount_300_stl() {
             iceHousingMount(eX=300);
 }
 
-module partitionGuide(size, gapWidth, gapHeight, tolerance) {
+module partitionGuideTabs(size, gapWidth, gapHeight, tolerance) {
     rounded_cube_xy(size, 1);
     size2 = [(size.x - gapWidth - tolerance)/2, size.y, size.z + gapHeight];
     translate_z(size.z - size2.z)
@@ -169,7 +169,7 @@ module iceHousingMount(eX) {
                     fillet(5, size.z);
                 size3 = [guideWidth, size2.y - iecHousingSize.y - eSize, eSize];
                 translate([size.x - partitionOffsetY() - partitionSize().z/2 - size3.x/2, iecHousingSize.y, -size3.z])
-                    partitionGuide(size3, partitionSize().z, 2, partitionTolerance);
+                    partitionGuideTabs(size3, partitionSize().z, 2, partitionTolerance);
             } // end union
 
             if (size.y >= spoolHeight()) {
@@ -260,7 +260,7 @@ module IEC320_C14_CutoutWithBoltHoles(boltHoleSpacing) {
 }
 */
 
-module partition(length) {
+module partitionGuide(length) {
     size = [partitionOffsetY() - eSize + guideWidth/2 + 1, length, eSize];
     supportWidth = 15;
     partitionSize = [guideWidth, size.y, eSize];
@@ -275,7 +275,7 @@ module partition(length) {
                         rounded_cube_xy([size.x, supportWidth, size.z], fillet);
                 translate([0, size.y, size.z])
                     rotate([180, 0, 0])
-                        partitionGuide([guideWidth, size.y, size.z], 3, 2, partitionTolerance);
+                        partitionGuideTabs([guideWidth, size.y, size.z], 3, 2, partitionTolerance);
             }
             for (y = [supportWidth/2, size.y - supportWidth/2])
                 translate([0, y, eSize/2])
@@ -299,7 +299,7 @@ module Partition_Guide_hardware(length) {
 module Partition_Guide_stl() {
     stl("Partition_Guide")
         color(pp1_colour)
-            partition(guideLength);
+            partitionGuide(guideLength);
 }
 
 module partitionGuideAssembly() {
@@ -310,6 +310,32 @@ module partitionGuideAssembly() {
                     Partition_Guide_stl();
                 Partition_Guide_hardware(guideLength);
             }
+}
+
+module partitionTop() {
+    xyMotorMountSizeLeft = xyMotorMountSize(left=true);
+    overlap = 3;
+    size = [eX + 2*eSize + 2*overlap - xyMotorMountSizeLeft.x - xyMotorMountSize(left=false).x, partitionOffsetY() + 5, 6];
+    filet = 1;
+    translate([xyMotorMountSizeLeft.x - overlap, -size.y + eSize, 0])
+        rounded_cube_xy(size, filet);
+}
+
+module Partition_Top_hardware() {
+}
+
+module Partition_Top_stl() {
+    stl("Partition_Top")
+        color(pp2_colour)
+            partitionTop();
+}
+
+module partitionTopAssembly() {
+    translate([0, eY + eSize, eZ - 90]) {
+        color(pp2_colour)
+            Partition_Top_stl();
+        Partition_Guide_hardware(guideLength);
+    }
 }
 
 module Partition_dxf() {
