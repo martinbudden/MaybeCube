@@ -189,17 +189,17 @@ assembly("Z_Carriage_Right", ngb=true) {
 //
 module Z_Carriage_Side_assembly()
 assembly("Z_Carriage_Side", ngb=true) {
-
-    translate_z(-scs_screw_separation_z(scsType)/2) {
-        rotate([90, 0, 90]) {
-            stl_colour(pp1_colour)
-                Z_Carriage_Side_stl();
-            zCarriageSCS_hardware();
+    rotate(_invertedZRods ? 180 : 0)
+        translate_z(-scs_screw_separation_z(scsType)/2) {
+            rotate([90, 0, 90]) {
+                stl_colour(pp1_colour)
+                    Z_Carriage_Side_stl();
+                zCarriageSCS_hardware();
+            }
+            explode([-30, 0, 0])
+                rotate(90)
+                    scs_bearing_block(scsType);
         }
-        explode([-30, 0, 0])
-            rotate(90)
-                scs_bearing_block(scsType);
-    }
 }
 
 module zCarriageCenter() {
