@@ -18,7 +18,8 @@ __scs_hole_offset = _zRodDiameter == 8 ? 11 : _zRodDiameter == 10 ? 13 : 15;
 _zCarriageSCS_sizeZ = 5.5;
 __zCarriageYOffset =  __scs_hole_offset + _zCarriageSCS_sizeZ;
 
-function zRodSeparation() = -__zCarriageYOffset*2 + (is_undef(_printbedArmSeparation) ? 150 : _printbedArmSeparation);
+_invertedZRods = _printbedArmSeparation == 150;
+function zRodSeparation() =  _printbedArmSeparation + (_invertedZRods ? __zCarriageYOffset*2 + 2*_printbedExtrusionSize : - __zCarriageYOffset*2);
 
 // Bolts
 _frameBoltLength = 10;

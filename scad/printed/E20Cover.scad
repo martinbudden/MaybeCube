@@ -93,6 +93,12 @@ module Z_Motor_MountGuide_55mm_stl() {
             E20Cover(55);
 }
 
+module Z_Motor_MountGuide_61mm_stl() {
+    color(pp2_colour)
+        stl("Z_Motor_MountGuide_61mm")
+            E20Cover(61);
+}
+
 module Z_Motor_MountGuide_92p5mm_stl() {
     // for MC400
     color(pp2_colour)
@@ -112,6 +118,8 @@ module zMotorMountGuide(length) {
                 Z_Motor_MountGuide_25mm_stl();
             } else if (length==55) {
                 Z_Motor_MountGuide_55mm_stl();
+            } else if (length==61) {
+                Z_Motor_MountGuide_61mm_stl();
             } else if (length==92.5) {
                 Z_Motor_MountGuide_92p5mm_stl();
             } else {
