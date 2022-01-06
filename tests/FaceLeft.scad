@@ -25,11 +25,12 @@ include <../scad/Parameters_Main.scad>
 module Left_Side_test() {
     t = 2;
     echoPrintSize();
+    printbedKinematic = !is_undef(_printbedKinematic) && _printbedKinematic == true;
     //CoreXYBelts(carriagePosition(t=t), show_pulleys=[1, 0, 0]);
     //let($hide_extrusions=true)
     //let($hide_rails=true)
     Left_Side_assembly();
-    if (is_undef(_printbedKinematic) || _printbedKinematic == false) zRods();
+    if (!printbedKinematic) zRods();
     //faceTopBack(fov_distance=0);
     //printheadWiring();
     //Right_Side_assembly(); if(is_true(_useDualZRods))zRods(left=false);
@@ -38,8 +39,10 @@ module Left_Side_test() {
     echo(bh0=bedHeight(t=3));
     echo(bh1=bedHeight(t=7)-20);
     //translate_z(bedHeight(t=7)-20) Printbed_assembly();
-    translate_z(bedHeight(t)) Printbed_assembly();
-    //translate_z(bedHeight(t=t)) jubilee_build_plate();
+    if (printbedKinematic)
+        translate_z(bedHeight(t=t)) jubilee_build_plate();
+    else
+        translate_z(bedHeight(t)) Printbed_assembly();
     //let($hide_corexy=true)
     //let($hide_extrusions=true)
     //Face_Top_Stage_1_assembly();
