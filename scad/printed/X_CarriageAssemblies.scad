@@ -62,7 +62,7 @@ module X_Carriage_Belt_Side_16_stl() {
     stl("X_Carriage_Belt_Side_16")
         color(pp4_colour)
             rotate([90, 0, 0])// orientate for printing
-                xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), halfCarriage=false);
+                xCarriageBeltSide(xCarriageType, size, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), endCube=true, halfCarriage=false);
 }
 
 module X_Carriage_Belt_Side_25_stl() {
@@ -129,25 +129,25 @@ module X_Carriage_Belt_Tensioner_stl() {
 module X_Carriage_Belt_Clamp_16_stl() {
     stl("X_Carriage_Belt_Clamp_16")
         color(pp2_colour)
-            xCarriageBeltClamp(beltClampSize, offset=-1.75, countersunk=true);
+            xCarriageBeltClamp(beltClampSize, offset=-1.25, countersunk=true);
 }
 
 module X_Carriage_Belt_Clamp_Buttonhead_16_stl() {
     stl("X_Carriage_Belt_Clamp_Buttonhead_16")
         color(pp2_colour)
-            xCarriageBeltClamp(beltClampSize, offset=-1.75);
+            xCarriageBeltClamp(beltClampSize, offset=-1.25);
 }
 
 module X_Carriage_Belt_Clamp_25_stl() {
     stl("X_Carriage_Belt_Clamp_25")
         color(pp2_colour)
-            xCarriageBeltClamp(beltClampSize, offset=-1.75, countersunk=true);
+            xCarriageBeltClamp(beltClampSize, offset=-1.25, countersunk=true);
 }
 
 module X_Carriage_Belt_Clamp_Buttonhead_25_stl() {
     stl("X_Carriage_Belt_Clamp_Buttonhead_25")
         color(pp2_colour)
-            xCarriageBeltClamp(beltClampSize, offset=-1.75);
+            xCarriageBeltClamp(beltClampSize, offset=-1.25);
 }
 
 module xCarriageBeltClampAssembly(xCarriageType, countersunk=true) {
@@ -168,7 +168,7 @@ module xCarriageBeltClampAssembly(xCarriageType, countersunk=true) {
                         X_Carriage_Belt_Clamp_Buttonhead_25_stl();
                     else
                         X_Carriage_Belt_Clamp_Buttonhead_16_stl();
-            X_Carriage_Belt_Clamp_hardware(beltClampSize, offset=-1.75, countersunk=countersunk);
+            X_Carriage_Belt_Clamp_hardware(beltClampSize, offset=-1.25, countersunk=countersunk);
         }
 }
 
