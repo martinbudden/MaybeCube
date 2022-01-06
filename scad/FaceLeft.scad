@@ -32,11 +32,12 @@ assembly("Left_Side", big=true) {
         faceLeftMotorUpright(upperZRodMountsExtrusionOffsetZ);
     explode([0, -70, 0], true)
         faceLeftIdlerUpright(upperZRodMountsExtrusionOffsetZ);
-    explode([0, 10, 0], true)
-        partitionGuideAssembly();
 
     if (printbedKinematic)
         zRails(bedHeight, left=true);
+    else
+        explode([0, 10, 0], true)
+            partitionGuideAssembly();
 }
 
 module faceLeftUpperZRodMountsExtrusion(printbedKinematic, upperZRodMountsExtrusionOffsetZ) {
