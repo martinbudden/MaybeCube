@@ -183,7 +183,7 @@ module xyMotorMountBase(motorType, left, size, offset, sideSupportSizeY, stepdow
             }
         }
         // groove for partition
-        grooveSize = [partitionExtensionX - eSize, 2.5, 2];
+        grooveSize = [partitionExtensionX - eSize - 3, 2.5, 2];
         partitionTolerance = 0.5;
         if (partitionExtension > 0)
             translate([eSize, eY + 2*eSize - partitionOffsetY() - grooveSize.y + partitionTolerance/2, -eps])
