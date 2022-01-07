@@ -1,4 +1,4 @@
-//!# Test Kinematic Bed
+//!Display the Kinematic Bed
 //!
 //!This is proof of concept showing the MaybeCube with the Jubilee Kinematic Bed.
 //
@@ -27,7 +27,7 @@ module KinematicBed_test() {
     Right_Side_assembly(bedHeight=bedHeight, printbedKinematic=true, sideAssemblies=false);
     Base_Plate_Stage_1_assembly();
     //Face_Top_Stage_1_assembly();
-    //translate_z(bedHeight) jubilee_build_plate();
+    translate_z(bedHeight) jubilee_build_plate();
     //let($hide_bolts=true)
     //let($hide_rails=true)
     //let($hide_extrusions=true)
