@@ -259,6 +259,12 @@ module evaImportStl(file) {
 }
 
 module EvaTopConvert(stlFile, zOffset=5, horizontal=true) {
+/*
+EVA top stls are converted to MaybeCube compatible by:
+1. Removing 5mm of height (by removing the space for the endstops). This is required so that there is space for belt attachment
+at the bottom.
+2. Adding 1mm of width, again so there is space for the belt attachment.
+*/
     module boltCutout(offset, height) {
         vflip() {
             *hull()
