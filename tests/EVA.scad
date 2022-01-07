@@ -31,16 +31,18 @@ tensionerOffsetX = X_CarriageEVATensionerOffsetX();
 
 
 module EVA_test() {
+    offsetZ = 0;
     translate(-[eSize + eX/2, carriagePosition(t).y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
         CoreXYBelts(carriagePosition() + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
-        printheadEVA();
+        translate_z(offsetZ) printheadEVA();
         translate_z(eZ)
             xRail(carriagePosition(), MGN12H_carriage);
-        translate([0, 0, eZ - eSize])
+        *translate([0, 0, eZ - eSize])
             Y_Carriage_Left_assembly();
-        translate([2*eSize + eX, 0, eZ - eSize])
+        *translate([2*eSize + eX, 0, eZ - eSize])
             Y_Carriage_Right_assembly();
     }
+    //translate_z(13 + offsetZ) rotate(180) evaHotend();
 }
 
 module evaHotend(full=false) {
@@ -51,9 +53,10 @@ module evaHotend(full=false) {
             //EvaTopConvert("top_titan_mgn12");
             //EvaTopConvert("top_bmg_mgn12");
             //EvaTopConvert("top_lgx_mgn12_a");
-            //color(pp4_colour) evaImportStl("top_lgx_mgn12_b");
         }
-    *translate([0, -13.5, -39.9 - zOffset])
+    translate_z(-5)
+        color(pp4_colour) evaImportStl("top_orbiter_mgn12");
+    translate([0, -13.5, -39.9 - zOffset])
         color(pp1_colour)
             evaBottom();
     translate([0, 18.5, -15.5 - zOffset]) {
