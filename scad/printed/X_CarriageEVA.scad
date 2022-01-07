@@ -385,14 +385,15 @@ module universal_face_stl() {
             evaImportStl("universal_face");
 }
 
-module printheadEVA(rotate=180, explode=0, t=undef) {
+module printheadEVA(rotate=180, explode=0, t=undef, top="orbiter_mgn12") {
     xRailCarriagePosition(carriagePosition(t), rotate)
         explode(explode, true) {
             color(pp4_colour)
+                evaHotendTop(top);
                 //evaHotendTop(top="mgn12");
                 //evaHotendTop(top="lgx_bmg_mgn12_a");
                 //evaHotendTop(top="bmg_mgn12");
-                evaHotendTop(top="orbiter_mgn12");
+                //evaHotendTop(top="orbiter_mgn12");
                 //evaHotendTop(top="titan_mgn12");
             color(pp4_colour)
                 evaHotendBottom();
