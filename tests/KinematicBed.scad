@@ -10,7 +10,7 @@ use <../scad/printed/JubileeKinematicBed.scad>
 use <../scad/BasePlate.scad>
 use <../scad/FaceLeft.scad>
 use <../scad/FaceRight.scad>
-//use <../scad/FaceTop.scad>
+//use <../scad/printed/PrintheadAssemblies.scad>
 
 //$explode = 1;
 //$pose = 1;
@@ -26,8 +26,8 @@ module KinematicBed_test() {
     Left_Side_assembly(bedHeight=bedHeight, printbedKinematic=true);
     Right_Side_assembly(bedHeight=bedHeight, printbedKinematic=true, sideAssemblies=false);
     Base_Plate_Stage_1_assembly();
-    //Face_Top_Stage_1_assembly();
     translate_z(bedHeight) jubilee_build_plate();
+    //printheadHotendSide(t=3);
     //let($hide_bolts=true)
     //let($hide_rails=true)
     //let($hide_extrusions=true)

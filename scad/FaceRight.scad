@@ -37,8 +37,9 @@ assembly("Right_Side", big=true) {
     // extra extrusion for mounting spool holder
     if (printbedKinematic) {
         zRails(bedHeight, left=false);
-        translate([eX + eSize, (eY + 3*eSize)/2, spoolHeight()])
-            extrusionOY2040VEndBolts((eY - eSize)/2);
+        supportLength = eY - _zRodOffsetY - _printbedArmSeparation/2;
+        translate([eX + eSize, eY + eSize - supportLength, spoolHeight()])
+            extrusionOY2040VEndBolts(supportLength);
     } else {
         translate([eX + eSize, eSize, spoolHeight()])
             extrusionOY2040VEndBolts(eY);
