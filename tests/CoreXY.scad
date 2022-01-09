@@ -31,17 +31,18 @@ module CoreXY_test() {
     echoPrintSize();
     echo(vpr=$vpr);
 
+    carriagePosition = carriagePosition(t);
     NEMA_width = _xyMotorDescriptor == "NEMA14" ? 35.2 : 42.3;
     coreXYSize = coreXYPosTR(NEMA_width) - coreXYPosBL();
-    #CoreXYBelts(carriagePosition(t), x_gap = -20, show_pulleys = ![1, 0, 0]);
+    #CoreXYBelts(carriagePosition, x_gap = -40, show_pulleys = ![1, 0, 0]);
     printheadBeltSide(t=t);
     //fullPrinthead(t=t);
 
-    *xRailCarriagePosition(carriagePosition(t))
+    *xRailCarriagePosition(carriagePosition)
         evaHotendTop();
 
     translate_z(eZ)
-        xRail(carriagePosition(t));
+        xRail(carriagePosition);
 
     for (x=[0, eX + eSize], y=[0, eY + eSize])
         translate([x, y, 250])
@@ -62,13 +63,13 @@ module CoreXY_test() {
 
     translate([coreXYPosBL().x, eSize + _yRailLength/2, eZ - eSize])
         rotate([180, 0, 90])
-            rail_assembly(yCarriageType, _yRailLength, carriagePosition(t).y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
-    translate([0, carriagePosition(t).y - carriagePosition().y, eZ - eSize])
+            rail_assembly(yCarriageType, _yRailLength, carriagePosition.y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
+    translate([0, carriagePosition.y - carriagePosition().y, eZ - eSize])
         Y_Carriage_Left_assembly();
     translate([eX + 2*eSize - coreXYPosBL().x, eSize + _yRailLength/2, eZ - eSize])
         rotate([180, 0, 90])
-            rail_assembly(yCarriageType, _yRailLength, carriagePosition(t).y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
-    translate([eX + 2*eSize, carriagePosition(t).y - carriagePosition().y, eZ - eSize])
+            rail_assembly(yCarriageType, _yRailLength, carriagePosition.y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
+    translate([eX + 2*eSize, carriagePosition.y - carriagePosition().y, eZ - eSize])
         Y_Carriage_Right_assembly();
 
     XY_Idler_Left_assembly();
