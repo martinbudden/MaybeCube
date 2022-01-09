@@ -131,8 +131,9 @@ module jubilee_build_plate(printbedHoleOffset=[8, 30]) {
     //Jubilee size = [340, 305, 6.35];
     //
     size = _printbedSize;
+    //size = [305, 300, 6.35];
     //bedOffset = [47.7, 24.675, 48];
-    bedOffset = [68.7, 36 + 35, 18];
+    bedOffset = [68.7, _zRodOffsetY + 5, 18];
     holeOffset = printbedHoleOffset;
     boltHoles = [ [holeOffset.x, holeOffset.y, 0], [holeOffset.x, size.y - holeOffset.y, 0], [size.x - holeOffset.x, size.y/2, 0] ];
     //translate([60, 25+(26+59)/2, 50+48])

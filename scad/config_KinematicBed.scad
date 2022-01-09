@@ -27,6 +27,6 @@ _printbedHoleOffset = [8, 30];
 _printbedArmSeparation = 50 + _printbedSize.y - 2*_printbedHoleOffset.y;
 _printbedKinematic = true;
 
-_zRodOffsetY = 66;
+_zRodOffsetY = 65;
 _zLeadScrewOffset = 30;// ensures clearance of zMotor from frame and zRail
 _upperZRodMountsExtrusionOffsetZ = eZ - 90;
