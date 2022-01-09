@@ -2,10 +2,6 @@
 /*
 !!TODO
 
-add more cable vitamins
-complete assembly instructions
-complete top level blurb
-
 
 //DONE
 reduce coreXY z separation
@@ -25,6 +21,9 @@ add belt fragments for x carriage
 move motors to back, ie swap left and right face arrangement
 add filament runout sensor to extruder bracket
 reinforce idler shelves
+add more cable vitamins
+complete assembly instructions
+complete top level blurb
 
 // Not Doing
 add BTT_B1_Box_V1_0 to baseplate
