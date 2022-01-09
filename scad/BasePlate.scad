@@ -2,11 +2,16 @@ include <global_defs.scad>
 
 include <printed/DisplayHousingAssemblies.scad>
 use <NopSCADlib/vitamins/sheet.scad>
+use <NopSCADlib/vitamins/psu.scad>
 
 use <printed/BaseFoot.scad>
 use <printed/BaseFrontCover.scad>
+use <printed/PSU.scad>
+
+use <BackFace.scad>
 
 include <utils/FrameBolts.scad>
+include <vitamins/psus.scad>
 
 
 AL3 = ["AL3", "Aluminium sheet", 3, [0.9, 0.9, 0.9, 1], false];
@@ -15,6 +20,7 @@ basePlateSize = [eX + 2*eSize, eY + 2*eSize, _basePlateThickness];
 
 psuOnBase = false;
 pcbOnBase = false;
+basePSUType = NG_CB_500W;
 
 module BaseAL_dxf() {
     size = basePlateSize;
@@ -70,6 +76,15 @@ module baseplateM6BoltPositions(size) {
             children();
 }
 
+module basePSUPosition() {
+    psuSize = psu_size(basePSUType);
+    topRightPosition = [eX, eSize + eY - 5, 0];
+
+    translate(topRightPosition)
+        translate([-psuSize.x/2, -psuSize.y/2, 0])
+            children();
+}
+
 module baseCutouts(cncSides=undef, radius=undef) {
 // set radius=1 to make drill template
 
@@ -82,11 +97,11 @@ module baseCutouts(cncSides=undef, radius=undef) {
     baseplateM6BoltPositions(size)
         poly_circle(is_undef(radius) ? M6_clearance_radius : radius, sides=cncSides);
     if (psuOnBase)
-        PSUPosition(psuOnBase)
-            PSUBoltPositions()
+        basePSUPosition()
+            PSUBoltPositions(basePSUType)
                 poly_circle(is_undef(radius) ? M4_clearance_radius : radius, sides=cncSides);
     if (pcbOnBase)
-        pcbPosition(pcbType())
+        pcbPosition(pcbType(), pcbOnBase)
             pcb_screw_positions(pcbType())
                 poly_circle(is_undef(radius) ? M3_clearance_radius : radius, sides=cncSides);
 
@@ -133,6 +148,15 @@ assembly("Base_Plate_Stage_1", big=true, ngb=true) {
     BaseAL();
     //hidden() Base_stl();
     //hidden() Base_template_stl();
+
+    if (pcbOnBase) {
+        pcbAssembly(pcbType(), pcbOnBase);
+    }
+
+    if (psuOnBase) {
+        basePSUPosition()
+            psu(NG_CB_500W);
+    }
 
     // front extrusion
     translate([eSize, 0, 0])

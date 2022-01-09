@@ -79,7 +79,7 @@ assembly("Back_Panel") {
     psuAssembly(psuVertical);
 
     PSUPosition(psuVertical)
-        PSUBoltPositions()
+        PSUBoltPositions(psuType())
             translate_z(-size.z)
                 vflip()
                     if (countersunk)
@@ -152,11 +152,11 @@ module backPanelCutouts(psuType, pcbType, cncSides = undef, radius = undef) {
         if (psuVertical)
             translate([psuOffset(psuType).x, psuOffset(psuType).z])
                 rotate(-90)
-                    PSUBoltPositions()
+                    PSUBoltPositions(psuType)
                         poly_circle(r=is_undef(radius) ? M4_clearance_radius : radius, sides=cncSides);
         else
             translate([eSize + psu_length(psuType)/2, 2*eSize + 3 + psu_width(psuType)/2])
-                PSUBoltPositions()
+                PSUBoltPositions(psuType)
                     poly_circle(r=is_undef(radius) ? M4_clearance_radius : radius, sides=cncSides);
                 /*mirror([0, 1, 0])
                     rotate(180) {
@@ -244,7 +244,7 @@ module psuLowerMount(size, counterSunk, offsetX=0) {
                     rotate([-90, 0, 0])
                         translate([0, -eY - 2*eSize - 2*eps, 0])
                             PSUPosition(psuVertical)
-                                PSUBoltPositions()
+                                PSUBoltPositions(PSUType())
                                     boltPolyholeM4Countersunk(3);
                 }
             }
@@ -340,7 +340,7 @@ module PSU_Upper_Mount_stl() {
                                         boltPolyholeM4Countersunk(size.z);
                             translate([psuOffset(PSUType()).x, psuOffset(PSUType()).z])
                                 rotate(-90)
-                                    PSUBoltPositions()
+                                    PSUBoltPositions(PSUType())
                                         boltPolyholeM4Countersunk(size.z);
                         }
                     }
@@ -491,22 +491,22 @@ assembly("PSU_Right_Mount") {
 M3x20_nylon_hex_pillar = ["M3x20_nylon_hex_pillar", "hex nylon", 3, 20, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -6, -6 + eps];
 M3x10_nylon_hex_pillar = ["M3x10_nylon_hex_pillar", "hex nylon", 3, 10, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -4, -4 + eps];
 
-module pcbAssembly(pcbType, useMounts=false) {
+module pcbAssembly(pcbType, pcbOnBase=false, useMounts=false) {
     rpi = (pcbType == RPI0 || pcbType == RPI3 || pcbType == RPI4);
-    pcbOffsetFromBase = rpi ? 10 : 20;
+    pcbOffsetZ = pcbOnBase ? 10 : rpi ? 10 : 20;
 
     explode = 40;
     if (is_undef($hide_pcb) || $hide_pcb == false)
-        pcbPosition(pcbType, pcbOffsetFromBase) {
+        pcbPosition(pcbType, pcbOnBase, pcbOffsetZ) {
             explode(explode)
                 pcb(pcbType);
             pcb_screw_positions(pcbType) {
                 translate_z(pcb_thickness(pcbType))
                     explode(explode, true)
                         boltM3Caphead(6);
-                translate_z(-pcbOffsetFromBase) {
+                translate_z(-pcbOffsetZ) {
                     explode(10)
-                        pillar(rpi ? M3x10_nylon_hex_pillar : M3x20_nylon_hex_pillar);
+                        pillar(pcbOffsetZ==10 ? M3x10_nylon_hex_pillar : M3x20_nylon_hex_pillar);
                     translate_z(-_basePlateThickness)
                         vflip()
                             boltM3Buttonhead(10);
@@ -517,9 +517,8 @@ module pcbAssembly(pcbType, useMounts=false) {
         PCB_Mounting_Plate_assembly();
 }
 
-module pcbPosition(pcbType, z=0) {
+module pcbPosition(pcbType, pcbOnBase=false, z=0) {
 
-    pcbOnBase = false;
     if (pcbOnBase) {
         pcbSize = pcb_size(pcbType);
         if (eX >= 300)

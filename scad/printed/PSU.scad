@@ -16,9 +16,9 @@ function PSUStandoffHeight() = 0;
 function psuShroudCableDiameter() = 8;
 function psuOffset(PSUType) = [eSize + 3 + psu_width(PSUType)/2, eY + 2*eSize, psu_length(PSUType)/2 + 2*eSize + 15];
 
-module PSUBoltPositions() {//! Position children at the bolt positions on the bottom face
-    for (pos = psu_face_holes(psu_faces(PSUType())[f_bottom]))
-        translate([-pos.x, pos.y + psu_right_bay(PSUType()), 0])
+module PSUBoltPositions(PSUType) {//! Position children at the bolt positions on the bottom face
+    for (pos = psu_face_holes(psu_faces(PSUType)[f_bottom]))
+        translate([-pos.x, pos.y + psu_right_bay(PSUType), 0])
             children();
 }
 
