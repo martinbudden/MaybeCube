@@ -159,7 +159,7 @@ staged_assembly("Stage_4", big=true, ngb=true) {
 
 module FinalAssembly() {
     // does not use assembly(""), since made into an assembly in Main.scad
-    useSidePanels = true;//!is_undef(_useSidePanels) && _useSidePanels;
+    useSidePanels = !is_undef(_useSidePanels) && _useSidePanels;
     translate([-(eX + 2*eSize)/2, - (eY + 2*eSize)/2, -eZ/2]) {
         Stage_4_assembly();
         if (is_undef(_useBackMounts) || _useBackMounts == false) {

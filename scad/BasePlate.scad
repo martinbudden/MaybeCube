@@ -18,8 +18,8 @@ AL3 = ["AL3", "Aluminium sheet", 3, [0.9, 0.9, 0.9, 1], false];
 
 basePlateSize = [eX + 2*eSize, eY + 2*eSize, _basePlateThickness];
 
-psuOnBase = false;
-pcbOnBase = false;
+psuOnBase = !is_undef(_useElectronicsInBase) && _useElectronicsInBase == true;
+pcbOnBase = !is_undef(_useElectronicsInBase) && _useElectronicsInBase == true;
 basePSUType = NG_CB_500W;
 
 module BaseAL_dxf() {

@@ -21,6 +21,7 @@ assembly("Right_Side", big=true) {
 
     printbedKinematic = is_undef(printbedKinematic) ? (!is_undef(_printbedKinematic) && _printbedKinematic == true) : printbedKinematic;
     bedHeight = is_undef(bedHeight) ? bedHeight() : bedHeight;
+    useBackMounts = !is_undef(_useBackMounts) && _useBackMounts == true;
     sideAssemblies = is_undef(sideAssemblies) ? (is_undef(_useBackMounts) || _useBackMounts == false) : sideAssemblies;
     upperZRodMountsExtrusionOffsetZ = printbedKinematic ? eZ - 90 : _upperZRodMountsExtrusionOffsetZ;
 
@@ -40,11 +41,11 @@ assembly("Right_Side", big=true) {
         supportLength = eY - _zRodOffsetY - _printbedArmSeparation/2;
         translate([eX + eSize, eY + eSize - supportLength, spoolHeight()])
             extrusionOY2040VEndBolts(supportLength);
-    } else {
+    } else if(!useBackMounts) {
         translate([eX + eSize, eSize, spoolHeight()])
             extrusionOY2040VEndBolts(eY);
     }
-    if ($target != "DualZRods" && $target != "KinematicBed") {
+    if ($target != "DualZRods" && $target != "KinematicBed" && !useBackMounts) {
         explode([50, 75, 0])
             IEC_Housing_assembly();
         explode([50, 75, 0])
