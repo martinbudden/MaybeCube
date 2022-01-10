@@ -30,6 +30,28 @@ carriagePosition = carriagePosition(t);
 
 
 module toolChanger(t=2) {
+    offsetZ = -15;
+    translate_z(offsetZ)
+    xRailCarriagePosition(carriagePosition(t))
+        rotate(180) {
+            no_explode()
+                translate_z(-offsetZ)
+                    carriage_top_plate_assembly();
+            explode([0, -50, 0])
+                carriage_back_plate_assembly();
+            //carriage_center_plate_assembly();
+            carriage_coupler_plate_assembly();
+            //E3D_TC_PLATE_assembly();
+            explode(100)
+            translate([0, 2, 0])
+                if (t==8 || t==9)
+                    pen_assembly();
+                else
+                    bondtech_assembly();
+        }
+}
+
+module tools() {
     translate([130, eY + eSize, eZ])
         explode([-100, 0, 0])
             mirror([1, 0, 0])
@@ -51,34 +73,20 @@ module toolChanger(t=2) {
                 tool_dock_55mm_assembly();
             }
         }
-    xRailCarriagePosition(carriagePosition(t))
-        rotate(180) {
-            no_explode()
-                carriage_top_plate_assembly();
-            explode([0, -50, 0])
-                carriage_back_plate_assembly();
-            //carriage_center_plate_assembly();
-            carriage_coupler_plate_assembly();
-            //E3D_TC_PLATE_assembly();
-            explode(100)
-            translate([0, 2, 0])
-                if (t==8 || t==9)
-                    pen_assembly();
-                else
-                    bondtech_assembly();
-        }
 }
 
 module JubileeToolChanger_assembly()
 assembly("JubileeToolChanger", big=true) {
-    explode(100, true)
+    explode(100, true) {
         toolChanger(t);
+        tools();
+    }
     //not_on_bom()
-        no_explode()
+        *no_explode()
             Face_Top_Stage_2_assembly();
     if (!exploded())
         not_on_bom()
-            CoreXYBelts([eX + 2*eSize - 10 - carriagePosition.x, carriagePosition.y]);
+            CoreXYBelts([carriagePosition.x, carriagePosition.y]);
 }
 
 
