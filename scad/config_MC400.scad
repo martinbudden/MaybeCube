@@ -26,7 +26,7 @@ _use2060ForTop = true;
 _useDualZRods = true;
 _useDualZMotors = true;
 _useFrontDisplay = true;
-_useSidePanels = false;
+_useSidePanels = true;
 
 _printbedSize = [310, 310, 3] : // CR-10 size
 _printbedArmSeparation = 225;

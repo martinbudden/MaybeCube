@@ -167,8 +167,9 @@ module iceHousingMount(eX) {
                 translate([size2.x, iecHousingSize.y, 0])
                     fillet(5, size.z);
                 size3 = [guideWidth, size2.y - iecHousingSize.y - eSize, eSize];
-                translate([size.x - partitionOffsetY() - partitionSize().z/2 - size3.x/2, iecHousingSize.y, -size3.z])
-                    partitionGuideTabs(size3);
+                if (is_undef(_useElectronicsInBase) || _useElectronicsInBase == false)
+                    translate([size.x - partitionOffsetY() - partitionSize().z/2 - size3.x/2, iecHousingSize.y, -size3.z])
+                        partitionGuideTabs(size3);
             } // end union
 
             if (size.y >= spoolHeight()) {
@@ -225,8 +226,9 @@ assembly("IEC_Housing", ngb=true) {
                     vflip()
                         if (eX==300)
                             IEC_Housing_Mount_300_stl();
-                        else
+                        else if (eX > 300)
                             IEC_Housing_Mount_stl();
+            if (eX >= 300)
                 IEC_Housing_Mount_hardware();
             }
 

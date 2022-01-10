@@ -72,20 +72,22 @@ assembly("Back_Panel") {
     size = backPanelSize();
     countersunk = true;
 
-    pcbAssembly(pcbType());
+    if (is_undef(_useElectronicsInBase) || _useElectronicsInBase == false) {
+        pcbAssembly(pcbType());
 
-    pcbAssembly(RPI4);
+        pcbAssembly(RPI4);
 
-    psuAssembly(psuVertical);
+        psuAssembly(psuVertical);
 
-    PSUPosition(psuVertical)
-        PSUBoltPositions(psuType())
-            translate_z(-size.z)
-                vflip()
-                    if (countersunk)
-                        boltM4Countersunk(_sideBoltLength);
-                    else
-                        boltM4Buttonhead(_sideBoltLength);
+        PSUPosition(psuVertical)
+            PSUBoltPositions(PSUType())
+                translate_z(-size.z)
+                    vflip()
+                        if (countersunk)
+                            boltM4Countersunk(_sideBoltLength);
+                        else
+                            boltM4Buttonhead(_sideBoltLength);
+    }
 
     translate([0, eY + 2*eSize, 0]) {
         rotate([90, 0, 0])
@@ -491,7 +493,7 @@ assembly("PSU_Right_Mount") {
 M3x20_nylon_hex_pillar = ["M3x20_nylon_hex_pillar", "hex nylon", 3, 20, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -6, -6 + eps];
 M3x10_nylon_hex_pillar = ["M3x10_nylon_hex_pillar", "hex nylon", 3, 10, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -4, -4 + eps];
 
-module pcbAssembly(pcbType, pcbOnBase=false, useMounts=false) {
+module pcbAssembly(pcbType, pcbOnBase=false) {
     rpi = (pcbType == RPI0 || pcbType == RPI3 || pcbType == RPI4);
     pcbOffsetZ = pcbOnBase ? 10 : rpi ? 10 : 20;
 
@@ -513,8 +515,6 @@ module pcbAssembly(pcbType, pcbOnBase=false, useMounts=false) {
                 }
             }
         }
-    if (useMounts)
-        PCB_Mounting_Plate_assembly();
 }
 
 module pcbPosition(pcbType, pcbOnBase=false, z=0) {

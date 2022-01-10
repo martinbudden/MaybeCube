@@ -35,7 +35,7 @@ assembly("Left_Side", big=true) {
 
     if (printbedKinematic)
         zRails(bedHeight, left=true);
-    else
+    else if (is_undef(_useElectronicsInBase) || _useElectronicsInBase == false)
         explode([0, 10, 0], true)
             partitionGuideAssembly();
 }

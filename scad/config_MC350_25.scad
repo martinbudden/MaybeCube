@@ -26,7 +26,7 @@ _use2060ForTop = true;
 _useDualZRods = false;
 _useDualZMotors = false;
 _useFrontDisplay = true;
-_useSidePanels = false;
+_useSidePanels = true;
 
 _printbedSize = [235, 235, 4]; // Ender 3 size
 _printbedArmSeparation = 150;

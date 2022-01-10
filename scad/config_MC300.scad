@@ -26,7 +26,7 @@ _use2060ForTop = false;
 _useDualZRods = false;
 _useDualZMotors = false;
 _useFrontDisplay = true;
-_useSidePanels = false;
+_useSidePanels = true;
 
 _printbedSize = [214, 214, 4];
 _printbedArmSeparation = 188;
