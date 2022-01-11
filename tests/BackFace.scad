@@ -3,7 +3,7 @@
 include <NopSCADlib/utils/core/core.scad>
 
 include <../scad/utils/CoreXYBelts.scad>
-use <../scad/printed/PSU.scad>
+//use <../scad/printed/PSU.scad>
 use <../scad/printed/XY_MotorMount.scad>
 use <../scad/BackFace.scad>
 use <../scad/BasePlate.scad>
@@ -21,16 +21,13 @@ module BackFace_test() {
     Back_Panel_assembly();
     //Back_Panel_dxf();
     psuVertical = eX == 300;
-    //PSUPosition(psuVertical) PSU();
-    //PSUPosition(psuVertical) PSUBoltPositions() cylinder(r=3,h=2);
     //PSU_Cover_assembly();
     //PSU_Cover_stl();
     //PSU_Upper_Mount_stl();
     //PSU_Lower_Mount_stl();
     //psuAssembly(psuVertical, useMounts=true);
-    //pcbAssembly(pcbType(), useMounts=true);
+    //pcbAssembly(pcbType());
     //PSU_Cover_assembly();
-    //PCB_Mount_stl();
     //let($hide_pcb=true)
     //Base_Plate_assembly();
     //Left_Side_assembly();

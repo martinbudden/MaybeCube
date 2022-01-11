@@ -1,14 +1,19 @@
 include <global_defs.scad>
 
-include <printed/DisplayHousingAssemblies.scad>
 use <NopSCADlib/vitamins/sheet.scad>
-use <NopSCADlib/vitamins/psu.scad>
 
-use <printed/BaseFoot.scad>
+include <printed/DisplayHousingAssemblies.scad>
+include <printed/BaseFoot.scad>
+include <NopSCADlib/vitamins/psus.scad>
+include <NopSCADlib/vitamins/pcbs.scad>
+
 use <printed/BaseFrontCover.scad>
-use <printed/PSU.scad>
+use <printed/IEC_Housing.scad>
 
-use <BackFace.scad>
+use <utils/PSU.scad>
+include <utils/pcbs.scad>
+
+//use <BackFace.scad>
 
 include <utils/FrameBolts.scad>
 include <vitamins/psus.scad>
@@ -21,6 +26,8 @@ basePlateSize = [eX + 2*eSize, eY + 2*eSize, _basePlateThickness];
 psuOnBase = !is_undef(_useElectronicsInBase) && _useElectronicsInBase == true;
 pcbOnBase = !is_undef(_useElectronicsInBase) && _useElectronicsInBase == true;
 basePSUType = NG_CB_500W;
+//basePSUType = S_300_12;
+pcbType = BTT_SKR_V1_4_TURBO;
 
 module BaseAL_dxf() {
     size = basePlateSize;
@@ -78,11 +85,11 @@ module baseplateM6BoltPositions(size) {
 
 module basePSUPosition() {
     psuSize = psu_size(basePSUType);
-    topRightPosition = [eX, eSize + eY - 5, 0];
 
-    translate(topRightPosition)
-        translate([-psuSize.x/2, -psuSize.y/2, 0])
-            children();
+    translate([eX + 2*eSize - 135, eY + 2*eSize - 40, 0])
+        translate([-psuSize.y/2, -psuSize.x/2, 0])
+            rotate(90)
+                children();
 }
 
 module baseCutouts(cncSides=undef, radius=undef) {
@@ -101,9 +108,10 @@ module baseCutouts(cncSides=undef, radius=undef) {
             PSUBoltPositions(basePSUType)
                 poly_circle(is_undef(radius) ? M4_clearance_radius : radius, sides=cncSides);
     if (pcbOnBase)
-        pcbPosition(pcbType(), pcbOnBase)
-            pcb_screw_positions(pcbType())
-                poly_circle(is_undef(radius) ? M3_clearance_radius : radius, sides=cncSides);
+        for (pcb = [pcbType, RPI4, BTT_RELAY_V1_2, XL4015_BUCK_CONVERTER])
+            pcbPosition(pcb, pcbOnBase)
+                pcb_screw_positions(pcb)
+                    poly_circle(is_undef(radius) ? M3_clearance_radius : radius, sides=cncSides);
 
 }
 
@@ -149,14 +157,23 @@ assembly("Base_Plate_Stage_1", big=true, ngb=true) {
     //hidden() Base_stl();
     //hidden() Base_template_stl();
 
-    if (pcbOnBase) {
-        pcbAssembly(pcbType(), pcbOnBase);
-    }
+    if (pcbOnBase)
+        for (pcb = [pcbType, RPI4, BTT_RELAY_V1_2, XL4015_BUCK_CONVERTER])
+            pcbAssembly(pcb, pcbOnBase);
 
     if (psuOnBase) {
         basePSUPosition()
-            psu(NG_CB_500W);
+            if (basePSUType[0] == "S_300_12")
+                PSU_S_360_24();
+            else
+                psu(basePSUType);
+        IEC_Housing_assembly();
+        // right extrusion
+        translate([eX + eSize, eSize, 0])
+            explode(50, true)
+                extrusionOYEndBolts(eY);
     }
+
 
     // front extrusion
     translate([eSize, 0, 0])
@@ -167,6 +184,7 @@ assembly("Base_Plate_Stage_1", big=true, ngb=true) {
     translate([eSize, eY + eSize, 0])
         explode(50, true)
             extrusionOX2040VEndBolts(eX);
+
     translate_z(-size.z)
         baseplateM4BoltPositions(size) {
             vflip()

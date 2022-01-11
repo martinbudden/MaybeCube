@@ -109,18 +109,20 @@ module iecHousing() {
 }
 */
 
-module iecHousingMountAttachmentHolePositions(z=0, eX=eX) {
-    size = iecHousingMountSize();
+module iecHousingMountAttachmentHolePositions(z=0, eX=eX, useElectronicsInBase=false) {
+    size = iecHousingMountSize(useElectronicsInBase);
 
     translate([0, -2*eSize, z]) {
         for (x = [eSize/2, size.x - 3*eSize/2])
             translate([x, eSize/2, 0])
                 children();
-        translate([eSize/2, 3*eSize/2, 0])
-            children();
-        for (x = [eSize/2, 3*eSize/2])
-            translate([x, spoolHeight(eX) + eSize/2, 0])
+        if (!useElectronicsInBase) {
+            translate([eSize/2, 3*eSize/2, 0])
                 children();
+            for (x = [eSize/2, 3*eSize/2])
+                translate([x, spoolHeight(eX) + eSize/2, 0])
+                    children();
+        }
         for (y = [eSize, size.y - eSize/2])
             translate([size.x - eSize/2, y, 0])
                 children();
@@ -142,6 +144,12 @@ module IEC_Housing_Mount_300_stl() {
             iceHousingMount(eX=300);
 }
 
+module IEC_Housing_Mount_EB_stl() {
+    stl("IEC_Housing_Mount_EB")
+        color(pp2_colour)
+            iceHousingMount(eX, useElectronicsInBase=true);
+}
+
 module partitionGuideTabs(size, gapWidth=partitionSize().z + partitionTolerance, gapHeight=2.5) {
     rounded_cube_xy(size, 1);
     size2 = [(size.x - gapWidth)/2, size.y, size.z + gapHeight];
@@ -151,8 +159,8 @@ module partitionGuideTabs(size, gapWidth=partitionSize().z + partitionTolerance,
         rounded_cube_xy(size2, 0.5);
 }
 
-module iceHousingMount(eX) {
-    size = iecHousingMountSize();
+module iceHousingMount(eX, useElectronicsInBase=false) {
+    size = iecHousingMountSize(useElectronicsInBase);
     iecHousingSize = iecHousingSize();
     iecCutoutSize = [iecCutoutSize().x, iecCutoutSize().y, size.z + 2*eps];
     fillet = 3;
@@ -162,14 +170,15 @@ module iceHousingMount(eX) {
                 partitionTolerance = 0.5;
                 translate([0, -2*eSize, 0])
                     rounded_cube_xy(size, fillet);
-                size2 = [size.x - partitionOffsetY() + guideWidth/2 - partitionSize().z/2, spoolHeight(eX) - eSize, size.z];
-                rounded_cube_xy(size2, fillet);
-                translate([size2.x, iecHousingSize.y, 0])
-                    fillet(5, size.z);
-                size3 = [guideWidth, size2.y - iecHousingSize.y - eSize, eSize];
-                if (is_undef(_useElectronicsInBase) || _useElectronicsInBase == false)
+                if (!useElectronicsInBase) {
+                    size2 = [size.x - partitionOffsetY() + guideWidth/2 - partitionSize().z/2, spoolHeight(eX) - eSize, size.z];
+                    rounded_cube_xy(size2, fillet);
+                    translate([size2.x, iecHousingSize.y, 0])
+                        fillet(5, size.z);
+                    size3 = [guideWidth, size2.y - iecHousingSize.y - eSize, eSize];
                     translate([size.x - partitionOffsetY() - partitionSize().z/2 - size3.x/2, iecHousingSize.y, -size3.z])
                         partitionGuideTabs(size3);
+                }
             } // end union
 
             if (size.y >= spoolHeight()) {
@@ -178,13 +187,13 @@ module iceHousingMount(eX) {
                 translate([size.x - eSize - tfCutoutSize.x, size.y -3*eSize - tfCutoutSize.y, -eps])
                     rounded_cube_xy(tfCutoutSize, 2);
             }
-            translate([iecHousingSize.x/2 - iecCutoutSize.x/2, iecHousingSize.y/2 - iecCutoutSize.y/2, -eps])
+            translate([iecHousingSize.x/2 - iecCutoutSize.x/2, iecHousingSize.y/2 - iecCutoutSize.y/2 - (useElectronicsInBase ? eSize : 0), -eps])
                 rounded_cube_xy(iecCutoutSize, fillet);
             translate([iecHousingSize.x/2, iecHousingSize.y/2, 0])
                 rotate(90)
                     iec_screw_positions(iecType())
                         boltHoleM4(size.z);
-            iecHousingMountAttachmentHolePositions(eX=eX)
+            iecHousingMountAttachmentHolePositions(eX=eX, useElectronicsInBase=useElectronicsInBase)
                 boltHoleM4(size.z);
             // access holes
             for (y = [eSize/2, 3*eSize/2])
@@ -193,9 +202,9 @@ module iceHousingMount(eX) {
         } // end difference
 }
 
-module IEC_Housing_Mount_hardware(eX=eX) {
+module IEC_Housing_Mount_hardware(eX=eX, useElectronicsInBase=false) {
 
-    iecHousingMountAttachmentHolePositions(iecHousingMountSize().z, eX)
+    iecHousingMountAttachmentHolePositions(iecHousingMountSize().z, eX, useElectronicsInBase)
         boltM4ButtonheadHammerNut(_sideBoltLength, rotate=90);
 /*    iecHousingSize = iecHousingSize();
     size = [iecHousingSize.x + eSize, iecHousingSize.y + 2*eSize, 3];
@@ -219,19 +228,27 @@ module IEC_Housing_Mount_hardware(eX=eX) {
 module IEC_Housing_assembly()
 assembly("IEC_Housing", ngb=true) {
 
-    translate([eX + 2*eSize, eY + eSize, 2*eSize]) {
+    useElectronicsInBase = !is_undef(_useElectronicsInBase) && _useElectronicsInBase == true;
+
+    translate([eX + 2*eSize, eY + eSize, 2*eSize])
         translate([0, -iecHousingSize().x, 0])
             rotate([90, 0, 90]) {
                 stl_colour(pp2_colour)
                     vflip()
-                        if (eX==300)
+                        if (useElectronicsInBase)
+                            IEC_Housing_Mount_EB_stl();
+                        else if (eX==300)
                             IEC_Housing_Mount_300_stl();
                         else if (eX > 300)
                             IEC_Housing_Mount_stl();
-            if (eX >= 300)
-                IEC_Housing_Mount_hardware();
+                if (eX >= 300)
+                    IEC_Housing_Mount_hardware(eX, useElectronicsInBase);
             }
+    iecHousing(useElectronicsInBase? eSize : 2*eSize);
+}
 
+module iecHousing(z=0) {
+    translate([eX + 2*eSize, eY + eSize, z])
         translate([-iecHousingSize().z, -iecHousingSize().x, 0])
             rotate([90, 0, 90]) {
                 explode(-30)
@@ -240,7 +257,6 @@ assembly("IEC_Housing", ngb=true) {
                 explode(30, true)
                     IEC_Housing_hardware();
             }
-    }
 }
 
 /*

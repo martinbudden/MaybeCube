@@ -4,8 +4,9 @@ include <NopSCADlib/utils/core/core.scad>
 
 use <printed/AccessPanel.scad>
 use <printed/E20Cover.scad>
-use <printed/PrintheadAssemblies.scad>
 use <printed/JubileeKinematicBed.scad>
+use <printed/PrintheadAssemblies.scad>
+use <printed/RightSidePanel.scad>
 
 include <utils/CoreXYBelts.scad>
 include <utils/Z_Rods.scad>
@@ -178,7 +179,10 @@ module FinalAssembly() {
         if (useSidePanels) {
             explode([50, 0, 0], true) {
                 rightSidePanelPC();
-                accessPanelAssembly();
+                if (is_undef(_useElectronicsInBase) || _useElectronicsInBase == false)
+                    accessPanelAssembly();
+                else
+                    rightSidePanelAssembly();
             }
             explode([-50, 0, 0], true)
                 leftSidePanelPC();

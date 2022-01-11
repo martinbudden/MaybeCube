@@ -22,18 +22,19 @@ assembly("Right_Side", big=true) {
     printbedKinematic = is_undef(printbedKinematic) ? (!is_undef(_printbedKinematic) && _printbedKinematic == true) : printbedKinematic;
     bedHeight = is_undef(bedHeight) ? bedHeight() : bedHeight;
     useBackMounts = !is_undef(_useBackMounts) && _useBackMounts == true;
+    useElectronicsInBase = !is_undef(_useElectronicsInBase) && _useElectronicsInBase == true;
     sideAssemblies = is_undef(sideAssemblies) ? (is_undef(_useBackMounts) || _useBackMounts == false) : sideAssemblies;
     upperZRodMountsExtrusionOffsetZ = printbedKinematic ? eZ - 90 : _upperZRodMountsExtrusionOffsetZ;
 
-    faceRightLowerExtrusion();
+    faceRightLowerExtrusion(useElectronicsInBase);
     if (eX >= 350 || printbedKinematic)
         faceRightUpperZRodMountsExtrusion(upperZRodMountsExtrusionOffsetZ);
 
     explode([0, 70, 0], true)
-        faceRightMotorUpright(upperZRodMountsExtrusionOffsetZ);
+        faceRightMotorUpright(upperZRodMountsExtrusionOffsetZ, useElectronicsInBase);
 
     explode([0, -70, 0], true)
-        faceRightIdlerUpright(upperZRodMountsExtrusionOffsetZ);
+        faceRightIdlerUpright(upperZRodMountsExtrusionOffsetZ, useElectronicsInBase);
 
     // extra extrusion for mounting spool holder
     if (printbedKinematic) {
@@ -46,8 +47,9 @@ assembly("Right_Side", big=true) {
             extrusionOY2040VEndBolts(eY);
     }
     if ($target != "DualZRods" && $target != "KinematicBed" && !useBackMounts) {
-        explode([50, 75, 0])
-            IEC_Housing_assembly();
+        if (!useElectronicsInBase)
+            explode([50, 75, 0])
+                IEC_Housing_assembly();
         explode([50, 75, 0])
             Extruder_Bracket_assembly();
     }
@@ -63,10 +65,14 @@ module faceRightUpperZRodMountsExtrusion(upperZRodMountsExtrusionOffsetZ) {
     }
 }
 
-module faceRightLowerExtrusion() {
+module faceRightLowerExtrusion(useElectronicsInBase) {
     zMotorLength = 40;
     translate([eX + eSize, eSize, 0]) {
-        extrusionOY2040VEndBolts(eY);
+        if (useElectronicsInBase)
+            translate_z(70)
+                extrusionOYEndBolts(eY);
+        else
+            extrusionOY2040VEndBolts(eY);
         if (useDualZRods())
             translate([eSize, 0, 0])
                 mirror([1, 0, 0])
@@ -74,13 +80,13 @@ module faceRightLowerExtrusion() {
     }
 }
 
-function frontAndBackHolePositionsZ(upperZRodMountsExtrusionOffsetZ) = concat([eSize/2, 3*eSize/2, eZ - eSize/2, spoolHeight() + eSize/2, spoolHeight() - (eX == 350 ? -3*eSize/2 : eSize/2)], eX < 350 ? [] : [upperZRodMountsExtrusionOffsetZ + eSize/2, upperZRodMountsExtrusionOffsetZ - eSize/2]);
+function frontAndBackHolePositionsZ(upperZRodMountsExtrusionOffsetZ, useElectronicsInBase) = concat([eSize/2, useElectronicsInBase ? 4*eSize : 3*eSize/2, eZ - eSize/2, spoolHeight() + eSize/2, spoolHeight() - (eX == 350 ? -3*eSize/2 : eSize/2)], eX < 350 ? [] : [upperZRodMountsExtrusionOffsetZ + eSize/2, upperZRodMountsExtrusionOffsetZ - eSize/2]);
 
-module faceRightIdlerUpright(upperZRodMountsExtrusionOffsetZ) {
+module faceRightIdlerUpright(upperZRodMountsExtrusionOffsetZ, useElectronicsInBase) {
     translate([eX + eSize, 0, 0])
         difference() {
             extrusionOZ(eZ);
-            for (z = frontAndBackHolePositionsZ(upperZRodMountsExtrusionOffsetZ))
+            for (z = frontAndBackHolePositionsZ(upperZRodMountsExtrusionOffsetZ, useElectronicsInBase))
                 translate([eSize/2, 0, z])
                     rotate([-90, 0, 0])
                         jointBoltHole();
@@ -91,11 +97,11 @@ module faceRightIdlerUpright(upperZRodMountsExtrusionOffsetZ) {
         }
 }
 
-module faceRightMotorUpright(upperZRodMountsExtrusionOffsetZ) {
+module faceRightMotorUpright(upperZRodMountsExtrusionOffsetZ, useElectronicsInBase) {
     translate([eX + eSize, eY + eSize, 0])
         difference() {
             extrusionOZ(eZ);
-            for (z = frontAndBackHolePositionsZ(upperZRodMountsExtrusionOffsetZ))
+            for (z = frontAndBackHolePositionsZ(upperZRodMountsExtrusionOffsetZ, useElectronicsInBase))
                 translate([eSize/2, eSize, z])
                     rotate([90, 0, 0])
                         jointBoltHole();
