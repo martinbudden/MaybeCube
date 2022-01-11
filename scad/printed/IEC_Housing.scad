@@ -25,53 +25,82 @@ guideWidth = 7;
 guideLength = (_upperZRodMountsExtrusionOffsetZ - 3 * eSize)/2;
 partitionTolerance = 0.5;
 
-module IEC_Housing_Beveled_stl() {
+module IEC_Housing_Bevelled_stl() {
+
+    stl("IEC_Housing_Beveled")
+        color(pp4_colour)
+            iecHousingStl(bevelled=true);
+}
+
+module IEC_Housing_stl() {
+
+    stl("IEC_Housing")
+        color(pp4_colour)
+            iecHousingStl(bevelled=false);
+}
+
+module iecHousingStl(bevelled=false) {
     size = iecHousingSize();
     fillet = 2;
     cutoutSize = [size.x - 10, 27.5];
     baseThickness = 3;
 
-    stl("IEC_Housing_Beveled")
-        color(pp4_colour) {
-            triangleSize = [8, 7];
-            difference() {
-                rounded_cube_xy([size.x, size.y, baseThickness], fillet);
-                translate([size.x + eps, -eps, -eps])
-                    rotate(90)
-                        right_triangle(triangleSize.x + 2*eps, triangleSize.y + 2*eps, baseThickness + 2*eps, center=false);
-            }
-            translate([size.x/2, size.y/2, baseThickness])
-                difference() {
-                    linear_extrude(size.z - baseThickness, convexity=8)
-                        difference() {
-                            rounded_square([size.x, size.y], fillet);
-                            rounded_square(cutoutSize, 1);
+    triangleSize = [8, 7];
+    difference() {
+        rounded_cube_xy([size.x, size.y, baseThickness], fillet);
+        if (bevelled) {
+            translate([size.x + eps, -eps, -eps])
+                rotate(90)
+                    right_triangle(triangleSize.x + 2*eps, triangleSize.y + 2*eps, baseThickness + 2*eps, center=false);
+        } else {
+            cableCutoutSize = [8, 8, baseThickness + 2*eps];
+            translate([size.x-cableCutoutSize.x-(size.x - cutoutSize.x)/2, (size.y - cutoutSize.y)/2 - 0*cableCutoutSize.y, -eps])
+                rounded_cube_xy(cableCutoutSize, fillet);
+        }
+    }
+    translate([size.x/2, size.y/2, baseThickness])
+        difference() {
+            union() {
+                linear_extrude(size.z - baseThickness, convexity=8)
+                    difference() {
+                        rounded_square([size.x, size.y], fillet);
+                        rounded_square(cutoutSize, 1);
+                        if (bevelled)
                             translate([size.x/2, -size.y/2])
                                 rotate(90)
                                     right_triangle(triangleSize.x, triangleSize.y, 0);
-                        }
-                    rotate(90)
-                        translate_z(size.z)
-                            iec_screw_positions(iecType())
-                                vflip()
-                                    boltHoleM4Tap(10);
-                    cableCutoutSize = [8, (size.y-cutoutSize.y)/2 + 2*eps, 8];
-                    translate([size.x/2 - 12 - cableCutoutSize.x/2, -size.y/2 - eps, -eps])
-                        cube(cableCutoutSize);
-                }
-            lugFillet = 1;
-            lugSize = [size.x, 10 + fillet + lugFillet, 5];
-            *translate([0, size.y - fillet - lugFillet, size.z - lugSize.z])
-                difference() {
-                    hull() {
-                        rounded_cube_xy(lugSize, lugFillet);
-                        translate_z(-lugSize.y)
-                            cube([lugSize.x, eps, eps]);
                     }
-                    for (x = [5, size.x - 35])
-                        translate([x, lugSize.y/2 + (fillet + lugFillet)/2, -2])
-                            boltHoleM4Tap(lugSize.z + 2);
+                if (!bevelled) {
+                    translate([-size.x/2, -size.y/2 - 5, -baseThickness])
+                        rounded_cube_xy([size.x, 5 + 2*fillet, size.z - eSize], fillet);
+                    translate([-size.x/2, size.y/2 - 2*fillet, -baseThickness])
+                        rounded_cube_xy([size.x, 5 + 2*fillet, size.z - eSize], fillet);
                 }
+            }
+
+            rotate(90)
+                translate_z(size.z)
+                    iec_screw_positions(iecType())
+                        vflip()
+                            boltHoleM4Tap(10);
+            if (bevelled) {
+                cableCutoutSize = [8, (size.y-cutoutSize.y)/2 + 2*eps, 8];
+                translate([size.x/2 - 12 - cableCutoutSize.x/2, -size.y/2 - eps, -eps])
+                    cube(cableCutoutSize);
+            }
+        }
+    lugFillet = 1;
+    lugSize = [size.x, 10 + fillet + lugFillet, 5];
+    *translate([0, size.y - fillet - lugFillet, size.z - lugSize.z])
+        difference() {
+            hull() {
+                rounded_cube_xy(lugSize, lugFillet);
+                translate_z(-lugSize.y)
+                    cube([lugSize.x, eps, eps]);
+            }
+            for (x = [5, size.x - 35])
+                translate([x, lugSize.y/2 + (fillet + lugFillet)/2, -2])
+                    boltHoleM4Tap(lugSize.z + 2);
         }
 }
 
@@ -97,7 +126,7 @@ module iecHousing() {
         translate([-iecHousingSize.z, -iecHousingSize().x, 0])
             rotate([90, 0, 90])
                 stl_colour(pp4_colour)
-                    IEC_Housing_Beveled_stl();
+                    IEC_Housing_Bevelled_stl();
     explode([40, 0, 0], true)
         translate([sidePanelSizeZ + 2*eps, -iecHousingSize.x/2, iecHousingSize.y/2])
             rotate([0, 90, 0]) {
@@ -244,16 +273,19 @@ assembly("IEC_Housing", ngb=true) {
                 if (eX >= 300)
                     IEC_Housing_Mount_hardware(eX, extended);
             }
-    iecHousing(extended ? 2*eSize : eSize);
+    iecHousing(bevelled=extended);
 }
 
-module iecHousing(z=0) {
-    translate([eX + 2*eSize, eY + eSize, z])
+module iecHousing(bevelled) {
+    translate([eX + 2*eSize, eY + eSize, bevelled ? 2*eSize : eSize])
         translate([-iecHousingSize().z, -iecHousingSize().x, 0])
             rotate([90, 0, 90]) {
                 explode(-30)
                     stl_colour(pp4_colour)
-                        IEC_Housing_Beveled_stl();
+                        if (bevelled)
+                            IEC_Housing_Bevelled_stl();
+                        else
+                            IEC_Housing_stl();
                 explode(30, true)
                     IEC_Housing_hardware();
             }
