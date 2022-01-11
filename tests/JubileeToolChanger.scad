@@ -21,18 +21,19 @@ carriagePosition = carriagePosition(t);
 
 
 module toolchanger_test() {
-    toolChanger();
-    CoreXYBelts([carriagePosition.x, carriagePosition.y]);
+    toolChanger(t);
+    //tools();
+    CoreXYBelts(carriagePosition);
     //printheadBeltSide(t=t);
     translate_z(eZ)
         xRail(carriagePosition, MGN12H_carriage);
-    translate([eSize, eX + eSize, eZ - 2*eSize])
+    *translate([eSize, eX + eSize, eZ - 2*eSize])
         extrusionOX2040V(eY);
-    for (x=[0, eX + eSize], y=[0, eY + eSize])
+    *for (x=[0, eX + eSize], y=[0, eY + eSize])
         translate([x, y, 250])
             extrusionOZ(eZ - 250);
-    XY_Motor_Mount_Left_assembly();
-    XY_Motor_Mount_Right_assembly();
+    //XY_Motor_Mount_Left_assembly();
+    //XY_Motor_Mount_Right_assembly();
 }
 
 if ($preview)
