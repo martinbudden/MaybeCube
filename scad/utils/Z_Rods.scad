@@ -130,7 +130,7 @@ module zRods(left=true) {
         }
 }
 
-module zRails(bedHeight=100, left=true) {
+module zRails(bedHeight=100, left=true, useElectronicsInBase=false) {
     railZPos = bedHeight - 34;
     carriageHeight = carriage_height(is_undef(_zCarriageDescriptor) ? MGN12C_carriage : carriageType(_zCarriageDescriptor));
     if (left) {
@@ -158,8 +158,8 @@ module zRails(bedHeight=100, left=true) {
         }
     } else {
         translate([eX + eSize, _zRodOffsetY + _printbedArmSeparation/2, 0]) {
-            translate_z(2*eSize)
-                extrusionOZ(eZ - 150);
+            translate_z(useElectronicsInBase ? eSize : 2*eSize)
+                extrusionOZ(eZ - (useElectronicsInBase ? 130 : 150));
             translate([eSize/2, eSize, eZ - 150 + 2*eSize])
                 rotate([-90, 0, 90])
                     extrusionInnerCornerBracket();

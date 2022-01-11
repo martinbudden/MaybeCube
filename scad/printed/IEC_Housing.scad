@@ -229,7 +229,6 @@ module IEC_Housing_assembly()
 assembly("IEC_Housing", ngb=true) {
 
     extended = is_undef(_useElectronicsInBase) || _useElectronicsInBase == false;
-    echo(extended=extended);
 
     translate([eX + 2*eSize, eY + eSize, 2*eSize])
         translate([0, -iecHousingSize().x, 0])

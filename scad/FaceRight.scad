@@ -27,7 +27,6 @@ assembly("Right_Side", big=true) {
     sideAssemblies = is_undef(sideAssemblies) ? (is_undef(_useBackMounts) || _useBackMounts == false) : sideAssemblies;
     upperZRodMountsExtrusionOffsetZ = printbedKinematic ? eZ - 90 : _upperZRodMountsExtrusionOffsetZ;
 
-    faceRightLowerExtrusion(useElectronicsInBase);
     if (_useDualZRods || printbedKinematic)
         faceRightUpperZRodMountsExtrusion(upperZRodMountsExtrusionOffsetZ);
 
@@ -39,13 +38,17 @@ assembly("Right_Side", big=true) {
 
     // extra extrusion for mounting spool holder
     if (printbedKinematic) {
-        zRails(bedHeight, left=false);
+        zRails(bedHeight, left=false, useElectronicsInBase=useElectronicsInBase);
         supportLength = eY - _zRodOffsetY - _printbedArmSeparation/2;
         translate([eX + eSize, eY + eSize - supportLength, spoolHeight()])
             extrusionOY2040VEndBolts(supportLength);
-    } else if(!useBackMounts) {
-        translate([eX + eSize, eSize, spoolHeight()])
-            extrusionOY2040VEndBolts(eY);
+        translate([eX + eSize, eY + eSize - supportLength, 70])
+            extrusionOYEndBolts(supportLength);
+    } else {
+        faceRightLowerExtrusion(useElectronicsInBase);
+        if(!useBackMounts)
+            translate([eX + eSize, eSize, spoolHeight()])
+                extrusionOY2040VEndBolts(eY);
     }
     if ($target != "DualZRods" && $target != "KinematicBed" && !useBackMounts) {
         if (useElectronicsInBase)
