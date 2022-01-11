@@ -2,8 +2,9 @@ include <global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
 
-use <printed/IEC_Housing.scad>
 use <printed/extruderBracket.scad>
+use <printed/IEC_Housing.scad>
+use <printed/RightSidePanel.scad>
 
 include <utils/FrameBolts.scad>
 include <utils/Z_Rods.scad>
@@ -27,7 +28,7 @@ assembly("Right_Side", big=true) {
     upperZRodMountsExtrusionOffsetZ = printbedKinematic ? eZ - 90 : _upperZRodMountsExtrusionOffsetZ;
 
     faceRightLowerExtrusion(useElectronicsInBase);
-    if (eX >= 350 || printbedKinematic)
+    if (_useDualZRods || printbedKinematic)
         faceRightUpperZRodMountsExtrusion(upperZRodMountsExtrusionOffsetZ);
 
     explode([0, 70, 0], true)
@@ -47,7 +48,9 @@ assembly("Right_Side", big=true) {
             extrusionOY2040VEndBolts(eY);
     }
     if ($target != "DualZRods" && $target != "KinematicBed" && !useBackMounts) {
-        if (!useElectronicsInBase)
+        if (useElectronicsInBase)
+            rightSidePanelAssembly();
+        else
             explode([50, 75, 0])
                 IEC_Housing_assembly();
         explode([50, 75, 0])
