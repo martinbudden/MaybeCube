@@ -26,7 +26,7 @@ use <../scad/Parameters_Positions.scad>
 module Right_Side_test() {
     //CoreXYBelts(carriagePosition(), show_pulleys=!true);
     Right_Side_assembly();
-    accessPanelAssembly();
+    //accessPanelAssembly();
     //Left_Side_assembly();
     //Face_Top_assembly();
     //faceRightSpoolHolder();
@@ -50,7 +50,7 @@ module Right_Side_test() {
     //Right_Side_Channel_Nuts();
     // always add the panels last, so they are transparent to other items
     rightSidePanelPC();
-    Partition_assembly();
+    //Partition_assembly();
 }
 
 if ($preview)
