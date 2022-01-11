@@ -1,7 +1,7 @@
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/pcbs.scad>
 
-use <../printed/PSU.scad>
+use <../utils/PSU.scad>
 use <../BackFace.scad>
 
 eSize = 20;

@@ -28,7 +28,7 @@ function spoolHeight(eX=eX) = extruderPosition(eX).z - (eX < 350 ? 110 : 80);
 // iecHousing sizes here, since the extruder bracket and IEC housing sizes must match,
 // and placing IEC housing size here minimises cross dependencies.
 function iecHousingSize() = [70, 50, 42 + 3];
-function iecHousingMountSize() = [iecHousingSize().x + eSize, iecHousingSize().y + 2*eSize, 3];
+function iecHousingMountSize(useElectronicsInBase=false) = [iecHousingSize().x + eSize, iecHousingSize().y + (useElectronicsInBase ? eSize : 2*eSize), 3];
 //function iecHousingMountSize() = [iecHousingSize().x + eSize, iecHousingSize().y + 2*eSize, 3];
 //function iecHousingMountSize() = [iecHousingSize().x + eSize, spoolHeight() + (eX < 350 ? 0 : eSize), 3];
 
@@ -102,7 +102,7 @@ module Extruder_Bracket_stl() {
     //echo(extruderFilamentOffset=extruderFilamentOffset());
     //echo(filamentSensorOffset=filamentSensorOffset());
     stl("Extruder_Bracket")
-        color(pp1_colour)
+        color(pp2_colour)
             rotate([0, 90, 0])
                 extruderBracket();
 }
@@ -161,6 +161,6 @@ assembly("Extruder_Bracket", ngb=true) {
     Extruder_Bracket_hardware(is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, addM4Bolts=true);
 
     rotate([0, -90, 0])
-        stl_colour(pp1_colour)
+        stl_colour(pp2_colour)
             Extruder_Bracket_stl();
 }

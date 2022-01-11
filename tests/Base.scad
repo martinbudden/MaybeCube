@@ -1,20 +1,21 @@
 //!Displays the baseplate.
 
 include <NopSCADlib/core.scad>
-include <NopSCADlib/vitamins/pcbs.scad>
+//include <NopSCADlib/vitamins/pcbs.scad>
 
-use <../scad/jigs/PanelJig.scad>
+//use <../scad/jigs/PanelJig.scad>
 
-use <../scad/printed/BaseFoot.scad>
-use <../scad/printed/BaseFrontCover.scad>
-use <../scad/printed/ControlPanel.scad>
+//use <../scad/printed/BaseFrontCover.scad>
+//use <../scad/printed/ControlPanel.scad>
 
 use <../scad/BasePlate.scad>
 //use <../scad/FaceLeft.scad>
-//use <../scad/FaceRight.scad>
+use <../scad/FaceRight.scad>
+//use <../scad/Printbed.scad>
 //include <../scad/FaceRightExtras.scad>
 
 include <../scad/Parameters_Main.scad>
+//use <../scad/Parameters_Positions.scad>
 
 
 //$explode = 1;
@@ -28,6 +29,7 @@ module Base_test() {
     //Front_Display_Wiring_Cover_stl();
     //Front_Cover_stl();
     //Left_Side_assembly();
+    //translate_z(bedHeight(7)) Printbed_assembly();
     //Right_Side_assembly();
     //Base_Extrusions_assembly();
     //basePlate();

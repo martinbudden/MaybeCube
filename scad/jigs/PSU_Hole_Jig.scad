@@ -1,6 +1,6 @@
 include <NopSCADlib/utils/core/core.scad>
 
-use <../printed/PSU.scad>
+use <../utils/PSU.scad>
 use <../BackFace.scad>
 
 

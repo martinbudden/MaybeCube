@@ -1,6 +1,6 @@
 //!Displays the PSU.
 
-use <../scad/printed/PSU.scad>
+use <../scad/utils/PSU.scad>
 include <../scad/vitamins/psus.scad>
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/psus.scad>
@@ -21,7 +21,7 @@ module PSU_test() {
         rotate([-90, -90, 0])
             psu(PSU_type);
     //PSUWithCover();
-    PSU();
+    PSU_S_360_24();
     //psu(NG_CB_500W);
 }
 

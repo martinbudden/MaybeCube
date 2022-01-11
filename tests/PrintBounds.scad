@@ -32,7 +32,7 @@ z endstop
 
 include <NopSCADlib/utils/core/core.scad>
 
-use <../scad/printed/PSU.scad>
+use <../scad/utils/PSU.scad>
 
 include <../scad/utils/printParameters.scad>
 include <../scad/utils/CoreXYBelts.scad>
@@ -65,8 +65,8 @@ module PrintBounds_test() {
             Right_Side_assembly();
     }
 
-    PSUPosition()
-        PSU();
+    PSUPosition(PSUType())
+        PSU_S_360_24();
     *translate_z(bedHeight())
         Printbed_assembly();
     //zRods();
