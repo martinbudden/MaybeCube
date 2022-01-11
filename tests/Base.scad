@@ -30,7 +30,7 @@ module Base_test() {
     //Front_Cover_stl();
     //Left_Side_assembly();
     //translate_z(bedHeight(7)) Printbed_assembly();
-    //Right_Side_assembly();
+    Right_Side_assembly();
     //Base_Extrusions_assembly();
     //basePlate();
     //controlPanel();
