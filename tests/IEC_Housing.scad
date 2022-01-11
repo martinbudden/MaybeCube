@@ -9,7 +9,7 @@ use <../scad/vitamins/Panels.scad>
 //$explode = 1;
 //$pose = 1;
 module IEC_Housing_test() {
-    //IEC_Housing_stl();
+    //IEC_Housing_Bevelled_stl();
     //IEC_Housing_Mount_stl();
     *intersection() {
         translate([0, -180, -2])
@@ -17,7 +17,6 @@ module IEC_Housing_test() {
         IEC_Housing_Mount_300_stl();
     }
     IEC_Housing_assembly();
-    //IEC_Housing_stl();
     //pcb(BTT_RELAY_V1_2);
     //btt_relay_v1_2_pcb();
     //BTT_Relay_Base_stl();
