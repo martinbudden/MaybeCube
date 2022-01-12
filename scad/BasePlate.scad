@@ -143,46 +143,11 @@ module baseplateM4CornerBoltPositions(size) {
 
 function basePlateHeight() = _basePlateThickness + 12;
 
-//!If you have access to a CNC, you can machine the base plate using **BaseAL.dxf**, if not you can use the **Panel_Jig**
-//!as a template to drill the holes in the base plate.
-//!
-//!1. Insert the bolts into the ends of the E2040 and E2080 extrusions in preparation for connection to the frame uprights.
-//!2. Bolt the extrusions and the L-shaped feet to the baseplate as shown.
-//!3. Bolt the PSU and the pcbs to the baseplate, using standoffs as appropriate.
-//
-module Base_Plate_Stage_1_assembly()
-assembly("Base_Plate_Stage_1", big=true, ngb=true) {
+module basePlateAssembly(rightExtrusion=false) {
     size = basePlateSize;
-
     BaseAL();
     //hidden() Base_stl();
     //hidden() Base_template_stl();
-
-    if (pcbOnBase)
-        for (pcb = [pcbType, rpiType, BTT_RELAY_V1_2, XL4015_BUCK_CONVERTER])
-            pcbAssembly(pcb, pcbOnBase);
-
-    if (psuOnBase) {
-        explode(50, true)
-            basePSUPosition()
-                if (basePSUType[0] == "S_300_12") {
-                    PSU_S_360_24();
-                    PSUBoltPositions(basePSUType)
-                        vflip()
-                            explode(70, true)
-                                boltM4Buttonhead(10);
-                }else {
-                    psu(basePSUType);
-                    PSUBoltPositions(basePSUType)
-                        explode(20, true)
-                            boltM4Buttonhead(10);
-                }
-        // right extrusion
-        translate([eX + eSize, eSize, 0])
-            explode([100, 0, 0], true)
-                extrusionOYEndBolts(eY);
-    }
-
 
     // front extrusion
     translate([eSize, 0, 0])
@@ -193,6 +158,11 @@ assembly("Base_Plate_Stage_1", big=true, ngb=true) {
     translate([eSize, eY + eSize, 0])
         explode([0, 100, 0], true)
             extrusionOX2040VEndBolts(eX);
+    if (rightExtrusion)
+        // right extrusion
+        translate([eX + eSize, eSize, 0])
+            explode([100, 0, 0], true)
+                extrusionOYEndBolts(eY);
 
     translate_z(-size.z)
         baseplateM4BoltPositions(size) {
@@ -232,6 +202,41 @@ assembly("Base_Plate_Stage_1", big=true, ngb=true) {
                 stl_colour(pp1_colour)
                     Foot_LShaped_12mm_stl();
     }
+}
+
+//!If you have access to a CNC, you can machine the base plate using **BaseAL.dxf**, if not you can use the **Panel_Jig**
+//!as a template to drill the holes in the base plate.
+//!
+//!1. Insert the bolts into the ends of the E2040 and E2080 extrusions in preparation for connection to the frame uprights.
+//!2. Bolt the extrusions and the L-shaped feet to the baseplate as shown.
+//!3. Bolt the PSU and the pcbs to the baseplate, using standoffs as appropriate.
+//
+module Base_Plate_Stage_1_assembly()
+assembly("Base_Plate_Stage_1", big=true, ngb=true) {
+
+    basePlateAssembly(psuOnBase);
+
+    if (pcbOnBase)
+        for (pcb = [pcbType, rpiType, BTT_RELAY_V1_2, XL4015_BUCK_CONVERTER])
+            pcbAssembly(pcb, pcbOnBase);
+
+    if (psuOnBase) {
+        explode(50, true)
+            basePSUPosition()
+                if (basePSUType[0] == "S_300_12") {
+                    PSU_S_360_24();
+                    PSUBoltPositions(basePSUType)
+                        vflip()
+                            explode(70, true)
+                                boltM4Buttonhead(10);
+                } else {
+                    psu(basePSUType);
+                    PSUBoltPositions(basePSUType)
+                        explode(20, true)
+                            boltM4Buttonhead(10);
+                }
+    }
+
 }
 
 //!1. Bolt the **Display_Housing_Bracket_TFT35_E3** to the 2080 extrusion.

@@ -23,7 +23,7 @@ assembly("KinematicBed", big=true) {
 
     Left_Side_assembly(bedHeight());
     Right_Side_assembly(bedHeight());
-    Base_Plate_assembly();
+    basePlateAssembly(rightExtrusion=true);
     translate_z(bedHeight())
         jubilee_build_plate();
 }

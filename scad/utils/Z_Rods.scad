@@ -170,7 +170,7 @@ module zRails(bedHeight=100, left=true, useElectronicsInBase=false) {
                 zRail(railZPos, left=false);
             translate([eSize, 10, 0])
                 rotate(180)
-                    Z_Motor_Mount_KB_assembly();
+                    Z_Motor_Mount_Right_KB_assembly();
             translate([-carriageHeight + 15, eSize/2, railZPos + 12.5])
                 //rotate([90, 0, -90]) Z_Carriage_Right_Center_stl();
                 Z_Carriage_Right_Center_assembly();

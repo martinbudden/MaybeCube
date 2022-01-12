@@ -94,30 +94,30 @@ module zMotorMount(zMotorType, eHeight=40, printbedKinematic=false) {
             // add the block
             translate([-wingSizeX, -eSize, motorBracketSizeZ - blockSizeZ])
                 rotate([90, 0, 90])
-                        difference() {
-                            fillet = 1;
-                            if (printbedKinematic)
-                                union() {
-                                    rounded_cube_xz([eSize + fillet, blockSizeZ, (size.x - eSize)/2], fillet);
-                                    translate([eSize, blockSizeZ - motorBracketSizeZ, (size.x - eSize)/2]) {
-                                        rotate([-90, 180, 0])
+                    difference() {
+                        fillet = 1;
+                        if (printbedKinematic)
+                            union() {
+                                rounded_cube_xz([eSize + fillet, blockSizeZ, (size.x - eSize)/2 - eps], fillet);
+                                translate([eSize, blockSizeZ - motorBracketSizeZ, (size.x - eSize)/2]) {
+                                    rotate([-90, 180, 0])
+                                        fillet(0.5, motorBracketSizeZ);
+                                    translate([0, 0, eSize])
+                                        rotate([-90, 90, 0])
                                             fillet(0.5, motorBracketSizeZ);
-                                        translate([0, 0, eSize])
-                                            rotate([-90, 90, 0])
-                                                fillet(0.5, motorBracketSizeZ);
-                                    }
-                                    translate_z((size.x + eSize)/2)
-                                        rounded_cube_xz([eSize + fillet, blockSizeZ, (size.x - eSize)/2], fillet);
                                 }
-                            else
-                                rounded_cube_xz([eSize + fillet, blockSizeZ, size.x], fillet);
-                            cutSize = eSize;//min(eSize, blockSizeZ);
-                            if (eHeight == 20)
-                                translate([-eps, blockSizeZ + eps, -eps])
-                                    rotate(-90)
-                                        linear_extrude(size.x + 2*eps)
-                                            right_triangle(cutSize, cutSize);
-                        }
+                                translate_z((size.x + eSize)/2 + eps)
+                                    rounded_cube_xz([eSize + fillet, blockSizeZ, (size.x - eSize)/2], fillet);
+                            }
+                        else
+                            rounded_cube_xz([eSize + fillet, blockSizeZ, size.x], fillet);
+                        cutSize = eSize;//min(eSize, blockSizeZ);
+                        if (eHeight == 20)
+                            translate([-eps, blockSizeZ + eps, -eps])
+                                rotate(-90)
+                                    linear_extrude(size.x + 4*eps)
+                                        right_triangle(cutSize, cutSize);
+                    }
         } // end union
 
         if (printbedKinematic)
@@ -188,6 +188,15 @@ module Z_Motor_Mount_KB_stl() {
                     zMotorMount(zMotorType, printbedKinematic=true);
 }
 
+module Z_Motor_Mount_Right_KB_stl() {
+    // invert Z_Motor_Mount so it can be printed without support
+    stl("Z_Motor_Mount_Right_KB")
+        color(pp3_colour)
+            translate([0, -Z_Motor_MountSize(NEMA_length(zMotorType)).x/2, 0])
+                rotate([180, 0, 90])
+                    zMotorMount(zMotorType, eHeight=eSize, printbedKinematic=true);
+}
+
 module zMotorLeadscrew(zMotorType, zLeadScrewLength) {
     zLeadScrewLength = _zRodLength - 50;
     translate([eSize+_zLeadScrewOffset, 0, Z_Motor_MountSize(NEMA_length(zMotorType)).z - motorBracketSizeZ + zLeadScrewLength/2 + NEMA_shaft_length(NEMA_type) + 2])
@@ -239,22 +248,28 @@ module Z_Motor_Mount_Motor_hardware(explode=50, zLeadScrewOffset=_zLeadScrewOffs
             boltM3Buttonhead(screw_shorter_than(5 + motorBracketSizeZ - counterBoreDepth + corkDamperThickness));
 }
 
-module Z_Motor_Mount_hardware(printbedKinematic=false) {
+module Z_Motor_Mount_hardware(printbedKinematic=false, left=true) {
     size = Z_Motor_MountSize(NEMA_length(zMotorType));
     eHeight = 40;
 
     // add the main bolts
-    topHolePitch = printbedKinematic ? eSize + 20 : NEMA_hole_pitch(zMotorType);
+    topHolePitch = printbedKinematic ? eSize + 27 : NEMA_hole_pitch(zMotorType);
     if (printbedKinematic) {
         *for (y = [topHolePitch/2, -topHolePitch/2])
             translate([eSize/2, y, size.z])
                 boltM4Buttonhead(_frameBoltLength);
-        translate([eSize/2, eSize/2, size.z - 8])
-            rotate([90, 0, 90])
-                extrusionInnerCornerBracket(grubCount=1, boltLength=12, boltOffset=1);
-        translate([eSize/2, -eSize/2, size.z - 8])
-            rotate([90, 0, -90])
-                extrusionInnerCornerBracket(grubCount=1, boltLength=12, boltOffset=1);
+        if (left) {
+            translate([eSize/2, eSize/2, size.z - 8])
+                rotate([90, 0, 90])
+                    extrusionInnerCornerBracket(grubCount=1, boltLength=12, boltOffset=1);
+            translate([eSize/2, -eSize/2, size.z - 8])
+                rotate([90, 0, -90])
+                    extrusionInnerCornerBracket(grubCount=1, boltLength=12, boltOffset=1);
+        } else {
+            for (y = [topHolePitch/2, -topHolePitch/2])
+                translate([eSize/2, y, size.z - eSize])
+                    boltM4ButtonheadTNut(eHeight==40 ? 12 : _frameBoltLength, rotate=90);
+        }
     } else {
         for (y = [topHolePitch/2, -topHolePitch/2])
             translate([eSize/2, y, size.z])
@@ -288,6 +303,16 @@ assembly("Z_Motor_Mount_KB", big=true, ngb=true) {
         stl_colour(pp3_colour)
             Z_Motor_Mount_KB_stl();
     Z_Motor_Mount_hardware(printbedKinematic=true);
+    Z_Motor_Mount_Motor_hardware(zLeadScrewOffset=30);
+}
+
+module Z_Motor_Mount_Right_KB_assembly() pose(a=[55, 0, 25 + 90])
+assembly("Z_Motor_Mount_Right_KB", big=true, ngb=true) {
+
+    vflip()
+        stl_colour(pp3_colour)
+            Z_Motor_Mount_Right_KB_stl();
+    Z_Motor_Mount_hardware(printbedKinematic=true, left=false);
     Z_Motor_Mount_Motor_hardware(zLeadScrewOffset=30);
 }
 
