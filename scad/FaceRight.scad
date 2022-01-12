@@ -28,7 +28,7 @@ assembly("Right_Side", big=true) {
     sideAssemblies = is_undef(sideAssemblies) ? (is_undef(_useBackMounts) || _useBackMounts == false) : sideAssemblies;
     upperZRodMountsExtrusionOffsetZ = printbedKinematic ? eZ - 90 : _upperZRodMountsExtrusionOffsetZ;
 
-    if (_useDualZRods || printbedKinematic)
+    if (printbedKinematic || _useDualZRods)
         faceRightUpperZRodMountsExtrusion(upperZRodMountsExtrusionOffsetZ);
 
     explode([0, 70, 0], true)
@@ -39,14 +39,14 @@ assembly("Right_Side", big=true) {
 
     // extra extrusion for mounting spool holder
     if (printbedKinematic) {
-        zRails(bedHeight, left=false, useElectronicsInBase=useElectronicsInBase);
+        zRails(bedHeight, left=false, useElectronicsInBase=(useElectronicsInBase || printbedKinematic));
         supportLength = eY - _zRodOffsetY - _printbedArmSeparation/2;
         translate([eX + eSize, eY + eSize - supportLength, spoolHeight()])
             extrusionOY2040VEndBolts(supportLength);
         translate([eX + eSize, eY + eSize - supportLength, 70])
             extrusionOYEndBolts(supportLength);
     } else {
-        faceRightLowerExtrusion(useElectronicsInBase);
+        faceRightLowerExtrusion(useElectronicsInBase && !_useDualZRods);
         if(!useBackMounts)
             translate([eX + eSize, eSize, spoolHeight()])
                 extrusionOY2040VEndBolts(eY);

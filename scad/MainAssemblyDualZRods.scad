@@ -28,7 +28,7 @@ assembly("DualZRods", big=true) {
         Printbed_assembly();
     Right_Side_assembly(bedHeight());
     zRods(left=false);
-    Base_Plate_assembly();
+    basePlateAssembly();
 }
 
 if ($preview)

@@ -1,4 +1,4 @@
-_variant = "MC350";
+_variant = "DualZRods";
 
 __extrusionLengths = [350, 350, 400];
 eX = __extrusionLengths.x;
@@ -20,11 +20,12 @@ _xCarriageCountersunk = true;
 _yCarriageDescriptor = "MGN12H";
 
 
-_coreXYDescriptor = "GT2_20_16";
+_coreXYDescriptor = "GT2_20_25";
 
 _use2060ForTop = true;
 _useDualZRods = true;
 _useDualZMotors = false;
+_useElectronicsInBase = true;
 _useFrontDisplay = false;
 _useSidePanels = false;
 
@@ -37,6 +38,6 @@ _blowerDescriptor = "BL30x10";
 // set this so the zRod brackets clear the xy motors
 // limited by printbed frame hitting XY motors and possibly extruder motor
 __skBracketWidth = 42; // same for SK8, SK10, and SK12
-_zRodOffsetY = __skBracketWidth/2 + 100;
+_zRodOffsetY = __skBracketWidth/2 + 40;
 _zLeadScrewOffset = 23;// ensures clearance of zMotor from frame and alignment with zRods
 _upperZRodMountsExtrusionOffsetZ = eZ - 95;
