@@ -64,14 +64,14 @@ module handle(length, height, size=[15, 15], dualHole=true) {
                     if (dualHole)
                         side(eps);
                 }
-                if (dualHole)
+                if (dualHole) {
                     hull() {
                         topCorner(angle=45);
                         translate_z(-size.x/2)
                             side(baseHeight);
                         side(eps);
                     }
-                else
+                } else {
                     hull() {
                         topCorner(angle=81);
                         translate_z(size.x - 2.5)
@@ -79,6 +79,7 @@ module handle(length, height, size=[15, 15], dualHole=true) {
                     }
                     translate([-height + size.x, 0, size.x/2])
                         cube([3, size.y, length]);
+                }
             }
             translate([size.x, size.y/2, size.x/2])
                 rotate([0, -90, 0]) {
