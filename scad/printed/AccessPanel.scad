@@ -30,7 +30,7 @@ module accessPanel() {
             for (pos = [ [eSize/2, eSize/2, size.z], [eSize/2, size.y - eSize/2, size.z], [size.x - eSize/2, size.y - eSize/2, size.z]])
                 translate(pos)
                     vflip()
-                        boltHoleM4Countersunk(size.z);
+                        boltHoleM4(size.z);
         }
 }
 
@@ -46,6 +46,6 @@ module accessPanelAssembly() {
             if ($preview)
                 for (pos = [ [eSize/2, eSize/2, size.z], [eSize/2, size.y - eSize/2, size.z], [size.x - eSize/2, size.y - eSize/2, size.z]])
                     translate(pos)
-                        boltM4CountersunkHammerNut(_sideBoltLength);
+                        boltM4ButtonheadHammerNut(_sideBoltLength);
         }
 }

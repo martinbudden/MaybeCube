@@ -2,7 +2,6 @@ include <global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
 
-use <printed/AccessPanel.scad>
 use <printed/E20Cover.scad>
 use <printed/JubileeKinematicBed.scad>
 use <printed/PrintheadAssemblies.scad>
@@ -67,6 +66,7 @@ staged_assembly("Left_Side_with_Printbed", big=true, ngb=true) {
         zRods();
         zMotor();
 
+/*
         coverLength = 50;
         for (y = [eSize + _zRodOffsetY + zRodSeparation()/2 + Z_Motor_MountSize().x/2 + 5, eY + eSize - coverLength - 5])
             translate([eSize + 2, y, eSize/2])
@@ -74,6 +74,7 @@ staged_assembly("Left_Side_with_Printbed", big=true, ngb=true) {
                     rotate([0, 90, 90])
                         stl_colour(pp2_colour)
                             E20_ChannelCover_50mm_stl();
+*/
 
         translate_z(bedHeight())
             explode([200, 0, 0])
@@ -109,6 +110,7 @@ staged_assembly("Stage_2", big=true, ngb=true) {
         if (useDualZRods())
             zRods(left=false);
     }
+/*
     coverLength = 50;
     explode([-50, 0, 0])
         if (!printbedKinematic)
@@ -116,37 +118,39 @@ staged_assembly("Stage_2", big=true, ngb=true) {
                 translate([eX + eSize-1, y, 3*eSize/2])
                     rotate([-90, -90, 0])
                         E20_RibbonCover_50mm_stl();
+*/
 }
 
-//!1. Attach the back face to the rest of the assembly.
-//!2. Tighten the bolts on the back face.
+//!1. Slide the **Face_Top** assembly into the rest of the frame and tighten the hidden bolts.
+//!2. Check that the print head slides freely on the Y-axis. If it doesn't, then re-rack the Y-axis,
+//!see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
+//!3. Attach the back panel to the rest of the assembly.
+//!4. Tighten the bolts on the back panel.
 //
 module Stage_3_assembly() //pose(a=_poseMainAssembly)
 staged_assembly("Stage_3", big=true, ngb=true) {
 
     Stage_2_assembly();
     explode([0, 150, 0])
-        Back_Panel_assembly();
+        backPanelAssembly();
+    explode(150, true)
+        Face_Top_assembly();
     if (printbedKinematic)
         translate_z(bedHeight())
             jubilee_build_plate(_printbedHoleOffset);
    //Partition_assembly();
 }
 
-//!1. Slide the **Face_Top** assembly into the rest of the frame and tighten the hidden bolts.
-//!2. Check that the print head slides freely on the Y-axis. If it doesn't, then re-rack the Y-axis,
-//!see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
-//!3. Bolt the **Printhead_E3DV6_assembly** to the MGN carriage.
-//!4. Route the wiring from the print head to the mainboard and secure it with the **Wiring_Guide_Clamp**.
-//!5. Adjust the belt tension.
-//!6. Connect the Bowden tube between the extruder and the printhead.
+//!1. Bolt the **Printhead_E3DV6_assembly** to the MGN carriage.
+//!2. Route the wiring from the print head to the mainboard and secure it with the **Wiring_Guide_Clamp**.
+//!3. Adjust the belt tension.
+//!4. Connect the Bowden tube between the extruder and the printhead.
 //
 module Stage_4_assembly()
 staged_assembly("Stage_4", big=true, ngb=true) {
 
     Stage_3_assembly();
     explode(150, true) {
-        Face_Top_assembly();
         explode(50, true) {
             halfCarriage = (!is_undef(_useHalfCarriage) && _useHalfCarriage==true);
             printheadHotendSide(halfCarriage=halfCarriage);
@@ -177,13 +181,8 @@ module FinalAssembly() {
                 faceRightSpool(offsetX);
         }
         if (useSidePanels) {
-            explode([50, 0, 0], true) {
+            explode([50, 0, 0], true)
                 rightSidePanelPC();
-                if (is_undef(_useElectronicsInBase) || _useElectronicsInBase == false)
-                    accessPanelAssembly();
-                else
-                    rightSidePanelAssembly();
-            }
             explode([-50, 0, 0], true)
                 leftSidePanelPC();
         }

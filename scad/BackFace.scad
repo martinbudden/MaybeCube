@@ -13,6 +13,7 @@ use <utils/PSU.scad>
 include <utils/FrameBolts.scad>
 
 include <vitamins/nuts.scad>
+include <vitamins/RPI3APlus.scad>
 
 use <Parameters_Positions.scad>
 include <Parameters_CoreXY.scad>
@@ -28,7 +29,7 @@ function pcbType() = BTT_SKR_V1_4_TURBO;
 //function pcbType() = eX == 250 ? BTT_SKR_MINI_E3_V2_0 : BTT_SKR_E3_TURBO;
 //function pcbType() = BTT_SKR_MINI_E3_V2_0;
 pcbOffsetZ = eX == 250 ? 155 : 100;
-
+rpiType = RPI3APlus;
 
 module Back_Panel_dxf() {
     size = backPanelSize();
@@ -52,6 +53,24 @@ module backPanelPC() {
                 Back_Panel_dxf();
 }
 
+module backPanel() {
+    size = backPanelSize();
+    countersunk = true;
+
+    translate([0, eY + 2*eSize, 0]) {
+        rotate([90, 0, 0])
+            backPanelBoltHolePositions(size)
+                translate_z(-size.z)
+                    vflip()
+                        if (countersunk)
+                            translate_z(eps)
+                                boltM4CountersunkHammerNut(_sideBoltLength);
+                        else
+                            boltM4ButtonheadHammerNut(_sideBoltLength);
+        backPanelPC();
+    }
+}
+
 //!You can use either a polycarbonate sheet or an aluminium sheet for the back panel.
 //!If you have access to a CNC, you can machine the back sheet using **Back_Panel.dxf**,
 //!if not you can use the **Panel_Jig** to drill the mounting and access holes, and manually position
@@ -69,39 +88,31 @@ module backPanelPC() {
 //
 module Back_Panel_assembly()
 assembly("Back_Panel") {
-
     size = backPanelSize();
-    countersunk = true;
+    countersunk = false;
 
-    if (is_undef(_useElectronicsInBase) || _useElectronicsInBase == false) {
-        pcbAssembly(pcbType());
+    pcbAssembly(pcbType());
 
-        pcbAssembly(RPI4);
+    pcbAssembly(rpiType);
 
-        psuAssembly(PSUType(), psuVertical);
+    psuAssembly(PSUType(), psuVertical);
 
-        PSUPosition(PSUType(), psuVertical)
-            PSUBoltPositions(PSUType())
-                translate_z(-size.z)
-                    vflip()
-                        if (countersunk)
-                            boltM4Countersunk(_sideBoltLength);
-                        else
-                            boltM4Buttonhead(_sideBoltLength);
-    }
+    PSUPosition(PSUType(), psuVertical)
+        PSUBoltPositions(PSUType())
+            translate_z(-size.z)
+                vflip()
+                    if (countersunk)
+                        boltM4Countersunk(_sideBoltLength);
+                    else
+                        boltM4Buttonhead(_sideBoltLength);
+    backPanel();
+}
 
-    translate([0, eY + 2*eSize, 0]) {
-        rotate([90, 0, 0])
-            backPanelBoltHolePositions(size)
-                translate_z(-size.z)
-                    vflip()
-                        if (countersunk)
-                            translate_z(eps)
-                                boltM4CountersunkHammerNut(_sideBoltLength);
-                        else
-                            boltM4ButtonheadHammerNut(_sideBoltLength);
-        backPanelPC();
-    }
+module backPanelAssembly() {
+    if (is_undef(_useElectronicsInBase) || _useElectronicsInBase == false)
+        Back_Panel_assembly();
+    else
+        backPanel();
 }
 
 module backPanelAccessHolePositions(size) {
@@ -173,7 +184,7 @@ module backPanelCutouts(psuType, pcbType, cncSides = undef, radius = undef) {
                     }*/
 
         translate([eX/2 + eSize, eZ - 100]) {
-            pcbType = RPI4;
+            pcbType = rpiType;
             pcbSize = pcb_size(pcbType);
             rotate(-90)
                 translate([pcbSize.x/2, pcbSize.y/2])
