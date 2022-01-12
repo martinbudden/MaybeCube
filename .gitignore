@@ -181,7 +181,9 @@ MC300/dxfs/*_diff.png
 MC300/stls/*_diff.png
 
 MC300EB/
+MC300EBack/
 
+MC350_16/
 MC350_25/
 
 MC350/assemblies/*
@@ -202,6 +204,8 @@ MC350/assemblies/*_diff.png
 MC350/dxfs/*_diff.png
 MC350/stls/*_diff.png
 
+MC400KB/
+
 MC400/assemblies/*
 MC400/bom/
 MC400/dxfs/*
@@ -220,11 +224,14 @@ MC400/assemblies/*_diff.png
 MC400/dxfs/*_diff.png
 MC400/stls/*_diff.png
 
-MC400KB/*.*
-MC400KB/assemblies/*
-MC400KB/bom/
-MC400KB/dxfs/*
-MC400KB/stls/*
-MC400KB/tmp/
-!MC400KB/readme.md
-!MC400KB/assemblies/main_assembled.png
+MC400Dual/*.*
+MC400Dual/assemblies/*
+MC400Dual/bom/
+MC400Dual/dxfs/*
+MC400Dual/stls/*
+MC400Dual/tmp/
+!MC400Dual/readme.md
+!MC400Dual/assemblies/main_assembled.png
+
+MC450/
+!MC450/assemblies/main_assembled.png
