@@ -2,6 +2,7 @@ include <global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
 
+use <printed/AccessPanel.scad>
 use <printed/extruderBracket.scad>
 use <printed/IEC_Housing.scad>
 use <printed/RightSidePanel.scad>
@@ -51,11 +52,15 @@ assembly("Right_Side", big=true) {
                 extrusionOY2040VEndBolts(eY);
     }
     if ($target != "DualZRods" && $target != "KinematicBed" && !useBackMounts) {
-        if (useElectronicsInBase)
-            rightSidePanelAssembly();
-        else
+        if (useElectronicsInBase) {
+            explode([50, 75, 0], true)
+                rightSidePanelAssembly();
+        } else {
             explode([50, 75, 0])
                 IEC_Housing_assembly();
+            explode([75, 75, 0], true)
+                accessPanelAssembly();
+        }
         explode([50, 75, 0])
             Extruder_Bracket_assembly();
     }

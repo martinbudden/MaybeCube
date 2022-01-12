@@ -15,6 +15,7 @@ include <utils/pcbs.scad>
 
 include <utils/FrameBolts.scad>
 include <vitamins/psus.scad>
+include <vitamins/RPI3APlus.scad>
 
 
 AL3 = ["AL3", "Aluminium sheet", 3, [0.9, 0.9, 0.9, 1], false];
@@ -26,6 +27,7 @@ pcbOnBase = !is_undef(_useElectronicsInBase) && _useElectronicsInBase == true;
 basePSUType = NG_CB_500W;
 //basePSUType = S_300_12;
 pcbType = BTT_SKR_V1_4_TURBO;
+rpiType = RPI3APlus;
 
 module BaseAL_dxf() {
     size = basePlateSize;
@@ -106,7 +108,7 @@ module baseCutouts(cncSides=undef, radius=undef) {
             PSUBoltPositions(basePSUType)
                 poly_circle(is_undef(radius) ? M4_clearance_radius : radius, sides=cncSides);
     if (pcbOnBase)
-        for (pcb = [pcbType, RPI4, BTT_RELAY_V1_2, XL4015_BUCK_CONVERTER])
+        for (pcb = [pcbType, rpiType, BTT_RELAY_V1_2, XL4015_BUCK_CONVERTER])
             pcbPosition(pcb, pcbOnBase)
                 pcb_screw_positions(pcb)
                     poly_circle(is_undef(radius) ? M3_clearance_radius : radius, sides=cncSides);
@@ -146,6 +148,7 @@ function basePlateHeight() = _basePlateThickness + 12;
 //!
 //!1. Insert the bolts into the ends of the E2040 and E2080 extrusions in preparation for connection to the frame uprights.
 //!2. Bolt the extrusions and the L-shaped feet to the baseplate as shown.
+//!3. Bolt the PSU and the pcbs to the baseplate, using standoffs as appropriate.
 //
 module Base_Plate_Stage_1_assembly()
 assembly("Base_Plate_Stage_1", big=true, ngb=true) {
@@ -156,31 +159,39 @@ assembly("Base_Plate_Stage_1", big=true, ngb=true) {
     //hidden() Base_template_stl();
 
     if (pcbOnBase)
-        for (pcb = [pcbType, RPI4, BTT_RELAY_V1_2, XL4015_BUCK_CONVERTER])
+        for (pcb = [pcbType, rpiType, BTT_RELAY_V1_2, XL4015_BUCK_CONVERTER])
             pcbAssembly(pcb, pcbOnBase);
 
     if (psuOnBase) {
-        basePSUPosition()
-            if (basePSUType[0] == "S_300_12")
-                PSU_S_360_24();
-            else
-                psu(basePSUType);
-        IEC_Housing_assembly();
+        explode(50, true)
+            basePSUPosition()
+                if (basePSUType[0] == "S_300_12") {
+                    PSU_S_360_24();
+                    PSUBoltPositions(basePSUType)
+                        vflip()
+                            explode(70, true)
+                                boltM4Buttonhead(10);
+                }else {
+                    psu(basePSUType);
+                    PSUBoltPositions(basePSUType)
+                        explode(20, true)
+                            boltM4Buttonhead(10);
+                }
         // right extrusion
         translate([eX + eSize, eSize, 0])
-            explode(50, true)
+            explode([100, 0, 0], true)
                 extrusionOYEndBolts(eY);
     }
 
 
     // front extrusion
     translate([eSize, 0, 0])
-        explode(50, true)
+        explode([0, -100, 0], true)
             extrusionOX2080VEndBolts(eX);
 
     // rear extrusion
     translate([eSize, eY + eSize, 0])
-        explode(50, true)
+        explode([0, 100, 0], true)
             extrusionOX2040VEndBolts(eX);
 
     translate_z(-size.z)
@@ -234,6 +245,10 @@ module Base_Plate_assembly()
 assembly("Base_Plate", big=true, ngb=true) {
 
     Base_Plate_Stage_1_assembly();
+
+    if (psuOnBase)
+        explode([80, 0, 20])
+            IEC_Housing_assembly();
 
     if (!is_undef(_useFrontDisplay) && _useFrontDisplay) {
         explode([0, -50, 0], true)

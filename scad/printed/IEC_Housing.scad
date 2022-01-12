@@ -26,14 +26,12 @@ guideLength = (_upperZRodMountsExtrusionOffsetZ - 3 * eSize)/2;
 partitionTolerance = 0.5;
 
 module IEC_Housing_Bevelled_stl() {
-
-    stl("IEC_Housing_Beveled")
+    stl("IEC_Housing_Bevelled")
         color(pp4_colour)
             iecHousingStl(bevelled=true);
 }
 
 module IEC_Housing_stl() {
-
     stl("IEC_Housing")
         color(pp4_colour)
             iecHousingStl(bevelled=false);
@@ -47,14 +45,15 @@ module iecHousingStl(bevelled=false) {
 
     triangleSize = [8, 7];
     difference() {
-        rounded_cube_xy([size.x, size.y, baseThickness], fillet);
+        translate([0, bevelled ? 0 : -eSize, 0])
+            rounded_cube_xy([size.x, size.y + (bevelled ? 0 : eSize), baseThickness], fillet);
         if (bevelled) {
             translate([size.x + eps, -eps, -eps])
                 rotate(90)
                     right_triangle(triangleSize.x + 2*eps, triangleSize.y + 2*eps, baseThickness + 2*eps, center=false);
         } else {
-            cableCutoutSize = [8, 8, baseThickness + 2*eps];
-            translate([size.x-cableCutoutSize.x-(size.x - cutoutSize.x)/2, (size.y - cutoutSize.y)/2 - 0*cableCutoutSize.y, -eps])
+            cableCutoutSize = [10, 10, baseThickness + 2*eps];
+            translate([size.x-cableCutoutSize.x-(size.x - cutoutSize.x)/2, -eSize + 5, -eps])
                 rounded_cube_xy(cableCutoutSize, fillet);
         }
     }
@@ -71,13 +70,20 @@ module iecHousingStl(bevelled=false) {
                                     right_triangle(triangleSize.x, triangleSize.y, 0);
                     }
                 if (!bevelled) {
-                    translate([-size.x/2, -size.y/2 - 5, -baseThickness])
-                        rounded_cube_xy([size.x, 5 + 2*fillet, size.z - eSize], fillet);
-                    translate([-size.x/2, size.y/2 - 2*fillet, -baseThickness])
+                    translate([-size.x/2, -size.y/2 - eSize, 0])
+                        rounded_cube_xy([size.x, eSize + 2*fillet, size.z - eSize], fillet);
+                    *translate([-size.x/2, size.y/2 - 2*fillet, -baseThickness])
                         rounded_cube_xy([size.x, 5 + 2*fillet, size.z - eSize], fillet);
                 }
             }
 
+            if (!bevelled) {
+                translate([size.x/2 - eSize - 5, -size.y/2 - eSize + 5, -eps])
+                    rounded_cube_xy([eSize, eSize + 10, size.z - eSize - 5], fillet);
+                translate([size.x/2 - eSize - 5, -cutoutSize.y/2, -eps])
+                    rotate(180)
+                        fillet(fillet, size.z - eSize - 5 + 2*eps);
+            }
             rotate(90)
                 translate_z(size.z)
                     iec_screw_positions(iecType())
@@ -139,11 +145,14 @@ module iecHousing() {
 */
 
 module iecHousingMountAttachmentHolePositions(eX=eX, extended=false, z=0) {
-    size = iecHousingMountSize(extended);
+    size = iecHousingMountSize();
 
     translate([0, -2*eSize, z]) {
         for (x = [eSize/2, size.x - 3*eSize/2])
             translate([x, eSize/2, 0])
+                children();
+        for (y = [eSize, size.y - eSize/2])
+            translate([size.x - eSize/2, y, 0])
                 children();
         if (extended) {
             translate([eSize/2, 3*eSize/2, 0])
@@ -151,13 +160,10 @@ module iecHousingMountAttachmentHolePositions(eX=eX, extended=false, z=0) {
             for (x = [eSize/2, 3*eSize/2])
                 translate([x, spoolHeight(eX) + eSize/2, 0])
                     children();
-        }
-        for (y = [eSize, size.y - eSize/2])
-            translate([size.x - eSize/2, y, 0])
-                children();
-        if (size.y >= spoolHeight())
+        } else {
             translate([eSize/2, size.y - eSize/2])
                 children();
+        }
     }
 }
 
@@ -189,7 +195,7 @@ module partitionGuideTabs(size, gapWidth=partitionSize().z + partitionTolerance,
 }
 
 module iceHousingMount(eX, extended=false) {
-    size = iecHousingMountSize(extended);
+    size = iecHousingMountSize();
     iecHousingSize = iecHousingSize();
     iecCutoutSize = [iecCutoutSize().x, iecCutoutSize().y, size.z + 2*eps];
     fillet = 3;
@@ -218,7 +224,7 @@ module iceHousingMount(eX, extended=false) {
             }
             translate([iecHousingSize.x/2 - iecCutoutSize.x/2, iecHousingSize.y/2 - iecCutoutSize.y/2 - (extended ? 0 : eSize), -eps])
                 rounded_cube_xy(iecCutoutSize, fillet);
-            translate([iecHousingSize.x/2, iecHousingSize.y/2, 0])
+            translate([iecHousingSize.x/2, iecHousingSize.y/2 - (extended ? 0 : eSize), 0])
                 rotate(90)
                     iec_screw_positions(iecType())
                         boltHoleM4(size.z);
