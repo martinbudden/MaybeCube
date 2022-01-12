@@ -25,6 +25,7 @@ _coreXYDescriptor = "GT2_20_16";
 _use2060ForTop = false;
 _useDualZRods = false;
 _useDualZMotors = false;
+_useElectronicsInBase = true;
 _useFrontDisplay = true;
 _useSidePanels = true;
 

@@ -1,4 +1,4 @@
-_variant = "MC350";
+_variant = "MC350_16";
 
 __extrusionLengths = [350, 350, 400];
 eX = __extrusionLengths.x;
@@ -20,7 +20,7 @@ _xCarriageCountersunk = true;
 _yCarriageDescriptor = "MGN12H";
 
 
-_coreXYDescriptor = "GT2_20_25";
+_coreXYDescriptor = "GT2_20_16";
 
 _use2060ForTop = true;
 _useDualZRods = false;

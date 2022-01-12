@@ -1,4 +1,4 @@
-_variant = "MC450KB";
+_variant = "MC450";
 
 __extrusionLengths = [450, 450, 450];
 eX = __extrusionLengths.x;
@@ -23,13 +23,17 @@ _zCarriageDescriptor = "MGN12C";
 _coreXYDescriptor = "GT2_20_25";
 
 _use2060ForTop = true;
-_useXYDirectDrive = true;
+_useDualZRods = false;
+_useDualZMotors = false;
+_useElectronicsInBase = true;
+_useFrontDisplay = true;
+_useSidePanels = true;
 
 _printbedSize = [355, 350, 6.35];
 _printbedHoleOffset = [8, 30];
 _printbedArmSeparation = 50 + _printbedSize.y - 2*_printbedHoleOffset.y;
 _printbedKinematic = true;
 
-_zRodOffsetY = 66;
+_zRodOffsetY = 65;
 _zLeadScrewOffset = 30;// ensures clearance of zMotor from frame and zRail
 _upperZRodMountsExtrusionOffsetZ = eZ - 90;
