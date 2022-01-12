@@ -69,20 +69,17 @@ module iecHousingStl(bevelled=false) {
                                 rotate(90)
                                     right_triangle(triangleSize.x, triangleSize.y, 0);
                     }
-                if (!bevelled) {
+                if (!bevelled)
                     translate([-size.x/2, -size.y/2 - eSize, 0])
-                        rounded_cube_xy([size.x, eSize + 2*fillet, size.z - eSize], fillet);
-                    *translate([-size.x/2, size.y/2 - 2*fillet, -baseThickness])
-                        rounded_cube_xy([size.x, 5 + 2*fillet, size.z - eSize], fillet);
-                }
+                        rounded_cube_xy([size.x, eSize + 2*fillet, size.z - eSize - baseThickness], fillet);
             }
 
             if (!bevelled) {
                 translate([size.x/2 - eSize - 5, -size.y/2 - eSize + 5, -eps])
-                    rounded_cube_xy([eSize, eSize + 10, size.z - eSize - 5], fillet);
+                    rounded_cube_xy([eSize, eSize + 10, size.z - eSize - 5 - baseThickness], fillet);
                 translate([size.x/2 - eSize - 5, -cutoutSize.y/2, -eps])
                     rotate(180)
-                        fillet(fillet, size.z - eSize - 5 + 2*eps);
+                        fillet(fillet, size.z - eSize - 5 - baseThickness + 2*eps);
             }
             rotate(90)
                 translate_z(size.z)
