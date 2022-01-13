@@ -38,23 +38,16 @@ module staged_assembly(name, big, ngb) {
 }
 
 //!1. Face the left face on a flat surface.
-//!
 //!2. Attach the print bed to the left face by sliding the linear rods through the Z_Carriages.
-//!
 //!3. Tighten the grub screws on the rod brackets, but don't yet tighten the bolts holding the brackets to the frame.
-//!
 //!4. Slide the print bed to the top of the rods, and tighten the bolts in the top right rod bracket.
 //!(you will have tightened the bolts on the top left bracket in a previous step).
-//!
 //!5. Slide the print bed to the bottom of the rods and tighten the bolts on the bottom right rod bracket
 //!(you will have tightened the bolts on the bottom left bracket in a previous step).
-//!
 //!6. Thread the motor's lead screw through the lead nut on the **Z_Carriage_Center** and loosely bolt the motor to
 //!the **Z_Motor_Mount**.
-//!
 //!7. Ensure the **Z_Carriage_Center** is aligned with the lead screw and tighten the bolts on the **Z_Carriage_Center**
 //!and the **Z_Motor_Mount**. The bolt holes on the **Z_Motor_Mount** are oval to allow some adjustment.
-//!
 //!8. Route the motor wire through the lower extrusion channel and use the **E20_ChannelCover_50mm**s to hold it in place.
 //
 module Left_Side_with_Printbed_assembly() pose(a=[55 + 90, 90 - 20, 90])
