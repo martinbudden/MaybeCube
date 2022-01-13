@@ -28,5 +28,5 @@ module IEC_Housing_test() {
     //Partition_Guide_assembly();
 }
 
-//if ($preview)
+if ($preview)
     IEC_Housing_test();
