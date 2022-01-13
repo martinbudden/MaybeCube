@@ -253,24 +253,16 @@ module Z_Motor_Mount_hardware(printbedKinematic=false, left=true) {
     eHeight = 40;
 
     // add the main bolts
-    topHolePitch = printbedKinematic ? eSize + 27 : NEMA_hole_pitch(zMotorType);
     if (printbedKinematic) {
-        *for (y = [topHolePitch/2, -topHolePitch/2])
-            translate([eSize/2, y, size.z])
-                boltM4Buttonhead(_frameBoltLength);
-        if (left) {
-            translate([eSize/2, eSize/2, size.z - 8])
-                rotate([90, 0, 90])
-                    extrusionInnerCornerBracket(grubCount=1, boltLength=12, boltOffset=1);
-            translate([eSize/2, -eSize/2, size.z - 8])
-                rotate([90, 0, -90])
-                    extrusionInnerCornerBracket(grubCount=1, boltLength=12, boltOffset=1);
-        } else {
-            for (y = [topHolePitch/2, -topHolePitch/2])
-                translate([eSize/2, y, size.z - eSize])
-                    boltM4ButtonheadTNut(eHeight==40 ? 12 : _frameBoltLength, rotate=90);
-        }
+        zPos = left ? size.z - 8 : size.z - eSize - 8;
+        translate([eSize/2, eSize/2, zPos])
+            rotate([90, 0, 90])
+                extrusionInnerCornerBracket(grubCount=1, boltLength=12, boltOffset=1);
+        translate([eSize/2, -eSize/2, zPos])
+            rotate([90, 0, -90])
+                extrusionInnerCornerBracket(grubCount=1, boltLength=12, boltOffset=1);
     } else {
+        topHolePitch = NEMA_hole_pitch(zMotorType);
         for (y = [topHolePitch/2, -topHolePitch/2])
             translate([eSize/2, y, size.z])
                 boltM4ButtonheadTNut(eHeight==40 ? 12 : _frameBoltLength, rotate=90);
