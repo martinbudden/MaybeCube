@@ -21,7 +21,7 @@ carriagePosition = carriagePosition(t);
 
 
 module toolchanger_test() {
-    toolChanger(t);
+    toolChanger(t, tool="bondtech", plate="jubilee");
     //tools();
     CoreXYBelts(carriagePosition);
     //printheadBeltSide(t=t);
