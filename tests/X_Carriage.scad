@@ -16,11 +16,11 @@ include <../scad/Parameters_Main.scad>
 
 module xCarriageBeltAttachmentTest_stl() {
     stl("xCarriageBeltAttachmentTest") {
-        xCarriageBeltAttachment(30, beltWidth(), beltSeparation());
-        size = xCarriageBeltAttachmentSize(30);
-        cube([3, size.z, size.y]);
-        translate([-size.x, 0, -2])
-            cube([size.x + 3, size.z, 2]);
+        size = xCarriageBeltAttachmentSize(beltWidth(), beltSeparation(), 30);
+        xCarriageBeltAttachment(size, beltWidth(), beltSeparation(), cutoutOffsetZ=0, cutoutOffsetY=0,endCube=true);
+        *cube([3, size.x, size.y]);
+        *translate_z(-2)
+            cube([size.z, size.x + 3, 2]);
     }
 }
 
@@ -41,6 +41,7 @@ module X_Carriage_test() {
     //vflip() xCarriageBeltClamp([xCarriageBeltAttachmentSize().x - 0.5, 25+2, 4.5], holeSeparation=18, countersunk=true);
 }
 
+//xCarriageBeltAttachmentTest_stl();
 if ($preview)
     rotate(90)
         X_Carriage_test();
