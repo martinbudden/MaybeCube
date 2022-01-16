@@ -100,7 +100,7 @@ assembly("X_Carriage_Belt_Side") {
     boltLength = 40;
     gap = 0.1; // small gap so can see clearance when viewing model
     offset = [ 22.5,
-               beltTensionerSize.y - beltAttachmentOffsetY() + xCarriageBeltAttachmentCutoutOffset() + gap - pulley25Offset,
+               beltTensionerSize.y - beltAttachmentOffsetY() + gap - pulley25Offset,
                -size.z + xCarriageTopThickness() + xCarriageBaseThickness() + 0.75];
     translate(offset) {
         translate([0, 0, beltWidth() + beltSeparation() - (beltTensionerSize.z - beltWidth())])
