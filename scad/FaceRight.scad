@@ -51,7 +51,7 @@ assembly("Right_Side", big=true) {
             translate([eX + eSize, eSize, spoolHeight()])
                 extrusionOY2040VEndBolts(eY);
     }
-    if ($target != "DualZRods" && $target != "KinematicBed" && !useBackMounts) {
+    if (!printbedKinematic && $target != "DualZRods" && $target != "KinematicBed" && !useBackMounts) {
         if (useElectronicsInBase) {
             explode([50, 75, 0], true)
                 rightSidePanelAssembly();
