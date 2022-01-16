@@ -18,7 +18,7 @@ include <../vitamins/nuts.scad>
 include <../Parameters_Main.scad>
 
 
-toolChangerAxelOffsetZ = 15.6 + 5.55/2 + 1.15;
+toolChangerAxelOffsetZ = 15 - 8; //15.6 + 5.55/2 + 1.15-5;
 
 module toolChangerImportStl(file) {
     import(str("../stlimport/jubilee/toolchanger/toolchange_carriage/", file, ".stl"));
@@ -473,50 +473,52 @@ module bondtech_blower_fan_shroud_hardware() {
             blower(RB5015);
 }
 
-module bondtech_assembly()
+module bondtech_assembly(plate_only=false)
 assembly("bondtech") {
     translate([0, 30, -toolChangerAxelOffsetZ])
         rotate([90, 0, 0]) {
             stl_colour(pp1_colour)
                 bondtech_tool_plate_stl();
             bondtech_tool_plate_hardware();
-            translate([-22.5, -30, -23])
-                rotate([-90, 180, 0]) {
-                    stl_colour(pp3_colour)
-                        bondtech_blower_fan_shroud_stl();
-                    bondtech_blower_fan_shroud_hardware();
+            if (!plate_only) {
+                translate([-22.5, -30, -23])
+                    rotate([-90, 180, 0]) {
+                        stl_colour(pp3_colour)
+                            bondtech_blower_fan_shroud_stl();
+                        bondtech_blower_fan_shroud_hardware();
+                    }
+                vflip()
+                    translate_z(-8) {
+                        stl_colour(pp2_colour)
+                            wedge_plate_stl();
+                        wedge_plate_hardware();
+                    }
+                translate([0, 23, 0])
+                    rotate([180, 0, 180]) {
+                        stl_colour(pp3_colour)
+                            bondtech_extruder_holder_stl();
+                        bondtech_extruder_holder_hardware();
+                        stl_colour(pp1_colour)
+                            bondtech_groovemount_clip_stl();
+                        bondtech_groovemount_clip_hardware();
+                    }
+                translate([0, 62, 8])
+                    rotate([180, 0, 180]) {
+                        NEMA(NEMA17P);
                 }
-            vflip()
-                translate_z(-8) {
-                    stl_colour(pp2_colour)
-                        wedge_plate_stl();
-                    wedge_plate_hardware();
-                }
-            translate([0, 23, 0])
-                rotate([180, 0, 180]) {
-                    stl_colour(pp3_colour)
-                        bondtech_extruder_holder_stl();
-                    bondtech_extruder_holder_hardware();
-                    stl_colour(pp1_colour)
-                        bondtech_groovemount_clip_stl();
-                    bondtech_groovemount_clip_hardware();
-                }
-            translate([0, 62, 8])
-                rotate([180, 0, 180]) {
-                    NEMA(NEMA17P);
+                translate([22, 0, 8])
+                    rotate([0, 90, 0]) {
+                        stl_colour(pp2_colour)
+                            bondtech_left_parking_wing_stl();
+                        bondtech_left_parking_wing_hardware();
+                    }
+                translate([-22, 0, 8])
+                    rotate([0, -90, 0]) {
+                        stl_colour(pp2_colour)
+                            bondtech_right_parking_wing_stl();
+                        bondtech_right_parking_wing_hardware();
+                    }
             }
-            translate([22, 0, 8])
-                rotate([0, 90, 0]) {
-                    stl_colour(pp2_colour)
-                        bondtech_left_parking_wing_stl();
-                    bondtech_left_parking_wing_hardware();
-                }
-            translate([-22, 0, 8])
-                rotate([0, -90, 0]) {
-                    stl_colour(pp2_colour)
-                        bondtech_right_parking_wing_stl();
-                    bondtech_right_parking_wing_hardware();
-                }
         }
 }
 

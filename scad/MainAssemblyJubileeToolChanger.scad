@@ -29,7 +29,7 @@ t = 2;
 carriagePosition = carriagePosition(t);
 
 
-module toolChanger(t=2) {
+module toolChanger(t=2, tool=undef, plate="jubilee") {
     offsetZ = -15;
     translate_z(offsetZ)
     xRailCarriagePosition(carriagePosition(t))
@@ -37,17 +37,19 @@ module toolChanger(t=2) {
             no_explode()
                 translate_z(-offsetZ)
                     carriage_top_plate_assembly();
-            explode([0, -50, 0])
+            *explode([0, -50, 0])
                 carriage_back_plate_assembly();
             //carriage_center_plate_assembly();
-            carriage_coupler_plate_assembly();
-            //E3D_TC_PLATE_assembly();
+            if (plate=="jubilee")
+                carriage_coupler_plate_assembly();
+            else if (plate=="EC")
+                E3D_TC_PLATE_assembly();
             explode(100)
             translate([0, 2, 0])
-                if (t==8 || t==9)
+                if (tool=="bondtech")
+                    bondtech_assembly(plate_only=true);
+                else if (tool=="pen")
                     pen_assembly();
-                else
-                    bondtech_assembly();
         }
 }
 
