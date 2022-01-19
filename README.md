@@ -146,7 +146,7 @@ Printer                                                    | X frequency | X amp
 MC300                                                      |         114 |       1,720 |      51,200 |          88 |       4,500 | 32,800
 [RatRig V-Core3 300](https://youtu.be/ZAN9zTTPUq8?t=765)   |          62 |       4,750 |      15,300 |         N/A |         N/A | N/A
 [SnakeOil XY](https://github.com/ChipCE/SnakeOil-XY)       |          83 |     110,000 |      27,400 |          56 |      49,500 | 12,100
-[VzBot](https://youtu.be/eNraKK7ukzU?t=1484)               |          80 |      51,000 |      30,200 |         N/A |         N/A | N/A
+[VzBot](https://youtu.be/hTF4bWBTqDQ?t=298)                |          93 |       8,700 |      34,100 |          64 |       3,550 | 15,900
 [Voron 2.4](https://youtu.be/a775O9luKgA?t=7100)           |     52 & 82 |       1,540 |      26,500 |     38 & 63 |       1,160 |  9,900
 [Voron Switchwire](https://youtu.be/OoWQUcFimX8?t=635)     |          70 |       1,100 |         N/A |          48 |      16,200 | N/A
 [Ender 3](https://www.youmaketech.com/klipper-on-ender-3/) |     30 & 88 |       4,100 |       3,800 |     32 & 57 |      19,000 |  9,300
