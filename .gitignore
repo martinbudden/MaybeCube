@@ -206,6 +206,7 @@ MC350/stls/*_diff.png
 
 MC400KB/
 
+MC400/
 MC400/assemblies/*
 MC400/bom/
 MC400/dxfs/*
@@ -213,7 +214,7 @@ MC400/stls/*
 MC400/tmp/
 MC400/*.html
 # change to !, except for _diff, .stl, and .dxf, once released
-!MC400/readme.md
+#!MC400/readme.md
 !MC400/assemblies/main_assembled.png
 #!MC400/assemblies/*.png
 #!MC400/dxfs/*.dxf
@@ -230,8 +231,8 @@ MC400Dual/bom/
 MC400Dual/dxfs/*
 MC400Dual/stls/*
 MC400Dual/tmp/
-!MC400Dual/readme.md
-!MC400Dual/assemblies/main_assembled.png
+#!MC400Dual/readme.md
+#!MC400Dual/assemblies/main_assembled.png
 
 MC450/
 !MC450/assemblies/main_assembled.png
