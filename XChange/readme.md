@@ -26,16 +26,15 @@ MaybeCube supports the
 ## Parts list
 
 
-| <span style="writing-mode: vertical-rl; text-orientation: mixed;">TOTALS</span> |  |
-|------:|:---|
-|       | **Vitamins** |
-|    2  |  Bolt M3 caphead x  6mm |
-|    2  |  Bolt M3 caphead x 10mm |
-|    4  |  Bolt M3 countersunk x 30mm |
-|    0  | Total vitamins count |
-|       | **3D printed parts** |
-|    1  | X_Carriage_XChange.stl |
-|    0  | Total 3D printed parts count |
+| <span style="writing-mode: vertical-rl; text-orientation: mixed;">X Carriage XChange</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">TOTALS</span> |  |
+|-----:|------:|:---|
+|      |       | **Vitamins** |
+|   4  |    4  |  Bolt M3 caphead x  6mm |
+|   4  |    4  |  Bolt M3 countersunk x 40mm |
+|   8  |    8  | Total vitamins count |
+|      |       | **3D printed parts** |
+|   1  |    1  | X_Carriage_XChange_16.stl |
+|   1  |    1  | Total 3D printed parts count |
 
 <span></span>
 [Top](#TOP)
@@ -49,16 +48,15 @@ MaybeCube supports the
 
 |Qty|Description|
 |---:|:----------|
-|2| Bolt M3 caphead x  6mm|
-|2| Bolt M3 caphead x 10mm|
-|4| Bolt M3 countersunk x 30mm|
+|4| Bolt M3 caphead x  6mm|
+|4| Bolt M3 countersunk x 40mm|
 
 
 ### 3D Printed parts
 
-| 1 x X_Carriage_XChange.stl |
+| 1 x X_Carriage_XChange_16.stl |
 |---|
-| ![X_Carriage_XChange.stl](stls/X_Carriage_XChange.png) 
+| ![X_Carriage_XChange_16.stl](stls/X_Carriage_XChange_16.png) 
 
 
 
