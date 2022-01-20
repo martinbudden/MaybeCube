@@ -15,8 +15,29 @@ include <../Parameters_CoreXY.scad>
 include <../Parameters_Main.scad>
 
 
-module X_Carriage_XChange_stl() {
+module X_Carriage_XChange_HC_16_stl() {
+    stl("X_Carriage_XChange_HC_16")
+        color(pp1_colour)
+            xCarriageXChange(halfCarriage=true);
+}
+
+module X_Carriage_XChange_16_stl() {
+    stl("X_Carriage_XChange_16")
+        color(pp1_colour)
+            rotate([180, 0, 90]) // align for printing
+                xCarriageXChange(halfCarriage=false);
+}
+
+module X_Carriage_XChange_25_stl() {
+    stl("X_Carriage_XChange_25")
+        color(pp1_colour)
+            rotate([180, 0, 90]) // align for printing
+                xCarriageXChange(halfCarriage=false);
+}
+
+module xCarriageXChange(halfCarriage) {
     xCarriageType = MGN12H_carriage;
+    carriageSize = carriage_size(xCarriageType);
     size = xCarriageHotendSideSizeM(xCarriageType, beltWidth=6, beltSeparation=beltSeparation());
     topThickness = xCarriageTopThickness();
     railCarriageGap = 0.5;
@@ -26,44 +47,43 @@ module X_Carriage_XChange_stl() {
     holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
     holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
 
-    stl("X_Carriage_XChange")
-        color(pp1_colour)
-            translate([-topThickness, -size.x/2, 6 - 20])
-                difference() {
-                    union() {
-                        rounded_cube_xy([size.z, size.x, 0.25], fillet);
-                        offsetX = 20;
-                        translate([offsetX, 0, 0])
-                            rounded_cube_xy([size.z - offsetX, size.x, 3.5], fillet);
-                        rounded_cube_xy([xCarriageTopThickness(), size.x, topSizeZ], fillet);
-                        translate([size.z - xCarriageBaseThickness(), 0, 0])
-                            rounded_cube_xy([xCarriageBaseThickness(), size.x, bottomSizeZ], fillet);
-                    }
-                    // bolt holes  to connect to the belt side
-                    holeOffset = 3;
-                    for (y = xCarriageHolePositions(size.x, holeSeparationTop))
-                        translate([5, y, holeOffset])
-                            boltHoleM3Tap(topSizeZ - holeOffset, twist=4);
-                    for (y = xCarriageHolePositions(size.x, holeSeparationBottom))
-                        translate([size.z - 4, y, holeOffset])
-                            boltHoleM3Tap(bottomSizeZ - holeOffset, twist=4);
-
-                    holeSeparation = carriage_pitch_y(xCarriageType);
-                    for (y = [-holeSeparation/2, holeSeparation/2]) {
-                        // bolt holes to connect to the XChange
-                        for (x = [4 + holeSeparation])
-                        translate([x, y + size.x/2, 0])
-                            boltHoleM3Tap(size.y, twist=4);
-                        // bolt holes to connect to to the MGN carriage
-                        translate([0, y + size.x/2, 4])
-                            rotate([90, 0, 90]) {
-                                boltHoleM3(topThickness, horizontal=true);
-                            }
-                    }
+    translate([-topThickness, -size.x/2, halfCarriage ? -14 : -carriageSize.y/2 - 8])
+        difference() {
+            union() {
+                if (halfCarriage) {
+                    rounded_cube_xy([size.z, size.x, 0.25], fillet);
+                    offsetX = 20;
+                    translate([offsetX, 0, 0])
+                        rounded_cube_xy([size.z - offsetX, size.x, 3.5], fillet);
+                    rounded_cube_xy([xCarriageTopThickness(), size.x, topSizeZ], fillet);
+                    translate([size.z - xCarriageBaseThickness(), 0, 0])
+                        rounded_cube_xy([xCarriageBaseThickness(), size.x, bottomSizeZ], fillet);
+                } else {
+                    rounded_cube_xy([size.z, size.x, 8], fillet);
                 }
+            }
+            // bolt holes  to connect to the belt side
+            holeOffset = halfCarriage ? 3 : 0;
+            for (x = halfCarriage ? [5, size.z - 4] : [4, size.z - 4], y = xCarriageHolePositions(size.x, holeSeparationTop))
+                translate([x, y, holeOffset])
+                    boltHoleM3Tap(topSizeZ - holeOffset);
+
+            holeSeparation = carriage_pitch_y(xCarriageType);
+            for (y = [-holeSeparation/2, holeSeparation/2]) {
+                // bolt holes to connect to the XChange
+                for (x = halfCarriage ? [holeSeparation] : [holeSeparation, 0])
+                    translate([x + 4, y + size.x/2, 0])
+                        boltHoleM3Tap(size.y);
+                // bolt holes to connect to to the MGN carriage
+                if (halfCarriage)
+                    translate([0, y + size.x/2, 4])
+                        rotate([90, 0, 90])
+                            boltHoleM3(topThickness, horizontal=true);
+            }
+        }
 }
 
-module X_Carriage_XChange_hardware() {
+module X_Carriage_XChange_hardware(halfCarriage, usePulley25) {
     xCarriageType = MGN12H_carriage;
     size = xCarriageHotendSideSizeM(xCarriageType, beltWidth=6, beltSeparation=beltSeparation());
     topThickness = xCarriageTopThickness();
@@ -73,38 +93,46 @@ module X_Carriage_XChange_hardware() {
     translate([-topThickness, -size.x/2, 6 - 20]) {
         // bolt holes  to connect to the belt side
         holeOffset = 3;
-        for (y = xCarriageHolePositions(size.x, holeSeparationTop))
-            translate([5, y, holeOffset + 30.6])
+        boltLength = halfCarriage ? 30 : 40;
+        for (x = halfCarriage ? [5, size.z - 4] : [4, size.z - 4], y = xCarriageHolePositions(size.x, holeSeparationTop))
+            translate([x, y, halfCarriage ? holeOffset + 30.6 : usePulley25 ? 35 : 33])
                 explode(40, true)
-                    boltM3Countersunk(30);
-        for (y = xCarriageHolePositions(size.x, holeSeparationBottom))
-            translate([size.z - 4, y, holeOffset + 30.6])
-                explode(40, true)
-                    boltM3Countersunk(30);
+                    boltM3Countersunk(boltLength);
 
         holeSeparation = carriage_pitch_y(xCarriageType);
         for (y = [-holeSeparation/2, holeSeparation/2]) {
             // bolt holes to connect to the XChange
-            for (x = [4 + holeSeparation])
-                translate([x, y + size.x/2, -2])
+            for (x = halfCarriage ? [holeSeparation] :  [holeSeparation, 0])
+                translate([4 + x, y + size.x/2, halfCarriage ? -2 : -10])
                     vflip()
                         boltM3Caphead(6);
             // bolt holes to connect to to the MGN carriage
-            translate([-2, y + size.x/2, 4])
-                rotate([90, 0, 90])
-                    vflip()
-                        boltM3Caphead(10);
+            if (halfCarriage)
+                translate([-2, y + size.x/2, halfCarriage ? 4 : -4])
+                    rotate([90, 0, 90])
+                        vflip()
+                            boltM3Caphead(10);
         }
     }
 }
 
 module X_Carriage_XChange_assembly()
-assembly("X_Carriage_XChange", ngb=true) {
+assembly("X_Carriage_XChange") {
+
+    halfCarriage = (!is_undef(_useHalfCarriage) && _useHalfCarriage==true);
 
     explode([0, 40, 0], true)
         rotate([0, 90, -90]) {
             stl_colour(pp1_colour)
-                X_Carriage_XChange_stl();
-            X_Carriage_XChange_hardware();
+                if (halfCarriage)
+                    X_Carriage_XChange_HC_16_stl();
+                else
+                    rotate([180, 0, 90])
+                        translate_z(0.5)
+                            if (usePulley25())
+                                X_Carriage_XChange_25_stl();
+                            else
+                                X_Carriage_XChange_16_stl();
+            X_Carriage_XChange_hardware(halfCarriage, usePulley25());
         }
 }
