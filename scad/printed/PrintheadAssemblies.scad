@@ -67,8 +67,9 @@ assembly("Printhead_E3DV6", big=true) {
     printheadAssembly();
 }
 
-module printheadBeltSide(halfCarriage=false, rotate=0, explode=0, t=undef) {
+module printheadBeltSide(rotate=0, explode=0, t=undef) {
     xCarriageType = MGN12H_carriage;
+    halfCarriage = (!is_undef(_useHalfCarriage) && _useHalfCarriage==true);
 
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
         explode(explode, true) {
@@ -82,6 +83,7 @@ module printheadBeltSide(halfCarriage=false, rotate=0, explode=0, t=undef) {
 module printheadHotendSide(rotate=0, explode=0, t=undef, halfCarriage=false) {
     xCarriageType = MGN12H_carriage;
     xCarriageBeltSideSize = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());
+    halfCarriage = (!is_undef(_useHalfCarriage) && _useHalfCarriage==true);
     boltLength = usePulley25() ? 40 : (halfCarriage ? 30 : 40);
 
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better

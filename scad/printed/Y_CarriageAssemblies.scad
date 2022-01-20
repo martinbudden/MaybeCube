@@ -16,8 +16,8 @@ function pulleyWasherHeight(coreXYIdlerBore=coreXYIdlerBore()) = 2*washer_thickn
 
 topInset = 0;
 yCarriageInserts = true;
-blockOffsetX = _coreXYDescriptor == "GT2_20_25" ? 2 : 0;
-blockOffset = _coreXYDescriptor == "GT2_20_25" ? [blockOffsetX, 0.5] : 0.5;
+blockOffsetX = usePulley25() ? 2 : 0;
+blockOffset = usePulley25() ? [blockOffsetX, 0.5] : 0.5;
 
 idlerHeight = pulley_height(coreXY_toothed_idler(coreXY_type()));
 chamfer = _xCarriageDescriptor == "MGN9C" || _xCarriageDescriptor == "MGN9H" ? 1 : 0;
@@ -119,7 +119,7 @@ assembly("Y_Carriage_Left", ngb=true) {
     translate([railOffsetX, carriagePosition().y, -carriage_height(yCarriageType)])
         rotate([180, 0, 0]) {
             stl_colour(pp2_colour)
-                if (_coreXYDescriptor == "GT2_20_25")
+                if (usePulley25())
                     Y_Carriage_Left_25_stl();
                 else
                     Y_Carriage_Left_16_stl();
@@ -127,7 +127,7 @@ assembly("Y_Carriage_Left", ngb=true) {
                 translate_z(yCarriageThickness() + pulleyStackHeight + eps)
                     explode(4*yCarriageExplodeFactor())
                         stl_colour(pp3_colour)
-                            if (_coreXYDescriptor == "GT2_20_25")
+                            if (usePulley25())
                                 Y_Carriage_Brace_Left_25_stl();
                             else
                                 Y_Carriage_Brace_Left_16_stl();
@@ -156,7 +156,7 @@ assembly("Y_Carriage_Right", ngb=true) {
     translate([-railOffsetX, carriagePosition().y, -carriage_height(yCarriageType)])
         rotate([180, 0, 180]) {
             stl_colour(pp2_colour)
-                if (_coreXYDescriptor == "GT2_20_25")
+                if (usePulley25())
                     Y_Carriage_Right_25_stl();
                 else
                     Y_Carriage_Right_16_stl();
@@ -164,7 +164,7 @@ assembly("Y_Carriage_Right", ngb=true) {
                 translate_z(yCarriageThickness() + pulleyStackHeight + 2*eps)
                     explode(4*yCarriageExplodeFactor())
                         stl_colour(pp3_colour)
-                            if (_coreXYDescriptor == "GT2_20_25")
+                            if (usePulley25())
                                 Y_Carriage_Brace_Right_25_stl();
                             else
                                 Y_Carriage_Brace_Right_16_stl();

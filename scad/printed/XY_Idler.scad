@@ -206,7 +206,7 @@ module XY_Idler_hardware(left = true) {
         translate([eSize/2, eZ - eSize - size.y, 0]) {
             explode(-50)
                 stl_colour(pp2_colour)
-                    if (_coreXYDescriptor == "GT2_20_25")
+                    if (usePulley25())
                         XY_Idler_Channel_Nut_25_stl();
                     else
                         XY_Idler_Channel_Nut_16_stl();
@@ -318,7 +318,7 @@ assembly("XY_Idler_Left", big=true, ngb=true) {
     translate([eSize, 0, 0]) {
         rotate([0, 90, 90])
             stl_colour(pp1_colour)
-                if (_coreXYDescriptor == "GT2_20_25")
+                if (usePulley25())
                     XY_Idler_Left_25_stl();
                 else
                     XY_Idler_Left_16_stl();
@@ -340,7 +340,7 @@ assembly("XY_Idler_Right", big=true, ngb=true) {
     translate([eX + eSize, 0, 0])
         rotate([90, 0, 180]) {
             stl_colour(pp1_colour)
-                if (_coreXYDescriptor == "GT2_20_25")
+                if (usePulley25())
                     XY_Idler_Right_25_stl();
                 else
                     XY_Idler_Right_16_stl();

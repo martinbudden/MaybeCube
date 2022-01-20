@@ -145,8 +145,7 @@ staged_assembly("Stage_4", big=true, ngb=true) {
     Stage_3_assembly();
     explode(150, true) {
         explode(50, true) {
-            halfCarriage = (!is_undef(_useHalfCarriage) && _useHalfCarriage==true);
-            printheadHotendSide(halfCarriage=halfCarriage);
+            printheadHotendSide();
             printheadWiring();
         }
         if (is_undef(_useBackMounts) || _useBackMounts == false)
