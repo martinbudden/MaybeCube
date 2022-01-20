@@ -98,8 +98,7 @@ assembly("Face_Top", big=true) {
 
     Face_Top_Stage_2_assembly();
 
-    halfCarriage = (!is_undef(_useHalfCarriage) && _useHalfCarriage==true);
-    printheadBeltSide(halfCarriage=halfCarriage, explode=100);
+    printheadBeltSide(explode=100);
 
     //if (!exploded())
     explode(350)

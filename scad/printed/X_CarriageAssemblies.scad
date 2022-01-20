@@ -159,12 +159,12 @@ module xCarriageBeltClampAssembly(xCarriageType, countersunk=true) {
         rotate([-90, 180, 0]) {
             stl_colour(pp2_colour)
                 if (countersunk)
-                    if (_coreXYDescriptor == "GT2_20_25")
+                    if (usePulley25())
                         X_Carriage_Belt_Clamp_25_stl();
                     else
                         X_Carriage_Belt_Clamp_16_stl();
                 else
-                    if (_coreXYDescriptor == "GT2_20_25")
+                    if (usePulley25())
                         X_Carriage_Belt_Clamp_Buttonhead_25_stl();
                     else
                         X_Carriage_Belt_Clamp_Buttonhead_16_stl();
@@ -261,7 +261,6 @@ module xCarriageGroovemountAssembly(inserts=false) {
     hotendDescriptor = "E3DV6";
     hotendOffset = hotendOffset(xCarriageType, hotendDescriptor);
 
-    halfCarriage = (!is_undef(_useHalfCarriage) && _useHalfCarriage==true);
     if (halfCarriage) {
         stl_colour(pp1_colour)
             rotate([0, -90, 0])
