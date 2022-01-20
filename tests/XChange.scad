@@ -5,6 +5,7 @@ include <../scad/global_defs.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
 use <../scad/printed/PrintheadAssemblies.scad>
+include <../scad/printed/X_CarriageXChange.scad>
 use <../scad/MainAssemblyXChange.scad>
 
 include <../scad/utils/CoreXYBelts.scad>
@@ -22,7 +23,7 @@ module XChange_test() {
     xCarriageType = MGN12H_carriage;
     translate(-[eSize + eX/2, carriagePosition(t).y, eZ - yRailOffset().x - carriage_clearance(xCarriageType)]) {
         //CoreXYBelts(carriagePosition() + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
-        printheadBeltSide(halfCarriage=true);
+        printheadBeltSide();
         printheadXChange();
         xRailCarriagePosition(carriagePosition())
             translate_z(-carriage_height(xCarriageType))
@@ -35,4 +36,4 @@ module XChange_test() {
 if ($preview)
     XChange_test();
 else
-    X_Carriage_XChange_stl();
+    X_Carriage_XChange_16_stl();

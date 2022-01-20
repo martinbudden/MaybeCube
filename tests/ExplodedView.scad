@@ -23,12 +23,13 @@ module Exploded_View_test() {
     no_explode()
         Base_Plate_assembly();
 
-    explode([0, explode, 0])
+    *explode([0, explode, 0])
         Back_Panel_assembly();
 
     explode([-explode, 0, 0]) {
         Left_Side_assembly();
         zRods();
+        zMotor();
         translate_z(bedHeight())
             if ($target[0]=="M")
                 Printbed_assembly();
