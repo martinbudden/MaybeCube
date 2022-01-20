@@ -33,8 +33,8 @@ module Printhead_test() {
     translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
         CoreXYBelts(carriagePosition - [4, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
         //fullPrinthead(accelerometer=true);
-        //printheadBeltSide(halfCarriage);
-        printheadHotendSide(halfCarriage=halfCarriage);
+        //printheadBeltSide();
+        printheadHotendSide();
         //printheadEVA();
         //printheadVoronAfterburner();
         //printheadXChange();
