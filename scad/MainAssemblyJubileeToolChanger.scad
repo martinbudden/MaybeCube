@@ -37,7 +37,7 @@ module toolChanger(t=2, tool=undef, plate="jubilee") {
             no_explode()
                 translate_z(-offsetZ)
                     carriage_top_plate_assembly();
-            *explode([0, -50, 0])
+            explode([0, -50, 0])
                 carriage_back_plate_assembly();
             //carriage_center_plate_assembly();
             if (plate=="jubilee")
@@ -47,7 +47,7 @@ module toolChanger(t=2, tool=undef, plate="jubilee") {
             explode(100)
             translate([0, 2, 0])
                 if (tool=="bondtech")
-                    bondtech_assembly(plate_only=true);
+                    bondtech_assembly(plate_only=false);
                 else if (tool=="pen")
                     pen_assembly();
         }
@@ -80,7 +80,7 @@ module tools() {
 module JubileeToolChanger_assembly()
 assembly("JubileeToolChanger", big=true) {
     explode(100, true) {
-        toolChanger(t);
+        toolChanger(t, "bondtech");
         tools();
     }
     //not_on_bom()
