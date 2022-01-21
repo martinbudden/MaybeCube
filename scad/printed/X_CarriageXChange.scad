@@ -14,31 +14,33 @@ use <../../../BabyCube/scad/printed/X_Carriage.scad>
 include <../Parameters_CoreXY.scad>
 include <../Parameters_Main.scad>
 
+xChangeBoltOffset = 4 - 0.2; // 0.2 to allow clearance for xCarriage countersunk bolts
 
 module X_Carriage_XChange_HC_16_stl() {
     stl("X_Carriage_XChange_HC_16")
         color(pp1_colour)
-            xCarriageXChange(halfCarriage=true);
+            xCarriageXChange(coreXY_GT2_20_16, halfCarriage=true);
 }
 
 module X_Carriage_XChange_16_stl() {
     stl("X_Carriage_XChange_16")
         color(pp1_colour)
             rotate([180, 0, 90]) // align for printing
-                xCarriageXChange(halfCarriage=false);
+                xCarriageXChange(coreXY_GT2_20_16, halfCarriage=false);
 }
 
 module X_Carriage_XChange_25_stl() {
     stl("X_Carriage_XChange_25")
         color(pp1_colour)
             rotate([180, 0, 90]) // align for printing
-                xCarriageXChange(halfCarriage=false);
+                xCarriageXChange(coreXY_GT2_20_25, halfCarriage=false);
 }
 
-module xCarriageXChange(halfCarriage) {
+module xCarriageXChange(coreXYType, halfCarriage) {
     xCarriageType = MGN12H_carriage;
     carriageSize = carriage_size(xCarriageType);
-    size = xCarriageHotendSideSizeM(xCarriageType, beltWidth=6, beltSeparation=beltSeparation());
+    size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(coreXYType), beltSeparation(coreXYType));
+    echo(size=size);
     topThickness = xCarriageTopThickness();
     railCarriageGap = 0.5;
     topSizeZ = 18.05 + railCarriageGap - 4.5;
@@ -72,7 +74,7 @@ module xCarriageXChange(halfCarriage) {
             for (y = [-holeSeparation/2, holeSeparation/2]) {
                 // bolt holes to connect to the XChange
                 for (x = halfCarriage ? [holeSeparation] : [holeSeparation, 0])
-                    translate([x + 4, y + size.x/2, 0])
+                    translate([x + xChangeBoltOffset, y + size.x/2, 0])
                         boltHoleM3Tap(size.y);
                 // bolt holes to connect to to the MGN carriage
                 if (halfCarriage)
@@ -103,7 +105,7 @@ module X_Carriage_XChange_hardware(halfCarriage, usePulley25) {
         for (y = [-holeSeparation/2, holeSeparation/2]) {
             // bolt holes to connect to the XChange
             for (x = halfCarriage ? [holeSeparation] :  [holeSeparation, 0])
-                translate([4 + x, y + size.x/2, halfCarriage ? -2 : -10])
+                translate([x + xChangeBoltOffset, y + size.x/2, halfCarriage ? -2 : -10])
                     vflip()
                         boltM3Caphead(6);
             // bolt holes to connect to to the MGN carriage
@@ -135,4 +137,5 @@ assembly("X_Carriage_XChange") {
                                 X_Carriage_XChange_16_stl();
             X_Carriage_XChange_hardware(halfCarriage, usePulley25());
         }
+    hidden() X_Carriage_XChange_25_stl();
 }
