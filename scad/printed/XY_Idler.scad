@@ -28,8 +28,9 @@ module trapezium(baseX, topX, heightY, lengthZ, center=true) {
 
 module xyIdlerOld() {
     size = xyIdlerSize();
-    sizeY1 = (coreXYPosBL().z - coreXYSeparation().z) - (eZ - eSize - size.y);
-    sizeY2 = size.y - sizeY1 - 2*coreXYSeparation().z;
+    separation = coreXYSeparation();
+    sizeY1 = (coreXYPosBL().z - separation.z) - (eZ - eSize - size.y);
+    sizeY2 = size.y - sizeY1 - 2*separation.z;
 
     translate([0, eZ - eSize - size.y, 0]) {
         difference() {
@@ -46,14 +47,14 @@ module xyIdlerOld() {
                 boltHoleM4(size.z);
         }
     }
-    translate([0, coreXYPosBL().z - coreXYSeparation().z - armSize.y, 0]) {
+    translate([0, coreXYPosBL().z - separation.z - armSize.y, 0]) {
         difference() {
             rounded_cube_xy(armSize, 1);
             translate([size.x/2, 0, axisOffset])
                 rotate([-90, 180, 0])
                     boltHoleM3(armSize.y, horizontal=true);
         }
-        translate([0, armSize.y + 2*coreXYSeparation().z, 0])
+        translate([0, armSize.y + 2*separation.z, 0])
             difference() {
                 rounded_cube_xy(armSize, 1);
                 translate([size.x/2, 0, axisOffset])
@@ -65,9 +66,10 @@ module xyIdlerOld() {
 
 module xyIdler(M5=false) {
     size = xyIdlerSize();
-    sizeY1 = (coreXYPosBL().z - coreXYSeparation().z) - (eZ - eSize - size.y);
+    separation = coreXYSeparation();
+    sizeY1 = (coreXYPosBL().z - separation.z) - (eZ - eSize - size.y);
     washerClearance = 0.25; // to make assembly easier
-    sizeY2 = size.y - sizeY1 - 2*coreXYSeparation().z  - washerClearance + yCarriageBraceThickness()/2;
+    sizeY2 = size.y - sizeY1 - 2*separation.z  - washerClearance + yCarriageBraceThickness()/2;
     baseThickness = 2;
     // cutout for y rail
     cutoutFillet = 0.5;
@@ -143,7 +145,7 @@ module xyIdler(M5=false) {
                     boltHole(M5 ? M5_clearance_radius : M4_clearance_radius, tabThickness, horizontal=true);
         }
     }
-    translate([frontOffset, coreXYPosBL().z - coreXYSeparation().z - armSize.y + yCarriageBraceThickness()/2, 0]) {
+    translate([frontOffset, coreXYPosBL().z - separation.z - armSize.y + yCarriageBraceThickness()/2, 0]) {
         difference() {
             rounded_cube_yz(armSize, fillet);
             translate([axisOffset - frontOffset, 0, axisOffset])
@@ -156,7 +158,7 @@ module xyIdler(M5=false) {
         translate([0, 0, size.z])
             rotate([90, -90, 90])
                 fillet(1, size.x);
-        *translate([0, armSize.y + 2*coreXYSeparation().z, 0])
+        *translate([0, armSize.y + 2*separation.z, 0])
             difference() {
                 rounded_cube_yz(armSize, fillet);
                 translate([eSize/2, 0, axisOffset])
