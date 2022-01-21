@@ -23,9 +23,10 @@ function coreXY_type() = _coreXYDescriptor == "GT2_20_16" ? coreXY_GT2_20_16 :
                          _coreXYDescriptor == "GT2_20_20x9" ? coreXY_GT2x9_20_20 :
                          coreXY_GT2x9_20_25;
 
-function coreXYIdlerBore() = pulley_bore(coreXY_toothed_idler(coreXY_type()));
-function beltWidth() = belt_width(coreXY_belt(coreXY_type()));
-function beltSeparation() = coreXYSeparation().z - beltWidth();
+function coreXYIdlerBore(coreXYType=coreXY_type()) = pulley_bore(coreXY_toothed_idler(coreXYType));
+function beltWidth(coreXYType=coreXY_type()) = belt_width(coreXY_belt(coreXYType));
+function beltSeparation(coreXYType=coreXY_type()) = coreXYSeparation(coreXYType).z - beltWidth(coreXYType);
+function coreXYWasher(coreXYType=coreXY_type()) = coreXYIdlerBore(coreXYType) == 3 ? M3_washer : coreXYIdlerBore(coreXYType) == 4 ? M4_washer : M5_washer;
 
 function yRailSupportThickness() = 3;
 function yRailShiftX() = 0; // limit it this to [-0.5, +1.25] avoid problems with yCarriage bolt interference
@@ -43,11 +44,11 @@ function rightDrivePulleyOffset() = [useXYDirectDrive ? 0 : (eX >= 350 ? -38 : -
 function plainIdlerPulleyOffset() = largePulleyOffset ? [3, -3] : [0, 0];
 
 // use -12.75 for separation.x to make y-carriage idlers coincident vertically
-function  coreXYSeparation() = [
+function  coreXYSeparation(coreXYType=coreXY_type()) = [
     0,
-    coreXY_coincident_separation( coreXY_type() ).y, // make Y carriage pulleys coincident in Y
+    coreXY_coincident_separation(coreXYType).y, // make Y carriage pulleys coincident in Y
     // Z separation is a pulley with a washer either side and an optional brace for the yCarriage pulleys
-    pulley_height(coreXY_toothed_idler( coreXY_type() )) + 2*washer_thickness(coreXYIdlerBore() == 3 ? M3_washer : coreXYIdlerBore() == 4 ? M4_washer : M5_washer) + yCarriageBraceThickness()
+    pulley_height(coreXY_toothed_idler(coreXYType)) + 2*washer_thickness(coreXYWasher(coreXYType)) + yCarriageBraceThickness()
 ];
 
 
