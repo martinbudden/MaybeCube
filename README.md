@@ -144,20 +144,18 @@ The front face of the MaybeCube is the most subject to shearing, since it needs 
 Printer                                                    | X frequency | X amplitude | X acc limit | Y frequency | Y amplitude | Y acc limit
 ---------------------------------------------------------- | ----------- | ----------- | ------------| ----------- | ----------- | -----------
 MC300                                                      |         114 |       1,720 |      51,200 |          88 |       4,500 | 32,800
-[BabyCube](https://github.com/martinbudden/BabyCube)       |          92 |       1,900 |      32,600 |          87 |       1,350 | 44,100
-[RatRig V-Core3 300](https://youtu.be/ZAN9zTTPUq8?t=765)   |          62 |       4,750 |      15,300 |         N/A |         N/A | N/A
+[BabyCube](https://github.com/martinbudden/BabyCube)       |          92 |      19,000 |      32,600 |          87 |      13,500 | 44,100
+[RatRig V-Core3 300](https://youtu.be/ZAN9zTTPUq8?t=765)   |          62 |      47,500 |      15,300 |         N/A |         N/A | N/A
 [SnakeOil XY](https://github.com/ChipCE/SnakeOil-XY)       |          83 |     110,000 |      27,400 |          56 |      49,500 | 12,100
-[VzBot](https://youtu.be/hTF4bWBTqDQ?t=298)                |          93 |       8,700 |      34,100 |          64 |       3,550 | 15,900
-[Voron 2.4](https://youtu.be/a775O9luKgA?t=7100)           |     52 & 82 |       1,540 |      26,500 |     38 & 63 |       1,160 |  9,900
-[Voron Switchwire](https://youtu.be/OoWQUcFimX8?t=635)     |          70 |       1,100 |         N/A |          48 |      16,200 | N/A
+[VzBot](https://youtu.be/hTF4bWBTqDQ?t=298)                |          93 |      87,000 |      34,100 |          64 |      35,500 | 15,900
+[Voron 2.4](https://youtu.be/a775O9luKgA?t=7100)           |     52 & 82 |      15,400 |      26,500 |     38 & 63 |      11,600 |  9,900
+[Voron Switchwire](https://youtu.be/OoWQUcFimX8?t=635)     |          70 |      11,000 |         N/A |          48 |      16,200 | N/A
 [Ender 3](https://www.youmaketech.com/klipper-on-ender-3/) |     30 & 88 |       4,100 |       3,800 |     32 & 57 |      19,000 |  9,300
-[Prusa i3 MKS+](https://forum.prusaprinters.org/forum/original-prusa-i3-mk3s-mk3-general-discussion-announcements-and-releases/prusa-i3-mks3-resonance-profiles-input-shaper/) | 38 & 58 | 3,900 | N/A | 32 & 78 | 4,200 | N/A
+[Prusa i3 MKS+](https://forum.prusaprinters.org/forum/original-prusa-i3-mk3s-mk3-general-discussion-announcements-and-releases/prusa-i3-mks3-resonance-profiles-input-shaper/) | 38 & 58 | 39,000 | N/A | 32 & 78 | 42,000 | N/A
 
 These input shaper results give a rough idea of the rigidity of various printers. The acc limit is the value of the max acceleration for the ZV shaper for each printer and axis - it is not that meaningful in itself, but it does form some basis for comparison.
 
-Unfortunately there are discrepancies in the X and Y amplitude values, I presume this is because at some point the scaling was changed, so these values are not really useful for comparisons.
-
-Having said that, it does seem that the MC300 compares very favourably with the other printers for which I have found results published.
+It does seem that the MC300 compares very favourably with the other printers for which I have found results published.
 
 ## Customisations
 
