@@ -8,6 +8,7 @@ include <global_defs.scad>
 
 include <NopSCADlib/vitamins/rails.scad>
 
+use <printed/PrintheadAssemblies.scad>
 use <printed/X_CarriageXChange.scad>
 use <printed/X_CarriageAssemblies.scad>
 
@@ -25,6 +26,9 @@ module printheadXChange(rotate=0, explode=0, t=undef) {
 }
 
 
+//!1. Bolt the  Printermods *XChange quick change tool head* (not shown) to the `X_Carriage_XChange`.
+//!2. Bolt `X_Carriage_XChange` to the X carriage.
+//
 module XChange_assembly()
 assembly("XChange", big=true) {
 
@@ -32,12 +36,11 @@ assembly("XChange", big=true) {
     carriagePosition = carriagePosition();
 
     translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType)]) {
-        if (!exploded())
+        *if (!exploded())
             not_on_bom()
                 CoreXYBelts(carriagePosition + [2, 0], x_gap=-25, show_pulleys=![1, 0, 0]);
         xRailCarriagePosition(carriagePosition, rotate=180) {
-            explode([0, 60, 0])
-                X_Carriage_XChange_assembly();
+            xCarriageXChangeAssembly();
             no_explode()
                 not_on_bom() {
                     X_Carriage_Belt_Side_assembly();

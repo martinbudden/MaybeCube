@@ -118,8 +118,7 @@ module X_Carriage_XChange_hardware(halfCarriage, usePulley25) {
     }
 }
 
-module X_Carriage_XChange_assembly()
-assembly("X_Carriage_XChange") {
+module xCarriageXChangeAssembly() {
 
     halfCarriage = (!is_undef(_useHalfCarriage) && _useHalfCarriage==true);
 
