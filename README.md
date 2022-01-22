@@ -144,6 +144,7 @@ The front face of the MaybeCube is the most subject to shearing, since it needs 
 Printer                                                    | X frequency | X amplitude | X acc limit | Y frequency | Y amplitude | Y acc limit
 ---------------------------------------------------------- | ----------- | ----------- | ------------| ----------- | ----------- | -----------
 MC300                                                      |         114 |       1,720 |      51,200 |          88 |       4,500 | 32,800
+[BabyCube](https://github.com/martinbudden/BabyCube)       |          92 |       1,900 |      32,600 |          87 |       1,350 | 44,100
 [RatRig V-Core3 300](https://youtu.be/ZAN9zTTPUq8?t=765)   |          62 |       4,750 |      15,300 |         N/A |         N/A | N/A
 [SnakeOil XY](https://github.com/ChipCE/SnakeOil-XY)       |          83 |     110,000 |      27,400 |          56 |      49,500 | 12,100
 [VzBot](https://youtu.be/hTF4bWBTqDQ?t=298)                |          93 |       8,700 |      34,100 |          64 |       3,550 | 15,900
