@@ -1,5 +1,5 @@
 XL4015_BUCK_CONVERTER = [
-    "XL4015_BUCK_CONVERTER", "XL4015 huck converter",
+    "XL4015_BUCK_CONVERTER", "XL4015 buck converter",
     50.9, 26.3, 1.45, // size
     0, // corner radius
     2.5, // mounting hole diameter
