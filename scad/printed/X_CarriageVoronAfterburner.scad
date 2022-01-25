@@ -1,6 +1,9 @@
 include <../global_defs.scad>
 
 use <NopSCADlib/utils/fillet.scad>
+include <NopSCADlib/core.scad>
+include <NopSCADlib/vitamins/blowers.scad>
+include <NopSCADlib/vitamins/fans.scad>
 include <NopSCADlib/vitamins/hot_ends.scad>
 include <NopSCADlib/vitamins/rails.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
@@ -13,8 +16,8 @@ include <../vitamins/bolts.scad>
 
 xCarriageType = MGN12H_carriage;
 
-vaHoleSeparationTop = 31.5;
-vaHoleSeparationBottom = 33;
+vaHoleSeparationTop = 31;
+vaHoleSeparationBottom = 32.5;
 vaExtruderMotorPlateHoleSeparation = 32.4;
 
 
@@ -23,11 +26,15 @@ module vaImportStl(file) {
 }
 
 squash = 0;//11;
-offset = [0, 10 + squash, 11];
+offset = [0, 20.85 + squash, 11];
 module va_x_carriage_frame_left() {
     // width of frame is 20, width of new X_Carriage should be 20
     //let($hide_bolts=true)
-    translate(offset) {
+    translate([20, -110.15, 97.578])
+        rotate([-90, 0, 90])
+            color(rr_green)
+                vaImportStl("x_carriage_frame_left");
+    *translate(offset) {
         if (squash == 0)
             translate([-5.5, -42, -35])
                 rotate([90, 0, 0])
@@ -44,58 +51,122 @@ module va_x_carriage_frame_left() {
                     color(pp1_colour)
                         vaImportStl("x_carriage_frame_left");
     }
-    frameLeft();
 }
 
-module frameLeft() {
-    size = [20, 37.5 - squash, 8];
+module frame(left=true) {
+    size = [20, 26.6, 8];
+    sizeB = [9.5, size.y, size.z];
     fillet = 1;
     holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
     holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
-
-    translate([-size.x, -size.y, 0])
+    translate([0, 0, -1.81])
         difference() {
             union() {
-                sizeB = [9.5, size.y, size.z];
-                rounded_cube_yz(sizeB, fillet);
-                translate([0, 7.75, 0])
-                    difference() {
-                        sizeA = [size.x - 2, min(19, 29.5 - squash), 17.75];
-                        translate_z(2)
-                            rounded_cube_yz(sizeA, fillet);
-                        translate([size.x - vaExtruderMotorPlateHoleSeparation/2, sizeA.y, 12])
-                            rotate([90, 90, 0])
-                                boltHoleM3Counterbore(sizeA.y, horizontal=true);
-                    }
-                size2 = [9.5, 23 -  squash, 49 + size.z];
-                translate([0, 0, -size2.z + size.z])
+                size1 = [11.7, 19, 20.75];
+                translate([22.5 - size1.x, 0, -1])
+                    rounded_cube_yz(size1, fillet);
+                sizeA = [22.5, 11.75, 17.75 + 5];
+                translate([0, 0, 19.75 - sizeA.z])
+                    rounded_cube_yz(sizeA, fillet);
+                size2 = [11.7, 26.65, 50];
+                translate([22.5-size2.x, 0, -49])
                     rounded_cube_yz(size2, fillet);
-                size3 = [size2.x, 37.5-4.5 - squash, size.z];
-                translate([0, 0, -size2.z + size.z])
+                size3 = [size2.x, 37.5 - 4.5 - squash, size.z];
+                *translate([0, 0, -size2.z + size.z])
                     rounded_cube_yz(size3, fillet);
-                size4 = [size2.x, size3.y + 1.5, 4.5];
-                translate([0, -1.5, -size2.z + size.z])
+                size4 = [size2.x, size2.y + 1.75, 4.75];
+                translate([22.5 - size4.x, 0, -49])
                     rounded_cube_yz(size4, fillet);
-                size5 = [size.x, 14.5, size.z];
-                translate([0, size.y-4.5-size5.y, -size2.z + size.z])
+                size5 = [size.x, 8.35, size.z + 4];
+                translate([0, 0, -49])
                     rounded_cube_yz(size5, fillet);
             }
-            translate([size.x - vaHoleSeparationTop/2, 0, 4])
-                rotate([-90, -90, 0])
-                    boltHoleM3Tap(10, horizontal=true);
-            translate([size.x - vaHoleSeparationBottom/2, 0, -49+9.75])
-                rotate([-90, -90, 0])
-                    boltHoleM3Tap(10, horizontal=true);
-            translate([size.x - holeSeparationTop/2, size.y, 3])
-                rotate([90, 90, 0])
-                    boltHoleM3Tap(10, horizontal=true);
-            translate([size.x - holeSeparationBottom/2, size.y, -49 + size.z/2])
-                rotate([90, 90, 0])
-                    boltHoleM3Tap(10, horizontal=true);
+            //translate([-size.x + sizeB.x, 0, 0])
+             {
+                translate([vaExtruderMotorPlateHoleSeparation/2, 0, 12])
+                    rotate([-90, 90, 0])
+                        boltHoleM3Counterbore(19, horizontal=true);
+                translate([vaHoleSeparationTop/2, size.y + 0.25, 4])
+                    rotate([90, -90, 0])
+                        boltHoleM3Tap(10, horizontal=true);
+                translate([vaHoleSeparationBottom/2, size.y + 0.25, -49 + 9.75])
+                    rotate([90, -90, 0])
+                        boltHoleM3Tap(10, horizontal=true);
+                // bolt holes to connect to the belt side
+                translate([0, 0, size.z/2]) {
+                    translate([holeSeparationTop/2, 0, 0])
+                        rotate([-90, 90, 0])
+                            boltHoleM3Tap(10, horizontal=true);
+                    translate([holeSeparationBottom/2, 0, -49])
+                        rotate([-90, 90, 0])
+                            boltHoleM3Tap(10, horizontal=true);
+                }
+            }
         }
 }
+
+module X_Carriage_VA_Frame_Left_16_stl() {
+    stl("X_Carriage_VA_Frame_Left_16")
+        color(pp1_colour)
+            rotate([0, 90, 0]) // align for printing
+                frame(left=true);
+}
+
+module frameLeft() {
+    rotate([0, -90, 0])
+        stl_colour(pp1_colour)
+            X_Carriage_VA_Frame_Left_16_stl();
+    size = [20, 26.6, 8];
+    if ($preview)
+        translate_z(-1.81) {
+            translate([vaExtruderMotorPlateHoleSeparation/2, 3, 12])
+                rotate([90, 0, 0])
+                    boltM3Caphead(20);
+            translate([vaHoleSeparationTop/2, size.y + 0.25 + 3, 3.7])
+                rotate([-90, 0, 0])
+                    boltM3Caphead(16);
+            // used to attach the hotend cooling fan
+            translate([vaHoleSeparationBottom/2, size.y + 0.25 + 35, -39.6])
+                rotate([-90, 0, 0])
+                    boltM3Caphead(40);
+        }
+}
+
+module X_Carriage_VA_Frame_Right_16_stl() {
+    stl("X_Carriage_VA_Frame_Right_16")
+        color(pp2_colour)
+            rotate([0, -90, 0]) // align for printing
+                mirror([1, 0, 0])
+                    frame(left=false);
+}
+
+
+module frameRight() {
+    rotate([0, 90, 0])
+        stl_colour(pp2_colour)
+            X_Carriage_VA_Frame_Right_16_stl();
+    size = [20, 26.6, 8];
+    if ($preview)
+        translate_z(-1.81) {
+            translate([-vaExtruderMotorPlateHoleSeparation/2, 3, 12])
+                rotate([90, 0, 0])
+                    boltM3Caphead(30);
+            translate([-vaHoleSeparationTop/2, size.y + 0.25 + 3, 4])
+                rotate([-90, 0, 0])
+                    boltM3Caphead(16);
+            // used to attach the hotend cooling fan
+            translate([-vaHoleSeparationBottom/2, size.y + 0.25 + 35, -49 + 9.75])
+                rotate([-90, 0, 0])
+                    boltM3Caphead(40);
+        }
+}
+
 module va_x_carriage_frame_right() {
-    translate(offset) {
+    translate([-20, -139.735, -135])
+        rotate([90, 0, 90])
+            color(crimson)
+                vaImportStl("x_carriage_frame_right");
+    *translate(offset) {
         if (squash == 0)
             translate([5.5, -42, -35])
                 rotate([90, 0, 0])
@@ -106,29 +177,98 @@ module va_x_carriage_frame_right() {
         translate([vaExtruderMotorPlateHoleSeparation/2, -24, 1])
             rotate([-90, 30, 0])
                 boltM3Caphead(30);
-        translate([20, 0, -60])
+        *translate([20, 0, -60])
             rotate([90, 0, -90])
-                translate([-118.85, -84.2, 0])
+                translate([-118.882, -84.2, 0])
                     color(pp3_colour)
                         vaImportStl("x_carriage_frame_right");
     }
 }
 
 module va_extruder_motor_plate() {
-    translate(offset) {
-        translate([0, -39.9, 29.5])
-            rotate([90, 90, 0])
+    *translate(offset) {
+        //translate([0, -39.9, 29.5])
+        translate([0, -39.9, 27.5])
+            rotate([-90, 90, 0])
                 NEMA(NEMA17P, jst_connector=true);
-        translate([22.1, -39.9, -8.9])
+        *translate([22.1, -39.9, -8.9])
             rotate([0, -90, 90])
                 translate([-95.1, -82.9, 0])
-                    color(pp2_colour)
+                    color(pp3_colour)
                         vaImportStl("Direct_Feed/extruder_motor_plate");
+    }
+    translate([0, 19, 0.3]) {
+        translate_z(38.5)
+            rotate([-90, 90, 0])
+                NEMA(NEMA17P, jst_connector=true);
+        translate([-105, 0, -95.1])
+            rotate([0, -90, -90])
+                color(pp3_colour)
+                    vaImportStl("Direct_Feed/extruder_motor_plate");
     }
 }
 
+module va_extruder_body() {
+    translate([0, 19, 0.3]) {
+        translate([-105, 30.4, 155.2])
+            rotate([0, 90, -90])
+                color(pp1_colour)
+                    vaImportStl("Direct_Feed/extruder_body");
+    if ($preview)
+        for (pos = [[9.3, 27.4, 10.8], [15.5, 27.4, 54],  [-15.5, 27.4, 54]])
+            translate(pos)
+                rotate([-90, 0, 0])
+                    boltM3Caphead(30);
+    }
+}
+
+module va_blower_housing_rear() {
+    translate([0, 19, 0.3]) {
+        translate([125, 30.4, 125.5])
+            rotate([0,90,90])
+                color(pp4_colour)
+                    vaImportStl("blower_housing_rear");
+        if ($preview) {
+            translate([20, 35, 16])
+                rotate([90, 0, 180])
+                    blower(PE4020);
+        }
+    }
+}
+
+module va_blower_housing_front() {
+    translate([0, 19, 0.3]) {
+        translate([130, 61.9,-95])
+            rotate([0,-90,90])
+                color(pp3_colour)
+                    vaImportStl("[a]_blower_housing_front");
+        if ($preview)
+            for (x = [-1, 1])
+                translate([22.7 * x, 59, 10.35])
+                    rotate([-90, 0, 0])
+                        boltM3Caphead(30);
+    }
+}
+
+module va_hotend_fan_mount() {
+    translate([0, 19, 0.3]) {
+        translate([95, 61.9,-118])
+            rotate([0,-90,90])
+                color(pp1_colour)
+                    vaImportStl("hotend_fan_mount");
+        if ($preview) {
+            translate([0, 55.25, -20])
+                rotate([90, 0, 0])
+                    fan(fan40x11);
+            for (x = [-1, 1])
+                translate([23.15 * x, 58.9, -48.8])
+                    rotate([-90, 0, 0])
+                        boltM3Caphead(12);
+        }
+    }
+}
 module va_printhead_rear_e3dv6() {
-    translate(offset) {
+    *translate(offset) {
         translate([-20, 0, 68.8 - 60])
             rotate([-90, 0, -90]) {
                 translate([62, 17.75, 19.8])
@@ -140,5 +280,23 @@ module va_printhead_rear_e3dv6() {
                             color(pp4_colour)
                                 vaImportStl("Printheads/E3D_V6/printhead_rear_e3dv6");
             }
+    }
+    translate([0, 26.625, -0.25]) {
+        translate([0, 14.6, 0])
+            hot_end(E3Dv6, filament=1.75, naked=true, bowden=false);
+        translate([157.8, 0, 100.8])
+            rotate([0, 90, 90])
+                color(pp4_colour)
+                    vaImportStl("Printheads/E3D_V6/printhead_rear_e3dv6");
+    }
+}
+
+module va_printhead_front_e3dv6() {
+    translate([0, 26.625, -0.25]) {
+        //translate([157.8, 0, 100.8])
+        translate([60, 41.9, -88.3])
+            rotate([0, -90, 90])
+                color(pp2_colour)
+                    vaImportStl("Printheads/E3D_V6/printhead_front_e3dv6");
     }
 }
