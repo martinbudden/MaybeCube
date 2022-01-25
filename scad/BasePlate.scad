@@ -24,7 +24,7 @@ basePlateSize = [eX + 2*eSize, eY + 2*eSize, _basePlateThickness];
 
 psuOnBase = !is_undef(_useElectronicsInBase) && _useElectronicsInBase == true;
 pcbOnBase = !is_undef(_useElectronicsInBase) && _useElectronicsInBase == true;
-basePSUType = NG_CB_500W;
+basePSUType = NG_CB_500W_24V;
 //basePSUType = S_300_12;
 pcbType = BTT_SKR_V1_4_TURBO;
 rpiType = RPI3APlus;

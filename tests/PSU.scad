@@ -14,7 +14,7 @@ module PSU_test() {
     //PSU_type = S_250_48;
     //PSU_type = S_300_12;
     //PSU_type = S_300_12;
-    PSU_type = NG_CB_500W;
+    PSU_type = NG_CB_500W_24V;
     psuSize = [psu_length(PSU_type), psu_width(PSU_type), psu_height(PSU_type)];
 
     *translate([psuSize.y/2, 0, psuSize.x/2])
