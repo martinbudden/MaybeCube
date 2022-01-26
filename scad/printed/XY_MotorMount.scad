@@ -96,7 +96,7 @@ module xyMotorMountBrace(thickness, offset=[0,0]) {
                 translate([pT.x, pP.y, 0] + offsetT - extra/2) {
                     rounded_cube_xy(size, fillet);
                     // add orientation indicator
-                    translate([size.x/4, size.y, 0])
+                    translate([size.x/4, 0.5, 0])
                         rotate(45)
                             rounded_cube_xy([3, 3, thickness], 0.5, xy_center=true);
                 }
