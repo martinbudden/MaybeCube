@@ -15,19 +15,23 @@ include <utils/X_Rail.scad>
 use <../scad/Parameters_Positions.scad>
 include <target.scad>
 
-$explode=1;
+//$explode=1;
 module printheadVoronAfterburner(rotate=0, explode=100, t=undef) {
     translate([0, 13.956, 1.81])
         xRailCarriagePosition(carriagePosition(t), rotate) {
-            explode([50, 0, explode])
-                frameLeft();
-            explode([-50, 0, explode])
-                frameRight();
+            //explode([50, 0, explode]) frameLeft();
+            //explode([-50, 0, explode]) frameRight();
             explode(explode, false) not_on_bom() {
-                //va_x_carriage_frame_left();
-                //va_x_carriage_frame_right();
-                va_extruder_motor_plate();
-                va_extruder_body();
+                va_x_carriage_frame_left();
+                va_x_carriage_frame_right();
+                bowden = true;
+                if (bowden) {
+                    va_bowden_module_front();
+                    va_bowden_module_rear_generic();
+                } else {
+                    va_extruder_motor_plate();
+                    va_extruder_body();
+                }
                 va_blower_housing_rear();
                 va_blower_housing_front();
                 va_hotend_fan_mount();

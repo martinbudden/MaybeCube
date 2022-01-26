@@ -25,7 +25,7 @@ module VoronAfterburner_test() {
         printheadBeltSide(rotate);
         //printheadHotendSide(rotate);
         printheadVoronAfterburner(rotate);
-        *translate_z(eZ)
+        translate_z(eZ)
             xRail(carriagePosition, MGN12H_carriage);
         *translate([0, carriagePosition.y - carriagePosition().y, eZ - eSize])
             Y_Carriage_Left_assembly();
@@ -34,13 +34,15 @@ module VoronAfterburner_test() {
     }
 }
 //translate(-[carriagePosition().x, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))])
-printheadVoronAfterburner();
+//printheadVoronAfterburner();
 //X_Carriage_VA_Frame_Left_16_stl()
 //X_Carriage_VA_Frame_Right_16_stl()
 //va_x_carriage_frame_left();
 //va_x_carriage_frame_right();
 //va_extruder_motor_plate();
 //va_extruder_body();
+//va_bowden_module_front();
+//va_bowden_module_rear_generic();
 //va_blower_housing_rear();
 //va_blower_housing_front();
 //va_hotend_fan_mount();
