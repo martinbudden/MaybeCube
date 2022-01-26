@@ -23,7 +23,7 @@ NEMA17_60  = ["NEMA17_60",   42.3, 60,     53.6/2, 25,     11,     2,     5,    
 
 NEMA_hole_depth = 5;
 
-partitionExtension = motorClearance().y >= 14 ? 5 : 0;
+partitionExtension = 0; //motorClearance().y >= 14 ? 5 : 0;
 bracketThickness = 5;
 bracketHeightRight = eZ - eSize - (coreXYPosBL().z + washer_thickness(M3_washer));
 bracketHeightLeft = bracketHeightRight + coreXYSeparation().z;
@@ -182,12 +182,21 @@ module xyMotorMountBase(motorType, left, size, offset, sideSupportSizeY, stepdow
                 xyMotorMountBaseCutouts(motorType=motorType, left=left, size=size, offset=offset, sideSupportSizeY=sideSupportSizeY, cnc=cnc, M5=M5);
             }
         }
-        // groove for partition
-        grooveSize = [partitionExtensionX - eSize - 3, 2.5, 2];
-        partitionTolerance = 0.5;
-        if (partitionExtension > 0)
+        if (partitionExtension > 0) {
+            // groove for partition
+            grooveSize = [partitionExtensionX - eSize - 3, 2.5, 2];
+            partitionTolerance = 0.5;
             translate([eSize, eY + 2*eSize - partitionOffsetY() - grooveSize.y + partitionTolerance/2, -eps])
                 rounded_cube_xy(grooveSize, 0.5);
+        } else {
+            // bolt holes to attach motor covers
+            translate([coreXYPosBL.x + separation.x/2 + coreXY_drive_pulley_x_alignment(coreXY_type) + offset.x, eY + 2*eSize - size.y, basePlateThickness/2])
+                rotate([-90, 180, 0])
+                    boltHoleM3Tap(6, horizontal=true, chamfer_both_ends=false);
+            translate([size.x, coreXYPosTR.y + (left ? offset.y : -offset.y), basePlateThickness/2])
+                rotate([-90, 180, 90])
+                    boltHoleM3Tap(6, horizontal=true, chamfer_both_ends=false);
+        }
         if (!cnc)
             translate([coreXYPosBL.x + separation.x/2, coreXYPosTR.y, 0]) {
                 translate([coreXY_drive_pulley_x_alignment(coreXY_type) + offset.x, (left ? offset.y : -offset.y)]) {
