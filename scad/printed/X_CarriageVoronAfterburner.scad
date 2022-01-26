@@ -13,6 +13,7 @@ use <../../../BabyCube/scad/printed/X_Carriage.scad>
 use <X_CarriageAssemblies.scad>
 
 include <../vitamins/bolts.scad>
+include <../vitamins/nuts.scad>
 
 xCarriageType = MGN12H_carriage;
 
@@ -27,32 +28,6 @@ module vaImportStl(file) {
 
 squash = 0;//11;
 offset = [0, 20.85 + squash, 11];
-module va_x_carriage_frame_left() {
-    // width of frame is 20, width of new X_Carriage should be 20
-    //let($hide_bolts=true)
-    translate([20, -110.15, 97.578])
-        rotate([-90, 0, 90])
-            color(rr_green)
-                vaImportStl("x_carriage_frame_left");
-    *translate(offset) {
-        if (squash == 0)
-            translate([-5.5, -42, -35])
-                rotate([90, 0, 0])
-                    boltM3Caphead(20);
-        translate([-vaHoleSeparationTop/2, -50.5, -7.3])
-            rotate([90, 0, 0])
-                boltM3Buttonhead(16);
-        translate([-vaExtruderMotorPlateHoleSeparation/2, -24, 1])
-            rotate([-90, 30, 0])
-                boltM3Caphead(20);
-        translate([-20, 0, 68.8 - 60])
-            rotate([-90, 0, -90])
-                translate([-89.3, -79.6, 0])
-                    color(pp1_colour)
-                        vaImportStl("x_carriage_frame_left");
-    }
-}
-
 module frame(left=true) {
     size = [20, 26.6, 8];
     sizeB = [9.5, size.y, size.z];
@@ -161,11 +136,57 @@ module frameRight() {
         }
 }
 
+module va_x_carriage_frame_left() {
+    // width of frame is 20, width of new X_Carriage should be 20
+    //let($hide_bolts=true)
+    translate([20, -110.15, 97.578])
+        rotate([-90, 0, 90])
+            color(rr_green)
+                vaImportStl("x_carriage_frame_left");
+    if ($preview) {
+        for (pos = [[14, 8.05, 4.85], [14, 5.55, -44.7]])
+            translate(pos)
+                rotate([0, 90, 0])
+                    boltM3Caphead(30);
+        translate_z(-1.81)
+            translate([vaExtruderMotorPlateHoleSeparation/2, 3, 12])
+                rotate([90, 0, 0])
+                    boltM3Caphead(20);
+    }
+    *translate(offset) {
+        if (squash == 0)
+            translate([-5.5, -42, -35])
+                rotate([90, 0, 0])
+                    boltM3Caphead(20);
+        translate([-vaHoleSeparationTop/2, -50.5, -7.3])
+            rotate([90, 0, 0])
+                boltM3Buttonhead(16);
+        translate([-vaExtruderMotorPlateHoleSeparation/2, -24, 1])
+            rotate([-90, 30, 0])
+                boltM3Caphead(20);
+        translate([-20, 0, 68.8 - 60])
+            rotate([-90, 0, -90])
+                translate([-89.3, -79.6, 0])
+                    color(pp1_colour)
+                        vaImportStl("x_carriage_frame_left");
+    }
+}
+
 module va_x_carriage_frame_right() {
     translate([-20, -139.735, -135])
         rotate([90, 0, 90])
             color(crimson)
                 vaImportStl("x_carriage_frame_right");
+    if ($preview) {
+        for (pos = [[-14, 8.05, 4.85], [-14, 5.55, -44.7]])
+            translate(pos)
+                rotate([0, 90, 0])
+                    nutM3();
+        translate_z(-1.81)
+            translate([-vaExtruderMotorPlateHoleSeparation/2, 3, 12])
+                rotate([90, 0, 0])
+                    boltM3Caphead(30);
+    }
     *translate(offset) {
         if (squash == 0)
             translate([5.5, -42, -35])
@@ -185,7 +206,7 @@ module va_x_carriage_frame_right() {
     }
 }
 
-module va_extruder_motor_plate() {
+module va_extruder_motor_plate(motor=true) {
     *translate(offset) {
         //translate([0, -39.9, 29.5])
         translate([0, -39.9, 27.5])
@@ -198,9 +219,10 @@ module va_extruder_motor_plate() {
                         vaImportStl("Direct_Feed/extruder_motor_plate");
     }
     translate([0, 19, 0.3]) {
-        translate_z(38.5)
-            rotate([-90, 90, 0])
-                NEMA(NEMA17P, jst_connector=true);
+        if (motor)
+            translate_z(38.5)
+                rotate([-90, 90, 0])
+                    NEMA(NEMA17P, jst_connector=true);
         translate([-105, 0, -95.1])
             rotate([0, -90, -90])
                 color(pp3_colour)
@@ -222,6 +244,24 @@ module va_extruder_body() {
     }
 }
 
+module va_bowden_module_front() {
+    translate([0, 19, 0.3]) {
+        translate([-125, 30.4, 185.2])
+            rotate([0, 90, -90])
+                color(pp1_colour)
+                    vaImportStl("Bowden/bowden_module_front");
+    }
+}
+
+module va_bowden_module_rear_generic() {
+    translate([0, 19, 0.3]) {
+         translate([-114, 7.7, 174.2])
+            rotate([0, 90, -90])
+                color(pp3_colour)
+                    vaImportStl("Bowden/bowden_module_rear_generic");
+    }
+}
+
 module va_blower_housing_rear() {
     translate([0, 19, 0.3]) {
         translate([125, 30.4, 125.5])
@@ -240,7 +280,7 @@ module va_blower_housing_front() {
     translate([0, 19, 0.3]) {
         translate([130, 61.9,-95])
             rotate([0,-90,90])
-                color(pp3_colour)
+                color(crimson)
                     vaImportStl("[a]_blower_housing_front");
         if ($preview)
             for (x = [-1, 1])
