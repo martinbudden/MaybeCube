@@ -23,7 +23,7 @@ NEMA17_60  = ["NEMA17_60",   42.3, 60,     53.6/2, 25,     11,     2,     5,    
 
 NEMA_hole_depth = 5;
 
-partitionExtension = 5;
+partitionExtension = motorClearance().y >= 14 ? 5 : 0;
 bracketThickness = 5;
 bracketHeightRight = eZ - eSize - (coreXYPosBL().z + washer_thickness(M3_washer));
 bracketHeightLeft = bracketHeightRight + coreXYSeparation().z;
@@ -270,18 +270,24 @@ module xyMotorMountBlock(motorType, size, basePlateThickness, offset=[0, 0], sid
                 difference() {
                     translate([eSize, eY + eSize])
                         rounded_square([size.x - eSize, eSize], fillet, center=false);
-                    translate([coreXYPosBL.x + separation.x/2 + coreXY_drive_pulley_x_alignment(coreXY_type) + offset.x, coreXYPosTR.y + (left ? offset.y : -offset.y)])
-                        xyMotorScrewPositions(isNEMAType(motorType) ? motorType : encoderHolePitch(motorType)) {
-                            cutout = 6.5;
-                            circle(d = cutout);
-                            translate([-cutout/2, -cutout])
-                                square([cutout, cutout]);
-                            translate([cutout/2, motorClearance().y - 14.35])
-                                fillet(1);
-                            translate([-cutout/2, motorClearance().y - 14.35])
-                                rotate(90)
+                    translate([coreXYPosBL.x + separation.x/2 + coreXY_drive_pulley_x_alignment(coreXY_type) + offset.x, 0]) {
+                        cutout = 6.5;
+                        translate([0, coreXYPosTR.y + (left ? offset.y : -offset.y)])
+                            xyMotorScrewPositions(isNEMAType(motorType) ? motorType : encoderHolePitch(motorType))
+                                if ($i < 2) {
+                                    circle(d = cutout);
+                                    translate([-cutout/2, -eSize])
+                                        square([cutout, eSize]);
+                                }
+                        translate([0, eY + eSize])
+                            for (x = [NEMA_hole_pitch(motorType)/2, -NEMA_hole_pitch(motorType)/2]) {
+                                translate([x + cutout/2, 0])
                                     fillet(1);
-                        }
+                                translate([x - cutout/2, 0])
+                                    rotate(90)
+                                        fillet(1);
+                            }
+                    }
                     translate([size.x, eY + 2*eSize])
                         rotate(180)
                             fillet(baseFillet);
