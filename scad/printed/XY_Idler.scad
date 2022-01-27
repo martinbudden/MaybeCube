@@ -15,6 +15,7 @@ upperBoltOffset = 11;
 lowerBoltOffset = 5; // so does not interfere with pulley axel bolt
 frontOffset = 0.5; // so idler does not interfere with sliding front panel
 function xyIdlerSize() = [eSize - 1 - frontOffset + (pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 4 : 0), pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 65 : 60, 5]; // eSize -1 to allow for imprecisely cut Y rails
+function xyIdlerRailOffset() = eSize - 1 - (pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 0 : frontOffset);
 armSize = [xyIdlerSize().x, 5.5, 17.5]; // 5.5 y size so 30mm bolt fits exactly
 tabLength = xyIdlerSize().y - armSize.z; //was 27
 tabThickness = 5;
