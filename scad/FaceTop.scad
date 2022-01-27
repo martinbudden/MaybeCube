@@ -214,7 +214,7 @@ assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
             extrusionOY2060HEndBolts(eY);
         else
             extrusionOY2040HEndBolts(eY);
-    translate([coreXYPosBL().x, eSize + _yRailLength/2, eZ - eSize])
+    translate([coreXYPosBL().x, xyIdlerRailOffset() + _yRailLength/2, eZ - eSize])
         explode(-40, true)
             rotate([180, 0, 90])
                 if (is_undef($hide_rails) || $hide_rails == false) {
@@ -245,7 +245,7 @@ assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
         else
             extrusionOY2040HEndBolts(eY);
 
-    translate([eX + 2*eSize - coreXYPosBL().x, eSize + _yRailLength/2, eZ - eSize])
+    translate([eX + 2*eSize - coreXYPosBL().x, xyIdlerRailOffset() + _yRailLength/2, eZ - eSize])
         explode(-40, true)
             rotate([180, 0, 90])
                 if (is_undef($hide_rails) || $hide_rails == false) {
