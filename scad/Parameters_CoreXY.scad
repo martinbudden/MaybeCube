@@ -5,22 +5,25 @@ include <vitamins/pulleys.scad>
 include <Parameters_Main.scad>
 
 
-coreXY_GT2_20_20_sf=["coreXY_20_20sf", GT2x6, GT2x20ob_pulley, GT2x20x3_toothed_idler_sf, GT2x20x3_plain_idler_sf, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
-coreXY_GT2_20_25   =["coreXY_20_25",   GT2x6, GT2x20ob_pulley, GT2x25x7x3_toothed_idler, GT2x25x7x3_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
+coreXY_GT2_20_20_fb=["coreXY_20_20fb", GT2x6, GT2x20ob_pulley,  GT2x20x3x8_plain_idler_fb, GT2x20x3x8_plain_idler_fb, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
+coreXY_GT2_20_20_sf=["coreXY_20_20sf", GT2x6, GT2x20ob_pulley,  GT2x20x3_toothed_idler_sf, GT2x20x3_plain_idler_sf, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
+coreXY_GT2_20_25   =["coreXY_20_25",   GT2x6, GT2x20ob_pulley,  GT2x25x7x3_toothed_idler, GT2x25x7x3_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
 coreXY_GT2x9_20_20= ["coreXY_20_20x9", GT2x9, GT2x20x11_pulley, GT2x20x11x3_toothed_idler, GT2x20x11x3_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
 coreXY_GT2x9_20_25= ["coreXY_20_25x9", GT2x9, GT2x20x11_pulley, GT2x25x11x3_toothed_idler, GT2x25x11x3_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
 
 useXYDirectDrive = !is_undef(_useXYDirectDrive) && _useXYDirectDrive;
+useReversedBelts = !is_undef(_useReversedBelts) && _useReversedBelts;
 function usePulley25() = _coreXYDescriptor == "GT2_20_25" || _coreXYDescriptor == "GT2_20_25x9";
 pulley25Offset = usePulley25() ? 2.6 : 0;
 largePulleyOffset = usePulley25() ? 3 : 0;
 largePulleyOffsetTop = usePulley25() ? 5.5 : 0;
 
-function coreXY_type() = _coreXYDescriptor == "GT2_20_16" ? coreXY_GT2_20_16 :
-                         _coreXYDescriptor == "GT2_20_20" ? coreXY_GT2_20_20 :
-                         _coreXYDescriptor == "GT2_20_20_sf" ? coreXY_GT2_20_20_sf :
-                         _coreXYDescriptor == "GT2_20_25" ? coreXY_GT2_20_25 :
-                         _coreXYDescriptor == "GT2_20_20x9" ? coreXY_GT2x9_20_20 :
+function coreXY_type(coreXYDescriptor=_coreXYDescriptor) = coreXYDescriptor == "GT2_20_16" ? coreXY_GT2_20_16 :
+                         coreXYDescriptor == "GT2_20_20" ? coreXY_GT2_20_20 :
+                         coreXYDescriptor == "GT2_20_20_fb" ? coreXY_GT2_20_20_fb :
+                         coreXYDescriptor == "GT2_20_20_sf" ? coreXY_GT2_20_20_sf :
+                         coreXYDescriptor == "GT2_20_25" ? coreXY_GT2_20_25 :
+                         coreXYDescriptor == "GT2_20_20x9" ? coreXY_GT2x9_20_20 :
                          coreXY_GT2x9_20_25;
 
 function coreXYIdlerBore(coreXYType=coreXY_type()) = pulley_bore(coreXY_toothed_idler(coreXYType));
@@ -39,16 +42,16 @@ function yCarriageBraceThickness() = 1; // brace to support cantilevered pulleys
 function beltOffsetZ() = yCarriageThickness() - coreXYSeparation().z - 30.5;
 //function beltOffsetZ() = yCarriageThickness() + carriage_height(MGN12H_carriage) + coreXYSeparation().z - 55;
 
-function leftDrivePulleyOffset() = [useXYDirectDrive ? 0 : 38 + 3*largePulleyOffset, -largePulleyOffsetTop];
-function rightDrivePulleyOffset() = [useXYDirectDrive ? 0 : (eX >= 350 ? -38 : -42.5) - 3*largePulleyOffset, -largePulleyOffsetTop]; // need to give clearance to extruder motor
-function plainIdlerPulleyOffset() = largePulleyOffset ? [3, -3] : [0, 0];
+function leftDrivePulleyOffset() = useReversedBelts ? [30, -6] : [useXYDirectDrive ? 0 : 38 + 3*largePulleyOffset, -largePulleyOffsetTop];
+function rightDrivePulleyOffset() = [useXYDirectDrive ? 0 : (eX >= 350 ? -38 : -42.5) - 3*largePulleyOffset, useReversedBelts ? -6 : -largePulleyOffsetTop]; // need to give clearance to extruder motor
+function plainIdlerPulleyOffset() = useReversedBelts ? [0, -20] : largePulleyOffset ? [3, -3] : [0, 0];
 
 // use -12.75 for separation.x to make y-carriage idlers coincident vertically
 function  coreXYSeparation(coreXYType=coreXY_type()) = [
     0,
     coreXY_coincident_separation(coreXYType).y, // make Y carriage pulleys coincident in Y
     // Z separation is a pulley with a washer either side and an optional brace for the yCarriage pulleys
-    pulley_height(coreXY_toothed_idler(coreXYType)) + 2*washer_thickness(coreXYWasher(coreXYType)) + yCarriageBraceThickness()
+    pulley_height(coreXY_plain_idler(coreXYType)) + 2*washer_thickness(coreXYWasher(coreXYType)) + yCarriageBraceThickness()
 ];
 
 
@@ -64,6 +67,6 @@ function coreXYPosBL() = [
 
 function coreXYPosTR(motorWidth) = [
     eX + 2*eSize - coreXYPosBL().x,
-    eY + 2*eSize - motorWidth/2 - motorClearance().y + largePulleyOffsetTop,
+    eY + 2*eSize - motorWidth/2 - motorClearance().y + largePulleyOffsetTop + (useReversedBelts ? 6 : 0),
     coreXYPosBL().z
 ];

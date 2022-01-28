@@ -19,7 +19,7 @@ yCarriageInserts = true;
 blockOffsetX = usePulley25() ? 2 : 0;
 blockOffset = usePulley25() ? [blockOffsetX, 0.5] : 0.5;
 
-idlerHeight = pulley_height(coreXY_toothed_idler(coreXY_type()));
+idlerHeight = pulley_height(coreXY_plain_idler(coreXY_type()));
 chamfer = _xCarriageDescriptor == "MGN9C" || _xCarriageDescriptor == "MGN9H" ? 1 : 0;
 
 holeRadius = coreXYIdlerBore() == 3 ? M3_tap_radius : coreXYIdlerBore() == 4 ? M4_tap_radius : M5_tap_radius;
