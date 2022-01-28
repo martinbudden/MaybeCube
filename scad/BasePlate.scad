@@ -14,7 +14,6 @@ use <utils/PSU.scad>
 include <utils/pcbs.scad>
 
 include <utils/FrameBolts.scad>
-include <vitamins/psus.scad>
 include <vitamins/RPI3APlus.scad>
 
 
