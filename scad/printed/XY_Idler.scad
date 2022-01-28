@@ -1,6 +1,7 @@
 include <../global_defs.scad>
 
 use <NopSCADlib/utils/fillet.scad>
+include <NopSCADlib/vitamins/ball_bearings.scad>
 
 use <../printed/extrusionChannels.scad>
 
@@ -65,12 +66,13 @@ module xyIdlerOld() {
     }
 }
 
-module xyIdler(M5=false) {
+module xyIdler(left=true, useReversedBelts=false, M5=false) {
     size = xyIdlerSize();
     separation = coreXYSeparation();
-    sizeY1 = (coreXYPosBL().z - separation.z) - (eZ - eSize - size.y);
+    
+    sizeY1 = (coreXYPosBL().z - (left || !useReversedBelts ? separation.z : 0)) - (eZ - eSize - size.y);
     washerClearance = 0.25; // to make assembly easier
-    sizeY2 = size.y - sizeY1 - 2*separation.z  - washerClearance + yCarriageBraceThickness()/2;
+    sizeY2 = size.y - sizeY1 - (useReversedBelts ? separation.z : 2*separation.z)  - washerClearance + yCarriageBraceThickness()/2;
     baseThickness = 2;
     // cutout for y rail
     cutoutFillet = 0.5;
@@ -146,7 +148,7 @@ module xyIdler(M5=false) {
                     boltHole(M5 ? M5_clearance_radius : M4_clearance_radius, tabThickness, horizontal=true);
         }
     }
-    translate([frontOffset, coreXYPosBL().z - separation.z - armSize.y + yCarriageBraceThickness()/2, 0]) {
+    translate([frontOffset, coreXYPosBL().z - armSize.y + yCarriageBraceThickness()/2  - (left || !useReversedBelts ? separation.z : 0), 0]) {
         difference() {
             rounded_cube_yz(armSize, fillet);
             translate([axisOffset - frontOffset, 0, axisOffset])
@@ -169,6 +171,13 @@ module xyIdler(M5=false) {
     }
 }
 
+module XY_Idler_Channel_Nut_stl() {
+    size = xyIdlerSize();
+    stl("XY_Idler_Channel_Nut_16")
+        color(pp2_colour)
+            extrusionChannel(size.y, boltHoles=[lowerBoltOffset, size.y - upperBoltOffset]);
+}
+
 module XY_Idler_Channel_Nut_16_stl() {
     size = xyIdlerSize();
     stl("XY_Idler_Channel_Nut_16")
@@ -183,7 +192,7 @@ module XY_Idler_Channel_Nut_25_stl() {
             extrusionChannel(size.y, boltHoles=[lowerBoltOffset, size.y - upperBoltOffset]);
 }
 
-module XY_Idler_hardware(left = true) {
+module XY_Idler_hardware(left=true, useReversedBelts=false) {
 
     module doubleWasher(left) {
         if (coreXYIdlerBore() == 3)
@@ -209,10 +218,7 @@ module XY_Idler_hardware(left = true) {
         translate([eSize/2, eZ - eSize - size.y, 0]) {
             explode(-50)
                 stl_colour(pp2_colour)
-                    if (usePulley25())
-                        XY_Idler_Channel_Nut_25_stl();
-                    else
-                        XY_Idler_Channel_Nut_16_stl();
+                    XY_Idler_Channel_Nut_stl();
             for (y = [lowerBoltOffset, size.y - upperBoltOffset])
                 translate([0, y, size.z])
                     explode(20, true)
@@ -233,29 +239,48 @@ module XY_Idler_hardware(left = true) {
         washer = coreXYIdlerBore() == 3 ? M3_washer : coreXYIdlerBore() == 4 ? M4_washer : M5_washer;
         translate([left ? axisOffset : eSize - axisOffset, coreXYPosBL().z - coreXYSeparation().z + yCarriageBraceThickness()/2, axisOffset])
             rotate([-90, 0, 0]) {
-                vflip()
-                    translate_z(armSize.y + eps)
-                        explode(20, true)
-                            boltM3Caphead(pulley_height(toothed_idler) >= 11 ? 35 : 30);
-                explode = 35;
-                explode([left ? explode + 20 : -explode - 20, 0, 0])
-                    washer(washer);
-                explode([left ? explode : -explode, 0, 0], true)
-                    translate_z(washer_thickness(washer)) {
-                        pulley(toothed_idler);
-                        translate_z(pulley_height(toothed_idler)) {
-                            doubleWasher(left)
-                                if (yCarriageBraceThickness() == 0) {
-                                    pulley(toothed_idler)
-                                        washer(washer);
-                                } else {
-                                    doubleWasher(left)
-                                        pulley(toothed_idler)
-                                    explode([left ? 20 : -20, 0, 0])
-                                            washer(washer);
-                                }
+                if (useReversedBelts) {
+                    translate_z(left ? 0 : coreXYSeparation().z) {
+                        vflip()
+                            translate_z(armSize.y + eps)
+                                explode(20, true)
+                                    boltM3Caphead(20);
+                        bearingType = BBF623;
+                        washer(washer);
+                        translate_z(washer_thickness(washer) + bb_width(bearingType)/2) {
+                            ball_bearing(bearingType);
+                            translate_z(bb_width(bearingType))
+                                vflip()
+                                    ball_bearing(bearingType);
+                            translate_z(3*bb_width(bearingType)/2)
+                                washer(washer);
                         }
                     }
+                } else {
+                    vflip()
+                        translate_z(armSize.y + eps)
+                            explode(20, true)
+                                boltM3Caphead(pulley_height(toothed_idler) >= 11 ? 35 : 30);
+                    explode = 35;
+                    explode([left ? explode + 20 : -explode - 20, 0, 0])
+                        washer(washer);
+                    explode([left ? explode : -explode, 0, 0], true)
+                        translate_z(washer_thickness(washer)) {
+                            pulley(toothed_idler);
+                            translate_z(pulley_height(toothed_idler)) {
+                                doubleWasher(left)
+                                    if (yCarriageBraceThickness() == 0) {
+                                        pulley(toothed_idler)
+                                            washer(washer);
+                                    } else {
+                                        doubleWasher(left)
+                                            pulley(toothed_idler)
+                                        explode([left ? 20 : -20, 0, 0])
+                                                washer(washer);
+                                    }
+                            }
+                        }
+                }
             }
     }
 }
@@ -266,6 +291,14 @@ module XY_Idler_Left_16_stl() {
         color(pp1_colour)
             rotate([90, -90, 0])
                 xyIdler();
+}
+
+module XY_Idler_Left_RB_stl() {
+    // rotate for printing, so that base filament pattern aligns with main diagonal
+    stl("XY_Idler_Left_RB")
+        color(pp1_colour)
+            rotate([90, -90, 0])
+                xyIdler(left=true, useReversedBelts=true);
 }
 
 module XY_Idler_Left_25_stl() {
@@ -290,6 +323,14 @@ module XY_Idler_Right_16_stl() {
             rotate([0, 90, 0])
                 mirror([1, 0, 0])
                     xyIdler();
+}
+
+module XY_Idler_Right_RB_stl() {
+    stl("XY_Idler_Right_RB")
+        color(pp1_colour)
+            rotate([0, 90, 0])
+                mirror([1, 0, 0])
+                    xyIdler(left=false, useReversedBelts=true);
 }
 
 module XY_Idler_Right_25_stl() {
@@ -321,12 +362,14 @@ assembly("XY_Idler_Left", big=true, ngb=true) {
     translate([eSize, 0, 0]) {
         rotate([0, 90, 90])
             stl_colour(pp1_colour)
-                if (usePulley25())
+                if (useReversedBelts())
+                    XY_Idler_Left_RB_stl();
+                else if (usePulley25())
                     XY_Idler_Left_25_stl();
                 else
                     XY_Idler_Left_16_stl();
         rotate([90, 0, 180])
-            XY_Idler_hardware(left=true);
+            XY_Idler_hardware(left=true, useReversedBelts=useReversedBelts());
     }
 }
 
@@ -343,12 +386,14 @@ assembly("XY_Idler_Right", big=true, ngb=true) {
     translate([eX + eSize, 0, 0])
         rotate([90, 0, 180]) {
             stl_colour(pp1_colour)
-                if (usePulley25())
+                if (useReversedBelts())
+                    XY_Idler_Right_RB_stl();
+                else if (usePulley25())
                     XY_Idler_Right_25_stl();
                 else
                     XY_Idler_Right_16_stl();
             translate_z(eSize)
                 hflip()
-                    XY_Idler_hardware(left=false);
+                    XY_Idler_hardware(left=false, useReversedBelts=useReversedBelts());
         }
 }
