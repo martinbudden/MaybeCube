@@ -1,7 +1,7 @@
 use <NopSCADlib/vitamins/pcb.scad>
 use <NopSCADlib/vitamins/psu.scad>
 
-
+/*
 BTT_RELAY_V1_2 = [
     "BTT_RELAY_V1_2", "BigTreeTech Relay Module v1.2",
     80.4, 36.3, 1.5, // size
@@ -41,6 +41,7 @@ module btt_relay_v1_2_pcb() {
         rotate(180)
             terminal_block(terminalType, ways);
 }
+*/
 
 module BTT_Relay_Base_stl() {
     pcbSize = pcb_size(BTT_RELAY_V1_2);

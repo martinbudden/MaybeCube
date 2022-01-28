@@ -16,10 +16,7 @@ module pcbAssembly(pcbType, pcbOnBase=false) {
     if (is_undef($hide_pcb) || $hide_pcb == false)
         pcbPosition(pcbType, pcbOnBase, pcbOffsetZ) {
             explode(explode)
-                if (pcbType[0] == "BTT_RELAY_V1_2")
-                    btt_relay_v1_2_pcb();
-                else
-                    pcb(pcbType);
+                pcb(pcbType);
             pcb_screw_positions(pcbType) {
                 translate_z(pcb_thickness(pcbType))
                     explode(explode, true)

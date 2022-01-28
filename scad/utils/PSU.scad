@@ -3,7 +3,6 @@ include <../global_defs.scad>
 include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/psus.scad>
 //use <NopSCADlib/printed/psu_shroud.scad>
-include <../vitamins/psus.scad>
 
 include <../Parameters_Main.scad>
 
