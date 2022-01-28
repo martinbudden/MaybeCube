@@ -202,6 +202,12 @@ module xyMotorMountBase(motorType, left, size, offset, sideSupportSizeY, stepdow
         if (!cnc)
             translate([coreXYPosBL.x + separation.x/2, coreXYPosTR.y, 0]) {
                 translate([offset.x ? offset.x : coreXY_drive_pulley_x_alignment(coreXY_type), (left ? offset.y : -offset.y)]) {
+                    if (useReversedBelts)
+                        translate(left ? -leftDrivePulleyOffset() : [rightDrivePulleyOffset().x, -rightDrivePulleyOffset().y]) {
+                            boltHoleM3Tap(basePlateThickness);
+                            translate(plainIdlerPulleyOffset())
+                                boltHoleM3Tap(basePlateThickness);
+                        }
                     if (isNEMAType(motorType)) {
                         NEMA_screw_positions(motorType)
                             boltHoleM3(basePlateThickness, twist=5);
@@ -368,14 +374,32 @@ module xyMotorMount(motorType, basePlateThickness, offset=[0, 0], blockHeightExt
         xyMotorMountBlock(motorType, size, basePlateThickness, offset, sideSupportSizeY, blockHeightExtra, stepdown, left, M5=M5);
 }
 
-module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], corkDamperThickness=0, blockHeightExtra=0, stepdown=false, left=true) {
+function bearingStackHeight(bearingType=BBF623, washer=M3_washer) = 2*washer_thickness(washer) + 2*bb_width(bearingType);
+
+module bearingStack() {
+    bearingType = BBF623;
+    washer = M3_washer;
+    washer(washer);
+    translate_z(washer_thickness(washer) + bb_width(bearingType)/2) {
+        ball_bearing(bearingType);
+        translate_z(bb_width(bearingType))
+            vflip()
+                ball_bearing(bearingType);
+        translate_z(3*bb_width(bearingType)/2)
+            washer(washer);
+    }
+    if ($children)
+        translate_z(bearingStackHeight())
+            children();
+}
+
+module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], corkDamperThickness=0, blockHeightExtra=0, stepdown=false, useReversedBelts=false, left=true) {
     motorWidth = motorWidth(motorType);
     coreXYPosBL = coreXYPosBL();
     coreXYPosTR = coreXYPosTR(motorWidth);
     separation = coreXYSeparation();
     coreXY_type = coreXY_type();
     sideSupportSizeY = xyMotorMountSize(motorWidth, offset, left, useReversedBelts).y - eSize + partitionExtension;
-
     if (isNEMAType(motorType))
         stepper_motor_cable(left ? 500 : 300);
     translate([left ? coreXYPosBL.x + separation.x/2 : coreXYPosTR.x - separation.x/2, coreXYPosTR.y, basePlateThickness]) {
@@ -409,8 +433,27 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
                         translate_z(-pulley_height(drivePulley) + 0.8 - pulley_flange_thickness(coreXY_toothed_idler(coreXY_type)))
                             pulley(drivePulley);
                 else
-                    translate_z(5)
+                    translate_z(4.248)
                         pulley(drivePulley);
+                if (useReversedBelts) {
+                    //screwLength = screw_longer_than(2*bearingStackHeight() + braceThickness + basePlateThickness);
+                    translate(left ? -leftDrivePulleyOffset() : -rightDrivePulleyOffset()) {
+                        translate_z(screwLength)
+                            if ($preview && (is_undef($hide_bolts) || $hide_bolts == false))
+                                screw(screw, screwLength);
+                        bearingStack()
+                            washer(M3_washer)
+                                washer(M3_washer)
+                                    bearingStack();
+                        translate(plainIdlerPulleyOffset()) {
+                            translate_z(left ? 0 :separation.z)
+                                bearingStack();
+                            translate_z(screwLength)
+                                if ($preview && (is_undef($hide_bolts) || $hide_bolts == false))
+                                    screw(screw, screwLength);
+                        }
+                    }
+                }
             }
             boltLength = screw_shorter_than(NEMA_hole_depth + basePlateThickness + corkDamperThickness);
             xyMotorScrewPositions(motorType)
@@ -436,7 +479,7 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
                        : [-coreXY_drive_plain_idler_offset(coreXY_type).x, coreXY_drive_plain_idler_offset(coreXY_type).y, 0]  + (stepdown ? [0, 0, 0] : rightDrivePlainIdlerOffset);
         stepdownPos = [left ? coreXY_drive_pulley_x_alignment(coreXY_type) : -coreXY_drive_pulley_x_alignment(coreXY_type), 0, 0];
         if (stepdown) {
-            beltPoints = [ [drivePos.x, drivePos.y, pulley_od(GT2x20ob_pulley)/2],[stepdownPos.x, stepdownPos.y, pulley_od(GT2x40sd_pulley)/2] ];
+            beltPoints = [ [drivePos.x, drivePos.y, pulley_od(GT2x20ob_pulley)/2], [stepdownPos.x, stepdownPos.y, pulley_od(GT2x40sd_pulley)/2] ];
             //echo(belt_length=belt_length(coreXY_belt(coreXY_type), beltPoints));
             translate_z(13.5)
                 belt(coreXY_belt(coreXY_type), beltPoints);
@@ -595,7 +638,7 @@ assembly("XY_Motor_Mount_Left", ngb=true) {
                 XY_Motor_Mount_Left_25_stl();
             else
                 XY_Motor_Mount_Left_16_stl();
-        XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, blockHeightExtra, left=true);
+        XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, blockHeightExtra, useReversedBelts=useReversedBelts(), left=true);
         if (offset.x != 0 && !useReversedBelts)
             stl_colour(pp2_colour)
                 if (usePulley25())
@@ -653,7 +696,7 @@ assembly("XY_Motor_Mount_Right", ngb=true) {
                 XY_Motor_Mount_Right_25_stl();
             else
                 XY_Motor_Mount_Right_16_stl();
-        XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, blockHeightExtra, left=false);
+        XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, blockHeightExtra, useReversedBelts=useReversedBelts(), left=false);
         if (offset.x != 0 && !useReversedBelts)
             stl_colour(pp2_colour)
                 if (usePulley25())
