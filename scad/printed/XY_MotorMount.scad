@@ -343,7 +343,7 @@ module xyMotorMountBlock(motorType, size, basePlateThickness, offset=[0, 0], sid
     translate([eSize, eY + 2*eSize, 0])
         rotate(-90) {
             fillet = 5;
-            h = useReversedBelts ? 2*separation.z : height;
+            h = useReversedBelts ? braceOffsetZ : height;
             translate([-fillet + blockSize.y, 0, 0])
                 cube([fillet, fillet, h]);
             translate([eSize, -fillet, 0])
@@ -568,14 +568,16 @@ module XY_Motor_Mount_Brace_Left_RB_stl() {
     stl("XY_Motor_Mount_Brace_Left_RB"); // note - need semicolon to ensure explode of xyMotorMountBrace works
     color(pp2_colour)
         translate([eSize - braceShelfWidth, eY + 2*eSize - xyMotorMountSize.y, basePlateThickness(useReversedBelts=true) + braceOffsetZ])
-            rounded_cube_xy(size, 1);
+            explode(70)
+                rounded_cube_xy(size, 1);
 }
 
 module XY_Motor_Mount_Brace_Left_16_stl() {
     stl("XY_Motor_Mount_Brace_Left_16"); // note - need semicolon to ensure explode of xyMotorMountBrace works
     color(pp2_colour)
         translate([coreXYPosBL().x + coreXYSeparation().x/2, coreXYPosTR(motorWidth(motorType(_xyMotorDescriptor))).y, basePlateThickness(useReversedBelts()) + pulleyStackHeight + washer_thickness(M3_washer)])
-            xyMotorMountBrace(braceThickness, leftDrivePulleyOffset());
+            explode(70)
+                xyMotorMountBrace(braceThickness, leftDrivePulleyOffset());
 }
 
 module XY_Motor_Mount_Brace_Left_25_stl() {
@@ -672,8 +674,7 @@ assembly("XY_Motor_Mount_Left", ngb=true) {
         if (offset.x != 0)
             stl_colour(pp2_colour)
                 if (useReversedBelts())
-                    explode(70)
-                        XY_Motor_Mount_Brace_Left_RB_stl();
+                    XY_Motor_Mount_Brace_Left_RB_stl();
                 else if (usePulley25())
                     XY_Motor_Mount_Brace_Left_25_stl();
                 else
@@ -740,8 +741,7 @@ assembly("XY_Motor_Mount_Right", ngb=true) {
         if (offset.x != 0)
             stl_colour(pp2_colour)
                 if (useReversedBelts())
-                    explode(70)
-                        XY_Motor_Mount_Brace_Right_RB_stl();
+                    XY_Motor_Mount_Brace_Right_RB_stl();
                 else if (usePulley25())
                     XY_Motor_Mount_Brace_Right_25_stl();
                 else
