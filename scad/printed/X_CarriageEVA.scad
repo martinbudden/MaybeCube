@@ -128,7 +128,6 @@ module evaBeltClamp() {
 
 module evaBeltClampHardware() {
     size = xCarriageBeltSideSizeM(MGN12H_carriage, beltWidth(), beltSeparation());
-    echo(xxx=size);
     translate([0, 52, 6])
         evaBeltClampPosition()
             X_Carriage_Belt_Clamp_hardware(size, countersunk=true);
