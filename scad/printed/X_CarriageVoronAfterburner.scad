@@ -23,7 +23,7 @@ vaExtruderMotorPlateHoleSeparation = 32.4;
 
 
 module vaImportStl(file) {
-    import(str("../stlimport/voron/X_Carriage/", file, ".stl"));
+    import(str("../stlimport/voron/X_Carriage/", file, ".stl"), convexity=10);
 }
 
 squash = 0;//11;
@@ -34,10 +34,15 @@ module frame(left=true) {
     fillet = 1;
     holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
     holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
+    if (left)
+        va_x_carriage_frame_left_top();
+    else
+    mirror([1, 0, 0])
+        va_x_carriage_frame_right_top();
     translate([0, 0, -1.81])
         difference() {
             union() {
-                size1 = [11.7, 19, 20.75];
+                size1 = [11.7-1, 19, 20.75];
                 translate([22.5 - size1.x, 0, -1])
                     rounded_cube_yz(size1, fillet);
                 sizeA = [22.5, 11.75, 17.75 + 5];
@@ -136,13 +141,34 @@ module frameRight() {
         }
 }
 
-module va_x_carriage_frame_left() {
+module va_x_carriage_frame_left_top(full=false) {
+    intersection() {
+        va_x_carriage_frame_left_raw();
+        translate([full ? -2 : 0, 0, -5])
+            cube([23, 30, 25]);
+    }
+}
+
+module va_x_carriage_frame_right_top() {
+    intersection() {
+        va_x_carriage_frame_right_raw();
+        translate([-21, -1, -5])
+            cube([23, 29, 25]);
+    }
+}
+
+
+module va_x_carriage_frame_left_raw() {
     // width of frame is 20, width of new X_Carriage should be 20
     //let($hide_bolts=true)
     translate([20, -110.15, 97.578])
         rotate([-90, 0, 90])
             color(rr_green)
                 vaImportStl("x_carriage_frame_left");
+}
+
+module va_x_carriage_frame_left() {
+    va_x_carriage_frame_left_raw();
     if ($preview) {
         for (pos = [[14, 8.05, 4.85], [14, 5.55, -44.7]])
             translate(pos)
@@ -172,11 +198,15 @@ module va_x_carriage_frame_left() {
     }
 }
 
-module va_x_carriage_frame_right() {
+module va_x_carriage_frame_right_raw() {
     translate([-20, -139.735, -135])
         rotate([90, 0, 90])
             color(crimson)
                 vaImportStl("x_carriage_frame_right");
+}
+
+module va_x_carriage_frame_right() {
+    va_x_carriage_frame_right_raw();
     if ($preview) {
         for (pos = [[-14, 8.05, 4.85], [-14, 5.55, -44.7]])
             translate(pos)
