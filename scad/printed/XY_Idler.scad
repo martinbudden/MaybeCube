@@ -69,7 +69,6 @@ module xyIdlerOld() {
 module xyIdler(left=true, useReversedBelts=false, M5=false) {
     size = xyIdlerSize();
     separation = coreXYSeparation();
-    
     sizeY1 = (coreXYPosBL().z - (left || !useReversedBelts ? separation.z : 0)) - (eZ - eSize - size.y);
     washerClearance = 0.25; // to make assembly easier
     sizeY2 = size.y - sizeY1 - (useReversedBelts ? separation.z : 2*separation.z)  - washerClearance + yCarriageBraceThickness()/2;
@@ -245,16 +244,8 @@ module XY_Idler_hardware(left=true, useReversedBelts=false) {
                             translate_z(armSize.y + eps)
                                 explode(20, true)
                                     boltM3Caphead(20);
-                        bearingType = BBF623;
-                        washer(washer);
-                        translate_z(washer_thickness(washer) + bb_width(bearingType)/2) {
-                            ball_bearing(bearingType);
-                            translate_z(bb_width(bearingType))
-                                vflip()
-                                    ball_bearing(bearingType);
-                            translate_z(3*bb_width(bearingType)/2)
-                                washer(washer);
-                        }
+                        explode([left ? 25 : -25, 0, -7.5], true)
+                            bearingStack(BBF623, washer);
                     }
                 } else {
                     vflip()
