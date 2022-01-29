@@ -348,7 +348,7 @@ module XY_Idler_Right_M5_stl() {
 //!4. Add the button head bolt and washer.
 //
 module XY_Idler_Left_assembly() pose(a=[70, 0, -180 + 30])
-assembly("XY_Idler_Left", big=true, ngb=true) {
+assembly("XY_Idler_Left", ngb=true) {
 
     translate([eSize, 0, 0]) {
         rotate([0, 90, 90])
@@ -372,7 +372,7 @@ assembly("XY_Idler_Left", big=true, ngb=true) {
 //!4. Add the button head bolt and washer.
 //
 module XY_Idler_Right_assembly() pose(a=[70, 0, -180 + 30])
-assembly("XY_Idler_Right", big=true, ngb=true) {
+assembly("XY_Idler_Right", ngb=true) {
 
     translate([eX + eSize, 0, 0])
         rotate([90, 0, 180]) {
