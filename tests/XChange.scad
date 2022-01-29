@@ -24,9 +24,9 @@ module XChange_test() {
     rotate(180)
     translate(-[eSize + eX/2, carriagePosition(t).y, eZ - yRailOffset().x - carriage_clearance(xCarriageType)]) {
         //CoreXYBelts(carriagePosition() + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
-        printheadBeltSide();
+        //printheadBeltSide();
         printheadXChange();
-        xRailCarriagePosition(carriagePosition())
+        *xRailCarriagePosition(carriagePosition())
             translate_z(-carriage_height(xCarriageType))
                 carriage(xCarriageType);
         *translate_z(eZ)

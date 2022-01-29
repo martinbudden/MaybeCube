@@ -48,5 +48,8 @@ module VoronAfterburner_test() {
 //va_hotend_fan_mount();
 //va_printhead_rear_e3dv6();
 //va_printhead_front_e3dv6();
+//frame(left=false);
+//va_x_carriage_frame_left_top();
+//va_x_carriage_frame_right_top();
 if ($preview)
     VoronAfterburner_test();
