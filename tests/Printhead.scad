@@ -11,6 +11,7 @@ include <../scad/utils/X_Rail.scad>
 include <../scad/vitamins/bolts.scad>
 
 use <../../BabyCube/scad/printed/X_Carriage.scad>
+use <../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 
 use <../scad/Parameters_Positions.scad>
 
@@ -31,8 +32,7 @@ module Printhead_test() {
 
     halfCarriage = false;
     translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
-        CoreXYBelts(carriagePosition - [4, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
-        //fullPrinthead(accelerometer=true);
+        CoreXYBelts(carriagePosition, x_gap = -25, show_pulleys = ![1, 0, 0]);
         //printheadBeltSide();
         printheadHotendSide();
         //printheadEVA();
@@ -92,5 +92,11 @@ module xCarriageTopTest() {
     }
 }
 
+//X_Carriage_Belt_Tensioner_stl();
+//X_Carriage_Belt_Tensioner_hardware(xCarriageBeltTensionerSize(beltWidth()), 40, 22.5);
+//X_Carriage_Belt_Tensioner_RB_stl();
+//mirror([0, 1, 0])
+//X_Carriage_Belt_Tensioner_hardware(xCarriageBeltTensionerSize(beltWidth()), 40, 22.5);
+//X_Carriage_Belt_Tensioner_RB_stl();
 if ($preview)
     Printhead_test();
