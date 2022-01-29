@@ -22,7 +22,7 @@ include <target.scad>
 module printheadXChange(rotate=0, explode=0, t=undef) {
     xRailCarriagePosition(carriagePosition(t), rotate)
         explode(explode, true)
-            X_Carriage_XChange_assembly();
+            XChange_assembly();
 }
 
 
