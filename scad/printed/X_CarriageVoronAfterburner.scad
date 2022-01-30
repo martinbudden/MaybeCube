@@ -8,10 +8,7 @@ include <NopSCADlib/vitamins/hot_ends.scad>
 include <NopSCADlib/vitamins/rails.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
 
-use <../../../BabyCube/scad/printed/X_Carriage.scad>
-
-use <X_CarriageAssemblies.scad>
-
+include <../utils/X_Carriage.scad>
 include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>
 
@@ -32,8 +29,6 @@ module frame(left=true) {
     size = [20, 26.6, 8];
     sizeB = [9.5, size.y, size.z];
     fillet = 1;
-    holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
-    holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
     zOffset = -1.81;
     translate_z(zOffset)
         difference() {
@@ -103,10 +98,10 @@ module frame(left=true) {
                     boltHoleM3Tap(10, horizontal=true);
             // bolt holes to connect to the belt side
             translate([0, 0, size.z/2]) {
-                #translate([holeSeparationTop/2, 0, 0])
+                translate([xCarriageBoltSeparation.x/2, 0, 0])
                     rotate([-90, 90, 0])
                         boltHoleM3Tap(10, horizontal=true);
-                #translate([holeSeparationBottom/2, 0, -48.5])
+                translate([xCarriageBoltSeparation.x/2, 0, -xCarriageBoltSeparation.y])
                     rotate([-90, 90, 0])
                         boltHoleM3Tap(10, horizontal=true);
             }
