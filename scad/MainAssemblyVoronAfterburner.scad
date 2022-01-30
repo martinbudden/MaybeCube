@@ -17,7 +17,7 @@ include <target.scad>
 
 //$explode=1;
 module printheadVoronAfterburner(rotate=0, explode=100, t=undef) {
-    translate([0, 13.956, 1.81])
+    translate([0, 13.956, 0.81])
         xRailCarriagePosition(carriagePosition(t), rotate) {
             //explode([50, 0, explode]) frameLeft();
             //explode([-50, 0, explode]) frameRight();
