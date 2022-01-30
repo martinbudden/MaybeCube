@@ -22,6 +22,11 @@ module xRail(carriagePosition, xCarriageType=undef) {
             if (is_undef($hide_rails) || $hide_rails == false)
                 rail_assembly(xCarriageType, _xRailLength, eX - _xRailLength/2 - 5 - carriagePosition.x, carriage_end_colour="green", carriage_wiper_colour="red");
 }
+function xRailCarriagePositionZ() =
+    let(xCarriageType = carriageType(_xCarriageDescriptor),
+        xRailType = carriage_rail(xCarriageType),
+        yRailType = railType(_yCarriageDescriptor))
+    eZ - eSize - rail_height(xRailType) - rail_height(yRailType) + carriage_clearance(xCarriageType) + carriage_height(xCarriageType);
 
 module xRailCarriagePosition(carriagePosition, rotate=180) {
     xCarriageType = carriageType(_xCarriageDescriptor);
