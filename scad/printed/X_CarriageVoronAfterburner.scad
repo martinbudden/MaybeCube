@@ -97,7 +97,7 @@ module frame(left=true) {
                 rotate([90, -90, 0])
                     boltHoleM3Tap(10, horizontal=true);
             // bolt holes to connect to the belt side
-            translate([0, 0, size.z/2]) {
+            translate([0, 0, 5]) {
                 translate([xCarriageBoltSeparation.x/2, 0, 0])
                     rotate([-90, 90, 0])
                         boltHoleM3Tap(10, horizontal=true);
