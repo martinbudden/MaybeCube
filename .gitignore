@@ -18,6 +18,8 @@ times.txt
 
 .vscode/
 
+scratch/
+
 documents/*
 !documents/MarlinConfiguration.md
 !documents/klipper_btt_skr_v1_4.cfg
