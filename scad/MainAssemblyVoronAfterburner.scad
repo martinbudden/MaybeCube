@@ -22,21 +22,27 @@ module printheadVoronAfterburner(rotate=0, explode=100, t=undef) {
             //explode([50, 0, explode]) frameLeft();
             //explode([-50, 0, explode]) frameRight();
             explode(explode, false) not_on_bom() {
-                va_x_carriage_frame_left();
-                va_x_carriage_frame_right();
-                bowden = true;
+                frameLeft();
+                frameRight();
+                *rotate([0, -90, 0])
+                    X_Carriage_VA_Frame_Left_16_stl();
+                //va_x_carriage_frame_left();
+                *rotate([0, 90, 0])
+                    X_Carriage_VA_Frame_Right_16_stl();
+                //va_x_carriage_frame_right();
+                bowden = !true;
                 if (bowden) {
                     va_bowden_module_front();
                     va_bowden_module_rear_generic();
                 } else {
                     va_extruder_motor_plate();
-                    va_extruder_body();
+                    //va_extruder_body();
                 }
-                va_blower_housing_rear();
-                va_blower_housing_front();
-                va_hotend_fan_mount();
+                //va_blower_housing_rear();
+                //va_blower_housing_front();
+                //va_hotend_fan_mount();
                 va_printhead_rear_e3dv6();
-                va_printhead_front_e3dv6();
+                //va_printhead_front_e3dv6();
             }
         }
 }

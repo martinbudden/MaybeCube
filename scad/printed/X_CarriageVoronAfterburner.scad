@@ -34,21 +34,48 @@ module frame(left=true) {
     fillet = 1;
     holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
     holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
-    if (left)
-        va_x_carriage_frame_left_top();
-    else
-    mirror([1, 0, 0])
-        va_x_carriage_frame_right_top();
-    translate([0, 0, -1.81])
+    zOffset = -1.81;
+    translate_z(zOffset)
         difference() {
             union() {
-                size1 = [11.7-1, 19, 20.75];
-                translate([22.5 - size1.x, 0, -1])
-                    rounded_cube_yz(size1, fillet);
-                sizeA = [22.5, 11.75, 17.75 + 5];
+                translate_z(-zOffset)
+                    if (left)
+                        va_x_carriage_frame_left_cut();
+                    else
+                        mirror([1, 0, 0])
+                            va_x_carriage_frame_right_cut();
+                size1 = [11.7-1, 17.8, 20.75];
+                translate([22.5 - size1.x, 1, -1])
+                    difference() {
+                        rounded_cube_yz(size1, 0.5);
+                        if (!left) {
+                            size = [size1.x + 4*eps, 4.3, 10];
+                            translate([-eps, 10.75, size1.z-5.25]) {
+                                rounded_cube_yz(size, size.y/2-eps);
+                                translate([0, 0, 5.25]) {
+                                    rotate([90, 180, 90])
+                                        fillet(1.5, size.x);
+                                    translate([0, size.y, 0])
+                                        rotate([0, 90, 0])
+                                            fillet(1, size.x);
+                                }
+                            }
+                        }
+                    }
+                sizeE = [5, 26.60, 8];
+                translate([22.5-sizeE.x, 0, 7.12 - sizeE.z])
+                    rounded_cube_yz(sizeE, 0.5);
+
+                sizeA = [22.5, 11.75, 17.75];
                 translate([0, 0, 19.75 - sizeA.z])
                     rounded_cube_yz(sizeA, fillet);
-                size2 = [11.7, 26.65, 50];
+                sizeA2 = [22.5, 10.4, 39.05];
+                translate([0, 0, 19.75 - sizeA2.z])
+                    rounded_cube_yz(sizeA2, fillet);
+                sizeA3 = [13.15, 5, 62];
+                translate([22.5-sizeA3.x, 0, 19.75 - sizeA3.z])
+                    rounded_cube_yz(sizeA3, fillet);
+                size2 = [11.7, 26.60, 50];
                 translate([22.5-size2.x, 0, -49])
                     rounded_cube_yz(size2, fillet);
                 size3 = [size2.x, 37.5 - 4.5 - squash, size.z];
@@ -60,27 +87,28 @@ module frame(left=true) {
                 size5 = [size.x, 8.35, size.z + 4];
                 translate([0, 0, -49])
                     rounded_cube_yz(size5, fillet);
-            }
+            } // end union
+            translate([-eps, 0, -49])
+                rotate([90,0,90])
+                    fillet(1, 22.5 + 2*eps);
             //translate([-size.x + sizeB.x, 0, 0])
-             {
-                translate([vaExtruderMotorPlateHoleSeparation/2, 0, 12])
+            translate([vaExtruderMotorPlateHoleSeparation/2, 0, 12])
+                rotate([-90, 90, 0])
+                    boltHoleM3Counterbore(19, horizontal=true);
+            *translate([vaHoleSeparationTop/2, size.y + 0.25, 4])
+                rotate([90, -90, 0])
+                    boltHoleM3Tap(10, horizontal=true);
+            translate([vaHoleSeparationBottom/2, size.y + 0.25, -49 + 9.75])
+                rotate([90, -90, 0])
+                    boltHoleM3Tap(10, horizontal=true);
+            // bolt holes to connect to the belt side
+            translate([0, 0, size.z/2]) {
+                #translate([holeSeparationTop/2, 0, 0])
                     rotate([-90, 90, 0])
-                        boltHoleM3Counterbore(19, horizontal=true);
-                translate([vaHoleSeparationTop/2, size.y + 0.25, 4])
-                    rotate([90, -90, 0])
                         boltHoleM3Tap(10, horizontal=true);
-                translate([vaHoleSeparationBottom/2, size.y + 0.25, -49 + 9.75])
-                    rotate([90, -90, 0])
+                #translate([holeSeparationBottom/2, 0, -48.5])
+                    rotate([-90, 90, 0])
                         boltHoleM3Tap(10, horizontal=true);
-                // bolt holes to connect to the belt side
-                translate([0, 0, size.z/2]) {
-                    translate([holeSeparationTop/2, 0, 0])
-                        rotate([-90, 90, 0])
-                            boltHoleM3Tap(10, horizontal=true);
-                    translate([holeSeparationBottom/2, 0, -49])
-                        rotate([-90, 90, 0])
-                            boltHoleM3Tap(10, horizontal=true);
-                }
             }
         }
 }
@@ -141,19 +169,21 @@ module frameRight() {
         }
 }
 
-module va_x_carriage_frame_left_top(full=false) {
+module va_x_carriage_frame_left_cut(full=true) {
     intersection() {
         va_x_carriage_frame_left_raw();
-        translate([full ? -2 : 0, 0, -5])
-            cube([23, 30, 25]);
+        height = 72;
+        translate([full ? -2 : 0, 0, 20 - height])
+            cube([23, 30, height]);
     }
 }
 
-module va_x_carriage_frame_right_top() {
+module va_x_carriage_frame_right_cut() {
     intersection() {
         va_x_carriage_frame_right_raw();
-        translate([-21, -1, -5])
-            cube([23, 29, 25]);
+        height = 72;
+        translate([-21, 0, 20 - height])
+            cube([23, 28, height]);
     }
 }
 
