@@ -35,8 +35,8 @@ module VoronAfterburner_test() {
 }
 //translate(-[carriagePosition().x, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))])
 //printheadVoronAfterburner();
-//X_Carriage_VA_Frame_Left_16_stl()
-//X_Carriage_VA_Frame_Right_16_stl()
+//X_Carriage_VA_Frame_Left_16_stl();
+//X_Carriage_VA_Frame_Right_16_stl();
 //va_x_carriage_frame_left();
 //va_x_carriage_frame_right();
 //va_extruder_motor_plate();
@@ -48,8 +48,8 @@ module VoronAfterburner_test() {
 //va_hotend_fan_mount();
 //va_printhead_rear_e3dv6();
 //va_printhead_front_e3dv6();
-//frame(left=false);
-//va_x_carriage_frame_left_top();
-//va_x_carriage_frame_right_top();
+//frame(left=true);
+//va_x_carriage_frame_left_cut();
+//va_x_carriage_frame_right_cut();
 if ($preview)
     VoronAfterburner_test();
