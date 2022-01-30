@@ -220,6 +220,8 @@ assembly("Base_Plate_Stage_1", big=true, ngb=true) {
             pcbAssembly(pcb, pcbOnBase);
 
     if (psuOnBase) {
+        explode([80, 0, 20])
+            IEC_Housing_assembly();
         explode(50, true)
             basePSUPosition()
                 if (basePSUType[0] == "S_300_12") {
@@ -249,10 +251,6 @@ module Base_Plate_assembly()
 assembly("Base_Plate", big=true, ngb=true) {
 
     Base_Plate_Stage_1_assembly();
-
-    if (psuOnBase)
-        explode([80, 0, 20])
-            IEC_Housing_assembly();
 
     if (!is_undef(_useFrontDisplay) && _useFrontDisplay) {
         explode([0, -50, 0], true)
