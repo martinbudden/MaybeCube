@@ -42,7 +42,7 @@ function xCarriageHoleSeparationTopMGN12H() = halfCarriage ? evaHoleSeparationTo
 function xCarriageHoleSeparationBottomMGN12H() = halfCarriage ? 38 : 35;
 
 xCarriageBeltTensionerSizeX = 23;
-beltClampSize = [25, xCarriageBeltAttachmentSize(beltWidth(), beltSeparation()).x - 0.5, 4.5];
+beltClampSize = [25, xCarriageBeltAttachmentSize(beltWidth(), beltSeparation()).x + 1, 4.5];
 beltsCenterZOffset = coreXYPosBL().z - xRailCarriagePositionZ();
 
 module X_Carriage_Belt_Side_HC_16_stl() {
@@ -167,16 +167,18 @@ module X_Carriage_Belt_Tensioner_RB_stl() {
             xCarriageBeltTensioner(xCarriageBeltTensionerSize(beltWidth(), xCarriageBeltTensionerSizeX));
 }
 
-module X_Carriage_Belt_Clamp_16_stl() {
-    stl("X_Carriage_Belt_Clamp_16"); // semicolon required for XChange build as this is not on BOM
+module X_Carriage_Belt_Clamp_stl() {
+    stl("X_Carriage_Belt_Clamp"); // semicolon required for XChange build as this is not on BOM
+    offset = (beltClampSize.y - xCarriageBeltAttachmentSize(beltWidth(), beltSeparation()).x)/2 - 1;
     color(pp2_colour)
-        xCarriageBeltClamp(beltClampSize, offset=-1.25, countersunk=true);
+        xCarriageBeltClamp(beltClampSize, offset=offset, countersunk=true);
 }
 
-module X_Carriage_Belt_Clamp_Buttonhead_16_stl() {
-    stl("X_Carriage_Belt_Clamp_Buttonhead_16"); // semicolon required for XChange build as this is not on BOM
+module X_Carriage_Belt_Clamp_Buttonhead_stl() {
+    stl("X_Carriage_Belt_Clamp_Buttonhead"); // semicolon required for XChange build as this is not on BOM
+    offset = (beltClampSize.y - xCarriageBeltAttachmentSize(beltWidth(), beltSeparation()).x)/2 - 1;
     color(pp2_colour)
-        xCarriageBeltClamp(beltClampSize, offset=-1.25);
+        xCarriageBeltClamp(beltClampSize, offset=offset);
 }
 
 module X_Carriage_Belt_Clamp_25_stl() {
@@ -203,12 +205,12 @@ module xCarriageBeltClampAssembly(xCarriageType, countersunk=true) {
                     if (usePulley25())
                         X_Carriage_Belt_Clamp_25_stl();
                     else
-                        X_Carriage_Belt_Clamp_16_stl();
+                        X_Carriage_Belt_Clamp_stl();
                 else
                     if (usePulley25())
                         X_Carriage_Belt_Clamp_Buttonhead_25_stl();
                     else
-                        X_Carriage_Belt_Clamp_Buttonhead_16_stl();
+                        X_Carriage_Belt_Clamp_Buttonhead_stl();
             X_Carriage_Belt_Clamp_hardware(beltClampSize, countersunk=countersunk);
         }
 }
