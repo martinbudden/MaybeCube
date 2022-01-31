@@ -31,6 +31,7 @@ scad/stlimporttemp
 scad/stlimport/eva
 scad/stlimport/jubilee
 scad/stlimport/voron
+scad/stlimport/voron-0
 
 tests.*
 tests/*.*
