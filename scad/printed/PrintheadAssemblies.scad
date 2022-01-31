@@ -24,7 +24,7 @@ function hotendClampOffset(xCarriageType, hotendDescriptor="E3DV6") =  [hotendOf
 grooveMountFillet = 1;
 function grooveMountClampSize(blowerType, hotendDescriptor) = [grooveMountSize(blowerType, hotendDescriptor).y - 2*grooveMountFillet - grooveMountClampOffsetX(), 12, 15];
 
-module printheadAssembly() {
+module printheadAssembly(full=true) {
     xCarriageType = MGN12H_carriage;
     blowerType = blowerType();
     hotendDescriptor = "E3DV6";
@@ -35,19 +35,20 @@ module printheadAssembly() {
             explode([20, 0, 0])
                 hotEndHolderHardware(xCarriageType, hotendDescriptor);
 
-            translate(hotendClampOffset(xCarriageType, hotendDescriptor))
-                rotate([90, 0, -90])
-                    explode(-40, true) {
-                        stl_colour(pp2_colour)
-                            if (blower_size(blowerType).x == 30)
-                                Hotend_Clamp_stl();
-                            else
-                                Hotend_Clamp_40_stl();
-                        Hotend_Clamp_hardware(xCarriageType, blowerType, hotendDescriptor);
-                    }
+            if (full)
+                translate(hotendClampOffset(xCarriageType, hotendDescriptor))
+                    rotate([90, 0, -90])
+                        explode(-40, true) {
+                            stl_colour(pp2_colour)
+                                if (blower_size(blowerType).x == 30)
+                                    Hotend_Clamp_stl();
+                                else
+                                    Hotend_Clamp_40_stl();
+                            Hotend_Clamp_hardware(xCarriageType, blowerType, hotendDescriptor);
+                        }
         }
 
-    if (!exploded())
+    if (!exploded() && full)
         translate(printheadWiringOffset())
             for (z = [0, 10])
                 translate([0, -3.5, z + 30])
