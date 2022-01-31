@@ -14,9 +14,9 @@ include <../Parameters_CoreXY.scad>
 axisOffset = coreXYPosBL().x - eSize;
 upperBoltOffset = 11;
 lowerBoltOffset = 5; // so does not interfere with pulley axel bolt
-frontOffset = 0.5; // so idler does not interfere with sliding front panel
+frontOffset = 0.75; // so idler does not interfere with sliding front panel
 function xyIdlerSize() = [eSize - 1 - frontOffset + (pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 4 : 0), pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 65 : 60, 5]; // eSize -1 to allow for imprecisely cut Y rails
-function xyIdlerRailOffset() = eSize - 1 - (pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 0 : frontOffset);
+function xyIdlerRailOffset() = eSize - 1 - (pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 0 : 0);
 armSize = [xyIdlerSize().x, 5.5, 17.5]; // 5.5 y size so 30mm bolt fits exactly
 tabLength = xyIdlerSize().y - armSize.z; //was 27
 tabThickness = 5;
@@ -84,7 +84,9 @@ module xyIdler(left=true, useReversedBelts=false, M5=false) {
                 union() {
                     sideThickness = 2;
                     rounded_cube_yz([size.x, size.y, baseThickness], fillet);
-                    rounded_cube_yz([size.x, sizeY1, size.z], fillet);
+                    // side block below pulley
+                    rounded_cube_yz([size.x, sizeY1-1, size.z], fillet);
+                    // block above pulley
                     translate([0, size.y - sizeY2, 0])
                         rounded_cube_yz([size.x, sizeY2, armSize.z], fillet);
                     translate([0, size.y - tabThickness, 0])
@@ -147,7 +149,7 @@ module xyIdler(left=true, useReversedBelts=false, M5=false) {
                     boltHole(M5 ? M5_clearance_radius : M4_clearance_radius, tabThickness, horizontal=true);
         }
     }
-    translate([frontOffset, coreXYPosBL().z - armSize.y + yCarriageBraceThickness()/2  - (left || !useReversedBelts ? separation.z : 0), 0]) {
+    translate([frontOffset, coreXYPosBL().z - armSize.y + yCarriageBraceThickness()/2 - washerClearance - (left || !useReversedBelts ? separation.z : 0), 0]) {
         difference() {
             rounded_cube_yz(armSize, fillet);
             translate([axisOffset - frontOffset, 0, axisOffset])
@@ -238,10 +240,11 @@ module XY_Idler_hardware(left=true, useReversedBelts=false) {
         washer = coreXYIdlerBore() == 3 ? M3_washer : coreXYIdlerBore() == 4 ? M4_washer : M5_washer;
         translate([left ? axisOffset : eSize - axisOffset, coreXYPosBL().z - coreXYSeparation().z + yCarriageBraceThickness()/2, axisOffset])
             rotate([-90, 0, 0]) {
+                washerClearance = 0.25;
                 if (useReversedBelts) {
                     translate_z(left ? 0 : coreXYSeparation().z) {
                         vflip()
-                            translate_z(armSize.y + eps)
+                            translate_z(armSize.y + washerClearance)
                                 explode(20, true)
                                     boltM3Caphead(20);
                         explode([left ? 25 : -25, 0, -7.5], true)
@@ -249,7 +252,7 @@ module XY_Idler_hardware(left=true, useReversedBelts=false) {
                     }
                 } else {
                     vflip()
-                        translate_z(armSize.y + eps)
+                        translate_z(armSize.y + washerClearance)
                             explode(20, true)
                                 boltM3Caphead(pulley_height(toothed_idler) >= 11 ? 35 : 30);
                     explode = 35;
