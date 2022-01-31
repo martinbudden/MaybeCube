@@ -1,4 +1,4 @@
-_variant = "MC300";
+_variant = "MC300RB";
 
 __extrusionLengths = [300, 300, 400];
 eX = __extrusionLengths.x;
