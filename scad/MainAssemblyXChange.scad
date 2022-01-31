@@ -35,7 +35,7 @@ assembly("XChange", big=true) {
     xCarriageType = MGN12H_carriage;
     carriagePosition = carriagePosition();
 
-    translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType)]) {
+    translate(-[carriagePosition.x, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType)]) {
         *if (!exploded())
             not_on_bom()
                 CoreXYBelts(carriagePosition + [2, 0], x_gap=-25, show_pulleys=![1, 0, 0]);
@@ -51,7 +51,7 @@ assembly("XChange", big=true) {
         }
     }
     not_on_bom()
-        rail_assembly(xCarriageType, _xRailLength, pos=-2, carriage_end_colour="green", carriage_wiper_colour="red");
+        rail_assembly(xCarriageType, _xRailLength, pos=0, carriage_end_colour="green", carriage_wiper_colour="red");
 }
 
 if ($preview)
