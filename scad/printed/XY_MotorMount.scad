@@ -601,7 +601,13 @@ module XY_Motor_Mount_Brace_Left_RB_stl() {
             difference() {
                 translate([sideSupportSizeX - braceShelfWidth, eY + 2*eSize - xyMotorMountSize.y, 0])
                     explode(70)
-                        rounded_cube_xy(size, 1);
+                        union() {
+                            rounded_cube_xy(size, 1);
+                            // add orientation indicator
+                            translate([size.x, 3*size.y/4, 0])
+                                rotate(45)
+                                    rounded_cube_xy([3, 3, size.z], 0.5, xy_center=true);
+                        }
                 for (y = [0, plainIdlerPulleyOffset().y]) {
                     translate([sideSupportSizeX - braceShelfWidth/2, coreXYPosTR(motorWidth).y + y, 0])
                         explode(70)
@@ -635,13 +641,19 @@ module XY_Motor_Mount_Brace_Right_RB_stl() {
     sideSupportSizeX = eSize + 1;
     size = [25 - 1, xyMotorMountSize.y - eSize, braceThickness];
 
-    stl("XY_Motor_Mount_Brace_Left_RB"); // note - need semicolon to ensure explode of xyMotorMountBrace works
+    stl("XY_Motor_Mount_Brace_Right_RB"); // note - need semicolon to ensure explode of xyMotorMountBrace works
     color(pp2_colour)
         translate_z(basePlateThickness(useReversedBelts=true) + braceOffsetZ)
             difference() {
                 translate([eX + 2*eSize - sideSupportSizeX + braceShelfWidth - size.x, eY + 2*eSize - xyMotorMountSize.y, 0])
                     explode(70)
-                        rounded_cube_xy(size, 1);
+                        union() {
+                            rounded_cube_xy(size, 1);
+                            // add orientation indicator
+                            translate([0, 3*size.y/4, 0])
+                                rotate(45)
+                                    rounded_cube_xy([3, 3, size.z], 0.5, xy_center=true);
+                        }
                 for (y = [0, plainIdlerPulleyOffset().y]) {
                     translate([eX + 2*eSize - sideSupportSizeX + braceShelfWidth/2, coreXYPosTR(motorWidth).y + y, 0])
                         explode(70)
