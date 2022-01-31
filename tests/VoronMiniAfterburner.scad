@@ -25,7 +25,8 @@ module VoronMiniAfterburner_test() {
         printheadBeltSide(rotate);
         //printheadHotendSide(rotate);
         *xRailCarriagePosition(carriagePosition, rotate) // rotate is for debug, to see belts better
-            printheadAssembly(full=false);
+            translate([-6, -5, 7])
+                printheadAssembly(full=false);
 
         printheadVoronMiniAfterburner(rotate);
         translate_z(eZ)

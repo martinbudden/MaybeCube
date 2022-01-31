@@ -22,7 +22,7 @@ t = 2;
 module XChange_test() {
     xCarriageType = MGN12H_carriage;
     rotate(180)
-    translate(-[eSize + eX/2, carriagePosition(t).y, eZ - yRailOffset().x - carriage_clearance(xCarriageType)]) {
+    translate(-[carriagePosition(t).x, carriagePosition(t).y, eZ - yRailOffset().x - carriage_clearance(xCarriageType)]) {
         //CoreXYBelts(carriagePosition() + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
         //printheadBeltSide();
         printheadXChange();

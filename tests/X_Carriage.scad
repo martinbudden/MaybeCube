@@ -6,6 +6,7 @@ use <../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 
 use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/X_CarriageAssemblies.scad>
+use <../scad/utils/X_Rail.scad>
 
 include <../scad/utils/carriageTypes.scad>
 
@@ -36,7 +37,7 @@ module X_Carriage_test() {
     //X_Carriage_Belt_Tensioner_stl();
     //Fan_Duct_stl();
     //X_Carriage_Belt_Tensioner_stl();
-    //X_Carriage_Belt_Clamp_16_stl();
+    //X_Carriage_Belt_Clamp_stl();
     //xCarriageBeltAttachmentTest_stl();
     //vflip() xCarriageBeltClamp([xCarriageBeltAttachmentSize().x - 0.5, 25+2, 4.5], holeSeparation=18, countersunk=true);
 }

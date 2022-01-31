@@ -32,7 +32,7 @@ module Printhead_test() {
 
     halfCarriage = false;
     translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
-        CoreXYBelts(carriagePosition, x_gap = -25, show_pulleys = ![1, 0, 0]);
+        CoreXYBelts(carriagePosition, x_gap = -30, show_pulleys = ![1, 0, 0]);
         //printheadBeltSide();
         printheadHotendSide();
         //printheadEVA();
