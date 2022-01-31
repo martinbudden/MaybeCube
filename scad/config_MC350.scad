@@ -20,13 +20,14 @@ _xCarriageCountersunk = true;
 _yCarriageDescriptor = "MGN12H";
 
 
-_coreXYDescriptor = "GT2_20_16";
+_coreXYDescriptor = "GT2_20_16_fb";
 
 _use2060ForTop = true;
 _useDualZRods = false;
 _useDualZMotors = false;
 _useElectronicsInBase = true;
 _useFrontDisplay = true;
+_useReversedBelts = true;
 _useSidePanels = true;
 
 _printbedSize = [235, 235, 4]; // Ender 3 size
