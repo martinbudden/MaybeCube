@@ -8,9 +8,10 @@ include <NopSCADlib/vitamins/blowers.scad>
 
 include <../utils/PrintheadOffsets.scad>
 
+use <../utils/X_Rail.scad>
+include <../utils/X_Carriage.scad>
 include <../vitamins/bolts.scad>
 include <../vitamins/inserts.scad>
-use <../utils/X_Rail.scad>
 
 use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
@@ -20,9 +21,10 @@ include <../../../BabyCube/scad/printed/X_CarriageFanDuct.scad>
 include <../Parameters_CoreXY.scad>
 
 halfCarriage = (!is_undef(_useHalfCarriage) && _useHalfCarriage==true);
-
-function xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation) =  [max(carriage_size(xCarriageType).x, 30), 4, halfCarriage ? (36 + beltSeparation - 4.5 + (beltSeparation == 7 ? 1.25 : 0) + carriage_height(xCarriageType) + xCarriageTopThickness() + (!is_undef(beltWidth) && beltWidth == 9 ? 4.5 : 0)) : 58];
-function xCarriageHotendSideSizeM(xCarriageType, beltWidth, beltSeparation) = [xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation).x, halfCarriage ? 5 : 7, xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation).z];
+// HC_size = [45.4, 4, 57]
+//function xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation) =  [max(carriage_size(xCarriageType).x, 30), 4, halfCarriage ? (36 + beltSeparation - 4.5 + (beltSeparation == 7 ? 1.25 : 0) + carriage_height(xCarriageType) + xCarriageTopThickness() + (!is_undef(beltWidth) && beltWidth == 9 ? 4.5 : 0)) : 58];
+function xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation) =  [max(carriage_size(xCarriageType).x, xCarriageSize.x), 4, xCarriageSize.z];
+function xCarriageHotendSideSizeM(xCarriageType, beltWidth, beltSeparation) = [xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation).x, halfCarriage ? 5 : xCarriageSize.y, xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation).z];
 function xCarriageHotendOffsetY(xCarriageType) = carriage_size(xCarriageType).y/2 + xCarriageHotendSideSizeM(xCarriageType, 0, 0).y + 0.5;
 
 function hotendOffset(xCarriageType, hotendDescriptor="E3DV6") = printheadHotendOffset(hotendDescriptor) + [-xCarriageHotendSideSizeM(xCarriageType, 0, 0).x/2, xCarriageHotendOffsetY(xCarriageType), 0];
@@ -38,8 +40,8 @@ function xCarriageHoleOffsetTop() = halfCarriage ? -1 : 0;//[5.65, -1]; // for a
 //evaHoleOffsetBottom = 9.7;
 //evaHoleSeparationBottom = 26;
 evaHoleSeparationTop = 34;
-function xCarriageHoleSeparationTopMGN12H() = halfCarriage ? evaHoleSeparationTop : 35; //45.4 - 8
-function xCarriageHoleSeparationBottomMGN12H() = halfCarriage ? 38 : 35;
+function xCarriageHoleSeparationTopMGN12H() = halfCarriage ? evaHoleSeparationTop : xCarriageBoltSeparation.x; //45.4 - 8
+function xCarriageHoleSeparationBottomMGN12H() = halfCarriage ? 38 : xCarriageBoltSeparation.x;
 
 xCarriageBeltTensionerSizeX = 23;
 beltClampSize = [25, xCarriageBeltAttachmentSize(beltWidth(), beltSeparation()).x + 1, 4.5];
