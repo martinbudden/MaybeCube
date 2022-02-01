@@ -583,7 +583,7 @@ module XY_Motor_Mount_Pulley_Spacer_stl() {
     color(pp3_colour)
         difference() {
             h = pulleyStackHeight + yCarriageBraceThickness();
-            cylinder(h=h, d=pulley_od(GT2x16x3x8_plain_idler_fb));
+            cylinder(h=h, d=7.5);
             boltHoleM3(h);
         }
 }
