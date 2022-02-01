@@ -103,12 +103,12 @@ module X_Carriage_XChange_hardware(halfCarriage, usePulley25) {
 
         holeSeparation = carriage_pitch_y(xCarriageType);
         for (y = [-holeSeparation/2, holeSeparation/2]) {
-            // bolt holes to connect to the XChange
+            // bolts to connect to the XChange
             for (x = halfCarriage ? [holeSeparation] :  [holeSeparation, 0])
                 translate([x + xChangeBoltOffset, y + size.x/2, halfCarriage ? -2 : -10])
                     vflip()
                         boltM3Caphead(6);
-            // bolt holes to connect to to the MGN carriage
+            // bolts to connect to to the MGN carriage
             if (halfCarriage)
                 translate([-2, y + size.x/2, halfCarriage ? 4 : -4])
                     rotate([90, 0, 90])
