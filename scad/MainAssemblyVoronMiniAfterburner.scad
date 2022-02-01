@@ -20,12 +20,15 @@ module printheadVoronMiniAfterburner(rotate=0, explode=100, t=undef) {
     xRailCarriagePosition(carriagePosition(t), rotate) {
         *translate([-10, 14, -40])
             cube([20, 10, 40]);
-        translate([0, 14 + 5.8, 2.2]) {
-            vma_x_carriage_90_x1();
+        translate([0, 14 + 7.3 + 4.25, 2.2]) {
+            //vma_x_carriage_90_x1();
             vma_motor_frame_x1();
-            //vma_mid_body_x1();
-            //vma_cowling_mosquito_x1();
+            vma_mid_body_x1();
+            vma_cowling_mosquito_x1();
         }
+        translate([0, 14, -50])
+            rotate([90, 0, 180])
+                X_Carriage_Voron_Mini_Afterburner_stl();
     }
 }
 
