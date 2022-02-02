@@ -18,20 +18,20 @@ xChangeBoltOffset = 4 - 0.2; // 0.2 to allow clearance for xCarriage countersunk
 
 module X_Carriage_XChange_HC_16_stl() {
     stl("X_Carriage_XChange_HC_16")
-        color(pp1_colour)
+        color(pp3_colour)
             xCarriageXChange(coreXY_GT2_20_16, halfCarriage=true);
 }
 
 module X_Carriage_XChange_16_stl() {
     stl("X_Carriage_XChange_16")
-        color(pp1_colour)
+        color(pp3_colour)
             rotate([180, 0, 90]) // align for printing
                 xCarriageXChange(coreXY_GT2_20_16, halfCarriage=false);
 }
 
 module X_Carriage_XChange_25_stl() {
     stl("X_Carriage_XChange_25")
-        color(pp1_colour)
+        color(pp3_colour)
             rotate([180, 0, 90]) // align for printing
                 xCarriageXChange(coreXY_GT2_20_25, halfCarriage=false);
 }
@@ -124,7 +124,7 @@ module xCarriageXChangeAssembly() {
 
     explode([0, 40, 0], true)
         rotate([0, 90, -90]) {
-            stl_colour(pp1_colour)
+            stl_colour(pp3_colour)
                 if (halfCarriage)
                     X_Carriage_XChange_HC_16_stl();
                 else
@@ -136,5 +136,5 @@ module xCarriageXChangeAssembly() {
                                 X_Carriage_XChange_16_stl();
             X_Carriage_XChange_hardware(halfCarriage, usePulley25());
         }
-    hidden() X_Carriage_XChange_25_stl();
+    hidden() stl_colour(pp3_colour) X_Carriage_XChange_25_stl();
 }
