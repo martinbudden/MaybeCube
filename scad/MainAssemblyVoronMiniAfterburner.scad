@@ -18,8 +18,6 @@ include <target.scad>
 //$explode=1;
 module printheadVoronMiniAfterburner(rotate=0, explode=100, t=undef) {
     xRailCarriagePosition(carriagePosition(t), rotate) {
-        *translate([-10, 14, -40])
-            cube([20, 10, 40]);
         translate([0, 14 + 7.3 + 4.25, 2.2]) {
             //vma_x_carriage_90_x1();
             vma_motor_frame_x1();
