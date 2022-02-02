@@ -20,7 +20,9 @@ _xCarriageCountersunk = true;
 _yCarriageDescriptor = "MGN12H";
 _zCarriageDescriptor = "MGN12C";
 
-_coreXYDescriptor = "GT2_20_25";
+_coreXYDescriptor = "GT2_20_16_fb";
+
+_useReversedBelts = true;
 
 _printbedSize = [305, 300, 6.35];
 _printbedHoleOffset = [8, 30];
