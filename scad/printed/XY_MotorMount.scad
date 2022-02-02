@@ -693,8 +693,8 @@ module xyMotorMountLeftStl(useReversedBelts=false, M5=false) {
 }
 
 module XY_Motor_Mount_Left_RB_stl() {
-    stl("XY_Motor_Mount_Left_RB")
-        xyMotorMountLeftStl(useReversedBelts=true);
+    stl("XY_Motor_Mount_Left_RB");
+    xyMotorMountLeftStl(useReversedBelts=true);
 }
 
 module XY_Motor_Mount_Left_16_stl() {
@@ -761,8 +761,8 @@ module xyMotorMountRightStl(useReversedBelts=false, M5=false) {
 }
 
 module XY_Motor_Mount_Right_RB_stl() {
-    stl("XY_Motor_Mount_Right_RB")
-        xyMotorMountRightStl(useReversedBelts=true);
+    stl("XY_Motor_Mount_Right_RB");
+    xyMotorMountRightStl(useReversedBelts=true);
 }
 
 module XY_Motor_Mount_Right_16_stl() {
