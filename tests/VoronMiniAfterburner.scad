@@ -40,6 +40,9 @@ module VoronMiniAfterburner_test() {
 
 //xCarriageVoronMiniAfterburner();
 //vma_x_carriage_90_x1();
+//vma_vlatch_dd_x1();
+//vma_vlatch_shuttle_dd_x1();
+//vma_guidler_dd_x1();
 //vma_motor_frame_x1();
 //vma_mid_body_x1();
 //vma_cowling_mosquito_x1();

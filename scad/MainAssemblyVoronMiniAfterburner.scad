@@ -23,6 +23,9 @@ module printheadVoronMiniAfterburner(rotate=0, explode=100, t=undef) {
             vma_motor_frame_x1();
             vma_mid_body_x1();
             vma_cowling_mosquito_x1();
+            vma_vlatch_dd_x1();
+            vma_vlatch_shuttle_dd_x1();
+            vma_guidler_dd_x1();
         }
         translate([0, 14, -50])
             rotate([90, 0, 180]) {
