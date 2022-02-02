@@ -17,49 +17,84 @@ include <../vitamins/nuts.scad>
 xCarriageType = MGN12H_carriage;
 
 module X_Carriage_Voron_Mini_Afterburner_stl() {
-    stl("X_Carriage_Voron_Mini_Afterburner")
-        color(pp3_colour)
+    stl("X_Carriage_Voron_Mini_Afterburner");
+    color(pp3_colour)
+        rotate(180) // align for printing
             xCarriageVoronMiniAfterburner();
 }
 
+xCarriageVoronMiniAfterburnerOffsetZ = 4.5; // was 4.25, increased for cable clearance
+
 module xCarriageVoronMiniAfterburner() {
     size = [xCarriageSize.x, xCarriageSize.z + 5.35, xCarriageSize.y];
-    size2 = [35, 20, size.z + 4.25];
-    translate([-size.x/2, 0, 0])
+    size2 = [35, 20, size.z + xCarriageVoronMiniAfterburnerOffsetZ];
         difference() {
             union() {
-                rounded_cube_xy(size, 1);
-                translate([size.x/2-size2.x/2, size.y - size2.y, 0])
+                translate([-size.x/2, 0, 0])
+                    rounded_cube_xy(size, 1);
+                translate([-size2.x/2, size.y - size2.y, 0])
                     rounded_cube_xy(size2, 1);
             }
-            for (x = [0, xCarriageBoltSeparation.x], y = [0])
-                translate([x + (size.x - xCarriageBoltSeparation.x)/2, y + 4, 0])
-                    boltHoleM3Tap(xCarriageSize.y);
-            for (x = [0, xCarriageBoltSeparation.x], y = [xCarriageBoltSeparation.y])
-                translate([x + (size.x - xCarriageBoltSeparation.x)/2, y + 4, 0])
-                    boltHoleM3Tap(xCarriageSize.y - 1);
+            // cutout for hotend cooling fan exhaust
+            translate([0, 29, -eps])
+                cylinder(d=26, h=size2.z + 2*eps);
+            // cutout to avoid heat block
+            hull() {
+                fillet = 1;
+                r1Size = [22, 24 + fillet, eps];
+                translate([-r1Size.x/2, -fillet - eps, size.z])
+                    rounded_cube_xy(r1Size, fillet);
+                r2Size = [5, r1Size.y, eps];
+                translate([-r2Size.x/2, -fillet - eps, size.z - 5])
+                    rounded_cube_xy(r2Size, fillet);
+            }
+            // cutout at top for stepper motor
             r = 18.58;
-            translate([size.x/2, 76.57, -eps])
+            translate([0, 76.57, -eps])
                 cylinder(r=r, h=size2.z + 2*eps);
 
-            translate([6.27 + size.x/2, 51.33, size2.z]) {
+            // bolt holes for attachment to X_Carriage_Belt_Side
+            for (x = [0, xCarriageBoltSeparation.x], y = [0])
+                translate([x + -xCarriageBoltSeparation.x/2, y + 4, 0])
+                    boltHoleM3Tap(xCarriageSize.y);
+            for (x = [0, xCarriageBoltSeparation.x], y = [xCarriageBoltSeparation.y])
+                translate([x + -xCarriageBoltSeparation.x/2, y + 4, 0])
+                    boltHoleM3Tap(xCarriageSize.y - 1);
+
+            // bolt holes for attachment to Voron Mini Afterburner
+            translate([6.27, 51.33, size2.z]) {
                 *translate_z(size2.z - 5)
                     boltHole(2*insert_hole_radius(F1BM3), 5);
                 vflip()
                     boltHoleM3Tap(size2.z - 1);
             }
             for (x = [-13, 13])
-                translate([x + size.x/2, 48.05, size2.z]) {
+                translate([x, 48.05, size2.z]) {
                     *translate_z(-5)
                         boltHole(2*insert_hole_radius(F1BM3), 5);
                     vflip()
                         boltHoleM3Tap(size2.z - 1);
                 }
             for (x = [-11.65, 11.65])
-                translate([x + size.x/2, 57.95, size2.z])
+                translate([x, 57.95, size2.z])
                     vflip()
-                        boltHoleM2Tap(8);
+                        boltHoleM2Tap(size2.z - 1);
         }
+}
+
+module xCarriageVoronMiniAfterburner_hardware() {
+    rotate(180) {
+        translate([0, 0, 42.5]) {
+            translate([6.270, 51.33, 0])
+                boltM3Countersunk(40);
+            for (x = [-13, 13])
+                translate([x, 48.05, 0])
+                    boltM3Countersunk(40);
+        }
+        for (x = [-11.65, 11.65])
+            translate([x, 57.95, xCarriageSize.y + xCarriageVoronMiniAfterburnerOffsetZ])
+                boltM2Caphead(8);
+    }
 }
 
 module vmaImportStl(file) {

@@ -27,8 +27,13 @@ module printheadVoronMiniAfterburner(rotate=0, explode=100, t=undef) {
             vma_cowling_mosquito_x1();
         }
         translate([0, 14, -50])
-            rotate([90, 0, 180])
-                X_Carriage_Voron_Mini_Afterburner_stl();
+            rotate([90, 0, 180]) {
+                rotate(180) {
+                    stl_colour(pp3_colour)
+                        X_Carriage_Voron_Mini_Afterburner_stl();
+                    xCarriageVoronMiniAfterburner_hardware();
+                }
+            }
     }
 }
 
@@ -38,18 +43,19 @@ assembly("Voron_Mini_Afterburner", big=true) {
     xCarriageType = MGN12H_carriage;
     carriagePosition = carriagePosition();
 
-    translate(-[carriagePosition.x, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType)]) {
-        if (!exploded())
-            not_on_bom()
-                CoreXYBelts(carriagePosition, x_gap=-25, show_pulleys=![1, 0, 0]);
-        printheadVoronMiniAfterburner();
-        no_explode() not_on_bom()
-            printheadBeltSide();
+    rotate(180) {
+        translate(-[carriagePosition.x, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType)]) {
+            *if (!exploded())
+                not_on_bom()
+                    CoreXYBelts(carriagePosition, x_gap=-25, show_pulleys=![1, 0, 0]);
+            printheadVoronMiniAfterburner();
+            no_explode() not_on_bom()
+                printheadBeltSide();
+        }
+        not_on_bom()
+            rail_assembly(xCarriageType, _xRailLength, pos=-2, carriage_end_colour="green", carriage_wiper_colour="red");
     }
-    not_on_bom()
-        rail_assembly(xCarriageType, _xRailLength, pos=-2, carriage_end_colour="green", carriage_wiper_colour="red");
 }
 
 if ($preview)
-    rotate(180)
-        Voron_Mini_Afterburner_assembly();
+    Voron_Mini_Afterburner_assembly();
