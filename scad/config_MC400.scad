@@ -20,7 +20,7 @@ _xCarriageCountersunk = true;
 _yCarriageDescriptor = "MGN12H";
 _zCarriageDescriptor = "MGN12C";
 
-_coreXYDescriptor = "GT2_20_25";
+_coreXYDescriptor = "GT2_20_16_fb";
 
 _use2060ForTop = true;
 _useDualZRods = false;

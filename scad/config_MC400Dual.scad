@@ -20,12 +20,13 @@ _xCarriageCountersunk = true;
 _yCarriageDescriptor = "MGN12H";
 
 
-_coreXYDescriptor = "GT2_20_25";
+_coreXYDescriptor = "GT2_20_16_fb";
 
 _use2060ForTop = true;
 _useDualZRods = true;
 _useDualZMotors = true;
 _useFrontDisplay = true;
+_useReversedBelts = true;
 _useSidePanels = true;
 
 _printbedSize = [310, 310, 3] : // CR-10 size
