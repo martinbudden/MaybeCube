@@ -54,7 +54,7 @@ assembly("Voron_Afterburner", big=true) {
     carriagePosition = carriagePosition();
 
     translate(-[carriagePosition.x, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType)]) {
-        if (!exploded())
+        *if (!exploded())
             not_on_bom()
                 CoreXYBelts(carriagePosition + [2, 0], x_gap=-25, show_pulleys=![1, 0, 0]);
         printheadVoronAfterburner();

@@ -1,6 +1,6 @@
 _variant = "EVA";
 
-__extrusionLengths = [250, 250, 400];
+__extrusionLengths = [350, 350, 400];
 eX = __extrusionLengths.x;
 eY = __extrusionLengths.y;
 eZ = __extrusionLengths.z;

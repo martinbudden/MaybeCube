@@ -82,7 +82,7 @@ assembly("EVA_Stage_1", big=true) {
         not_on_bom()
             rail_assembly(xCarriageType, _xRailLength, pos=0, carriage_end_colour="green", carriage_wiper_colour="red");
     carriagePosition = carriagePosition();
-    if (!exploded())
+    *if (!exploded())
         rotate(180)
             translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType)])
                 not_on_bom()
