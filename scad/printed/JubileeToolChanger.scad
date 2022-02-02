@@ -21,23 +21,27 @@ include <../Parameters_Main.scad>
 toolChangerAxelOffsetZ = 15 - 8; //15.6 + 5.55/2 + 1.15-5;
 
 module toolChangerImportStl(file) {
-    import(str("../stlimport/jubilee/toolchanger/toolchange_carriage/", file, ".stl"));
+    import(str("../../../stlimport/jubilee/toolchanger/", file, ".stl"));
+}
+
+module toolChangerCarriageImportStl(file) {
+    import(str("../../../stlimport/jubilee/toolchanger/toolchange_carriage/", file, ".stl"));
 }
 
 module toolChangerPenImportStl(file) {
-    import(str("../stlimport/jubilee/toolchanger/pen/", file, ".stl"));
+    import(str("../../../stlimport/jubilee/toolchanger/pen/", file, ".stl"));
 }
 
 module toolChangerBondtechImportStl(file) {
-    import(str("../stlimport/jubilee/toolchanger/bondtech/", file, ".stl"));
+    import(str("../../../stlimport/jubilee/toolchanger/bondtech/", file, ".stl"));
 }
 
 module toolChangerToolPostImportStl(file) {
-    import(str("../stlimport/jubilee/toolchanger/tool_posts/", file, ".stl"));
+    import(str("../../../stlimport/jubilee/toolchanger/tool_posts/", file, ".stl"));
 }
 
 module toolChangerLockingMechanismImportStl(file) {
-    import(str("../stlimport/jubilee/toolchanger/toolchanger_locking_mechanism/", file, ".stl"));
+    import(str("../../../stlimport/jubilee/toolchanger/toolchanger_locking_mechanism/", file, ".stl"));
 }
 
 module lock_actuator_base_plate_stl() {
@@ -265,7 +269,7 @@ module wedge_plate_stl() {
     stl("wedge_plate")
         translate([-14.4, -16, 0])
             color(pp2_colour)
-                import(str("../stlimport/jubilee/toolchanger/wedge_plate", ".stl"));
+                toolChangerImportStl("wedge_plate");
 }
 
 module wedge_plate_hardware() {
@@ -554,7 +558,7 @@ module carriage_pulley_stl() {
     stl("carriage_pulley")
         color(pp1_colour)
             translate([-150, -133.5, 0])
-                toolChangerImportStl("carriage_pulley");
+                toolChangerCarriageImportStl("carriage_pulley");
 }
 
 module carriage_back_plate_stl() {
@@ -566,7 +570,7 @@ module carriage_back_plate_stl() {
                         cube([80, 56.5, 8+2*eps]);
                     rotate(180)
                         translate([-150, -164.765, 0])
-                            toolChangerImportStl("carriage_back_plate");
+                            toolChangerCarriageImportStl("carriage_back_plate");
                 }
 }
 
@@ -590,7 +594,7 @@ module carriage_center_plate_stl() {
     stl("carriage_center_plate")
         color(pp4_colour)
             translate([-150, -159, 0])
-                toolChangerImportStl("carriage_center_plate");
+                toolChangerCarriageImportStl("carriage_center_plate");
 }
 
 module carriage_center_plate_assembly() {
@@ -604,7 +608,7 @@ module carriage_coupler_plate_stl() {
     stl("carriage_coupler_plate")
         color(pp3_colour)
             translate([-37.15, -27.568, 0])
-                toolChangerImportStl("carriage_coupler_plate");
+                toolChangerCarriageImportStl("carriage_coupler_plate");
 }
 
 module carriage_coupler_plate_assembly() {

@@ -83,7 +83,7 @@ assembly("JubileeToolChanger", big=true) {
         toolChanger(t, "bondtech");
         tools();
     }
-    //not_on_bom()
+    not_on_bom()
         no_explode()
             Face_Top_Stage_2_assembly();
     if (!exploded())

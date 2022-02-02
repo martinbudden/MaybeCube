@@ -174,23 +174,23 @@ module xyIdler(left=true, useReversedBelts=false, M5=false) {
 
 module XY_Idler_Channel_Nut_stl() {
     size = xyIdlerSize();
-    stl("XY_Idler_Channel_Nut_16")
-        color(pp2_colour)
-            extrusionChannel(size.y, boltHoles=[lowerBoltOffset, size.y - upperBoltOffset]);
+    stl("XY_Idler_Channel_Nut");
+    color(pp2_colour)
+        extrusionChannel(size.y, boltHoles=[lowerBoltOffset, size.y - upperBoltOffset]);
 }
 
 module XY_Idler_Channel_Nut_16_stl() {
     size = xyIdlerSize();
-    stl("XY_Idler_Channel_Nut_16")
-        color(pp2_colour)
-            extrusionChannel(size.y, boltHoles=[lowerBoltOffset, size.y - upperBoltOffset]);
+    stl("XY_Idler_Channel_Nut_16");
+    color(pp2_colour)
+        extrusionChannel(size.y, boltHoles=[lowerBoltOffset, size.y - upperBoltOffset]);
 }
 
 module XY_Idler_Channel_Nut_25_stl() {
     size = xyIdlerSize();
-    stl("XY_Idler_Channel_Nut_25")
-        color(pp2_colour)
-            extrusionChannel(size.y, boltHoles=[lowerBoltOffset, size.y - upperBoltOffset]);
+    stl("XY_Idler_Channel_Nut_25");
+    color(pp2_colour)
+        extrusionChannel(size.y, boltHoles=[lowerBoltOffset, size.y - upperBoltOffset]);
 }
 
 module XY_Idler_hardware(left=true, useReversedBelts=false) {
@@ -289,10 +289,10 @@ module XY_Idler_Left_16_stl() {
 
 module XY_Idler_Left_RB_stl() {
     // rotate for printing, so that base filament pattern aligns with main diagonal
-    stl("XY_Idler_Left_RB")
-        color(pp1_colour)
-            rotate([90, -90, 0])
-                xyIdler(left=true, useReversedBelts=true);
+    stl("XY_Idler_Left_RB");
+    color(pp1_colour)
+        rotate([90, -90, 0])
+            xyIdler(left=true, useReversedBelts=true);
 }
 
 module XY_Idler_Left_25_stl() {
@@ -320,11 +320,11 @@ module XY_Idler_Right_16_stl() {
 }
 
 module XY_Idler_Right_RB_stl() {
-    stl("XY_Idler_Right_RB")
-        color(pp1_colour)
-            rotate([0, 90, 0])
-                mirror([1, 0, 0])
-                    xyIdler(left=false, useReversedBelts=true);
+    stl("XY_Idler_Right_RB");
+    color(pp1_colour)
+        rotate([0, 90, 0])
+            mirror([1, 0, 0])
+                xyIdler(left=false, useReversedBelts=true);
 }
 
 module XY_Idler_Right_25_stl() {

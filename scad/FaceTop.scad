@@ -155,7 +155,7 @@ module faceTopBack(fov_distance=0) {
                             jointBoltHole();
             }
         }
-        if (_variant != "JubileeToolChanger")
+        if (_variant != "JubileeToolChanger") {
             explode([0, -40, 0], true)
                 wiringGuidePosition(offsetX=cameraMountBaseSize.x/2)
                     vflip() {
@@ -163,10 +163,11 @@ module faceTopBack(fov_distance=0) {
                             Wiring_Guide_Socket_stl();
                         Wiring_Guide_Socket_hardware();
                     }
-        cameraMountPosition() {
-            stl_colour(pp1_colour)
-                Camera_Mount_stl();
-            Camera_Mount_hardware(fov_distance);
+            cameraMountPosition() {
+                stl_colour(pp1_colour)
+                    Camera_Mount_stl();
+                Camera_Mount_hardware(fov_distance);
+            }
         }
     }
 }

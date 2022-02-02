@@ -53,15 +53,15 @@ module topCornerPiece(guide=true) {
 }
 
 module Top_Corner_Piece_stl() {
-    stl("Top_Corner_Piece")
-        color(pp1_colour)
-            topCornerPiece();
+    stl("Top_Corner_Piece");
+    color(pp1_colour)
+        topCornerPiece();
 }
 
 module Top_Corner_Piece_Flat_stl() {
-    stl("Top_Corner_Piece_Flat")
-        color(pp1_colour)
-            topCornerPiece(guide=false);
+    stl("Top_Corner_Piece_Flat");
+    color(pp1_colour)
+        topCornerPiece(guide=false);
 }
 
 module Top_Corner_Piece_hardware(rotate=0) {
