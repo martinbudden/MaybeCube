@@ -20,7 +20,7 @@ vaExtruderMotorPlateHoleSeparation = 32.4;
 
 
 module vaImportStl(file) {
-    import(str("../stlimport/voron/X_Carriage/", file, ".stl"), convexity=10);
+    import(str("../../../stlimport/voron/X_Carriage/", file, ".stl"), convexity=10);
 }
 
 squash = 0;//11;

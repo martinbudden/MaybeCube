@@ -217,11 +217,13 @@ module EVA_MC_BottomMgn12(ductSizeY=undef, airflowSplit=false) {
 
         beltAttachmentSize = xCarriageBeltAttachmentSize(beltWidth(), beltSeparation(), size.y);
         extraZ = 0.5;
-        translate_z(extraZ)
-            rotate(90)
-                xCarriageBeltAttachment(beltAttachmentSize, beltWidth(), beltSeparation());
-        translate([-beltAttachmentSize.x, 0, 0])
-            cube([beltAttachmentSize.x, size.y, extraZ]);
+        translate([-8.5, 0, 0]) {
+            translate_z(extraZ)
+                rotate(90)
+                    xCarriageBeltAttachment(beltAttachmentSize, beltWidth(), beltSeparation());
+            translate([-beltAttachmentSize.x/2 - 1, 0, 0])
+                cube([beltAttachmentSize.x, size.y, extraZ]);
+        }
     }
 }
 
@@ -254,7 +256,7 @@ module EVA_MC_TopMgn12(counterBore=true) {
 }
 
 module evaImportStl(file) {
-    import(str("../stlimport/eva/", file, ".stl"));
+    import(str("../../../stlimport/eva/", file, ".stl"));
 }
 
 module EvaTopConvert(stlFile, zOffset=5, horizontal=true) {

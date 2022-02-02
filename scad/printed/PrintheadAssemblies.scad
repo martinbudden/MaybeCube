@@ -107,7 +107,7 @@ module bl_touch_mount_stl() {
             translate([0, -4, -7.5])
                 translate([20.5, -1, 4])
                     rotate([180, 0, 0])
-                        import(str("../stlimport/eva/bl_touch_mount.stl"));
+                        import(str("../../../stlimport/eva/bl_touch_mount.stl"));
 }
 
 module bl_touch_mount() {
@@ -117,7 +117,7 @@ module bl_touch_mount() {
         translate([7.25, 16, 3.5])
             rotate(90)
                 color(grey(90))
-                    import(str("../stlimporttemp/BLTouch_Model.stl"));
+                    import(str("../../../stlimporttemp/BLTouch_Model.stl"));
     }
 }
 
