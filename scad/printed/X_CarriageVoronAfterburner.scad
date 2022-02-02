@@ -109,10 +109,10 @@ module frame(left=true) {
 }
 
 module X_Carriage_VA_Frame_Left_16_stl() {
-    stl("X_Carriage_VA_Frame_Left_16")
-        color(pp1_colour)
-            rotate([0, 90, 0]) // align for printing
-                frame(left=true);
+    stl("X_Carriage_VA_Frame_Left_16");
+    color(pp1_colour)
+        rotate([0, 90, 0]) // align for printing
+            frame(left=true);
 }
 
 module frameLeft() {
@@ -136,11 +136,11 @@ module frameLeft() {
 }
 
 module X_Carriage_VA_Frame_Right_16_stl() {
-    stl("X_Carriage_VA_Frame_Right_16")
-        color(pp2_colour)
-            rotate([0, -90, 0]) // align for printing
-                mirror([1, 0, 0])
-                    frame(left=false);
+    stl("X_Carriage_VA_Frame_Right_16");
+    color(pp2_colour)
+        rotate([0, -90, 0]) // align for printing
+            mirror([1, 0, 0])
+                frame(left=false);
 }
 
 
