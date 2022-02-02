@@ -98,7 +98,7 @@ module xCarriageVoronMiniAfterburner_hardware() {
 }
 
 module vmaImportStl(file) {
-    import(str("../stlimport/voron-0/", file, ".stl"), convexity=10);
+    import(str("../../../stlimport/voron-0/", file, ".stl"), convexity=10);
 }
 
 module vma_x_carriage_90_x1() {
