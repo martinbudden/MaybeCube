@@ -14,6 +14,10 @@ include <../vitamins/bolts.scad>
 //include <../vitamins/inserts.scad>
 include <../vitamins/nuts.scad>
 
+function voronColor() = grey(25);
+function voronAccentColor() = crimson;
+function voronAdaptorColor() = pp3_colour;
+
 xCarriageType = MGN12H_carriage;
 
 module X_Carriage_Voron_Mini_Afterburner_stl() {
@@ -104,28 +108,49 @@ module vmaImportStl(file) {
 module vma_x_carriage_90_x1() {
     translate([-109 + 13/2, 0, 43.7])
         rotate([0, 90, -90])
-            color(pp3_colour)
+            color(voronColor())
                 vmaImportStl("X_Carriage_90_x1");
+}
+
+module vma_vlatch_dd_x1() {
+    translate([0, 22, 34])
+        rotate([90, 0, 180])
+            color(voronColor())
+                vmaImportStl("Latch_DD_x1");
+}
+
+module vma_vlatch_shuttle_dd_x1() {
+    translate([160, 17, -80])
+        rotate([90, 0, 180])
+            color(voronColor())
+                vmaImportStl("Latch_Shuttle_DD_x1");
+}
+
+module vma_guidler_dd_x1() {
+    translate([-12.85, -210.5, -182.05])
+        rotate([90, 0, 90])
+            color(voronColor())
+                vmaImportStl("Guidler_DD_x1");
 }
 
 module vma_motor_frame_x1() {
     translate([5.75, 35, 8.5])
         rotate([0, 90, 90])
-            color(pp2_colour)
+            color(voronColor())
                 vmaImportStl("Toolheads/Mini_Afterburner/Motor_Frame_x1");
 }
 
 module vma_mid_body_x1() {
     translate([-198.8,16.75,232.8])
         rotate([0,90,-90])
-            color(pp4_colour)
+            color(voronAccentColor())
                 vmaImportStl("Toolheads/Mini_Afterburner/[a]_Mid_Body_x1");
 }
 
 module vma_cowling_mosquito_x1() {
     translate([60, 32.2, 51])
         rotate([-90, 0, 180]) {
-            color(pp1_colour)
+            color(voronAccentColor())
                 vmaImportStl("Toolheads/Mini_Afterburner/Mosquito_Toolhead_DD/[a]_Cowling_Mosquito_x1");
             if ($preview) {
                 translate([45, 94, 31])
@@ -136,6 +161,10 @@ module vma_cowling_mosquito_x1() {
                         blower(BL30x10);
                 translate([60, 73, 8])
                     fan(fan30x10);
+                for (x = [49, 71])
+                    translate([x, 20.75, 0])
+                        vflip()
+                            boltM3Countersunk(30);
             }
         }
 }
