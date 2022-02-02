@@ -31,7 +31,8 @@ function hotendOffset(xCarriageType, hotendDescriptor="E3DV6") = printheadHotend
 function grooveMountSize(blowerType, hotendDescriptor="E3DV6") = [printheadHotendOffset(hotendDescriptor).x, blower_size(blowerType).x + 6.25, 12];
 function blowerType() = is_undef(_blowerDescriptor) || _blowerDescriptor == "BL30x10" ? BL30x10 : BL40x10;
 //function accelerometerOffset() = [10, -1, 8];
-function accelerometerOffset() = [6.5, -2, 8];
+//function accelerometerOffset() = [6.5, -2, 8];
+function accelerometerOffset() = [0, -10.5, 8];
 function xCarriageHoleOffsetTop() = halfCarriage ? -1 : 0;//[5.65, -1]; // for alignment with EVA
 //function xCarriageHoleOffsetTop() = [4, 0];
 //function xCarriageHoleOffsetBottom() = [9.7, 4.5]; // for alignment with EVA
