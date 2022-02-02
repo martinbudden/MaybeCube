@@ -17,10 +17,15 @@ module xRail(carriagePosition, xCarriageType=undef) {
     xCarriageType = is_undef(xCarriageType) ? carriageType(_xCarriageDescriptor) : xCarriageType;
     xRailType = carriage_rail(xCarriageType);
     yRailType = railType(_yCarriageDescriptor);
+    pos = eX - _xRailLength/2 - 5 - carriagePosition.x;
     translate([eSize + eX/2, carriagePosition.y, -eSize - rail_height(xRailType) - rail_height(yRailType) + carriage_clearance(xCarriageType)])
         rotate(180)
             if (is_undef($hide_rails) || $hide_rails == false)
-                rail_assembly(xCarriageType, _xRailLength, eX - _xRailLength/2 - 5 - carriagePosition.x, carriage_end_colour="green", carriage_wiper_colour="red");
+                rail_assembly(xCarriageType, _xRailLength, pos, carriage_end_colour="green", carriage_wiper_colour="red");
+            else
+                translate([pos, 0])
+                    carriage(xCarriageType, end_colour="green", wiper_colour="red");
+
 }
 function xRailCarriagePositionZ() =
     let(xCarriageType = carriageType(_xCarriageDescriptor),
