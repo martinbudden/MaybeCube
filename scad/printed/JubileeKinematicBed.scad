@@ -14,7 +14,7 @@ leadnut = LSN8x2;
 zCarriageType = is_undef(_zCarriageDescriptor) ? MGN12C_carriage : carriageType(_zCarriageDescriptor);
 
 module kinematicBedImportStl(file) {
-    import(str("../stlimport/jubilee/frame/", file, ".STL"));
+    import(str("../../../stlimport/jubilee/frame/", file, ".STL"));
 }
 
 module Z_Carriage_Left_Front_stl() {
