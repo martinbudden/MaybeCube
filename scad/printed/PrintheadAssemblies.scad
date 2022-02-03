@@ -81,6 +81,17 @@ module printheadBeltSide(rotate=0, explode=0, t=undef) {
         }
 }
 
+module printheadHotendSideBolts(rotate=0, explode=0, t=undef, halfCarriage=false) {
+    xCarriageType = MGN12H_carriage;
+    xCarriageBeltSideSize = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());
+    boltLength = usePulley25() ? 40 : (halfCarriage ? 30 : 40);
+
+    xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
+        explode([0, -20, 0], true)
+            translate([0, -pulley25Offset + (usePulley25() ? 1 : 0), 0])
+                xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), countersunk=true, offsetT=xCarriageHoleOffsetTop());
+}
+
 module printheadHotendSide(rotate=0, explode=0, t=undef, halfCarriage=false) {
     xCarriageType = MGN12H_carriage;
     xCarriageBeltSideSize = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());
