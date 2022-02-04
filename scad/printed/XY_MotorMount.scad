@@ -140,7 +140,7 @@ module xyMotorMountBaseCutouts(motorType, size, offset, sideSupportSizeY, left, 
 
     translate([coreXYPosBL().x + separation.x/2, coreXYPosTR(motorWidth).y]) {
         translate([offset.x ? offset.x : coreXY_drive_pulley_x_alignment(coreXY_type), left ? offset.y : -offset.y]) {
-            poly_circle(r=isNEMAType(motorType) ? NEMA_boss_radius(motorType) : (pulley_flange_dia(GT2x16_pulley) + 1)/2);
+            poly_circle(r=isNEMAType(motorType) ? NEMA_boss_radius(motorType) + 0.5 : (pulley_flange_dia(GT2x16_pulley) + 1)/2);
             if (cnc) {
                 xyMotorScrewPositions(motorType)
                     poly_circle(r=M3_clearance_radius);
