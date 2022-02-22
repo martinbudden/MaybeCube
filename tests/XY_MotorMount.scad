@@ -16,7 +16,7 @@ module XY_Motor_Mount_test() {
     //XY_Motor_Mount_Right_16_stl();
     translate_z(-eZ + eSize) {
         if (is_undef($explode))
-            CoreXYBelts(carriagePosition(), show_pulleys=[1, 0, 0]);
+            CoreXYBelts(carriagePosition(), show_pulleys=![1, 0, 0]);
         XY_Motor_Mount_Left_assembly();
         XY_Motor_Mount_Right_assembly();
     }
