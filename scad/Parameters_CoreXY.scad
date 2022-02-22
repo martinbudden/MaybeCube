@@ -5,7 +5,7 @@ include <vitamins/pulleys.scad>
 include <Parameters_Main.scad>
 
 
-coreXY_GT2_20_16_fb=["coreXY_20_20fb", GT2x6, GT2x20ob_pulley,  GT2x16x3x8_plain_idler_fb, GT2x16x3x8_plain_idler_fb, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
+coreXY_GT2_20_16_fb=["coreXY_20_20fb", GT2x6, GT2x20ob_pulley,  GT2x16x6p5x3_plain_idler_fb, GT2x16x6p5x3_plain_idler_fb, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
 coreXY_GT2_20_20_sf=["coreXY_20_20sf", GT2x6, GT2x20ob_pulley,  GT2x20x3_toothed_idler_sf, GT2x20x3_plain_idler_sf, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
 coreXY_GT2_20_25   =["coreXY_20_25",   GT2x6, GT2x20ob_pulley,  GT2x25x7x3_toothed_idler, GT2x25x7x3_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
 coreXY_GT2x9_20_20= ["coreXY_20_20x9", GT2x9, GT2x20x11_pulley, GT2x20x11x3_toothed_idler, GT2x20x11x3_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
