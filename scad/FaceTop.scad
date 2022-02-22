@@ -100,8 +100,7 @@ assembly("Face_Top", big=true) {
 
     printheadBeltSide(explode=100);
 
-    //if (!exploded())
-    explode(350)
+    translate_z(exploded() ? 350 : 0)
         CoreXYBelts(carriagePosition());
 
     explode(20, true)
@@ -222,12 +221,13 @@ assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
                     rail_assembly(yCarriageType, _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
                     railBoltsAndNuts(carriage_rail(yCarriageType), _yRailLength, 5);
                 }
-    translate([0, 0, eZ - eSize])
-        explode(-80, true) {
+    translate_z(eZ - eSize) {
+        translate_z(exploded() ? -80 : 0)
             Y_Carriage_Left_assembly();
-            explode(-20, true)
-                Y_Carriage_bolts(yCarriageType, yCarriageThickness(), left=true);
-        }
+        translate_z(exploded() ? -100 : 0)
+        //explode(-100, true)
+            Y_Carriage_bolts(yCarriageType, yCarriageThickness(), left=true);
+    }
 }
 
 //!1. Bolt the MGN linear rail to the extrusion, using the **Rail_Centering_Jig** to align the rail. Do not fully tighten the
@@ -253,10 +253,10 @@ assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
                     rail_assembly(yCarriageType, _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
                     railBoltsAndNuts(carriage_rail(yCarriageType), _yRailLength, 5);
                 }
-    translate([eX + 2*eSize, 0, eZ - eSize])
-        explode(-80, true) {
+    translate([eX + 2*eSize, 0, eZ - eSize]) {
+        translate_z(exploded() ? -80 : 0)
             Y_Carriage_Right_assembly();
-            explode(-20, true)
-                Y_Carriage_bolts(yCarriageType, yCarriageThickness(), left=false);
-        }
+        translate_z(exploded() ? -100 : 0)
+            Y_Carriage_bolts(yCarriageType, yCarriageThickness(), left=false);
+    }
 }
