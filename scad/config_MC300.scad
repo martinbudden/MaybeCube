@@ -27,6 +27,7 @@ _useDualZRods = false;
 _useDualZMotors = false;
 _useElectronicsInBase = true;
 _useFrontDisplay = true;
+_useReversedBelts = false;
 _useSidePanels = true;
 
 _printbedSize = [214, 214, 4];
