@@ -40,14 +40,14 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
     Right_Side_Upper_Extrusion_assembly();
 
     if (is_undef($hide_corexy) || !$hide_corexy) {
-        explode(-120)
+        translate_z(exploded() ? - 120 : 0) {
             XY_Idler_Left_assembly();
-        explode(-100)
-            XY_Motor_Mount_Left_assembly();
-        explode(-120)
             XY_Idler_Right_assembly();
-        explode(-100)
+        }
+        explode(-100) {
+            XY_Motor_Mount_Left_assembly();
             XY_Motor_Mount_Right_assembly();
+        }
     }
     faceTopFront();
     faceTopBack();
@@ -74,17 +74,17 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
 module Face_Top_Stage_2_assembly()
 assembly("Face_Top_Stage_2", big=true, ngb=true) {
 
-    Face_Top_Stage_1_assembly();
+    translate_z(exploded() ? -100 : 0)
+        Face_Top_Stage_1_assembly();
     //hidden() Y_Carriage_Left_AL_dxf();
     //hidden() Y_Carriage_Right_AL_dxf();
 
-    translate_z(eZ)
-        explode(100, true) {
-            xRail(carriagePosition());
-            xRailBoltPositions(carriagePosition())
-                explode(20, true)
-                    boltM3Caphead(10);
-        }
+    translate_z(eZ) {
+        xRail(carriagePosition());
+        xRailBoltPositions(carriagePosition())
+            explode(20, true)
+                boltM3Caphead(10);
+    }
 }
 
 //!1. Bolt the **X_Carriage_Belt_Side_assembly** to the MGN carriage.
@@ -103,9 +103,9 @@ assembly("Face_Top", big=true) {
     translate_z(exploded() ? 350 : 0)
         CoreXYBelts(carriagePosition());
 
-    explode(20, true)
-        for (x = [3*eSize/2, eX + eSize/2])
-            translate([x, eY/2 + eSize, eZ])
+    for (x = [3*eSize/2, eX + eSize/2])
+        translate([x, eY/2 + eSize, eZ])
+            explode(20, true)
                 rotate([0, -90, 0]) {
                     stl_colour(pp1_colour)
                         Handle_stl();
