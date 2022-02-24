@@ -14,7 +14,7 @@ include <../vitamins/nuts.scad>
 include <../Parameters_Main.scad>
 
 
-extruderNEMAType = eX >= 300 ? NEMA17 : NEMA17M;
+extruderNEMAType = eX >= 300 ? NEMA17_47 : NEMA17_40;
 
 // height of eZ-118 give clearance to NEMA17M motor (length 40). Long NEMA has length 48, and E3D super whopper has length 60
 // need about 22mm for BTT motor, so eZ -140 is good height
