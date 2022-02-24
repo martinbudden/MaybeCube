@@ -508,7 +508,7 @@ assembly("bondtech") {
                     }
                 translate([0, 62, 8])
                     rotate([180, 0, 180]) {
-                        NEMA(NEMA17P);
+                        NEMA(NEMA17_27);
                 }
                 translate([22, 0, 8])
                     rotate([0, 90, 0]) {

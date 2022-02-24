@@ -16,7 +16,7 @@ include <../Parameters_Main.scad>
 
 extruderNEMAType = eX >= 300 ? NEMA17_47 : NEMA17_40;
 
-// height of eZ-118 give clearance to NEMA17M motor (length 40). Long NEMA has length 48, and E3D super whopper has length 60
+// height of eZ-118 give clearance to NEMA17_40 motor (length 40). Long NEMA has length 48, and E3D super whopper has length 60
 // need about 22mm for BTT motor, so eZ -140 is good height
 function extruderPosition(eX=eX) = [eX + 2*eSize, eY + 2*eSize - 43, eX < 400 ? eZ - 90 : eZ - 140];
 //function extruderBowdenOffset() = [17.5, 4.5, 30];
