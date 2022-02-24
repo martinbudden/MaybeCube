@@ -266,7 +266,7 @@ module va_extruder_motor_plate(motor=true) {
         //translate([0, -39.9, 29.5])
         translate([0, -39.9, 27.5])
             rotate([-90, 90, 0])
-                NEMA(NEMA17P, jst_connector=true);
+                NEMA(NEMA17_27, jst_connector=true);
         *translate([22.1, -39.9, -8.9])
             rotate([0, -90, 90])
                 translate([-95.1, -82.9, 0])
@@ -277,7 +277,7 @@ module va_extruder_motor_plate(motor=true) {
         if (motor)
             translate_z(38.5)
                 rotate([-90, 90, 0])
-                    NEMA(NEMA17P, jst_connector=true);
+                    NEMA(NEMA17_27, jst_connector=true);
         translate([-105, 0, -95.1])
             rotate([0, -90, -90])
                 color(pp3_colour)

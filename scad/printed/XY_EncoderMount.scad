@@ -39,7 +39,7 @@ module xyEncoderMountCover(BLDC_type, NEMA_holes=false) {
                     else
                         boltHoleM2p5CounterboreButtonhead(size.z);
         if (NEMA_holes)
-            NEMA_screw_positions(NEMA17M)
+            NEMA_screw_positions(NEMA17_40)
                 boltHoleM3Tap(size.z);
         *NEMA_screw_positions(NEMA23)
             boltHoleM3Tap(size.z);
