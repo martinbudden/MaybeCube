@@ -40,11 +40,11 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
     Right_Side_Upper_Extrusion_assembly();
 
     if (is_undef($hide_corexy) || !$hide_corexy) {
-        translate_z(exploded() ? - 120 : 0) {
+        explode(-120, show_line=false) {
             XY_Idler_Left_assembly();
             XY_Idler_Right_assembly();
         }
-        explode(-100) {
+        explode(-100, show_line=false) {
             XY_Motor_Mount_Left_assembly();
             XY_Motor_Mount_Right_assembly();
         }
@@ -74,7 +74,7 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
 module Face_Top_Stage_2_assembly()
 assembly("Face_Top_Stage_2", big=true, ngb=true) {
 
-    translate_z(exploded() ? -100 : 0)
+    explode(-100, show_line=false)
         Face_Top_Stage_1_assembly();
     //hidden() Y_Carriage_Left_AL_dxf();
     //hidden() Y_Carriage_Right_AL_dxf();
@@ -100,7 +100,7 @@ assembly("Face_Top", big=true) {
 
     printheadBeltSide(explode=100);
 
-    translate_z(exploded() ? 350 : 0)
+    explode(350, show_line=false)
         CoreXYBelts(carriagePosition());
 
     for (x = [3*eSize/2, eX + eSize/2])
@@ -132,7 +132,7 @@ module faceTopFront() {
 
 module faceTopBack(fov_distance=0) {
     // add the back top extrusion oriented in the X direction
-    explode([0, 120, 0], true) {
+    explode([0, 120, 0], true, show_line=false) {
         translate([eSize, eY + eSize, eZ - eSize]) {
             use2020 = is_undef(_use2020TopExtrusion) || _use2020TopExtrusion == false ? false : true;
 
@@ -155,7 +155,7 @@ module faceTopBack(fov_distance=0) {
             }
         }
         if (_variant != "JubileeToolChanger") {
-            explode([0, -40, 0], true)
+            explode([0, -40, 0], true, show_line=false)
                 wiringGuidePosition(offsetX=cameraMountBaseSize.x/2)
                     vflip() {
                         stl_colour(pp3_colour)
@@ -222,10 +222,9 @@ assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
                     railBoltsAndNuts(carriage_rail(yCarriageType), _yRailLength, 5);
                 }
     translate_z(eZ - eSize) {
-        translate_z(exploded() ? -80 : 0)
+        explode(-80, show_line=false)
             Y_Carriage_Left_assembly();
-        translate_z(exploded() ? -100 : 0)
-        //explode(-100, true)
+        explode(-100, show_line=false)
             Y_Carriage_bolts(yCarriageType, yCarriageThickness(), left=true);
     }
 }
@@ -254,9 +253,9 @@ assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
                     railBoltsAndNuts(carriage_rail(yCarriageType), _yRailLength, 5);
                 }
     translate([eX + 2*eSize, 0, eZ - eSize]) {
-        translate_z(exploded() ? -80 : 0)
+        explode(-80, show_line=false)
             Y_Carriage_Right_assembly();
-        translate_z(exploded() ? -100 : 0)
+        explode(-100, show_line=false)
             Y_Carriage_bolts(yCarriageType, yCarriageThickness(), left=false);
     }
 }
