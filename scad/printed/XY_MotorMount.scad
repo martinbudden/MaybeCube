@@ -471,10 +471,12 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
                                     bearingStack();
                                 explode(30)
                                     translate_z(pulleyStackHeight)
-                                        XY_Motor_Mount_Pulley_Spacer_stl();
+                                        stl_colour(pp3_colour)
+                                            XY_Motor_Mount_Pulley_Spacer_stl();
                             } else {
                                 explode(5)
-                                    XY_Motor_Mount_Pulley_Spacer_stl();
+                                    stl_colour(pp3_colour)
+                                        XY_Motor_Mount_Pulley_Spacer_stl();
                                 translate_z(separation.z)
                                     explode(10, true)
                                         bearingStack();
