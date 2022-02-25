@@ -14,7 +14,6 @@ MaybeCube supports the
 ## Table of Contents
 
 1. [Parts list](#Parts_list)
-
 1. [XChange assembly](#XChange_assembly)
 
 <span></span>
@@ -24,7 +23,6 @@ MaybeCube supports the
 <a name="Parts_list"></a>
 
 ## Parts list
-
 
 | <span style="writing-mode: vertical-rl; text-orientation: mixed;">XChange</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">TOTALS</span> |  |
 |-----:|------:|:---|
