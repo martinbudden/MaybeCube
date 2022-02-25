@@ -30,7 +30,6 @@ GT2x20sd_pulley           = ["GT2x20sd_pulley",           "GT2sd", 20, 12.22, GT
 function bearingStackHeight(bearingType=BBF623, washer=M3_washer) = 3*washer_thickness(washer) + 2*bb_width(bearingType);
 
 module bearingStack(bearingType=BBF623, washer=M3_washer, explode=5) {
-    echo(bsh=bearingStackHeight());
     washer(washer);
     translate_z(washer_thickness(washer) + bb_width(bearingType)/2) {
         explode(explode)
