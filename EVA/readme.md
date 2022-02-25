@@ -31,7 +31,6 @@ as are all EVA community contributions.
 ## Table of Contents
 
 1. [Parts list](#Parts_list)
-
 1. [EVA_Stage_1 assembly](#EVA_Stage_1_assembly)
 1. [EVA assembly](#EVA_assembly)
 
@@ -42,7 +41,6 @@ as are all EVA community contributions.
 <a name="Parts_list"></a>
 
 ## Parts list
-
 
 | <span style="writing-mode: vertical-rl; text-orientation: mixed;">EVA Stage 1</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">EVA</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">TOTALS</span> |  |
 |-----:|-----:|------:|:---|
