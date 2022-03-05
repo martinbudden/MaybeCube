@@ -5,7 +5,7 @@ E - Enable, ie delete the `//` at the start of a line<br>
 C - Change<br>
 E&C - Enable and Change
 
-# Marlin/src/inc/Conditionals_LCD.h
+## Marlin/src/inc/Conditionals_LCD.h
 
 Change the line:
 
@@ -141,6 +141,8 @@ E
 #define LIN_ADVANCE
 C
 #define LIN_ADVANCE_K 0.0     // Unit: mm compression per 1mm/s extruder speed
+E
+#define FWRETRACT
 E
 #define ADVANCED_PAUSE_FEATURE
 E
