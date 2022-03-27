@@ -48,7 +48,9 @@ module evaPrintheadList() {
 module evaHotendTop(top="mgn12", explode=40) {
     translate_z(2*eps)
         explode(explode)
-            if (top == "lgx_bmg_mgn12_a")
+            if (top == "mgn12")
+                EVA_MC_top_mgn12_stl();
+            else if (top == "lgx_bmg_mgn12_a")
                 EVA_MC_top_lgx_mgn12_a_stl();
             else if (top == "bmg_mgn12")
                 EVA_MC_top_bmg_mgn12_stl();
@@ -56,8 +58,6 @@ module evaHotendTop(top="mgn12", explode=40) {
                 EVA_MC_top_orbiter_mgn12_stl();
             else if (top == "titan_mgn12")
                 EVA_MC_top_titan_mgn12_stl();
-            else
-                EVA_MC_top_mgn12_stl();
 }
 
 module evaHotendBottom() {
@@ -116,40 +116,49 @@ module evaBeltClampPosition() {
     pulley25Offset = 0;
     size = xCarriageBeltSideSizeM(MGN12H_carriage, beltWidth(), beltSeparation());
 
-    translate([0, -5 + pulley25Offset, -size.z + xCarriageTopThickness() + xCarriageBaseThickness() + 0.5])
+    translate([0, -5 + pulley25Offset, -size.z + xCarriageTopThickness() + xCarriageBaseThickness() + 0.5 + 10])
         rotate([90, 0, 0])
             children();
 }
 
 module evaBeltClamp() {
     evaBeltClampPosition()
-        X_Carriage_Belt_Clamp_stl();
+        X_Carriage_Belt_Clamp_EVA_stl();
 }
 
 module evaBeltClampHardware() {
     size = xCarriageBeltSideSizeM(MGN12H_carriage, beltWidth(), beltSeparation());
-    translate([0, 52, 6])
+    translate([0, 53.5, 0])
         evaBeltClampPosition()
             X_Carriage_Belt_Clamp_hardware(size, countersunk=true);
 }
 
-module evaBeltTensionerPositions(explode=0) {
-    translate([-18 - X_CarriageEVATensionerOffsetX(), 2.95, -31])
-        explode([explode, 0, 0])
-            children();
-    translate([18 + X_CarriageEVATensionerOffsetX(), 2.95, -33])
+module X_Carriage_Belt_Clamp_EVA_stl() {
+    stl("X_Carriage_Belt_Clamp_EVA"); // semicolon required for XChange build as this is not on BOM
+    beltClampSize = [25, xCarriageBeltAttachmentSize(beltWidth(), beltSeparation()).x - 0.5, 4.5];
+    offset = (beltClampSize.y - xCarriageBeltAttachmentSize(beltWidth(), beltSeparation()).x)/2;
+    color(pp2_colour)
+        xCarriageBeltClamp(beltClampSize, offset=offset, countersunk=true);
+}
+
+
+module evaBeltTensionerPositions() {
+    translate([-18 - X_CarriageEVATensionerOffsetX(), 3.8, (beltSeparation() + beltWidth())/2 - 32.25])
+        children();
+    translate([18 + X_CarriageEVATensionerOffsetX(), 3.8, -(beltSeparation() + beltWidth())/2 - 32.25])
         rotate([0, -180, 0])
-            explode([explode, 0, 0])
-                children();
+            children();
 }
 
 module evaBeltTensioners() {
-    evaBeltTensionerPositions(explode=-40)
-        X_Carriage_Belt_Tensioner_stl();
+    evaBeltTensionerPositions()
+        explode([-40, 0, 0], offset=[0, 7.5, 0])
+            stl_colour(pp2_colour)
+                X_Carriage_Belt_Tensioner_stl();
 }
 module evaBeltTensionersHardware() {
-    evaBeltTensionerPositions(explode=70)
-        X_Carriage_Belt_Tensioner_hardware(xCarriageBeltTensionerSize(beltWidth()), 40, 18.5);
+    evaBeltTensionerPositions()
+        X_Carriage_Belt_Tensioner_hardware(xCarriageBeltTensionerSize(beltWidth()), boltLength=40, offset=41);
 }
 
 module EVA_MC_BottomMgn12(ductSizeY=undef, airflowSplit=false) {
@@ -220,7 +229,7 @@ module EVA_MC_BottomMgn12(ductSizeY=undef, airflowSplit=false) {
         translate([-8.5, 0, 0]) {
             translate_z(extraZ)
                 rotate(90)
-                    xCarriageBeltAttachment(beltAttachmentSize, beltWidth(), beltSeparation());
+                    xCarriageBeltAttachment(beltAttachmentSize, beltWidth(), beltSeparation(), endCube=true);
             translate([-beltAttachmentSize.x/2 - 1, 0, 0])
                 cube([beltAttachmentSize.x, size.y, extraZ]);
         }
@@ -392,7 +401,7 @@ module universal_face_stl() {
             evaImportStl("universal_face");
 }
 
-module printheadEVA(rotate=180, explode=0, t=undef, top="orbiter_mgn12") {
+module printheadEVA(rotate=180, explode=0, t=undef, top="mgn12") {
     xRailCarriagePosition(carriagePosition(t), rotate)
         explode(explode, true) {
             color(pp4_colour)

@@ -33,39 +33,39 @@ tensionerOffsetX = X_CarriageEVATensionerOffsetX();
 module EVA_test() {
     offsetZ = 0;
     translate(-[eSize + eX/2, carriagePosition(t).y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
-        CoreXYBelts(carriagePosition() + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
-        translate_z(offsetZ) printheadEVA();
-        translate_z(eZ)
+        //CoreXYBelts(carriagePosition() + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
+        translate_z(offsetZ) printheadEVA(top="mgn12");
+        *translate_z(eZ)
             xRail(carriagePosition(), MGN12H_carriage);
         *translate([0, 0, eZ - eSize])
             Y_Carriage_Left_assembly();
         *translate([2*eSize + eX, 0, eZ - eSize])
             Y_Carriage_Right_assembly();
     }
-    //translate_z(13 + offsetZ) rotate(180) evaHotend();
+    translate_z(13 + offsetZ) rotate(180) evaHotend();
 }
 
 module evaHotend(full=false) {
-    translate_z(2*eps)
+    *translate_z(2*eps)
         color(pp1_colour) {
-            //EvaTopConvert("top_mgn12");
+            EvaTopConvert("top_mgn12");
             //EvaTopConvert("top_orbiter_mgn12");
             //EvaTopConvert("top_titan_mgn12");
             //EvaTopConvert("top_bmg_mgn12");
             //EvaTopConvert("top_lgx_mgn12_a");
         }
-    translate_z(-5)
+    *translate_z(-5)
         color(pp4_colour) evaImportStl("top_orbiter_mgn12");
     translate([0, -13.5, -39.9 - zOffset])
         color(pp1_colour)
             evaBottom();
-    translate([0, 18.5, -15.5 - zOffset]) {
+    translate([0, 19.5, -15.5 - zOffset]) {
         color(pp2_colour)
             evaImportStl("back_corexy");
         if (full)
             translate([0, 3, 14.5]) {
                 color(pp1_colour)
-                    evaImportStl("unversal_cable_mount");
+                    evaImportStl("universal_cable_mount");
                 translate([0, 20, 54])
                     rotate([0, 180, 0])
                         color(pp2_colour)

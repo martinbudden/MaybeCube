@@ -49,7 +49,6 @@ assembly("EVA_Stage_1", big=true) {
             evaPrintheadList();
 
     xCarriageType = MGN12H_carriage;
-
     translate_z(carriage_height(xCarriageType)) {
         stl_colour(evaAdaptorColor())
             not_on_bom() {
@@ -60,18 +59,14 @@ assembly("EVA_Stage_1", big=true) {
         evaHotendBaseTopHardware(explode=100);
         evaHotendBaseBackHardware(explode=100);
 
-        translate([0, evaBeltAlignmentZ()/2, 0]) {
-            stl_colour(pp2_colour)
-                evaBeltTensioners();
-            evaBeltTensionersHardware();
-        }
+        evaBeltTensioners();
+        evaBeltTensionersHardware();
 
-        explode([0, -20, 0], true)
-            translate([0, -evaBeltAlignmentZ(), 0]) {
-                stl_colour(pp2_colour)
-                    evaBeltClamp();
-                evaBeltClampHardware();
-            }
+        explode([0, -20, 0], true, show_line=false) {
+            stl_colour(pp2_colour)
+                evaBeltClamp();
+            evaBeltClampHardware();
+        }
 
         translate([0, 18.5 + evaBeltAlignmentZ(), -20.5])
             explode([0, 60, 0])
