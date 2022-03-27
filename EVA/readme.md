@@ -58,7 +58,7 @@ as are all EVA community contributions.
 |   1  |   .  |    1  | EVA_MC_top_mgn12.stl |
 |   1  |   .  |    1  | EVA_MC_top_orbiter_mgn12.stl |
 |   1  |   .  |    1  | EVA_MC_top_titan_mgn12.stl |
-|   1  |   .  |    1  | X_Carriage_Belt_Clamp.stl |
+|   1  |   .  |    1  | X_Carriage_Belt_Clamp_EVA.stl |
 |   2  |   .  |    2  | X_Carriage_Belt_Tensioner.stl |
 |   1  |   .  |    1  | back_corexy.stl |
 |   .  |   1  |    1  | universal_face.stl |
@@ -95,9 +95,9 @@ as are all EVA community contributions.
 | ![EVA_MC_top_mgn12.stl](stls/EVA_MC_top_mgn12.png) | ![EVA_MC_top_orbiter_mgn12.stl](stls/EVA_MC_top_orbiter_mgn12.png) | ![EVA_MC_top_titan_mgn12.stl](stls/EVA_MC_top_titan_mgn12.png) 
 
 
-| 1 x X_Carriage_Belt_Clamp.stl | 2 x X_Carriage_Belt_Tensioner.stl | 1 x back_corexy.stl |
+| 1 x X_Carriage_Belt_Clamp_EVA.stl | 2 x X_Carriage_Belt_Tensioner.stl | 1 x back_corexy.stl |
 |---|---|---|
-| ![X_Carriage_Belt_Clamp.stl](stls/X_Carriage_Belt_Clamp.png) | ![X_Carriage_Belt_Tensioner.stl](stls/X_Carriage_Belt_Tensioner.png) | ![back_corexy.stl](stls/back_corexy.png) 
+| ![X_Carriage_Belt_Clamp_EVA.stl](stls/X_Carriage_Belt_Clamp_EVA.png) | ![X_Carriage_Belt_Tensioner.stl](stls/X_Carriage_Belt_Tensioner.png) | ![back_corexy.stl](stls/back_corexy.png) 
 
 
 
