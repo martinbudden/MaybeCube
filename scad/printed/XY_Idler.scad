@@ -130,7 +130,7 @@ module xyIdler(left=true, useReversedBelts=false, M5=false) {
                         fillet(cutoutFillet, cutoutSize.x + eps);
             }
             translate([eSize/2, lowerBoltOffset, 0])
-                boltHole(M5 ? M5_clearance_radius : M4_clearance_radius, size.z, horizontal=true, rotate=-90);
+                boltHole(M5 ? M5_clearance_radius*2 : M4_clearance_radius*2, size.z, horizontal=true, rotate=-90);
             translate([eSize/2, size.y - upperBoltOffset, armSize.z])
                 vflip()
                     rotate(-90)
@@ -140,13 +140,13 @@ module xyIdler(left=true, useReversedBelts=false, M5=false) {
                             boltHoleM4CounterboreButtonhead(armSize.z, boreDepth=armSize.z - 5, horizontal=true);
             translate([axisOffset, size.y - sizeY2, axisOffset])
                 rotate([-90, -90, 0])
-                    boltHoleM3Tap(sizeY2/2, horizontal=true, chamfer_both_ends=false);
+                    boltHoleM3Tap(sizeY2 - eSize/2, horizontal=true, chamfer_both_ends=false);
             translate([eSize/2, size.y, eSize/2])
                 rotate([90, 90, 0])
-                    boltHole(M5 ? M5_tap_radius : M4_tap_radius, sizeY2/2, horizontal=true, chamfer_both_ends=false);
+                    boltHole(M5 ? M5_tap_radius*2 : M4_tap_radius*2, sizeY2/2, horizontal=true, chamfer_both_ends=false);
             translate([eSize/2, size.y - tabThickness, armSize.z + tabLength - tabBoltOffset])
                 rotate([-90, -90, 0])
-                    boltHole(M5 ? M5_clearance_radius : M4_clearance_radius, tabThickness, horizontal=true);
+                    boltHole(M5 ? M5_clearance_radius*2 : M4_clearance_radius*2, tabThickness, horizontal=true);
         }
     }
     translate([frontOffset, coreXYPosBL().z - armSize.y + yCarriageBraceThickness()/2 - washerClearance - (left || !useReversedBelts ? separation.z : 0), 0]) {
