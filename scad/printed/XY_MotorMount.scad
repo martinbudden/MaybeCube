@@ -209,7 +209,12 @@ module xyMotorMountBase(motorType, size, offset, sideSupportSizeY, stepdown, use
                         }
                     if (isNEMAType(motorType)) {
                         NEMA_screw_positions(motorType)
-                            boltHoleM3(basePlateThickness, twist=5);
+                            if ($i < 2)
+                                translate_z(basePlateThickness)
+                                    vflip()
+                                        boltHoleM3CounterboreButtonhead(basePlateThickness, 0.5, twist=5);
+                            else
+                                boltHoleM3(basePlateThickness, twist=5);
                     } else {
                         mirror([left ? 0 : 1, 0, 0])
                             BLDC_base_screw_positions(motorType)
@@ -409,7 +414,11 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
             boltLength = screw_shorter_than(NEMA_hole_depth + basePlateThickness + corkDamperThickness - 0.5);
             if (isNEMAType(motorType)) {
                 xyMotorScrewPositions(motorType)
-                    boltM3Buttonhead(boltLength);
+                    if (useReversedBelts && $i < 2)
+                        translate_z(-0.5)
+                            boltM3Buttonhead(boltLength);
+                    else
+                        boltM3Buttonhead(boltLength);
                 translate_z(-basePlateThickness - corkDamperThickness) {
                     explode(-30)
                         rotate(left ? -90 : 90)
@@ -560,7 +569,7 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
                 vflip()
                     boltM4ButtonheadHammerNut(_frameBoltLength);
         if (sideSupportSize.y)
-            translate([eSize/2, eY + 5*eSize/2 - size.y, basePlateThickness + bracketHeightLeft - 5])
+            translate([eSize/2, eY + 7*eSize/2 - size.y - sideSupportSize.x, basePlateThickness + bracketHeightLeft - 5])
                 vflip()
                     boltM4ButtonheadHammerNut(_frameBoltLength);
         else
@@ -574,7 +583,7 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
             translate([eX + eSize - x, eY + 3*eSize/2, basePlateThickness + bracketHeight - eSize - 5 + blockHeightExtra])
                 vflip()
                     boltM4ButtonheadHammerNut(_frameBoltLength);
-        translate([eX + 3*eSize/2, eY + 5*eSize/2 - size.y,  basePlateThickness + bracketHeight - 5])
+        translate([eX + 3*eSize/2, eY + 7*eSize/2 - size.y - sideSupportSize.x,  basePlateThickness + bracketHeight - 5])
             vflip()
                 boltM4ButtonheadHammerNut(_frameBoltLength);
     }
