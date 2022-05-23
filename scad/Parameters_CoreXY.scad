@@ -43,7 +43,7 @@ function beltOffsetZ() = yCarriageThickness() - coreXYSeparation().z - 30.5;
 //function beltOffsetZ() = yCarriageThickness() + carriage_height(MGN12H_carriage) + coreXYSeparation().z - 55;
 
 function leftDrivePulleyOffset() = useReversedBelts() ? [30, -6] : [useXYDirectDrive ? 0 : 38 + 3*largePulleyOffset, -largePulleyOffsetTop];
-function rightDrivePulleyOffset() = [useXYDirectDrive ? 0 : (eX >= 350 ? -38 : -42.5) - 3*largePulleyOffset, useReversedBelts() ? -6 : -largePulleyOffsetTop]; // need to give clearance to extruder motor
+function rightDrivePulleyOffset() = [useXYDirectDrive ? 0 : -42.5 - 3*largePulleyOffset, useReversedBelts() ? -6 : -largePulleyOffsetTop]; // need to give clearance to extruder motor
 function plainIdlerPulleyOffset() = useReversedBelts() ? [0, -20] : largePulleyOffset ? [3, -3] : [0, 0];
 
 // use -12.75 for separation.x to make y-carriage idlers coincident vertically
