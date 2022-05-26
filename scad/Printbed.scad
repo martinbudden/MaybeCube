@@ -29,7 +29,7 @@ skHoleOffsetFromTop = sk_size(SK_type).y - sk_hole_offset(SK_type);
 
 heatedBedOffset = !is_undef(_printbed4PointSupport) && _printbed4PointSupport
     ? [0, 40, _printbedExtrusionSize/2 + springLength - 8]
-    : [0, skHoleOffsetFromTop + 8, _printbedExtrusionSize/2 + 5.5];
+    : [0, skHoleOffsetFromTop + 8, _printbedExtrusionSize/2 + 7.5];
 
 _heatedBedSize = _printbedSize;
 /*_heatedBedSize = is_undef(_printbedSize) || _printbedSize == 100 ? [100, 100, 1.6] : // Openbuilds mini heated bed size
@@ -84,8 +84,10 @@ module foamUnderlay(size, holeOffset, foamThickness) {
             }
 }
 
-module corkUnderlay(size, boltHoles, underlayThickness) {
-    vitamin(str("corkUnderlay(", size, ", ", boltHoles, ", ", underlayThickness, "): Cork underlay ", size.x, "mm x ", size.y, "mm"));
+module corkUnderlay(size, holeOffset, underlayThickness=3) {
+    vitamin(str("corkUnderlay(", size, "): Cork underlay ", size.x, "mm x ", size.y, "mm"));
+
+    boltHoles = [ [size.x - holeOffset, size.y/2, 0], [holeOffset, size.y - holeOffset, 0], [holeOffset, holeOffset, 0] ];
 
     color("tan")
         difference() {
@@ -123,7 +125,7 @@ module molex_400(ways) { //! Draw molex header
 
 
 module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayThickness=0) {
-    vitamin(str("heatedBed(", size, ", ", holeOffset, ", ", underlayThickness, "): Heated Bed ", size.x, "mm x ", size.y, "mm"));
+    vitamin(str("heatedBed(", size, "): Heated Bed ", size.x, "mm x ", size.y, "mm"));
 
     boltHoles = _printbed4PointSupport
         ? [ [holeOffset, holeOffset, 0], [size.x - holeOffset, holeOffset, 0], [size.x - holeOffset, size.y - holeOffset, 0], [holeOffset, size.y - holeOffset, 0] ]
@@ -167,16 +169,17 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
                 offset = 5;
                 printSurfaceSize = [size.x - 2*offset, size.y - 2*offset, 1];
                 translate([offset, offset, 0])
-                    color("orangeRed")
-                        rounded_cube_xy(printSurfaceSize, 1);
+                    color("OrangeRed")
+                        explode(10)
+                            rounded_cube_xy(printSurfaceSize, 1);
             }
 
         // add underlay
         if (_printbed4PointSupport)
             foamUnderlay(size, holeOffset, 7);
-        else
-            explode(-40)
-                corkUnderlay(size, boltHoles, underlayThickness);
+        //else
+            //explode(-40)
+              //  corkUnderlay(size, boltHoles, underlayThickness);
 
         spring  = ["spring", 8, 0.9, 20, 10, 1, false, 0, "lightblue"];
         supportBoltLength = _printbed4PointSupport ? 45 : 12;
@@ -200,6 +203,7 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
         }
     }
 }
+
 module heatedBedHardware(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayThickness=0) {
     boltHoles = _printbed4PointSupport
         ? [ [holeOffset, holeOffset, 0], [size.x - holeOffset, holeOffset, 0], [size.x - holeOffset, size.y - holeOffset, 0], [holeOffset, size.y - holeOffset, 0] ]
@@ -221,24 +225,23 @@ module heatedBedHardware(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, u
     //explode(-10, true)
         for (i = boltHoles)
             translate(i) {
-                translate_z(-washer_thickness(M3_washer))
-                    boltM3Caphead(20);
-                explode(5)
-                    washer(M3_washer);
+                boltM3Caphead(20);
                 translate_z(-size.z)
                     vflip()
                         explode(5,true)
-                            washer(M4_penny_washer)
+                            washer(M3_washer)
                                 oRing()
                                     washer(M3_washer)
                                         oRing()
                                             washer(M3_washer)
                                                 oRing()
-                                                    washer(M4_penny_washer)
-                                                        translate_z(2)
-                                                            rotate(90)
-                                                                explode(5)
-                                                                    nutM3SlidingT();
+                                                    washer(M3_washer)
+                                                        oRing()
+                                                            washer(M4_penny_washer)
+                                                                translate_z(2)
+                                                                    rotate(90)
+                                                                        explode(5)
+                                                                            nutM3Hammer();
            }
 }
 
@@ -446,6 +449,16 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
     }
 }
 
+//!1. Attach the print surface to the heated bed.
+//!2. Insert a bolt into each of the bolt holes in the heated bed and add a stack of O-rings, washers and a hammmer nut as shown.
+//!3
+module Heated_Bed_assembly()
+assembly("Heated Bed") {
+    underlayThickness = 3;
+    heatedBed(_heatedBedSize, _heatedBedHoleOffset, underlayThickness);
+    heatedBedHardware(_heatedBedSize, _heatedBedHoleOffset, underlayThickness);
+}
+
 //!1. Attach the heated bed to the frame using the stacks of washers and O-rings as shown.
 //!2. Spiral wrap the wires from the heated bed.
 //!3. Use the **Printbed_Strain_Relief_Clamp** to clamp the wires to the frame.
@@ -457,13 +470,20 @@ assembly("Printbed", big=true) {
         translate([eSize + _zRodOffsetX, eSize + zRodSeparation()/2 + _zRodOffsetY, 0])
             rotate(-90) {
                 Printbed_Frame_with_Z_Carriages_assembly();
+                underlayThickness = 3;
                 // add the heated bed
-                explode(120, true)
-                    translate(heatedBedOffset) {
-                        heatedBed(_heatedBedSize, _heatedBedHoleOffset, 3);
-                        if (!_printbed4PointSupport)
-                            heatedBedHardware(_heatedBedSize, _heatedBedHoleOffset, 3);
+                translate(heatedBedOffset) {
+                    if (_printbed4PointSupport)
+                            explode(120, true)
+                            heatedBed(_heatedBedSize, _heatedBedHoleOffset, underlayThickness);
+                    else {
+                        translate([-_heatedBedSize.y/2, 0, 0])
+                            explode(40)
+                                corkUnderlay(_heatedBedSize, _heatedBedHoleOffset, underlayThickness);
+                        explode(80, true)
+                            Heated_Bed_assembly();
                     }
+                }
                 translate([0, eX - 2*eSize + printbedFrameCrossPiece2Offset, -eSize/2])
                     rotate([90, 0, 0]) {
                         stl_colour(pp2_colour)
