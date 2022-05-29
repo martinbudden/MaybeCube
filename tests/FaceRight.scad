@@ -49,7 +49,9 @@ module Right_Side_test() {
 
     //Right_Side_Channel_Nuts();
     // always add the panels last, so they are transparent to other items
-    rightSidePanelPC();
+    //Right_Side_Channel_Spacers();
+    Right_Side_Panel_assembly();
+    //rightSidePanelPC(hammerNut=false);
     //Partition_assembly();
 }
 
