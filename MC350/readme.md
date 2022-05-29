@@ -67,7 +67,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Aluminium sheet 390mm x 390mm x 3mm |
 |   .  |   .  |  24  |   .  |   .  |   .  |   .  |   24  |  Ball bearing F623-2RS 3mm x 10mm x 4mm |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1476mm |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1492mm |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1500mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech Relay Module v1.2 |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech SKR v1.4 Turbo |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech TFT35 E3 v3.0 |
@@ -89,7 +89,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 countersunk x 25mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 countersunk x 35mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M3 countersunk x 40mm |
-|   .  |   .  |   .  |   9  |   .  |   .  |  40  |   49  |  Bolt M4 buttonhead x  8mm |
+|   .  |   .  |   .  |   9  |   .  |   .  |  38  |   47  |  Bolt M4 buttonhead x  8mm |
 |   .  |   .  |  16  |   .  |   6  |   2  |  14  |   38  |  Bolt M4 buttonhead x 10mm |
 |   .  |   .  |   8  |   .  |   .  |   2  |   4  |   14  |  Bolt M4 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |  14  |   14  |  Bolt M4 countersunk x  8mm |
@@ -122,7 +122,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  MK10 Dual Pulley Extruder |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Micro SD card |
 |   .  |   .  |  18  |   .  |   2  |   .  |   4  |   24  |  Nut M3 hammer |
-|   .  |   .  |  10  |   8  |   .  |   .  |  68  |   86  |  Nut M4 hammer |
+|   .  |   .  |  10  |   8  |   .  |   .  |  66  |   84  |  Nut M4 hammer |
 |   .  |   .  |  36  |   .  |   6  |  12  |   .  |   54  |  Nut M4 sliding T |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PSU NIUGUY CB-500W-24V |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE Bowden tube, 600 mm |
@@ -148,7 +148,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |    2  |  Washer  M4 |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  XL4015 buck converter |
 |   3  |   .  |   .  |   .  |   .  |   .  |   .  |    3  |  Ziptie 2.5mm x 100mm min length |
-|  12  |   4  | 281  |  38  |  58  |  40  | 249  |  682  | Total vitamins count |
+|  12  |   4  | 281  |  38  |  58  |  40  | 245  |  678  | Total vitamins count |
 |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | Camera_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_Bracket_TFT35_E3.stl |
@@ -723,7 +723,7 @@ extreme and tighten the bolts on that end of the Y-rail. Finally tighten the rem
 |Qty|Description|
 |---:|:----------|
 |1| Belt GT2 x 6mm x 1476mm|
-|1| Belt GT2 x 6mm x 1492mm|
+|1| Belt GT2 x 6mm x 1500mm|
 |2| Bolt M3 countersunk x 10mm|
 |4| Bolt M3 countersunk x 12mm|
 |8| Bolt M4 buttonhead x 12mm|
@@ -1468,9 +1468,9 @@ see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
 
 |Qty|Description|
 |---:|:----------|
-|27| Bolt M4 buttonhead x  8mm|
+|25| Bolt M4 buttonhead x  8mm|
 |2| Bolt M4 buttonhead x 12mm|
-|29| Nut M4 hammer|
+|27| Nut M4 hammer|
 |1| Sheet polycarbonate 300mm x 400mm x 3mm|
 |1| Sheet polycarbonate 390mm x 400mm x 3mm|
 
