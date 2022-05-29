@@ -58,6 +58,7 @@ module tools() {
         explode([-100, 0, 0])
             mirror([1, 0, 0])
                 lock_actuator_assembly();
+    function xToolPos(i) = [175, 260, 345][i];
     for (i= eX <= 350 ? [0, 1] : [0, 1, 2])
         translate([xToolPos(i), eY + eSize, eZ - 28.5]) {
             explode([0, 75, 0])
