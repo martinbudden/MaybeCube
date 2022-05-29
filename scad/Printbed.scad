@@ -450,10 +450,10 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
 }
 
 //!1. Attach the print surface to the heated bed.
-//!2. Insert a bolt into each of the bolt holes in the heated bed and add a stack of O-rings, washers and a hammmer nut as shown.
+//!2. Insert a bolt into each of the bolt holes in the heated bed and add a stack of O-rings, washers and a hammer nut as shown.
 //!3
 module Heated_Bed_assembly()
-assembly("Heated Bed") {
+assembly("Heated_Bed") {
     underlayThickness = 3;
     heatedBed(_heatedBedSize, _heatedBedHoleOffset, underlayThickness);
     heatedBedHardware(_heatedBedSize, _heatedBedHoleOffset, underlayThickness);
