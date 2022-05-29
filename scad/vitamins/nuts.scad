@@ -88,8 +88,9 @@ module nutM4(tolerance=nutHoleTolerance, nutDepth=0) {
 }
 
 module nutM4SlidingT() {
+    M4_sliding_t_nut_short = ["M4_sliding_t_nut", 4,   6,   3.7, 4.7,  false,         0,  10,  10,  6, false];
     if ($preview && is_undef($hide_bolts))
-        sliding_t_nut(M4_sliding_t_nut);
+        sliding_t_nut(M4_sliding_t_nut_short);
 }
 function nutM4SlidingTSize() = [11, 10, 4.5];
 
