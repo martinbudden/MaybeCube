@@ -656,8 +656,9 @@ module XY_Motor_Mount_Brace_Right_RB_stl() {
     color(pp2_colour)
         translate_z(basePlateThickness(useReversedBelts=true) + braceOffsetZ)
             difference() {
+                explode = 80;
                 translate([eX + 2*eSize - sideSupportSizeX + braceShelfWidth - size.x, eY + 2*eSize - xyMotorMountSize.y, 0])
-                    explode(70)
+                    explode(explode)
                         union() {
                             rounded_cube_xy(size, 1);
                             // add orientation indicator
@@ -667,10 +668,10 @@ module XY_Motor_Mount_Brace_Right_RB_stl() {
                         }
                 for (y = [0, plainIdlerPulleyOffset().y]) {
                     translate([eX + 2*eSize - sideSupportSizeX + braceShelfWidth/2, coreXYPosTR(motorWidth).y + y, 0])
-                        explode(70)
+                        explode(explode)
                             boltHoleM3(size.z);
                     translate([eX + 2*eSize - coreXYPosBL().x, coreXYPosTR(motorWidth).y + y, size.z])
-                        explode(70)
+                        explode(explode)
                             vflip()
                                 boltPolyholeM3Countersunk(size.z);
                 }
