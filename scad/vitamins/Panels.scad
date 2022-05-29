@@ -32,10 +32,10 @@ module sidePanelAccessHolePositions(size, left) {
 }
 
 module sidePanelBoltHolePositionsX(size, left, spoolHolder) {
-    xPositionsLeft = size.x == 300 + 2*eSize
-        ? [-size.x/2 + eSize + 50, 100, 0, size.x/2 - eSize - 50]
+    xPositionsLeft = size.x <= 350 + 2*eSize
+        ? [-size.x/2 + eSize + 50, 0, size.x/2 - eSize - 50]
         : [-size.x/2 + 1.5*eSize, -(size.x - eSize)/6, (size.x - eSize)/6, size.x/2 - 1.5*eSize];
-    xPositionsRight = [-size.x/2 + 4*eSize/2, eSize/2, size.x/2 - eSize/2];
+    xPositionsRight = [-size.x/2 + 4*eSize/2, eSize/2, size.x/2 - eSize];
     for (x = left ? xPositionsLeft : xPositionsRight, y = [(-size.y + eSize)/2, (size.y - eSize)/2])
         translate([x, y])
             rotate(exploded() ? 90 : 0)
@@ -101,8 +101,6 @@ module leftSidePanelPC(addBolts=true, hammerNut=true) {
 
 module Left_Side_Panel_assembly(hammerNut=true)
 assembly("Left_Side_Panel", ngb=true) {
-    size = sidePanelSize(left=true);
-
     leftSidePanelPC(hammerNut=hammerNut);
 }
 
@@ -134,34 +132,50 @@ module Left_Side_Channel_Nuts() {
     }
 }
 
-module Channel_Spacer_43p5_stl() {
-    stl("Channel_Spacer_43p5")
+module Channel_Spacer_44p5_stl() {
+    // 50 - tNutLength/2 - 0.5(tolerance)
+    stl("Channel_Spacer_44p5")
         color(pp3_colour)
-            extrusionChannel(43.5);
+            extrusionChannel(44.5);
 }
 
-module Channel_Spacer_88_stl() {
-    stl("Channel_Spacer_88")
+module Channel_Spacer_89p5_stl() {
+    // (eX-100)/2 - tNutLength - 0.5(tolerance)
+    stl("Channel_Spacer_89p5")
         color(pp3_colour)
-            extrusionChannel(88);
+            extrusionChannel(89.5);
+}
+
+module Channel_Spacer_114p5_stl() {
+    // (eX-100)/2 - tNutLength - 0.5(tolerance)
+    stl("Channel_Spacer_114p5")
+        color(pp3_colour)
+            extrusionChannel(114.5);
+}
+
+module Channel_Spacer_Long() {
+    if (eX == 300)
+        Channel_Spacer_89p5_stl();
+    else if (eX == 350)
+        Channel_Spacer_114p5_stl();
 }
 
 module Left_Side_Channel_Spacers() {
-    tNutLength = 11;
-    gap = 0.5;
+    tNutLength = 10;
+    gap = 0.25;
     for (z = [eSize/2, eZ - eSize/2])
         translate([0, eSize + gap, z]) {
             rotate([0, -90, 0])
-                Channel_Spacer_43p5_stl();
+                Channel_Spacer_44p5_stl();
             translate([0, 50 + tNutLength/2, 0])
                 rotate([0, -90, 0])
-                    Channel_Spacer_88_stl();
-            translate([0, 150 + tNutLength/2, 0])
+                    Channel_Spacer_Long();
+            translate([0, eX/2 + tNutLength/2, 0])
                 rotate([0, -90, 0])
-                    Channel_Spacer_88_stl();
-            translate([0, 250 + tNutLength/2, 0])
+                    Channel_Spacer_Long();
+            translate([0, eX - 50 + tNutLength/2, 0])
                 rotate([0, -90, 0])
-                    Channel_Spacer_43p5_stl();
+                    Channel_Spacer_44p5_stl();
         }
 }
 
@@ -314,10 +328,10 @@ module Channel_Spacer_6_stl() {
             extrusionChannel(6);
 }
 
-module Channel_Spacer_13p5_stl() {
-    stl("Channel_Spacer_13p5")
+module Channel_Spacer_14p5_stl() {
+    stl("Channel_Spacer_14p5")
         color(pp3_colour)
-            extrusionChannel(13.5);
+            extrusionChannel(14.5);
 }
 
 module Channel_Spacer_56_stl() {
@@ -326,10 +340,10 @@ module Channel_Spacer_56_stl() {
             extrusionChannel(56);
 }
 
-module Channel_Spacer_83_stl() {
-    stl("Channel_Spacer_83")
+module Channel_Spacer_109p5_stl() {
+    stl("Channel_Spacer_109p5")
         color(pp3_colour)
-            extrusionChannel(83);
+            extrusionChannel(109.5);
 }
 
 module Channel_Spacer_93_stl() {
@@ -339,19 +353,19 @@ module Channel_Spacer_93_stl() {
 }
 
 module Right_Side_Channel_Spacers() {
-    tNutLength = 11;
-    gap = 0.5;
+    tNutLength = 10;
+    gap = 0.25;
     for (z = [eSize/2, eZ - eSize/2])
         translate([eX + 2*eSize, eSize + gap, z]) {
             rotate([0, 90, 0])
-                Channel_Spacer_13p5_stl();
+                Channel_Spacer_14p5_stl();
             translate([0, 20 + tNutLength/2, 0])
                 rotate([0, 90, 0])
-                    Channel_Spacer_83_stl();
-            translate([0, 115 + tNutLength/2, 0])
+                    Channel_Spacer_109p5_stl();
+            translate([0, 140 + tNutLength/2, 0])
                 rotate([0, 90, 0])
-                    Channel_Spacer_93_stl();
-            translate([0, 237.5 + tNutLength/2, 0])
+                    Channel_Spacer_109p5_stl();
+            *translate([0, 237.5 + tNutLength/2, 0])
                 rotate([0, 90, 0])
                     Channel_Spacer_56_stl();
         }
@@ -396,10 +410,5 @@ module rightSidePanelPC(addBolts=true, hammerNut=true) {
 
 module Right_Side_Panel_assembly(hammerNut=true)
 assembly("Right_Side_Panel", ngb=true) {
-    size = sidePanelSize(left=false);
-
-    //translate([eX + 2*eSize, eY + eSize, 2*eSize])
-    //    iecHousing();
-
     rightSidePanelPC(hammerNut=hammerNut);
 }
