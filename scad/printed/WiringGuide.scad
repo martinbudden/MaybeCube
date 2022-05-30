@@ -12,6 +12,7 @@ wiringDiameter = 7;
 sideThickness = 6.5;
 wiringGuideSize = [30, 15, 5];
 wiringGuideClampSize = [wiringDiameter + 2*sideThickness, wiringGuideSize.y, 2.5];
+function wiringGuideTabHeight() = wiringDiameter + 2;
 
 function wiringGuidePosition(offsetX=0, offsetY=0, offsetZ=0) = [eX/2 + eSize - (wiringGuideSize.x + eSize)/2 - offsetX, eY + eSize - offsetY, eZ - eSize - offsetZ];
 
@@ -19,10 +20,10 @@ function wiringGuidePosition(offsetX=0, offsetY=0, offsetZ=0) = [eX/2 + eSize - 
 module Wiring_Guide_stl() {
     stl("Wiring_Guide")
         color(pp1_colour)
-            wiringGuide(wiringGuideSize);
+            wiringGuide(wiringGuideSize, wiringGuideTabHeight());
 }
 
-module wiringGuide(size) {
+module wiringGuide(size, tabHeight) {
     fillet = 1.5;
     translate([-size.x/2, eSize - size.y, 0])
         difference() {
@@ -33,15 +34,15 @@ module wiringGuide(size) {
                         rounded_cube_xy([(size.x - wiringDiameter)/2, size.y, size.z - 0.25], fillet);
                 for (x = [(size.x + wiringDiameter)/2, (size.x - wiringDiameter)/2 - sideThickness])
                     translate([x, 0, 0])
-                        rounded_cube_xy([sideThickness, size.y, wiringDiameter + 2], fillet);
+                        rounded_cube_xy([sideThickness, size.y, tabHeight], fillet);
             }
             if (size.y >= eSize)
                 for (x = [5, size.x - 5])
                     translate([x, size.y/2, 0])
                         boltHoleM3(size.z, twist=4);
             for (x = [(size.x - wiringDiameter - sideThickness)/2, (size.x + wiringDiameter + sideThickness)/2])
-                translate([x, size.y/2, 0])
-                    boltHoleM3Tap(size.z + wiringDiameter);
+                translate([x, size.y/2, 1])
+                    boltHoleM3Tap(tabHeight - 1);
         }
 }
 

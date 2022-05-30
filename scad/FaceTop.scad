@@ -190,7 +190,7 @@ module printheadWiring() {
             Wiring_Guide_stl();
         Wiring_Guide_hardware();
         explode(20, true)
-            translate_z(9) {
+            translate_z(wiringGuideTabHeight()) {
                 stl_colour(pp2_colour)
                     Wiring_Guide_Clamp_stl();
                 Wiring_Guide_Clamp_hardware();
