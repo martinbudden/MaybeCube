@@ -323,6 +323,19 @@ module xyMotorMountBlock(motorType, size, basePlateThickness, offset=[0, 0], sid
                                 vflip()
                                     boltHoleM3Tap(8);
                     }
+                    // belt guide
+                    if (left)
+                        translate([sideSupportSize.x, coreXYPosTR.y + plainIdlerPulleyOffset().y/2, -eps]) {
+                            fillet = 0.5;
+                            size = [6 * 3*fillet, 2, 10 + eps];
+                            translate([-2*fillet, -size.y/2, 0])
+                                rounded_cube_xy(size, fillet);
+                            translate([0, size.y/2, 0])
+                                fillet(size.x - 3*fillet, size.z);
+                            translate([0, -size.y/2, 0])
+                                rotate(270)
+                                    fillet(size.x - 3*fillet, size.z);
+                        }
                     translate([0, eY + eSize - sideSupportSize.y, 0])
                         rounded_cube_xy([sideSupportSize.x - braceShelfWidth, sideSupportSize.y, tabHeight + eSize], fillet);
                 } else {
@@ -654,28 +667,47 @@ module XY_Motor_Mount_Brace_Right_RB_stl() {
 
     stl("XY_Motor_Mount_Brace_Right_RB"); // note - need semicolon to ensure explode of xyMotorMountBrace works
     color(pp2_colour)
-        translate_z(basePlateThickness(useReversedBelts=true) + braceOffsetZ)
-            difference() {
-                explode = 80;
-                translate([eX + 2*eSize - sideSupportSizeX + braceShelfWidth - size.x, eY + 2*eSize - xyMotorMountSize.y, 0])
+        vflip()
+            translate_z(basePlateThickness(useReversedBelts=true) + braceOffsetZ)
+                difference() {
+                    explode = 80;
                     explode(explode)
                         union() {
-                            rounded_cube_xy(size, 1);
-                            // add orientation indicator
-                            translate([0, 3*size.y/4, 0])
-                                rotate(45)
-                                    rounded_cube_xy([3, 3, size.z], 0.5, xy_center=true);
+                            translate([eX + 2*eSize - sideSupportSizeX + braceShelfWidth - size.x, eY + 2*eSize - xyMotorMountSize.y, 0]) {
+                                rounded_cube_xy(size, 1);
+                                // add orientation indicator
+                                translate([0, 3*size.y/4, 0])
+                                    rotate(45)
+                                        rounded_cube_xy([3, 3, size.z], 0.5, xy_center=true);
+                            }
+                            // add belt guide
+                            fillet = 0.5;
+                            gap = 0.25;
+                            guideSize = [6 + 3*fillet, 2, 10];
+                            guideSize2 = [1.2,  14, guideSize.z];
+                            translate([eX + 2*eSize - sideSupportSizeX, coreXYPosTR(motorWidth).y + plainIdlerPulleyOffset().y/2, -guideSize.z + eps]) {
+                                translate([-guideSize.x - gap, -guideSize.y/2, 0])
+                                    rounded_cube_xy(guideSize, fillet);
+                                translate([-guideSize2.x - gap, -guideSize2.y/2, 0])
+                                    rounded_cube_xy(guideSize2, fillet);
+                                translate([-guideSize2.x - gap, guideSize.y/2, 0])
+                                    rotate(90)
+                                        fillet(5, guideSize.z);
+                                translate([-guideSize2.x -gap, -guideSize.y/2, 0])
+                                    rotate(180)
+                                        fillet(5, guideSize.z);
+                            }
                         }
-                for (y = [0, plainIdlerPulleyOffset().y]) {
-                    translate([eX + 2*eSize - sideSupportSizeX + braceShelfWidth/2, coreXYPosTR(motorWidth).y + y, 0])
-                        explode(explode)
-                            boltHoleM3(size.z);
-                    translate([eX + 2*eSize - coreXYPosBL().x, coreXYPosTR(motorWidth).y + y, size.z])
-                        explode(explode)
-                            vflip()
-                                boltPolyholeM3Countersunk(size.z);
+                    for (y = [0, plainIdlerPulleyOffset().y]) {
+                        translate([eX + 2*eSize - sideSupportSizeX + braceShelfWidth/2, coreXYPosTR(motorWidth).y + y, 0])
+                            explode(explode)
+                                boltHoleM3(size.z);
+                        translate([eX + 2*eSize - coreXYPosBL().x, coreXYPosTR(motorWidth).y + y, size.z])
+                            explode(explode)
+                                vflip()
+                                    boltPolyholeM3Countersunk(size.z);
+                    }
                 }
-            }
 }
 
 module XY_Motor_Mount_Brace_Right_16_stl() {
@@ -820,7 +852,8 @@ assembly("XY_Motor_Mount_Right", ngb=true) {
         if (offset.x != 0)
             stl_colour(pp2_colour)
                 if (useReversedBelts())
-                    XY_Motor_Mount_Brace_Right_RB_stl();
+                    vflip()
+                        XY_Motor_Mount_Brace_Right_RB_stl();
                 else if (usePulley25())
                     XY_Motor_Mount_Brace_Right_25_stl();
                 else
