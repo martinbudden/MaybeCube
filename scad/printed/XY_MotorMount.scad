@@ -624,7 +624,7 @@ module XY_Motor_Mount_Brace_Left_RB_stl() {
         translate_z(basePlateThickness(useReversedBelts=true) + braceOffsetZ)
             difference() {
                 translate([sideSupportSizeX - braceShelfWidth, eY + 2*eSize - xyMotorMountSize.y, 0])
-                    explode(70)
+                    explode(70, show_line=false)
                         union() {
                             rounded_cube_xy(size, 1);
                             // add orientation indicator
@@ -671,7 +671,7 @@ module XY_Motor_Mount_Brace_Right_RB_stl() {
             translate_z(basePlateThickness(useReversedBelts=true) + braceOffsetZ)
                 difference() {
                     explode = 80;
-                    explode(explode)
+                    explode(explode, show_line=false)
                         union() {
                             translate([eX + 2*eSize - sideSupportSizeX + braceShelfWidth - size.x, eY + 2*eSize - xyMotorMountSize.y, 0]) {
                                 rounded_cube_xy(size, 1);
