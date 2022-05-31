@@ -25,7 +25,7 @@ module Spool_Holder_36_stl() {
 module Spool_Holder_Bracket_stl() {
     size = [3*eSize, 1.5*eSize, 10];
     fillet = 2;
-    thickness = 4.75;
+    thickness = 4.5;
     catchRadius = 2;
     catchLength = eSize + 1;
 
@@ -35,7 +35,7 @@ module Spool_Holder_Bracket_stl() {
                 difference() {
                     union() {
                         rounded_cube_xy([size.x, size.y, thickness], fillet);
-                        sideSize = [eSize - 0.25, size.y, size.z];
+                        sideSize = [eSize - 0.45, size.y, size.z];
                         for (x = [0, size.x - sideSize.x])
                             translate([x, 0, 0])
                                 rounded_cube_xy(sideSize, fillet);
