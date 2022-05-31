@@ -13,13 +13,13 @@ function spoolOffset() = [3, 0, 7];
 module Spool_Holder_stl() {
     stl("Spool_Holder")
         color(pp2_colour)
-            spoolHolder(bracketSize=[5, 2*eSize - 10, 20], offsetX=spoolOffset().x, catchRadius=0, capOffset=true);
+            spoolHolder(bracketSize=[5, 2*eSize - 10, 20], offsetX=spoolOffset().x, catchRadius=0, length=90, capOffset=true);
 }
 
 module Spool_Holder_36_stl() {
     stl("Spool_Holder_36")
         color(pp2_colour)
-            spoolHolder(bracketSize=[5, 2*eSize - 10, 20], offsetX=spoolOffset().x, catchRadius=0, spoolInternalRadius=36, capOffset=true);
+            spoolHolder(bracketSize=[5, 2*eSize - 10, 20], offsetX=spoolOffset().x, catchRadius=0, length=90, spoolInternalRadius=36, capOffset=true);
 }
 
 module Spool_Holder_Bracket_stl() {
