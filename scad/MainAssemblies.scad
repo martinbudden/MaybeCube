@@ -108,7 +108,7 @@ staged_assembly("Stage_2", big=true, ngb=true) {
     explode([-50, 0, 0])
         if (!printbedKinematic)
             for (y = [eSize + 5, eSize + eY/2 - coverLength/2, eSize + eY - coverLength - 5])
-                translate([eX + eSize-1, y, 3*eSize/2])
+                translate([eX + eSize - 1, y, 3*eSize/2])
                     rotate([-90, -90, 0])
                         E20_RibbonCover_50mm_stl();
 */

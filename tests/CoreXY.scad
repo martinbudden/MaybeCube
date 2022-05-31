@@ -46,7 +46,7 @@ module CoreXY_test() {
 
     for (x=[0, eX + eSize], y=[0, eY + eSize])
         translate([x, y, 250])
-            extrusionOZ(eZ-250);
+            extrusionOZ(eZ - 250);
 
     *translate([eSize, 0, eZ - eSize])
         extrusionOX(eX);
