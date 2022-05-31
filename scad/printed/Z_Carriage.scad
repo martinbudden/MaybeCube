@@ -225,7 +225,7 @@ module zCarriageCenter() {
         difference() {
             translate_z(-eSize/2 - baseThickness)
                 rounded_cube_xy(tabSize, 1);
-            for (x = [5, tabSize.x -5])
+            for (x = [5, tabSize.x - 5])
                 translate([x, 0, 0])
                     rotate([90, 0, 180])
                         boltHoleM4(tabSize.y, horizontal=true);
@@ -253,7 +253,7 @@ module Z_Carriage_Center_hardware() {
                 leadnut_screw_positions(leadnut)
                     screw(leadnut_screw(leadnut), 10);
             }
-        for (x = [5, tabSize.x -5])
+        for (x = [5, tabSize.x - 5])
             translate([x - tabSize.x/2, tabSize.y - printbedFrameCrossPieceOffset(), 0]) {
                 rotate([-90, 0, 0])
                     boltM4ButtonheadTNut(_frameBoltLength);
