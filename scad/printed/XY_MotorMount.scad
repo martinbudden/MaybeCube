@@ -191,12 +191,13 @@ module xyMotorMountBase(motorType, size, offset, sideSupportSizeY, stepdown, use
                 rounded_cube_xy(grooveSize, 0.5);
         } else {
             // bolt holes to attach motor covers
-            translate([coreXYPosBL.x + separation.x/2 + (offset.x ? offset.x : coreXY_drive_pulley_x_alignment(coreXY_type)), eY + 2*eSize - size.y, basePlateThickness/2])
+            /*translate([coreXYPosBL.x + separation.x/2 + (offset.x ? offset.x : coreXY_drive_pulley_x_alignment(coreXY_type)), eY + 2*eSize - size.y, basePlateThickness/2])
                 rotate([-90, 180, 0])
                     boltHoleM3Tap(6, horizontal=true, chamfer_both_ends=false);
             translate([size.x, coreXYPosTR.y + (left ? offset.y : -offset.y), basePlateThickness/2])
                 rotate([-90, 180, 90])
                     boltHoleM3Tap(6, horizontal=true, chamfer_both_ends=false);
+            */
         }
         if (!cnc)
             translate([coreXYPosBL.x + separation.x/2, coreXYPosTR.y, 0]) {
