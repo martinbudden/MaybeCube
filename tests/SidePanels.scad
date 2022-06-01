@@ -31,11 +31,11 @@ module SidePanel_Jig_test() {
 }
 
 module SidePanel_test() {
-    //Left_Side_Channel_Spacers();
-    //Left_Side_Panel_assembly(hammerNut=false);
-    Right_Side_Channel_Spacers();
-    Right_Side_Panel_assembly(hammerNut=false);
-    Extruder_Bracket_assembly();
+    Left_Side_Channel_Spacers();
+    Left_Side_Panel_assembly(hammerNut=false);
+    //Right_Side_Channel_Spacers();
+    //Right_Side_Panel_assembly(hammerNut=false);
+    //Extruder_Bracket_assembly();
 }
 
 if ($preview)
@@ -43,11 +43,8 @@ if ($preview)
 else
     Panel_Jig_stl();
     // left side
-    //Channel_Spacer_43p5_stl();
-    //Channel_Spacer_88_stl();
+    //Channel_Spacer_44p5_stl();
+    //Channel_Spacer_89p5_stl();
     // right side
-    //Channel_Spacer_6_stl();
-    //Channel_Spacer_13p5_stl();
-    //Channel_Spacer_56_stl();
-    //Channel_Spacer_83_stl();
-    //Channel_Spacer_93_stl();
+    //Channel_Spacer_14p5_stl();
+    //Channel_Spacer_84p5_stl();
