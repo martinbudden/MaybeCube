@@ -134,9 +134,10 @@ module Left_Side_Channel_Nuts() {
 
 module Channel_Spacer_44p5_stl() {
     // 50 - tNutLength/2 - 0.5(tolerance)
+    length = 44.5;
     stl("Channel_Spacer_44p5")
         color(pp3_colour)
-            extrusionChannel(44.5);
+            extrusionChannel(length, boltHoles=[length/2], boltDiameter=3);
 }
 
 module Channel_Spacer_89p5_stl() {
@@ -153,7 +154,7 @@ module Channel_Spacer_114p5_stl() {
             extrusionChannel(114.5);
 }
 
-module Channel_Spacer_Long() {
+module Channel_Spacer_Left_Long() {
     if (eX == 300)
         Channel_Spacer_89p5_stl();
     else if (eX == 350)
@@ -169,10 +170,10 @@ module Left_Side_Channel_Spacers() {
                 Channel_Spacer_44p5_stl();
             translate([0, 50 + tNutLength/2, 0])
                 rotate([0, -90, 0])
-                    Channel_Spacer_Long();
+                    Channel_Spacer_Left_Long();
             translate([0, eX/2 + tNutLength/2, 0])
                 rotate([0, -90, 0])
-                    Channel_Spacer_Long();
+                    Channel_Spacer_Left_Long();
             translate([0, eX - 50 + tNutLength/2, 0])
                 rotate([0, -90, 0])
                     Channel_Spacer_44p5_stl();
@@ -329,15 +330,22 @@ module Channel_Spacer_6_stl() {
 }
 
 module Channel_Spacer_14p5_stl() {
+    length = 14.5;
     stl("Channel_Spacer_14p5")
         color(pp3_colour)
-            extrusionChannel(14.5);
+            extrusionChannel(length, boltHoles=[length/2], boltDiameter=3);
 }
 
 module Channel_Spacer_56_stl() {
     stl("Channel_Spacer_56")
         color(pp3_colour)
             extrusionChannel(56);
+}
+
+module Channel_Spacer_84p5_stl() {
+    stl("Channel_Spacer_84p5")
+        color(pp3_colour)
+            extrusionChannel(84.5);
 }
 
 module Channel_Spacer_109p5_stl() {
@@ -352,6 +360,13 @@ module Channel_Spacer_93_stl() {
             extrusionChannel(93);
 }
 
+module Channel_Spacer_Right_Long() {
+    if (eX == 300)
+        Channel_Spacer_84p5_stl();
+    else if (eX == 350)
+        Channel_Spacer_109p5_stl();
+}
+
 module Right_Side_Channel_Spacers() {
     tNutLength = 10;
     gap = 0.25;
@@ -361,15 +376,15 @@ module Right_Side_Channel_Spacers() {
                 Channel_Spacer_14p5_stl();
             translate([0, 20 + tNutLength/2, 0])
                 rotate([0, 90, 0])
-                    Channel_Spacer_109p5_stl();
-            translate([0, 140 + tNutLength/2, 0])
+                    Channel_Spacer_Right_Long();
+            translate([0, (eX - 70)/2 + tNutLength/2, 0])
                 rotate([0, 90, 0])
-                    Channel_Spacer_109p5_stl();
-            *translate([0, 237.5 + tNutLength/2, 0])
+                    Channel_Spacer_Right_Long();
+            translate([0, eX - 90 + tNutLength/2, 0])
                 rotate([0, 90, 0])
-                    Channel_Spacer_56_stl();
+                    Channel_Spacer_14p5_stl();
         }
-    translate([eX + 2*eSize, eSize + gap, eZ - eSize/2]) {
+    *translate([eX + 2*eSize, eSize + gap, eZ - eSize/2]) {
         translate([0, 219.75 + tNutLength/2, 0])
             rotate([0, 90, 0])
                 Channel_Spacer_6_stl();
