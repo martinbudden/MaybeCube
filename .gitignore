@@ -61,10 +61,6 @@ pictures/*
 
 M5/
 
-MC300RB/
-
-MC350RB/
-
 nuts/
 
 Voron_Afterburner/
@@ -203,6 +199,24 @@ MC300/assemblies/*_diff.png
 MC300/dxfs/*_diff.png
 MC300/stls/*_diff.png
 
+MC300RB/assemblies/*
+MC300RB/bom/
+MC300RB/dxfs/*
+MC300RB/stls/*
+MC300RB/tmp/
+MC300RB/*.html
+# change to !, except for _diff, .stl, and .dxf, once released
+!MC300RB/readme.md
+!MC300RB/assemblies/main_assembled.png
+!MC300RB/assemblies/*.png
+!MC300/dxfs/*.dxf
+!MC300RB/dxfs/*.png
+#!MC300RB/stls/*.stl
+!MC300RB/stls/*.png
+MC300RB/assemblies/*_diff.png
+MC300RB/dxfs/*_diff.png
+MC300RB/stls/*_diff.png
+
 MC300EB/
 MC300EBack/
 
@@ -219,7 +233,7 @@ MC350/*.html
 !MC350/readme.md
 !MC350/assemblies/*.png
 !MC350/assemblies/main_assembled.png
-#!MC350/dxfs/*.dxf
+!MC350/dxfs/*.dxf
 !MC350/dxfs/*.png
 #!MC350/stls/*.stl
 !MC350/stls/*.png
