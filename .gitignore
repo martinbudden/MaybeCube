@@ -68,15 +68,20 @@ MC350RB/
 nuts/
 
 Voron_Afterburner/
-
 Voron_Mini_Afterburner/assemblies/*
 Voron_Mini_Afterburner/bom/
 Voron_Mini_Afterburner/dxfs/
-Voron_Mini_Afterburner/stls/
+Voron_Mini_Afterburner/stls/*
+!Voron_Mini_Afterburner/stls/X_Carriage_Voron_Mini_Afterburner.stl
 Voron_Mini_Afterburner/tmp/
 Voron_Mini_Afterburner/*.html
 Voron_Mini_Afterburner/*.md
-!Voron_Mini_Afterburner/assemblies/Voron_Mini_Afterburner_assembled.png
+!Voron_Mini_Afterburner/readme.md
+!Voron_Mini_Afterburner/assemblies/*.png
+//!Voron_Mini_Afterburner/assemblies/X_Carriage_Voron_Mini_Afterburner_assembled.png
+!Voron_Mini_Afterburner/stls/*.png
+Voron_Mini_Afterburner/assemblies/*_diff.png
+Voron_Mini_Afterburner/stls/*_diff.png
 
 jigs/assemblies/*
 jigs/bom/
