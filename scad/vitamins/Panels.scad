@@ -137,7 +137,7 @@ module Channel_Spacer_44p5_stl() {
     length = 44.5;
     stl("Channel_Spacer_44p5")
         color(pp3_colour)
-            extrusionChannel(length, boltHoles=[length/2], boltDiameter=3);
+            extrusionChannel(length, boltHoles=[length/2]);
 }
 
 module Channel_Spacer_89p5_stl() {
@@ -333,7 +333,7 @@ module Channel_Spacer_14p5_stl() {
     length = 14.5;
     stl("Channel_Spacer_14p5")
         color(pp3_colour)
-            extrusionChannel(length, boltHoles=[length/2], boltDiameter=3);
+            extrusionChannel(length, boltHoles=[length/2]);
 }
 
 module Channel_Spacer_56_stl() {
