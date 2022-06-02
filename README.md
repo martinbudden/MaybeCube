@@ -23,9 +23,7 @@ Please read all the build instructions before you begin assembly.
 
 The STL files are on [thingiverse](https://www.thingiverse.com/thing:4912095).
 
-The assembly of the different MC300 and MC350 variants is essentially the same, the differences are in the printbed and the placing of the PSU on the back panel. Larger variants naturally have a larger printbed and to support this can optionally have Z-rods on both sides of the printbed.
-
-I plan to make a series of YouTube videos giving build instructions, when I have done so I will post a link here. I won't start these, however, until I have completed the BabyCube build videos.
+The assembly of the different MC300 and MC350 variants is essentially the same, the main differences are in the printbed. Larger variants naturally have a larger printbed and to support this can optionally have Z-rods on both sides of the printbed.
 
 If you would like to build a smaller printer, you may be interested in the MaybeCube's smaller sibling, the [BabyCube](https://github.com/martinbudden/BabyCube).
 
