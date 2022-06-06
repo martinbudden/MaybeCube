@@ -3,7 +3,7 @@ use <NopSCADlib/utils/maths.scad>
 use <NopSCADlib/utils/bezier.scad>
 use <NopSCADlib/utils/tube.scad>
 
-module bezierTube(curPos, pos, tubeRadius = 2, bowdenTube = false, length = undef) {
+module bezierTube(curPos, pos, tubeRadius=2, bowdenTube=false, length=undef) {
     endPos = curPos - pos;
     p = bowdenTube
         ? [ [0, 0, 0], [0, 0, 100], [0, 0, 150], [endPos.x/2, endPos.y/2, 250], [endPos.x, endPos.y, 150], [endPos.x, endPos.y, 0], endPos ]

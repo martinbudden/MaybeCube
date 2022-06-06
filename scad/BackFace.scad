@@ -159,7 +159,7 @@ module backPanelBoltHolePositions(size) {
                 children();
 }
 
-module backPanelCutouts(psuType, pcbType, cncSides = undef, radius = undef) {
+module backPanelCutouts(psuType, pcbType, cncSides=undef, radius=undef) {
     size = backPanelSize();
 
     translate([-size.x/2, -size.y/2]) {
