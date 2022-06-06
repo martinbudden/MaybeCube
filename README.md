@@ -159,13 +159,18 @@ It does seem that the MC300 compares very favourably with the other printers for
 
 ## Customisations
 
-### EVA module printhead system
+### EVA module printhead system (version 2.4.2)
 
 In its default configuration the MaybeCube has an E3D V6 hotend with a Bowden extruder. However I've created adaptors
 so that the [EVA modular printhead system](https://main.eva-3d.page) can be used. The EVA system supports a wide variety
 of hotends and extruders. More details on using the EVA adaptors are [here](https://github.com/martinbudden/MaybeCube/tree/main/EVA).
 
 The STL files are on [thingiverse](https://www.thingiverse.com/thing:4912099).
+
+In the picture below, EVA adaptors are printed in blue, MaybeCube standard parts are printed in red, and EVA standard parts
+are printed in black and green.
+
+![EVA2](pictures/EVA2.jpg)
 
 ### Printermods XChange quick change tool head
 
