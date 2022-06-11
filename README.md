@@ -180,6 +180,8 @@ More details on using the XChange adaptor are [here](https://github.com/martinbu
 
 The STL files are on [thingiverse](https://www.thingiverse.com/thing:4924355).
 
+![XChange](pictures/XChange3.jpg)
+
 ### Voron Mini Afterburner printhead
 
 I've created an adaptor for the Voron Mini Afterburner (as used on the [Voron V0](https://github.com/VoronDesign/Voron-0)) printhead.
