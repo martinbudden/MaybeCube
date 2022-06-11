@@ -1,6 +1,6 @@
 <a name="TOP"></a>
 
-# EVA adaptors
+# EVA 2.4.2 adaptors
 
 MaybeCube supports the [EVA modular printhead system](https://main.eva-3d.page). This allows a wide variety of hotends
 and extruders to be used.
@@ -13,6 +13,9 @@ The top adaptor varies according to the extruder used - the part name is the sam
 So for example if you wanted to used the BMG extruder then you should use part **EVA_MC_bmg_mgn12.stl**
 (rather than part **bmg_mgn12.stl** that you would ordinarily use).
 
+In the illustrations below, EVA adaptors are printed in blue, MaybeCube standard parts are printed in red, and EVA standard parts are
+printed in black and green.
+
 ## License
 
 EVA is licensed under the [GNU General Public License v3.0](https://github.com/EVA-3D/eva-main/blob/main/LICENSE)
@@ -22,7 +25,7 @@ The MaybeCube EVA adaptors (ie all `.stl` files prefixed by "EVA_MC_") are hereb
 to the EVA project and are so licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/)
 as are all EVA community contributions.
 
-![Main Assembly](assemblies/EVA_assembled.png)
+![Main Assembly](assemblies/EVA_2_4_2_assembled.png)
 
 <span></span>
 
@@ -31,8 +34,8 @@ as are all EVA community contributions.
 ## Table of Contents
 
 1. [Parts list](#Parts_list)
-1. [EVA_Stage_1 assembly](#EVA_Stage_1_assembly)
-1. [EVA assembly](#EVA_assembly)
+1. [EVA_2_4_2_Stage_1 assembly](#EVA_2_4_2_Stage_1_assembly)
+1. [EVA_2_4_2 assembly](#EVA_2_4_2_assembly)
 
 <span></span>
 [Top](#TOP)
@@ -42,7 +45,7 @@ as are all EVA community contributions.
 
 ## Parts list
 
-| <span style="writing-mode: vertical-rl; text-orientation: mixed;">EVA Stage 1</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">EVA</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">TOTALS</span> |  |
+| <span style="writing-mode: vertical-rl; text-orientation: mixed;">EVA 2 4 2 Stage 1</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">EVA 2 4 2</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">TOTALS</span> |  |
 |-----:|-----:|------:|:---|
 |      |      |       | **Vitamins** |
 |   4  |   .  |    4  |  Bolt M3 caphead x  8mm |
@@ -68,9 +71,9 @@ as are all EVA community contributions.
 [Top](#TOP)
 
 ---
-<a name="EVA_Stage_1_assembly"></a>
+<a name="EVA_2_4_2_Stage_1_assembly"></a>
 
-## EVA_Stage_1 assembly
+## EVA_2_4_2_Stage_1 assembly
 
 ### Vitamins
 
@@ -103,7 +106,7 @@ as are all EVA community contributions.
 
 ### Assembly instructions
 
-![EVA_Stage_1_assembly](assemblies/EVA_Stage_1_assembly.png)
+![EVA_2_4_2_Stage_1_assembly](assemblies/EVA_2_4_2_Stage_1_assembly.png)
 
 1. Bolt the top part to the MGN12 carriage. This example uses the **EVA_MC_top_bmg_mgn12.stl** part, you should use the part
 appropriate to your extruder.
@@ -113,15 +116,15 @@ appropriate to your extruder.
 **EVA_MC_bottom_mgn12_short_duct.stl** part as shown.
 5. Thread the belts through the printer pulleys and then clamp them to the **EVA_MC_bottom_mgn12_short_duct.stl** part.
 
-![EVA_Stage_1_assembled](assemblies/EVA_Stage_1_assembled.png)
+![EVA_2_4_2_Stage_1_assembled](assemblies/EVA_2_4_2_Stage_1_assembled.png)
 
 <span></span>
 [Top](#TOP)
 
 ---
-<a name="EVA_assembly"></a>
+<a name="EVA_2_4_2_assembly"></a>
 
-## EVA assembly
+## EVA_2_4_2 assembly
 
 ### Vitamins
 
@@ -140,19 +143,19 @@ appropriate to your extruder.
 
 ### Sub-assemblies
 
-| 1 x EVA_Stage_1_assembly |
+| 1 x EVA_2_4_2_Stage_1_assembly |
 |---|
-| ![EVA_Stage_1_assembled](assemblies/EVA_Stage_1_assembled_tn.png) 
+| ![EVA_2_4_2_Stage_1_assembled](assemblies/EVA_2_4_2_Stage_1_assembled_tn.png) 
 
 
 
 ### Assembly instructions
 
-![EVA_assembly](assemblies/EVA_assembly.png)
+![EVA_2_4_2_assembly](assemblies/EVA_2_4_2_assembly.png)
 
 Bolt the **universal_face.stl** part to the **EVA_MC_top_bmg_mgn12** and **EVA_MC_bottom_mgn12_short_duct** parts.
 
-![EVA_assembled](assemblies/EVA_assembled.png)
+![EVA_2_4_2_assembled](assemblies/EVA_2_4_2_assembled.png)
 
 <span></span>
 [Top](#TOP)

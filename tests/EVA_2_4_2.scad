@@ -2,9 +2,9 @@
 
 include <../scad/global_defs.scad>
 $pp1_colour = grey(25);
-$pp2_colour = "limegreen";
+$pp2_colour = "LimeGreen";
 $pp3_colour = grey(25);
-$pp4_colour = "steelblue";
+$pp4_colour = "SteelBlue";
 
 include <../scad/vitamins/bolts.scad>
 include <NopSCADlib/vitamins/blowers.scad>
@@ -29,12 +29,11 @@ t = 2;
 zOffset = 5;
 tensionerOffsetX = X_CarriageEVATensionerOffsetX();
 
-
-module EVA_test() {
+module EVA_2_4_2_test() {
     offsetZ = 0;
     translate(-[eSize + eX/2, carriagePosition(t).y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
         //CoreXYBelts(carriagePosition() + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
-        translate_z(offsetZ) printheadEVA(top="mgn12");
+        translate_z(offsetZ) printheadEVA_2_4_2(top="mgn12");
         *translate_z(eZ)
             xRail(carriagePosition(), MGN12H_carriage);
         *translate([0, 0, eZ - eSize])
@@ -43,6 +42,10 @@ module EVA_test() {
             Y_Carriage_Right_assembly();
     }
     translate_z(13 + offsetZ) rotate(180) evaHotend();
+}
+
+module evaImportStl(file) {
+    eva_2_4_2_ImportStl(file);
 }
 
 module evaHotend(full=false) {
@@ -205,4 +208,4 @@ module evaImportStlBottom() {
 //X_Carriage_Belt_Clamp_stl();
 //X_Carriage_Belt_Tensioner_stl();
 if ($preview)
-    EVA_test();
+    EVA_2_4_2_test();
