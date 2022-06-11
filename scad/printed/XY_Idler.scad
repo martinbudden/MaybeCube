@@ -18,7 +18,6 @@ frontOffset = 0.75; // so idler does not interfere with sliding front panel
 function xyIdlerSize() = [eSize - 1 - frontOffset + (pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 4 : 0), pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 65 : 60, 5]; // eSize -1 to allow for imprecisely cut Y rails
 function xyIdlerRailOffset() = eSize - 1 - (pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 0 : 0);
 armSize = [xyIdlerSize().x, 5.5, 17.5]; // 5.5 y size so 30mm bolt fits exactly
-tabLength = xyIdlerSize().y - armSize.z; //was 27
 tabThickness = 5;
 tabBoltOffset = 6;
 
@@ -66,8 +65,7 @@ module xyIdlerOld() {
     }
 }
 
-module xyIdler(left=true, useReversedBelts=false, M5=false) {
-    size = xyIdlerSize();
+module xyIdler(size, left=true, useReversedBelts=false, M5=false) {
     separation = coreXYSeparation();
     sizeY1 = (coreXYPosBL().z - (left || !useReversedBelts ? separation.z : 0)) - (eZ - eSize - size.y);
     washerClearance = 0.25; // to make assembly easier
@@ -76,6 +74,7 @@ module xyIdler(left=true, useReversedBelts=false, M5=false) {
     // cutout for y rail
     cutoutFillet = 0.5;
     cutoutSize = [size.x >= eSize ? 4 : 0, 8.5 + cutoutFillet, 13];
+    tabLength = size.y - armSize.z; //was 27
 
     fillet = 0.5;
     translate([0, eZ - eSize - size.y, 0]) {
@@ -193,7 +192,7 @@ module XY_Idler_Channel_Nut_25_stl() {
         extrusionChannel(size.y, boltHoles=[lowerBoltOffset, size.y - upperBoltOffset]);
 }
 
-module XY_Idler_hardware(left=true, useReversedBelts=false) {
+module XY_Idler_hardware(size, left=true, useReversedBelts=false) {
 
     module doubleWasher(left) {
         if (coreXYIdlerBore() == 3)
@@ -211,7 +210,6 @@ module XY_Idler_hardware(left=true, useReversedBelts=false) {
                 children();
     }
 
-    size = xyIdlerSize();
     coreXY_type = coreXY_type();
     toothed_idler = coreXY_toothed_idler(coreXY_type);
 
@@ -226,7 +224,7 @@ module XY_Idler_hardware(left=true, useReversedBelts=false) {
                         boltM4Buttonhead(_frameBoltLength);
                         //boltM4ButtonheadHammerNut(_frameBoltLength, rotate=90, nutExplode=60);
 
-            translate([0, size.y - tabThickness, armSize.z + tabLength - tabBoltOffset])
+            translate([0, size.y - tabThickness, size.y - tabBoltOffset])
                 rotate([90, 0, 0])
                     boltM4ButtonheadHammerNut(_frameBoltLength, rotate=90);
             translate([0, size.y + 2, eSize/2])
@@ -284,7 +282,7 @@ module XY_Idler_Left_16_stl() {
     stl("XY_Idler_Left_16")
         color(pp1_colour)
             rotate([90, -90, 0])
-                xyIdler();
+                xyIdler(xyIdlerSize());
 }
 
 module XY_Idler_Left_RB_stl() {
@@ -292,7 +290,7 @@ module XY_Idler_Left_RB_stl() {
     stl("XY_Idler_Left_RB");
     color(pp1_colour)
         rotate([90, -90, 0])
-            xyIdler(left=true, useReversedBelts=true);
+            xyIdler(xyIdlerSize(), left=true, useReversedBelts=true);
 }
 
 module XY_Idler_Left_25_stl() {
@@ -300,7 +298,7 @@ module XY_Idler_Left_25_stl() {
     stl("XY_Idler_Left_25")
         color(pp1_colour)
             rotate([90, -90, 0])
-                xyIdler();
+                xyIdler(xyIdlerSize());
 }
 
 module XY_Idler_Left_M5_stl() {
@@ -308,7 +306,7 @@ module XY_Idler_Left_M5_stl() {
     stl("XY_Idler_Left_M5")
         color(pp1_colour)
             rotate([90, -90, 0])
-                xyIdler(M5=true);
+                xyIdler(xyIdlerSize(), M5=true);
 }
 
 module XY_Idler_Right_16_stl() {
@@ -316,7 +314,7 @@ module XY_Idler_Right_16_stl() {
         color(pp1_colour)
             rotate([0, 90, 0])
                 mirror([1, 0, 0])
-                    xyIdler();
+                    xyIdler(xyIdlerSize());
 }
 
 module XY_Idler_Right_RB_stl() {
@@ -324,7 +322,7 @@ module XY_Idler_Right_RB_stl() {
     color(pp1_colour)
         rotate([0, 90, 0])
             mirror([1, 0, 0])
-                xyIdler(left=false, useReversedBelts=true);
+                xyIdler(xyIdlerSize(), left=false, useReversedBelts=true);
 }
 
 module XY_Idler_Right_25_stl() {
@@ -332,7 +330,7 @@ module XY_Idler_Right_25_stl() {
         color(pp1_colour)
             rotate([0, 90, 0])
                 mirror([1, 0, 0])
-                    xyIdler();
+                    xyIdler(xyIdlerSize());
 }
 
 module XY_Idler_Right_M5_stl() {
@@ -340,7 +338,7 @@ module XY_Idler_Right_M5_stl() {
         color(pp1_colour)
             rotate([0, 90, 0])
                 mirror([1, 0, 0])
-                    xyIdler(M5=true);
+                    xyIdler(xyIdlerSize(), M5=true);
 }
 
 //!1. Bolt the pulley stack into the **XY_Idler_Left**. Note that there are 4 washers between the two pulleys and one
@@ -363,7 +361,7 @@ assembly("XY_Idler_Left", ngb=true) {
                 else
                     XY_Idler_Left_16_stl();
         rotate([90, 0, 180])
-            XY_Idler_hardware(left=true, useReversedBelts=useReversedBelts());
+            XY_Idler_hardware(xyIdlerSize(), left=true, useReversedBelts=useReversedBelts());
     }
 }
 
@@ -388,6 +386,6 @@ assembly("XY_Idler_Right", ngb=true) {
                     XY_Idler_Right_16_stl();
             translate_z(eSize)
                 hflip()
-                    XY_Idler_hardware(left=false, useReversedBelts=useReversedBelts());
+                    XY_Idler_hardware(xyIdlerSize(), left=false, useReversedBelts=useReversedBelts());
         }
 }
