@@ -111,6 +111,22 @@ module evaHotendBaseFrontHardware(explode=40) {
         }
 }
 
+module evaHotendBackHardware(explode=40) {
+    size = [8.2, 44.1, 27 + beltAlignmentZ];
+    boltLength = 40;
+    translate([size.y/2, -size.z/2 + 3.5, -bottomMgn12OffsetZ])
+        rotate([-90, 90, 0]) {
+            explode(explode, true)
+                for (y = [5, size.y - 5])
+                    translate([-size.y, y, size.z])
+                        boltM3Caphead(boltLength);
+            explode(explode, true)
+                for (y = [5, size.y - 5])
+                    translate([size.x - 9, y, size.z])
+                        boltM3Caphead(boltLength);
+        }
+}
+
 module evaBeltClampPosition() {
 //    xCarriageBeltClampPosition(MGN12H_carriage, bottomMgn12Size, beltWidth(), beltSeparation())
     pulley25Offset = 0;
@@ -223,16 +239,25 @@ module EVA_MC_BottomMgn12(ductSizeY=undef, airflowSplit=false) {
         if (airflowSplit)
             translate([0, (size.y - 1.5)/2, 0])
                 cube([tabSize.x, 1.5, tabSize.z]);
+    }
+    translate([-8.5, 0, -beltAlignmentZ/2])
+        EVA_MC_BeltAttachment(backThickness=4);
+}
 
-        beltAttachmentSize = xCarriageBeltAttachmentSize(beltWidth(), beltSeparation(), size.y);
-        extraZ = 0.5;
-        translate([-8.5, 0, 0]) {
-            translate_z(extraZ)
-                rotate(90)
-                    xCarriageBeltAttachment(beltAttachmentSize, beltWidth(), beltSeparation(), endCube=true);
-            translate([-beltAttachmentSize.x/2 - 1, 0, 0])
-                cube([beltAttachmentSize.x, size.y, extraZ]);
-        }
+module EVA_MC_BeltAttachment(backThickness=0, endCube=true) {
+    size = bottomMgn12Size;
+    beltAttachmentSize = xCarriageBeltAttachmentSize(beltWidth(), beltSeparation(), size.y);
+    extraZ = 0.5;
+    translate_z(extraZ)
+        rotate(90)
+            xCarriageBeltAttachment(beltAttachmentSize, beltWidth(), beltSeparation(), backThickness=backThickness, endCube=endCube);
+    translate([-beltAttachmentSize.x/2 - 1, 0, 0])
+        cube([beltAttachmentSize.x, size.y, extraZ]);
+    if (backThickness == 0) {
+        sizeX = 2.1;
+        offsetY = 0.05;
+        translate([11 - sizeX, offsetY, 0])
+            cube([sizeX, size.y-2*offsetY, beltAttachmentSize.y - 0.3]);
     }
 }
 
@@ -264,8 +289,12 @@ module EVA_MC_TopMgn12(counterBore=true) {
         }
 }
 
-module evaImportStl(file) {
-    import(str("../../../stlimport/eva/", file, ".stl"));
+module eva_2_4_2_ImportStl(file) {
+    import(str("../../../stlimport/eva_2_4_2/", file, ".stl"));
+}
+
+module eva_3_0_ImportStl(file, convexity=undef) {
+    import(str("../../../stlimport/eva_3_0/", file, ".stl"), convexity=convexity);
 }
 
 module EvaTopConvert(stlFile, zOffset=5, horizontal=true) {
@@ -293,7 +322,7 @@ at the bottom.
             difference() {
                 height = 8;
                 union() {
-                    evaImportStl(stlFile);
+                    eva_2_4_2_ImportStl(stlFile);
                     size1 = [40 + 2*eps, 27, height - screw_head_height(M3_cap_screw) - 0.2];
                     size2 = [bottomMgn12Size.y, 12, 1];
                     size3 = [30, 12, height - screw_head_height(M3_cap_screw) - 0.2];
@@ -392,16 +421,16 @@ module EVA_MC_top_titan_mgn12_stl() {
 module back_corexy_stl() {
     stl("back_corexy")
         stl_colour(evaColorGreen())
-            evaImportStl("back_corexy");
+            eva_2_4_2_ImportStl("back_corexy");
 }
 
 module universal_face_stl() {
     stl("universal_face")
         stl_colour(evaColorGreen())
-            evaImportStl("universal_face");
+            eva_2_4_2_ImportStl("universal_face");
 }
 
-module printheadEVA(rotate=180, explode=0, t=undef, top="mgn12") {
+module printheadEVA_2_4_2(rotate=180, explode=0, t=undef, top="mgn12") {
     xRailCarriagePosition(carriagePosition(t), rotate)
         explode(explode, true) {
             color(pp4_colour)
@@ -416,6 +445,30 @@ module printheadEVA(rotate=180, explode=0, t=undef, top="mgn12") {
             zOffset = 5;
             translate([0, 19.5, -15.5 - zOffset])
                 color(pp2_colour)
-                    evaImportStl("back_corexy");
+                    eva_2_4_2_ImportStl("back_corexy");
         }
+}
+
+module  EVA_MC_mgn12_bottom_horns_fi_stl() {
+    stl("EVA_MC_mgn12_bottom_horns_fi_stl")
+        color(evaAdaptorColor())
+            rotate([-90, 0, 0]) {
+                *translate([-80, 0, 0])
+                    difference() {
+                        eva_3_0_ImportStl("bottom_horns_fi", convexity=4);
+                        translate([55, -15, -11.5 - 0.1])
+                            cube([50, 30, 1]);
+                    }
+                translate([-22.05, 14.15, -3-6.1])
+                    rotate([0, 90, -90])
+                        EVA_MC_BeltAttachment(endCube=false);
+                translate([-15, 13.65, -21])
+                    cube([30, 1, 53]);
+                intersection() {
+                    translate([-30, 13.65, -35])
+                        cube([60, 1, 70]);
+                    translate([0, -0.25, 0])
+                        eva_3_0_ImportStl("back_core_xy_fi", convexity=4);
+                }
+            }
 }

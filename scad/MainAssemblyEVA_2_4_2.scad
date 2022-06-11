@@ -1,4 +1,4 @@
-//!# EVA adaptors
+//!# EVA 2.4.2 adaptors
 //!
 //!MaybeCube supports the [EVA modular printhead system](https://main.eva-3d.page). This allows a wide variety of hotends
 //!and extruders to be used.
@@ -10,6 +10,9 @@
 //!The top adaptor varies according to the extruder used - the part name is the same as the EVA part, but prefixed by **EVA_MC_**.
 //! So for example if you wanted to used the BMG extruder then you should use part **EVA_MC_bmg_mgn12.stl**
 //!(rather than part **bmg_mgn12.stl** that you would ordinarily use).
+//!
+//!In the illustrations below, EVA adaptors are printed in blue, MaybeCube standard parts are printed in red, and EVA standard parts are
+//!printed in black and green.
 //!
 //!## License
 //!
@@ -41,8 +44,8 @@ include <target.scad>
 //!4. Insert the belts into the **X_Carriage_Belt_Tensioner.stl**s and then bolt the tensioners into the
 //!**EVA_MC_bottom_mgn12_short_duct.stl** part as shown.
 //!5. Thread the belts through the printer pulleys and then clamp them to the **EVA_MC_bottom_mgn12_short_duct.stl** part.
-module EVA_Stage_1_assembly()
-assembly("EVA_Stage_1", big=true) {
+module EVA_2_4_2_Stage_1_assembly()
+assembly("EVA_2_4_2_Stage_1", big=true) {
 
     hidden()
         stl_colour(evaAdaptorColor())
@@ -85,10 +88,10 @@ assembly("EVA_Stage_1", big=true) {
 }
 
 //! Bolt the **universal_face.stl** part to the **EVA_MC_top_bmg_mgn12** and **EVA_MC_bottom_mgn12_short_duct** parts.
-module EVA_assembly()
-assembly("EVA", big=true) {
+module EVA_2_4_2_assembly()
+assembly("EVA_2_4_2", big=true) {
 
-    EVA_Stage_1_assembly();
+    EVA_2_4_2_Stage_1_assembly();
     xCarriageType = MGN12H_carriage;
     translate_z(carriage_height(xCarriageType))
         evaHotendBaseFrontHardware(explode=60);
@@ -101,4 +104,4 @@ assembly("EVA", big=true) {
 }
 
 if ($preview)
-    EVA_assembly();
+    EVA_2_4_2_assembly();
