@@ -2,7 +2,7 @@ include <NopSCADlib/core.scad>
 use <NopSCADlib/vitamins/sheet.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
 
-use <../printed/extruderBracket.scad> // for spoolHeight()
+use <../printed/extruderBracket.scad> // for spoolHeight(), spoolHolderPosition()
 use <../printed/extrusionChannels.scad>
 
 include <../vitamins/bolts.scad>
@@ -15,7 +15,7 @@ include <../Parameters_Main.scad>
 PC3 = ["PC3", "Sheet polycarbonate", 3, [1,   1,   1,   0.25], false];
 accessHoleRadius = 2.5;
 
-function sidePanelSize(left) = [eY + 2*eSize - (left ? 0 : iecHousingSize().x + eSize), eZ, 3];
+function sidePanelSize(left) = [eY + 2*eSize - (left ? 0 : iecHousingMountSize().x), eZ, 3];
 
 
 module sidePanelAccessHolePositions(size, left) {
@@ -41,8 +41,8 @@ module sidePanelBoltHolePositionsX(size, left, spoolHolder) {
             rotate(exploded() ? 90 : 0)
                 children();
     if (spoolHolder)
-        for (x = [0, 40])
-            translate([35 + x, spoolHeight() + 3*eSize/2 - size.y/2])
+        for (x = [5, 45])
+            translate([spoolHolderPosition().y - eY/2 + x, spoolHeight() + 3*eSize/2 - size.y/2])
                 children();
 }
 

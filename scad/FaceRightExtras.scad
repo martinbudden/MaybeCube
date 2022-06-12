@@ -9,8 +9,6 @@ include <utils/printheadOffsets.scad>
 use <vitamins/Panels.scad>
 
 
-function spoolHolderPosition(offsetX) = [eX + 2*eSize + 10 + offsetX, eY/2 + (eY < 350 ? 30 : 55), spoolHeight() + 2*eSize];
-
 module faceRightSpoolHolder(offsetX) {
    // add the spool holder, place it to the back of the right side, so that the feed to the extruder is as straight as possible
     translate(spoolHolderPosition(offsetX))
