@@ -29,8 +29,6 @@ module Right_Side_test() {
     //accessPanelAssembly();
     //Left_Side_assembly();
     //Face_Top_assembly();
-    //faceRightSpoolHolder();
-    //faceRightSpool();
     //zRods(left=false);
     //Extruder_Bracket_assembly();
     //iecHousing();
@@ -39,12 +37,12 @@ module Right_Side_test() {
     //IEC_Housing_assembly();
 
     //Extruder_Bracket_stl();
-    faceRightSpoolHolder(0);
-    faceRightSpoolHolderBracket(0);
-    faceRightSpoolHolderBracketHardware(0);
+    //faceRightSpoolHolder(sidePanelSize().z);
+    //faceRightSpoolHolderBracket(sidePanelSize().z);
+    //faceRightSpoolHolderBracketHardware(sidePanelSize().z);
     //faceRightSpool();
     //XY_Motor_Mount_Left_assembly();
-    XY_Motor_Mount_Right_assembly();
+    //XY_Motor_Mount_Right_assembly();
     //partitionTopAssembly();
 
     //Right_Side_Channel_Nuts();
