@@ -35,7 +35,7 @@ module Printhead_test() {
         CoreXYBelts(carriagePosition, x_gap = -30, show_pulleys = ![1, 0, 0]);
         //printheadBeltSide();
         printheadHotendSide();
-        //printheadEVA();
+        //printheadEVA_2_4_2();
         //printheadVoronAfterburner();
         //printheadXChange();
         translate_z(eZ) {
