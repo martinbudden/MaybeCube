@@ -28,7 +28,7 @@ module Right_Side_Panel_stl() {
 
 module rightSidePanel() {
     toleranceX = 0.5;
-    size = [spoolHeight(eX) - iecHousingSize().y - eSize -toleranceX, extruderBracketSize().y, 3];
+    size = [spoolHeight(eX) - iecHousingSize().y - eSize - toleranceX, extruderBracketSize().y, 3];
 
     color(pp4_colour)
         difference() {
