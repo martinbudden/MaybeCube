@@ -754,7 +754,7 @@ extreme and tighten the bolts on that end of the Y-rail. Finally tighten the rem
 2. Thread the belts as shown and attach them to the **X_Carriage_Belt_Side_assembly**
 using the **X_Carriage_Belt_Clamp**.
 3. Leave the belts fairly loose - tensioning of the belts is done after the frame is assembled.
-4. Bolt the handle to the previously inserted t-nuts.
+4. Bolt the handles to the previously inserted t-nuts.
 
 ![Face_Top_assembled](assemblies/Face_Top_assembled.png)
 
