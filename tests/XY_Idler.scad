@@ -4,12 +4,15 @@ include <../scad/printed/XY_Idler.scad>
 include <../scad/utils/CoreXYBelts.scad>
 
 include <../scad/utils/carriageTypes.scad>
+//use <../scad/FaceTop.scad>
 use <../scad/Parameters_Positions.scad>
 
 
 //$explode = 1;
 //$pose = 1;
 module XY_Idler_test() {
+    // top thickness for small idler is 1.75
+    //faceTopFront(use2040=true);
     XY_Idler_Left_assembly();
     XY_Idler_Right_assembly();
     CoreXYBelts(carriagePosition(), show_pulleys=![1, 0, 0]);
@@ -18,16 +21,16 @@ module XY_Idler_test() {
             rail_assembly(carriageType(_yCarriageDescriptor), _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
 
     *translate(-[0, eZ - eSize - 60, 0])
-        xyIdler();
+        xyIdler(xyIdlerSize());
         *translate([0, -eZ, eZ]) {
             XY_Idler_Left_stl();
-            XY_Idler_hardware(left=true);
+            XY_Idler_hardware(xyIdlerSize(), left=true);
         }
     *translate([-120, -eZ, eZ]) {
         XY_Idler_Right_stl();
         translate([0, 0, eSize])
             rotate([0, 180, 0])
-                XY_Idler_hardware(left=false);
+                XY_Idler_hardware(xyIdlerSize(), left=false);
     }
 }
 

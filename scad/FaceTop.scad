@@ -49,7 +49,7 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
             XY_Motor_Mount_Right_assembly();
         }
     }
-    faceTopFront();
+    faceTopFront(useRB40());
     faceTopBack();
     for (x = [3*eSize/2, eX + eSize/2])
         translate([x, eY/2 + eSize, eZ])
@@ -91,7 +91,7 @@ assembly("Face_Top_Stage_2", big=true, ngb=true) {
 //!2. Thread the belts as shown and attach them to the **X_Carriage_Belt_Side_assembly**
 //! using the **X_Carriage_Belt_Clamp**.
 //!3. Leave the belts fairly loose - tensioning of the belts is done after the frame is assembled.
-//!4. Bolt the handle to the previously inserted t-nuts.
+//!4. Bolt the handles to the previously inserted t-nuts.
 //
 module Face_Top_assembly()
 assembly("Face_Top", big=true) {
@@ -113,18 +113,31 @@ assembly("Face_Top", big=true) {
                 }
 }
 
-module faceTopFront() {
+module faceTopFront(use2040=false) {
     // add the front top extrusion oriented in the X direction
     translate([eSize, 0, eZ - eSize]) {
         explode([0, -120, 0], true) {
             extrusionOXEndBoltPositions(eX)
                 boltM5Buttonhead(_endBoltShortLength);
+            if (use2040)
+                translate_z(-eSize)
+                    extrusionOXEndBoltPositions(eX)
+                        boltM5Buttonhead(_endBoltShortLength);
             difference() {
-                extrusionOX(eX);
+                if (use2040)
+                    translate_z(-eSize)
+                        extrusionOX2040V(eX);
+                else
+                    extrusionOX(eX);
                 for (x = use2060ForTop() ? [eSize/2, 3*eSize/2, eX - eSize/2, eX - 3*eSize/2] : [eSize/2, eX - eSize/2])
                     translate([x, 0, eSize/2])
                         rotate([-90, 0, 0])
                             jointBoltHole();
+                if (!use2040)
+                    for (x = [eSize/2, eX - eSize/2])
+                        translate([x, eSize/2, 0])
+                            rotate([0, 0, 0])
+                                jointBoltHole();
             }
         }
     }
