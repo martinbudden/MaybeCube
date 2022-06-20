@@ -93,7 +93,7 @@ module faceRightLowerExtrusion(useElectronicsInBase) {
 
 function frontAndBackHolePositionsZ(upperZRodMountsExtrusionOffsetZ, useElectronicsInBase) = concat([eSize/2, useElectronicsInBase ? 4*eSize : 3*eSize/2, eZ - eSize/2, spoolHeight() + eSize/2, spoolHeight() - (eX == 350 ? -3*eSize/2 : eSize/2)], eX < 350 ? [] : [upperZRodMountsExtrusionOffsetZ + eSize/2, upperZRodMountsExtrusionOffsetZ - eSize/2]);
 
-module faceRightIdlerUpright(upperZRodMountsExtrusionOffsetZ, useElectronicsInBase) {
+module faceRightIdlerUpright(upperZRodMountsExtrusionOffsetZ=0, useElectronicsInBase=true) {
     translate([eX + eSize, 0, 0])
         difference() {
             extrusionOZ(eZ);
@@ -102,8 +102,12 @@ module faceRightIdlerUpright(upperZRodMountsExtrusionOffsetZ, useElectronicsInBa
                     rotate([-90, 0, 0])
                         jointBoltHole();
             for (z = [eSize/2, 3*eSize/2, 5*eSize/2, 7*eSize/2, eZ - eSize/2])
-                translate([eSize, eSize/2, z])
-                    rotate([0, -90, 0])
+                translate([0, eSize/2, z])
+                    rotate([0, 90, 0])
+                        jointBoltHole();
+            if (!is_undef(_useRB40) && _useRB40)
+                translate([0, eSize/2, eZ - 3*eSize/2])
+                    rotate([0, 90, 0])
                         jointBoltHole();
         }
 }

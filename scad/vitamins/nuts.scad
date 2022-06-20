@@ -100,6 +100,17 @@ module nutM4Hammer() {
 }
 
 
+module boltM3CapheadHammerNut(length, nutOffset=2.98, rotate=0, nutExplode=20) {
+    if ($preview && (is_undef($hide_bolts) || $hide_bolts == false)) {
+        boltM3Caphead(length);
+        vflip()
+            translate_z(length - nutOffset)
+                rotate(rotate)
+                    explode(nutExplode)
+                        nutM3Hammer();
+    }
+}
+
 module boltM3ButtonheadHammerNut(length, nutOffset=2.98, rotate=0, nutExplode=20) {
     if ($preview && (is_undef($hide_bolts) || $hide_bolts == false)) {
         boltM3Buttonhead(length);

@@ -58,7 +58,7 @@ module faceLeftLowerExtrusion(printbedKinematic, zMotorLength) {
 }
 
 
-module faceLeftIdlerUpright(upperZRodMountsExtrusionOffsetZ) {
+module faceLeftIdlerUpright(upperZRodMountsExtrusionOffsetZ = _upperZRodMountsExtrusionOffsetZ) {
     difference() {
         extrusionOZ(eZ);
         for (z = [eSize/2, 3*eSize/2, eZ-eSize/2, upperZRodMountsExtrusionOffsetZ + eSize/2, upperZRodMountsExtrusionOffsetZ - eSize/2])
@@ -67,6 +67,10 @@ module faceLeftIdlerUpright(upperZRodMountsExtrusionOffsetZ) {
                     jointBoltHole();
         for (z = [eSize/2, 3*eSize/2, 5*eSize/2, 7*eSize/2, eZ - eSize/2])
             translate([0, eSize/2, z])
+                rotate([0, 90, 0])
+                    jointBoltHole();
+        if (!is_undef(_useRB40) && _useRB40)
+            translate([0, eSize/2, eZ - 3*eSize/2])
                 rotate([0, 90, 0])
                     jointBoltHole();
     }
