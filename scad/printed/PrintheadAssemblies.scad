@@ -60,7 +60,8 @@ module printheadAssembly(full=true) {
 //!2. Ensure a good fit between the fan and the **Fan_Duct** and bolt the fan duct to the X_Carriage.
 //!3. Assemble the E3D hotend, including fan, thermistor cartridge and heater cartridge.
 //!4. Use the **Hotend_Clamp** to attach the E3D hotend to the X_Carriage.
-//!5. Collect the wires together, wrap them in spiral wrap, and secure them to the X_Carriage using the zipties. Note that the wiring is not shown in this diagram.
+//!5. Collect the wires together, wrap them in spiral wrap, and secure them to the X_Carriage using the zipties. Note that
+//!the wiring is not shown in this diagram.
 module Printhead_E3DV6_assembly() pose(a=[55, 0, 25 + 180])
 assembly("Printhead_E3DV6", big=true) {
 
