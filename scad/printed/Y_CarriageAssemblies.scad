@@ -129,8 +129,8 @@ module Y_Carriage_Brace_Right_25_stl() {
 }
 
 //!1. Insert the threaded inserts into the **Y_Carriage_Left** as shown.
-//!2. Drive a long M3 bolt through the Y carriage from the insert side to self tap the part of the hole after the insert. Once this
-//!hole is tapped, remove the bolt.
+//!2. Drive a long M3 bolt through the Y carriage from the insert side to self tap the part of the hole after the insert.
+//!Once this hole is tapped, remove the bolt.
 //!3. Bolt the **Y_Carriage_Brace_Left** and the pulleys to the **Y_Carriage_Left** as shown. Note the position of the washers.
 //!4. Tighten the bolts until the pulleys no longer turn freely and then loosen by about 1/4 turn so the pulleys can again turn.
 //
@@ -170,8 +170,8 @@ assembly("Y_Carriage_Left", ngb=true) {
 }
 
 //!1. Insert the threaded inserts into the **Y_Carriage_Right** as shown.
-//!2. Drive a long M3 bolt through the Y carriage from the insert side to self tap the part of the hole after the insert. Once this
-//!hole is tapped, remove the bolt.
+//!2. Drive a long M3 bolt through the Y carriage from the insert side to self tap the part of the hole after the insert.
+//! Once this hole is tapped, remove the bolt.
 //!3. Bolt the **Y_Carriage_Brace_Right** and the pulleys to the **Y_Carriage_Right** as shown. Note the position of the washers.
 //!4. Tighten the bolts until the pulleys no longer turn freely and then loosen by about 1/4 turn so the pulleys can again turn.
 //

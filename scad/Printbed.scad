@@ -292,8 +292,8 @@ module printbedFrameCrossPiece() {
     }
 }
 
-//!1. Slide the **Z_Carriage_Center_assembly** to the approximate center of the first 2040 extrusion and loosely tighten the bolts.
-//!The bolts will be fully tightened when the Z_Carriage is aligned.
+//!1. Slide the **Z_Carriage_Center_assembly** to the approximate center of the first 2040 extrusion and loosely tighten
+//! the bolts. The bolts will be fully tightened when the Z_Carriage is aligned.
 //!2. Bolt the **Printbed_Strain_Relief** to the second extrusion.
 //!3. Slide the 2040 extrusion into the 2020 extrusions and loosely tighten the bolts. The bolts will be fully tightened after
 //!the Z carriages are added.
