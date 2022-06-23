@@ -17,7 +17,7 @@ lowerBoltOffset = 5; // so does not interfere with pulley axel bolt
 frontOffset = 0.75; // so idler does not interfere with sliding front panel
 function useRB40() = !is_undef(_useRB40) && _useRB40;
 
-function xyIdlerSize() = [eSize - 1 - frontOffset + (pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 4 : 0), pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 65 : (useRB40() ? 40 : 60), 5]; // eSize - 1 to allow for imprecisely cut Y rails
+function xyIdlerSize() = [eSize - 1 - frontOffset + (pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 4 : 0), pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 65 : (useRB40() ? 45 : 60), 5]; // eSize - 1 to allow for imprecisely cut Y rails
 function xyIdlerRailOffset() = eSize - 1 - (pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 0 : 0);
 armSize = [xyIdlerSize().x, useRB40() ? 8 : 5.5, 17.5]; // 5.5 y size so 30mm bolt fits exactly
 tabThickness = 5;
@@ -169,7 +169,7 @@ module xyIdler(size, left=true, useReversedBelts=false, M5=false) {
     translate([frontOffset, coreXYPosBL().z - armSize.y + yCarriageBraceThickness()/2 - washerClearance - (left || !useReversedBelts ? separation.z : 0), 0]) {
         difference() {
             rounded_cube_yz(armSize, fillet);
-            if (left && useRB40())
+            if (left && useRB40() && size.y == 40)
                 translate([-eps, -eps, armSize.z + eps])
                     rotate([90, 90, 90])
                         right_triangle(armSize.y - 5.25 + 2*eps, armSize.y - 5.25 + 2*eps, size.x + 2*eps, center=false);
