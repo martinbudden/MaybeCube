@@ -27,6 +27,7 @@ _useDualZRods = false;
 _useDualZMotors = false;
 _useElectronicsInBase = true;
 _useFrontDisplay = true;
+_useRB40 = true;
 _useReversedBelts = true;
 _useSidePanels = true;
 
