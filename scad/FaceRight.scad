@@ -92,7 +92,7 @@ module faceRightLowerExtrusion(useElectronicsInBase) {
 }
 
 function frontAndBackHolePositionsZ(upperZRodMountsExtrusionOffsetZ, useElectronicsInBase) =
-    concat([eSize/2, eZ - eSize/2, spoolHeight() + eSize/2, spoolHeight() - (eX == 350 ? -3*eSize/2 : eSize/2)],
+    concat([eSize/2, eZ - eSize/2, spoolHeight() + eSize/2, spoolHeight() + 3*eSize/2],
         eX < 350 ? [] : [upperZRodMountsExtrusionOffsetZ + eSize/2, upperZRodMountsExtrusionOffsetZ - eSize/2],
         useElectronicsInBase ? [4*eSize, 5*eSize] : [3*eSize/2]);
 
