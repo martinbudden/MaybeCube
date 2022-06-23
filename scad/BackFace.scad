@@ -23,6 +23,7 @@ PC3 = ["PC3", "Sheet polycarbonate", 3, [1,   1,   1,   0.25], false];
 //PC3 = ["PC3", "Sheet polycarbonate", 3, "red", false];
 accessHoleRadius = 2.5;
 psuVertical = psu_size(PSUType()).y > 100 && eX == 300;
+useElectronicsInBase = !is_undef(_useElectronicsInBase) && _useElectronicsInBase == true;
 
 function backPanelSize() = [eX + 2*eSize, eZ, 3];
 function pcbType() = BTT_SKR_V1_4_TURBO;
@@ -40,7 +41,6 @@ module Back_Panel_dxf() {
         color(sheet_colour(sheet))
             difference() {
                 sheet_2D(sheet, size.x, size.y, fillet);
-                useElectronicsInBase = !is_undef(_useElectronicsInBase) && _useElectronicsInBase == true;
                 backPanelCutouts(useElectronicsInBase ? undef : PSUType(), useElectronicsInBase ? undef : pcbType(), cncSides=0);
             }
 }
@@ -110,22 +110,26 @@ assembly("Back_Panel") {
 }
 
 module backPanelAssembly() {
-    if (is_undef(_useElectronicsInBase) || _useElectronicsInBase == false)
-        Back_Panel_assembly();
-    else
+    if (useElectronicsInBase)
         backPanel();
+    else
+        Back_Panel_assembly();
 }
 
 module backPanelAccessHolePositions(size) {
     for (x = [eSize/2, eX + 3*eSize/2], y = [eSize/2, 3*eSize/2, size.y - eSize/2])
         translate([x, y])
             children();
-    for (x = [3*eSize/2, size.x - 3*eSize/2])
+    for (x = _use2060ForTop ? [3*eSize/2, 5*eSize/2, size.x - 3*eSize/2, size.x - 5*eSize/2] : [3*eSize/2, size.x - 3*eSize/2])
         translate([x, size.y -eSize/2])
             children();
-    for (y = [spoolHeight() - eSize/2, spoolHeight() + eSize/2])
+    for (y = [spoolHeight() + eSize/2, spoolHeight() + 3*eSize/2])
         translate([size.x - eSize/2, y])
             children();
+    if (useElectronicsInBase)
+        for (y = [4*eSize, 5*eSize])
+            translate([size.x - eSize/2, y])
+                children();
     for (y = [_upperZRodMountsExtrusionOffsetZ - eSize/2, _upperZRodMountsExtrusionOffsetZ + eSize/2])
         translate([eSize/2, y])
             children();
