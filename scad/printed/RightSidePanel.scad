@@ -42,7 +42,7 @@ module rightSidePanel() {
 }
 
 module rightSidePanelAssembly() {
-    explode([-50, -75, 30], true)
+    /*explode([-50, -75, 30], true)
         translate([eX + eSize, eY - iecHousingSize().y, 90]) {
             stl_colour(pp3_colour)
                 Right_Side_Panel_Bracket_stl();
@@ -50,7 +50,7 @@ module rightSidePanelAssembly() {
                 translate([eSize/2, eSize/2, 3])
                     explode(10, true)
                         boltM4ButtonheadHammerNut(_sideBoltLength);
-        }
+        }*/
     translate([eX + 2*eSize, eY + 2*eSize - extruderBracketSize().y, spoolHeight(eX) + eSize])
         rotate([0, 90, 0]) {
             stl_colour(pp4_colour)
@@ -62,7 +62,7 @@ module rightSidePanelAssembly() {
                     translate(pos)
                         boltM4ButtonheadHammerNut(_sideBoltLength);
                 translate([size.x - eSize/2, eSize/2, size.z])
-                    boltM4Buttonhead(_sideBoltLength);
+                    boltM4ButtonheadHammerNut(_sideBoltLength);
             }
         }
 }
