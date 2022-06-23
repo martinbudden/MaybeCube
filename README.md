@@ -5,7 +5,9 @@ The **MaybeCube** is a fully-featured, rigid, high speed, and affordable CoreXY 
 It can be built in a variety of sizes: the standard size is the MC350, which has external dimensions of approximately
 405mm by 475mm by 415mm and a build volume of approximately 225mm x 225mm x 200mm.
 
-The self-sourcing BOM cost of the MC300 variant is approximately £430 with a genuine E3D hotend (or about £400 with a generic E3D compatible hotend), this does not include the cost of filament for printing parts, see [spreadsheet](documents/BOM_MC300.ods). The MC350 variant is slightly more expensive.
+The self-sourcing BOM cost of the MC300 variant is approximately £430 with a genuine E3D hotend (or about £400 with a generic
+E3D compatible hotend), this does not include the cost of filament for printing parts, see [spreadsheet](documents/BOM_MC300.ods).
+The MC350 variant is slightly more expensive.
 
 ![Main Assembly](MC300/assemblies/main_assembled.png)
 
@@ -13,7 +15,9 @@ The self-sourcing BOM cost of the MC300 variant is approximately £430 with a ge
 
 ## Assembly instructions
 
-The "standard" size is the MC350 variant. I have built the MC300 variant for two reasons: to test sizing (if the components fit in the MC300 variant, then they will fit in larger variants); and because I had a quantity of 300mm extrusion and the right size heated bed from an earlier project.
+The "standard" size is the MC350 variant. I have built the MC300 variant for two reasons: to test sizing (if the components
+fit in the MC300 variant, then they will fit in larger variants); and because I had a quantity of 300mm extrusion and the
+right size heated bed from an earlier project.
 
 The assembly instructions and the BOM (parts list) for the MC300 variant are [here](https://github.com/martinbudden/MaybeCube/blob/main/MC300/readme.md).
 
@@ -23,7 +27,9 @@ Please read all the build instructions before you begin assembly.
 
 The STL files are on [thingiverse](https://www.thingiverse.com/thing:4912095).
 
-The assembly of the different MC300 and MC350 variants is essentially the same, the main differences are in the printbed. Larger variants naturally have a larger printbed and to support this can optionally have Z-rods on both sides of the printbed.
+The assembly of the different MC300 and MC350 variants is essentially the same, the main differences are in the printbed.
+Larger variants have a larger printbed and to support this can optionally have either Z-rods on both sides of the printbed,
+or a 3-point kinematic bed.
 
 If you would like to build a smaller printer, you may be interested in the MaybeCube's smaller sibling, the [BabyCube](https://github.com/martinbudden/BabyCube).
 
@@ -36,13 +42,14 @@ If you would like to build a smaller printer, you may be interested in the Maybe
        the motion system, the power supply, and the circuit boards. The only exceptions are the spool
        holder, which can be removed for transport and storage, and the extruder.
      * include base plate so underside of printer is not exposed
-     * all protrusions from frame (filament spool, extruder, power connector) are on the right hand side to minimise desk clutter
-       and allow the back of the MaybeCube to be pushed right against a wall
+     * all protrusions from frame (filament spool, extruder, power connector) are on the right hand side to minimise desk
+       clutter and allow the back of the MaybeCube to be pushed right against a wall
      * all protrusions from the frame can be easily removed for storage
      * clean wiring - route wiring in extrusion channels where possible and minimise exposed wiring
 3. **Improve ease of assembly**
      * Use internal blind joints on the frame
-     * printed parts designed so that bolts are accessible and can be tightened when frame fully assembled (that is bolt holes are not blocked by other parts when assembled)
+     * printed parts designed so that bolts are accessible and can be tightened when frame fully assembled (that is bolt
+       holes are not blocked by other parts when assembled)
      * divide the main assembly into a number of independent sub-assemblies.
      * where possible printed parts push up right against frame and so "auto-align"
      * facilitate building in different size variants
@@ -52,7 +59,8 @@ If you would like to build a smaller printer, you may be interested in the Maybe
      * linear rods are used for the z-axis, since linear rails offer no advantage here
 5. **Maximise frame rigidity**
      * one of my goals is to experiment with high print speeds. A highly rigid frame allows higher acceleration settings
-     * use 2040 aluminium extrusion, corner joints are about 4 times more rigid than 2020 corner joints and 2-3 times more rigid than 3030 corner joints
+     * use 2040 aluminium extrusion, corner joints are about 4 times more rigid than 2020 corner joints and 2-3 times more
+       rigid than 3030 corner joints
 6. **Maximise build volume for selected extrusion lengths**
      * Z-axis assembly is on the left side of MaybeCube. This means the Z-axis assembly does not impede travel in the Y direction
      * The printhead is quite compact, so does not significantly restrict travel in the X and Y directions
@@ -67,10 +75,12 @@ If you would like to build a smaller printer, you may be interested in the Maybe
 9. **Facilitate customisation and experimentation**
      * Open source design
      * Parametric design in OpenSCAD
-     * The open design of the frame and the easy accessibility of parts means the MaybeCube is fairly easy to customise - most parts can be changed without the need to disassemble large parts of the frame
+     * The open design of the frame and the easy accessibility of parts means the MaybeCube is fairly easy to customise -
+       most parts can be changed without the need to disassemble large parts of the frame
      * The design of the X_Carriage means it is easy to customise to support different hotends and extruders
      * Support other printhead systems, including EVA, XChange, and, in principle, the Jubilee and E3D toolchangers
-     * The independence of the XY motion system and the Z motion system means that in principle the Z motion system could be replaced (with, say, an auto-tramming 3-point leveling system)
+     * The independence of the XY motion system and the Z motion system means that in principle the Z motion system could
+       be replaced (with, say, an auto-tramming 3-point leveling system)
 
 ## Variations
 
@@ -122,17 +132,22 @@ Voron2 v2.4 350    | 2020 | 510 x 510 x 530 | 350 x 350 x 330 | 550 x 550 x 530
 
 ## Frame stiffness
 
-The MaybeCube is a cuboid with 6 rectangular faces. Rectangles have no inherent rigidity and are subject to shearing. The rigidity of a rectangle is provided solely by the strength of its joints, and these often do not provide sufficient rigidity.
+The MaybeCube is a cuboid with 6 rectangular faces. Rectangles have no inherent rigidity and are subject to shearing. The
+rigidity of a rectangle is provided solely by the strength of its joints, and these often do not provide sufficient rigidity.
 A small movement at a joint is magnified into a much larger movement at the end of a 400mm extrusion.
 There are three main ways to increase the rigidity of rectangles:
 
 1. triangulation, where the a diagonal piece divides the rectangle into two triangles, this is exemplified in [truss bridges](https://en.wikipedia.org/wiki/Truss_bridge)
-2. using a shear plate, this is exemplified in the [sheer boards](https://en.wikipedia.org/wiki/Shear_wall) used to stiffen wooden framed buildings
+2. using a shear plate, this is exemplified in the [sheer boards](https://en.wikipedia.org/wiki/Shear_wall) used to stiffen
+   wooden framed buildings
 3. reinforcing the joints.
 
-The MaybeCube uses 2040 extrusions, these provide significantly more joint rigidity than either 2020 or 3030 extrusions. Additionally the MaybeCube uses shear plates on the bottom, back, and (optionally) left and right faces to stiffen the frame.
+The MaybeCube uses 2040 extrusions, these provide significantly more joint rigidity than either 2020 or 3030 extrusions.
+Additionally the MaybeCube uses shear plates on the bottom, back, and (optionally) left and right faces to stiffen the frame.
 
-The front face of the MaybeCube is the most subject to shearing, since it needs to be open to allow access to the printbed. Two measures are taken to counteract this: 2080 rather than 2040 extrusion is used at the bottom of the face, and the idler mounts at the top are extended to provide some triangulation and reinforcement of the upper joints.
+The front face of the MaybeCube is the most subject to shearing, since it needs to be open to allow access to the printbed.
+Two measures are taken to counteract this: 2080 rather than 2040 extrusion is used at the bottom of the face, and the idler
+mounts at the top are extended to provide some triangulation and reinforcement of the upper joints.
 
 ## Input shaper test results (MC300 variant with side panels)
 
@@ -153,7 +168,9 @@ MC300                                                      |         114 |      
 [Ender 3](https://www.youmaketech.com/klipper-on-ender-3/) |     30 & 88 |       4,100 |       3,800 |     32 & 57 |      19,000 |  9,300
 [Prusa i3 MKS+](https://forum.prusaprinters.org/forum/original-prusa-i3-mk3s-mk3-general-discussion-announcements-and-releases/prusa-i3-mks3-resonance-profiles-input-shaper/) | 38 & 58 | 39,000 | N/A | 32 & 78 | 42,000 | N/A
 
-These input shaper results give a rough idea of the rigidity of various printers. The acc limit is the value of the max acceleration for the ZV shaper for each printer and axis - it is not that meaningful in itself, but it does form some basis for comparison.
+These input shaper results give a rough idea of the rigidity of various printers. The acc limit is the value of the max
+acceleration for the ZV shaper for each printer and axis - it is not that meaningful in itself, but it does form some
+basis for comparison.
 
 It does seem that the MC300 compares very favourably with the other printers for which I have found results published.
 
@@ -184,7 +201,8 @@ The STL files are on [thingiverse](https://www.thingiverse.com/thing:4924355).
 
 ### Voron Mini Afterburner printhead
 
-I've created an adaptor for the Voron Mini Afterburner (as used on the [Voron V0](https://github.com/VoronDesign/Voron-0)) printhead.
+I've created an adaptor for the Voron Mini Afterburner (as used on the [Voron V0](https://github.com/VoronDesign/Voron-0))
+printhead.
 
 More details on using the Voron Mini Afterburner adaptor are [here](https://github.com/martinbudden/MaybeCube/tree/main/Voron_Mini_Afterburner).
 
@@ -192,21 +210,26 @@ The STL file is [here](https://github.com/martinbudden/MaybeCube/blob/main/Voron
 
 ### E3D tool changer
 
-Currently there is no adaptor for the  [E3D tool changer](https://e3d-online.com/pages/toolchanger), however I think it would be fairly straightforward to create one.
+Currently there is no adaptor for the  [E3D tool changer](https://e3d-online.com/pages/toolchanger), however I think it
+would be fairly straightforward to create one.
 
-There should be room to dock at least two, and perhaps three [E3D ToolChanger Tools](https://e3d-online.com/products/toolchanger-tools) in the back of the MC350, this would allow experimenting with the E3D docking system in a framework considerably less expensive than the [E3D Motion System](https://e3d-online.com/products/e3d-motion-system).
+There should be room to dock at least two, and perhaps three [E3D ToolChanger Tools](https://e3d-online.com/products/toolchanger-tools)
+in the back of the MC350, this would allow experimenting with the E3D docking system in a framework considerably less
+expensive than the [E3D Motion System](https://e3d-online.com/products/e3d-motion-system).
 
 ### Jubilee tool changer
 
 The [Jubilee 3D printer](https://www.jubilee3d.com/index.php?title=Main_Page)
 has a [tool changer](https://www.jubilee3d.com/index.php?title=Tools)
-compatible with the E3D tool changer. I have a proof of concept showing that this tool changer system can be used on the MaybeCube. Note that this is incomplete and still requires an X_Carriage adaptor for the Jubilee plates.
+compatible with the E3D tool changer. I have a proof of concept showing that this tool changer system can be used on the
+MaybeCube. Note that this is incomplete and still requires an X_Carriage adaptor for the Jubilee plates.
 
 ![JubileeToolChanger Assembly](JubileeToolChanger/assemblies/JubileeToolChanger_assembled.png)
 
 ### Dual Z rods
 
-The MC300 variant uses a cantilevered print bed. For larger variants it is possible to use dual sets of Z-rods to support the print bed.
+The MC300 variant uses a cantilevered print bed. For larger variants it is possible to use dual sets of Z-rods to support
+the print bed.
 
 ![DualZRods Assembly](DualZRods/assemblies/DualZRods_assembled.png)
 
@@ -218,12 +241,16 @@ It is possible to configure the MaybeCube to use a 3-point Kinematic Bed
 
 ## Pictures
 
+In these pictures the power supply and PCBs are mounted in the back of the printer - I've done this in the development build
+so that I can easily change things around while I experiment. For the release build, the power supply and PCBs are mounted
+in the base of the printer.
+
 ![Front](pictures/MC_front.jpg)
 ![Left](pictures/MC_left.jpg)
 ![Right](pictures/MC_right.jpg)
 ![Back](pictures/MC_back.jpg)
 ![Top](pictures/MC_top.jpg)
-![Map](pictures/MC_wiring.jpg)
+![Wiring](pictures/MC_wiring.jpg)
 
 ## License
 
