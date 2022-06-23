@@ -50,6 +50,11 @@ module pcbPosition(pcbType, pcbOnBase=false, z=0) {
             translate([eX + 2*eSize - pcbSize.y/2 - 85, -pcbSize.x/2 + eY + 2*eSize - 130, z])
                 rotate(90)
                     children();
+        } else if (pcbType[0] == "BTT_SKR_E3_TURBO" || pcbType[0] == "BTT_SKR_MINI_E3_V2_0") {
+            holeOffset = 4;
+            pcbSize = pcb_size(BTT_SKR_E3_TURBO);
+            translate([eX + 2*eSize - pcbSize.x/2 - eSize/2 + holeOffset, pcbSize.y/2 + eSize + (eY >= 300 ? 20 : 15), z])
+                children();
         } else {
             holeOffset = 4;
             translate([eX + 2*eSize - pcbSize.y/2 - eSize/2 + holeOffset, pcbSize.x/2 + eSize + (eY >= 300 ? 20 : 15), z])

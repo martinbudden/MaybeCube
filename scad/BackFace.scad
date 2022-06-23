@@ -40,7 +40,8 @@ module Back_Panel_dxf() {
         color(sheet_colour(sheet))
             difference() {
                 sheet_2D(sheet, size.x, size.y, fillet);
-                backPanelCutouts(PSUType(), pcbType(), cncSides=0);
+                useElectronicsInBase = !is_undef(_useElectronicsInBase) && _useElectronicsInBase == true;
+                backPanelCutouts(useElectronicsInBase ? undef : PSUType(), useElectronicsInBase ? undef : pcbType(), cncSides=0);
             }
 }
 
@@ -163,41 +164,43 @@ module backPanelCutouts(psuType, pcbType, cncSides=undef, radius=undef) {
     size = backPanelSize();
 
     translate([-size.x/2, -size.y/2]) {
-        if (psuVertical)
-            translate([psuOffset(psuType).x, psuOffset(psuType).z])
-                rotate(-90)
+        if (psuType)
+            if (psuVertical)
+                translate([psuOffset(psuType).x, psuOffset(psuType).z])
+                    rotate(-90)
+                        PSUBoltPositions(psuType)
+                            poly_circle(r=is_undef(radius) ? M4_clearance_radius : radius, sides=cncSides);
+            else
+                translate([eSize + psu_length(psuType)/2, 2*eSize + 3 + psu_width(psuType)/2])
                     PSUBoltPositions(psuType)
                         poly_circle(r=is_undef(radius) ? M4_clearance_radius : radius, sides=cncSides);
-        else
-            translate([eSize + psu_length(psuType)/2, 2*eSize + 3 + psu_width(psuType)/2])
-                PSUBoltPositions(psuType)
-                    poly_circle(r=is_undef(radius) ? M4_clearance_radius : radius, sides=cncSides);
-                /*mirror([0, 1, 0])
-                    rotate(180) {
-                        psu_shroud_hole_positions(psuType)
-                            circle(r=M3_clearance_radius);
-                        cutoutWidth = 1.5;
-                        psu_shroud_cable_positions(psuType, psuShroudCableDiameter())
-                            for (y = [-psuShroudCableDiameter()/2 - cutoutWidth/2, psuShroudCableDiameter()/2 + cutoutWidth/2])
-                                translate([0, y])
-                                    rounded_square([4, cutoutWidth], 0.25, center=true);
-                    }*/
+                    /*mirror([0, 1, 0])
+                        rotate(180) {
+                            psu_shroud_hole_positions(psuType)
+                                circle(r=M3_clearance_radius);
+                            cutoutWidth = 1.5;
+                            psu_shroud_cable_positions(psuType, psuShroudCableDiameter())
+                                for (y = [-psuShroudCableDiameter()/2 - cutoutWidth/2, psuShroudCableDiameter()/2 + cutoutWidth/2])
+                                    translate([0, y])
+                                        rounded_square([4, cutoutWidth], 0.25, center=true);
+                        }*/
 
-        translate([eX/2 + eSize, eZ - 100]) {
-            pcbType = rpiType;
-            pcbSize = pcb_size(pcbType);
-            rotate(-90)
-                translate([pcbSize.x/2, pcbSize.y/2])
-                    pcb_screw_positions(pcbType)
-                        poly_circle(r=is_undef(radius) ? M3_clearance_radius : radius, sides=cncSides);
-        }
+        if (pcbType)
+            translate([eX/2 + eSize, eZ - 100]) {
+                // add holes for raspberry pi
+                ripSize = pcb_size(rpiType);
+                rotate(-90)
+                    translate([rpiSize.x/2, rpiSize.y/2])
+                        pcb_screw_positions(rpiType)
+                            poly_circle(r=is_undef(radius) ? M3_clearance_radius : radius, sides=cncSides);
+            }
         translate([eX + eSize, pcbOffsetZ])
             if (pcbType == BTT_SKR_E3_TURBO || pcbType == BTT_SKR_MINI_E3_V2_0) {
                 pcbSize = pcb_size(BTT_SKR_E3_TURBO);
                 translate([-pcbSize.x/2, pcbSize.y/2])
                     pcb_screw_positions(pcbType)
                         poly_circle(r=is_undef(radius) ? M3_clearance_radius : radius, sides=cncSides);
-            } else {
+            } else if (pcbType) {
                 pcbSize = pcb_size(pcbType);
                 rotate(90)
                     translate([pcbSize.x/2, pcbSize.y/2])
