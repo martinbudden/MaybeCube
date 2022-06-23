@@ -25,8 +25,10 @@ psuOnBase = !is_undef(_useElectronicsInBase) && _useElectronicsInBase == true;
 pcbOnBase = !is_undef(_useElectronicsInBase) && _useElectronicsInBase == true;
 basePSUType = NG_CB_500W_24V;
 //basePSUType = S_300_12;
-pcbType = BTT_SKR_V1_4_TURBO;
+pcbType = eY > 250 ? BTT_SKR_V1_4_TURBO : BTT_SKR_MINI_E3_V2_0;
 rpiType = RPI3APlus;
+basePCBs = eY > 250 ? [pcbType, rpiType, BTT_RELAY_V1_2, XL4015_BUCK_CONVERTER] : [pcbType];
+
 
 module BaseAL_dxf() {
     size = basePlateSize;
@@ -85,7 +87,7 @@ module baseplateM6BoltPositions(size) {
 module basePSUPosition() {
     psuSize = psu_size(basePSUType);
 
-    translate([eX + 2*eSize - 135, eY + 2*eSize - 40, 0])
+    translate([eX + 2*eSize - 135, eY + 2*eSize - (eY > 250 ? 40 : 25), 0])
         translate([-psuSize.y/2, -psuSize.x/2, 0])
             rotate(90)
                 children();
@@ -107,7 +109,7 @@ module baseCutouts(cncSides=undef, radius=undef) {
             PSUBoltPositions(basePSUType)
                 poly_circle(is_undef(radius) ? M4_clearance_radius : radius, sides=cncSides);
     if (pcbOnBase)
-        for (pcb = [pcbType, rpiType, BTT_RELAY_V1_2, XL4015_BUCK_CONVERTER])
+        for (pcb = basePCBs)
             pcbPosition(pcb, pcbOnBase)
                 pcb_screw_positions(pcb)
                     poly_circle(is_undef(radius) ? M3_clearance_radius : radius, sides=cncSides);
@@ -216,7 +218,7 @@ assembly("Base_Plate_Stage_1", big=true, ngb=true) {
     basePlateAssembly(psuOnBase);
 
     if (pcbOnBase)
-        for (pcb = [pcbType, rpiType, BTT_RELAY_V1_2, XL4015_BUCK_CONVERTER])
+        for (pcb = basePCBs)
             pcbAssembly(pcb, pcbOnBase);
 
     if (psuOnBase) {
@@ -262,20 +264,15 @@ assembly("Base_Plate", big=true, ngb=true) {
                     if (eX==300) {
                         stl_colour(pp1_colour)
                             Front_Cover_300_stl();
-                        //hidden() Front_Cover_350_stl();
-                        //hidden() Front_Cover_400_stl();
                     } else if (eX==350) {
-                        //hidden() Front_Cover_300_stl();
                         stl_colour(pp1_colour)
                             Front_Cover_350_stl();
-                        //hidden() Front_Cover_400_stl();
-                    } else {
-                        //hidden() Front_Cover_300_stl();
-                        //hidden() Front_Cover_350_stl();
+                    } else if (eX==400) {
                         stl_colour(pp1_colour)
                             Front_Cover_400_stl();
                     }
-                    Front_Cover_hardware();
+                    if (eX >= 300)
+                        Front_Cover_hardware();
                 }
             translate([eX/2, 2*eps, 4*eSize + 2*eps])
                 explode(75, true)
@@ -283,20 +280,15 @@ assembly("Base_Plate", big=true, ngb=true) {
                         if (eX==300) {
                             stl_colour(pp2_colour)
                                 Front_Display_Wiring_Cover_300_stl();
-                            //hidden() Front_Display_Wiring_Cover_350_stl();
-                            //hidden() Front_Display_Wiring_Cover_400_stl();
                         } else if (eX==350) {
-                            //hidden() Front_Display_Wiring_Cover_300_stl();
                             stl_colour(pp2_colour)
                                 Front_Display_Wiring_Cover_350_stl();
-                            //hidden() Front_Display_Wiring_Cover_400_stl();
-                        } else {
-                            //hidden() Front_Display_Wiring_Cover_300_stl();
-                            //hidden() Front_Display_Wiring_Cover_350_stl();
+                        } else if (eX==400) {
                             stl_colour(pp2_colour)
                                 Front_Display_Wiring_Cover_400_stl();
                         }
-                        Front_Display_Wiring_Cover_hardware();
+                        if (eX >= 300)
+                            Front_Display_Wiring_Cover_hardware();
                     }
         }
     }

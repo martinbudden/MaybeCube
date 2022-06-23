@@ -22,11 +22,14 @@ _yCarriageDescriptor = "MGN12H";
 
 _coreXYDescriptor = "GT2_20_16";
 
-_use2060ForTop = true;
+_use2060ForTop = false;
 _useDualZRods = false;
 _useDualZMotors = false;
-_useFrontDisplay = true;
-_useSidePanels = false;
+_useElectronicsInBase = true;
+_useFrontDisplay = false;
+_useRB40 = true;
+_useReversedBelts = true;
+_useSidePanels = true;
 
 _printbedSize = [180, 180, 3];
 _printbedArmSeparation = 150;
