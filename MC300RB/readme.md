@@ -3,16 +3,17 @@
 # MaybeCube Assembly Instructions
 
 These are the assembly instructions for the MaybeCube. These instructions are not fully comprehensive, that is they do
-not show every small detail of the construction and in particular they do not show the wiring. However there is sufficient
-detail that someone with a good understanding of 3D printers can build the MaybeCube.
+not show every small detail of the construction and in particular they do not show the wiring. However there is
+sufficient detail that someone with a good understanding of 3D printers can build the MaybeCube.
 
 ![Main Assembly](assemblies/main_assembled.png)
 
 ## Printing the parts
 
-A number of parts are in proximity with heat sources, namely the hotend, the heated bed and the motors. Ideally these should be
-printed in ABS, but I have used PETG successfully. These parts are insulated from direct contact with the heat sources, by
-cork underlay (for the heated bed) and by cork dampers (for the motors). These insulators should not be omitted from the build.
+A number of parts are in proximity with heat sources, namely the hotend, the heated bed and the motors. Ideally these
+should be printed in ABS, but I have used PETG successfully. These parts are insulated from direct contact with the heat
+sources, by cork underlay (for the heated bed) and by cork dampers (for the motors). These insulators should not be
+omitted from the build.
 
 <span></span>
 
@@ -63,7 +64,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 ## Parts list
 
 | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Printhead E3DV6</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">X Carriage Belt Side</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Face Top</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Right Side</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Heated Bed</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Printbed</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Left Side</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Main</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">TOTALS</span> |  |
-|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|------:|:---|
+|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|------:|:-------------|
 |      |      |      |      |      |      |      |      |       | **Vitamins** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Aluminium sheet 340mm x 340mm x 3mm |
 |   .  |   .  |  24  |   .  |   .  |   .  |   .  |   .  |   24  |  Ball bearing F623-2RS 3mm x 10mm x 4mm |
@@ -81,8 +82,9 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |  20  |   20  |  Bolt M3 caphead x  6mm |
 |   .  |   .  |  32  |   .  |   .  |   4  |   .  |   .  |   36  |  Bolt M3 caphead x 10mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 16mm |
-|   .  |   .  |   2  |   .  |   3  |   .  |   .  |   .  |    5  |  Bolt M3 caphead x 20mm |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   4  |    6  |  Bolt M3 caphead x 25mm |
+|   .  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |    3  |  Bolt M3 caphead x 20mm |
+|   .  |   .  |   3  |   .  |   .  |   .  |   .  |   4  |    7  |  Bolt M3 caphead x 25mm |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Bolt M3 caphead x 35mm |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 40mm |
 |   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 countersunk x  8mm |
 |   .  |   .  |   2  |   .  |   .  |   2  |   .  |   .  |    4  |  Bolt M3 countersunk x 10mm |
@@ -90,22 +92,22 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 countersunk x 25mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 countersunk x 35mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M3 countersunk x 40mm |
-|   .  |   .  |   .  |   9  |   .  |   .  |   .  |  38  |   47  |  Bolt M4 buttonhead x  8mm |
-|   .  |   .  |  16  |   .  |   .  |   6  |   2  |  14  |   38  |  Bolt M4 buttonhead x 10mm |
+|   .  |   .  |   .  |   8  |   .  |   .  |   .  |  38  |   46  |  Bolt M4 buttonhead x  8mm |
+|   .  |   .  |  12  |   .  |   .  |   6  |   2  |  14  |   34  |  Bolt M4 buttonhead x 10mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   2  |   4  |   14  |  Bolt M4 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |  14  |   14  |  Bolt M4 countersunk x  8mm |
 |   .  |   .  |  20  |   .  |   .  |   .  |   8  |   .  |   28  |  Bolt M4 countersunk x 10mm |
-|   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M5 buttonhead x 10mm |
-|   .  |   .  |  10  |   6  |   .  |   8  |   8  |  14  |   46  |  Bolt M5 buttonhead x 12mm |
+|   .  |   .  |   6  |   .  |   .  |   .  |   .  |   .  |    6  |  Bolt M5 buttonhead x 10mm |
+|   .  |   .  |  10  |   8  |   .  |   8  |   8  |  14  |   48  |  Bolt M5 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M5 buttonhead x 16mm |
 |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M5 countersunk x 12mm |
 |   .  |   .  |   2  |   1  |   .  |   .  |   .  |   1  |    4  |  Cork damper NEMA 17 |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  |  Cork underlay 214mm x 214mm |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  Extrusion E2020 x 265mm |
-|   .  |   .  |   1  |   1  |   .  |   .  |   .  |   1  |    3  |  Extrusion E2020 x 300mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Extrusion E2020 x 300mm |
 |   .  |   .  |   .  |   2  |   .  |   .  |   2  |   .  |    4  |  Extrusion E2020 x 400mm |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  Extrusion E2040 x 188mm |
-|   .  |   .  |   3  |   1  |   .  |   .  |   2  |   1  |    7  |  Extrusion E2040 x 300mm |
+|   .  |   .  |   4  |   2  |   .  |   .  |   2  |   1  |    9  |  Extrusion E2040 x 300mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Extrusion E2080 x 300mm |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Fan 30mm x 10mm |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Filament sensor |
@@ -120,8 +122,8 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Linear rod 12mm x 300mm |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  MK10 Dual Pulley Extruder |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Micro SD card |
-|   .  |   .  |  18  |   .  |   3  |   2  |   .  |   4  |   27  |  Nut M3 hammer |
-|   .  |   .  |  10  |   8  |   .  |   .  |   .  |  66  |   84  |  Nut M4 hammer |
+|   .  |   .  |  20  |   .  |   3  |   2  |   .  |   4  |   29  |  Nut M3 hammer |
+|   .  |   .  |  12  |   8  |   .  |   .  |   .  |  66  |   86  |  Nut M4 hammer |
 |   .  |   .  |  36  |   .  |   .  |   6  |  12  |   .  |   54  |  Nut M4 sliding T |
 |   .  |   .  |   .  |   .  |  12  |   .  |   .  |   .  |   12  |  O-ring nitrile 4mm x 2mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PSU NIUGUY CB-500W-24V |
@@ -143,12 +145,11 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Stepper motor cable, 300mm |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Stepper motor cable, 500mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Stepper motor cable, 750mm |
-|   .  |   2  |  38  |   .  |  12  |   .  |   .  |   .  |   52  |  Washer  M3 |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer  M4 |
-|   .  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |    3  |  Washer penny  M4 |
+|   .  |   2  |  38  |   .  |  12  |   .  |   .  |   .  |   52  |  Washer M3 |
+|   .  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |    3  |  Washer penny M4 |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  XL4015 buck converter |
 |   3  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    3  |  Ziptie 2.5mm x 100mm min length |
-|  12  |   4  | 277  |  38  |  34  |  46  |  40  | 245  |  696  | Total vitamins count |
+|  12  |   4  | 277  |  39  |  34  |  46  |  40  | 245  |  697  | Total vitamins count |
 |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Camera_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_Bracket_TFT35_E3.stl |
@@ -165,7 +166,6 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Printbed_Strain_Relief.stl |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Printbed_Strain_Relief_Clamp.stl |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | Right_Side_Panel.stl |
-|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | Right_Side_Panel_Bracket.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder_36.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder_Bracket.stl |
@@ -173,9 +173,8 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Wiring_Guide.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Wiring_Guide_Clamp.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Wiring_Guide_Socket.stl |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  | XY_Idler_Channel_Nut.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Left_RB.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Right_RB.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Left_RB_40.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Right_RB_40.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Left_RB.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Right_RB.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Left_RB.stl |
@@ -194,7 +193,7 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_MountGuide_19mm.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |    2  | Z_RodMountGuide_50mm.stl |
-|   3  |   3  |  23  |   3  |   .  |   5  |   4  |  15  |   56  | Total 3D printed parts count |
+|   3  |   3  |  21  |   2  |   .  |   5  |   4  |  15  |   53  | Total 3D printed parts count |
 |      |      |      |      |      |      |      |      |       | **CNC routed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Back_Panel.dxf |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | BaseAL.dxf |
@@ -212,23 +211,20 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|4| Bolt M2 caphead x  6mm|
-|2| Bolt M3 countersunk x 25mm|
-|1| Fan 30mm x 10mm|
-|1| Hot end E3D V6 direct 1.75mm|
-|1| Square radial fan 3010|
-|3| Ziptie 2.5mm x 100mm min length|
-
+| Qty | Description |
+|----:|:------------|
+|   4 | Bolt M2 caphead x  6mm |
+|   2 | Bolt M3 countersunk x 25mm |
+|   1 | Fan 30mm x 10mm |
+|   1 | Hot end E3D V6 direct 1.75mm |
+|   1 | Square radial fan 3010 |
+|   3 | Ziptie 2.5mm x 100mm min length |
 
 ### 3D Printed parts
 
 | 1 x Fan_Duct.stl | 1 x Hotend_Clamp.stl | 1 x X_Carriage_Groovemount.stl |
-|---|---|---|
-| ![Fan_Duct.stl](stls/Fan_Duct.png) | ![Hotend_Clamp.stl](stls/Hotend_Clamp.png) | ![X_Carriage_Groovemount.stl](stls/X_Carriage_Groovemount.png) 
-
-
+|----------|----------|----------|
+| ![Fan_Duct.stl](stls/Fan_Duct.png) | ![Hotend_Clamp.stl](stls/Hotend_Clamp.png) | ![X_Carriage_Groovemount.stl](stls/X_Carriage_Groovemount.png) |
 
 ### Assembly instructions
 
@@ -238,7 +234,8 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 2. Ensure a good fit between the fan and the **Fan_Duct** and bolt the fan duct to the X_Carriage.
 3. Assemble the E3D hotend, including fan, thermistor cartridge and heater cartridge.
 4. Use the **Hotend_Clamp** to attach the E3D hotend to the X_Carriage.
-5. Collect the wires together, wrap them in spiral wrap, and secure them to the X_Carriage using the zipties. Note that the wiring is not shown in this diagram.
+5. Collect the wires together, wrap them in spiral wrap, and secure them to the X_Carriage using the zipties. Note that
+the wiring is not shown in this diagram.
 
 ![Printhead_E3DV6_assembled](assemblies/Printhead_E3DV6_assembled.png)
 
@@ -252,19 +249,16 @@ cork underlay (for the heated bed) and by cork dampers (for the motors). These i
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|2| Bolt M3 caphead x 40mm|
-|2| Washer  M3|
-
+| Qty | Description |
+|----:|:------------|
+|   2 | Bolt M3 caphead x 40mm |
+|   2 | Washer M3 |
 
 ### 3D Printed parts
 
 | 1 x X_Carriage_Belt_Side_RB.stl | 2 x X_Carriage_Belt_Tensioner_RB.stl |
-|---|---|
-| ![X_Carriage_Belt_Side_RB.stl](stls/X_Carriage_Belt_Side_RB.png) | ![X_Carriage_Belt_Tensioner_RB.stl](stls/X_Carriage_Belt_Tensioner_RB.png) 
-
-
+|----------|----------|
+| ![X_Carriage_Belt_Side_RB.stl](stls/X_Carriage_Belt_Side_RB.png) | ![X_Carriage_Belt_Tensioner_RB.stl](stls/X_Carriage_Belt_Tensioner_RB.png) |
 
 ### Assembly instructions
 
@@ -285,27 +279,24 @@ Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensi
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|6| Ball bearing F623-2RS 3mm x 10mm x 4mm|
-|6| Bolt M3 buttonhead x 10mm|
-|2| Bolt M3 countersunk x 35mm|
-|3| Bolt M4 buttonhead x 10mm|
-|1| Cork damper NEMA 17|
-|3| Nut M4 hammer|
-|1| Pulley GT2OB 20 teeth|
-|1| Stepper motor NEMA17 x 47mm|
-|1| Stepper motor cable, 300mm|
-|11| Washer  M3|
-
+| Qty | Description |
+|----:|:------------|
+|   6 | Ball bearing F623-2RS 3mm x 10mm x 4mm |
+|   6 | Bolt M3 buttonhead x 10mm |
+|   2 | Bolt M3 countersunk x 35mm |
+|   3 | Bolt M4 buttonhead x 10mm |
+|   1 | Cork damper NEMA 17 |
+|   3 | Nut M4 hammer |
+|   1 | Pulley GT2OB 20 teeth |
+|   1 | Stepper motor NEMA17 x 47mm |
+|   1 | Stepper motor cable, 300mm |
+|  11 | Washer M3 |
 
 ### 3D Printed parts
 
 | 1 x XY_Motor_Mount_Brace_Right_RB.stl | 1 x XY_Motor_Mount_Pulley_Spacer.stl | 1 x XY_Motor_Mount_Right_RB.stl |
-|---|---|---|
-| ![XY_Motor_Mount_Brace_Right_RB.stl](stls/XY_Motor_Mount_Brace_Right_RB.png) | ![XY_Motor_Mount_Pulley_Spacer.stl](stls/XY_Motor_Mount_Pulley_Spacer.png) | ![XY_Motor_Mount_Right_RB.stl](stls/XY_Motor_Mount_Right_RB.png) 
-
-
+|----------|----------|----------|
+| ![XY_Motor_Mount_Brace_Right_RB.stl](stls/XY_Motor_Mount_Brace_Right_RB.png) | ![XY_Motor_Mount_Pulley_Spacer.stl](stls/XY_Motor_Mount_Pulley_Spacer.png) | ![XY_Motor_Mount_Right_RB.stl](stls/XY_Motor_Mount_Right_RB.png) |
 
 ### Assembly instructions
 
@@ -332,27 +323,24 @@ and should not be omitted.
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|6| Ball bearing F623-2RS 3mm x 10mm x 4mm|
-|6| Bolt M3 buttonhead x 10mm|
-|2| Bolt M3 countersunk x 35mm|
-|3| Bolt M4 buttonhead x 10mm|
-|1| Cork damper NEMA 17|
-|3| Nut M4 hammer|
-|1| Pulley GT2OB 20 teeth|
-|1| Stepper motor NEMA17 x 47mm|
-|1| Stepper motor cable, 500mm|
-|11| Washer  M3|
-
+| Qty | Description |
+|----:|:------------|
+|   6 | Ball bearing F623-2RS 3mm x 10mm x 4mm |
+|   6 | Bolt M3 buttonhead x 10mm |
+|   2 | Bolt M3 countersunk x 35mm |
+|   3 | Bolt M4 buttonhead x 10mm |
+|   1 | Cork damper NEMA 17 |
+|   3 | Nut M4 hammer |
+|   1 | Pulley GT2OB 20 teeth |
+|   1 | Stepper motor NEMA17 x 47mm |
+|   1 | Stepper motor cable, 500mm |
+|  11 | Washer M3 |
 
 ### 3D Printed parts
 
 | 1 x XY_Motor_Mount_Brace_Left_RB.stl | 1 x XY_Motor_Mount_Left_RB.stl | 1 x XY_Motor_Mount_Pulley_Spacer.stl |
-|---|---|---|
-| ![XY_Motor_Mount_Brace_Left_RB.stl](stls/XY_Motor_Mount_Brace_Left_RB.png) | ![XY_Motor_Mount_Left_RB.stl](stls/XY_Motor_Mount_Left_RB.png) | ![XY_Motor_Mount_Pulley_Spacer.stl](stls/XY_Motor_Mount_Pulley_Spacer.png) 
-
-
+|----------|----------|----------|
+| ![XY_Motor_Mount_Brace_Left_RB.stl](stls/XY_Motor_Mount_Brace_Left_RB.png) | ![XY_Motor_Mount_Left_RB.stl](stls/XY_Motor_Mount_Left_RB.png) | ![XY_Motor_Mount_Pulley_Spacer.stl](stls/XY_Motor_Mount_Pulley_Spacer.png) |
 
 ### Assembly instructions
 
@@ -379,23 +367,20 @@ and should not be omitted.
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|2| Ball bearing F623-2RS 3mm x 10mm x 4mm|
-|1| Bolt M3 caphead x 20mm|
-|4| Bolt M4 buttonhead x 10mm|
-|1| Nut M4 hammer|
-|3| Washer  M3|
-|1| Washer  M4|
-
+| Qty | Description |
+|----:|:------------|
+|   2 | Ball bearing F623-2RS 3mm x 10mm x 4mm |
+|   1 | Bolt M3 caphead x 25mm |
+|   2 | Bolt M4 buttonhead x 10mm |
+|   1 | Nut M3 hammer |
+|   2 | Nut M4 hammer |
+|   3 | Washer M3 |
 
 ### 3D Printed parts
 
-| 1 x XY_Idler_Channel_Nut.stl | 1 x XY_Idler_Right_RB.stl |
-|---|---|
-| ![XY_Idler_Channel_Nut.stl](stls/XY_Idler_Channel_Nut.png) | ![XY_Idler_Right_RB.stl](stls/XY_Idler_Right_RB.png) 
-
-
+| 1 x XY_Idler_Right_RB_40.stl |
+|----------|
+| ![XY_Idler_Right_RB_40.stl](stls/XY_Idler_Right_RB_40.png) |
 
 ### Assembly instructions
 
@@ -420,23 +405,20 @@ to turn freely again.
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|2| Ball bearing F623-2RS 3mm x 10mm x 4mm|
-|1| Bolt M3 caphead x 20mm|
-|4| Bolt M4 buttonhead x 10mm|
-|1| Nut M4 hammer|
-|3| Washer  M3|
-|1| Washer  M4|
-
+| Qty | Description |
+|----:|:------------|
+|   2 | Ball bearing F623-2RS 3mm x 10mm x 4mm |
+|   1 | Bolt M3 caphead x 35mm |
+|   2 | Bolt M4 buttonhead x 10mm |
+|   1 | Nut M3 hammer |
+|   2 | Nut M4 hammer |
+|   3 | Washer M3 |
 
 ### 3D Printed parts
 
-| 1 x XY_Idler_Channel_Nut.stl | 1 x XY_Idler_Left_RB.stl |
-|---|---|
-| ![XY_Idler_Channel_Nut.stl](stls/XY_Idler_Channel_Nut.png) | ![XY_Idler_Left_RB.stl](stls/XY_Idler_Left_RB.png) 
-
-
+| 1 x XY_Idler_Left_RB_40.stl |
+|----------|
+| ![XY_Idler_Left_RB_40.stl](stls/XY_Idler_Left_RB_40.png) |
 
 ### Assembly instructions
 
@@ -461,31 +443,28 @@ to turn freely again.
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|4| Ball bearing F623-2RS 3mm x 10mm x 4mm|
-|2| Bolt M3 caphead x 10mm|
-|1| Bolt M3 caphead x 16mm|
-|1| Bolt M3 caphead x 25mm|
-|2| Heatfit insert M3|
-|5| Washer  M3|
-
+| Qty | Description |
+|----:|:------------|
+|   4 | Ball bearing F623-2RS 3mm x 10mm x 4mm |
+|   2 | Bolt M3 caphead x 10mm |
+|   1 | Bolt M3 caphead x 16mm |
+|   1 | Bolt M3 caphead x 25mm |
+|   2 | Heatfit insert M3 |
+|   5 | Washer M3 |
 
 ### 3D Printed parts
 
 | 1 x Y_Carriage_Brace_Right_RB.stl | 1 x Y_Carriage_Right_RB.stl |
-|---|---|
-| ![Y_Carriage_Brace_Right_RB.stl](stls/Y_Carriage_Brace_Right_RB.png) | ![Y_Carriage_Right_RB.stl](stls/Y_Carriage_Right_RB.png) 
-
-
+|----------|----------|
+| ![Y_Carriage_Brace_Right_RB.stl](stls/Y_Carriage_Brace_Right_RB.png) | ![Y_Carriage_Right_RB.stl](stls/Y_Carriage_Right_RB.png) |
 
 ### Assembly instructions
 
 ![Y_Carriage_Right_assembly](assemblies/Y_Carriage_Right_assembly_tn.png)
 
 1. Insert the threaded inserts into the **Y_Carriage_Right** as shown.
-2. Drive a long M3 bolt through the Y carriage from the insert side to self tap the part of the hole after the insert. Once this
-hole is tapped, remove the bolt.
+2. Drive a long M3 bolt through the Y carriage from the insert side to self tap the part of the hole after the insert.
+Once this hole is tapped, remove the bolt.
 3. Bolt the **Y_Carriage_Brace_Right** and the pulleys to the **Y_Carriage_Right** as shown. Note the position of the washers.
 4. Tighten the bolts until the pulleys no longer turn freely and then loosen by about 1/4 turn so the pulleys can again turn.
 
@@ -501,23 +480,20 @@ hole is tapped, remove the bolt.
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|12| Bolt M3 caphead x 10mm|
-|4| Bolt M5 buttonhead x 12mm|
-|1| Extrusion E2040 x 300mm|
-|1| Linear rail MGN12 x 300mm|
-|1| Linear rail carriage MGN12H|
-|8| Nut M3 hammer|
-
+| Qty | Description |
+|----:|:------------|
+|  12 | Bolt M3 caphead x 10mm |
+|   4 | Bolt M5 buttonhead x 12mm |
+|   1 | Extrusion E2040 x 300mm |
+|   1 | Linear rail MGN12 x 300mm |
+|   1 | Linear rail carriage MGN12H |
+|   8 | Nut M3 hammer |
 
 ### Sub-assemblies
 
 | 1 x Y_Carriage_Right_assembly |
-|---|
-| ![Y_Carriage_Right_assembled](assemblies/Y_Carriage_Right_assembled_tn.png) 
-
-
+|----------|
+| ![Y_Carriage_Right_assembled](assemblies/Y_Carriage_Right_assembled_tn.png) |
 
 ### Assembly instructions
 
@@ -540,31 +516,28 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|4| Ball bearing F623-2RS 3mm x 10mm x 4mm|
-|2| Bolt M3 caphead x 10mm|
-|1| Bolt M3 caphead x 16mm|
-|1| Bolt M3 caphead x 25mm|
-|2| Heatfit insert M3|
-|5| Washer  M3|
-
+| Qty | Description |
+|----:|:------------|
+|   4 | Ball bearing F623-2RS 3mm x 10mm x 4mm |
+|   2 | Bolt M3 caphead x 10mm |
+|   1 | Bolt M3 caphead x 16mm |
+|   1 | Bolt M3 caphead x 25mm |
+|   2 | Heatfit insert M3 |
+|   5 | Washer M3 |
 
 ### 3D Printed parts
 
 | 1 x Y_Carriage_Brace_Left_RB.stl | 1 x Y_Carriage_Left_RB.stl |
-|---|---|
-| ![Y_Carriage_Brace_Left_RB.stl](stls/Y_Carriage_Brace_Left_RB.png) | ![Y_Carriage_Left_RB.stl](stls/Y_Carriage_Left_RB.png) 
-
-
+|----------|----------|
+| ![Y_Carriage_Brace_Left_RB.stl](stls/Y_Carriage_Brace_Left_RB.png) | ![Y_Carriage_Left_RB.stl](stls/Y_Carriage_Left_RB.png) |
 
 ### Assembly instructions
 
 ![Y_Carriage_Left_assembly](assemblies/Y_Carriage_Left_assembly_tn.png)
 
 1. Insert the threaded inserts into the **Y_Carriage_Left** as shown.
-2. Drive a long M3 bolt through the Y carriage from the insert side to self tap the part of the hole after the insert. Once this
-hole is tapped, remove the bolt.
+2. Drive a long M3 bolt through the Y carriage from the insert side to self tap the part of the hole after the insert.
+Once this hole is tapped, remove the bolt.
 3. Bolt the **Y_Carriage_Brace_Left** and the pulleys to the **Y_Carriage_Left** as shown. Note the position of the washers.
 4. Tighten the bolts until the pulleys no longer turn freely and then loosen by about 1/4 turn so the pulleys can again turn.
 
@@ -580,23 +553,20 @@ hole is tapped, remove the bolt.
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|12| Bolt M3 caphead x 10mm|
-|4| Bolt M5 buttonhead x 12mm|
-|1| Extrusion E2040 x 300mm|
-|1| Linear rail MGN12 x 300mm|
-|1| Linear rail carriage MGN12H|
-|8| Nut M3 hammer|
-
+| Qty | Description |
+|----:|:------------|
+|  12 | Bolt M3 caphead x 10mm |
+|   4 | Bolt M5 buttonhead x 12mm |
+|   1 | Extrusion E2040 x 300mm |
+|   1 | Linear rail MGN12 x 300mm |
+|   1 | Linear rail carriage MGN12H |
+|   8 | Nut M3 hammer |
 
 ### Sub-assemblies
 
 | 1 x Y_Carriage_Left_assembly |
-|---|
-| ![Y_Carriage_Left_assembled](assemblies/Y_Carriage_Left_assembled_tn.png) 
-
-
+|----------|
+| ![Y_Carriage_Left_assembled](assemblies/Y_Carriage_Left_assembled_tn.png) |
 
 ### Assembly instructions
 
@@ -620,42 +590,34 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|4| Bolt M2 caphead x  8mm|
-|2| Bolt M3 buttonhead x 10mm|
-|2| Bolt M4 buttonhead x 10mm|
-|20| Bolt M4 countersunk x 10mm|
-|4| Bolt M5 buttonhead x 10mm|
-|2| Bolt M5 buttonhead x 12mm|
-|1| Extrusion E2020 x 300mm|
-|1| Extrusion E2040 x 300mm|
-|2| Nut M3 hammer|
-|2| Nut M4 hammer|
-|28| Nut M4 sliding T|
-|1| Raspberry Pi camera V2|
-
+| Qty | Description |
+|----:|:------------|
+|   4 | Bolt M2 caphead x  8mm |
+|   2 | Bolt M3 buttonhead x 10mm |
+|   2 | Bolt M4 buttonhead x 10mm |
+|  20 | Bolt M4 countersunk x 10mm |
+|   6 | Bolt M5 buttonhead x 10mm |
+|   2 | Bolt M5 buttonhead x 12mm |
+|   2 | Extrusion E2040 x 300mm |
+|   2 | Nut M3 hammer |
+|   2 | Nut M4 hammer |
+|  28 | Nut M4 sliding T |
+|   1 | Raspberry Pi camera V2 |
 
 ### 3D Printed parts
 
 | 1 x Camera_Mount.stl | 4 x Top_Corner_Piece.stl | 1 x Wiring_Guide_Socket.stl |
-|---|---|---|
-| ![Camera_Mount.stl](stls/Camera_Mount.png) | ![Top_Corner_Piece.stl](stls/Top_Corner_Piece.png) | ![Wiring_Guide_Socket.stl](stls/Wiring_Guide_Socket.png) 
-
-
+|----------|----------|----------|
+| ![Camera_Mount.stl](stls/Camera_Mount.png) | ![Top_Corner_Piece.stl](stls/Top_Corner_Piece.png) | ![Wiring_Guide_Socket.stl](stls/Wiring_Guide_Socket.png) |
 
 ### Sub-assemblies
 
 | 1 x Left_Side_Upper_Extrusion_assembly | 1 x Right_Side_Upper_Extrusion_assembly | 1 x XY_Idler_Left_assembly |
-|---|---|---|
-| ![Left_Side_Upper_Extrusion_assembled](assemblies/Left_Side_Upper_Extrusion_assembled_tn.png) | ![Right_Side_Upper_Extrusion_assembled](assemblies/Right_Side_Upper_Extrusion_assembled_tn.png) | ![XY_Idler_Left_assembled](assemblies/XY_Idler_Left_assembled_tn.png) 
-
-
+|----------|----------|----------|
+| ![Left_Side_Upper_Extrusion_assembled](assemblies/Left_Side_Upper_Extrusion_assembled_tn.png) | ![Right_Side_Upper_Extrusion_assembled](assemblies/Right_Side_Upper_Extrusion_assembled_tn.png) | ![XY_Idler_Left_assembled](assemblies/XY_Idler_Left_assembled_tn.png) |
 | 1 x XY_Idler_Right_assembly | 1 x XY_Motor_Mount_Left_assembly | 1 x XY_Motor_Mount_Right_assembly |
-|---|---|---|
-| ![XY_Idler_Right_assembled](assemblies/XY_Idler_Right_assembled_tn.png) | ![XY_Motor_Mount_Left_assembled](assemblies/XY_Motor_Mount_Left_assembled_tn.png) | ![XY_Motor_Mount_Right_assembled](assemblies/XY_Motor_Mount_Right_assembled_tn.png) 
-
-
+|----------|----------|----------|
+| ![XY_Idler_Right_assembled](assemblies/XY_Idler_Right_assembled_tn.png) | ![XY_Motor_Mount_Left_assembled](assemblies/XY_Motor_Mount_Left_assembled_tn.png) | ![XY_Motor_Mount_Right_assembled](assemblies/XY_Motor_Mount_Right_assembled_tn.png) |
 
 ### Assembly instructions
 
@@ -683,20 +645,17 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|4| Bolt M3 caphead x 10mm|
-|1| Linear rail MGN12 x 250mm|
-|1| Linear rail carriage MGN12H|
-
+| Qty | Description |
+|----:|:------------|
+|   4 | Bolt M3 caphead x 10mm |
+|   1 | Linear rail MGN12 x 250mm |
+|   1 | Linear rail carriage MGN12H |
 
 ### Sub-assemblies
 
 | 1 x Face_Top_Stage_1_assembly |
-|---|
-| ![Face_Top_Stage_1_assembled](assemblies/Face_Top_Stage_1_assembled_tn.png) 
-
-
+|----------|
+| ![Face_Top_Stage_1_assembled](assemblies/Face_Top_Stage_1_assembled_tn.png) |
 
 ### Assembly instructions
 
@@ -720,31 +679,26 @@ extreme and tighten the bolts on that end of the Y-rail. Finally tighten the rem
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|1| Belt GT2 x 6mm x 1276mm|
-|1| Belt GT2 x 6mm x 1300mm|
-|2| Bolt M3 countersunk x 10mm|
-|4| Bolt M3 countersunk x 12mm|
-|8| Bolt M4 buttonhead x 12mm|
-|8| Nut M4 sliding T|
-
+| Qty | Description |
+|----:|:------------|
+|   1 | Belt GT2 x 6mm x 1276mm |
+|   1 | Belt GT2 x 6mm x 1300mm |
+|   2 | Bolt M3 countersunk x 10mm |
+|   4 | Bolt M3 countersunk x 12mm |
+|   8 | Bolt M4 buttonhead x 12mm |
+|   8 | Nut M4 sliding T |
 
 ### 3D Printed parts
 
 | 2 x Handle.stl | 1 x X_Carriage_Belt_Clamp.stl |
-|---|---|
-| ![Handle.stl](stls/Handle.png) | ![X_Carriage_Belt_Clamp.stl](stls/X_Carriage_Belt_Clamp.png) 
-
-
+|----------|----------|
+| ![Handle.stl](stls/Handle.png) | ![X_Carriage_Belt_Clamp.stl](stls/X_Carriage_Belt_Clamp.png) |
 
 ### Sub-assemblies
 
 | 1 x Face_Top_Stage_2_assembly | 1 x X_Carriage_Belt_Side_assembly |
-|---|---|
-| ![Face_Top_Stage_2_assembled](assemblies/Face_Top_Stage_2_assembled_tn.png) | ![X_Carriage_Belt_Side_assembled](assemblies/X_Carriage_Belt_Side_assembled_tn.png) 
-
-
+|----------|----------|
+| ![Face_Top_Stage_2_assembled](assemblies/Face_Top_Stage_2_assembled_tn.png) | ![X_Carriage_Belt_Side_assembled](assemblies/X_Carriage_Belt_Side_assembled_tn.png) |
 
 ### Assembly instructions
 
@@ -768,27 +722,24 @@ using the **X_Carriage_Belt_Clamp**.
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|2| Bolt M3 buttonhead x 16mm|
-|2| Bolt M3 countersunk x  8mm|
-|4| Bolt M4 buttonhead x  8mm|
-|1| Cork damper NEMA 17|
-|1| Filament sensor|
-|1| MK10 Dual Pulley Extruder|
-|4| Nut M4 hammer|
-|2| Pillar hex nylon F/F M3x14|
-|1| Stepper motor NEMA17 x 47mm|
-|1| Stepper motor cable, 200mm|
-
+| Qty | Description |
+|----:|:------------|
+|   2 | Bolt M3 buttonhead x 16mm |
+|   2 | Bolt M3 countersunk x  8mm |
+|   4 | Bolt M4 buttonhead x  8mm |
+|   1 | Cork damper NEMA 17 |
+|   1 | Filament sensor |
+|   1 | MK10 Dual Pulley Extruder |
+|   4 | Nut M4 hammer |
+|   2 | Pillar hex nylon F/F M3x14 |
+|   1 | Stepper motor NEMA17 x 47mm |
+|   1 | Stepper motor cable, 200mm |
 
 ### 3D Printed parts
 
 | 1 x Extruder_Bracket.stl |
-|---|
-| ![Extruder_Bracket.stl](stls/Extruder_Bracket.png) 
-
-
+|----------|
+| ![Extruder_Bracket.stl](stls/Extruder_Bracket.png) |
 
 ### Assembly instructions
 
@@ -812,31 +763,25 @@ thermally isolates the motor from the **Extruder_Bracket** and should not be omi
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|5| Bolt M4 buttonhead x  8mm|
-|6| Bolt M5 buttonhead x 12mm|
-|1| Extrusion E2020 x 300mm|
-|2| Extrusion E2020 x 400mm|
-|1| Extrusion E2040 x 300mm|
-|4| Nut M4 hammer|
-
+| Qty | Description |
+|----:|:------------|
+|   4 | Bolt M4 buttonhead x  8mm |
+|   8 | Bolt M5 buttonhead x 12mm |
+|   2 | Extrusion E2020 x 400mm |
+|   2 | Extrusion E2040 x 300mm |
+|   4 | Nut M4 hammer |
 
 ### 3D Printed parts
 
-| 1 x Right_Side_Panel.stl | 1 x Right_Side_Panel_Bracket.stl |
-|---|---|
-| ![Right_Side_Panel.stl](stls/Right_Side_Panel.png) | ![Right_Side_Panel_Bracket.stl](stls/Right_Side_Panel_Bracket.png) 
-
-
+| 1 x Right_Side_Panel.stl |
+|----------|
+| ![Right_Side_Panel.stl](stls/Right_Side_Panel.png) |
 
 ### Sub-assemblies
 
 | 1 x Extruder_Bracket_assembly |
-|---|
-| ![Extruder_Bracket_assembled](assemblies/Extruder_Bracket_assembled_tn.png) 
-
-
+|----------|
+| ![Extruder_Bracket_assembled](assemblies/Extruder_Bracket_assembled_tn.png) |
 
 ### Assembly instructions
 
@@ -858,19 +803,16 @@ thermally isolates the motor from the **Extruder_Bracket** and should not be omi
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|1| BigTreeTech TFT35 E3 v3.0|
-|4| Bolt M3 caphead x  6mm|
-
+| Qty | Description |
+|----:|:------------|
+|   1 | BigTreeTech TFT35 E3 v3.0 |
+|   4 | Bolt M3 caphead x  6mm |
 
 ### 3D Printed parts
 
 | 1 x Display_Housing_TFT35_E3.stl |
-|---|
-| ![Display_Housing_TFT35_E3.stl](stls/Display_Housing_TFT35_E3.png) 
-
-
+|----------|
+| ![Display_Housing_TFT35_E3.stl](stls/Display_Housing_TFT35_E3.png) |
 
 ### Assembly instructions
 
@@ -891,21 +833,18 @@ thermally isolates the motor from the **Extruder_Bracket** and should not be omi
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|5| Bolt M4 buttonhead x  8mm|
-|2| Bolt M4 buttonhead x 12mm|
-|1| IEC320 C14 switched fused inlet module|
-|5| Nut M4 hammer|
-
+| Qty | Description |
+|----:|:------------|
+|   5 | Bolt M4 buttonhead x  8mm |
+|   2 | Bolt M4 buttonhead x 12mm |
+|   1 | IEC320 C14 switched fused inlet module |
+|   5 | Nut M4 hammer |
 
 ### 3D Printed parts
 
 | 1 x IEC_Housing.stl | 1 x IEC_Housing_Mount.stl |
-|---|---|
-| ![IEC_Housing.stl](stls/IEC_Housing.png) | ![IEC_Housing_Mount.stl](stls/IEC_Housing_Mount.png) 
-
-
+|----------|----------|
+| ![IEC_Housing.stl](stls/IEC_Housing.png) | ![IEC_Housing_Mount.stl](stls/IEC_Housing_Mount.png) |
 
 ### Assembly instructions
 
@@ -927,51 +866,44 @@ thermally isolates the motor from the **Extruder_Bracket** and should not be omi
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|1| Aluminium sheet 340mm x 340mm x 3mm|
-|1| BigTreeTech Relay Module v1.2|
-|1| BigTreeTech SKR v1.4 Turbo|
-|16| Bolt M3 buttonhead x 10mm|
-|16| Bolt M3 caphead x  6mm|
-|8| Bolt M4 buttonhead x  8mm|
-|10| Bolt M4 buttonhead x 10mm|
-|14| Bolt M5 buttonhead x 12mm|
-|1| Extrusion E2020 x 300mm|
-|1| Extrusion E2040 x 300mm|
-|1| Extrusion E2080 x 300mm|
-|1| Micro SD card|
-|16| Nut M4 hammer|
-|1| PSU NIUGUY CB-500W-24V|
-|12| Pillar hex nylon F/F M3x10|
-|4| Pillar hex nylon F/F M3x20|
-|1| Raspberry Pi 3A+|
-|1| XL4015 buck converter|
-
+| Qty | Description |
+|----:|:------------|
+|   1 | Aluminium sheet 340mm x 340mm x 3mm |
+|   1 | BigTreeTech Relay Module v1.2 |
+|   1 | BigTreeTech SKR v1.4 Turbo |
+|  16 | Bolt M3 buttonhead x 10mm |
+|  16 | Bolt M3 caphead x  6mm |
+|   8 | Bolt M4 buttonhead x  8mm |
+|  10 | Bolt M4 buttonhead x 10mm |
+|  14 | Bolt M5 buttonhead x 12mm |
+|   1 | Extrusion E2020 x 300mm |
+|   1 | Extrusion E2040 x 300mm |
+|   1 | Extrusion E2080 x 300mm |
+|   1 | Micro SD card |
+|  16 | Nut M4 hammer |
+|   1 | PSU NIUGUY CB-500W-24V |
+|  12 | Pillar hex nylon F/F M3x10 |
+|   4 | Pillar hex nylon F/F M3x20 |
+|   1 | Raspberry Pi 3A+ |
+|   1 | XL4015 buck converter |
 
 ### 3D Printed parts
 
 | 4 x Foot_LShaped_12mm.stl |
-|---|
-| ![Foot_LShaped_12mm.stl](stls/Foot_LShaped_12mm.png) 
-
-
+|----------|
+| ![Foot_LShaped_12mm.stl](stls/Foot_LShaped_12mm.png) |
 
 ### CNC Routed parts
 
 | 1 x BaseAL.dxf |
-|---|
-| ![BaseAL.dxf](dxfs/BaseAL.png) 
-
-
+|----------|
+| ![BaseAL.dxf](dxfs/BaseAL.png) |
 
 ### Sub-assemblies
 
 | 1 x IEC_Housing_assembly |
-|---|
-| ![IEC_Housing_assembled](assemblies/IEC_Housing_assembled_tn.png) 
-
-
+|----------|
+| ![IEC_Housing_assembled](assemblies/IEC_Housing_assembled_tn.png) |
 
 ### Assembly instructions
 
@@ -996,30 +928,25 @@ as a template to drill the holes in the base plate.
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|4| Bolt M3 buttonhead x 12mm|
-|4| Bolt M3 caphead x 25mm|
-|4| Bolt M4 buttonhead x 10mm|
-|4| Nut M3 hammer|
-|4| Nut M4 hammer|
-
+| Qty | Description |
+|----:|:------------|
+|   4 | Bolt M3 buttonhead x 12mm |
+|   4 | Bolt M3 caphead x 25mm |
+|   4 | Bolt M4 buttonhead x 10mm |
+|   4 | Nut M3 hammer |
+|   4 | Nut M4 hammer |
 
 ### 3D Printed parts
 
 | 1 x Display_Housing_Bracket_TFT35_E3.stl | 1 x Front_Cover_300.stl | 1 x Front_Display_Wiring_Cover_300.stl |
-|---|---|---|
-| ![Display_Housing_Bracket_TFT35_E3.stl](stls/Display_Housing_Bracket_TFT35_E3.png) | ![Front_Cover_300.stl](stls/Front_Cover_300.png) | ![Front_Display_Wiring_Cover_300.stl](stls/Front_Display_Wiring_Cover_300.png) 
-
-
+|----------|----------|----------|
+| ![Display_Housing_Bracket_TFT35_E3.stl](stls/Display_Housing_Bracket_TFT35_E3.png) | ![Front_Cover_300.stl](stls/Front_Cover_300.png) | ![Front_Display_Wiring_Cover_300.stl](stls/Front_Display_Wiring_Cover_300.png) |
 
 ### Sub-assemblies
 
 | 1 x Base_Plate_Stage_1_assembly | 1 x Display_Cover_TFT35_E3_assembly |
-|---|---|
-| ![Base_Plate_Stage_1_assembled](assemblies/Base_Plate_Stage_1_assembled_tn.png) | ![Display_Cover_TFT35_E3_assembled](assemblies/Display_Cover_TFT35_E3_assembled_tn.png) 
-
-
+|----------|----------|
+| ![Base_Plate_Stage_1_assembled](assemblies/Base_Plate_Stage_1_assembled_tn.png) | ![Display_Cover_TFT35_E3_assembled](assemblies/Display_Cover_TFT35_E3_assembled_tn.png) |
 
 ### Assembly instructions
 
@@ -1044,15 +971,14 @@ as a template to drill the holes in the base plate.
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|3| Bolt M3 caphead x 20mm|
-|1| Heated Bed 214mm x 214mm|
-|3| Nut M3 hammer|
-|12| O-ring nitrile 4mm x 2mm|
-|12| Washer  M3|
-|3| Washer penny  M4|
-
+| Qty | Description |
+|----:|:------------|
+|   3 | Bolt M3 caphead x 20mm |
+|   1 | Heated Bed 214mm x 214mm |
+|   3 | Nut M3 hammer |
+|  12 | O-ring nitrile 4mm x 2mm |
+|  12 | Washer M3 |
+|   3 | Washer penny M4 |
 
 ### Assembly instructions
 
@@ -1074,22 +1000,19 @@ as a template to drill the holes in the base plate.
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|2| Bolt M4 buttonhead x 10mm|
-|4| Bolt M5 buttonhead x 16mm|
-|4| Bolt M5 countersunk x 12mm|
-|2| Nut M4 sliding T|
-|2| SCS12LUU bearing block|
-
+| Qty | Description |
+|----:|:------------|
+|   2 | Bolt M4 buttonhead x 10mm |
+|   4 | Bolt M5 buttonhead x 16mm |
+|   4 | Bolt M5 countersunk x 12mm |
+|   2 | Nut M4 sliding T |
+|   2 | SCS12LUU bearing block |
 
 ### 3D Printed parts
 
 | 2 x Z_Carriage_Side.stl |
-|---|
-| ![Z_Carriage_Side.stl](stls/Z_Carriage_Side.png) 
-
-
+|----------|
+| ![Z_Carriage_Side.stl](stls/Z_Carriage_Side.png) |
 
 ### Assembly instructions
 
@@ -1110,21 +1033,18 @@ as a template to drill the holes in the base plate.
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|4| Bolt M3 caphead x 10mm|
-|4| Bolt M4 buttonhead x 10mm|
-|1| Leadscrew nut 8 x 2|
-|4| Nut M4 sliding T|
-
+| Qty | Description |
+|----:|:------------|
+|   4 | Bolt M3 caphead x 10mm |
+|   4 | Bolt M4 buttonhead x 10mm |
+|   1 | Leadscrew nut 8 x 2 |
+|   4 | Nut M4 sliding T |
 
 ### 3D Printed parts
 
 | 1 x Z_Carriage_Center.stl |
-|---|
-| ![Z_Carriage_Center.stl](stls/Z_Carriage_Center.png) 
-
-
+|----------|
+| ![Z_Carriage_Center.stl](stls/Z_Carriage_Center.png) |
 
 ### Assembly instructions
 
@@ -1145,37 +1065,32 @@ as a template to drill the holes in the base plate.
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|2| Bolt M3 countersunk x 10mm|
-|8| Bolt M5 buttonhead x 12mm|
-|2| Extrusion E2020 x 265mm|
-|2| Extrusion E2040 x 188mm|
-|2| Nut M3 hammer|
-
+| Qty | Description |
+|----:|:------------|
+|   2 | Bolt M3 countersunk x 10mm |
+|   8 | Bolt M5 buttonhead x 12mm |
+|   2 | Extrusion E2020 x 265mm |
+|   2 | Extrusion E2040 x 188mm |
+|   2 | Nut M3 hammer |
 
 ### 3D Printed parts
 
 | 1 x Printbed_Strain_Relief.stl |
-|---|
-| ![Printbed_Strain_Relief.stl](stls/Printbed_Strain_Relief.png) 
-
-
+|----------|
+| ![Printbed_Strain_Relief.stl](stls/Printbed_Strain_Relief.png) |
 
 ### Sub-assemblies
 
 | 1 x Z_Carriage_Center_assembly |
-|---|
-| ![Z_Carriage_Center_assembled](assemblies/Z_Carriage_Center_assembled_tn.png) 
-
-
+|----------|
+| ![Z_Carriage_Center_assembled](assemblies/Z_Carriage_Center_assembled_tn.png) |
 
 ### Assembly instructions
 
 ![Printbed_Frame_assembly](assemblies/Printbed_Frame_assembly.png)
 
-1. Slide the **Z_Carriage_Center_assembly** to the approximate center of the first 2040 extrusion and loosely tighten the bolts.
-The bolts will be fully tightened when the Z_Carriage is aligned.
+1. Slide the **Z_Carriage_Center_assembly** to the approximate center of the first 2040 extrusion and loosely tighten
+the bolts. The bolts will be fully tightened when the Z_Carriage is aligned.
 2. Bolt the **Printbed_Strain_Relief** to the second extrusion.
 3. Slide the 2040 extrusion into the 2020 extrusions and loosely tighten the bolts. The bolts will be fully tightened after
 the Z carriages are added.
@@ -1193,10 +1108,8 @@ the Z carriages are added.
 ### Sub-assemblies
 
 | 1 x Printbed_Frame_assembly | 2 x Z_Carriage_Side_assembly |
-|---|---|
-| ![Printbed_Frame_assembled](assemblies/Printbed_Frame_assembled_tn.png) | ![Z_Carriage_Side_assembled](assemblies/Z_Carriage_Side_assembled_tn.png) 
-
-
+|----------|----------|
+| ![Printbed_Frame_assembled](assemblies/Printbed_Frame_assembled_tn.png) | ![Z_Carriage_Side_assembled](assemblies/Z_Carriage_Side_assembled_tn.png) |
 
 ### Assembly instructions
 
@@ -1218,27 +1131,22 @@ the Z carriages are added.
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|2| Bolt M3 buttonhead x  8mm|
-|1| Cork underlay 214mm x 214mm|
-
+| Qty | Description |
+|----:|:------------|
+|   2 | Bolt M3 buttonhead x  8mm |
+|   1 | Cork underlay 214mm x 214mm |
 
 ### 3D Printed parts
 
 | 1 x Printbed_Strain_Relief_Clamp.stl |
-|---|
-| ![Printbed_Strain_Relief_Clamp.stl](stls/Printbed_Strain_Relief_Clamp.png) 
-
-
+|----------|
+| ![Printbed_Strain_Relief_Clamp.stl](stls/Printbed_Strain_Relief_Clamp.png) |
 
 ### Sub-assemblies
 
 | 1 x Heated_Bed_assembly | 1 x Printbed_Frame_with_Z_Carriages_assembly |
-|---|---|
-| ![Heated_Bed_assembled](assemblies/Heated_Bed_assembled_tn.png) | ![Printbed_Frame_with_Z_Carriages_assembled](assemblies/Printbed_Frame_with_Z_Carriages_assembled_tn.png) 
-
-
+|----------|----------|
+| ![Heated_Bed_assembled](assemblies/Heated_Bed_assembled_tn.png) | ![Printbed_Frame_with_Z_Carriages_assembled](assemblies/Printbed_Frame_with_Z_Carriages_assembled_tn.png) |
 
 ### Assembly instructions
 
@@ -1260,25 +1168,22 @@ the Z carriages are added.
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|2| Bolt M4 buttonhead x 10mm|
-|2| Bolt M4 buttonhead x 12mm|
-|8| Bolt M4 countersunk x 10mm|
-|8| Bolt M5 buttonhead x 12mm|
-|2| Extrusion E2020 x 400mm|
-|2| Extrusion E2040 x 300mm|
-|12| Nut M4 sliding T|
-|4| SK12 shaft support bracket|
-
+| Qty | Description |
+|----:|:------------|
+|   2 | Bolt M4 buttonhead x 10mm |
+|   2 | Bolt M4 buttonhead x 12mm |
+|   8 | Bolt M4 countersunk x 10mm |
+|   8 | Bolt M5 buttonhead x 12mm |
+|   2 | Extrusion E2020 x 400mm |
+|   2 | Extrusion E2040 x 300mm |
+|  12 | Nut M4 sliding T |
+|   4 | SK12 shaft support bracket |
 
 ### 3D Printed parts
 
 | 1 x Z_Motor_Mount.stl | 1 x Z_Motor_MountGuide_19mm.stl | 2 x Z_RodMountGuide_50mm.stl |
-|---|---|---|
-| ![Z_Motor_Mount.stl](stls/Z_Motor_Mount.png) | ![Z_Motor_MountGuide_19mm.stl](stls/Z_Motor_MountGuide_19mm.png) | ![Z_RodMountGuide_50mm.stl](stls/Z_RodMountGuide_50mm.png) 
-
-
+|----------|----------|----------|
+| ![Z_Motor_Mount.stl](stls/Z_Motor_Mount.png) | ![Z_Motor_MountGuide_19mm.stl](stls/Z_Motor_MountGuide_19mm.png) | ![Z_RodMountGuide_50mm.stl](stls/Z_RodMountGuide_50mm.png) |
 
 ### Assembly instructions
 
@@ -1289,7 +1194,8 @@ the Z carriages are added.
 3. Attach the SK brackets and the **Z_Motor_Mount** to the lower extrusion, use the **Z_RodMountGuide** to
 align the left bracket and the **Z_Motor_MountGuide** to align the motor mount. The motor itself will be added at a later
 stage of the assembly.
-4. Tighten the bolts for the left bracket and the **Z_Motor_Mount**. Leave the bolts to the right bracket loosely tightened for now.
+4. Tighten the bolts for the left bracket and the **Z_Motor_Mount**. Leave the bolts to the right bracket loosely
+tightened for now.
 5. On a flat surface, bolt the upper and lower extrusions into the left and right uprights as shown. Tighten the bolts
 continuously ensuring the frame is square.
 
@@ -1305,22 +1211,19 @@ continuously ensuring the frame is square.
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|4| Bolt M3 buttonhead x 12mm|
-|1| Cork damper NEMA 17|
-|2| Linear rod 12mm x 300mm|
-|1| Stepper motor NEMA17 x 40mm, 280mm integrated leadscrew|
-|1| Stepper motor cable, 750mm|
-
+| Qty | Description |
+|----:|:------------|
+|   4 | Bolt M3 buttonhead x 12mm |
+|   1 | Cork damper NEMA 17 |
+|   2 | Linear rod 12mm x 300mm |
+|   1 | Stepper motor NEMA17 x 40mm, 280mm integrated leadscrew |
+|   1 | Stepper motor cable, 750mm |
 
 ### Sub-assemblies
 
 | 1 x Left_Side_assembly | 1 x Printbed_assembly |
-|---|---|
-| ![Left_Side_assembled](assemblies/Left_Side_assembled_tn.png) | ![Printbed_assembled](assemblies/Printbed_assembled_tn.png) 
-
-
+|----------|----------|
+| ![Left_Side_assembled](assemblies/Left_Side_assembled_tn.png) | ![Printbed_assembled](assemblies/Printbed_assembled_tn.png) |
 
 ### Assembly instructions
 
@@ -1352,10 +1255,8 @@ and the **Z_Motor_Mount**. The bolt holes on the **Z_Motor_Mount** are oval to a
 ### Sub-assemblies
 
 | 1 x Base_Plate_assembly | 1 x Left_Side_with_Printbed_assembly |
-|---|---|
-| ![Base_Plate_assembled](assemblies/Base_Plate_assembled_tn.png) | ![Left_Side_with_Printbed_assembled](assemblies/Left_Side_with_Printbed_assembled_tn.png) 
-
-
+|----------|----------|
+| ![Base_Plate_assembled](assemblies/Base_Plate_assembled_tn.png) | ![Left_Side_with_Printbed_assembled](assemblies/Left_Side_with_Printbed_assembled_tn.png) |
 
 ### Assembly instructions
 
@@ -1377,10 +1278,8 @@ and the **Z_Motor_Mount**. The bolt holes on the **Z_Motor_Mount** are oval to a
 ### Sub-assemblies
 
 | 1 x Right_Side_assembly | 1 x Stage_1_assembly |
-|---|---|
-| ![Right_Side_assembled](assemblies/Right_Side_assembled_tn.png) | ![Stage_1_assembled](assemblies/Stage_1_assembled_tn.png) 
-
-
+|----------|----------|
+| ![Right_Side_assembled](assemblies/Right_Side_assembled_tn.png) | ![Stage_1_assembled](assemblies/Stage_1_assembled_tn.png) |
 
 ### Assembly instructions
 
@@ -1404,28 +1303,23 @@ the cables in place.
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|14| Bolt M4 countersunk x  8mm|
-|14| Nut M4 hammer|
-|1| Sheet polycarbonate 340mm x 400mm x 3mm|
-
+| Qty | Description |
+|----:|:------------|
+|  14 | Bolt M4 countersunk x  8mm |
+|  14 | Nut M4 hammer |
+|   1 | Sheet polycarbonate 340mm x 400mm x 3mm |
 
 ### CNC Routed parts
 
 | 1 x Back_Panel.dxf |
-|---|
-| ![Back_Panel.dxf](dxfs/Back_Panel.png) 
-
-
+|----------|
+| ![Back_Panel.dxf](dxfs/Back_Panel.png) |
 
 ### Sub-assemblies
 
 | 1 x Face_Top_assembly | 1 x Stage_2_assembly |
-|---|---|
-| ![Face_Top_assembled](assemblies/Face_Top_assembled_tn.png) | ![Stage_2_assembled](assemblies/Stage_2_assembled_tn.png) 
-
-
+|----------|----------|
+| ![Face_Top_assembled](assemblies/Face_Top_assembled_tn.png) | ![Stage_2_assembled](assemblies/Stage_2_assembled_tn.png) |
 
 ### Assembly instructions
 
@@ -1449,28 +1343,23 @@ see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|2| Bolt M3 buttonhead x  8mm|
-|4| Bolt M3 countersunk x 40mm|
-|1| PTFE Bowden tube, 500 mm|
-
+| Qty | Description |
+|----:|:------------|
+|   2 | Bolt M3 buttonhead x  8mm |
+|   4 | Bolt M3 countersunk x 40mm |
+|   1 | PTFE Bowden tube, 500 mm |
 
 ### 3D Printed parts
 
 | 1 x Wiring_Guide.stl | 1 x Wiring_Guide_Clamp.stl |
-|---|---|
-| ![Wiring_Guide.stl](stls/Wiring_Guide.png) | ![Wiring_Guide_Clamp.stl](stls/Wiring_Guide_Clamp.png) 
-
-
+|----------|----------|
+| ![Wiring_Guide.stl](stls/Wiring_Guide.png) | ![Wiring_Guide_Clamp.stl](stls/Wiring_Guide_Clamp.png) |
 
 ### Sub-assemblies
 
 | 1 x Printhead_E3DV6_assembly | 1 x Stage_3_assembly |
-|---|---|
-| ![Printhead_E3DV6_assembled](assemblies/Printhead_E3DV6_assembled_tn.png) | ![Stage_3_assembled](assemblies/Stage_3_assembled_tn.png) 
-
-
+|----------|----------|
+| ![Printhead_E3DV6_assembled](assemblies/Printhead_E3DV6_assembled_tn.png) | ![Stage_3_assembled](assemblies/Stage_3_assembled_tn.png) |
 
 ### Assembly instructions
 
@@ -1493,38 +1382,31 @@ see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|25| Bolt M4 buttonhead x  8mm|
-|2| Bolt M4 buttonhead x 12mm|
-|27| Nut M4 hammer|
-|1| Sheet polycarbonate 250mm x 400mm x 3mm|
-|1| Sheet polycarbonate 340mm x 400mm x 3mm|
-
+| Qty | Description |
+|----:|:------------|
+|  25 | Bolt M4 buttonhead x  8mm |
+|   2 | Bolt M4 buttonhead x 12mm |
+|  27 | Nut M4 hammer |
+|   1 | Sheet polycarbonate 250mm x 400mm x 3mm |
+|   1 | Sheet polycarbonate 340mm x 400mm x 3mm |
 
 ### 3D Printed parts
 
 | 1 x Spool_Holder.stl | 1 x Spool_Holder_36.stl | 1 x Spool_Holder_Bracket.stl |
-|---|---|---|
-| ![Spool_Holder.stl](stls/Spool_Holder.png) | ![Spool_Holder_36.stl](stls/Spool_Holder_36.png) | ![Spool_Holder_Bracket.stl](stls/Spool_Holder_Bracket.png) 
-
-
+|----------|----------|----------|
+| ![Spool_Holder.stl](stls/Spool_Holder.png) | ![Spool_Holder_36.stl](stls/Spool_Holder_36.png) | ![Spool_Holder_Bracket.stl](stls/Spool_Holder_Bracket.png) |
 
 ### CNC Routed parts
 
 | 1 x Left_Side_Panel.dxf | 1 x Right_Side_Panel.dxf |
-|---|---|
-| ![Left_Side_Panel.dxf](dxfs/Left_Side_Panel.png) | ![Right_Side_Panel.dxf](dxfs/Right_Side_Panel.png) 
-
-
+|----------|----------|
+| ![Left_Side_Panel.dxf](dxfs/Left_Side_Panel.png) | ![Right_Side_Panel.dxf](dxfs/Right_Side_Panel.png) |
 
 ### Sub-assemblies
 
 | 1 x Stage_4_assembly |
-|---|
-| ![Stage_4_assembled](assemblies/Stage_4_assembled_tn.png) 
-
-
+|----------|
+| ![Stage_4_assembled](assemblies/Stage_4_assembled_tn.png) |
 
 ### Assembly instructions
 
