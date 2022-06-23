@@ -81,7 +81,7 @@ module faceRightLowerExtrusion(useElectronicsInBase) {
     translate([eX + eSize, eSize, 0]) {
         if (useElectronicsInBase)
             translate_z(70)
-                extrusionOYEndBolts(eY);
+                extrusionOY2040VEndBolts(eY);
         else
             extrusionOY2040VEndBolts(eY);
         if (useDualZRods())
@@ -91,7 +91,10 @@ module faceRightLowerExtrusion(useElectronicsInBase) {
     }
 }
 
-function frontAndBackHolePositionsZ(upperZRodMountsExtrusionOffsetZ, useElectronicsInBase) = concat([eSize/2, useElectronicsInBase ? 4*eSize : 3*eSize/2, eZ - eSize/2, spoolHeight() + eSize/2, spoolHeight() - (eX == 350 ? -3*eSize/2 : eSize/2)], eX < 350 ? [] : [upperZRodMountsExtrusionOffsetZ + eSize/2, upperZRodMountsExtrusionOffsetZ - eSize/2]);
+function frontAndBackHolePositionsZ(upperZRodMountsExtrusionOffsetZ, useElectronicsInBase) =
+    concat([eSize/2, eZ - eSize/2, spoolHeight() + eSize/2, spoolHeight() - (eX == 350 ? -3*eSize/2 : eSize/2)],
+        eX < 350 ? [] : [upperZRodMountsExtrusionOffsetZ + eSize/2, upperZRodMountsExtrusionOffsetZ - eSize/2],
+        useElectronicsInBase ? [4*eSize, 5*eSize] : [3*eSize/2]);
 
 module faceRightIdlerUpright(upperZRodMountsExtrusionOffsetZ=0, useElectronicsInBase=true) {
     translate([eX + eSize, 0, 0])
