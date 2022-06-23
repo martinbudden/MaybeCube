@@ -2,11 +2,11 @@
 
 include <NopSCADlib/utils/core/core.scad>
 
-include <../scad/utils/CoreXYBelts.scad>
+//include <../scad/utils/CoreXYBelts.scad>
 //use <../scad/printed/PSU.scad>
-use <../scad/printed/XY_MotorMount.scad>
+//use <../scad/printed/XY_MotorMount.scad>
 use <../scad/BackFace.scad>
-use <../scad/BasePlate.scad>
+//use <../scad/BasePlate.scad>
 //use <../scad/FaceLeft.scad>
 //use <../scad/FaceRight.scad>
 //include <../scad/FaceRightExtras.scad>
@@ -18,14 +18,14 @@ use <../scad/Parameters_Positions.scad>
 //$explode = 1;
 //$pose = 1;
 module BackFace_test() {
-    Back_Panel_assembly();
+    //Back_Panel_assembly();
+    backPanelAssembly();
     //Back_Panel_dxf();
-    psuVertical = eX == 300;
     //PSU_Cover_assembly();
     //PSU_Cover_stl();
     //PSU_Upper_Mount_stl();
     //PSU_Lower_Mount_stl();
-    //psuAssembly(psuVertical, useMounts=true);
+    //psuAssembly(psuVertical=(eX==300), useMounts=true);
     //pcbAssembly(pcbType());
     //PSU_Cover_assembly();
     //let($hide_pcb=true)
@@ -34,13 +34,13 @@ module BackFace_test() {
     //Right_Side_assembly();
     //Face_Top_Stage_1_assembly();
     //printheadWiring();
-    showPartition = !true;
+    /*showPartition = !true;
     if (showPartition) {
         CoreXYBelts(carriagePosition());
         XY_Motor_Mount_Left_assembly();
         XY_Motor_Mount_Right_assembly();
         partitionPC();
-    }
+    }*/
 }
 
 module BackFace_test2() {
