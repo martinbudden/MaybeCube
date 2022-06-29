@@ -1,7 +1,7 @@
-include <NopSCADlib/core.scad>
+include <../vitamins/bolts.scad>
+
 include <NopSCADlib/vitamins/pcbs.scad>
 
-include <../vitamins/bolts.scad>
 include <../vitamins/XL4015_BuckConverter.scad>
 
 

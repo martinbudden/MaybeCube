@@ -6,9 +6,10 @@ use <../scad/printed/X_CarriageEVA.scad>
 use <../scad/MainAssemblyXChange.scad>
 use <../scad/MainAssemblyVoronAfterburner.scad>
 
+include <../scad/vitamins/bolts.scad>
+
 include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/X_Rail.scad>
-include <../scad/vitamins/bolts.scad>
 
 use <../../BabyCube/scad/printed/X_Carriage.scad>
 use <../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>

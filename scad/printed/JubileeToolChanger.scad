@@ -1,5 +1,7 @@
 include <../global_defs.scad>
 
+include <../vitamins/bolts.scad>
+
 use <NopSCADlib/utils/fillet.scad>
 use <NopSCADlib/vitamins/ball_bearing.scad>
 use <NopSCADlib/vitamins/o_ring.scad>
@@ -12,7 +14,6 @@ include <NopSCADlib/vitamins/stepper_motors.scad>
 
 use <../../../BabyCube/scad/printed/Printhead.scad> // for E3Dv6plusFan
 
-include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>

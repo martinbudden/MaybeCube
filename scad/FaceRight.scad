@@ -1,13 +1,12 @@
 include <global_defs.scad>
 
-include <NopSCADlib/utils/core/core.scad>
+include <utils/FrameBolts.scad>
 
 use <printed/AccessPanel.scad>
 use <printed/extruderBracket.scad>
 use <printed/IEC_Housing.scad>
 use <printed/RightSidePanel.scad>
 
-include <utils/FrameBolts.scad>
 include <utils/Z_Rods.scad>
 
 include <FaceRightExtras.scad>

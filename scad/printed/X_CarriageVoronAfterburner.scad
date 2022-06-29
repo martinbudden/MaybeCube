@@ -1,7 +1,8 @@
 include <../global_defs.scad>
 
+include <../vitamins/bolts.scad>
+
 use <NopSCADlib/utils/fillet.scad>
-include <NopSCADlib/core.scad>
 include <NopSCADlib/vitamins/blowers.scad>
 include <NopSCADlib/vitamins/fans.scad>
 include <NopSCADlib/vitamins/hot_ends.scad>
@@ -9,7 +10,6 @@ include <NopSCADlib/vitamins/rails.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
 
 include <../utils/X_Carriage.scad>
-include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>
 
 xCarriageType = MGN12H_carriage;

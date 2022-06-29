@@ -1,6 +1,7 @@
-include <NopSCADlib/core.scad>
-include <NopSCADlib/vitamins/pillow_blocks.scad>
+include <../vitamins/bolts.scad>
+
 include <NopSCADlib/vitamins/rails.scad>
+include <NopSCADlib/vitamins/pillow_blocks.scad>
 include <NopSCADlib/vitamins/rod.scad>
 include <NopSCADlib/vitamins/sk_brackets.scad>
 
@@ -8,7 +9,6 @@ use <../printed/E20Cover.scad>
 use <../printed/JubileeKinematicBed.scad>
 use <../printed/Z_MotorMount.scad>
 
-include <../vitamins/bolts.scad>
 include <../vitamins/extrusion.scad>
 include <../vitamins/nuts.scad>
 

@@ -2,11 +2,13 @@
 
 include <../scad/global_defs.scad>
 
+include <../scad/vitamins/bolts.scad>
+
 include <NopSCADlib/vitamins/rails.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
 
 use <../scad/printed/PrintheadAssemblies.scad>
-use <../scad/printed/Y_CarriageAssemblies.scad>
+include <../scad/printed/Y_CarriageAssemblies.scad>
 use <../scad/printed/XY_Idler.scad>
 use <../scad/printed/XY_MotorMount.scad>
 use <../scad/printed/X_CarriageEVA.scad>
@@ -15,7 +17,6 @@ include <../scad/utils/printParameters.scad>
 include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/X_Rail.scad>
 
-include <../scad/vitamins/bolts.scad>
 include <../scad/vitamins/extrusion.scad>
 
 use <../scad/Parameters_Positions.scad>

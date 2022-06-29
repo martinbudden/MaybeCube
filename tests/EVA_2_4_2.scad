@@ -9,7 +9,6 @@ $pp4_colour = "SteelBlue";
 include <../scad/vitamins/bolts.scad>
 include <NopSCADlib/vitamins/blowers.scad>
 include <NopSCADlib/vitamins/e3d.scad>
-include <NopSCADlib/vitamins/fans.scad>
 
 use <../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 

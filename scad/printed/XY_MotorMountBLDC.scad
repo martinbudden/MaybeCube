@@ -1,12 +1,11 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/core.scad>
+include <../vitamins/bolts.scad>
 
 include <NopSCADlib/vitamins/bldc_motors.scad>
 
 include <../utils/motorTypes.scad>
 
-include <../vitamins/bolts.scad>
 include <../vitamins/cables.scad>
 
 use <XY_MotorMount.scad>

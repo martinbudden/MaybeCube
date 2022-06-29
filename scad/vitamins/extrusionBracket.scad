@@ -1,4 +1,4 @@
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/extrusions.scad>
 include <NopSCADlib/vitamins/extrusion_brackets.scad>
 

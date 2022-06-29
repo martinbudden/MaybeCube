@@ -7,8 +7,8 @@ use <printed/JubileeKinematicBed.scad>
 use <printed/PrintheadAssemblies.scad>
 use <printed/RightSidePanel.scad>
 
-include <utils/CoreXYBelts.scad>
 include <utils/Z_Rods.scad>
+include <utils/CoreXYBelts.scad>
 
 use <vitamins/Panels.scad>
 

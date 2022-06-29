@@ -1,12 +1,7 @@
 //!Display the whole printer
 
-use <../scad/Main.scad>
-use <../scad/MainAssemblies.scad>
-
+include <../scad/Main.scad>
 include <../scad/utils/printParameters.scad>
-include <../scad/utils/CoreXYBelts.scad>
-
-use <../scad/Parameters_Positions.scad>
 
 
 //$pose = 1;

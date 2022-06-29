@@ -6,6 +6,8 @@
 
 include <global_defs.scad>
 
+include <NopSCADlib/utils/core/core.scad>
+include <NopSCADlib/vitamins/screws.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
 use <printed/PrintheadAssemblies.scad>

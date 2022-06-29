@@ -1,6 +1,9 @@
 //!Display the X-axis linear rail.
 
 include <../scad/global_defs.scad>
+include <NopSCADlib/utils/core/core.scad>
+include <NopSCADlib/vitamins/screws.scad>
+include <NopSCADlib/vitamins/rails.scad>
 
 include <../scad/utils/X_Rail.scad>
 use <../scad/printed/PrintheadAssemblies.scad>

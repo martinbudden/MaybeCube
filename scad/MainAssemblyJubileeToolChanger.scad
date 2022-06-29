@@ -11,6 +11,8 @@
 //!It is not complete, in particular a MaybeCube X_Carriage adaptor is still required.
 //
 include <global_defs.scad>
+include <NopSCADlib/utils/core/core.scad>
+include <NopSCADlib/vitamins/screws.scad>
 
 use <../scad/printed/JubileeToolChanger.scad>
 

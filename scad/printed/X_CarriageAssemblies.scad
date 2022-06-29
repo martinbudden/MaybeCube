@@ -1,16 +1,16 @@
 //!! This is a copy of the BabyCube file with alterations
 include <../global_defs.scad>
 
+include <../vitamins/bolts.scad>
+
 use <NopSCADlib/utils/fillet.scad>
 
-include <../utils/carriageTypes.scad>
 include <NopSCADlib/vitamins/blowers.scad>
 
 include <../utils/PrintheadOffsets.scad>
 
-use <../utils/X_Rail.scad>
+include <../utils/X_Rail.scad>
 include <../utils/X_Carriage.scad>
-include <../vitamins/bolts.scad>
 include <../vitamins/inserts.scad>
 
 use <../../../BabyCube/scad/printed/Printhead.scad>

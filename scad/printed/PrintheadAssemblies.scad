@@ -1,14 +1,15 @@
 //!! This is a copy of the BabyCube file with alterations
 include <../global_defs.scad>
 
-include <NopSCADlib/vitamins/rails.scad>
+include <../vitamins/bolts.scad>
+
 include <NopSCADlib/vitamins/blowers.scad>
+include <NopSCADlib/vitamins/rails.scad>
 use <NopSCADlib/vitamins/wire.scad>
 
 include <../utils/PrintheadOffsets.scad>
 include <../utils/X_rail.scad>
 
-include <../vitamins/bolts.scad>
 include <../../../BabyCube/scad/vitamins/pcbs.scad>
 
 use <../../../BabyCube/scad/printed/Printhead.scad>
