@@ -1,7 +1,7 @@
 include <global_defs.scad>
 
-include <utils/carriageTypes.scad>
 include <utils/FrameBolts.scad>
+include <utils/carriageTypes.scad>
 include <utils/Z_Rods.scad>
 
 use <printed/IEC_Housing.scad>

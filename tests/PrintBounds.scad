@@ -31,6 +31,7 @@ z endstop
 */
 
 include <NopSCADlib/utils/core/core.scad>
+include <NopSCADlib/vitamins/screws.scad>
 
 use <../scad/utils/PSU.scad>
 

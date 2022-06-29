@@ -1,4 +1,4 @@
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 
 // NIUGUY CB-500W-24V
 ng_terminals = [9.525, 1.5, 15, 17.8, 7, 15]; // pitch, divider width, divider height, total depth, height under contacts, depth of contact well

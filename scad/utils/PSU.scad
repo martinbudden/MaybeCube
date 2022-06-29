@@ -1,6 +1,7 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
+include <NopSCADlib/vitamins/screws.scad>
 include <NopSCADlib/vitamins/psus.scad>
 //use <NopSCADlib/printed/psu_shroud.scad>
 

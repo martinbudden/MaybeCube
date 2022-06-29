@@ -1,11 +1,11 @@
-include <NopSCADlib/core.scad>
+include <../vitamins/bolts.scad>
+
 use <NopSCADlib/vitamins/sheet.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
 
 use <../printed/extruderBracket.scad> // for spoolHeight(), spoolHolderPosition()
 use <../printed/extrusionChannels.scad>
 
-include <../vitamins/bolts.scad>
 include <../vitamins/filament_sensor.scad>
 include <../vitamins/nuts.scad>
 

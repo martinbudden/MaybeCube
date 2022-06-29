@@ -1,10 +1,6 @@
 //!Display the left and right Y carriages.
 
-include <../scad/global_defs.scad>
-
-include <NopSCADlib/vitamins/rails.scad>
-
-use <../scad/printed/Y_CarriageAssemblies.scad>
+include <../scad/printed/Y_CarriageAssemblies.scad>
 
 include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/X_Rail.scad>

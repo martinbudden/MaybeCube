@@ -1,10 +1,9 @@
-include <NopSCADlib/core.scad>
-include <NopSCADlib/vitamins/blowers.scad>
+include <../vitamins/bolts.scad>
+
 include <NopSCADlib/vitamins/e3d.scad>
-include <NopSCADlib/vitamins/fans.scad>
+include <NopSCADlib/vitamins/blowers.scad>
 include <NopSCADlib/vitamins/microswitches.scad>
 
-include <../vitamins/bolts.scad>
 include <../vitamins/cables.scad>
 
 include <../Parameters_Main.scad>

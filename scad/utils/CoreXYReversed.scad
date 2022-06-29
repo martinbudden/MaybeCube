@@ -1,4 +1,4 @@
-include <NopSCADlib/core.scad>
+include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/utils/core_xy.scad>
 
 module coreXYR_half(type, size, pos, separation_y = 0, x_gap = 0, plain_idler_offset = [0, 0], drive_pulley_offset = [0, 0], show_pulleys = false, lower_belt = false, hflip = false) { //! Draw one belt of a coreXY setup

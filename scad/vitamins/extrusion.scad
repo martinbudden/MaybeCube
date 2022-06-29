@@ -1,4 +1,4 @@
-include <NopSCADlib/utils/core/core.scad>
+include <NopSCADlib/utils/core/global.scad>
 include <NopSCADlib/vitamins/extrusions.scad>
 
 function extrusionChannelWidth() = 8;

@@ -1,5 +1,7 @@
 include <global_defs.scad>
 
+include <utils/FrameBolts.scad>
+
 use <NopSCADlib/utils/fillet.scad>
 
 include <printed/CameraMount.scad>
@@ -12,12 +14,10 @@ use <printed/XY_Idler.scad>
 use <printed/Y_CarriageAssemblies.scad>
 
 include <utils/bezierTube.scad>
-include <utils/carriageTypes.scad>
+include <utils/X_Rail.scad>
 include <utils/CoreXYBelts.scad>
-include <utils/FrameBolts.scad>
 include <utils/RailNutsAndBolts.scad>
 include <utils/printheadOffsets.scad>
-include <utils/X_Rail.scad>
 
 use <Parameters_Positions.scad>
 

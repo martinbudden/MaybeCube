@@ -1,6 +1,8 @@
 //! Display the tool changer
 
 include <../scad/global_defs.scad>
+include <NopSCADlib/utils/core/core.scad>
+include <NopSCADlib/vitamins/screws.scad>
 
 use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/XY_MotorMount.scad>
@@ -21,7 +23,7 @@ carriagePosition = carriagePosition(t);
 
 
 module toolchanger_test() {
-    toolChanger(t, tool="bondtech", plate="jubilee");
+    //toolChanger(t, tool="bondtech", plate="jubilee");
     //tools();
     CoreXYBelts(carriagePosition);
     //printheadBeltSide(t=t);

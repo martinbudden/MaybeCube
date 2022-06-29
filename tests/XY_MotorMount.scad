@@ -1,6 +1,7 @@
 //!Display the left and right motor mounts.
 
 include <NopSCADlib/utils/core/core.scad>
+include <NopSCADlib/vitamins/screws.scad>
 
 use <../scad/printed/XY_MotorMount.scad>
 include <../scad/utils/CoreXYBelts.scad>

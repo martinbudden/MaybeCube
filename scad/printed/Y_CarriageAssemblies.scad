@@ -1,6 +1,10 @@
 //!! This is a copy of the BabyCube file with alterations
 include <../global_defs.scad>
 
+include <NopSCADlib/utils/core/core.scad>
+include <NopSCADlib/vitamins/screws.scad>
+include <NopSCADlib/vitamins/rails.scad>
+
 include <../utils/carriageTypes.scad>
 
 use <../../../BabyCube/scad/printed/Y_Carriage.scad>

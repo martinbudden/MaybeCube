@@ -1,5 +1,4 @@
-use <NopSCADlib/utils/core_xy.scad>
-use <../utils/CoreXYReversed.scad>
+include <../utils/CoreXYReversed.scad>
 
 include <../Parameters_CoreXY.scad>
 

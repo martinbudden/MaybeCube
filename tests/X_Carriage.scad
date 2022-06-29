@@ -2,20 +2,20 @@
 
 include <../scad/global_defs.scad>
 
-use <../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
+//use <../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 
-use <../scad/printed/PrintheadAssemblies.scad>
+//use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/X_CarriageAssemblies.scad>
-use <../scad/utils/X_Rail.scad>
+//use <../scad/utils/X_Rail.scad>
 
-include <../scad/utils/carriageTypes.scad>
+//include <../scad/utils/carriageTypes.scad>
 
-include <../scad/Parameters_Main.scad>
+//include <../scad/Parameters_Main.scad>
 
 //$explode = 1;
 //$pose = 1;
 
-module xCarriageBeltAttachmentTest_stl() {
+/*module xCarriageBeltAttachmentTest_stl() {
     stl("xCarriageBeltAttachmentTest") {
         size = xCarriageBeltAttachmentSize(beltWidth(), beltSeparation(), 30);
         xCarriageBeltAttachment(size, beltWidth(), beltSeparation(), cutoutOffsetZ=0, cutoutOffsetY=0,endCube=true);
@@ -23,17 +23,17 @@ module xCarriageBeltAttachmentTest_stl() {
         *translate_z(-2)
             cube([size.z, size.x + 3, 2]);
     }
-}
+}*/
 
 module X_Carriage_test() {
     //rotate([0, -90, 0]) X_Carriage_Groovemount_HC_16_stl();
     //X_Carriage_Groovemount_stl();
     xCarriageGroovemountAssembly();
-    X_Carriage_Belt_Side_assembly();
-    xCarriageBeltClampAssembly(MGN12H_carriage);
+    //X_Carriage_Belt_Side_assembly();
+    //xCarriageBeltClampAssembly(MGN12H_carriage);
     //xCarriageBeltAttachment(30, beltWidth(), beltSeparation());
     //X_Carriage_Belt_Side_HC_16_stl();
-    translate_z(-carriage_height(MGN12H_carriage)) carriage(MGN12H_carriage);
+    //translate_z(-carriage_height(MGN12H_carriage)) carriage(MGN12H_carriage);
     //X_Carriage_Belt_Tensioner_stl();
     //Fan_Duct_stl();
     //X_Carriage_Belt_Tensioner_stl();

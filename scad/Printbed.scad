@@ -1,6 +1,7 @@
 include <global_defs.scad>
 
-include <NopSCADlib/core.scad>
+include <utils/FrameBolts.scad>
+
 include <NopSCADlib/vitamins/springs.scad>
 include <NopSCADlib/vitamins/bearing_blocks.scad>
 include <NopSCADlib/vitamins/pcb.scad>
@@ -9,8 +10,6 @@ use <NopSCADlib/utils/fillet.scad>
 use <NopSCADlib/vitamins/o_ring.scad>
 
 use <printed/Z_Carriage.scad>
-
-include <utils/FrameBolts.scad>
 
 use <vitamins/extrusionBracket.scad>
 use <vitamins/HeatedBedLevelingKnob.scad>

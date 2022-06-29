@@ -1,5 +1,7 @@
 include <../global_defs.scad>
 
+include <../vitamins/bolts.scad>
+
 include <NopSCADlib/printed/printed_pulleys.scad>
 
 use <NopSCADlib/utils/fillet.scad>
@@ -14,7 +16,6 @@ use <../../../BabyCube/scad/vitamins/CorkDamper.scad>
 
 include <../utils/XY_MotorMount.scad>
 
-include <../vitamins/bolts.scad>
 include <../vitamins/cables.scad>
 include <../vitamins/nuts.scad>
 

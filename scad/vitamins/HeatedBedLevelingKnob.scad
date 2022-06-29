@@ -1,7 +1,6 @@
-include <NopSCADlib/utils/core/core.scad>
-include <NopSCADlib/vitamins/inserts.scad>
-
 include <../vitamins/bolts.scad>
+
+include <NopSCADlib/vitamins/inserts.scad>
 
 
 module HeatedBedLevelingKnob(color = grey(20)) {

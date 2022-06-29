@@ -1,6 +1,7 @@
 include <global_defs.scad>
 
-include <NopSCADlib/core.scad>
+include <utils/FrameBolts.scad>
+
 include <NopSCADlib/vitamins/pillar.scad>
 include <NopSCADlib/vitamins/pcbs.scad>
 include <NopSCADlib/vitamins/psus.scad>
@@ -9,8 +10,6 @@ use <NopSCADlib/vitamins/sheet.scad>
 use <printed/extruderBracket.scad>
 include <utils/pcbs.scad>
 use <utils/PSU.scad>
-
-include <utils/FrameBolts.scad>
 
 include <vitamins/nuts.scad>
 include <vitamins/RPI3APlus.scad>
