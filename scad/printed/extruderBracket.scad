@@ -37,7 +37,7 @@ function extruderBracketSize() = [3, iecHousingMountSize().x, eZ - spoolHeight()
 //filamentSensorOffset = [20.5, 4.5, -45];
 function filamentSensorOffset() = [extruderFilamentOffset().z + extruderBracketSize().x, extruderFilamentOffset().x, -extruderFilamentOffset().y - filament_sensor_size().x/2 - 4];
 
-counterSunk = true;
+counterSunk = false;
 
 module extruderBoltPositions() {
     size = extruderBracketSize();
@@ -84,7 +84,7 @@ module extruderCutouts() {
                     if (counterSunk)
                         boltPolyholeM3Countersunk(size.x);
                     else
-                        boltHoleM3Tap(size.x);
+                        boltHoleM3(size.x);
     }
 }
 
@@ -137,15 +137,15 @@ module Extruder_Bracket_hardware(corkDamperThickness, addM4Bolts=false) {
                 filament_sensor();
                 filament_sensor_hole_positions() {
                     translate_z(filament_sensor_size().z)
-                        boltM3Buttonhead(16);
+                        boltM3Caphead(16);
                     vflip()
                         pillar(M3x14_nylon_hex_pillar);
                     translate_z(-pillarHeight - size.x - eps)
                         vflip()
                             if (counterSunk)
-                                boltM3Countersunk(8);
+                                boltM3Countersunk(10);
                             else
-                                boltM3Buttonhead(8);
+                                boltM3Buttonhead(10);
                 }
             }
         }

@@ -122,7 +122,7 @@ module faceTopFront(use2040=false) {
             if (use2040)
                 translate_z(-eSize)
                     extrusionOXEndBoltPositions(eX)
-                        boltM5Buttonhead(_endBoltShortLength);
+                        boltM5Buttonhead(_endBoltLength);
             difference() {
                 if (use2040)
                     translate_z(-eSize)

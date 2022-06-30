@@ -11,7 +11,7 @@ include <../Parameters_Main.scad>
 wiringDiameter = 7;
 sideThickness = 6.5;
 wiringGuideSize = [30, 15, 5];
-wiringGuideClampSize = [wiringDiameter + 2*sideThickness, wiringGuideSize.y, 2.5];
+wiringGuideClampSize = [wiringDiameter + 2*sideThickness, wiringGuideSize.y, 3];
 function wiringGuideTabHeight() = wiringDiameter + 2;
 
 function wiringGuidePosition(offsetX=0, offsetY=0, offsetZ=0) = [eX/2 + eSize - (wiringGuideSize.x + eSize)/2 - offsetX, eY + eSize - offsetY, eZ - eSize - offsetZ];
@@ -77,7 +77,7 @@ module Wiring_Guide_Clamp_hardware() {
 
     for (x = [-size.x/2 + sideThickness/2, size.x/2 - sideThickness/2])
         translate([x, eSize - size.y/2, size.z])
-            boltM3Buttonhead(8);
+            boltM3Buttonhead(10);
 }
 
 module Wiring_Guide_Socket_stl() {

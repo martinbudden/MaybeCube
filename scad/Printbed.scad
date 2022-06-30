@@ -532,7 +532,7 @@ module Printbed_Strain_Relief_hardware() {
 }
 
 module Printbed_Strain_Relief_Clamp_stl() {
-    size = [eSize, eSize, 2.5];
+    size = [eSize, eSize, 3];
     fillet = 1.5;
 
     stl("Printbed_Strain_Relief_Clamp")
@@ -552,8 +552,8 @@ module Printbed_Strain_Relief_Clamp_hardware() {
 
     translate([-size.x/2, 0, 0])
         for (y = [sideThickness/2, size.y - sideThickness/2])
-            translate([size.x/2, y, 11])
-                boltM3Buttonhead(8);
+            translate([size.x/2, y, 11.5])
+                boltM3Buttonhead(10);
 }
 
 module Printbed_Strain_Relief_assembly()

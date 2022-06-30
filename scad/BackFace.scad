@@ -53,9 +53,8 @@ module backPanelPC() {
                 Back_Panel_dxf();
 }
 
-module backPanel() {
+module backPanel(countersunk=false) {
     size = backPanelSize();
-    countersunk = true;
 
     translate([0, eY + 2*eSize, 0]) {
         rotate([90, 0, 0])
@@ -105,7 +104,7 @@ assembly("Back_Panel") {
                         boltM4Countersunk(_sideBoltLength);
                     else
                         boltM4Buttonhead(_sideBoltLength);
-    backPanel();
+    backPanel(countersunk);
 }
 
 module backPanelAssembly() {
