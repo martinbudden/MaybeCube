@@ -8,6 +8,26 @@ sufficient detail that someone with a good understanding of 3D printers can buil
 
 ![Main Assembly](assemblies/main_assembled.png)
 
+## Read this before you order parts
+
+2020, 2040 etc aluminium comes in variants with differing sized center holes - some are suitable for tapping for an
+an M5 bolt and some are suitable for tapping for an M6 bolt. It doesn't really matter which you use, but ensure you
+buy the bolts that correspond to your extrusion size. These build instructions assume M5 bolts, if your extrusion
+requires M6 bolts then the 10mm and 12mm buttonhead M5 bolts should be replaced with M6 bolts.
+
+This is a full build, some parts can be omitted to save cost, in particular:
+
+* the Raspberry Pi camera (and corresponding 8mm M2 caphead bolts)
+* the Raspberry Pi (if you don't want to run Octoprint or Klipper) and corresponding buck converter
+* the Big Tree Tech relay module, if you don't want auto shut off
+* the Big Tree Tech TFT display, if you are running Octoprint or Klipper
+* I've specified a Big Tree Tech mainboard and display, you of course can use any mainboard and display you like
+* the filament sensor
+* the polycarbonate side and back panels, if you don't want to enclose your print volume for (say) printing ABS. Note
+that these also add rigidity to the printer.
+* I've specified buttonhead bolts for the side and back panels. For a neater look you could countersink the holes
+use countersunk bolts.
+
 ## Printing the parts
 
 A number of parts are in proximity with heat sources, namely the hotend, the heated bed and the motors. Ideally these
@@ -75,30 +95,25 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech TFT35 E3 v3.0 |
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  8mm |
-|   .  |   .  |   .  |   .  |   .  |   2  |   .  |   2  |    4  |  Bolt M3 buttonhead x  8mm |
-|   .  |   .  |  14  |   .  |   .  |   .  |   .  |  16  |   30  |  Bolt M3 buttonhead x 10mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   8  |    8  |  Bolt M3 buttonhead x 12mm |
-|   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 buttonhead x 16mm |
+|   .  |   .  |  14  |   2  |   .  |   2  |   .  |  22  |   40  |  Bolt M3 buttonhead x 10mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |  20  |   20  |  Bolt M3 caphead x  6mm |
 |   .  |   .  |  32  |   .  |   .  |   4  |   .  |   .  |   36  |  Bolt M3 caphead x 10mm |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 16mm |
+|   .  |   .  |   2  |   2  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 caphead x 16mm |
 |   .  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |    3  |  Bolt M3 caphead x 20mm |
 |   .  |   .  |   3  |   .  |   .  |   .  |   .  |   4  |    7  |  Bolt M3 caphead x 25mm |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Bolt M3 caphead x 35mm |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 40mm |
-|   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 countersunk x  8mm |
-|   .  |   .  |   2  |   .  |   .  |   2  |   .  |   .  |    4  |  Bolt M3 countersunk x 10mm |
-|   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 countersunk x 12mm |
+|   .  |   .  |   2  |   .  |   .  |   2  |   .  |   2  |    6  |  Bolt M3 countersunk x 10mm |
+|   .  |   .  |   4  |   .  |   .  |   .  |   .  |   2  |    6  |  Bolt M3 countersunk x 12mm |
 |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 countersunk x 25mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 countersunk x 35mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M3 countersunk x 40mm |
-|   .  |   .  |   .  |   8  |   .  |   .  |   .  |  38  |   46  |  Bolt M4 buttonhead x  8mm |
-|   .  |   .  |  12  |   .  |   .  |   6  |   2  |  14  |   34  |  Bolt M4 buttonhead x 10mm |
-|   .  |   .  |   8  |   .  |   .  |   .  |   2  |   4  |   14  |  Bolt M4 buttonhead x 12mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |  14  |   14  |  Bolt M4 countersunk x  8mm |
+|   .  |   .  |   .  |   8  |   .  |   .  |   .  |  52  |   60  |  Bolt M4 buttonhead x  8mm |
+|   .  |   .  |  12  |   .  |   .  |   6  |   4  |  14  |   36  |  Bolt M4 buttonhead x 10mm |
+|   .  |   .  |   8  |   .  |   .  |   .  |   .  |   4  |   12  |  Bolt M4 buttonhead x 12mm |
 |   .  |   .  |  20  |   .  |   .  |   .  |   8  |   .  |   28  |  Bolt M4 countersunk x 10mm |
-|   .  |   .  |   6  |   .  |   .  |   .  |   .  |   .  |    6  |  Bolt M5 buttonhead x 10mm |
-|   .  |   .  |  10  |   8  |   .  |   8  |   8  |  14  |   48  |  Bolt M5 buttonhead x 12mm |
+|   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M5 buttonhead x 10mm |
+|   .  |   .  |  12  |   8  |   .  |   8  |   8  |  14  |   50  |  Bolt M5 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M5 buttonhead x 16mm |
 |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M5 countersunk x 12mm |
 |   .  |   .  |   2  |   1  |   .  |   .  |   .  |   1  |    4  |  Cork damper NEMA 17 |
@@ -596,8 +611,8 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 |   2 | Bolt M3 buttonhead x 10mm |
 |   2 | Bolt M4 buttonhead x 10mm |
 |  20 | Bolt M4 countersunk x 10mm |
-|   6 | Bolt M5 buttonhead x 10mm |
-|   2 | Bolt M5 buttonhead x 12mm |
+|   4 | Bolt M5 buttonhead x 10mm |
+|   4 | Bolt M5 buttonhead x 12mm |
 |   2 | Extrusion E2040 x 300mm |
 |   2 | Nut M3 hammer |
 |   2 | Nut M4 hammer |
@@ -724,8 +739,8 @@ using the **X_Carriage_Belt_Clamp**.
 
 | Qty | Description |
 |----:|:------------|
-|   2 | Bolt M3 buttonhead x 16mm |
-|   2 | Bolt M3 countersunk x  8mm |
+|   2 | Bolt M3 buttonhead x 10mm |
+|   2 | Bolt M3 caphead x 16mm |
 |   4 | Bolt M4 buttonhead x  8mm |
 |   1 | Cork damper NEMA 17 |
 |   1 | Filament sensor |
@@ -930,8 +945,9 @@ as a template to drill the holes in the base plate.
 
 | Qty | Description |
 |----:|:------------|
-|   4 | Bolt M3 buttonhead x 12mm |
 |   4 | Bolt M3 caphead x 25mm |
+|   2 | Bolt M3 countersunk x 10mm |
+|   2 | Bolt M3 countersunk x 12mm |
 |   4 | Bolt M4 buttonhead x 10mm |
 |   4 | Nut M3 hammer |
 |   4 | Nut M4 hammer |
@@ -1133,7 +1149,7 @@ the Z carriages are added.
 
 | Qty | Description |
 |----:|:------------|
-|   2 | Bolt M3 buttonhead x  8mm |
+|   2 | Bolt M3 buttonhead x 10mm |
 |   1 | Cork underlay 214mm x 214mm |
 
 ### 3D Printed parts
@@ -1170,8 +1186,7 @@ the Z carriages are added.
 
 | Qty | Description |
 |----:|:------------|
-|   2 | Bolt M4 buttonhead x 10mm |
-|   2 | Bolt M4 buttonhead x 12mm |
+|   4 | Bolt M4 buttonhead x 10mm |
 |   8 | Bolt M4 countersunk x 10mm |
 |   8 | Bolt M5 buttonhead x 12mm |
 |   2 | Extrusion E2020 x 400mm |
@@ -1213,7 +1228,7 @@ continuously ensuring the frame is square.
 
 | Qty | Description |
 |----:|:------------|
-|   4 | Bolt M3 buttonhead x 12mm |
+|   4 | Bolt M3 buttonhead x 10mm |
 |   1 | Cork damper NEMA 17 |
 |   2 | Linear rod 12mm x 300mm |
 |   1 | Stepper motor NEMA17 x 40mm, 280mm integrated leadscrew |
@@ -1305,7 +1320,7 @@ the cables in place.
 
 | Qty | Description |
 |----:|:------------|
-|  14 | Bolt M4 countersunk x  8mm |
+|  14 | Bolt M4 buttonhead x  8mm |
 |  14 | Nut M4 hammer |
 |   1 | Sheet polycarbonate 340mm x 400mm x 3mm |
 
@@ -1345,7 +1360,7 @@ see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
 
 | Qty | Description |
 |----:|:------------|
-|   2 | Bolt M3 buttonhead x  8mm |
+|   2 | Bolt M3 buttonhead x 10mm |
 |   4 | Bolt M3 countersunk x 40mm |
 |   1 | PTFE Bowden tube, 500 mm |
 
