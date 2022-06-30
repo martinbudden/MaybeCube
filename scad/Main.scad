@@ -6,6 +6,26 @@
 //!
 //!![Main Assembly](assemblies/main_assembled.png)
 //!
+//!## Read this before you order parts
+//!
+//!2020, 2040 etc aluminium comes in variants with differing sized center holes - some are suitable for tapping for an
+//!an M5 bolt and some are suitable for tapping for an M6 bolt. It doesn't really matter which you use, but ensure you
+//!buy the bolts that correspond to your extrusion size. These build instructions assume M5 bolts, if your extrusion
+//!requires M6 bolts then the 10mm and 12mm buttonhead M5 bolts should be replaced with M6 bolts.
+//!
+//!This is a full build, some parts can be omitted to save cost, in particular:
+//!
+//!* the Raspberry Pi camera (and corresponding 8mm M2 caphead bolts)
+//!* the Raspberry Pi (if you don't want to run Octoprint or Klipper) and corresponding buck converter
+//!* the Big Tree Tech relay module, if you don't want auto shut off
+//!* the Big Tree Tech TFT display, if you are running Octoprint or Klipper
+//!* I've specified a Big Tree Tech mainboard and display, you of course can use any mainboard and display you like
+//!* the filament sensor
+//!* the polycarbonate side and back panels, if you don't want to enclose your print volume for (say) printing ABS. Note
+//!that these also add rigidity to the printer.
+//!* I've specified buttonhead bolts for the side and back panels. For a neater look you could countersink the holes
+//!use countersunk bolts.
+//!
 //!## Printing the parts
 //!
 //!A number of parts are in proximity with heat sources, namely the hotend, the heated bed and the motors. Ideally these
