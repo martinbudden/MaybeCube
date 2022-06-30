@@ -5,9 +5,10 @@ use <NopSCADlib/utils/fillet.scad>
 include <DisplayHousingAssemblies.scad>
 
 fillet = 2;
-countersunk = false;
+countersunk = true;
 lip = 0;
-height = 8;
+boreDepth = 10;
+height = 5 + boreDepth;
 
 module Front_Cover_300_stl() {
 
@@ -38,7 +39,7 @@ module frontCover(sizeX) {
         for (x = [20, size.x - 20])
             translate([x, eSize/2, size.z])
                 if (countersunk)
-                    boltPolyholeM3Countersunk(size.z, sink=0.25);
+                    boltPolyholeM3Countersunk(size.z, sink=0.25 + boreDepth);
                 else
                     vflip()
                         boltHoleM3(size.z);
@@ -46,14 +47,14 @@ module frontCover(sizeX) {
 }
 
 module Front_Cover_hardware() {
-    size = [eX/2, eSize + lip, height];
+    size = [eX/2, eSize + lip, height - boreDepth];
 
     for (x = [20, size.x - 20])
         translate([x, eSize/2, size.z])
             if (countersunk)
-                boltM3CountersunkHammerNut(12);
+                boltM3CountersunkHammerNut(10);
             else
-                boltM3ButtonheadHammerNut(12);
+                boltM3ButtonheadHammerNut(10);
 }
 
 module Front_Display_Wiring_Cover_300_stl() {
@@ -80,7 +81,7 @@ module frontDisplayWiringCover(sizeX) {
     size2 = [displayHousingSize(display_type).x, size1.y - eSize, eSize + size1.z];
     size3 = [sizeX - size1.x, eSize + lip, size1.z];
     channelWidth = 20;
-    channelDepth = size1.z - 1;
+    channelDepth = size1.z - 1 - boreDepth;
 
     vflip()
         difference() {
@@ -119,7 +120,7 @@ module frontDisplayWiringCover(sizeX) {
             for (x = [20, size1.x + size3.x - 20])
                 translate([x, eSize/2, size1.z])
                     if (countersunk)
-                        boltPolyholeM3Countersunk(size1.z, sink=0.25);
+                        boltPolyholeM3Countersunk(size1.z, sink=0.25 + boreDepth);
                     else
                         vflip()
                             boltHoleM3(size1.z);
@@ -129,7 +130,7 @@ module frontDisplayWiringCover(sizeX) {
 module Front_Display_Wiring_Cover_hardware() {
 
     for (x = [20, eX/2 - 20])
-        translate([x, -eSize/2, -height])
+        translate([x, -eSize/2, -height + boreDepth])
             vflip()
                 if (countersunk)
                     boltM3CountersunkHammerNut(12);

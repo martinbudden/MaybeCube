@@ -31,6 +31,7 @@ wingSizeX = 7;
 motorBracketSizeZ = 5;
 motorBracketSizeX = NEMA_motorWidth + 2*motorBracketSizeZ;
 counterBoreDepth = 0;//1.5;
+counterBoreDepthTop = 2;
 
 function Z_Motor_MountSize(motorLength=NEMA_length(zMotorType), zLeadScrewOffset=_zLeadScrewOffset)
     = [2*wingSizeX + motorBracketSizeX, zLeadScrewOffset + NEMA_motorWidth/2 - 1 + eSize, motorLength + motorBracketSizeZ + 1 + (is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness)];
@@ -160,7 +161,10 @@ module zMotorMount(zMotorType, eHeight=40, printbedKinematic=false) {
                         if (eHeight==20)
                             boltHoleM4HangingCounterboreButtonhead(blockSizeZ, boreDepth=blockSizeZ - 5);
                         else
-                            boltHoleM4(blockSizeZ);
+                            if (counterBoreDepthTop)
+                                boltHoleM4HangingCounterboreButtonhead(blockSizeZ, boreDepth=counterBoreDepthTop);
+                            else
+                                boltHoleM4(blockSizeZ);
         }
         // add the boltholes on the wings
         for (x = [wingSizeX/2 + 0.75, size.x - wingSizeX/2 - 0.75])
@@ -245,7 +249,7 @@ module Z_Motor_Mount_Motor_hardware(explode=50, zLeadScrewOffset=_zLeadScrewOffs
     }
     NEMA_screw_positions(zMotorType)
         translate([eSize + zLeadScrewOffset, 0, size.z - counterBoreDepth])
-            boltM3Buttonhead(screw_shorter_than(5 + motorBracketSizeZ - counterBoreDepth + corkDamperThickness));
+            boltM3Buttonhead(screw_shorter_than(4.5 + motorBracketSizeZ - counterBoreDepth + corkDamperThickness));
 }
 
 module Z_Motor_Mount_hardware(printbedKinematic=false, left=true) {
@@ -264,8 +268,8 @@ module Z_Motor_Mount_hardware(printbedKinematic=false, left=true) {
     } else {
         topHolePitch = NEMA_hole_pitch(zMotorType);
         for (y = [topHolePitch/2, -topHolePitch/2])
-            translate([eSize/2, y, size.z])
-                boltM4ButtonheadTNut(eHeight==40 ? 12 : _frameBoltLength, rotate=90);
+            translate([eSize/2, y, size.z - counterBoreDepthTop])
+                boltM4ButtonheadTNut(eHeight==40 ? 12 - counterBoreDepthTop : _frameBoltLength, rotate=90);
     }
     // add the bolts on the wings
     for (y = [size.x/2 - wingSizeX/2 - 0.75, -size.x/2 + wingSizeX/2 + 0.75])
