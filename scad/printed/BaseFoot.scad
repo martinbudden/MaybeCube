@@ -26,7 +26,7 @@ module extrusionFootLShaped(footHeight=10) {
         }
         boreDepth = footHeight - extrusionFootLShapedBoltOffsetZ();
         translate([size.x/2, boltOffset, 0])
-            boltHoleM6Counterbore(footHeight, boreDepth);
+            boltHoleM5CounterboreButtonhead(footHeight, boreDepth);
         translate([size.x/2, size.y - boltOffset, 0])
             boltHoleM4CounterboreButtonhead(footHeight, boreDepth);
         translate([-size.y + eSize + boltOffset, size.x/2, 0])
