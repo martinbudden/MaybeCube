@@ -171,15 +171,33 @@ module Left_Side_Channel_Spacers() {
             translate([0, 50 + tNutLength/2, 0])
                 rotate([0, -90, 0])
                     Channel_Spacer_Left_Long();
-            translate([0, eX/2 + tNutLength/2, 0])
+            translate([0, eY/2 + tNutLength/2, 0])
                 rotate([0, -90, 0])
                     Channel_Spacer_Left_Long();
-            translate([0, eX - 50 + tNutLength/2, 0])
+            translate([0, eY - 50 + tNutLength/2, 0])
                 rotate([0, -90, 0])
                     Channel_Spacer_44p5_stl();
         }
 }
 
+module Back_Panel_Channel_Spacers() {
+    tNutLength = 10;
+    gap = 0.25;
+    for (z = [eSize/2, eZ - eSize/2])
+        translate([eSize + gap, eY + 2*eSize, z]) {
+            rotate([0, -90, -90])
+                Channel_Spacer_44p5_stl();
+            translate([50 + tNutLength/2, 0, 0])
+                rotate([0, -90, -90])
+                    Channel_Spacer_Left_Long();
+            translate([eX/2 + tNutLength/2, 0, 0])
+                rotate([0, -90, -90])
+                    Channel_Spacer_Left_Long();
+            translate([eX - 50 + tNutLength/2, 0, 0])
+                rotate([0, -90, -90])
+                    Channel_Spacer_44p5_stl();
+        }
+}
 
 
 module Right_Side_Panel_dxf() {
