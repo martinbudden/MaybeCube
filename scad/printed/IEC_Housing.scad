@@ -40,21 +40,22 @@ module IEC_Housing_stl() {
 
 module iecHousingStl(bevelled=false) {
     size = iecHousingSize();
+    extension = 15;
     fillet = 2;
     cutoutSize = [size.x - 10, 27.5];
     baseThickness = 3;
 
     triangleSize = [8, 7];
     difference() {
-        translate([0, bevelled ? 0 : -eSize, 0])
-            rounded_cube_xy([size.x, size.y + (bevelled ? 0 : eSize), baseThickness], fillet);
+        translate([0, bevelled ? 0 : -extension, 0])
+            rounded_cube_xy([size.x, size.y + (bevelled ? 0 : extension), baseThickness], fillet);
         if (bevelled) {
             translate([size.x + eps, -eps, -eps])
                 rotate(90)
                     right_triangle(triangleSize.x + 2*eps, triangleSize.y + 2*eps, baseThickness + 2*eps, center=false);
         } else {
             cableCutoutSize = [10, 10, baseThickness + 2*eps];
-            translate([size.x-cableCutoutSize.x-(size.x - cutoutSize.x)/2, -eSize + 5, -eps])
+            translate([size.x-cableCutoutSize.x-(size.x - cutoutSize.x)/2, -extension + 5, -eps])
                 rounded_cube_xy(cableCutoutSize, fillet);
         }
     }
@@ -71,13 +72,13 @@ module iecHousingStl(bevelled=false) {
                                     right_triangle(triangleSize.x, triangleSize.y, 0);
                     }
                 if (!bevelled)
-                    translate([-size.x/2, -size.y/2 - eSize, 0])
-                        rounded_cube_xy([size.x, eSize + 2*fillet, size.z - eSize - baseThickness], fillet);
+                    translate([-size.x/2, -size.y/2 - extension, 0])
+                        rounded_cube_xy([size.x, extension + 2*fillet, size.z - eSize - baseThickness], fillet);
             }
 
             if (!bevelled) {
-                translate([size.x/2 - eSize - 5, -size.y/2 - eSize + 5, -eps])
-                    rounded_cube_xy([eSize, eSize + 10, size.z - eSize - 5 - baseThickness], fillet);
+                translate([size.x/2 - eSize - 5, -size.y/2 - extension + 5, -eps])
+                    rounded_cube_xy([eSize, extension + 10, size.z - eSize - 5 - baseThickness], fillet);
                 translate([size.x/2 - eSize - 5, -cutoutSize.y/2, -eps])
                     rotate(180)
                         fillet(fillet, size.z - eSize - 5 - baseThickness + 2*eps);
@@ -264,7 +265,7 @@ assembly("IEC_Housing", ngb=true) {
     extended = is_undef(_useElectronicsInBase) || _useElectronicsInBase == false;
 
     translate([eX + 2*eSize, eY + eSize, 2*eSize])
-        translate([0, -iecHousingSize().x, 0])
+        translate([0, eSize - iecHousingMountSize().x, 0])
             rotate([90, 0, 90]) {
                 stl_colour(pp1_colour)
                     vflip()
@@ -282,7 +283,7 @@ assembly("IEC_Housing", ngb=true) {
 
 module iecHousing(bevelled) {
     translate([eX + 2*eSize, eY + eSize, bevelled ? 2*eSize : eSize])
-        translate([-iecHousingSize().z, -iecHousingSize().x, 0])
+        translate([-iecHousingSize().z, eSize - iecHousingMountSize().x, 0])
             rotate([90, 0, 90]) {
                 explode(-30)
                     stl_colour(pp4_colour)
