@@ -41,10 +41,14 @@ module SidePanel_test() {
 if ($preview)
     SidePanel_test();
 else
-    Panel_Jig_stl();
+    //Panel_Jig_stl();
     // left side
+    //Channel_Spacer_44p5_narrow_stl();
     //Channel_Spacer_44p5_stl();
-    //Channel_Spacer_89p5_stl();
+    Channel_Spacer_44p5_grubscrew_stl();
+    //Channel_Spacer_89p5_stl(); // MC300
+    //Channel_Spacer_114p5_stl(); // MC350
+    //Channel_Spacer_175_stl(); // MC350
     // right side
-    //Channel_Spacer_14p5_stl();
+    //Channel_Spacer_14p5_grubscrew_stl();
     //Channel_Spacer_84p5_stl();
