@@ -18,9 +18,6 @@ use <../scad/Parameters_Positions.scad>
 //$explode = 1;
 //$pose = 1;
 module BackFace_test() {
-    //Back_Panel_assembly();
-    backPanelAssembly();
-    //Back_Panel_dxf();
     //PSU_Cover_assembly();
     //PSU_Cover_stl();
     //PSU_Upper_Mount_stl();
@@ -31,6 +28,7 @@ module BackFace_test() {
     //let($hide_pcb=true)
     //Base_Plate_assembly();
     //Left_Side_assembly();
+    //Left_Side_Channel_Spacers();
     //Right_Side_assembly();
     //Face_Top_Stage_1_assembly();
     //printheadWiring();
@@ -41,6 +39,10 @@ module BackFace_test() {
         XY_Motor_Mount_Right_assembly();
         partitionPC();
     }*/
+    //Back_Panel_Channel_Spacers();
+    //Back_Panel_assembly();
+    backPanelAssembly();
+    //Back_Panel_dxf();
 }
 
 module BackFace_test2() {
