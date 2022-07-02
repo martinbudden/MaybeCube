@@ -34,7 +34,8 @@ module IEC_Housing_Bevelled_stl() {
 module IEC_Housing_stl() {
     stl("IEC_Housing")
         color(pp4_colour)
-            iecHousingStl(bevelled=false);
+            rotate(180) // rotate so rear seem underneath and so hidden when printed
+                iecHousingStl(bevelled=false);
 }
 
 module iecHousingStl(bevelled=false) {
@@ -288,7 +289,8 @@ module iecHousing(bevelled) {
                         if (bevelled)
                             IEC_Housing_Bevelled_stl();
                         else
-                            IEC_Housing_stl();
+                            rotate(180)
+                                IEC_Housing_stl();
                 explode(30, true)
                     IEC_Housing_hardware();
             }
