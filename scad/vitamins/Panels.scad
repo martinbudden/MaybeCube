@@ -137,7 +137,22 @@ module Channel_Spacer_44p5_stl() {
     length = 44.5;
     stl("Channel_Spacer_44p5")
         color(pp3_colour)
+            extrusionChannel(length);
+}
+
+module Channel_Spacer_44p5_grubscrew_stl() {
+    // 50 - tNutLength/2 - 0.5(tolerance)
+    length = 44.5;
+    stl("Channel_Spacer_44p5_grubscrew")
+        color(pp3_colour)
             extrusionChannel(length, boltHoles=[length/2]);
+}
+
+module Channel_Spacer_44p5_narrow_stl() {
+    length = 44.5;
+    stl("Channel_Spacer_44p5_narrow")
+        color(pp3_colour)
+            extrusionChannel(length, boltHoles=[length/2], channelWidth=4.8); // use channelWidth=4.8 for narrow channel extrusions
 }
 
 module Channel_Spacer_89p5_stl() {
@@ -154,6 +169,18 @@ module Channel_Spacer_114p5_stl() {
             extrusionChannel(114.5);
 }
 
+module Channel_Spacer_150_stl() {
+    stl("Channel_Spacer_150")
+        color(pp3_colour)
+            extrusionChannel(150);
+}
+
+module Channel_Spacer_175_stl() {
+    stl("Channel_Spacer_175")
+        color(pp3_colour)
+            extrusionChannel(175);
+}
+
 module Channel_Spacer_Left_Long() {
     if (eX == 300)
         Channel_Spacer_89p5_stl();
@@ -167,7 +194,10 @@ module Left_Side_Channel_Spacers() {
     for (z = [eSize/2, eZ - eSize/2])
         translate([0, eSize + gap, z]) {
             rotate([0, -90, 0])
-                Channel_Spacer_44p5_stl();
+                if (z == eSize/2)
+                    Channel_Spacer_44p5_stl();
+                else
+                    Channel_Spacer_44p5_grubscrew_stl();
             translate([0, 50 + tNutLength/2, 0])
                 rotate([0, -90, 0])
                     Channel_Spacer_Left_Long();
@@ -176,7 +206,10 @@ module Left_Side_Channel_Spacers() {
                     Channel_Spacer_Left_Long();
             translate([0, eY - 50 + tNutLength/2, 0])
                 rotate([0, -90, 0])
-                    Channel_Spacer_44p5_stl();
+                    if (z == eSize/2)
+                        Channel_Spacer_44p5_stl();
+                    else
+                        Channel_Spacer_44p5_grubscrew_stl();
         }
 }
 
@@ -186,7 +219,10 @@ module Back_Panel_Channel_Spacers() {
     for (z = [eSize/2, eZ - eSize/2])
         translate([eSize + gap, eY + 2*eSize, z]) {
             rotate([0, -90, -90])
-                Channel_Spacer_44p5_stl();
+                if (z == eSize/2)
+                    Channel_Spacer_44p5_stl();
+                else
+                    Channel_Spacer_44p5_grubscrew_stl();
             translate([50 + tNutLength/2, 0, 0])
                 rotate([0, -90, -90])
                     Channel_Spacer_Left_Long();
@@ -195,7 +231,10 @@ module Back_Panel_Channel_Spacers() {
                     Channel_Spacer_Left_Long();
             translate([eX - 50 + tNutLength/2, 0, 0])
                 rotate([0, -90, -90])
+                if (z == eSize/2)
                     Channel_Spacer_44p5_stl();
+                else
+                    Channel_Spacer_44p5_grubscrew_stl();
         }
 }
 
@@ -352,6 +391,13 @@ module Channel_Spacer_14p5_stl() {
     stl("Channel_Spacer_14p5")
         color(pp3_colour)
             extrusionChannel(length, boltHoles=[length/2]);
+}
+
+module Channel_Spacer_14p5_narrow_stl() {
+    length = 14.5;
+    stl("Channel_Spacer_14p5_narrow")
+        color(pp3_colour)
+            extrusionChannel(length, boltHoles=[length/2], channelWidth=4.8);
 }
 
 module Channel_Spacer_56_stl() {
