@@ -113,16 +113,17 @@ assembly("Face_Top", big=true) {
                 }
 }
 
-module faceTopFront(use2040=false) {
+module faceTopFront(use2040=true) {
     // add the front top extrusion oriented in the X direction
     translate([eSize, 0, eZ - eSize]) {
         explode([0, -120, 0], true) {
             extrusionOXEndBoltPositions(eX)
                 boltM5Buttonhead(_endBoltShortLength);
+            // second bolt also needs to be _endBoltShortLength, to give room to XY_Idler pulley bolt
             if (use2040)
                 translate_z(-eSize)
                     extrusionOXEndBoltPositions(eX)
-                        boltM5Buttonhead(_endBoltLength);
+                        boltM5Buttonhead(_endBoltShortLength);
             difference() {
                 if (use2040)
                     translate_z(-eSize)
@@ -133,11 +134,10 @@ module faceTopFront(use2040=false) {
                     translate([x, 0, eSize/2])
                         rotate([-90, 0, 0])
                             jointBoltHole();
-                if (!use2040)
-                    for (x = [eSize/2, eX - eSize/2])
-                        translate([x, eSize/2, 0])
-                            rotate([0, 0, 0])
-                                jointBoltHole();
+                // boltHole for attachment in 2020 case, for XY_Idler in 2040 case
+                for (x = [eSize/2, eX - eSize/2])
+                    translate([x, eSize/2, use2040 ? -eSize : 0])
+                        jointBoltHole();
             }
         }
     }
