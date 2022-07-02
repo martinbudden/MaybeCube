@@ -111,8 +111,8 @@ omitted from the build.
 |   .  |   .  |   8  |   .  |   .  |   .  |   4  |   12  |  Bolt M4 buttonhead x 12mm |
 |   .  |   .  |  20  |   .  |   .  |   8  |   .  |   28  |  Bolt M4 countersunk x 10mm |
 |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M4 countersunk x 45mm |
-|   .  |   .  |   4  |   .  |   .  |   .  |   .  |    4  |  Bolt M5 buttonhead x 10mm |
-|   .  |   .  |  16  |   8  |   8  |   8  |  14  |   54  |  Bolt M5 buttonhead x 12mm |
+|   .  |   .  |   6  |   .  |   .  |   .  |   .  |    6  |  Bolt M5 buttonhead x 10mm |
+|   .  |   .  |  14  |   8  |   8  |   8  |  14  |   52  |  Bolt M5 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M5 buttonhead x 16mm |
 |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M5 countersunk x 12mm |
 |   .  |   .  |   2  |   1  |   .  |   .  |   1  |    4  |  Cork damper NEMA 17 |
@@ -150,7 +150,7 @@ omitted from the build.
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Raspberry Pi camera V2 |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  SCS12LUU bearing block |
 |   .  |   .  |   .  |   .  |   .  |   4  |   .  |    4  |  SK12 shaft support bracket |
-|   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Sheet polycarbonate 300mm x 400mm x 3mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Sheet polycarbonate 295mm x 400mm x 3mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Sheet polycarbonate 390mm x 400mm x 3mm |
 |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Spring 8mm OD, 0.9mm gauge x 20mm long, closed end |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Square radial fan 3010 |
@@ -610,8 +610,8 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 |   2 | Bolt M3 buttonhead x 10mm |
 |   2 | Bolt M4 buttonhead x 10mm |
 |  20 | Bolt M4 countersunk x 10mm |
-|   4 | Bolt M5 buttonhead x 10mm |
-|   4 | Bolt M5 buttonhead x 12mm |
+|   6 | Bolt M5 buttonhead x 10mm |
+|   2 | Bolt M5 buttonhead x 12mm |
 |   2 | Extrusion E2040 x 350mm |
 |   2 | Nut M3 hammer |
 |   2 | Nut M4 hammer |
@@ -1375,7 +1375,7 @@ see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
 |  25 | Bolt M4 buttonhead x  8mm |
 |   2 | Bolt M4 buttonhead x 12mm |
 |  27 | Nut M4 hammer |
-|   1 | Sheet polycarbonate 300mm x 400mm x 3mm |
+|   1 | Sheet polycarbonate 295mm x 400mm x 3mm |
 |   1 | Sheet polycarbonate 390mm x 400mm x 3mm |
 
 ### 3D Printed parts
