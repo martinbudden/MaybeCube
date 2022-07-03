@@ -94,9 +94,10 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech TFT35 E3 v3.0 |
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  8mm |
-|   .  |   .  |  14  |   2  |   2  |   .  |  22  |   40  |  Bolt M3 buttonhead x 10mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |  20  |   20  |  Bolt M3 caphead x  6mm |
+|   .  |   .  |  14  |   2  |   2  |   .  |  20  |   38  |  Bolt M3 buttonhead x 10mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |  18  |   18  |  Bolt M3 caphead x  6mm |
 |   .  |   .  |  32  |   .  |   4  |   .  |   .  |   36  |  Bolt M3 caphead x 10mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Bolt M3 caphead x 12mm |
 |   .  |   .  |   2  |   2  |   .  |   .  |   .  |    4  |  Bolt M3 caphead x 16mm |
 |   .  |   .  |   3  |   .  |   .  |   .  |   4  |    7  |  Bolt M3 caphead x 25mm |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Bolt M3 caphead x 35mm |
@@ -137,14 +138,15 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Linear rod 12mm x 300mm |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  MK10 Dual Pulley Extruder |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Micro SD card |
-|   .  |   .  |  20  |   .  |   2  |   .  |   4  |   26  |  Nut M3 hammer |
+|   .  |   .  |  20  |   .  |   2  |   .  |   6  |   28  |  Nut M3 hammer |
 |   .  |   .  |  12  |   8  |   .  |   .  |  66  |   86  |  Nut M4 hammer |
 |   .  |   .  |  36  |   .  |   6  |  12  |   .  |   54  |  Nut M4 sliding T |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PSU NIUGUY CB-500W-24V |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE Bowden tube, 600 mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |  12  |   12  |  Pillar hex nylon F/F M3x10 |
 |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Pillar hex nylon F/F M3x14 |
-|   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Pillar hex nylon F/F M3x20 |
+|   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Pillar hex nylon F/F M3x25 |
+|   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Pillar hex nylon F/F M3x5 |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |    2  |  Pulley GT2OB 20 teeth |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Raspberry Pi 3A+ |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Raspberry Pi camera V2 |
@@ -885,8 +887,9 @@ thermally isolates the motor from the **Extruder_Bracket** and should not be omi
 |   1 | Aluminium sheet 390mm x 390mm x 3mm |
 |   1 | BigTreeTech Relay Module v1.2 |
 |   1 | BigTreeTech SKR v1.4 Turbo |
-|  16 | Bolt M3 buttonhead x 10mm |
-|  16 | Bolt M3 caphead x  6mm |
+|  14 | Bolt M3 buttonhead x 10mm |
+|  14 | Bolt M3 caphead x  6mm |
+|   2 | Bolt M3 caphead x 12mm |
 |   8 | Bolt M4 buttonhead x  8mm |
 |  10 | Bolt M4 buttonhead x 10mm |
 |  14 | Bolt M5 buttonhead x 12mm |
@@ -894,10 +897,12 @@ thermally isolates the motor from the **Extruder_Bracket** and should not be omi
 |   1 | Extrusion E2040 x 350mm |
 |   1 | Extrusion E2080 x 350mm |
 |   1 | Micro SD card |
+|   2 | Nut M3 hammer |
 |  16 | Nut M4 hammer |
 |   1 | PSU NIUGUY CB-500W-24V |
 |  12 | Pillar hex nylon F/F M3x10 |
-|   4 | Pillar hex nylon F/F M3x20 |
+|   2 | Pillar hex nylon F/F M3x25 |
+|   2 | Pillar hex nylon F/F M3x5 |
 |   1 | Raspberry Pi 3A+ |
 |   1 | XL4015 buck converter |
 
