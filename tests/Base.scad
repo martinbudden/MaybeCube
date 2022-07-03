@@ -11,6 +11,7 @@ include <NopSCADlib/utils/core/core.scad>
 use <../scad/BasePlate.scad>
 //use <../scad/FaceLeft.scad>
 use <../scad/FaceRight.scad>
+//use <../scad/vitamins/Panels.scad>
 //use <../scad/Printbed.scad>
 //include <../scad/FaceRightExtras.scad>
 
@@ -22,7 +23,9 @@ include <../scad/Parameters_Main.scad>
 //$pose = 1;
 module Base_test() {
     //Base_Plate_Stage_1_assembly();
+    //basePlateAssembly(rightExtrusion=false, hammerNut=false);
     Base_Plate_assembly();
+    //Left_Base_Channel_Spacers();
     //BaseAL();
     //translate_z(-3) Panel_Jig_stl();
     //translate([eX + 2*eSize, 0, -3]) rotate(90) Panel_Jig_stl();
@@ -43,3 +46,5 @@ module Base_test() {
 
 if ($preview)
     Base_test();
+else
+    Channel_Spacer_96_stl();
