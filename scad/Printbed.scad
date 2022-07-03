@@ -49,11 +49,9 @@ _heatedBedHoleOffset = is_undef(_heatedBedSize) || _heatedBedSize.x == 100 ? 4 :
                     _heatedBedSize.x == 214 ? 3 :
                     _heatedBedSize.x == 235 ? 32.5 :
                     _heatedBedSize.x == 300 ? 3 : // !!estimate
+                    _heatedBedSize.x == 305 ? 3 : // kinematic bed
                     _heatedBedSize.x == 310 ? 35 : // hole spacing is 240x240 on CR-10
                     undef;
-
-
-holeSeparationY = _heatedBedSize.y - 2*_heatedBedHoleOffset;
 
 scs_type = _zRodDiameter == 8 ? SCS8LUU : _zRodDiameter == 10 ? SCS10LUU : SCS12LUU;
 dualCrossPieces = true;
