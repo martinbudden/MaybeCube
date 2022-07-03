@@ -1,6 +1,6 @@
 _variant = "nuts";
 
-__extrusionLengths = [300, 300, 400];
+__extrusionLengths = [350, 350, 450];
 eX = __extrusionLengths.x;
 eY = __extrusionLengths.y;
 eZ = __extrusionLengths.z;
