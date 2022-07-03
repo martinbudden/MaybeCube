@@ -95,9 +95,10 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech TFT35 E3 v3.0 |
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  8mm |
-|   .  |   .  |  14  |   2  |   .  |   2  |   .  |  22  |   40  |  Bolt M3 buttonhead x 10mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |  20  |   20  |  Bolt M3 caphead x  6mm |
+|   .  |   .  |  14  |   2  |   .  |   2  |   .  |  20  |   38  |  Bolt M3 buttonhead x 10mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |  18  |   18  |  Bolt M3 caphead x  6mm |
 |   .  |   .  |  32  |   .  |   .  |   4  |   .  |   .  |   36  |  Bolt M3 caphead x 10mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Bolt M3 caphead x 12mm |
 |   .  |   .  |   2  |   2  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 caphead x 16mm |
 |   .  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |    3  |  Bolt M3 caphead x 20mm |
 |   .  |   .  |   3  |   .  |   .  |   .  |   .  |   4  |    7  |  Bolt M3 caphead x 25mm |
@@ -112,8 +113,8 @@ omitted from the build.
 |   .  |   .  |  12  |   .  |   .  |   6  |   4  |  14  |   36  |  Bolt M4 buttonhead x 10mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   4  |   12  |  Bolt M4 buttonhead x 12mm |
 |   .  |   .  |  20  |   .  |   .  |   .  |   8  |   .  |   28  |  Bolt M4 countersunk x 10mm |
-|   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M5 buttonhead x 10mm |
-|   .  |   .  |  12  |   8  |   .  |   8  |   8  |  14  |   50  |  Bolt M5 buttonhead x 12mm |
+|   .  |   .  |   6  |   .  |   .  |   .  |   .  |   .  |    6  |  Bolt M5 buttonhead x 10mm |
+|   .  |   .  |  10  |   8  |   .  |   8  |   8  |  14  |   48  |  Bolt M5 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M5 buttonhead x 16mm |
 |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M5 countersunk x 12mm |
 |   .  |   .  |   2  |   1  |   .  |   .  |   .  |   1  |    4  |  Cork damper NEMA 17 |
@@ -137,7 +138,7 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Linear rod 12mm x 300mm |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  MK10 Dual Pulley Extruder |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Micro SD card |
-|   .  |   .  |  20  |   .  |   3  |   2  |   .  |   4  |   29  |  Nut M3 hammer |
+|   .  |   .  |  20  |   .  |   3  |   2  |   .  |   6  |   31  |  Nut M3 hammer |
 |   .  |   .  |  12  |   8  |   .  |   .  |   .  |  66  |   86  |  Nut M4 hammer |
 |   .  |   .  |  36  |   .  |   .  |   6  |  12  |   .  |   54  |  Nut M4 sliding T |
 |   .  |   .  |   .  |   .  |  12  |   .  |   .  |   .  |   12  |  O-ring nitrile 4mm x 2mm |
@@ -145,13 +146,14 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE Bowden tube, 500 mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |  12  |   12  |  Pillar hex nylon F/F M3x10 |
 |   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |    2  |  Pillar hex nylon F/F M3x14 |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Pillar hex nylon F/F M3x20 |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Pillar hex nylon F/F M3x25 |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Pillar hex nylon F/F M3x5 |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Pulley GT2OB 20 teeth |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Raspberry Pi 3A+ |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Raspberry Pi camera V2 |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  SCS12LUU bearing block |
 |   .  |   .  |   .  |   .  |   .  |   .  |   4  |   .  |    4  |  SK12 shaft support bracket |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Sheet polycarbonate 250mm x 400mm x 3mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Sheet polycarbonate 245mm x 400mm x 3mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Sheet polycarbonate 340mm x 400mm x 3mm |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Square radial fan 3010 |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Stepper motor NEMA17 x 40mm, 280mm integrated leadscrew |
@@ -611,8 +613,8 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 |   2 | Bolt M3 buttonhead x 10mm |
 |   2 | Bolt M4 buttonhead x 10mm |
 |  20 | Bolt M4 countersunk x 10mm |
-|   4 | Bolt M5 buttonhead x 10mm |
-|   4 | Bolt M5 buttonhead x 12mm |
+|   6 | Bolt M5 buttonhead x 10mm |
+|   2 | Bolt M5 buttonhead x 12mm |
 |   2 | Extrusion E2040 x 300mm |
 |   2 | Nut M3 hammer |
 |   2 | Nut M4 hammer |
@@ -886,8 +888,9 @@ thermally isolates the motor from the **Extruder_Bracket** and should not be omi
 |   1 | Aluminium sheet 340mm x 340mm x 3mm |
 |   1 | BigTreeTech Relay Module v1.2 |
 |   1 | BigTreeTech SKR v1.4 Turbo |
-|  16 | Bolt M3 buttonhead x 10mm |
-|  16 | Bolt M3 caphead x  6mm |
+|  14 | Bolt M3 buttonhead x 10mm |
+|  14 | Bolt M3 caphead x  6mm |
+|   2 | Bolt M3 caphead x 12mm |
 |   8 | Bolt M4 buttonhead x  8mm |
 |  10 | Bolt M4 buttonhead x 10mm |
 |  14 | Bolt M5 buttonhead x 12mm |
@@ -895,10 +898,12 @@ thermally isolates the motor from the **Extruder_Bracket** and should not be omi
 |   1 | Extrusion E2040 x 300mm |
 |   1 | Extrusion E2080 x 300mm |
 |   1 | Micro SD card |
+|   2 | Nut M3 hammer |
 |  16 | Nut M4 hammer |
 |   1 | PSU NIUGUY CB-500W-24V |
 |  12 | Pillar hex nylon F/F M3x10 |
-|   4 | Pillar hex nylon F/F M3x20 |
+|   2 | Pillar hex nylon F/F M3x25 |
+|   2 | Pillar hex nylon F/F M3x5 |
 |   1 | Raspberry Pi 3A+ |
 |   1 | XL4015 buck converter |
 
@@ -1402,7 +1407,7 @@ see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
 |  25 | Bolt M4 buttonhead x  8mm |
 |   2 | Bolt M4 buttonhead x 12mm |
 |  27 | Nut M4 hammer |
-|   1 | Sheet polycarbonate 250mm x 400mm x 3mm |
+|   1 | Sheet polycarbonate 245mm x 400mm x 3mm |
 |   1 | Sheet polycarbonate 340mm x 400mm x 3mm |
 
 ### 3D Printed parts
