@@ -244,28 +244,9 @@ module Left_Base_Channel_Spacers() {
 }
 
 module Back_Panel_Channel_Spacers() {
-    tNutLength = 10;
-    gap = 0.25;
-    for (z = [eSize/2, eZ - eSize/2])
-        translate([eSize + gap, eY + 2*eSize, z]) {
-            rotate([0, -90, -90])
-                if (z == eSize/2)
-                    Channel_Spacer_44p5_stl();
-                else
-                    Channel_Spacer_44p5_grubscrew_stl();
-            translate([50 + tNutLength/2, 0, 0])
-                rotate([0, -90, -90])
-                    Channel_Spacer_Left_Long();
-            translate([eX/2 + tNutLength/2, 0, 0])
-                rotate([0, -90, -90])
-                    Channel_Spacer_Left_Long();
-            translate([eX - 50 + tNutLength/2, 0, 0])
-                rotate([0, -90, -90])
-                if (z == eSize/2)
-                    Channel_Spacer_44p5_stl();
-                else
-                    Channel_Spacer_44p5_grubscrew_stl();
-        }
+    translate([0, eY + 2*eSize, 0])
+        rotate(-90)
+            Left_Side_Channel_Spacers();
 }
 
 
