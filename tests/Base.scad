@@ -1,5 +1,7 @@
 //!Displays the baseplate.
 
+include <../scad/global_defs.scad>
+
 include <NopSCADlib/utils/core/core.scad>
 //include <NopSCADlib/vitamins/pcbs.scad>
 
@@ -8,8 +10,8 @@ include <NopSCADlib/utils/core/core.scad>
 //use <../scad/printed/BaseFrontCover.scad>
 //use <../scad/printed/ControlPanel.scad>
 
-use <../scad/BasePlate.scad>
-//use <../scad/FaceLeft.scad>
+include <../scad/BasePlate.scad>
+use <../scad/FaceLeft.scad>
 use <../scad/FaceRight.scad>
 //use <../scad/vitamins/Panels.scad>
 //use <../scad/Printbed.scad>
@@ -24,6 +26,8 @@ include <../scad/Parameters_Main.scad>
 module Base_test() {
     //Base_Plate_Stage_1_assembly();
     //basePlateAssembly(rightExtrusion=false, hammerNut=false);
+    //translate([eX + eSize, eSize, 0]) extrusionOY(eY);
+    //pcbAssembly(BTT_SKR_V1_4_TURBO, pcbOnBase=true);
     Base_Plate_assembly();
     //Left_Base_Channel_Spacers();
     //BaseAL();
