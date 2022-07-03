@@ -46,13 +46,13 @@ as are all EVA community contributions.
 ## Parts list
 
 | <span style="writing-mode: vertical-rl; text-orientation: mixed;">EVA 2 4 2 Stage 1</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">EVA 2 4 2</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">TOTALS</span> |  |
-|-----:|-----:|------:|:---|
+|-----:|-----:|------:|:-------------|
 |      |      |       | **Vitamins** |
 |   4  |   .  |    4  |  Bolt M3 caphead x  8mm |
 |   4  |   4  |    8  |  Bolt M3 caphead x 10mm |
 |   2  |   .  |    2  |  Bolt M3 caphead x 40mm |
 |   2  |   .  |    2  |  Bolt M3 countersunk x 10mm |
-|   2  |   .  |    2  |  Washer  M3 |
+|   2  |   .  |    2  |  Washer M3 |
 |  14  |   4  |   18  | Total vitamins count |
 |      |      |       | **3D printed parts** |
 |   1  |   .  |    1  | EVA_MC_bottom_mgn12_short_duct.stl |
@@ -77,32 +77,25 @@ as are all EVA community contributions.
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|4| Bolt M3 caphead x  8mm|
-|4| Bolt M3 caphead x 10mm|
-|2| Bolt M3 caphead x 40mm|
-|2| Bolt M3 countersunk x 10mm|
-|2| Washer  M3|
-
+| Qty | Description |
+|----:|:------------|
+|   4 | Bolt M3 caphead x  8mm |
+|   4 | Bolt M3 caphead x 10mm |
+|   2 | Bolt M3 caphead x 40mm |
+|   2 | Bolt M3 countersunk x 10mm |
+|   2 | Washer M3 |
 
 ### 3D Printed parts
 
 | 1 x EVA_MC_bottom_mgn12_short_duct.stl | 1 x EVA_MC_top_bmg_mgn12.stl | 1 x EVA_MC_top_lgx_mgn12_a.stl |
-|---|---|---|
-| ![EVA_MC_bottom_mgn12_short_duct.stl](stls/EVA_MC_bottom_mgn12_short_duct.png) | ![EVA_MC_top_bmg_mgn12.stl](stls/EVA_MC_top_bmg_mgn12.png) | ![EVA_MC_top_lgx_mgn12_a.stl](stls/EVA_MC_top_lgx_mgn12_a.png) 
-
-
+|----------|----------|----------|
+| ![EVA_MC_bottom_mgn12_short_duct.stl](stls/EVA_MC_bottom_mgn12_short_duct.png) | ![EVA_MC_top_bmg_mgn12.stl](stls/EVA_MC_top_bmg_mgn12.png) | ![EVA_MC_top_lgx_mgn12_a.stl](stls/EVA_MC_top_lgx_mgn12_a.png) |
 | 1 x EVA_MC_top_mgn12.stl | 1 x EVA_MC_top_orbiter_mgn12.stl | 1 x EVA_MC_top_titan_mgn12.stl |
-|---|---|---|
-| ![EVA_MC_top_mgn12.stl](stls/EVA_MC_top_mgn12.png) | ![EVA_MC_top_orbiter_mgn12.stl](stls/EVA_MC_top_orbiter_mgn12.png) | ![EVA_MC_top_titan_mgn12.stl](stls/EVA_MC_top_titan_mgn12.png) 
-
-
+|----------|----------|----------|
+| ![EVA_MC_top_mgn12.stl](stls/EVA_MC_top_mgn12.png) | ![EVA_MC_top_orbiter_mgn12.stl](stls/EVA_MC_top_orbiter_mgn12.png) | ![EVA_MC_top_titan_mgn12.stl](stls/EVA_MC_top_titan_mgn12.png) |
 | 1 x X_Carriage_Belt_Clamp_EVA.stl | 2 x X_Carriage_Belt_Tensioner.stl | 1 x back_corexy.stl |
-|---|---|---|
-| ![X_Carriage_Belt_Clamp_EVA.stl](stls/X_Carriage_Belt_Clamp_EVA.png) | ![X_Carriage_Belt_Tensioner.stl](stls/X_Carriage_Belt_Tensioner.png) | ![back_corexy.stl](stls/back_corexy.png) 
-
-
+|----------|----------|----------|
+| ![X_Carriage_Belt_Clamp_EVA.stl](stls/X_Carriage_Belt_Clamp_EVA.png) | ![X_Carriage_Belt_Tensioner.stl](stls/X_Carriage_Belt_Tensioner.png) | ![back_corexy.stl](stls/back_corexy.png) |
 
 ### Assembly instructions
 
@@ -128,26 +121,21 @@ appropriate to your extruder.
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|4| Bolt M3 caphead x 10mm|
-
+| Qty | Description |
+|----:|:------------|
+|   4 | Bolt M3 caphead x 10mm |
 
 ### 3D Printed parts
 
 | 1 x universal_face.stl |
-|---|
-| ![universal_face.stl](stls/universal_face.png) 
-
-
+|----------|
+| ![universal_face.stl](stls/universal_face.png) |
 
 ### Sub-assemblies
 
 | 1 x EVA_2_4_2_Stage_1_assembly |
-|---|
-| ![EVA_2_4_2_Stage_1_assembled](assemblies/EVA_2_4_2_Stage_1_assembled_tn.png) 
-
-
+|----------|
+| ![EVA_2_4_2_Stage_1_assembled](assemblies/EVA_2_4_2_Stage_1_assembled_tn.png) |
 
 ### Assembly instructions
 
