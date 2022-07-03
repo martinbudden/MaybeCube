@@ -112,7 +112,8 @@ module baseCutouts(cncSides=undef, radius=undef) {
         for (pcb = basePCBs)
             pcbPosition(pcb, pcbOnBase)
                 pcb_screw_positions(pcb)
-                    poly_circle(is_undef(radius) ? M3_clearance_radius : radius, sides=cncSides);
+                    if (pcb!=pcbType || $i==1 || $i == 2)
+                        poly_circle(is_undef(radius) ? M3_clearance_radius : radius, sides=cncSides);
 
 }
 
