@@ -7,9 +7,9 @@ use <NopSCADlib/vitamins/sheet.scad>
 
 use <extruderBracket.scad> // for spoolHeight()
 
-use <../utils/XY_MotorMount.scad> // for xyMotorMountSize().y
-
 include <../vitamins/bolts.scad>
+include <../utils/XY_MotorMount.scad> // for xyMotorMountSize().y
+
 use <../vitamins/iec320c14.scad>
 include <../vitamins/nuts.scad>
 
