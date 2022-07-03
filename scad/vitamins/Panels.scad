@@ -155,6 +155,18 @@ module Channel_Spacer_44p5_narrow_stl() {
             extrusionChannel(length, boltHoles=[length/2], channelWidth=4.8); // use channelWidth=4.8 for narrow channel extrusions
 }
 
+module Channel_Spacer_79p5_stl() {
+    stl("Channel_Spacer_79p5")
+        color(pp3_colour)
+            extrusionChannel(79.5);
+}
+
+module Channel_Spacer_96_stl() {
+    stl("Channel_Spacer_96")
+        color(pp3_colour)
+            extrusionChannel(96);
+}
+
 module Channel_Spacer_89p5_stl() {
     // (eX-100)/2 - tNutLength - 0.5(tolerance)
     stl("Channel_Spacer_89p5")
@@ -211,6 +223,24 @@ module Left_Side_Channel_Spacers() {
                     else
                         Channel_Spacer_44p5_grubscrew_stl();
         }
+}
+
+module Left_Base_Channel_Spacers() {
+    tNutLength = 10;
+    gap = 0.25;
+    length = (eY - 10*2 - 4*tNutLength - 6*gap) /3;// 79.5 for MC300,  96.1667 for MC350
+    *translate([eSize/2, eSize, 0])
+        rotate([0, 180, 0])
+            extrusionChannel(10);
+    translate([eSize/2, eSize + 15 + tNutLength/2 + gap, 0]) {
+        for (y = [0 : length + tNutLength + 2*gap : eY - length])
+        translate([0, y, 0])
+            rotate([0, 180, 0])
+                if (eY==300)
+                    Channel_Spacer_79p5_stl();
+                else if (eY==350)
+                    Channel_Spacer_96_stl();
+    }
 }
 
 module Back_Panel_Channel_Spacers() {

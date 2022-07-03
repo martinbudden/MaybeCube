@@ -144,7 +144,7 @@ module baseplateM4CornerBoltPositions(size) {
 
 function basePlateHeight() = _basePlateThickness + 12;
 
-module basePlateAssembly(rightExtrusion=false) {
+module basePlateAssembly(rightExtrusion=false, hammerNut=true) {
     size = basePlateSize;
     BaseAL();
     //hidden() Base_stl();
@@ -172,7 +172,11 @@ module basePlateAssembly(rightExtrusion=false) {
                     boltM4Buttonhead(_sideBoltLength);
             translate_z(_sideBoltLength-3)
                 explode(20)
-                    nutM4Hammer();
+                    if (hammerNut)
+                        nutM4Hammer();
+                    else
+                        rotate(90)
+                            nutM4SlidingT();
         }
     translate_z(-size.z - extrusionFootLShapedBoltOffsetZ())
         baseplateM4CornerBoltPositions(size) {
@@ -181,7 +185,11 @@ module basePlateAssembly(rightExtrusion=false) {
                     boltM4Buttonhead(_frameBoltLength);
             translate_z(_frameBoltLength-3)
                 explode(20)
-                    nutM4Hammer();
+                    if (hammerNut)
+                        nutM4Hammer();
+                    else
+                        rotate(90)
+                            nutM4SlidingT();
         }
 
     footHeight = 12;
