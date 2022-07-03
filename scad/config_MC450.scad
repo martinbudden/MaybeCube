@@ -1,6 +1,6 @@
 _variant = "MC450";
 
-__extrusionLengths = [450, 450, 450];
+__extrusionLengths = [450, 450, 550];
 eX = __extrusionLengths.x;
 eY = __extrusionLengths.y;
 eZ = __extrusionLengths.z;

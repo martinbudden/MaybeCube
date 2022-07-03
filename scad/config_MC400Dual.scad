@@ -1,6 +1,6 @@
 _variant = "MC400Dual";
 
-__extrusionLengths = [400, 400, 450];
+__extrusionLengths = [400, 400, 500];
 eX = __extrusionLengths.x;
 eY = __extrusionLengths.y;
 eZ = __extrusionLengths.z;
