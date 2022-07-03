@@ -30,7 +30,7 @@ function spoolHolderPosition(offsetX=0) = [eX + 2*eSize + 10 + offsetX, eY/2 + (
 // iecHousing sizes here, since the extruder bracket and IEC housing sizes must match,
 // and placing IEC housing size here minimises cross dependencies.
 function iecHousingSize() = [70, 50, 42 + 3];
-function iecHousingMountSize() = [iecHousingSize().x + eSize + 5, iecHousingSize().y + 2*eSize, 3];
+function iecHousingMountSize() = [iecHousingSize().x + eSize + (_useElectronicsInBase ? 5 : 0), iecHousingSize().y + 2*eSize, 3];
 //function iecHousingMountSize() = [iecHousingSize().x + eSize, spoolHeight() + (eX < 350 ? 0 : eSize), 3];
 
 function extruderBracketSize() = [3, iecHousingMountSize().x, eZ - spoolHeight() - eSize];
