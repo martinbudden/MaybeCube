@@ -32,11 +32,13 @@ module sidePanelAccessHolePositions(size, left) {
 }
 
 module sidePanelBoltHolePositionsX(size, left, spoolHolder) {
-    xPositionsLeft = size.x <= 350 + 2*eSize
-        ? [-size.x/2 + eSize + 50, 0, size.x/2 - eSize - 50]
-        : [-size.x/2 + 1.5*eSize, -(size.x - eSize)/6, (size.x - eSize)/6, size.x/2 - 1.5*eSize];
+    xPositionsLeft =
+        size.x <= 250 + 2*eSize ? [-size.x/2 + eSize + 60, size.x/2 - eSize - 60] :
+        size.x <= 350 + 2*eSize ? [-size.x/2 + eSize + 50, 0, size.x/2 - eSize - 50] :
+                                  [-size.x/2 + 1.5*eSize, -(size.x - eSize)/6, (size.x - eSize)/6, size.x/2 - 1.5*eSize];
     xPositionsRight = [-size.x/2 + 4*eSize/2, eSize/2, size.x/2 - eSize];
-    for (x = left ? xPositionsLeft : xPositionsRight, y = [(-size.y + eSize)/2, (size.y - eSize)/2])
+    for (x = left ? xPositionsLeft : xPositionsRight,
+         y = concat([(-size.y + eSize)/2, (size.y - eSize)/2], left ? [_upperZRodMountsExtrusionOffsetZ - size.y/2 - eSize/2] : []))
         translate([x, y])
             rotate(exploded() ? 90 : 0)
                 children();
@@ -148,6 +150,22 @@ module Channel_Spacer_44p5_grubscrew_stl() {
             extrusionChannel(length, boltHoles=[length/2]);
 }
 
+module Channel_Spacer_54p5_stl() {
+    // 50 - tNutLength/2 - 0.5(tolerance)
+    length = 54.5;
+    stl("Channel_Spacer_54p5")
+        color(pp3_colour)
+            extrusionChannel(length);
+}
+
+module Channel_Spacer_54p5_grubscrew_stl() {
+    // 50 - tNutLength/2 - 0.5(tolerance)
+    length = 54.5;
+    stl("Channel_Spacer_54p5_grubscrew")
+        color(pp3_colour)
+            extrusionChannel(length, boltHoles=[length/2]);
+}
+
 module Channel_Spacer_44p5_narrow_stl() {
     length = 44.5;
     stl("Channel_Spacer_44p5_narrow")
@@ -207,21 +225,33 @@ module Left_Side_Channel_Spacers() {
         translate([0, eSize + gap, z]) {
             rotate([0, -90, 0])
                 if (z == eSize/2)
-                    Channel_Spacer_44p5_stl();
+                    if (eZ < 400)
+                        Channel_Spacer_54p5_stl();
+                    else
+                        Channel_Spacer_44p5_stl();
                 else
-                    Channel_Spacer_44p5_grubscrew_stl();
+                    if (eZ < 400)
+                        Channel_Spacer_54p5_grubscrew_stl();
+                    else
+                        Channel_Spacer_44p5_grubscrew_stl();
             translate([0, 50 + tNutLength/2, 0])
                 rotate([0, -90, 0])
                     Channel_Spacer_Left_Long();
             translate([0, eY/2 + tNutLength/2, 0])
                 rotate([0, -90, 0])
                     Channel_Spacer_Left_Long();
-            translate([0, eY - 50 + tNutLength/2, 0])
+            translate([0, eY - (eZ < 400 ? 60 : 50) + tNutLength/2, 0])
                 rotate([0, -90, 0])
                     if (z == eSize/2)
-                        Channel_Spacer_44p5_stl();
+                        if (eZ < 400)
+                            Channel_Spacer_54p5_stl();
+                        else
+                            Channel_Spacer_44p5_stl();
                     else
-                        Channel_Spacer_44p5_grubscrew_stl();
+                        if (eZ < 400)
+                            Channel_Spacer_54p5_grubscrew_stl();
+                        else
+                            Channel_Spacer_44p5_grubscrew_stl();
         }
 }
 
