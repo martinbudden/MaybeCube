@@ -144,7 +144,7 @@ module iecHousing() {
 */
 
 module iecHousingMountAttachmentHolePositions(eX=eX, extended=false, z=0) {
-    size = iecHousingMountSize();
+    size = iecHousingMountSize(eX);
 
     translate([0, -2*eSize, z]) {
         for (x = [eSize/2, size.x - 3*eSize/2])
@@ -194,7 +194,7 @@ module partitionGuideTabs(size, gapWidth=partitionSize().z + partitionTolerance,
 }
 
 module iceHousingMount(eX, extended=false) {
-    size = iecHousingMountSize();
+    size = iecHousingMountSize(eX);
     iecHousingSize = iecHousingSize();
     iecCutoutSize = [iecCutoutSize().x, iecCutoutSize().y, size.z + 2*eps];
     fillet = 3;
@@ -215,7 +215,7 @@ module iceHousingMount(eX, extended=false) {
                 }
             } // end union
 
-            if (size.y >= spoolHeight()) {
+            if (size.y >= spoolHeight() && eX > 250) {
                 // cutout to access TF card
                 tfCutoutSize = [40, 50, size.z + 2*eps];
                 translate([size.x - eSize - tfCutoutSize.x, size.y -3*eSize - tfCutoutSize.y, -eps])
@@ -275,7 +275,7 @@ assembly("IEC_Housing", ngb=true) {
                             IEC_Housing_Mount_Extended_130_stl();
                         else if (eX > 300)
                             IEC_Housing_Mount_Extended_110_stl();
-                if (eX >= 300)
+                if (eX >= 250)
                     IEC_Housing_Mount_hardware(eX, extended);
             }
     iecHousing(bevelled=extended);

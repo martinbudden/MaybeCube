@@ -305,7 +305,7 @@ module Channel_Nut_200_B_stl() {
 module Channel_Nut_200_BL_stl() {
     stl("Channel_Nut_200_BL")
         color(pp3_colour)
-            extrusionChannel(200, boltHoles=[20, iecHousingMountSize().y - eSize/2], accessHoles=[10, 30]);
+            extrusionChannel(200, boltHoles=[20, iecHousingMountSize(eX).y - eSize/2], accessHoles=[10, 30]);
 }
 
 module Channel_Nut_200_BU_stl() {
