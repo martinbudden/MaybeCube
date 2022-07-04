@@ -13,6 +13,12 @@
 //!buy the bolts that correspond to your extrusion size. These build instructions assume M5 bolts, if your extrusion
 //!requires M6 bolts then the 10mm and 12mm buttonhead M5 bolts should be replaced with M6 bolts.
 //!
+//!The motor for the Z-axis has an integrated lead screw: in the *Parts List* the length specified is the length that
+//!protrudes from the motor. Some suppliers specify the total length of the lead screw, that is including the part that
+//!is inside the motor, so check how your supplier specifies the part before ordering. Another option is to order a lead
+//!screw that is too long and cut to size, not however that lead screws are made from hardened steel and cannot be cut
+//!with a hacksaw - an angle grinder is required to cut them.
+//!
 //!This is a full build, some parts can be omitted to save cost, in particular:
 //!
 //!* the Raspberry Pi camera (and corresponding 8mm M2 caphead bolts)
@@ -23,7 +29,8 @@
 //!* the filament sensor
 //!* the polycarbonate side and back panels, if you don't want to enclose your print volume for (say) printing ABS. Note
 //!that these also add rigidity to the printer.
-//!* I've specified buttonhead bolts for the side and back panels. For a neater look you could countersink the holes
+//!
+//!I've specified buttonhead bolts for the side and back panels. For a neater look you could countersink the holes and
 //!use countersunk bolts.
 //!
 //!## Printing the parts
@@ -31,7 +38,7 @@
 //!A number of parts are in proximity with heat sources, namely the hotend, the heated bed and the motors. Ideally these
 //!should be printed in ABS, but I have used PETG successfully. These parts are insulated from direct contact with the heat
 //!sources, by cork underlay (for the heated bed) and by cork dampers (for the motors). These insulators should not be
-//! omitted from the build.
+//!omitted from the build.
 //
 include <global_defs.scad>
 
