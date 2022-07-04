@@ -22,6 +22,8 @@ NEMA17_40L160 = ["NEMA17_40L160", 42.3,   40,   53.6/2, 25,     11,     2,     8
 NEMA17_40L230 = ["NEMA17_40L230", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [230, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
 NEMA17_40L280 = ["NEMA17_40L280", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [280, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
 NEMA17_40L330 = ["NEMA17_40L330", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [330, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
+NEMA17_40L380 = ["NEMA17_40L380", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [380, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
+NEMA17_40L430 = ["NEMA17_40L430", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [430, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
 
 NEMA_motorWidth = !is_undef(_zMotorDescriptor) && _zMotorDescriptor == "NEMA14" ? 36 : 43; // not part of standard, may vary, so give some clearance
 zMotorType = motorType(is_undef(_zMotorDescriptor) ? "NEMA17_40" : _zMotorDescriptor);

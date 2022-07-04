@@ -8,7 +8,7 @@ eZ = __extrusionLengths.z;
 eSize = 20; // for 2020, 2040  etc extrusion
 
 _xyMotorDescriptor = "NEMA17_40";
-_zMotorDescriptor = "NEMA17_40L330";
+_zMotorDescriptor = "NEMA17_40L380";
 _corkDamperThickness = 2;
 
 _xRailLength = eX - 50;
