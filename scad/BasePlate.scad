@@ -120,11 +120,11 @@ module baseCutouts(cncSides=undef, radius=undef) {
 module baseplateM4BoltPositions(size) {
     inset = eSize + 15;
 
-    for (x = [eSize/2, size.x - eSize/2], y = [inset + (size.y - 2*inset)/3, size.y - inset - (size.y - 2*inset)/3])
+    for (x = [eSize/2, size.x - eSize/2], y = (size.y <= 250 + 2*eSize) ? [size.y/2] : [inset + (size.y - 2*inset)/3, size.y - inset - (size.y - 2*inset)/3])
         translate([x, y, 0])
             rotate(0)
                 children();
-    for (y = [eSize/2, size.y - eSize/2], x = [inset + (size.x - 2*inset)/3, size.x - inset - (size.x - 2*inset)/3])
+    for (y = [eSize/2, size.y - eSize/2], x = (size.x <= 250 + 2*eSize) ? [size.x/2] : [inset + (size.x - 2*inset)/3, size.x - inset - (size.x - 2*inset)/3])
         translate([x, y, 0])
             rotate(90)
                 children();

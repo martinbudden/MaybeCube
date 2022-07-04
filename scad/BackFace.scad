@@ -124,7 +124,7 @@ module backPanelAccessHolePositions(size) {
     for (y = [spoolHeight() + eSize/2, spoolHeight() + 3*eSize/2])
         translate([size.x - eSize/2, y])
             children();
-    if (useElectronicsInBase)
+    if (size.y >= 400 && useElectronicsInBase)
         for (y = [4*eSize, 5*eSize])
             translate([size.x - eSize/2, y])
                 children();

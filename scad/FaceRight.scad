@@ -45,15 +45,17 @@ assembly("Right_Side", big=true) {
         translate([eX + eSize, eY + eSize - supportLength, 70])
             extrusionOY2040VEndBolts(supportLength);
     } else {
-        faceRightLowerExtrusion(useElectronicsInBase && !_useDualZRods);
+        if (eZ >= 400)
+            faceRightLowerExtrusion(useElectronicsInBase && !_useDualZRods);
         if(!useBackMounts)
             translate([eX + eSize, eSize, spoolHeight()])
                 extrusionOY2040VEndBolts(eY);
     }
     if ($target != "DualZRods" && $target != "KinematicBed" && !useBackMounts) {
         if (useElectronicsInBase) {
-            explode([50, 75, 0], true)
-                rightSidePanelAssembly();
+            if (eZ >= 400)
+                explode([50, 75, 0], true)
+                    rightSidePanelAssembly();
         } else {
             explode([50, 75, 0])
                 IEC_Housing_assembly();
@@ -108,10 +110,11 @@ module faceRightIdlerUpright(upperZRodMountsExtrusionOffsetZ=0, useElectronicsIn
                     translate([eSize/2, 0, z])
                         rotate([-90, 0, 0])
                             jointBoltHole();
-                for (z = useElectronicsInBase ? [4*eSize, 5*eSize] : [3*eSize/2])
-                    translate([eSize/2, 0, z])
-                        rotate([-90, 0, 0])
-                            jointBoltHole();
+                if (eZ >= 400)
+                    for (z = useElectronicsInBase ? [4*eSize, 5*eSize] : [3*eSize/2])
+                        translate([eSize/2, 0, z])
+                            rotate([-90, 0, 0])
+                                jointBoltHole();
             }
             for (z = [eSize/2, 3*eSize/2, 5*eSize/2, 7*eSize/2, eZ - eSize/2])
                 translate([0, eSize/2, z])
@@ -136,10 +139,11 @@ module faceRightMotorUpright(upperZRodMountsExtrusionOffsetZ, useElectronicsInBa
                 translate([eSize/2, 0, z])
                     rotate([-90, 0, 0])
                         jointBoltHole();
-            for (z = useElectronicsInBase ? [4*eSize, 5*eSize] : [3*eSize/2])
-                translate([eSize/2, 0, z])
-                    rotate([-90, 0, 0])
-                        jointBoltHole();
+            if (eZ >= 400)
+                for (z = useElectronicsInBase ? [4*eSize, 5*eSize] : [3*eSize/2])
+                    translate([eSize/2, 0, z])
+                        rotate([-90, 0, 0])
+                            jointBoltHole();
             for (z = [eSize/2, 3*eSize/2, eZ - 3*eSize/2, eZ - eSize/2])
                 translate([eSize, eSize/2, z])
                     rotate([0, -90, 0])
