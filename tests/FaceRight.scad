@@ -40,7 +40,7 @@ module Right_Side_test() {
     //faceRightSpoolHolder(sidePanelSize().z);
     //faceRightSpoolHolderBracket(sidePanelSize().z);
     //faceRightSpoolHolderBracketHardware(sidePanelSize().z);
-    //faceRightSpool();
+    //faceRightSpool(sidePanelSize().z);
     //XY_Motor_Mount_Left_assembly();
     //XY_Motor_Mount_Right_assembly();
     //partitionTopAssembly();
