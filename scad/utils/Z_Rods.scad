@@ -130,7 +130,7 @@ module zRods(left=true) {
         }
 }
 
-module zRails(bedHeight=100, left=true, useElectronicsInBase=false) {
+module zRails(bedHeight=100, left=true, useElectronicsInBase=false, spoolHeight=0) {
     railZPos = bedHeight - 34;
     carriageHeight = carriage_height(is_undef(_zCarriageDescriptor) ? MGN12C_carriage : carriageType(_zCarriageDescriptor));
     if (left) {
@@ -158,8 +158,19 @@ module zRails(bedHeight=100, left=true, useElectronicsInBase=false) {
         }
     } else {
         translate([eX + eSize, _zRodOffsetY + _printbedArmSeparation/2, 0]) {
-            translate_z(useElectronicsInBase ? eSize : 2*eSize)
-                extrusionOZ(eZ - (useElectronicsInBase ? 130 : 150));
+            difference() {
+                translate_z(useElectronicsInBase ? eSize : 2*eSize)
+                    extrusionOZ(eZ - (useElectronicsInBase ? 130 : 150));
+                if (spoolHeight)
+                    for (z = [spoolHeight + eSize/2, spoolHeight + 3*eSize/2])
+                        translate([eSize/2, 0, z])
+                            rotate([-90, 0, 0])
+                                jointBoltHole();
+                for (z = useElectronicsInBase ? [4*eSize, 5*eSize] : [3*eSize/2])
+                    translate([eSize/2, 0, z])
+                        rotate([-90, 0, 0])
+                            jointBoltHole();
+            }
             translate([eSize/2, eSize, eZ - 150 + 2*eSize])
                 rotate([-90, 0, 90])
                     extrusionInnerCornerBracket();

@@ -41,8 +41,8 @@ module sidePanelBoltHolePositionsX(size, left, spoolHolder) {
             rotate(exploded() ? 90 : 0)
                 children();
     if (spoolHolder)
-        for (x = [5, 45])
-            translate([spoolHolderPosition().y - eY/2 + x, spoolHeight() + 3*eSize/2 - size.y/2])
+        for (x = [0, 40])
+            translate([spoolHolderPosition().y - eY/2 + x + 7.5, spoolHeight() + 3*eSize/2 - size.y/2])
                 children();
 }
 

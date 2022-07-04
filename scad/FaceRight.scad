@@ -34,16 +34,16 @@ assembly("Right_Side", big=true) {
         faceRightMotorUpright(upperZRodMountsExtrusionOffsetZ, useElectronicsInBase);
 
     explode([0, -70, 0], true)
-        faceRightIdlerUpright(upperZRodMountsExtrusionOffsetZ, useElectronicsInBase);
+        faceRightIdlerUpright(upperZRodMountsExtrusionOffsetZ, useElectronicsInBase, printbedKinematic);
 
     // extra extrusion for mounting spool holder
     if (printbedKinematic) {
-        zRails(bedHeight, left=false, useElectronicsInBase=(useElectronicsInBase || printbedKinematic));
+        zRails(bedHeight, left=false, useElectronicsInBase=true, spoolHeight=spoolHeight());
         supportLength = eY - _zRodOffsetY - _printbedArmSeparation/2;
         translate([eX + eSize, eY + eSize - supportLength, spoolHeight()])
             extrusionOY2040VEndBolts(supportLength);
         translate([eX + eSize, eY + eSize - supportLength, 70])
-            extrusionOYEndBolts(supportLength);
+            extrusionOY2040VEndBolts(supportLength);
     } else {
         faceRightLowerExtrusion(useElectronicsInBase && !_useDualZRods);
         if(!useBackMounts)
@@ -90,19 +90,29 @@ module faceRightLowerExtrusion(useElectronicsInBase) {
     }
 }
 
-function frontAndBackHolePositionsZ(upperZRodMountsExtrusionOffsetZ, useElectronicsInBase) =
-    concat([eSize/2, eZ - eSize/2, spoolHeight() + eSize/2, spoolHeight() + 3*eSize/2],
-        eX < 350 ? [] : [upperZRodMountsExtrusionOffsetZ + eSize/2, upperZRodMountsExtrusionOffsetZ - eSize/2],
-        useElectronicsInBase ? [4*eSize, 5*eSize] : [3*eSize/2]);
+function frontAndBackHolePositionsZ(upperZRodMountsExtrusionOffsetZ) =
+    concat([eSize/2, eZ - eSize/2],
+        eX < 350 ? [] : [upperZRodMountsExtrusionOffsetZ + eSize/2, upperZRodMountsExtrusionOffsetZ - eSize/2]
+        );
 
-module faceRightIdlerUpright(upperZRodMountsExtrusionOffsetZ=0, useElectronicsInBase=true) {
+module faceRightIdlerUpright(upperZRodMountsExtrusionOffsetZ=0, useElectronicsInBase=true, printBedKinematic=false) {
     translate([eX + eSize, 0, 0])
         difference() {
             extrusionOZ(eZ);
-            for (z = frontAndBackHolePositionsZ(upperZRodMountsExtrusionOffsetZ, useElectronicsInBase))
+            for (z = frontAndBackHolePositionsZ(upperZRodMountsExtrusionOffsetZ))
                 translate([eSize/2, 0, z])
                     rotate([-90, 0, 0])
                         jointBoltHole();
+            if (!printBedKinematic) {
+                for (z = [spoolHeight() + eSize/2, spoolHeight() + 3*eSize/2])
+                    translate([eSize/2, 0, z])
+                        rotate([-90, 0, 0])
+                            jointBoltHole();
+                for (z = useElectronicsInBase ? [4*eSize, 5*eSize] : [3*eSize/2])
+                    translate([eSize/2, 0, z])
+                        rotate([-90, 0, 0])
+                            jointBoltHole();
+            }
             for (z = [eSize/2, 3*eSize/2, 5*eSize/2, 7*eSize/2, eZ - eSize/2])
                 translate([0, eSize/2, z])
                     rotate([0, 90, 0])
@@ -118,9 +128,17 @@ module faceRightMotorUpright(upperZRodMountsExtrusionOffsetZ, useElectronicsInBa
     translate([eX + eSize, eY + eSize, 0])
         difference() {
             extrusionOZ(eZ);
-            for (z = frontAndBackHolePositionsZ(upperZRodMountsExtrusionOffsetZ, useElectronicsInBase))
+            for (z = frontAndBackHolePositionsZ(upperZRodMountsExtrusionOffsetZ))
                 translate([eSize/2, eSize, z])
                     rotate([90, 0, 0])
+                        jointBoltHole();
+            for (z = [spoolHeight() + eSize/2, spoolHeight() + 3*eSize/2])
+                translate([eSize/2, 0, z])
+                    rotate([-90, 0, 0])
+                        jointBoltHole();
+            for (z = useElectronicsInBase ? [4*eSize, 5*eSize] : [3*eSize/2])
+                translate([eSize/2, 0, z])
+                    rotate([-90, 0, 0])
                         jointBoltHole();
             for (z = [eSize/2, 3*eSize/2, eZ - 3*eSize/2, eZ - eSize/2])
                 translate([eSize, eSize/2, z])

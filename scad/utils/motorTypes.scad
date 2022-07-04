@@ -15,5 +15,7 @@ function motorType(motorDescriptor) =
     motorDescriptor == "NEMA17_40L230" ? NEMA17_40L230 :
     motorDescriptor == "NEMA17_40L280" ? NEMA17_40L280 :
     motorDescriptor == "NEMA17_40L330" ? NEMA17_40L330 :
+    motorDescriptor == "NEMA17_40L380" ? NEMA17_40L380 :
+    motorDescriptor == "NEMA17_40L430" ? NEMA17_40L430 :
     motorDescriptor == "BLDC4250" ? BLDC4250 :
     undef;
