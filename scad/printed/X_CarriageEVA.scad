@@ -451,7 +451,7 @@ module printheadEVA_2_4_2(rotate=180, explode=0, t=undef, top="mgn12") {
 }
 
 module  EVA_MC_mgn12_bottom_horns_fi_stl() {
-    stl("EVA_MC_mgn12_bottom_horns_fi_stl")
+    stl("EVA_MC_mgn12_bottom_horns_fi")
         color(evaAdaptorColor())
             rotate([-90, 0, 0]) {
                 *translate([-80, 0, 0])
