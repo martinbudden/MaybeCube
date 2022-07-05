@@ -137,7 +137,11 @@ module backPanelBoltHolePositionsX(size) {
     //xPositions = size.x == 300 + 2*eSize
     //? [eSize + 50, size.x/2, size.x - eSize - 50]
     //: [-size.x/2 + 1.5*eSize, -(size.x - eSize)/6, (size.x - eSize)/6, size.x/2 - 1.5*eSize];
-    xPositions = size.x <= 250 + 2*eSize ?  [eSize + 60, size.x - eSize - 60] : [eSize + 50, size.x/2, size.x - eSize - 50];
+    xPositions =
+        size.x <= 250 + 2*eSize ? [eSize + 60, size.x - eSize - 60] :
+        size.x <= 350 + 2*eSize ? [eSize + 50, size.x/2, size.x - eSize - 50] :
+                                  [eSize + 20, (size.x + eSize + 20)/3, (2*size.x - eSize - 20)/3, size.x - eSize - 20];
+    echo(xPositions=xPositions);
     for (x = xPositions, y = [eSize/2, size.y - eSize/2])
         translate([x, y])
             rotate(exploded() ? 90 : 0)

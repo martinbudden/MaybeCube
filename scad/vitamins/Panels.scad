@@ -35,7 +35,7 @@ module sidePanelBoltHolePositionsX(size, left, spoolHolder) {
     xPositionsLeft =
         size.x <= 250 + 2*eSize ? [-size.x/2 + eSize + 60, size.x/2 - eSize - 60] :
         size.x <= 350 + 2*eSize ? [-size.x/2 + eSize + 50, 0, size.x/2 - eSize - 50] :
-                                  [-size.x/2 + 1.5*eSize, -(size.x - eSize)/6, (size.x - eSize)/6, size.x/2 - 1.5*eSize];
+                                  [-size.x/2 + eSize + 20, -(size.x - 2*(eSize + 20))/6, (size.x - 2*(eSize + 20))/6, size.x/2 - eSize - 20];
     xPositionsRight = [-size.x/2 + 4*eSize/2, eSize/2, size.x/2 - eSize];
     for (x = left ? xPositionsLeft : xPositionsRight,
          y = concat([(-size.y + eSize)/2, (size.y - eSize)/2], left ? [_upperZRodMountsExtrusionOffsetZ - size.y/2 - eSize/2] : []))
