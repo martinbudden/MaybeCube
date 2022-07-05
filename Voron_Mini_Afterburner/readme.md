@@ -24,7 +24,7 @@
 ## Parts list
 
 | <span style="writing-mode: vertical-rl; text-orientation: mixed;">X Carriage Voron Mini Afterburner</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Printhead Voron Mini Afterburner</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">TOTALS</span> |  |
-|-----:|-----:|------:|:---|
+|-----:|-----:|------:|:-------------|
 |      |      |       | **Vitamins** |
 |   .  |   2  |    2  |  Bolt M3 buttonhead x 30mm |
 |   .  |   3  |    3  |  Bolt M3 buttonhead x 40mm |
@@ -46,19 +46,16 @@
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|2| Screw M2 self tapping (Pan Head) x 10mm|
-|1| Voron Mini Afterburner motor frame|
-
+| Qty | Description |
+|----:|:------------|
+|   2 | Screw M2 self tapping (Pan Head) x 10mm |
+|   1 | Voron Mini Afterburner motor frame |
 
 ### 3D Printed parts
 
 | 1 x X_Carriage_Voron_Mini_Afterburner.stl |
-|---|
-| ![X_Carriage_Voron_Mini_Afterburner.stl](stls/X_Carriage_Voron_Mini_Afterburner.png) 
-
-
+|----------|
+| ![X_Carriage_Voron_Mini_Afterburner.stl](stls/X_Carriage_Voron_Mini_Afterburner.png) |
 
 ### Assembly instructions
 
@@ -76,20 +73,17 @@
 
 ### Vitamins
 
-|Qty|Description|
-|---:|:----------|
-|2| Bolt M3 buttonhead x 30mm|
-|3| Bolt M3 buttonhead x 40mm|
-|1| Voron Mini Afterburner assembly|
-
+| Qty | Description |
+|----:|:------------|
+|   2 | Bolt M3 buttonhead x 30mm |
+|   3 | Bolt M3 buttonhead x 40mm |
+|   1 | Voron Mini Afterburner assembly |
 
 ### Sub-assemblies
 
 | 1 x X_Carriage_Voron_Mini_Afterburner_assembly |
-|---|
-| ![X_Carriage_Voron_Mini_Afterburner_assembled](assemblies/X_Carriage_Voron_Mini_Afterburner_assembled_tn.png) 
-
-
+|----------|
+| ![X_Carriage_Voron_Mini_Afterburner_assembled](assemblies/X_Carriage_Voron_Mini_Afterburner_assembled_tn.png) |
 
 ### Assembly instructions
 
