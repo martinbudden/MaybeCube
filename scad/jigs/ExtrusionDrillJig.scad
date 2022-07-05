@@ -61,7 +61,9 @@ module extrusionDrillJig(length, holeSize, holes, fixingHoles, endStop=true) {
             for (x = holes)
                 translate([sideThickness + x, sideThickness + eSize/2, 0])
                     if (holeSize==2)
-                        boltHoleM2(baseThickness + centerHeight, twist=3);
+                        boltHole(2, baseThickness + centerHeight, twist=4);
+                    else if (holeSize==3)
+                        boltHole(3, baseThickness + centerHeight, twist=4);
                     else
                         translate_z(-eps)
                             poly_cylinder(r=holeSize/2, h=baseThickness + centerHeight + 2*eps);
@@ -89,7 +91,7 @@ module Extrusion_Drill_Jig_Pilot_stl() {
     holes = [5, 25];
     stl("Extrusion_Drill_Jig_Pilot")
         color(jigColor)
-            extrusionDrillJig(40, 2, holes, endStop=false);
+            extrusionDrillJig(40, 3, holes, endStop=false);
 }
 
 module Extrusion_Drill_Jig_Pilot_hardware() {
@@ -151,7 +153,7 @@ module Extrusion_Drill_Jig_Z_Rods_Pilot_stl() {
 
     stl("Extrusion_Drill_Jig_Z_Rods_Pilot")
         color(jigColor)
-            extrusionDrillJig(120, 2, holes, fixingHoles);
+            extrusionDrillJig(120, 3, holes, fixingHoles);
 }
 
 module Extrusion_Drill_Jig_Z_Rods_Pilot_hardware() {
@@ -177,7 +179,7 @@ module Extrusion_Drill_Jig_Corner_Pilot_stl() {
     fixingHoles = [eSize/2, 7*eSize/2];
     stl("Extrusion_Drill_Jig_Corner_Pilot")
         color(jigColor)
-            extrusionDrillJig(85, 2, holes, fixingHoles);
+            extrusionDrillJig(85, 3, holes, fixingHoles);
 }
 
 module Extrusion_Drill_Jig_Corner_Pilot_hardware() {
@@ -234,5 +236,31 @@ module Extrusion_Drill_Jig_Printbed_hardware() {
         extrusionDrillJig_hardware(120, fixingHoles);
 }
 
+module E2040_End_Connector_stl() {
+    stl("E2040_End_Connector")
+        difference() {
+            size = [50, 30, 5];
+            fillet = 2;
+            union() {
+                rounded_cube_xy(size, fillet);
+                rounded_cube_xy([size.x, 5, size.z + 5], fillet);
+                rounded_cube_xy([5, size.y, size.z + 5], fillet);
+            }
+            for (x = [15, size.x -  15])
+                translate([x, size.y/2, 0])
+                    boltHole(5, size.z, twist=4);
+        }
+}
+
+module Right_Size_Spacer_70_stl() {
+    stl("Right_Size_Spacer_70")
+        difference() {
+            size = [70, 20, 4];
+            rounded_cube_xy(size, 2);
+            for (x = [10, size.x -  10])
+                translate([x, size.y/2, 0])
+                    boltHole(4, size.z, twist=4);
+        }
+}
 if ($preview)
     Extrusion_Drill_Jig_stl();
