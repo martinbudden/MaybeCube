@@ -71,6 +71,18 @@ assembly("Jigs") {
     translate([-40, -60, 0])
         stl_colour(jigColor)
             Panel_Jig_stl();
+    translate([150, -60, 0])
+        stl_colour(jigColor)
+            E2040_End_Connector_stl();
+    translate([220, -60, 0])
+        stl_colour(jigColor)
+            Right_Size_Spacer_70_stl();
+    translate([150, -60, 0])
+        stl_colour(jigColor)
+            E2040_End_Connector_stl();
+    translate([220, -60, 0])
+        stl_colour(jigColor)
+            Right_Size_Spacer_70_stl();
     //PCB_Hole_Jig_stl();
     //PSU_Hole_Jig_stl();
 }
