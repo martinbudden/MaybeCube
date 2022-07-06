@@ -51,18 +51,20 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
     }
     faceTopFront(useRB40());
     faceTopBack();
-    for (x = [3*eSize/2, eX + eSize/2])
-        translate([x, eY/2 + eSize, eZ])
-            rotate([0, -90, 0])
-                Handle_hardware(bolt=false, TNut=true);
-    translate_z(eZ)
-        topCornerPieceAssembly(0);
-    translate([eX + 2*eSize, 0, eZ])
-        topCornerPieceAssembly(90);
-    translate([eX + 2*eSize, eY + 2*eSize, eZ])
-        topCornerPieceAssembly(180);
-    translate([0, eY + 2*eSize, eZ])
-        topCornerPieceAssembly(270);
+    if (is_undef($hide_extras) || !$hide_extras) {
+        for (x = [3*eSize/2, eX + eSize/2])
+            translate([x, eY/2 + eSize, eZ])
+                rotate([0, -90, 0])
+                    Handle_hardware(bolt=false, TNut=true);
+        translate_z(eZ)
+            topCornerPieceAssembly(0);
+        translate([eX + 2*eSize, 0, eZ])
+            topCornerPieceAssembly(90);
+        translate([eX + 2*eSize, eY + 2*eSize, eZ])
+            topCornerPieceAssembly(180);
+        translate([0, eY + 2*eSize, eZ])
+            topCornerPieceAssembly(270);
+    }
 }
 
 //!1. Bolt the MGN rail to the Y_Carriages as shown. Ensure the MGN rail is square to the frame.
@@ -167,7 +169,7 @@ module faceTopBack(fov_distance=0) {
                             jointBoltHole();
             }
         }
-        if (_variant != "JubileeToolChanger") {
+        if (_variant != "JubileeToolChanger" && is_undef($hide_extras) || !$hide_extras) {
             explode([0, -40, 0], true, show_line=false)
                 wiringGuidePosition(offsetX=cameraMountBaseSize.x/2)
                     vflip() {
