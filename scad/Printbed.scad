@@ -180,7 +180,7 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
 
         spring  = ["spring", 8, 0.9, 20, 10, 1, false, 0, "lightblue"];
         supportBoltLength = _printbed4PointSupport ? 45 : 12;
-        if (_printbed4PointSupport) for (i=boltHoles) {
+        if (_printbed4PointSupport && (is_undef($hide_bolts) || $hide_bolts == false)) for (i=boltHoles) {
             translate(i) {
                 explode(0.1, false)
                     translate_z(size.z + eps)
@@ -327,6 +327,8 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                     if (_printbed4PointSupport) {
                         for (y = [_heatedBedHoleOffset, _heatedBedSize.y - _heatedBedHoleOffset])
                             translate([x, y + heatedBedOffset.y, 0]) {
+                                //echo(y=y + yOffset + heatedBedOffset.y);
+                                //echo(y=size.y-(y + yOffset + heatedBedOffset.y));
                                 // hole for bolt
                                 cylinder(h=eSize, r=M4_clearance_radius);
                                 //cutout for spring
@@ -490,6 +492,26 @@ assembly("Printbed", big=true) {
                             Printbed_Strain_Relief_Clamp_hardware();
                     }
             }
+}
+
+module heatedBed_only() {
+    // display the heated bed, for debugging
+    translate([eSize + _zRodOffsetX, eSize + zRodSeparation()/2 + _zRodOffsetY, 0])
+        rotate(-90) {
+            underlayThickness = 3;
+            translate(heatedBedOffset) {
+                if (_printbed4PointSupport)
+                        explode(120, true)
+                        heatedBed(_heatedBedSize, _heatedBedHoleOffset, underlayThickness);
+                else {
+                    translate([-_heatedBedSize.y/2, 0, 0])
+                        explode(40)
+                            corkUnderlay(_heatedBedSize, _heatedBedHoleOffset, underlayThickness);
+                    explode(80, true)
+                        Heated_Bed_assembly();
+                }
+            }
+        }
 }
 
 wiringDiameter = 6.5;
