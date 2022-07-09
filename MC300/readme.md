@@ -2,6 +2,12 @@
 
 # MaybeCube Assembly Instructions
 
+# OUTDATED MaybeCube Assembly Instructions OUTDATED
+
+**THIS VARIANT HAS BEEN SUPERSEDED BY THE VARIANT [HERE](https://github.com/martinbudden/MaybeCube/blob/main/MC300RB/readme.md).**
+
+**THESE INSTRUCTIONS HAVE BEEN KEPT FOR HISTORICAL REASONS.**
+
 These are the assembly instructions for the MaybeCube. These instructions are not fully comprehensive, that is they do
 not show every small detail of the construction and in particular they do not show the wiring. However there is sufficient
 detail that someone with a good understanding of 3D printers can build the MaybeCube.
