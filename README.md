@@ -9,9 +9,9 @@ The self-sourcing BOM cost of the MC300 variant is approximately £430 with a ge
 E3D compatible hotend), this does not include the cost of filament for printing parts, see [spreadsheet](documents/BOM_MC300.ods).
 The MC350 variant is slightly more expensive.
 
-![Main Assembly](MC300/assemblies/main_assembled.png)
+![Main Assembly](MC300RB/assemblies/main_assembled.png)
 
-![MaybeCube300](pictures/MaybeCube-2021-12-08_1000.jpg)
+![MaybeCube300](pictures/MC300_rb.jpg)
 
 ## Assembly instructions
 
@@ -19,7 +19,7 @@ The "standard" size is the MC350 variant. I have built the MC300 variant for two
 fit in the MC300 variant, then they will fit in larger variants); and because I had a quantity of 300mm extrusion and the
 right size heated bed from an earlier project.
 
-The assembly instructions and the BOM (parts list) for the MC300 variant are [here](https://github.com/martinbudden/MaybeCube/blob/main/MC300/readme.md).
+The assembly instructions and the BOM (parts list) for the MC300 variant are [here](https://github.com/martinbudden/MaybeCube/blob/main/MC300RB/readme.md).
 
 The assembly instructions and the BOM for the MC350 variant are [here](https://github.com/martinbudden/MaybeCube/blob/main/MC350/readme.md).
 
@@ -86,12 +86,12 @@ If you would like to build a smaller printer, you may be interested in the Maybe
 
 The canonical form is the MC350 variant.
 
-variant | ExtrusionSizes | Rail/rod lengths | Approx Build Volume | Bed Size   | Exterior Dimensions
-------- | -------------- | ---------------- | ------------------- | ---------- | -------------------
-MC250   | x250 y250 z350 | x200 y250 z250   | concept variant     | 180mm      | 290 x 290 x 350
-MC300   | x300 y300 z400 | x250 y300 z300   | 185 x 185 x 200     | 214mm      | 340 x 340 x 400
-MC350   | x350 y350 y400 | x300 y350 z300   | 225 x 225 x 200     | 235mm      | 390 x 390 x 400
-MC400   | x400 y400 y450 | x350 y400 z350   | 275 x 275 x 250     | 310mm      | 440 x 440 x 450
+variant | Extrusion lengths | Rail/rod lengths | Approx Build Volume | Bed Size   | Exterior Dimensions
+------- | ----------------- | ---------------- | ------------------- | ---------- | -------------------
+MC250   | x250 y250 z350    | x200 y250 z250   | concept variant     | 180mm      | 290 x 290 x 350
+MC300   | x300 y300 z400    | x250 y300 z300   | 185 x 185 x 200     | 214mm      | 340 x 340 x 400
+MC350   | x350 y350 y400    | x300 y350 z300   | 225 x 225 x 200     | 235mm      | 390 x 390 x 400
+MC400   | x400 y400 y500    | x350 y400 z400   | 275 x 275 x 300     | 310mm      | 440 x 440 x 450
 
 ## Comparisons
 
@@ -99,10 +99,10 @@ The following table compares the sizes and build volumes of various CoreXY 3D pr
 
 Printer           | EType | Extrusion lengths | Build Volume     | Exterior Dimensions
 ------------------|------ | ----------------- | ---------------- | -------------------
-MC300             | 2040  | 300 x 300 x 400   | 180 x 180 x 200  | 340 x 340 x 400
-MC350             | 2040  | 350 x 350 x 400   | 225 x 225 x 200  | 390 x 390 x 400
-MC400             | 2040  | 400 x 400 x 450   | 275 x 275 x 250  | 440 x 440 x 450
-MC450             | 2040  | 450 x 450 x 500   | 325 x 325 x 300  | 490 x 490 x 500
+MC300             | 2040  | 300 x 300 x 400   | 185 x 185 x 200  | 340 x 340 x 420
+MC350             | 2040  | 350 x 350 x 400   | 225 x 225 x 200  | 390 x 390 x 420
+MC400             | 2040  | 400 x 400 x 500   | 275 x 275 x 300  | 440 x 440 x 520
+MC450             | 2040  | 450 x 450 x 550   | 325 x 325 x 350  | 490 x 490 x 570
 [BLV MGN Cube](https://www.blvprojects.com/blv-mgn-cube-3d-printer) | 2040 | 496 x 496 x 560 | 300 x 300 x 365 | 576 x 536 x 560
 [Denali 200](https://github.com/Annex-Engineering/Denali) | 2020 | 320 x 320 x 590 | 200 x 200 x 200 | 380 x 380 x 620 (est)
 Denali 250 | 2020 | 370 x 370 x 590 | 250 x 250 x 200 | 430 x 430 x 620 (est)
@@ -125,6 +125,7 @@ SimpleCore 300 | 2020 | 500 x 500 x 500 | 330 x 330 x 230 | 540 x 540 x 540 (est
 [SnakeOil XY 180](https://github.com/ChipCE/SnakeOil-XY) | 3030 | 310 x 310 x 500 | 180 x 180 x 180 | 400 x 390 x 520 (est)
 SnakeOil XY 250 | 3030 | 400 x 370 x 550 | 250 x 240 x 230 | 490 x 450 x 570 (est)
 [Ultra MegaMax Dominator](https://drmrehorst.blogspot.com/2017/07/ultra-megamax-dominator-3d-printer.html) | 4040 | | 300 x 300 x 695 | 610 x 530 x 1500
+[Voron 0](https://vorondesign.com/voron0) | 1515 | 200 x 200 x 200 | 120 x 120 x 120 | 230 x 230 x 280
 [Voron2 v2.4 250](https://vorondesign.com/voron2.4) | 2020 | 410 x 410 x 430 | 250 x 250 x 230 | 450 x 450 x 430
 Voron2 v2.4 300    | 2020 | 460 x 460 x 480 | 300 x 300 x 280 | 500 x 500 x 480
 Voron2 v2.4 350    | 2020 | 510 x 510 x 530 | 350 x 350 x 330 | 550 x 550 x 530
@@ -226,18 +227,17 @@ MaybeCube. Note that this is incomplete and still requires an X_Carriage adaptor
 
 ![JubileeToolChanger Assembly](JubileeToolChanger/assemblies/JubileeToolChanger_assembled.png)
 
-### Dual Z rods
-
-The MC300 variant uses a cantilevered print bed. For larger variants it is possible to use dual sets of Z-rods to support
-the print bed.
-
-![DualZRods Assembly](DualZRods/assemblies/DualZRods_assembled.png)
-
 ### 3-point Kinematic Bed
 
-It is possible to configure the MaybeCube to use a 3-point Kinematic Bed
+The MC300 and MC350 use a cantilevered print bed. For larger variants a 3-point Kinematic Bed is recommended.
 
 ![KinematicBed Assembly](KinematicBed/assemblies/KinematicBed_assembled.png)
+
+### Dual Z rods
+
+Alternatively, for larger variants,  it is possible to use dual sets of Z-rods to support the print bed.
+
+![DualZRods Assembly](DualZRods/assemblies/DualZRods_assembled.png)
 
 ## Pictures
 
@@ -245,12 +245,10 @@ In these pictures the power supply and PCBs are mounted in the back of the print
 so that I can easily change things around while I experiment. For the release build, the power supply and PCBs are mounted
 in the base of the printer.
 
-![Front](pictures/MC_front.jpg)
-![Left](pictures/MC_left.jpg)
-![Right](pictures/MC_right.jpg)
-![Back](pictures/MC_back.jpg)
-![Top](pictures/MC_top.jpg)
-![Wiring](pictures/MC_wiring.jpg)
+![Front](pictures/MC300_rb_front.jpg)
+![Left](pictures/MC300_rb_left.jpg)
+![Right](pictures/MC300_rb_right.jpg)
+![Back](pictures/MC300_rb_back.jpg)
 
 ## License
 
