@@ -15,6 +15,12 @@ an M5 bolt and some are suitable for tapping for an M6 bolt. It doesn't really m
 buy the bolts that correspond to your extrusion size. These build instructions assume M5 bolts, if your extrusion
 requires M6 bolts then the 10mm and 12mm buttonhead M5 bolts should be replaced with M6 bolts.
 
+The motor for the Z-axis has an integrated lead screw: in the *Parts List* the length specified is the length that
+protrudes from the motor. Some suppliers specify the total length of the lead screw, that is including the part that
+is inside the motor, so check how your supplier specifies the part before ordering. Another option is to order a lead
+screw that is too long and cut to size, not however that lead screws are made from hardened steel and cannot be cut
+with a hacksaw - an angle grinder is required to cut them.
+
 This is a full build, some parts can be omitted to save cost, in particular:
 
 * the Raspberry Pi camera (and corresponding 8mm M2 caphead bolts)
@@ -25,7 +31,8 @@ This is a full build, some parts can be omitted to save cost, in particular:
 * the filament sensor
 * the polycarbonate side and back panels, if you don't want to enclose your print volume for (say) printing ABS. Note
 that these also add rigidity to the printer.
-* I've specified buttonhead bolts for the side and back panels. For a neater look you could countersink the holes
+
+I've specified buttonhead bolts for the side and back panels. For a neater look you could countersink the holes and
 use countersunk bolts.
 
 ## Printing the parts
@@ -109,7 +116,7 @@ omitted from the build.
 |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 countersunk x 25mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 countersunk x 35mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M3 countersunk x 40mm |
-|   .  |   .  |   .  |   8  |   .  |   .  |   .  |  52  |   60  |  Bolt M4 buttonhead x  8mm |
+|   .  |   .  |   .  |   8  |   .  |   .  |   .  |  55  |   63  |  Bolt M4 buttonhead x  8mm |
 |   .  |   .  |  12  |   .  |   .  |   6  |   4  |  14  |   36  |  Bolt M4 buttonhead x 10mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   4  |   12  |  Bolt M4 buttonhead x 12mm |
 |   .  |   .  |  20  |   .  |   .  |   .  |   8  |   .  |   28  |  Bolt M4 countersunk x 10mm |
@@ -139,7 +146,7 @@ omitted from the build.
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  MK10 Dual Pulley Extruder |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Micro SD card |
 |   .  |   .  |  20  |   .  |   3  |   2  |   .  |   6  |   31  |  Nut M3 hammer |
-|   .  |   .  |  12  |   8  |   .  |   .  |   .  |  66  |   86  |  Nut M4 hammer |
+|   .  |   .  |  12  |   8  |   .  |   .  |   .  |  69  |   89  |  Nut M4 hammer |
 |   .  |   .  |  36  |   .  |   .  |   6  |  12  |   .  |   54  |  Nut M4 sliding T |
 |   .  |   .  |   .  |   .  |  12  |   .  |   .  |   .  |   12  |  O-ring nitrile 4mm x 2mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PSU NIUGUY CB-500W-24V |
@@ -166,7 +173,7 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |    3  |  Washer penny M4 |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  XL4015 buck converter |
 |   3  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    3  |  Ziptie 2.5mm x 100mm min length |
-|  12  |   4  | 277  |  39  |  34  |  46  |  40  | 245  |  697  | Total vitamins count |
+|  12  |   4  | 277  |  39  |  34  |  46  |  40  | 251  |  703  | Total vitamins count |
 |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Camera_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_Bracket_TFT35_E3.stl |
@@ -1404,9 +1411,9 @@ see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
 
 | Qty | Description |
 |----:|:------------|
-|  25 | Bolt M4 buttonhead x  8mm |
+|  28 | Bolt M4 buttonhead x  8mm |
 |   2 | Bolt M4 buttonhead x 12mm |
-|  27 | Nut M4 hammer |
+|  30 | Nut M4 hammer |
 |   1 | Sheet polycarbonate 245mm x 400mm x 3mm |
 |   1 | Sheet polycarbonate 340mm x 400mm x 3mm |
 
