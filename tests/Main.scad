@@ -1,6 +1,6 @@
 //!Display the whole printer
 
-include <../scad/Main.scad>
+use <../scad/Main.scad>
 include <../scad/utils/printParameters.scad>
 
 
@@ -32,6 +32,6 @@ module main_test() {
 }
 
 if ($preview)
-    rotate($vpr.z == 315 ? -90 + 30 : 0)
+    rotate($vpr.z == 25 ? 0 : -90 + 30)
         translate([-eX/2 - eSize, -eY/2 - eSize, -eZ/2])
             main_test();

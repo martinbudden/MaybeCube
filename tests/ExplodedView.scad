@@ -47,6 +47,6 @@ module Exploded_View_test() {
 }
 
 if ($preview)
-    rotate($vpr.z == 315 ? -90 + 30 : 0)
+    rotate($vpr.z == 25 ? 0 : -90 + 30)
         translate([-eX/2 - eSize, -eY/2 - eSize, 0])
             Exploded_View_test();
