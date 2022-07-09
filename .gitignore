@@ -170,7 +170,7 @@ MC250/stls/*
 MC250/tmp/
 MC250/*.html
 # change to !, except for _diff, .stl, and .dxf, once released
-!MC250/readme.md
+MC250/readme.md
 !MC250/assemblies/main_assembled.png
 #!MC250/assemblies/*.png
 #!MC250/dxfs/*.dxf
