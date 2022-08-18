@@ -15,6 +15,7 @@ Thumbs.db
 *.3mf
 
 times.txt
+cmd_times.txt
 
 .vscode/
 
