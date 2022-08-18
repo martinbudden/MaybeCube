@@ -11,7 +11,7 @@ module railBoltsAndNuts(type, length, thickness) { //! Place bolts and tNuts in 
                 explode(10, true)
                     rail_hole_positions(type, length, i, 1) {
                         screw(screw, screw_len);
-                        translate_z(-screw_len + 4)
+                        translate_z(-5.55)
                             vflip()
                                 explode(20)
                                     nutM3Hammer();

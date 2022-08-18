@@ -234,7 +234,7 @@ assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
             rotate([180, 0, 90])
                 if (is_undef($hide_rails) || $hide_rails == false) {
                     rail_assembly(yCarriageType, _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
-                    railBoltsAndNuts(carriage_rail(yCarriageType), _yRailLength, 5);
+                    railBoltsAndNuts(carriage_rail(yCarriageType), _yRailLength, 4);
                 }
     translate_z(eZ - eSize) {
         explode(-80, show_line=false)
@@ -265,7 +265,7 @@ assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
             rotate([180, 0, 90])
                 if (is_undef($hide_rails) || $hide_rails == false) {
                     rail_assembly(yCarriageType, _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
-                    railBoltsAndNuts(carriage_rail(yCarriageType), _yRailLength, 5);
+                    railBoltsAndNuts(carriage_rail(yCarriageType), _yRailLength, 4);
                 }
     translate([eX + 2*eSize, 0, eZ - eSize]) {
         explode(-80, show_line=false)
