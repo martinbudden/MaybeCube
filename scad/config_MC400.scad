@@ -23,6 +23,7 @@ _zCarriageDescriptor = "MGN12C";
 _coreXYDescriptor = "GT2_20_16_fb";
 
 _use2060ForTop = true;
+_use2060ForTopRear = false;
 _useDualZRods = false;
 _useDualZMotors = false;
 _useElectronicsInBase = true;

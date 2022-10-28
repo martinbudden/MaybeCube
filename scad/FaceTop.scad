@@ -50,7 +50,7 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
         }
     }
     faceTopFront(useRB40());
-    faceTopBack();
+    faceTopBack(use2060ForTopRear() ? 60 : 40);
     if (is_undef($hide_extras) || !$hide_extras) {
         for (x = [3*eSize/2, eX + eSize/2])
             translate([x, eY/2 + eSize, eZ])
@@ -145,24 +145,29 @@ module faceTopFront(use2040=true) {
     }
 }
 
-module faceTopBack(fov_distance=0) {
+module faceTopBack(height=40, fov_distance=0) {
     // add the back top extrusion oriented in the X direction
     explode([0, 120, 0], true, show_line=false) {
         translate([eSize, eY + eSize, eZ - eSize]) {
-            use2020 = is_undef(_use2020TopExtrusion) || _use2020TopExtrusion == false ? false : true;
-
             extrusionOXEndBoltPositions(eX)
                 boltM5Buttonhead(_endBoltShortLength);
-            if (!use2020)
+            if (height >= 40)
                 translate_z(-eSize)
                     extrusionOXEndBoltPositions(eX)
                         boltM5Buttonhead(_endBoltLength);
+            if (height >= 60)
+                translate_z(-2*eSize)
+                    extrusionOXEndBoltPositions(eX)
+                        boltM5Buttonhead(_endBoltLength);
             difference() {
-                if (use2020)
+                if (height==20)
                     extrusionOX(eX);
-                else
+                else if (height==40)
                     translate_z(-eSize)
                         extrusionOX2040V(eX);
+                else if (height==60)
+                    translate_z(-2*eSize)
+                        extrusionOX2060V(eX);
                 for (x = use2060ForTop() ? [eSize/2, 3*eSize/2, eX - eSize/2, eX - 3*eSize/2] : [eSize/2, eX - eSize/2])
                     translate([x, eSize, eSize/2])
                         rotate([90, 0, 0])

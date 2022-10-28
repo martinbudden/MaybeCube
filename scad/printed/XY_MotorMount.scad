@@ -134,7 +134,7 @@ module xyMotorMountBaseCutouts(motorType, size, offset, sideSupportSizeY, left, 
             fillet(fillet);
     for (x = upperBoltPositions(size.x))
         translate([x + eSize, eY + 3*eSize/2])
-            poly_circle(r=screw_head_radius(M4_dome_screw) + boltHeadTolerance);
+            poly_circle(r=use2060ForTopRear() ? M4_clearance_radius : screw_head_radius(M4_dome_screw) + boltHeadTolerance);
     if (sideSupportSizeY != 0)
         translate([eSize/2, eY + 5*eSize/2 - size.y])
             poly_circle(r=screw_head_radius(M5 ? M5_dome_screw : M4_dome_screw) + boltHeadTolerance);
@@ -285,7 +285,7 @@ module xyMotorMountBlock(motorType, size, basePlateThickness, offset=[0, 0], sid
     bracketHeight = left || useReversedBelts ? bracketHeightLeft : bracketHeightRight;
     tabHeight = bracketHeight - eSize;
     height = tabHeight + blockHeightExtra;
-    blockSize = [size.x - eSize, useReversedBelts ? eSize - 4 : eSize, height];
+    blockSize = [size.x - eSize, useReversedBelts ? (use2060ForTopRear() ? eSize : eSize - 4) : eSize, use2060ForTopRear() ? height -  eSize : height];
 
     difference() {
         union() {
@@ -302,14 +302,15 @@ module xyMotorMountBlock(motorType, size, basePlateThickness, offset=[0, 0], sid
                                     translate([-cutout/2, -eSize])
                                         square([cutout, eSize]);
                                 }
-                        translate([0, eY + eSize])
-                            for (x = [NEMA_hole_pitch(motorType)/2, -NEMA_hole_pitch(motorType)/2]) {
-                                translate([x + cutout/2, 0])
-                                    fillet(1);
-                                translate([x - cutout/2, 0])
-                                    rotate(90)
+                        if (!use2060ForTopRear())
+                            translate([0, eY + eSize])
+                                for (x = [NEMA_hole_pitch(motorType)/2, -NEMA_hole_pitch(motorType)/2]) {
+                                    translate([x + cutout/2, 0])
                                         fillet(1);
-                            }
+                                    translate([x - cutout/2, 0])
+                                        rotate(90)
+                                            fillet(1);
+                                }
                     }
                     translate([size.x, eY + 2*eSize])
                         rotate(180)
@@ -351,8 +352,12 @@ module xyMotorMountBlock(motorType, size, basePlateThickness, offset=[0, 0], sid
         translate([0, eY + 2*eSize - size.y - partitionExtension - eps, -eps])
             fillet(yFillet, tabHeight + eSize + 2*eps);
         for (x = upperBoltPositions(size.x))
-            translate([x + eSize, eY + 3*eSize/2, -eps])
-                boltHoleM4HangingCounterboreButtonhead(5 + 2*eps, boreDepth=height - 5, boltHeadTolerance=boltHeadTolerance);
+            if (use2060ForTopRear())
+                translate([x + eSize, eY + 3*eSize/2, 0])
+                    boltHoleM4(blockSize.z);
+            else
+                translate([x + eSize, eY + 3*eSize/2, -eps])
+                    boltHoleM4HangingCounterboreButtonhead(5 + 2*eps, boreDepth=height - 5, boltHeadTolerance=boltHeadTolerance);
         translate([eSize/2, eY + 5*eSize/2 - size.y, -eps])
             if (M5)
                 boltHoleM5HangingCounterboreButtonhead(5 + 2*eps, boreDepth=height + eSize - 5, boltHeadTolerance=boltHeadTolerance);
@@ -365,7 +370,7 @@ module xyMotorMountBlock(motorType, size, basePlateThickness, offset=[0, 0], sid
             fillet = 5;
             h = useReversedBelts ? braceOffsetZ : height;
             translate([-fillet + blockSize.y, eSize - sideSupportSize.x, 0])
-                cube([fillet, fillet, h]);
+                cube([fillet, fillet, use2060ForTopRear()? blockSize.z : h]);
             if (sideSupportSize.x - eSize > 0)
                 translate([blockSize.y, eSize - sideSupportSize.x, 0])
                     cube([fillet, sideSupportSize.x - eSize, h]);
@@ -580,9 +585,9 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
     if (left) {
         size = [xyMotorMountSize(motorWidth, offset, left, useReversedBelts).x, -offset.y + eY + 2*eSize + motorWidth/2 - coreXYPosTR.y, eZ + basePlateThickness - coreXYPosTR.z];
         for (x = upperBoltPositions(size.x))
-            translate([x + eSize, eY + 3*eSize/2, basePlateThickness + bracketHeightLeft - eSize - 5 + blockHeightExtra])
+            translate([x + eSize, eY + 3*eSize/2, basePlateThickness + bracketHeightLeft - 5 + blockHeightExtra - (use2060ForTopRear() ? 2*eSize + 2 : eSize)])
                 vflip()
-                    boltM4ButtonheadHammerNut(_frameBoltLength);
+                    boltM4ButtonheadHammerNut(use2060ForTopRear() ? _frameBoltLength + 2 : _frameBoltLength );
         if (sideSupportSize.y)
             translate([eSize/2, eY + 7*eSize/2 - size.y - sideSupportSize.x, basePlateThickness + bracketHeightLeft - 5])
                 vflip()
@@ -595,9 +600,9 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
         size = [xyMotorMountSize(motorWidth, offset, left, useReversedBelts).x - 2*offset.x, -offset.y + eY + 2*eSize + motorWidth/2 - coreXYPosTR.y, eZ + basePlateThickness - coreXYPosTR.z];
         bracketHeight = useReversedBelts ? bracketHeightLeft : bracketHeightRight;
         for (x = upperBoltPositions(size.x))
-            translate([eX + eSize - x, eY + 3*eSize/2, basePlateThickness + bracketHeight - eSize - 5 + blockHeightExtra])
+            translate([eX + eSize - x, eY + 3*eSize/2, basePlateThickness + bracketHeight - 5 + blockHeightExtra - (use2060ForTopRear() ? 2*eSize + 2: eSize)])
                 vflip()
-                    boltM4ButtonheadHammerNut(_frameBoltLength);
+                    boltM4ButtonheadHammerNut(use2060ForTopRear() ? _frameBoltLength + 2 : _frameBoltLength );
         translate([eX + 3*eSize/2, eY + 7*eSize/2 - size.y - sideSupportSize.x,  basePlateThickness + bracketHeight - 5])
             vflip()
                 boltM4ButtonheadHammerNut(_frameBoltLength);

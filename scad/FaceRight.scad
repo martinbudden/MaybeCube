@@ -148,5 +148,9 @@ module faceRightMotorUpright(upperZRodMountsExtrusionOffsetZ, useElectronicsInBa
                 translate([eSize, eSize/2, z])
                     rotate([0, -90, 0])
                         jointBoltHole();
+            if (use2060ForTopRear())
+                translate([eSize, eSize/2, eZ - 5*eSize/2])
+                    rotate([0, -90, 0])
+                        jointBoltHole();
         }
 }
