@@ -124,6 +124,24 @@ EVA_2_4_2/assemblies/*_diff.png
 EVA_2_4_2/dxfs/*_diff.png
 EVA_2_4_2/stls/*_diff.png
 
+EVA_3_0/assemblies/*
+EVA_3_0/bom/
+EVA_3_0/dxfs/*
+EVA_3_0/stls/*
+EVA_3_0/tmp/
+EVA_3_0/*.html
+EVA_3_0/*.md
+!EVA_3_0/readme.md
+#!EVA_3_0/assemblies/main_assembled.png
+!EVA_3_0/assemblies/*.png
+#!EVA_3_0/dxfs/*.dxf
+#!EVA_3_0/dxfs/*.png
+#!EVA_3_0/stls/*.stl
+!EVA_3_0/stls/*.png
+EVA_3_0/assemblies/*_diff.png
+EVA_3_0/dxfs/*_diff.png
+EVA_3_0/stls/*_diff.png
+
 XChange/assemblies/*
 XChange/bom/
 XChange/dxfs/*
