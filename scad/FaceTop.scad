@@ -174,7 +174,7 @@ module faceTopBack(height=40, fov_distance=0) {
                             jointBoltHole();
             }
         }
-        if (_variant != "JubileeToolChanger" && is_undef($hide_extras) || !$hide_extras) {
+        if (_variant != "JubileeToolChanger" && (is_undef($hide_extras) || !$hide_extras)) {
             explode([0, -40, 0], true, show_line=false)
                 wiringGuidePosition(offsetX=cameraMountBaseSize.x/2)
                     vflip() {
