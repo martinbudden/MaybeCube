@@ -28,7 +28,7 @@
 //!* I've specified a Big Tree Tech mainboard and display, you of course can use any mainboard and display you like
 //!* the filament sensor
 //!* the polycarbonate side and back panels, if you don't want to enclose your print volume for (say) printing ABS. Note
-//!that these also add rigidity to the printer.
+//!that these panels also add rigidity to the printer.
 //!
 //!I've specified buttonhead bolts for the side and back panels. For a neater look you could countersink the holes and
 //!use countersunk bolts.

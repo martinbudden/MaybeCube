@@ -38,7 +38,7 @@ If you would like to build a smaller printer, you may be interested in the Maybe
 1. **Create a high quality engineered 3D printer capable of producing high quality prints**
 2. **Make the MaybeCube more easily usable in home environment (as opposed to garage or workshop)**
      * try and make it easy to transport and store the MaybeCube, so:
-     * integrated design, everything is enclosed within the printer's frame with. This includes the motors,
+     * integrated design: everything is enclosed within the printer's frame. This includes the motors,
        the motion system, the power supply, and the circuit boards. The only exceptions are the spool
        holder, which can be removed for transport and storage, and the extruder.
      * include base plate so underside of printer is not exposed
