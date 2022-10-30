@@ -104,7 +104,8 @@ omitted from the build.
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  8mm |
 |   .  |   .  |  14  |   2  |   .  |   2  |   .  |  20  |   38  |  Bolt M3 buttonhead x 10mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |  18  |   18  |  Bolt M3 caphead x  6mm |
-|   .  |   .  |  32  |   .  |   .  |   4  |   .  |   .  |   36  |  Bolt M3 caphead x 10mm |
+|   .  |   .  |  16  |   .  |   .  |   .  |   .  |   .  |   16  |  Bolt M3 caphead x  8mm |
+|   .  |   .  |  16  |   .  |   .  |   4  |   .  |   .  |   20  |  Bolt M3 caphead x 10mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Bolt M3 caphead x 12mm |
 |   .  |   .  |   2  |   2  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 caphead x 16mm |
 |   .  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |    3  |  Bolt M3 caphead x 20mm |
@@ -135,7 +136,7 @@ omitted from the build.
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Fan 30mm x 10mm |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Filament sensor |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  Heated Bed 214mm x 214mm |
-|   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Heatfit insert M3 |
+|   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Heatfit insert M3 x 5.8mm |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Hot end E3D V6 direct 1.75mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  IEC320 C14 switched fused inlet module |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  |  Leadscrew nut 8 x 2 |
@@ -473,7 +474,7 @@ to turn freely again.
 |   2 | Bolt M3 caphead x 10mm |
 |   1 | Bolt M3 caphead x 16mm |
 |   1 | Bolt M3 caphead x 25mm |
-|   2 | Heatfit insert M3 |
+|   2 | Heatfit insert M3 x 5.8mm |
 |   5 | Washer M3 |
 
 ### 3D Printed parts
@@ -506,7 +507,8 @@ Once this hole is tapped, remove the bolt.
 
 | Qty | Description |
 |----:|:------------|
-|  12 | Bolt M3 caphead x 10mm |
+|   8 | Bolt M3 caphead x  8mm |
+|   4 | Bolt M3 caphead x 10mm |
 |   4 | Bolt M5 buttonhead x 12mm |
 |   1 | Extrusion E2040 x 300mm |
 |   1 | Linear rail MGN12 x 300mm |
@@ -546,7 +548,7 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 |   2 | Bolt M3 caphead x 10mm |
 |   1 | Bolt M3 caphead x 16mm |
 |   1 | Bolt M3 caphead x 25mm |
-|   2 | Heatfit insert M3 |
+|   2 | Heatfit insert M3 x 5.8mm |
 |   5 | Washer M3 |
 
 ### 3D Printed parts
@@ -579,7 +581,8 @@ Once this hole is tapped, remove the bolt.
 
 | Qty | Description |
 |----:|:------------|
-|  12 | Bolt M3 caphead x 10mm |
+|   8 | Bolt M3 caphead x  8mm |
+|   4 | Bolt M3 caphead x 10mm |
 |   4 | Bolt M5 buttonhead x 12mm |
 |   1 | Extrusion E2040 x 300mm |
 |   1 | Linear rail MGN12 x 300mm |
