@@ -142,7 +142,7 @@ A small movement at a joint is magnified into a much larger movement at the end 
 There are three main ways to increase the rigidity of rectangles:
 
 1. triangulation, where the a diagonal piece divides the rectangle into two triangles, this is exemplified in [truss bridges](https://en.wikipedia.org/wiki/Truss_bridge)
-2. using a shear plate, this is exemplified in the [sheer boards](https://en.wikipedia.org/wiki/Shear_wall) used to stiffen
+2. using a shear plate, this is exemplified in the [shear boards](https://en.wikipedia.org/wiki/Shear_wall) used to stiffen
    wooden framed buildings
 3. reinforcing the joints.
 
@@ -232,7 +232,7 @@ MaybeCube. Note that this is incomplete and still requires an X_Carriage adaptor
 
 ### 3-point Kinematic Bed
 
-The MC300 and MC350 use a cantilevered print bed. For larger variants a 3-point Kinematic Bed is recommended.
+The MC300 and MC350 use a cantilevered print bed. For larger variants it is possible to use a 3-point Kinematic Bed.
 
 ![KinematicBed Assembly](KinematicBed/assemblies/KinematicBed_assembled.png)
 
