@@ -126,9 +126,12 @@ SimpleCore 300 | 2020 | 500 x 500 x 500 | 330 x 330 x 230 | 540 x 540 x 540 (est
 SnakeOil XY 250 | 3030 | 400 x 370 x 550 | 250 x 240 x 230 | 490 x 450 x 570 (est)
 [Ultra MegaMax Dominator](https://drmrehorst.blogspot.com/2017/07/ultra-megamax-dominator-3d-printer.html) | 4040 | | 300 x 300 x 695 | 610 x 530 x 1500
 [Voron 0](https://vorondesign.com/voron0) | 1515 | 200 x 200 x 200 | 120 x 120 x 120 | 230 x 230 x 280
-[Voron2 v2.4 250](https://vorondesign.com/voron2.4) | 2020 | 410 x 410 x 430 | 250 x 250 x 230 | 450 x 450 x 430
-Voron2 v2.4 300    | 2020 | 460 x 460 x 480 | 300 x 300 x 280 | 500 x 500 x 480
-Voron2 v2.4 350    | 2020 | 510 x 510 x 530 | 350 x 350 x 330 | 550 x 550 x 530
+[Voron2 Trident 250](https://vorondesign.com/voron_trident) | 2020 | 370 x 370 x 500 | 250 x 250 x 250 | 410 x 410 x 500
+Voron2 Trident 300    | 2020 | 420 x 420 x 500 | 300 x 300 x 250 | 460 x 460 x 500
+Voron2 Trident 350    | 2020 | 470 x 470 x 530 | 350 x 350 x 250 | 510 x 510 x 500
+[Voron2 v2.4 250](https://vorondesign.com/voron2.4) | 2020 | 370 x 370 x 430 | 250 x 250 x 230 | 410 x 410 x 430
+Voron2 v2.4 300    | 2020 | 420 x 420 x 480 | 300 x 300 x 280 | 460 x 460 x 480
+Voron2 v2.4 350    | 2020 | 470 x 470 x 530 | 350 x 350 x 330 | 510 x 510 x 530
 [VzBot](https://github.com/VzBot3D/VzBot) | 2020/2040 | 530 x 460 x 530 | 330 x 330 x 400 | 530 x 500 x 570
 
 ## Frame stiffness
