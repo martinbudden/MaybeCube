@@ -21,6 +21,10 @@ is inside the motor, so check how your supplier specifies the part before orderi
 screw that is too long and cut to size, not however that lead screws are made from hardened steel and cannot be cut
 with a hacksaw - an angle grinder is required to cut them.
 
+For the MC350 variant I have specified an Ender-style 235x235mm print bed with 4 fixing bolts - this is because they are
+readily available and cheap. A better solution is to use an aluminium tooling plate drilled for a 3 point fixing and a
+silicone heating pad.
+
 This is a full build, some parts can be omitted to save cost, in particular:
 
 * the Raspberry Pi camera (and corresponding 8mm M2 caphead bolts)
@@ -30,7 +34,7 @@ This is a full build, some parts can be omitted to save cost, in particular:
 * I've specified a Big Tree Tech mainboard and display, you of course can use any mainboard and display you like
 * the filament sensor
 * the polycarbonate side and back panels, if you don't want to enclose your print volume for (say) printing ABS. Note
-that these also add rigidity to the printer.
+that these panels also add rigidity to the printer.
 
 I've specified buttonhead bolts for the side and back panels. For a neater look you could countersink the holes and
 use countersunk bolts.
