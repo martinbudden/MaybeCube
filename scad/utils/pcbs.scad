@@ -4,14 +4,15 @@ use <NopSCADlib/vitamins/pillar.scad>
 
 function substring(string, range) = chr([for (i = range) ord(string[i])]);
 
-M3x5_nylon_hex_pillar  = ["M3x5_nylon_hex_pillar",  "hex nylon", 3, 5, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -2, -2 + eps];
+M3x5_nylon_hex_pillar  = ["M3x5_nylon_hex_pillar",  "hex nylon", 3,  5, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -2, -2 + eps];
+M3x6_nylon_hex_pillar  = ["M3x6_nylon_hex_pillar",  "hex nylon", 3,  6, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -2, -2 + eps];
 M3x10_nylon_hex_pillar = ["M3x10_nylon_hex_pillar", "hex nylon", 3, 10, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -4, -4 + eps];
 M3x25_nylon_hex_pillar = ["M3x25_nylon_hex_pillar", "hex nylon", 3, 25, 6/cos(30), 6/cos(30),  6, 6,  grey(20),   grey(20),  -6, -6 + eps];
 
 module pcbAssembly(pcbType, pcbOnBase=false) {
     rpi = substring(pcbType[0], [0:2]) == "RPI";
     mainboard = !(rpi || pcbType[0] == "BTT_RELAY_V1_2" || pcbType[0] == "XL4015_BUCK_CONVERTER");
-    pcbOffsetZ = mainboard ? (pcbOnBase ? 25 : 20) : 10;
+    pcbOffsetZ = mainboard ? (pcbOnBase ? 25 : 20) : 6;
 
     explode = 40;
     if (is_undef($hide_pcb) || $hide_pcb == false)
@@ -22,13 +23,17 @@ module pcbAssembly(pcbType, pcbOnBase=false) {
                 if (!mainboard || !pcbOnBase || $i==1 || $i == 2) {
                     translate_z(pcb_thickness(pcbType))
                         explode(explode, true)
-                            boltM3Caphead(6);
+                            if (pcbType[0] == "XL4015_BUCK_CONVERTER")
+                                boltM2Caphead(pcbOffsetZ==6 ? 12 : 6);
+                            else
+                                boltM3Caphead(pcbOffsetZ==6 ? 12 : 6);
                     translate_z(-pcbOffsetZ) {
                         explode(10)
-                            pillar(pcbOffsetZ==10 ? M3x10_nylon_hex_pillar : M3x25_nylon_hex_pillar);
-                        translate_z(-_basePlateThickness)
-                            vflip()
-                                boltM3Buttonhead(10);
+                            pillar(pcbOffsetZ==6 ? M3x6_nylon_hex_pillar : pcbOffsetZ==10 ? M3x10_nylon_hex_pillar : M3x25_nylon_hex_pillar);
+                        if (pcbOffsetZ > 6)
+                            translate_z(-_basePlateThickness)
+                                vflip()
+                                    boltM3Buttonhead(10);
                     }
                 } else if (mainboard) {
                     translate_z(-pcbOffsetZ + eSize)

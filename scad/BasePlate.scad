@@ -113,7 +113,7 @@ module baseCutouts(cncSides=undef, radius=undef) {
             pcbPosition(pcb, pcbOnBase)
                 pcb_screw_positions(pcb)
                     if (pcb!=pcbType || $i==1 || $i == 2)
-                        poly_circle(is_undef(radius) ? M3_clearance_radius : radius, sides=cncSides);
+                        poly_circle(is_undef(radius) ?(pcb==pcbType ? M3_clearance_radius : pcb==XL4015_BUCK_CONVERTER? M2_tap_radius : M3_tap_radius): radius, sides=cncSides);
 
 }
 
@@ -245,7 +245,8 @@ assembly("Base_Plate_Stage_1", big=true, ngb=true) {
                     psu(basePSUType);
                     PSUBoltPositions(basePSUType)
                         explode(20, true)
-                            boltM4Buttonhead(10);
+                            translate_z(1.5)
+                                boltM4Buttonhead(8);
                 }
     }
 
