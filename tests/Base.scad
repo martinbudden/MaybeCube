@@ -24,6 +24,7 @@ include <../scad/Parameters_Main.scad>
 //$explode = 1;
 //$pose = 1;
 module Base_test() {
+    //BaseAL();
     //Base_Plate_Stage_1_assembly();
     //basePlateAssembly(rightExtrusion=false, hammerNut=false);
     //translate([eX + eSize, eSize, 0]) extrusionOY(eY);

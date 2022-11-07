@@ -11,13 +11,9 @@ include <../scad/Parameters_Main.scad>
 //$pose = 1;
 module IEC_Housing_test() {
     //IEC_Housing_stl();
+    //iecHousingStl();
     //IEC_Housing_Bevelled_stl();
     //IEC_Housing_Mount_stl();
-    *intersection() {
-        translate([0, -180, -2])
-            rounded_cube_xy([36, 40, 30], 2);
-        IEC_Housing_Mount_300_stl();
-    }
     translate([-eX - 2*eSize, -eY - 2*eSize, 0])
         IEC_Housing_assembly();
     //pcb(BTT_RELAY_V1_2);
