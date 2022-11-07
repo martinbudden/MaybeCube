@@ -25,12 +25,12 @@
 //!
 //!This is a full build, some parts can be omitted to save cost, in particular:
 //!
-//!* the Raspberry Pi camera (and corresponding 8mm M2 caphead bolts)
-//!* the Raspberry Pi (if you don't want to run Octoprint or Klipper) and corresponding buck converter
+//!* the Raspberry Pi Camera and corresponding 8mm M2 caphead bolts
+//!* the Raspberry Pi (if you don't want to run Octoprint or Klipper) and corresponding buck converter and 12mm M2 caphead bolts
+//!* the filament sensor
 //!* the Big Tree Tech relay module, if you don't want auto shut off
 //!* the Big Tree Tech TFT display, if you are running Octoprint or Klipper
 //!* I've specified a Big Tree Tech mainboard and display, you of course can use any mainboard and display you like
-//!* the filament sensor
 //!* the polycarbonate side and back panels, if you don't want to enclose your print volume for (say) printing ABS. Note
 //!that these panels also add rigidity to the printer.
 //!
