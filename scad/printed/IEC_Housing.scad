@@ -34,7 +34,7 @@ module IEC_Housing_Bevelled_stl() {
 module IEC_Housing_stl() {
     stl("IEC_Housing")
         color(pp4_colour)
-            rotate(180) // rotate so rear seem underneath and so hidden when printed
+            rotate(180) // rotate so rear seam underneath and so hidden when assembled
                 iecHousingStl(bevelled=false);
 }
 
@@ -44,6 +44,7 @@ module iecHousingStl(bevelled=false) {
     fillet = 2;
     cutoutSize = [size.x - 10, 27.5];
     baseThickness = 3;
+    blockHeight = size.z - eSize - baseThickness - 5;
 
     triangleSize = [8, 7];
     difference() {
@@ -73,15 +74,15 @@ module iecHousingStl(bevelled=false) {
                     }
                 if (!bevelled)
                     translate([-size.x/2, -size.y/2 - extension, 0])
-                        rounded_cube_xy([size.x, extension + 2*fillet, size.z - eSize - baseThickness], fillet);
+                        rounded_cube_xy([size.x, extension + 2*fillet, blockHeight], fillet);
             }
 
             if (!bevelled) {
                 translate([size.x/2 - eSize - 5, -size.y/2 - extension + 5, -eps])
-                    rounded_cube_xy([eSize, extension + 10, size.z - eSize - 5 - baseThickness], fillet);
+                    rounded_cube_xy([eSize, extension + 10, blockHeight - 5], fillet);
                 translate([size.x/2 - eSize - 5, -cutoutSize.y/2, -eps])
                     rotate(180)
-                        fillet(fillet, size.z - eSize - 5 - baseThickness + 2*eps);
+                        fillet(fillet, blockHeight - 5 + 2*eps);
             }
             rotate(90)
                 translate_z(size.z)
