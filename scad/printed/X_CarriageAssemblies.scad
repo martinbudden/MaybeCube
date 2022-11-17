@@ -69,6 +69,17 @@ module X_Carriage_Belt_Side_RB_stl() {
             xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), reversedBelts=true, endCube=true);
 }
 
+module X_Carriage_Belt_Side_RB_MGN9C_stl() {
+    xCarriageType = MGN9C_carriage;
+    size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 1];
+
+    // orientate for printing
+    stl("X_Carriage_Belt_Side_RB_MGN9C"); // semicolon required for XChange build as this is not on BOM
+    color(pp4_colour)
+        rotate([90, 0, 0])// orientate for printing
+            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), reversedBelts=true, endCube=true);
+}
+
 module X_Carriage_Belt_Side_16_stl() {
     xCarriageType = MGN12H_carriage;
     size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 1];
@@ -102,9 +113,12 @@ assembly("X_Carriage_Belt_Side", big=true) {
     useReversedBelts = useReversedBelts();
     rotate([-90, 0, 0])
         stl_colour(pp4_colour)
-            if (useReversedBelts)
-                X_Carriage_Belt_Side_RB_stl();
-            else if (usePulley25())
+            if (useReversedBelts) {
+                if (_xCarriageDescriptor == "MGN9C")
+                    X_Carriage_Belt_Side_RB_MGN9C_stl();
+                else
+                    X_Carriage_Belt_Side_RB_stl();
+            } else if (usePulley25())
                 translate([0, 0, -pulley25Offset])
                     X_Carriage_Belt_Side_25_stl();
             else

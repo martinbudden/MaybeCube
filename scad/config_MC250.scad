@@ -15,7 +15,8 @@ _xRailLength = eX - 50;
 _yRailLength = eY;
 _zRodLength = eZ - 100;
 
-_xCarriageDescriptor = "MGN9H";
+//_xCarriageDescriptor = "MGN9C";
+_xCarriageDescriptor = "MGN12H";
 _xCarriageCountersunk = true;
 _yCarriageDescriptor = "MGN12H";
 
