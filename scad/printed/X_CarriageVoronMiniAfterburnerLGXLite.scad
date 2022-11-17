@@ -20,16 +20,16 @@ function voronAdaptorColor() = pp3_colour;
 
 xCarriageType = MGN12H_carriage;
 
-module X_Carriage_Voron_Mini_Afterburner_stl() {
-    stl("X_Carriage_Voron_Mini_Afterburner");
+module X_Carriage_Voron_Mini_Afterburner_LGX_Lite_stl() {
+    stl("X_Carriage_Voron_Mini_Afterburner_LGX_Lite");
     color(pp3_colour)
         rotate(180) // align for printing
-            xCarriageVoronMiniAfterburner();
+            xCarriageVoronMiniAfterburnerLGXLite();
 }
 
 xCarriageVoronMiniAfterburnerOffsetZ = 4.5; // was 4.25, increased for cable clearance
 
-module xCarriageVoronMiniAfterburner() {
+module xCarriageVoronMiniAfterburnerLGXLite() {
     size = [xCarriageSize.x, xCarriageSize.z + 5.35, xCarriageSize.y];
     size2 = [35, 20, size.z + xCarriageVoronMiniAfterburnerOffsetZ];
 
@@ -89,7 +89,7 @@ module xCarriageVoronMiniAfterburner() {
 
 M2_self_tapping_screw    = ["M2_self_tapping", "M2 self tapping (Pan Head)", hs_pan,  2, 3.5, 1.3,  0, 0, 0,  M2_washer, false,   M2_tap_radius,    M2_clearance_radius];
 
-module xCarriageVoronMiniAfterburner_hardware() {
+module xCarriageVoronMiniAfterburnerLGXLite_hardware() {
     *translate([0, 0, 42.5]) {
         translate([6.270, 51.33, 0])
             boltM3Countersunk(40);
@@ -102,78 +102,33 @@ module xCarriageVoronMiniAfterburner_hardware() {
             bolt(M2_self_tapping_screw, 10);
 }
 
-module vmaImportStl(file) {
-    import(str("../../../stlimport/voron-0/Toolheads/Mini_Afterburner/", file, ".stl"), convexity=10);
+module vmalgxlImportStl(file) {
+    import(str("../../../stlimport/voron-0/Toolheads/Mini-After-LGX-Lite/Mini-After-LGX-lite/", file, ".stl"), convexity=10);
 }
 
-module vma_x_carriage_90_x1() {
-    translate([-109 + 13/2, 0, 43.7])
-        rotate([0, 90, -90])
+module vmalgxl_x_carriage_sls() {
+    translate([0, 0, 7])
+        rotate([90, 0, 0])
             color(voronColor())
-                vmaImportStl("X_Carriage_90_x1");
+                vmalgxlImportStl("x-carriage_sls");
 }
 
-module vma_vlatch_dd_x1() {
-    translate([0, 22, 34])
+module vmalgxl_hotend_mount_mosquito_3010_fan() {
+    translate([147.87, -0.29, -154.7])
         rotate([90, 0, 180])
             color(voronColor())
-                vmaImportStl("Latch_DD_x1");
+                vmalgxlImportStl("hotend_mount_mosquito_3010_fan");
 }
 
-module vma_vlatch_shuttle_dd_x1() {
-    translate([160, 17, -80])
-        rotate([90, 0, 180])
-            color(voronColor())
-                vmaImportStl("Latch_Shuttle_DD_x1");
-}
 
-module vma_guidler_dd_x1() {
-    translate([-12.85, -210.5, -182.05])
-        rotate([90, 0, 90])
-            color(voronColor())
-                vmaImportStl("Guidler_DD_x1");
-}
-
-module vma_motor_frame_x1() {
-    vitamin(str(": Voron Mini Afterburner motor frame"));
-    translate([5.75, 35, 8.5])
-        rotate([0, 90, 90])
-            color(voronColor())
-                vmaImportStl("Motor_Frame_x1");
-}
-
-module vma_motor_frame_x1_hardware() {
-    translate([5.75, 35, 8.5])
-        rotate([0, 90, 90]) {
-            translate([-1.15, 1.44, -34.2])
-                ball_bearing(BBMR85);
-            for (y = [-11, 11])
-                translate([-22, y + 6, -35.1])
-                    vflip()
-                        insert(F1BM3);
-        }
-}
-
-module vma_motor_frame_x1_assembly() {
-    vma_motor_frame_x1();
-    no_explode() not_on_bom()
-        vma_motor_frame_x1_hardware();
-}
-
-module vma_mid_body_x1() {
-    translate([-198.8,16.75,232.8])
-        rotate([0,90,-90])
-            color(voronAccentColor())
-                vmaImportStl("Mosquito_Toolhead_DD/[a]_Mid_Body_x1");
-}
-
-module vma_cowling_mosquito_x1() {
-    vitamin(str(": Voron Mini Afterburner assembly"));
+module vmalgxl_cowling_universal() {
+    vitamin(str(": Voron Mini Afterburner LGX Lite assembly"));
 
     translate([60, 32.2, 51])
         rotate([-90, 0, 180]) {
-            color(voronAccentColor())
-                vmaImportStl("Mosquito_Toolhead_DD/[a]_Cowling_Mosquito_x1");
+            //color(voronAccentColor())
+            translate([60, 140, 0])
+                vmalgxlImportStl("Cowling_Universal");
             if ($preview) {
                 translate([45, 94, 31])
                     rotate([180, 90, 0])
@@ -186,17 +141,10 @@ module vma_cowling_mosquito_x1() {
                 translate([60, 73, 8])
                     not_on_bom()
                         fan(fan30x10);
-                for (x = [49, 71])
-                    translate([x, 20.75, 1.5])
-                        vflip()
-                            boltM3Buttonhead(30);
                 for (x = [-13, 13])
                     translate([x + 60, 55, 1.5])
                         vflip()
                             boltM3Buttonhead(40);
-                translate([66.27, 52, 1.5])
-                    vflip()
-                        boltM3Buttonhead(40);
             }
         }
 }
