@@ -27,12 +27,12 @@ silicone heating pad.
 
 This is a full build, some parts can be omitted to save cost, in particular:
 
-* the Raspberry Pi camera (and corresponding 8mm M2 caphead bolts)
-* the Raspberry Pi (if you don't want to run Octoprint or Klipper) and corresponding buck converter
+* the Raspberry Pi Camera and corresponding 8mm M2 caphead bolts
+* the Raspberry Pi (if you don't want to run Octoprint or Klipper) and corresponding buck converter and 12mm M2 caphead bolts
+* the filament sensor
 * the Big Tree Tech relay module, if you don't want auto shut off
 * the Big Tree Tech TFT display, if you are running Octoprint or Klipper
 * I've specified a Big Tree Tech mainboard and display, you of course can use any mainboard and display you like
-* the filament sensor
 * the polycarbonate side and back panels, if you don't want to enclose your print volume for (say) printing ABS. Note
 that these panels also add rigidity to the printer.
 
@@ -106,11 +106,12 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech TFT35 E3 v3.0 |
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  8mm |
-|   .  |   .  |  14  |   2  |   .  |   2  |   .  |  20  |   38  |  Bolt M3 buttonhead x 10mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |  18  |   18  |  Bolt M3 caphead x  6mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M2 caphead x 12mm |
+|   .  |   .  |  14  |   2  |   .  |   2  |   .  |   8  |   26  |  Bolt M3 buttonhead x 10mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   6  |    6  |  Bolt M3 caphead x  6mm |
 |   .  |   .  |  16  |   .  |   .  |   .  |   .  |   .  |   16  |  Bolt M3 caphead x  8mm |
 |   .  |   .  |  16  |   .  |   .  |   4  |   .  |   .  |   20  |  Bolt M3 caphead x 10mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Bolt M3 caphead x 12mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |  10  |   10  |  Bolt M3 caphead x 12mm |
 |   .  |   .  |   2  |   2  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 caphead x 16mm |
 |   .  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |    3  |  Bolt M3 caphead x 20mm |
 |   .  |   .  |   3  |   .  |   .  |   .  |   .  |   4  |    7  |  Bolt M3 caphead x 25mm |
@@ -121,8 +122,8 @@ omitted from the build.
 |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 countersunk x 25mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 countersunk x 35mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M3 countersunk x 40mm |
-|   .  |   .  |   .  |   8  |   .  |   .  |   .  |  55  |   63  |  Bolt M4 buttonhead x  8mm |
-|   .  |   .  |  12  |   .  |   .  |   6  |   4  |  14  |   36  |  Bolt M4 buttonhead x 10mm |
+|   .  |   .  |   .  |   8  |   .  |   .  |   .  |  57  |   65  |  Bolt M4 buttonhead x  8mm |
+|   .  |   .  |  12  |   .  |   .  |   6  |   4  |  12  |   34  |  Bolt M4 buttonhead x 10mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   .  |   4  |   12  |  Bolt M4 buttonhead x 12mm |
 |   .  |   .  |  20  |   .  |   .  |   .  |   8  |   .  |   28  |  Bolt M4 countersunk x 10mm |
 |   .  |   .  |   6  |   .  |   .  |   .  |   .  |   .  |    6  |  Bolt M5 buttonhead x 10mm |
@@ -156,10 +157,10 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |  12  |   .  |   .  |   .  |   12  |  O-ring nitrile 4mm x 2mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PSU NIUGUY CB-500W-24V |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE Bowden tube, 500 mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |  12  |   12  |  Pillar hex nylon F/F M3x10 |
 |   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |    2  |  Pillar hex nylon F/F M3x14 |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Pillar hex nylon F/F M3x25 |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Pillar hex nylon F/F M3x5 |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |  12  |   12  |  Pillar hex nylon F/F M3x6 |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Pulley GT2OB 20 teeth |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Raspberry Pi 3A+ |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Raspberry Pi camera V2 |
@@ -178,7 +179,7 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |    3  |  Washer penny M4 |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  XL4015 buck converter |
 |   3  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    3  |  Ziptie 2.5mm x 100mm min length |
-|  12  |   4  | 277  |  39  |  34  |  46  |  40  | 251  |  703  | Total vitamins count |
+|  12  |   4  | 277  |  39  |  34  |  46  |  40  | 239  |  691  | Total vitamins count |
 |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Camera_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_Bracket_TFT35_E3.stl |
@@ -902,11 +903,12 @@ thermally isolates the motor from the **Extruder_Bracket** and should not be omi
 |   1 | Aluminium sheet 340mm x 340mm x 3mm |
 |   1 | BigTreeTech Relay Module v1.2 |
 |   1 | BigTreeTech SKR v1.4 Turbo |
-|  14 | Bolt M3 buttonhead x 10mm |
-|  14 | Bolt M3 caphead x  6mm |
-|   2 | Bolt M3 caphead x 12mm |
-|   8 | Bolt M4 buttonhead x  8mm |
-|  10 | Bolt M4 buttonhead x 10mm |
+|   4 | Bolt M2 caphead x 12mm |
+|   2 | Bolt M3 buttonhead x 10mm |
+|   2 | Bolt M3 caphead x  6mm |
+|  10 | Bolt M3 caphead x 12mm |
+|  10 | Bolt M4 buttonhead x  8mm |
+|   8 | Bolt M4 buttonhead x 10mm |
 |  14 | Bolt M5 buttonhead x 12mm |
 |   1 | Extrusion E2020 x 300mm |
 |   1 | Extrusion E2040 x 300mm |
@@ -915,9 +917,9 @@ thermally isolates the motor from the **Extruder_Bracket** and should not be omi
 |   2 | Nut M3 hammer |
 |  16 | Nut M4 hammer |
 |   1 | PSU NIUGUY CB-500W-24V |
-|  12 | Pillar hex nylon F/F M3x10 |
 |   2 | Pillar hex nylon F/F M3x25 |
 |   2 | Pillar hex nylon F/F M3x5 |
+|  12 | Pillar hex nylon F/F M3x6 |
 |   1 | Raspberry Pi 3A+ |
 |   1 | XL4015 buck converter |
 
