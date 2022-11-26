@@ -104,6 +104,8 @@ MC350             | 2040  | 350 x 350 x 400   | 225 x 225 x 200  | 390 x 390 x 4
 MC400             | 2040  | 400 x 400 x 500   | 275 x 275 x 300  | 440 x 440 x 520
 MC450             | 2040  | 450 x 450 x 550   | 325 x 325 x 350  | 490 x 490 x 570
 [BLV MGN Cube](https://www.blvprojects.com/blv-mgn-cube-3d-printer) | 2040 | 496 x 496 x 560 | 300 x 300 x 365 | 576 x 536 x 560
+[Creality Ender 5 S1](https://www.creality.com/products/ender-5-s1-3d-printer) | 2020/2040 | 375 x 440 x 550 (est) | 220 x 220 x 280 | 425 x 460 x 570
+[Daedalus 1.5](https://www.projectr3d.com/shop/p/daedalus) | 2040 | 450 x 480 x 590 (est) | 310 x 300 x 345 | 495 x 521 x 600
 [Denali 200](https://github.com/Annex-Engineering/Denali) | 2020 | 320 x 320 x 590 | 200 x 200 x 200 | 380 x 380 x 620 (est)
 Denali 250 | 2020 | 370 x 370 x 590 | 250 x 250 x 200 | 430 x 430 x 620 (est)
 Denali 350 | 2020 | 470 x 470 x 690 | 350 x 350 x 300 | 530 x 530 x 720 (est)
