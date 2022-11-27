@@ -43,8 +43,9 @@ module Spool_Holder_Bracket_stl() {
                     for (x = [eSize/2, size.x - eSize/2])
                         translate([x, eSize/2, 0])
                             boltHoleM4HangingCounterboreButtonhead(size.z, boreDepth=size.z - 5);
+                    // latch
                     offset = 0.1;
-                    translate([size.x/2, size.y - catchRadius - offset, 0])
+                    *translate([size.x/2, size.y - catchRadius - offset, 0])
                         rotate([0, 90, 0])
                              hull() {
                                 cylinder(r=catchRadius, h=catchLength, center=true);
