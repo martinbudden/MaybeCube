@@ -12,7 +12,9 @@ use <../scad/Parameters_Positions.scad>
 //$explode = 1;
 //$pose=1;
 module XY_Motor_Mount_test() {
-    //XY_Motor_Mount_Left_16_stl();
+    //XY_Motor_Mount_Left_RB_stl();
+    //xyMotorMountLeftStl(useReversedBelts=true, cnc=true);
+
     //XY_Motor_Mount_Brace_Left_16_stl();
     //XY_Motor_Mount_Right_16_stl();
     translate_z(-eZ + eSize) {
