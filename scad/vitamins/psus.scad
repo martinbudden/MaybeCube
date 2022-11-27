@@ -1,9 +1,63 @@
 include <NopSCADlib/utils/core/core.scad>
+//include <NopSCADlib/vitamins/psus.scad>
 
+UT_48V3A150WUT = [
+    "UT_48V3A150W",
+    "UT_48V3A150W",// part name
+    129, 97, 30,// length, width, height
+    M3_pan_screw, M3_clearance_radius,// screw type and clearance
+    false,// true if ATX style
+    11,// terminals bay depth
+    4.5,// heatsink bay depth
+    [// terminals
+        7, // count
+        11, // y offset
+        mw_terminals
+    ],
+    false,// pcb
+    // faces
+    [// parameters are: holes, thickness, cutouts, grill, fans, iec, switch, vents, panel cutout
+        [// f_bottom, bottom
+            [[82.5, -40], [82.5, 40], [-37.5, -40], [-37.5, 40]], // holes
+            1.5, // thickness
+            [] // cutouts
+        ],
+        [// f_top, top
+            [], // holes
+            0.5, // thickness
+            [], // cutouts
+            true // grill
+        ],
+        [// f_left, front (terminals) after rotation
+            [], // holes
+            0.5, // thickness
+            [[[-49, -19], [-49, -11.5], [-40, -11.5], [-40, 5], [47.5, 5], [47.5, -19]]] // cutouts
+        ],
+        [// f_right, back after rotation
+            [], // holes
+            1.5, // thickness
+            [[[-49, -19], [-49, -6], [37.5, -6], [37.5, -12.5], [49, -12.5], [49, -19]]] // cutouts
+        ],
+        [// f_front, right after rotation
+            [[-77.5, 1], [79.5, 9.5], [79.5, -9.5]], // holes
+            1.5, // thickness
+            [] // cutouts
+        ],
+        [// f_back, left after rotation
+            [], // holes
+            0.5, // thickness
+            [], // cutouts
+            true // grill
+        ]
+    ],
+    [] // accessories for BOM
+];
+
+
+/*
 // NIUGUY CB-500W-24V
 ng_terminals = [9.525, 1.5, 15, 17.8, 7, 15]; // pitch, divider width, divider height, total depth, height under contacts, depth of contact well
 
-function NIUGUY_CB_PSU(id, name, s /*size*/, terminals, ways_dc=4, ways_ac=3, c=10/*corner*/) =
     [id, name, // Name
     s.x, s.y, s.z, // Size
     M3_pan_screw, M3_clearance_radius, // Screw type and clearance hole
@@ -42,7 +96,7 @@ function NIUGUY_CB_PSU(id, name, s /*size*/, terminals, ways_dc=4, ways_ac=3, c=
     ],
     [] // accessories for BOM
 ];
-
+*/
 /*
 // Lincoiah, XnBaDa
 MN_60W_24V     = NIUGUY_CB_PSU("MN_60W24V",   "MN-60W24V",   [146, 53, 21], ng_terminals);
@@ -62,4 +116,4 @@ MN_500W_24V    = NIUGUY_CB_PSU("MN_500W24V",  "MN-500W24V",  [370, 53, 21], ng_t
 //NG_CB_200W_24V = NIUGUY_CB_PSU("NG_CB_200W_24V", "NIUGUY NG-CB-200W-24V", [178, 50, 22], ng_terminals);
 //NG_CB_300W_24V = NIUGUY_CB_PSU("NG_CB_200W_24V", "NIUGUY NG-CB-200W-24V", [205, 50, 22], ng_terminals);
 //NG_CB_400W_24V = NIUGUY_CB_PSU("NG_CB_200W_24V", "NIUGUY NG-CB-200W-24V", [238, 50, 22], ng_terminals);
-NG_CB_500W_24V = NIUGUY_CB_PSU("NG_CB_500W_24V", "NIUGUY NG-CB-500W-24V", [238, 50, 22], ng_terminals);
+//NG_CB_500W_24V = NIUGUY_CB_PSU("NG_CB_500W_24V", "NIUGUY NG-CB-500W-24V", [238, 50, 22], ng_terminals);
