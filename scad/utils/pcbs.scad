@@ -70,6 +70,10 @@ module pcbPosition(pcbType, pcbOnBase=false, z=0) {
             pcbSize = pcb_size(BTT_SKR_E3_TURBO);
             translate([eX + 2*eSize - pcbSize.x/2 - eSize/2 + holeOffset, pcbSize.y/2 + eSize + (eY >= 300 ? 20 : 15), z])
                 children();
+        } else if (pcbType[0] == "BTT_MANTA_8MP_V1_0") {
+            holeOffset = 4.43;
+            translate([eX + 2*eSize - pcbSize.x/2 - eSize/2 + holeOffset, pcbSize.y/2 + eSize + (eY >= 300 ? 20 : 15), z])
+                children();
         } else {
             holeOffset = 4;
             translate([eX + 2*eSize - pcbSize.y/2 - eSize/2 + holeOffset, pcbSize.x/2 + eSize + (eY >= 300 ? 20 : 15), z])
