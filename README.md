@@ -1,6 +1,6 @@
 # MaybeCube
 
-The **MaybeCube** is a fully-featured, rigid, high speed, and affordable CoreXY 3D printer with a linear rails motion system.
+The MaybeCube is a fully-featured, rigid, high speed, and affordable CoreXY 3D printer with a linear rails motion system.
 
 It can be built in a variety of sizes: the standard size is the MC350, which has external dimensions of approximately
 405mm by 475mm by 415mm and a build volume of approximately 225mm x 225mm x 200mm.
@@ -138,7 +138,7 @@ Voron2 v2.4 350    | 2020 | 470 x 470 x 530 | 350 x 350 x 330 | 510 x 510 x 530
 
 ## Frame stiffness
 
-The MaybeCube is a cuboid with 6 rectangular faces. Rectangles have no inherent rigidity and are subject to shearing. The
+The frame is a cuboid with 6 rectangular faces. Rectangles have no inherent rigidity and are subject to shearing. The
 rigidity of a rectangle is provided solely by the strength of its joints, and these often do not provide sufficient rigidity.
 A small movement at a joint is magnified into a much larger movement at the end of a 400mm extrusion.
 There are three main ways to increase the rigidity of rectangles:
