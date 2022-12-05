@@ -35,7 +35,9 @@ module IEC_Housing_stl() {
     stl("IEC_Housing")
         color(pp4_colour)
             rotate(180) // rotate so rear seam underneath and so hidden when assembled
-                iecHousingStl(bevelled=false);
+                translate([iecHousingSize().x, 0, 0])
+                    mirror([1, 0, 0])
+                        iecHousingStl(bevelled=false);
 }
 
 module iecHousingStl(bevelled=false) {
@@ -56,7 +58,7 @@ module iecHousingStl(bevelled=false) {
                     right_triangle(triangleSize.x + 2*eps, triangleSize.y + 2*eps, baseThickness + 2*eps, center=false);
         } else {
             cableCutoutSize = [10, 10, baseThickness + 2*eps];
-            translate([size.x-cableCutoutSize.x-(size.x - cutoutSize.x)/2, -extension + 5, -eps])
+            *translate([size.x - cableCutoutSize.x - (size.x - cutoutSize.x)/2, -extension + 5, -eps])
                 rounded_cube_xy(cableCutoutSize, fillet);
         }
     }
@@ -77,23 +79,36 @@ module iecHousingStl(bevelled=false) {
                         rounded_cube_xy([size.x, extension + 2*fillet, blockHeight], fillet);
             }
 
-            if (!bevelled) {
+            if (bevelled) {
+                cableCutoutSize = [8, (size.y-cutoutSize.y)/2 + 2*eps, 8];
+                translate([size.x/2 - 12 - cableCutoutSize.x/2, -size.y/2 - eps, -eps])
+                    cube(cableCutoutSize);
+            } else {
                 translate([size.x/2 - eSize - 5, -size.y/2 - extension + 5, -eps])
                     rounded_cube_xy([eSize, extension + 10, blockHeight - 5], fillet);
                 translate([size.x/2 - eSize - 5, -cutoutSize.y/2, -eps])
                     rotate(180)
                         fillet(fillet, blockHeight - 5 + 2*eps);
+                holeSize = [5, 10, 10];
+                translate([size.x/2 - holeSize.x + eps, -size.y/2 - extension + 5, eps]) {
+                    translate([-fillet, 0, 0])
+                        cube(holeSize + [fillet, 0, 0]);
+                    translate([0, holeSize.y, 0])
+                        fillet(fillet, holeSize.z);
+                    translate([holeSize.x, holeSize.y, 0])
+                        rotate(90)
+                            fillet(fillet, holeSize.z);
+                    translate([holeSize.x, 0, 0])
+                        rotate(180)
+                            fillet(fillet, holeSize.z);
+                }
+
             }
             rotate(90)
                 translate_z(size.z)
                     iec_screw_positions(iecType())
                         vflip()
                             boltHoleM4Tap(10);
-            if (bevelled) {
-                cableCutoutSize = [8, (size.y-cutoutSize.y)/2 + 2*eps, 8];
-                translate([size.x/2 - 12 - cableCutoutSize.x/2, -size.y/2 - eps, -eps])
-                    cube(cableCutoutSize);
-            }
         }
     lugFillet = 1;
     lugSize = [size.x, 10 + fillet + lugFillet, 5];
