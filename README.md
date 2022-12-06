@@ -88,10 +88,10 @@ The canonical form is the MC350 variant.
 
 variant | Extrusion lengths | Rail/rod lengths | Approx Build Volume | Bed Size   | Exterior Dimensions
 ------- | ----------------- | ---------------- | ------------------- | ---------- | -------------------
-MC250   | x250 y250 z350    | x200 y250 z250   | concept variant     | 180mm      | 290 x 290 x 350
-MC300   | x300 y300 z400    | x250 y300 z300   | 185 x 185 x 200     | 214mm      | 340 x 340 x 400
-MC350   | x350 y350 y400    | x300 y350 z300   | 225 x 225 x 200     | 235mm      | 390 x 390 x 400
-MC400   | x400 y400 y500    | x350 y400 z400   | 275 x 275 x 300     | 310mm      | 440 x 440 x 450
+MC250   | x250 y250 z350    | x200 y250 z250   | concept variant     | 180mm      | 290 x 290 x 370
+MC300   | x300 y300 z400    | x250 y300 z300   | 185 x 185 x 200     | 214mm      | 340 x 340 x 420
+MC350   | x350 y350 y450    | x300 y350 z350   | 225 x 225 x 250     | 235mm      | 390 x 390 x 470
+MC400   | x400 y400 y500    | x350 y400 z400   | 275 x 275 x 300     | 310mm      | 440 x 440 x 520
 
 ## Comparisons
 
@@ -100,7 +100,7 @@ The following table compares the sizes and build volumes of various CoreXY 3D pr
 Printer           | EType | Extrusion lengths | Build Volume     | Exterior Dimensions
 ------------------|------ | ----------------- | ---------------- | -------------------
 MC300             | 2040  | 300 x 300 x 400   | 185 x 185 x 200  | 340 x 340 x 420
-MC350             | 2040  | 350 x 350 x 400   | 225 x 225 x 200  | 390 x 390 x 420
+MC350             | 2040  | 350 x 350 x 450   | 225 x 225 x 250  | 390 x 390 x 470
 MC400             | 2040  | 400 x 400 x 500   | 275 x 275 x 300  | 440 x 440 x 520
 MC450             | 2040  | 450 x 450 x 550   | 325 x 325 x 350  | 490 x 490 x 570
 [BLV MGN Cube](https://www.blvprojects.com/blv-mgn-cube-3d-printer) | 2040 | 496 x 496 x 560 | 300 x 300 x 365 | 576 x 536 x 560

@@ -1,6 +1,6 @@
 _variant = "MC350";
 
-__extrusionLengths = [350, 350, 400];
+__extrusionLengths = [350, 350, 450];
 eX = __extrusionLengths.x;
 eY = __extrusionLengths.y;
 eZ = __extrusionLengths.z;
@@ -8,7 +8,7 @@ eZ = __extrusionLengths.z;
 eSize = 20; // for 2020, 2040  etc extrusion
 
 _xyMotorDescriptor = "NEMA17_48";
-_zMotorDescriptor = "NEMA17_40L280";
+_zMotorDescriptor = "NEMA17_40L330";
 _corkDamperThickness = 2;
 
 _xRailLength = eX - 50;
