@@ -6,6 +6,7 @@ use <../scad/FaceLeft.scad>
 use <../scad/FaceRight.scad>
 
 use <../scad/jigs/ExtrusionDrillJig.scad>
+use <../scad/jigs/PanelJig.scad>
 include <../scad/Parameters_Main.scad>
 
 
@@ -34,4 +35,5 @@ module Jig_test2() {
             Extrusion_Drill_Jig_Z_Rods_stl();
 }
 
+//Panel_Jig_stl();
 Jig_test2();

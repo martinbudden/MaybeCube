@@ -6,6 +6,7 @@ include <NopSCADlib/vitamins/screws.scad>
 
 use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/X_CarriageVoronMiniAfterburner.scad>
+use <../scad/printed/X_CarriageVoronMiniAfterburnerLGXLite.scad>
 use <../scad/printed/Y_CarriageAssemblies.scad>
 use <../scad/MainAssemblyVoronMiniAfterburner.scad>
 
@@ -41,8 +42,10 @@ module VoronMiniAfterburner_test() {
     }
 }
 
+//Printhead_Voron_Mini_Afterburner_assembly();
 //xCarriageVoronMiniAfterburner();
-//X_Carriage_Voron_Mini_Afterburner_assembly();
+X_Carriage_Voron_Mini_Afterburner_assembly();
+rotate(180) translate([0, 14 + 7.3 + 4.25, 2.2]) {
 //vma_x_carriage_90_x1();
 //vma_vlatch_dd_x1();
 //vma_vlatch_shuttle_dd_x1();
@@ -52,5 +55,9 @@ module VoronMiniAfterburner_test() {
 //vma_motor_frame_x1_hardware();
 //xCarriageVoronMiniAfterburner_hardware();
 //vma_cowling_mosquito_x1();
-if ($preview)
+//vmalgxl_cowling_universal();
+vmalgxl_x_carriage_sls();
+vmalgxl_hotend_mount_mosquito_3010_fan();
+}
+*if ($preview)
     VoronMiniAfterburner_test();
