@@ -132,7 +132,7 @@ omitted from the build.
 |   .  |   .  |   2  |   1  |   .  |   .  |   1  |    4  |  Cork damper NEMA 17 |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  Extrusion E2020 x 300mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Extrusion E2020 x 350mm |
-|   .  |   .  |   .  |   2  |   .  |   2  |   .  |    4  |  Extrusion E2020 x 400mm |
+|   .  |   .  |   .  |   2  |   .  |   2  |   .  |    4  |  Extrusion E2020 x 450mm |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  Extrusion E2040 x 150mm |
 |   .  |   .  |   2  |   2  |   .  |   2  |   1  |    7  |  Extrusion E2040 x 350mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |    2  |  Extrusion E2060 x 350mm |
@@ -148,7 +148,7 @@ omitted from the build.
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Linear rail MGN12 x 300mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |    2  |  Linear rail MGN12 x 350mm |
 |   .  |   .  |   3  |   .  |   .  |   .  |   .  |    3  |  Linear rail carriage MGN12H |
-|   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Linear rod 12mm x 300mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Linear rod 12mm x 350mm |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  MK10 Dual Pulley Extruder |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Micro SD card |
 |   .  |   .  |  20  |   .  |   2  |   .  |   6  |   28  |  Nut M3 hammer |
@@ -165,11 +165,11 @@ omitted from the build.
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Raspberry Pi camera V2 |
 |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  SCS12LUU bearing block |
 |   .  |   .  |   .  |   .  |   .  |   4  |   .  |    4  |  SK12 shaft support bracket |
-|   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Sheet polycarbonate 295mm x 400mm x 3mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Sheet polycarbonate 390mm x 400mm x 3mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Sheet polycarbonate 295mm x 450mm x 3mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Sheet polycarbonate 390mm x 450mm x 3mm |
 |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Spring 8mm OD, 0.9mm gauge x 20mm long, closed end |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Square radial fan 3010 |
-|   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Stepper motor NEMA17 x 40mm, 280mm integrated leadscrew |
+|   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Stepper motor NEMA17 x 40mm, 330mm integrated leadscrew |
 |   .  |   .  |   2  |   1  |   .  |   .  |   .  |    3  |  Stepper motor NEMA17 x 47mm |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  Stepper motor cable, 200mm |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Stepper motor cable, 300mm |
@@ -646,6 +646,7 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 | 1 x Left_Side_Upper_Extrusion_assembly | 1 x Right_Side_Upper_Extrusion_assembly | 1 x XY_Idler_Left_assembly |
 |----------|----------|----------|
 | ![Left_Side_Upper_Extrusion_assembled](assemblies/Left_Side_Upper_Extrusion_assembled_tn.png) | ![Right_Side_Upper_Extrusion_assembled](assemblies/Right_Side_Upper_Extrusion_assembled_tn.png) | ![XY_Idler_Left_assembled](assemblies/XY_Idler_Left_assembled_tn.png) |
+
 | 1 x XY_Idler_Right_assembly | 1 x XY_Motor_Mount_Left_assembly | 1 x XY_Motor_Mount_Right_assembly |
 |----------|----------|----------|
 | ![XY_Idler_Right_assembled](assemblies/XY_Idler_Right_assembled_tn.png) | ![XY_Motor_Mount_Left_assembled](assemblies/XY_Motor_Mount_Left_assembled_tn.png) | ![XY_Motor_Mount_Right_assembled](assemblies/XY_Motor_Mount_Right_assembled_tn.png) |
@@ -798,7 +799,7 @@ thermally isolates the motor from the **Extruder_Bracket** and should not be omi
 |----:|:------------|
 |   4 | Bolt M4 buttonhead x  8mm |
 |   8 | Bolt M5 buttonhead x 12mm |
-|   2 | Extrusion E2020 x 400mm |
+|   2 | Extrusion E2020 x 450mm |
 |   2 | Extrusion E2040 x 350mm |
 |   4 | Nut M4 hammer |
 
@@ -1183,7 +1184,7 @@ the Z carriages are added.
 |   4 | Bolt M4 buttonhead x 10mm |
 |   8 | Bolt M4 countersunk x 10mm |
 |   8 | Bolt M5 buttonhead x 12mm |
-|   2 | Extrusion E2020 x 400mm |
+|   2 | Extrusion E2020 x 450mm |
 |   2 | Extrusion E2040 x 350mm |
 |  12 | Nut M4 sliding T |
 |   4 | SK12 shaft support bracket |
@@ -1224,8 +1225,8 @@ continuously ensuring the frame is square.
 |----:|:------------|
 |   4 | Bolt M3 buttonhead x 10mm |
 |   1 | Cork damper NEMA 17 |
-|   2 | Linear rod 12mm x 300mm |
-|   1 | Stepper motor NEMA17 x 40mm, 280mm integrated leadscrew |
+|   2 | Linear rod 12mm x 350mm |
+|   1 | Stepper motor NEMA17 x 40mm, 330mm integrated leadscrew |
 |   1 | Stepper motor cable, 850mm |
 
 ### Sub-assemblies
@@ -1316,7 +1317,7 @@ the cables in place.
 |----:|:------------|
 |  14 | Bolt M4 buttonhead x  8mm |
 |  14 | Nut M4 hammer |
-|   1 | Sheet polycarbonate 390mm x 400mm x 3mm |
+|   1 | Sheet polycarbonate 390mm x 450mm x 3mm |
 
 ### CNC Routed parts
 
@@ -1396,8 +1397,8 @@ see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
 |  28 | Bolt M4 buttonhead x  8mm |
 |   2 | Bolt M4 buttonhead x 12mm |
 |  30 | Nut M4 hammer |
-|   1 | Sheet polycarbonate 295mm x 400mm x 3mm |
-|   1 | Sheet polycarbonate 390mm x 400mm x 3mm |
+|   1 | Sheet polycarbonate 295mm x 450mm x 3mm |
+|   1 | Sheet polycarbonate 390mm x 450mm x 3mm |
 
 ### 3D Printed parts
 
