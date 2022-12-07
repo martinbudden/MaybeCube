@@ -30,8 +30,7 @@
 |   .  |   3  |    3  |  Bolt M3 buttonhead x 40mm |
 |   2  |   .  |    2  |  Screw M2 self tapping (Pan Head) x 10mm |
 |   .  |   1  |    1  |  Voron Mini Afterburner assembly |
-|   1  |   .  |    1  |  Voron Mini Afterburner motor frame |
-|   3  |   6  |    9  | Total vitamins count |
+|   2  |   6  |    8  | Total vitamins count |
 |      |      |       | **3D printed parts** |
 |   1  |   .  |    1  | X_Carriage_Voron_Mini_Afterburner.stl |
 |   1  |   .  |    1  | Total 3D printed parts count |
@@ -49,7 +48,6 @@
 | Qty | Description |
 |----:|:------------|
 |   2 | Screw M2 self tapping (Pan Head) x 10mm |
-|   1 | Voron Mini Afterburner motor frame |
 
 ### 3D Printed parts
 
