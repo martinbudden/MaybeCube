@@ -15,7 +15,8 @@ module Printbed_test() {
         Printbed_assembly();
     //translate_z(-_zRodLength/2) zRods();
     //if(is_true(_useDualZRods)) translate_z(-_zRodLength/2) zRods(left=false);
-    //heatedBed();
+    //Heated_Bed_assembly();
+    //heatedBed_only();
     //Printbed_Frame_with_Z_Carriages_assembly();
     *rotate(90)
         translate([-eSize - _zRodOffsetX, -eSize - zRodSeparation()/2 - _zRodOffsetY, -_zRodLength/2]) {

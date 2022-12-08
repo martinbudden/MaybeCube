@@ -28,7 +28,7 @@ skHoleOffsetFromTop = sk_size(SK_type).y - sk_hole_offset(SK_type);
 
 heatedBedOffset = !is_undef(_printbed4PointSupport) && _printbed4PointSupport
     ? [0, 40, _printbedExtrusionSize/2 + springLength - 8]
-    : [0, skHoleOffsetFromTop + 8, _printbedExtrusionSize/2 + 7.5];
+    : [_printbedSize.x == 254 ? 17.5 : 0, skHoleOffsetFromTop + (_printbedSize.x == 254 ? 2 : 8), _printbedExtrusionSize/2 + 7.5];
 
 _heatedBedSize = _printbedSize;
 /*_heatedBedSize = is_undef(_printbedSize) || _printbedSize == 100 ? [100, 100, 1.6] : // Openbuilds mini heated bed size
@@ -47,22 +47,21 @@ _heatedBedHoleOffset = is_undef(_heatedBedSize) || _heatedBedSize.x == 100 ? 4 :
                     _heatedBedSize.x == 180 ? 3 : // !!estimate
                     _heatedBedSize.x == 210 ? undef :
                     _heatedBedSize.x == 214 ? 3 :
-                    _heatedBedSize.x == 235 ? 32.5 :
+                    _heatedBedSize.x == 235 ? 32.5 : // Ender 3
+                    _heatedBedSize.x == 254 ? 7 : // Voron Trident
                     _heatedBedSize.x == 300 ? 3 : // !!estimate
                     _heatedBedSize.x == 305 ? 3 : // kinematic bed
                     _heatedBedSize.x == 310 ? 35 : // hole spacing is 240x240 on CR-10
                     undef;
+function boltHoles(size, holeOffset, printbed4PointSupport) = printbed4PointSupport
+    ? [ [holeOffset, holeOffset, 0], [size.x - holeOffset, holeOffset, 0], [size.x - holeOffset, size.y - holeOffset, 0], [holeOffset, size.y - holeOffset, 0] ]
+    : size.x == 254 ? [ [holeOffset, size.y/2, 0], [size.x - 42, size.y - holeOffset, 0], [size.x - 42, holeOffset, 0] ]
+    : [ [size.x - holeOffset, size.y/2, 0], [holeOffset, size.y - holeOffset, 0], [holeOffset, holeOffset, 0] ];
 
 scs_type = _zRodDiameter == 8 ? SCS8LUU : _zRodDiameter == 10 ? SCS10LUU : SCS12LUU;
 dualCrossPieces = true;
 printbedFrameCrossPiece2Offset = -2*_zRodOffsetX - printbedFrameCrossPieceOffset() - (eX < 350 ? 0 : 3*eSize/2);
 
-
-function printbedSize() = [
-    _heatedBedSize.x,
-    !is_undef(_useDualZRods) && _useDualZRods ? eY - 3 : eY <= 250 ? 225 : eY <= 300 ? 265 : eY <= 350 ? 300 : 375,
-    _printbedExtrusionSize + _heatedBedSize.z
-];
 
 extrusion_inner_corner_bracket_hole_offset = 15;
 
@@ -81,10 +80,8 @@ module foamUnderlay(size, holeOffset, foamThickness) {
             }
 }
 
-module corkUnderlay(size, holeOffset, underlayThickness=3) {
+module corkUnderlay(size, boltHoles, underlayThickness=3) {
     vitamin(str("corkUnderlay(", size, "): Cork underlay ", size.x, "mm x ", size.y, "mm"));
-
-    boltHoles = [ [size.x - holeOffset, size.y/2, 0], [holeOffset, size.y - holeOffset, 0], [holeOffset, holeOffset, 0] ];
 
     color("tan")
         difference() {
@@ -94,6 +91,34 @@ module corkUnderlay(size, holeOffset, underlayThickness=3) {
                     rounded_cube_xy([15, 15, underlayThickness + 2*eps], 1, xy_center=true);
         }
 }
+
+module magneticBase(size, boltHoles) {
+    vitamin(str("magneticBase(", size, "): Magnetic base ", size.x, "mm x ", size.y, "mm"));
+
+    color(grey(20))
+        explode(15)
+            difference() {
+                magneticBaseSize = [size.x, size.y, 1];
+                    rounded_cube_xy(magneticBaseSize, 1);
+                for (i = boltHoles)
+                    translate(i)
+                        boltHole(7, magneticBaseSize.z, cnc=true);
+                if (size.x == 254)
+                    for (y = [37.5, -37.5])
+                        translate([7, size.x/2 + y, 0])
+                            boltHole(6, magneticBaseSize.z, cnc=true);
+            }
+}
+
+module siliconeHeater(size) {
+    heaterSize = [200, 200, 2];
+    vitamin(str("siliconeHeater(", size, "): Silicone Heater with thermistor - ", heaterSize.x, "mm x ", heaterSize.y, "mm"));
+    translate([(size.x - heaterSize.x)/2, (size.y - heaterSize.y)/2, -size.z - heaterSize.z])
+        color("OrangeRed")
+            explode(-20)
+                rounded_cube_xy(heaterSize, 1);
+}
+
 
 module molex_400(ways) { //! Draw molex header
     pitch = 4.00;
@@ -121,12 +146,11 @@ module molex_400(ways) { //! Draw molex header
 }
 
 
-module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayThickness=0) {
-    vitamin(str("heatedBed(", size, "): Heated Bed ", size.x, "mm x ", size.y, "mm"));
-
-    boltHoles = _printbed4PointSupport
-        ? [ [holeOffset, holeOffset, 0], [size.x - holeOffset, holeOffset, 0], [size.x - holeOffset, size.y - holeOffset, 0], [holeOffset, size.y - holeOffset, 0] ]
-        : [ [size.x - holeOffset, size.y/2, 0], [holeOffset, size.y - holeOffset, 0], [holeOffset, holeOffset, 0] ];
+module heatedBed(size=_heatedBedSize, boltHoles=[], underlayThickness=0) {
+    if (size.x == 254)
+        vitamin(": Voron Trident Build Plate - 250x250");
+    else
+        vitamin(str("heatedBed(", size, "): Heated Bed ", size.x, "mm x ", size.y, "mm"));
     translate([-_heatedBedSize.y/2, 0, 0]) {
         if (size.x == 235)
             translate([_heatedBedSize.x - 20, 0, 1])
@@ -146,22 +170,28 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
                                     screw_countersink(M3_cs_cap_screw);
                                 }
                         else
-                            boltHoleM3(size.z, cnc=true);
+                            if (size.x == 254)
+                                translate_z(size.z)
+                                    vflip()
+                                        boltHoleM3Counterbore(size.z, boltHeadTolerance=1, cnc=true);
+                            else
+                                boltHoleM3(size.z, cnc=true);
                 *for (i = [ [holeOffset, holeOffset], [size.x - holeOffset, holeOffset] ])
                     translate(i)
                         boltHoleM3(size.z - underlayThickness);
+                if (size.x == 254)
+                    for (y = [37.5, -37.5])
+                        translate([7, size.x/2 + y, 0])
+                            boltHoleM3Tap(size.z, cnc=true);
+
             }
         // add magnetic layer
         translate_z(size.z + (_printbed4PointSupport ? 0 : underlayThickness))
             if (_printbed4PointSupport) {
-                color(grey(20))
-                    difference() {
-                        magneticBaseSize = [size.x, size.y, 1];
-                        rounded_cube_xy(magneticBaseSize, 1);
-                        for (i = boltHoles)
-                            translate(i)
-                                boltHoleM3(magneticBaseSize.z, cnc=true);
-                    }
+                magneticBase(size, boltHoles);
+            } else if (size.x == 254) {
+                magneticBase(size, boltHoles);
+                siliconeHeater(size);
             } else {
                 offset = 5;
                 printSurfaceSize = [size.x - 2*offset, size.y - 2*offset, 1];
@@ -201,10 +231,7 @@ module heatedBed(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayT
     }
 }
 
-module heatedBedHardware(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, underlayThickness=0) {
-    boltHoles = _printbed4PointSupport
-        ? [ [holeOffset, holeOffset, 0], [size.x - holeOffset, holeOffset, 0], [size.x - holeOffset, size.y - holeOffset, 0], [holeOffset, size.y - holeOffset, 0] ]
-        : [ [size.x - holeOffset, size.y/2, 0], [holeOffset, size.y - holeOffset, 0], [holeOffset, holeOffset, 0] ];
+module heatedBedHardware(size=_heatedBedSize, boltHoles, underlayThickness=0) {
 
     module oRing() {
         thickness = 2;
@@ -217,12 +244,17 @@ module heatedBedHardware(size=_heatedBedSize, holeOffset=_heatedBedHoleOffset, u
                 explode(10, true)
                     children();
     }
+    if (size.x == 254)
+        for (y = [37.5, -37.5])
+            translate([-size.y/2 + 7, size.x/2 + y, underlayThickness + size.z])
+                boltM3Caphead(8);
 
-    translate([-_heatedBedSize.y/2, 0, underlayThickness + size.z])
+    translate([-size.y/2, 0, underlayThickness + size.z])
     //explode(-10, true)
         for (i = boltHoles)
             translate(i) {
-                boltM3Caphead(20);
+                translate_z(size.x == 254 ? -4 : 0)
+                    boltM3Caphead(20);
                 translate_z(-size.z)
                     vflip()
                         explode(5,true)
@@ -297,7 +329,11 @@ module printbedFrameCrossPiece() {
 //
 module Printbed_Frame_assembly()
 assembly("Printbed_Frame", big=true, ngb=true) {
-    size = printbedSize();
+    size = [
+        _heatedBedSize.x,
+        !is_undef(_useDualZRods) && _useDualZRods ? eY - 3 : eY <= 250 ? 225 : eY <= 300 ? 265 : eY <= 350 ? 300 : 375,
+        _printbedExtrusionSize + _heatedBedSize.z
+    ];
     fSize = _printbedExtrusionSize;
     yOffset = scs_size(scs_type).x/2; // 42/2
 
@@ -338,7 +374,10 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                                     cylinder(h=4, r=5);
                             }
                     } else {
-                        for (y = x == -fSize/2 ? [_heatedBedHoleOffset, _heatedBedSize.y - _heatedBedHoleOffset] : [_heatedBedSize.y/2])
+                        ys = size.x == 254
+                            ? (x != -fSize/2 ? [_heatedBedHoleOffset, _heatedBedSize.y - _heatedBedHoleOffset] : [_heatedBedSize.y/2])
+                            : (x == -fSize/2 ? [_heatedBedHoleOffset, _heatedBedSize.y - _heatedBedHoleOffset] : [_heatedBedSize.y/2]);
+                        for (y = ys)
                             translate([x, y + heatedBedOffset.y, 0])
                                 cylinder(h=eSize, r=M4_clearance_radius);
                     }
@@ -444,7 +483,7 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
                         Z_Carriage_Left_assembly();
                     else
                 mirror([1, 0, 0])
-                        Z_Carriage_Side_assembly();
+                    Z_Carriage_Side_assembly();
     }
 }
 
@@ -453,9 +492,10 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
 //!3
 module Heated_Bed_assembly()
 assembly("Heated_Bed") {
+    boltHoles = boltHoles(_heatedBedSize, _heatedBedHoleOffset, _printbed4PointSupport);
     underlayThickness = 3;
-    heatedBed(_heatedBedSize, _heatedBedHoleOffset, underlayThickness);
-    heatedBedHardware(_heatedBedSize, _heatedBedHoleOffset, underlayThickness);
+    heatedBed(_heatedBedSize, boltHoles, underlayThickness);
+    heatedBedHardware(_heatedBedSize, boltHoles, underlayThickness);
 }
 
 //!1. Attach the heated bed to the frame using the stacks of washers and O-rings as shown.
@@ -469,16 +509,18 @@ assembly("Printbed", big=true) {
         translate([eSize + _zRodOffsetX, eSize + zRodSeparation()/2 + _zRodOffsetY, 0])
             rotate(-90) {
                 Printbed_Frame_with_Z_Carriages_assembly();
+                boltHoles = boltHoles(_heatedBedSize, _heatedBedHoleOffset, _printbed4PointSupport);
                 underlayThickness = 3;
                 // add the heated bed
                 translate(heatedBedOffset) {
                     if (_printbed4PointSupport)
                             explode(120, true)
-                            heatedBed(_heatedBedSize, _heatedBedHoleOffset, underlayThickness);
+                            heatedBed(_heatedBedSize, boltHoles, underlayThickness);
                     else {
-                        translate([-_heatedBedSize.y/2, 0, 0])
-                            explode(40)
-                                corkUnderlay(_heatedBedSize, _heatedBedHoleOffset, underlayThickness);
+                        if (_heatedBedSize.x != 254)
+                            translate([-_heatedBedSize.y/2, 0, 0])
+                                explode(40)
+                                    corkUnderlay(_heatedBedSize, boltHoles, underlayThickness);
                         explode(80, true)
                             Heated_Bed_assembly();
                     }
@@ -498,15 +540,16 @@ module heatedBed_only() {
     // display the heated bed, for debugging
     translate([eSize + _zRodOffsetX, eSize + zRodSeparation()/2 + _zRodOffsetY, 0])
         rotate(-90) {
+            boltHoles = boltHoles(_heatedBedSize, _heatedBedHoleOffset, _printbed4PointSupport);
             underlayThickness = 3;
             translate(heatedBedOffset) {
                 if (_printbed4PointSupport)
                         explode(120, true)
-                        heatedBed(_heatedBedSize, _heatedBedHoleOffset, underlayThickness);
+                        heatedBed(_heatedBedSize, boltHoles, underlayThickness);
                 else {
                     translate([-_heatedBedSize.y/2, 0, 0])
                         explode(40)
-                            corkUnderlay(_heatedBedSize, _heatedBedHoleOffset, underlayThickness);
+                            corkUnderlay(_heatedBedSize, boltHoles, underlayThickness);
                     explode(80, true)
                         Heated_Bed_assembly();
                 }
