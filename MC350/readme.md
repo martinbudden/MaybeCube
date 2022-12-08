@@ -224,7 +224,7 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  | Z_Carriage_Side.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_MountGuide_17p5mm.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |    2  | Z_RodMountGuide_110mm.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |    2  | Z_RodMountGuide_105mm.stl |
 |   3  |   3  |  21  |   2  |   .  |   5  |   4  |  15  |   53  | Total 3D printed parts count |
 |      |      |      |      |      |      |      |      |       | **CNC routed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Back_Panel.dxf |
@@ -1222,9 +1222,9 @@ the Z carriages are added.
 
 ### 3D Printed parts
 
-| 1 x Z_Motor_Mount.stl | 1 x Z_Motor_MountGuide_17p5mm.stl | 2 x Z_RodMountGuide_110mm.stl |
+| 1 x Z_Motor_Mount.stl | 1 x Z_Motor_MountGuide_17p5mm.stl | 2 x Z_RodMountGuide_105mm.stl |
 |----------|----------|----------|
-| ![Z_Motor_Mount.stl](stls/Z_Motor_Mount.png) | ![Z_Motor_MountGuide_17p5mm.stl](stls/Z_Motor_MountGuide_17p5mm.png) | ![Z_RodMountGuide_110mm.stl](stls/Z_RodMountGuide_110mm.png) |
+| ![Z_Motor_Mount.stl](stls/Z_Motor_Mount.png) | ![Z_Motor_MountGuide_17p5mm.stl](stls/Z_Motor_MountGuide_17p5mm.png) | ![Z_RodMountGuide_105mm.stl](stls/Z_RodMountGuide_105mm.png) |
 
 ### Assembly instructions
 
