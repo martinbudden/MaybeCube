@@ -45,6 +45,6 @@ _blowerDescriptor = "BL30x10";
 // limited by printbed frame hitting XY motors and possibly extruder motor
 __skBracketWidth = 42; // same for SK8, SK10, and SK12
 //_zRodOffsetY = __skBracketWidth/2 + 40; // for Ender 3 size print bed
-_zRodOffsetY = __skBracketWidth/2 + 110; // for Voron Trident 250x250 size print bed
+_zRodOffsetY = __skBracketWidth/2 + 105; // for Voron Trident 250x250 size print bed
 _zLeadScrewOffset = 23;// ensures clearance of zMotor from frame and alignment with zRods
 _upperZRodMountsExtrusionOffsetZ = eZ - 95;
