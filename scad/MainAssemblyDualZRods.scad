@@ -7,8 +7,6 @@ include <global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
 
-use <printed/JubileeKinematicBed.scad>
-
 use <BasePlate.scad>
 use <FaceLeft.scad>
 use <FaceRight.scad>
