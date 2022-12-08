@@ -1266,7 +1266,7 @@ continuously ensuring the frame is square.
 
 ![Left_Side_with_Printbed_assembly](assemblies/Left_Side_with_Printbed_assembly.png)
 
-1. Face the left face on a flat surface.
+1. Place the left face on a flat surface.
 2. Attach the print bed to the left face by sliding the linear rods through the Z_Carriages.
 3. Tighten the grub screws on the rod brackets, but don't yet tighten the bolts holding the brackets to the frame.
 4. Slide the print bed to the top of the rods, and tighten the bolts in the top right rod bracket.
