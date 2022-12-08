@@ -4,7 +4,7 @@ use <NopSCADlib/utils/sweep.scad>
 leadscrewColor = grey(70);
 
 module leadscrewX(diameter, length, p, center=true) {//! Draw a leadscrew with the specified length, diameter and pitch
-    vitamin(str("leadscrewX(", diameter, ", ", length, ") : Leadscrew ", diameter, "mm x ", length, "mm"));
+    vitamin(str("leadscrewX(", diameter, ", ", length, "): Leadscrew ", diameter, "mm x ", length, "mm"));
 
     assert(diameter >= 4, "Leadscrew diameter must be >= 4");
     pitch = p ? p : diameter > 10 ? 3 : 2;
