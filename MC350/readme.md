@@ -155,6 +155,7 @@ omitted from the build.
 |   .  |   .  |  12  |   8  |   .  |   .  |   .  |  69  |   89  |  Nut M4 hammer |
 |   .  |   .  |  36  |   .  |   .  |   6  |  12  |   .  |   54  |  Nut M4 sliding T |
 |   .  |   .  |   .  |   .  |  12  |   .  |   .  |   .  |   12  |  O-ring nitrile 4mm x 2mm |
+|   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  PEI coated spring steel build plate 250mm x 250mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PSU NIUGUY CB-500W-24V |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PTFE Bowden tube, 600 mm |
 |   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |    2  |  Pillar hex nylon F/F M3x14 |
@@ -181,7 +182,7 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |    3  |  Washer penny M4 |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  XL4015 buck converter |
 |   3  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    3  |  Ziptie 2.5mm x 100mm min length |
-|  12  |   4  | 281  |  39  |  38  |  45  |  40  | 239  |  698  | Total vitamins count |
+|  12  |   4  | 281  |  39  |  39  |  45  |  40  | 239  |  699  | Total vitamins count |
 |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Camera_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_Bracket_TFT35_E3.stl |
@@ -1018,6 +1019,7 @@ as a template to drill the holes in the base plate.
 |   1 | Magnetic base 254mm x 254mm |
 |   3 | Nut M3 hammer |
 |  12 | O-ring nitrile 4mm x 2mm |
+|   1 | PEI coated spring steel build plate 250mm x 250mm |
 |   1 | Silicone Heater with thermistor - 200mm x 200mm |
 |   1 | Voron Trident Build Plate - 250x250 |
 |  12 | Washer M3 |

@@ -94,6 +94,7 @@ module corkUnderlay(size, boltHoles, underlayThickness=3) {
 
 module magneticBase(size, boltHoles) {
     vitamin(str("magneticBase(", size, "): Magnetic base ", size.x, "mm x ", size.y, "mm"));
+    vitamin(": PEI coated spring steel build plate 250mm x 250mm");
 
     color(grey(20))
         explode(15)
