@@ -20,7 +20,7 @@ module HeatedBedLevelingKnob(color = grey(20)) {
 
     translate_z(-knob_height) {
         color(color) {
-            linear_extrude(knob_thickness, convexity = 1)
+            linear_extrude(knob_thickness, convexity=1)
                 difference() {
                     polygon(points=[ for (a = [0 : 359]) [wave(a) * sin(a), wave(a) * cos(a)] ]);
                     circle(r=knob_spoke_length);

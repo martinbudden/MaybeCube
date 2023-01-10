@@ -24,7 +24,7 @@ module insetCube(size, baseHeight=1.5, color=grey(30), boltLength=6) {
                 rounded_square([size.x, size.y], 1);
                 for (x = [-size.x/2 + boltInset, size.x/2 - boltInset], y = [-size.y/2 + boltInset, size.y/2 - boltInset])
                     translate([x, y])
-                        circle(d = 2);
+                        circle(d=2);
             }
         translate_z(baseHeight)
             linear_extrude(size.z-baseHeight)

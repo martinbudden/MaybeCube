@@ -224,14 +224,14 @@ module Z_Motor_Mount_Motor_hardware(explode=50, zLeadScrewOffset=_zLeadScrewOffs
             if (is_list(shaft_length)) {
                 if (bom_mode()) {
                     rotate(-90)
-                        not_on_bom() NEMA(zMotorType, jst_connector = true);
+                        not_on_bom() NEMA(zMotorType, jst_connector=true);
                     vitamin(str("NEMA(", zMotorType[0], "): Stepper motor NEMA", round(NEMA_width(zMotorType) / 2.54), " x ", NEMA_length(zMotorType), "mm, ", shaft_length[0], "mm integrated leadscrew"));
                 } else {
                     // integrated lead screw, so set shaft length to zero and use leadscrewX rather than NopSCADlib leadscrew
                     NEMA_no_shaft = [ for (i = [0 : len(zMotorType) - 1]) i==8 ? [1, shaft_length[1], shaft_length[2]] : zMotorType[i] ];
                     no_explode() {
                         rotate(-90)
-                            NEMA(NEMA_no_shaft, jst_connector = true);
+                            NEMA(NEMA_no_shaft, jst_connector=true);
                         translate_z(eps)
                             leadscrewX(shaft_length[1], shaft_length[0], shaft_length[2], center=false);
                     }
@@ -239,7 +239,7 @@ module Z_Motor_Mount_Motor_hardware(explode=50, zLeadScrewOffset=_zLeadScrewOffs
             } else {
                 // no integrated lead screw, so add lead screw and coupling
                 rotate(-90)
-                    NEMA(zMotorType, jst_connector = true);
+                    NEMA(zMotorType, jst_connector=true);
                 translate_z(NEMA_shaft_length(motorType)) {
                     explode(80)
                         shaft_coupling(SC_5x8_rigid, colour = grey(30));

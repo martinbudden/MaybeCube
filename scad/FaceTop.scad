@@ -203,7 +203,7 @@ module printheadWiring() {
         for (z = [11, 21])
             translate([0, -3.5, z])
                 rotate([0, 90, 90])
-                    cable_tie(cable_r = 3, thickness = 4.5);*/
+                    cable_tie(cable_r=3, thickness=4.5);*/
 
     wiringGuidePosition(offsetX=cameraMountBaseSize.x/2) {
         stl_colour(pp1_colour)

@@ -503,7 +503,7 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
                 translate_z(-basePlateThickness - corkDamperThickness) {
                     explode(-30)
                         rotate(left ? -90 : 90)
-                            NEMA(motorType, jst_connector = true);
+                            NEMA(motorType, jst_connector=true);
                         explode(-15)
                             corkDamper(motorType, corkDamperThickness);
                 }

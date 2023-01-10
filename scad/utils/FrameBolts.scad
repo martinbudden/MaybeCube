@@ -14,7 +14,7 @@ module jointBolt() {
 module jointBoltHole() {
     if (_useBlindJoints)
         translate_z(extrusionChannelDepth() - eps)
-            cylinder(d = 4, h = eSize - 2*extrusionChannelDepth() + 2*eps);
+            cylinder(d=4, h=eSize - 2*extrusionChannelDepth() + 2*eps);
     else
         boltHoleM6Counterbore(eSize, extrusionChannelDepth(), 0);
 }
