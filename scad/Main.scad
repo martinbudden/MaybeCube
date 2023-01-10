@@ -15,9 +15,9 @@
 //!
 //!The motor for the Z-axis has an integrated lead screw: in the *Parts List* the length specified is the length that
 //!protrudes from the motor. Some suppliers specify the total length of the lead screw, that is including the part that
-//!is inside the motor, so check how your supplier specifies the part before ordering. Another option is to order a lead
-//!screw that is too long and cut to size, not however that lead screws are made from hardened steel and cannot be cut
-//!with a hacksaw - an angle grinder is required to cut them.
+//!is inside the motor, so check how your supplier specifies the part before ordering. Another option is to order a motor
+//!with a lead screw that is too long and cut to size, not however that lead screws are made from hardened steel and cannot
+//!be cut with a hacksaw - an angle grinder is required to cut them.
 //!
 //!For the MC350 variant I have specified an Ender-style 235x235mm print bed with 4 fixing bolts - this is because they are
 //!readily available and cheap. A better solution is to use an aluminium tooling plate drilled for a 3 point fixing and a
