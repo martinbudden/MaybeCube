@@ -221,7 +221,7 @@ module basePlateAssembly(rightExtrusion=false, hammerNut=true) {
 //!
 //!1. Insert the bolts into the ends of the E2040 and E2080 extrusions in preparation for connection to the frame uprights.
 //!2. Bolt the extrusions and the L-shaped feet to the baseplate as shown.
-//!3. Bolt the PSU and the pcbs to the baseplate, using standoffs as appropriate.
+//!3. Bolt the PSU and the PCBs to the baseplate, using standoffs as appropriate.
 //
 module Base_Plate_Stage_1_assembly()
 assembly("Base_Plate_Stage_1", big=true, ngb=true) {
