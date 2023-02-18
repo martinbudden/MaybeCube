@@ -144,8 +144,8 @@ assembly("Y_Carriage_Left", ngb=true) {
     yCarriageType = carriageType(_yCarriageDescriptor);
     railOffsetX = coreXYPosBL().x;
 
-    plainIdler = useReversedBelts() ? BBF623 : coreXY_plain_idler(coreXY_type());
-    toothedIdler = useReversedBelts() ? BBF623 : coreXY_toothed_idler(coreXY_type());
+    plainIdler = useReversedBelts() ? coreXYBearing() : coreXY_plain_idler(coreXY_type());
+    toothedIdler = useReversedBelts() ? coreXYBearing() : coreXY_toothed_idler(coreXY_type());
     pulleyStackHeight = idlerHeight + pulleyWasherHeight();
 
     translate([railOffsetX, carriagePosition().y, -carriage_height(yCarriageType)])
@@ -185,8 +185,8 @@ assembly("Y_Carriage_Right", ngb=true) {
     yCarriageType = carriageType(_yCarriageDescriptor);
     railOffsetX = coreXYPosBL().x;
 
-    plainIdler = useReversedBelts() ? BBF623 : coreXY_plain_idler(coreXY_type());
-    toothedIdler = useReversedBelts() ? BBF623 : coreXY_toothed_idler(coreXY_type());
+    plainIdler = useReversedBelts() ? coreXYBearing() : coreXY_plain_idler(coreXY_type());
+    toothedIdler = useReversedBelts() ? coreXYBearing() : coreXY_toothed_idler(coreXY_type());
     pulleyStackHeight = idlerHeight + pulleyWasherHeight();
 
     translate([-railOffsetX, carriagePosition().y, -carriage_height(yCarriageType)])

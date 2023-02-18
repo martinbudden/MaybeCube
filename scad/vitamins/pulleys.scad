@@ -15,8 +15,11 @@ GT2x20x11x3_toothed_idler = ["GT2x20x11x3_toothed_idler", "GT2",   20, 12.22, GT
 GT2x20x11x3_plain_idler   = ["GT2x20x11x3_plain_idler",   "GT2",    0, 12.0,  GT2x9, 11.0,  16, 0,   3, 16.0, 1.5, 0, 0,    false,         0];
 GT2x20x3_toothed_idler_sf = ["GT2x20x3_toothed_idler_sf", "GT2",   20, 12.22, GT2x6,  6.5,  18, 0,   3, 13.5, 1.0, 0, 0,    false,         0];
 GT2x20x3_plain_idler_sf   = ["GT2x20x3_plain_idler_sf",   "GT2",    0, 12.0,  GT2x6,  6.5,  18, 0,   3, 13.5, 1.0, 0, 0,    false,         0];
-// simulate flange bearing F623, most similar in size to GT2x16 pulley
-GT2x16x6p5x3_plain_idler_fb=["GT2x16x6p5x3_plain_idler_fb","GT2",   0, 10.0,  GT2x6,  6.5,  11.5,0,  3, 11.5, 1.0, 0, 0,    false,         0];
+// simulate 2 flange bearings F623 (3x10x4mm) with washer in between, most similar in size to GT2x16 pulley
+GT2_F623_plain_idler      = ["GT2_F623_plain_idler",      "GT2",    0, 10.0,  GT2x6,  6.5,  11.5,0,  3, 11.5, 1.0, 0, 0,    false,         0];
+GT2_F684_plain_idler      = ["GT2_F684_plain_idler",      "GT2",    0,  9.0,  GT2x6,  6.5,  10.3,0,  4, 10.3, 1.0, 0, 0,    false,         0];
+GT2_F694_plain_idler      = ["GT2_F694_plain_idler",      "GT2",    0, 11.0,  GT2x6,  6.5,  12.5,0,  4, 12.5, 1.0, 0, 0,    false,         0];
+GT2_F695_plain_idler      = ["GT2_F695_plain_idler",      "GT2",    0, 13.0,  GT2x6,  6.5,  15, 0,   5, 15.0, 1.0, 0, 0,    false,         0];
 GT2x25x7x3_toothed_idler  = ["GT2x25x7x3_toothed_idler",  "GT2",   25, 15.41, GT2x6,  7.0,  20, 0,   3, 20.0, 2.0, 0, 0,    false,         0];
 GT2x25x7x3_plain_idler    = ["GT2x25x7x3_plain_idler",    "GT2",    0, 15.4,  GT2x6,  7.0,  20, 0,   3, 20.0, 2.0, 0, 0,    false,         0];
 GT2x25x11x3_toothed_idler = ["GT2x25x11x3_toothed_idler", "GT2",   25, 15.41, GT2x9, 11.0,  20, 0,   3, 20.0, 2.0, 0, 0,    false,         0];
@@ -27,9 +30,13 @@ GT2x20sd_pulley           = ["GT2x20sd_pulley",           "GT2sd", 20, 12.22, GT
 //GT2x20um_pulley         = ["GT2x20um_pulley",           "GT2UM", 20, 12.22, GT2x6,  7.5,  18, 6.5, 5, 18.0, 1.0, 6, 3.75, M3_grub_screw, 2]; //Ultimaker
 //GT2x20ob_pulley         = ["GT2x20ob_pulley",           "GT2OB", 20, 12.22, GT2x6,  7.5,  16, 5.5, 5, 16.0, 1.0, 6, 3.25, M3_grub_screw, 2]; //Openbuilds
 
+M4_shim_8x0p5       = ["M4_shim_8x0.5",       4,   8,   0.5, false,  7.9,  7.0, 1.2, undef];
+M5_shim_9x0p5       = ["M5_shim_9x0.5",       5,   9,   0.5, false,  7.9,  7.0, 1.2, undef];
+
 function bearingStackHeight(bearingType=BBF623, washer=M3_washer) = 3*washer_thickness(washer) + 2*bb_width(bearingType);
 
-module bearingStack(bearingType=BBF623, washer=M3_washer, explode=5) {
+module bearingStack(bearingType=BBF623, explode=5) {
+    washer = bb_bore(bearingType) == 3 ? M3_washer : bb_bore(bearingType) == 4 ? M4_shim_8x0p5 : M5_shim_9x0p5;
     washer(washer);
     translate_z(washer_thickness(washer) + bb_width(bearingType)/2) {
         explode(explode)

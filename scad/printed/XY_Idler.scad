@@ -275,7 +275,7 @@ module XY_Idler_hardware(size, left=true, useReversedBelts=false) {
                                     else
                                         boltM3Caphead(20);
                         explode([left ? 25 : -25, 0, -7.5], true)
-                            bearingStack(BBF623, washer);
+                            bearingStack(coreXYBearing());
                     }
                 } else {
                     vflip()

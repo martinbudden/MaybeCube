@@ -481,6 +481,9 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
     coreXYPosTR = coreXYPosTR(motorWidth);
     separation = coreXYSeparation();
     coreXY_type = coreXY_type();
+    bearingType = coreXYBearing();
+    washer = coreXYIdlerBore() == 3 ? M3_washer : coreXYIdlerBore() == 4 ? M4_shim_8x0p5 : M5_shim_9x0p5;
+
     sideSupportSize = [useReversedBelts ? eSize + 1 : eSize, xyMotorMountSize(motorWidth, offset, left, useReversedBelts, cnc).y - eSize + partitionExtension];
     if (isNEMAType(motorType))
         stepper_motor_cable(left ? 500 : 300);
@@ -548,17 +551,17 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
                             if ($preview && (is_undef($hide_bolts) || $hide_bolts == false))
                                 explode(80, true)
                                     screw(screw, screwLength);
-                            bearingStack()
+                            bearingStack(bearingType)
                                 explode(25, true)
                                     washer(M3_washer)
                                         explode(5, true)
                                             washer(M3_washer)
                                                 explode(5, true)
-                                                    bearingStack();
+                                                    bearingStack(bearingType);
                         translate(plainIdlerPulleyOffset()) {
                             if (left) {
                                 explode(5, true)
-                                    bearingStack();
+                                    bearingStack(bearingType);
                                 explode(30)
                                     translate_z(pulleyStackHeight)
                                         stl_colour(pp3_colour)
@@ -569,7 +572,7 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
                                         XY_Motor_Mount_Pulley_Spacer_stl();
                                 translate_z(separation.z)
                                     explode(10, true)
-                                        bearingStack();
+                                        bearingStack(bearingType);
                             }
                             translate_z(braceOffsetZ + braceThickness + eps)
                                 if ($preview && (is_undef($hide_bolts) || $hide_bolts == false))
@@ -582,7 +585,6 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
         }
 
         coreXYIdlerBore = coreXYIdlerBore();
-        washer = coreXYIdlerBore == 3 ? M3_washer : coreXYIdlerBore == 4 ? M4_washer : M5_washer;
         screw = coreXYIdlerBore == 3 ? (braceCountersunk ? M3_cs_cap_screw : M3_dome_screw) : coreXYIdlerBore == 4 ? (braceCountersunk ? M4_cs_cap_screw : M4_dome_screw) : (braceCountersunk ? M5_cs_cap_screw : M5_dome_screw);
         plainIdlerPos = left ? coreXY_drive_plain_idler_offset(coreXY_type) + (stepdown ? [0, 0, 0] : leftDrivePlainIdlerOffset)
                        : [-coreXY_drive_plain_idler_offset(coreXY_type).x, coreXY_drive_plain_idler_offset(coreXY_type).y, 0]  + (stepdown ? [0, 0, 0] : rightDrivePlainIdlerOffset);
