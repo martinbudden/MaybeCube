@@ -49,13 +49,21 @@ module topCornerPiece(guide=true) {
             translate(i)
                 translate_z(size.z)
                     boltPolyholeM4Countersunk(size.z);
+        cutDepth = 2;
+        translate_z(size.z - cutDepth + eps)
+            difference() {
+                cube([eSize + 0.5, eSize + 0.5, cutDepth]);
+                translate([eSize + 0.5, eSize + 0.5, 0])
+                    rotate(180)
+                        fillet(0.5, cutDepth);
+            }
     }
 }
 
 module Top_Corner_Piece_stl() {
     stl("Top_Corner_Piece");
     color(pp1_colour)
-        topCornerPiece();
+        topCornerPiece(guide=false);
 }
 
 module Top_Corner_Piece_Flat_stl() {
