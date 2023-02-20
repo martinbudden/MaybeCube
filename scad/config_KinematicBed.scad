@@ -20,7 +20,7 @@ _xCarriageCountersunk = true;
 _yCarriageDescriptor = "MGN12H";
 _zCarriageDescriptor = "MGN12C";
 
-_coreXYDescriptor = "GT2_20_16_fb";
+_coreXYDescriptor = "GT2_20_F623";
 
 _useReversedBelts = true;
 

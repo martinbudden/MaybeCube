@@ -23,7 +23,7 @@ largePulleyOffsetTop = usePulley25() ? 5.5 : 0;
 
 function coreXY_type(coreXYDescriptor=_coreXYDescriptor) = coreXYDescriptor == "GT2_20_16" ? coreXY_GT2_20_16 :
                          coreXYDescriptor == "GT2_20_20" ? coreXY_GT2_20_20 :
-                         coreXYDescriptor == "GT2_20_16_fb" ? coreXY_GT2_20_F623 :
+                         coreXYDescriptor == "GT2_20_16_fb" ? coreXY_GT2_20_F623 : // flange bearing
                          coreXYDescriptor == "GT2_20_F623" ? coreXY_GT2_20_F623 :
                          coreXYDescriptor == "GT2_20_F694" ? coreXY_GT2_20_F694 :
                          coreXYDescriptor == "GT2_20_F695" ? coreXY_GT2_20_F695 :
