@@ -201,6 +201,10 @@ module boltM3Caphead(length) {
     bolt(M3_cap_screw, length);
 }
 
+module boltM3Shoulder(length) {
+    bolt(M3_shoulder_screw, length);
+}
+
 module boltM3Countersunk(length, boreDepth=undef) {
     translate_z(is_undef(boreDepth) ? 0 : boreDepth)
         bolt(M3_cs_cap_screw, length);
@@ -217,6 +221,10 @@ module boltM3Panhead(length) {
 
 module boltM4Caphead(length) {
     bolt(M4_cap_screw, length);
+}
+
+module boltM4Shoulder(length) {
+    bolt(M4_shoulder_screw, length);
 }
 
 module boltM4Countersunk(length, boreDepth=undef) {

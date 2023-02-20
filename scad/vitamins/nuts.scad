@@ -111,6 +111,17 @@ module boltM3CapheadHammerNut(length, nutOffset=2.98, rotate=0, nutExplode=20) {
     }
 }
 
+module boltM3ShoulderHammerNut(length, nutOffset=2.98 - 6, rotate=0, nutExplode=20) {
+    if ($preview && (is_undef($hide_bolts) || $hide_bolts == false)) {
+        boltM3Shoulder(length);
+        vflip()
+            translate_z(length - nutOffset)
+                rotate(rotate)
+                    explode(nutExplode)
+                        nutM3Hammer();
+    }
+}
+
 module boltM3ButtonheadHammerNut(length, nutOffset=2.98, rotate=0, nutExplode=20) {
     if ($preview && (is_undef($hide_bolts) || $hide_bolts == false)) {
         boltM3Buttonhead(length);
@@ -145,6 +156,17 @@ module boltM4TNut(length, nutOffset=2.98, rotate=0, nutExplode=0) {
                 rotate(rotate)
                     explode(nutExplode)
                         nutM4SlidingT();
+    }
+}
+
+module boltM4ShoulderHammerNut(length, nutOffset=2.98 - 8, rotate=0, nutExplode=20) {
+    if ($preview && (is_undef($hide_bolts) || $hide_bolts == false)) {
+        boltM4Shoulder(length);
+        vflip()
+            translate_z(length - nutOffset)
+                rotate(rotate)
+                    explode(nutExplode)
+                        nutM4Hammer();
     }
 }
 

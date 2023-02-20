@@ -18,7 +18,7 @@ function useReversedBelts() = !is_undef(_useReversedBelts) && _useReversedBelts;
 function use2060ForTopRear() = !is_undef(_use2060ForTopRear) && _use2060ForTopRear;
 function usePulley25() = _coreXYDescriptor == "GT2_20_25" || _coreXYDescriptor == "GT2_20_25x9";
 pulley25Offset = usePulley25() ? 2.6 : 0;
-largePulleyOffset = usePulley25() ? 3 : 0;
+largePulleyOffset = usePulley25() ? 3 : _coreXYDescriptor == "GT2_20_F694" ? 0.5 : _coreXYDescriptor == "GT2_20_F695" ? 1.5 : 0;
 largePulleyOffsetTop = usePulley25() ? 5.5 : 0;
 
 function coreXY_type(coreXYDescriptor=_coreXYDescriptor) = coreXYDescriptor == "GT2_20_16" ? coreXY_GT2_20_16 :
@@ -39,7 +39,7 @@ function coreXYBearing(coreXYDescriptor=_coreXYDescriptor) = coreXYDescriptor ==
 function coreXYIdlerBore(coreXYType=coreXY_type()) = pulley_bore(coreXY_toothed_idler(coreXYType));
 function beltWidth(coreXYType=coreXY_type()) = belt_width(coreXY_belt(coreXYType));
 function beltSeparation(coreXYType=coreXY_type()) = coreXYSeparation(coreXYType).z - beltWidth(coreXYType);
-function coreXYWasher(coreXYType=coreXY_type()) = coreXYIdlerBore(coreXYType) == 3 ? M3_washer : coreXYIdlerBore(coreXYType) == 4 ? M4_washer : M5_washer;
+function coreXYWasher(coreXYType=coreXY_type()) = coreXYIdlerBore(coreXYType) == 3 ? M3_washer : coreXYIdlerBore(coreXYType) == 4 ? M4_shim : M5_shim;
 
 function yRailSupportThickness() = 3;
 function yRailShiftX() = 0; // limit it this to [-0.5, +1.25] avoid problems with yCarriage bolt interference

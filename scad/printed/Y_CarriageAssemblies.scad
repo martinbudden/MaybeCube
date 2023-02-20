@@ -16,7 +16,7 @@ use <../Parameters_Positions.scad>
 function plainIdlerOffset() = [useReversedBelts() ? -2.15 : -yRailShiftX() + plainIdlerPulleyOffset().x, 0, undef];
 function toothedIdlerOffset() = [-yRailShiftX(), 0, undef];
 function tongueOffset() = (eX + 2*eSize - _xRailLength - 2*yRailOffset().x)/2;
-function pulleyWasherHeight(coreXYIdlerBore=coreXYIdlerBore()) = 2*washer_thickness(coreXYIdlerBore == 3 ? M3_washer : coreXYIdlerBore == 4 ? M4_washer : M5_washer);
+function pulleyWasherHeight(coreXYIdlerBore=coreXYIdlerBore()) = 2*washer_thickness(coreXYIdlerBore == 3 ? M3_washer : coreXYIdlerBore == 4 ? M4_shim : M5_shim);
 
 topInset = 0;
 yCarriageInserts = true;
@@ -50,18 +50,18 @@ module Y_Carriage_Right_16_stl() {
             Y_Carriage(carriageType(_yCarriageDescriptor), idlerHeight, coreXYIdlerBore(), railType(_xCarriageDescriptor), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), blockOffset, endStopOffsetX, tongueOffset(), plainIdlerOffset(), toothedIdlerOffset(), topInset, inserts=yCarriageInserts, left=false, cnc=false);
 }
 
-module Y_Carriage_Left_RB_stl() {
+module Y_Carriage_Left_RB3_stl() {
     pulleyStackHeight = idlerHeight + pulleyWasherHeight();
     assert(pulleyStackHeight + yCarriageBraceThickness() == coreXYSeparation().z);
     endStopOffsetX = 10.15;
-    stl("Y_Carriage_Left_RB");
+    stl("Y_Carriage_Left_RB3");
     color(pp2_colour)
         Y_Carriage(carriageType(_yCarriageDescriptor), idlerHeight, coreXYIdlerBore(), railType(_xCarriageDescriptor), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), blockOffset, endStopOffsetX, tongueOffset(), plainIdlerOffset(), toothedIdlerOffset(), topInset, inserts=yCarriageInserts, reversedBelts=true, left=true, cnc=false);
 }
 
-module Y_Carriage_Right_RB_stl() {
+module Y_Carriage_Right_RB3_stl() {
     endStopOffsetX = 0;
-    stl("Y_Carriage_Right_RB");
+    stl("Y_Carriage_Right_RB3");
     color(pp2_colour)
         Y_Carriage(carriageType(_yCarriageDescriptor), idlerHeight, coreXYIdlerBore(), railType(_xCarriageDescriptor), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), blockOffset, endStopOffsetX, tongueOffset(), plainIdlerOffset(), toothedIdlerOffset(), topInset, inserts=yCarriageInserts, reversedBelts=true, left=false, cnc=false);
 }
@@ -96,14 +96,14 @@ module Y_Carriage_Right_AL_dxf() {
             Y_Carriage(carriageType(_yCarriageDescriptor), idlerHeight, coreXYIdlerBore(), railType(_xCarriageDescriptor), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), blockOffset, endStopOffsetX, tongueOffset(), plainIdlerOffset(), toothedIdlerOffset(), topInset, left=false, cnc=true);
 }
 
-module Y_Carriage_Brace_Left_RB_stl() {
-    stl("Y_Carriage_Brace_Left_RB");
+module Y_Carriage_Brace_Left_RB3_stl() {
+    stl("Y_Carriage_Brace_Left_RB3");
     color(pp3_colour)
         yCarriageBrace(carriageType(_yCarriageDescriptor), yCarriageBraceThickness(), plainIdlerOffset(), holeRadius, _coreXYDescriptor == "GT2_20_25" ? blockOffsetX : undef, reversedBelts=true, left=true);
 }
 
-module Y_Carriage_Brace_Right_RB_stl() {
-    stl("Y_Carriage_Brace_Right_RB");
+module Y_Carriage_Brace_Right_RB3_stl() {
+    stl("Y_Carriage_Brace_Right_RB3");
     color(pp3_colour)
         yCarriageBrace(carriageType(_yCarriageDescriptor), yCarriageBraceThickness(), plainIdlerOffset(), holeRadius, _coreXYDescriptor == "GT2_20_25" ? blockOffsetX : undef, reversedBelts=true, left=false);
 }
@@ -152,7 +152,7 @@ assembly("Y_Carriage_Left", ngb=true) {
         rotate([180, 0, 0]) {
             stl_colour(pp2_colour)
                 if (useReversedBelts())
-                    Y_Carriage_Left_RB_stl();
+                    Y_Carriage_Left_RB3_stl();
                 else if (usePulley25())
                     Y_Carriage_Left_25_stl();
                 else
@@ -162,7 +162,7 @@ assembly("Y_Carriage_Left", ngb=true) {
                     explode(5*yCarriageExplodeFactor())
                         stl_colour(pp3_colour)
                             if (useReversedBelts())
-                                Y_Carriage_Brace_Left_RB_stl();
+                                Y_Carriage_Brace_Left_RB3_stl();
                             else if (usePulley25())
                                 Y_Carriage_Brace_Left_25_stl();
                             else
@@ -193,7 +193,7 @@ assembly("Y_Carriage_Right", ngb=true) {
         rotate([180, 0, 180]) {
             stl_colour(pp2_colour)
                 if (useReversedBelts())
-                    Y_Carriage_Right_RB_stl();
+                    Y_Carriage_Right_RB3_stl();
                 else if (usePulley25())
                     Y_Carriage_Right_25_stl();
                 else
@@ -203,7 +203,7 @@ assembly("Y_Carriage_Right", ngb=true) {
                     explode(5*yCarriageExplodeFactor())
                         stl_colour(pp3_colour)
                             if (useReversedBelts())
-                                Y_Carriage_Brace_Right_RB_stl();
+                                Y_Carriage_Brace_Right_RB3_stl();
                             else if (usePulley25())
                                 Y_Carriage_Brace_Right_25_stl();
                             else
