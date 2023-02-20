@@ -22,9 +22,10 @@ include <utils/printheadOffsets.scad>
 use <Parameters_Positions.scad>
 
 function use2060ForTop() = !is_undef(_use2060ForTop) && _use2060ForTop;
+useCamera = false;
 
 
-//!1. Bolt the two motor mounts, the **Wiring_Guide**, and optionally the **Camera_Mount** to the rear extrusion.
+//!1. Bolt the two motor mounts and the **Wiring_Guide** to the rear extrusion.
 //!2. Bolt the two idlers to the front extrusion.
 //!3. Screw the bolts into the ends of the front and rear extrusions.
 //!4. Insert the t-nuts for the **Handle** into the extrusions.
@@ -176,17 +177,18 @@ module faceTopBack(height=40, fov_distance=0) {
         }
         if (_variant != "JubileeToolChanger" && (is_undef($hide_extras) || !$hide_extras)) {
             explode([0, -40, 0], true, show_line=false)
-                wiringGuidePosition(offsetX=cameraMountBaseSize.x/2)
+                wiringGuidePosition(offsetX = useCamera ? cameraMountBaseSize.x/2 : 0)
                     vflip() {
                         stl_colour(pp3_colour)
                             Wiring_Guide_Socket_stl();
                         Wiring_Guide_Socket_hardware();
                     }
-            cameraMountPosition() {
-                stl_colour(pp1_colour)
-                    Camera_Mount_stl();
-                Camera_Mount_hardware(fov_distance);
-            }
+            if (useCamera)
+                cameraMountPosition() {
+                    stl_colour(pp1_colour)
+                        Camera_Mount_stl();
+                    Camera_Mount_hardware(fov_distance);
+                }
         }
     }
 }
@@ -194,7 +196,7 @@ module faceTopBack(height=40, fov_distance=0) {
 module printheadWiring() {
     // don't show the incomplete cable if there are no extrusions to obscure it
     wireRadius = 2.5;
-    bezierPos = wiringGuidePosition(cameraMountBaseSize.x/2, 5, eSize);
+    bezierPos = wiringGuidePosition(useCamera ? cameraMountBaseSize.x/2 : 0, 5, eSize);
     if (is_undef($hide_extrusions))
         color(grey(20))
             bezierTube(bezierPos, [carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(), tubeRadius=wireRadius);
@@ -205,7 +207,7 @@ module printheadWiring() {
                 rotate([0, 90, 90])
                     cable_tie(cable_r=3, thickness=4.5);*/
 
-    wiringGuidePosition(offsetX=cameraMountBaseSize.x/2) {
+    wiringGuidePosition(offsetX = useCamera ? cameraMountBaseSize.x/2 : 0) {
         stl_colour(pp1_colour)
             Wiring_Guide_stl();
         Wiring_Guide_hardware();
