@@ -63,7 +63,7 @@ module X_Carriage_Belt_Side_RB3_stl() {
     size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 1];
 
     // orientate for printing
-    stl("X_Carriage_Belt_Side3_RB"); // semicolon required for XChange build as this is not on BOM
+    stl("X_Carriage_Belt_Side_RB3"); // semicolon required for XChange build as this is not on BOM
     color(pp4_colour)
         rotate([90, 0, 0])// orientate for printing
             xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), reversedBelts=true, endCube=true);
