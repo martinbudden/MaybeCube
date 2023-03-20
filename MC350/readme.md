@@ -17,9 +17,9 @@ requires M6 bolts then the 10mm and 12mm buttonhead M5 bolts should be replaced 
 
 The motor for the Z-axis has an integrated lead screw: in the *Parts List* the length specified is the length that
 protrudes from the motor. Some suppliers specify the total length of the lead screw, that is including the part that
-is inside the motor, so check how your supplier specifies the part before ordering. Another option is to order a lead
-screw that is too long and cut to size, not however that lead screws are made from hardened steel and cannot be cut
-with a hacksaw - an angle grinder is required to cut them.
+is inside the motor, so check how your supplier specifies the part before ordering. Another option is to order a motor
+with a lead screw that is too long and cut to size, not however that lead screws are made from hardened steel and cannot
+be cut with a hacksaw - an angle grinder is required to cut them.
 
 For the MC350 variant I have specified an Ender-style 235x235mm print bed with 4 fixing bolts - this is because they are
 readily available and cheap. A better solution is to use an aluminium tooling plate drilled for a 3 point fixing and a
@@ -105,9 +105,8 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech SKR v1.4 Turbo |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech TFT35 E3 v3.0 |
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
-|   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  8mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M2 caphead x 12mm |
-|   .  |   .  |  14  |   2  |   .  |   2  |   .  |   8  |   26  |  Bolt M3 buttonhead x 10mm |
+|   .  |   .  |  12  |   2  |   .  |   2  |   .  |   8  |   24  |  Bolt M3 buttonhead x 10mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   6  |    6  |  Bolt M3 caphead x  6mm |
 |   .  |   .  |  16  |   .  |   2  |   .  |   .  |   .  |   18  |  Bolt M3 caphead x  8mm |
 |   .  |   .  |  16  |   .  |   .  |   4  |   .  |   .  |   20  |  Bolt M3 caphead x 10mm |
@@ -151,7 +150,7 @@ omitted from the build.
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  MK10 Dual Pulley Extruder |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  Magnetic base 254mm x 254mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Micro SD card |
-|   .  |   .  |  20  |   .  |   3  |   2  |   .  |   6  |   31  |  Nut M3 hammer |
+|   .  |   .  |  18  |   .  |   3  |   2  |   .  |   6  |   29  |  Nut M3 hammer |
 |   .  |   .  |  12  |   8  |   .  |   .  |   .  |  69  |   89  |  Nut M4 hammer |
 |   .  |   .  |  36  |   .  |   .  |   6  |  12  |   .  |   54  |  Nut M4 sliding T |
 |   .  |   .  |   .  |   .  |  12  |   .  |   .  |   .  |   12  |  O-ring nitrile 4mm x 2mm |
@@ -164,7 +163,6 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |  12  |   12  |  Pillar hex nylon F/F M3x6 |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Pulley GT2OB 20 teeth |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Raspberry Pi 3A+ |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Raspberry Pi camera V2 |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  SCS12LUU bearing block |
 |   .  |   .  |   .  |   .  |   .  |   .  |   4  |   .  |    4  |  SK12 shaft support bracket |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Sheet polycarbonate 295mm x 450mm x 3mm |
@@ -182,9 +180,8 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |    3  |  Washer penny M4 |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  XL4015 buck converter |
 |   3  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    3  |  Ziptie 2.5mm x 100mm min length |
-|  12  |   4  | 281  |  39  |  39  |  45  |  40  | 239  |  699  | Total vitamins count |
+|  12  |   4  | 272  |  39  |  39  |  45  |  40  | 239  |  690  | Total vitamins count |
 |      |      |      |      |      |      |      |      |       | **3D printed parts** |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Camera_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_Bracket_TFT35_E3.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_TFT35_E3.stl |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | Extruder_Bracket.stl |
@@ -206,27 +203,27 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Wiring_Guide.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Wiring_Guide_Clamp.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Wiring_Guide_Socket.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Left_RB_40.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Right_RB_40.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Left_RB.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Right_RB.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Left_RB.stl |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  | XY_Motor_Mount_Pulley_Spacer.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Right_RB.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Left_RB3.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Right_RB3.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Left_RB3.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Right_RB3.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Left_RB3.stl |
+|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  | XY_Motor_Mount_Pulley_Spacer_M3.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Right_RB3.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Belt_Clamp.stl |
-|   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Belt_Side_RB.stl |
+|   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Belt_Side_RB3.stl |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  | X_Carriage_Belt_Tensioner_RB.stl |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Groovemount.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Brace_Left_RB.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Brace_Right_RB.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Left_RB.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Right_RB.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Brace_Left_RB3.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Brace_Right_RB3.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Left_RB3.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Right_RB3.stl |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Z_Carriage_Center.stl |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  | Z_Carriage_Side.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_MountGuide_17p5mm.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |    2  | Z_RodMountGuide_105mm.stl |
-|   3  |   3  |  21  |   2  |   .  |   5  |   4  |  15  |   53  | Total 3D printed parts count |
+|   3  |   3  |  20  |   2  |   .  |   5  |   4  |  15  |   52  | Total 3D printed parts count |
 |      |      |      |      |      |      |      |      |       | **CNC routed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Back_Panel.dxf |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | BaseAL.dxf |
@@ -289,9 +286,9 @@ the wiring is not shown in this diagram.
 
 ### 3D Printed parts
 
-| 1 x X_Carriage_Belt_Side_RB.stl | 2 x X_Carriage_Belt_Tensioner_RB.stl |
+| 1 x X_Carriage_Belt_Side_RB3.stl | 2 x X_Carriage_Belt_Tensioner_RB.stl |
 |----------|----------|
-| ![X_Carriage_Belt_Side_RB.stl](stls/X_Carriage_Belt_Side_RB.png) | ![X_Carriage_Belt_Tensioner_RB.stl](stls/X_Carriage_Belt_Tensioner_RB.png) |
+| ![X_Carriage_Belt_Side_RB3.stl](stls/X_Carriage_Belt_Side_RB3.png) | ![X_Carriage_Belt_Tensioner_RB.stl](stls/X_Carriage_Belt_Tensioner_RB.png) |
 
 ### Assembly instructions
 
@@ -327,9 +324,9 @@ Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensi
 
 ### 3D Printed parts
 
-| 1 x XY_Motor_Mount_Brace_Right_RB.stl | 1 x XY_Motor_Mount_Pulley_Spacer.stl | 1 x XY_Motor_Mount_Right_RB.stl |
+| 1 x XY_Motor_Mount_Brace_Right_RB3.stl | 1 x XY_Motor_Mount_Pulley_Spacer_M3.stl | 1 x XY_Motor_Mount_Right_RB3.stl |
 |----------|----------|----------|
-| ![XY_Motor_Mount_Brace_Right_RB.stl](stls/XY_Motor_Mount_Brace_Right_RB.png) | ![XY_Motor_Mount_Pulley_Spacer.stl](stls/XY_Motor_Mount_Pulley_Spacer.png) | ![XY_Motor_Mount_Right_RB.stl](stls/XY_Motor_Mount_Right_RB.png) |
+| ![XY_Motor_Mount_Brace_Right_RB3.stl](stls/XY_Motor_Mount_Brace_Right_RB3.png) | ![XY_Motor_Mount_Pulley_Spacer_M3.stl](stls/XY_Motor_Mount_Pulley_Spacer_M3.png) | ![XY_Motor_Mount_Right_RB3.stl](stls/XY_Motor_Mount_Right_RB3.png) |
 
 ### Assembly instructions
 
@@ -371,9 +368,9 @@ and should not be omitted.
 
 ### 3D Printed parts
 
-| 1 x XY_Motor_Mount_Brace_Left_RB.stl | 1 x XY_Motor_Mount_Left_RB.stl | 1 x XY_Motor_Mount_Pulley_Spacer.stl |
+| 1 x XY_Motor_Mount_Brace_Left_RB3.stl | 1 x XY_Motor_Mount_Left_RB3.stl | 1 x XY_Motor_Mount_Pulley_Spacer_M3.stl |
 |----------|----------|----------|
-| ![XY_Motor_Mount_Brace_Left_RB.stl](stls/XY_Motor_Mount_Brace_Left_RB.png) | ![XY_Motor_Mount_Left_RB.stl](stls/XY_Motor_Mount_Left_RB.png) | ![XY_Motor_Mount_Pulley_Spacer.stl](stls/XY_Motor_Mount_Pulley_Spacer.png) |
+| ![XY_Motor_Mount_Brace_Left_RB3.stl](stls/XY_Motor_Mount_Brace_Left_RB3.png) | ![XY_Motor_Mount_Left_RB3.stl](stls/XY_Motor_Mount_Left_RB3.png) | ![XY_Motor_Mount_Pulley_Spacer_M3.stl](stls/XY_Motor_Mount_Pulley_Spacer_M3.png) |
 
 ### Assembly instructions
 
@@ -411,9 +408,9 @@ and should not be omitted.
 
 ### 3D Printed parts
 
-| 1 x XY_Idler_Right_RB_40.stl |
+| 1 x XY_Idler_Right_RB3.stl |
 |----------|
-| ![XY_Idler_Right_RB_40.stl](stls/XY_Idler_Right_RB_40.png) |
+| ![XY_Idler_Right_RB3.stl](stls/XY_Idler_Right_RB3.png) |
 
 ### Assembly instructions
 
@@ -449,9 +446,9 @@ to turn freely again.
 
 ### 3D Printed parts
 
-| 1 x XY_Idler_Left_RB_40.stl |
+| 1 x XY_Idler_Left_RB3.stl |
 |----------|
-| ![XY_Idler_Left_RB_40.stl](stls/XY_Idler_Left_RB_40.png) |
+| ![XY_Idler_Left_RB3.stl](stls/XY_Idler_Left_RB3.png) |
 
 ### Assembly instructions
 
@@ -487,9 +484,9 @@ to turn freely again.
 
 ### 3D Printed parts
 
-| 1 x Y_Carriage_Brace_Right_RB.stl | 1 x Y_Carriage_Right_RB.stl |
+| 1 x Y_Carriage_Brace_Right_RB3.stl | 1 x Y_Carriage_Right_RB3.stl |
 |----------|----------|
-| ![Y_Carriage_Brace_Right_RB.stl](stls/Y_Carriage_Brace_Right_RB.png) | ![Y_Carriage_Right_RB.stl](stls/Y_Carriage_Right_RB.png) |
+| ![Y_Carriage_Brace_Right_RB3.stl](stls/Y_Carriage_Brace_Right_RB3.png) | ![Y_Carriage_Right_RB3.stl](stls/Y_Carriage_Right_RB3.png) |
 
 ### Assembly instructions
 
@@ -561,9 +558,9 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 
 ### 3D Printed parts
 
-| 1 x Y_Carriage_Brace_Left_RB.stl | 1 x Y_Carriage_Left_RB.stl |
+| 1 x Y_Carriage_Brace_Left_RB3.stl | 1 x Y_Carriage_Left_RB3.stl |
 |----------|----------|
-| ![Y_Carriage_Brace_Left_RB.stl](stls/Y_Carriage_Brace_Left_RB.png) | ![Y_Carriage_Left_RB.stl](stls/Y_Carriage_Left_RB.png) |
+| ![Y_Carriage_Brace_Left_RB3.stl](stls/Y_Carriage_Brace_Left_RB3.png) | ![Y_Carriage_Left_RB3.stl](stls/Y_Carriage_Left_RB3.png) |
 
 ### Assembly instructions
 
@@ -627,23 +624,19 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 
 | Qty | Description |
 |----:|:------------|
-|   4 | Bolt M2 caphead x  8mm |
-|   2 | Bolt M3 buttonhead x 10mm |
 |   2 | Bolt M4 buttonhead x 10mm |
 |  20 | Bolt M4 countersunk x 10mm |
 |   6 | Bolt M5 buttonhead x 10mm |
 |   2 | Bolt M5 buttonhead x 12mm |
 |   2 | Extrusion E2040 x 350mm |
-|   2 | Nut M3 hammer |
 |   2 | Nut M4 hammer |
 |  28 | Nut M4 sliding T |
-|   1 | Raspberry Pi camera V2 |
 
 ### 3D Printed parts
 
-| 1 x Camera_Mount.stl | 4 x Top_Corner_Piece.stl | 1 x Wiring_Guide_Socket.stl |
-|----------|----------|----------|
-| ![Camera_Mount.stl](stls/Camera_Mount.png) | ![Top_Corner_Piece.stl](stls/Top_Corner_Piece.png) | ![Wiring_Guide_Socket.stl](stls/Wiring_Guide_Socket.png) |
+| 4 x Top_Corner_Piece.stl | 1 x Wiring_Guide_Socket.stl |
+|----------|----------|
+| ![Top_Corner_Piece.stl](stls/Top_Corner_Piece.png) | ![Wiring_Guide_Socket.stl](stls/Wiring_Guide_Socket.png) |
 
 ### Sub-assemblies
 
@@ -659,7 +652,7 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 
 ![Face_Top_Stage_1_assembly](assemblies/Face_Top_Stage_1_assembly.png)
 
-1. Bolt the two motor mounts, the **Wiring_Guide**, and optionally the **Camera_Mount** to the rear extrusion.
+1. Bolt the two motor mounts and the **Wiring_Guide** to the rear extrusion.
 2. Bolt the two idlers to the front extrusion.
 3. Screw the bolts into the ends of the front and rear extrusions.
 4. Insert the t-nuts for the **Handle** into the extrusions.
