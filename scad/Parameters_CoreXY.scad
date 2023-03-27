@@ -7,7 +7,7 @@ include <Parameters_Main.scad>
 
 coreXY_GT2_20_F623 =["coreXY_20_F623", GT2x6, GT2x20ob_pulley,  GT2_F623_plain_idler, GT2_F623_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
 coreXY_GT2_20_F694 =["coreXY_20_F694", GT2x6, GT2x20ob_pulley,  GT2_F694_plain_idler, GT2_F694_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
-coreXY_GT2_20_F695 =["coreXY_20_F694", GT2x6, GT2x20ob_pulley,  GT2_F695_plain_idler, GT2_F695_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
+coreXY_GT2_20_F695 =["coreXY_20_F695", GT2x6, GT2x20ob_pulley,  GT2_F695_plain_idler, GT2_F695_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
 coreXY_GT2_20_20_sf=["coreXY_20_20sf", GT2x6, GT2x20ob_pulley,  GT2x20x3_toothed_idler_sf, GT2x20x3_plain_idler_sf, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
 coreXY_GT2_20_25   =["coreXY_20_25",   GT2x6, GT2x20ob_pulley,  GT2x25x7x3_toothed_idler, GT2x25x7x3_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
 coreXY_GT2x9_20_20= ["coreXY_20_20x9", GT2x9, GT2x20x11_pulley, GT2x20x11x3_toothed_idler, GT2x20x11x3_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
@@ -63,7 +63,7 @@ function  coreXYSeparation(coreXYType=coreXY_type()) = [
     // Z separation is a pulley with a washer either side and an optional brace for the yCarriage pulleys
     pulley_height(coreXY_plain_idler(coreXYType)) + 2*washer_thickness(coreXYWasher(coreXYType)) + yCarriageBraceThickness()
 ];
-
+function coreXYOffsetY(coreXYType=coreXY_type()) = coreXYIdlerBore(coreXYType) == 3 ? 0 : -1.0;
 
 function motorClearance() = [0, 14];
 
