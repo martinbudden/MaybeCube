@@ -47,7 +47,7 @@ assembly("Right_Side", big=true) {
     } else {
         if (eZ >= 400)
             faceRightLowerExtrusion(useElectronicsInBase && !_useDualZRods);
-        if(!useBackMounts)
+        if (!useBackMounts)
             translate([eX + eSize, eSize, spoolHeight()])
                 extrusionOY2040VEndBolts(eY);
     }

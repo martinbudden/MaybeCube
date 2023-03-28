@@ -364,7 +364,7 @@ at the bottom.
                     x_pitch = carriage_pitch_x(carriageType)/2 - offset;
                     y_pitch = carriage_pitch_y(carriageType)/2;
 
-                    for(x = [-x_pitch, x_pitch], y = [-y_pitch, y_pitch])
+                    for (x = [-x_pitch, x_pitch], y = [-y_pitch, y_pitch])
                         translate([x, y, carriage_height(carriageType)])
                             boltCutout(offset, height - 3);
                 }

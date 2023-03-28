@@ -397,7 +397,7 @@ module bondtech_left_parking_wing_hardware() {
     for (y = [0, 13.5, 33.5, 47])
         translate([4, y + 19, 2.8])
             boltM3Countersunk(6);
-    for(x = [0, 18])
+    for (x = [0, 18])
         translate([x + 13.4, 28.2, 5.75])
             color("FireBrick")
                 O_ring(5, 2);
@@ -415,7 +415,7 @@ module bondtech_right_parking_wing_hardware() {
     for (y = [0, 13.5, 33.5, 47])
         translate([-4, y + 19, 2.8])
             boltM3Countersunk(6);
-    for(x = [0, -18])
+    for (x = [0, -18])
         translate([x - 13.4, 28.2, 5.75])
             color("FireBrick")
                 O_ring(5, 2);
@@ -430,7 +430,7 @@ module bondtech_extruder_holder_stl() {
 }
 
 module bondtech_extruder_holder_hardware() {
-    for(x = [-17, 17], y=[-11.5, 3])
+    for (x = [-17, 17], y=[-11.5, 3])
         translate([x, y, -5])
             vflip()
                 boltM3Caphead(10);
