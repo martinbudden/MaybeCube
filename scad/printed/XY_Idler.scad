@@ -336,14 +336,6 @@ module XY_Idler_Left_RB4_stl() {
             xyIdler(xyIdlerSize(), left=true, useReversedBelts=true, coreXYIdlerBore=4);
 }
 
-module XY_Idler_Left_RB5_stl() {
-    // rotate for printing, so that base filament pattern aligns with main diagonal
-    stl("XY_Idler_Left_RB5");
-    color(pp1_colour)
-        rotate([90, -90, 0])
-            xyIdler(xyIdlerSize(), left=true, useReversedBelts=true, coreXYIdlerBore=5);
-}
-
 module XY_Idler_Left_RB_20_stl() {
     // rotate for printing, so that base filament pattern aligns with main diagonal
     stl("XY_Idler_Left_RB_20");
@@ -392,14 +384,6 @@ module XY_Idler_Right_RB4_stl() {
                 xyIdler(xyIdlerSize(), left=false, useReversedBelts=true, coreXYIdlerBore=4);
 }
 
-module XY_Idler_Right_RB5_stl() {
-    stl("XY_Idler_Right_RB5");
-    color(pp1_colour)
-        rotate([0, 90, 0])
-            mirror([1, 0, 0])
-                xyIdler(xyIdlerSize(), left=false, useReversedBelts=true, coreXYIdlerBore=5);
-}
-
 module XY_Idler_Right_RB_20_stl() {
     stl("XY_Idler_Right_RB_20");
     color(pp1_colour)
@@ -441,8 +425,6 @@ assembly("XY_Idler_Left", ngb=true) {
                         XY_Idler_Left_RB3_stl();
                     else if (coreXYIdlerBore() == 4)
                         XY_Idler_Left_RB4_stl();
-                    else
-                        XY_Idler_Left_RB5_stl();
                 } else if (useReversedBelts()) {
                     XY_Idler_Left_RB_20_stl();
                 } else if (usePulley25()) {
@@ -472,8 +454,6 @@ assembly("XY_Idler_Right", ngb=true) {
                         XY_Idler_Right_RB3_stl();
                     else if (coreXYIdlerBore() == 4)
                         XY_Idler_Right_RB4_stl();
-                    else
-                        XY_Idler_Right_RB5_stl();
                 } else if (useReversedBelts()) {
                     XY_Idler_Right_RB_20_stl();
                 } else if (usePulley25()) {
