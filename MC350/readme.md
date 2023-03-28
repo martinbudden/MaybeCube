@@ -99,8 +99,8 @@ omitted from the build.
 |      |      |      |      |      |      |      |      |       | **Vitamins** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Aluminium sheet 390mm x 390mm x 3mm |
 |   .  |   .  |  24  |   .  |   .  |   .  |   .  |   .  |   24  |  Ball bearing F623-2RS 3mm x 10mm x 4mm |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1476mm |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1500mm |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1470mm |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1496mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech Relay Module v1.2 |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech SKR v1.4 Turbo |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech TFT35 E3 v3.0 |
@@ -108,8 +108,8 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M2 caphead x 12mm |
 |   .  |   .  |  12  |   2  |   .  |   2  |   .  |   8  |   24  |  Bolt M3 buttonhead x 10mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   6  |    6  |  Bolt M3 caphead x  6mm |
-|   .  |   .  |  16  |   .  |   2  |   .  |   .  |   .  |   18  |  Bolt M3 caphead x  8mm |
-|   .  |   .  |  16  |   .  |   .  |   4  |   .  |   .  |   20  |  Bolt M3 caphead x 10mm |
+|   .  |   .  |  20  |   .  |   2  |   .  |   .  |   .  |   22  |  Bolt M3 caphead x  8mm |
+|   .  |   .  |  12  |   .  |   .  |   4  |   .  |   .  |   16  |  Bolt M3 caphead x 10mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |  10  |   10  |  Bolt M3 caphead x 12mm |
 |   .  |   .  |   2  |   2  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 caphead x 16mm |
 |   .  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |    3  |  Bolt M3 caphead x 20mm |
@@ -122,11 +122,11 @@ omitted from the build.
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 countersunk x 35mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M3 countersunk x 40mm |
 |   .  |   .  |   .  |   8  |   .  |   .  |   .  |  57  |   65  |  Bolt M4 buttonhead x  8mm |
-|   .  |   .  |  12  |   .  |   .  |   6  |   4  |  12  |   34  |  Bolt M4 buttonhead x 10mm |
-|   .  |   .  |   8  |   .  |   .  |   .  |   .  |   4  |   12  |  Bolt M4 buttonhead x 12mm |
+|   .  |   .  |   8  |   .  |   .  |   6  |   4  |  12  |   30  |  Bolt M4 buttonhead x 10mm |
+|   .  |   .  |  12  |   .  |   .  |   .  |   .  |   4  |   16  |  Bolt M4 buttonhead x 12mm |
 |   .  |   .  |  20  |   .  |   .  |   .  |   8  |   .  |   28  |  Bolt M4 countersunk x 10mm |
 |   .  |   .  |   6  |   .  |   .  |   .  |   .  |   .  |    6  |  Bolt M5 buttonhead x 10mm |
-|   .  |   .  |  14  |   8  |   .  |   8  |   8  |  14  |   52  |  Bolt M5 buttonhead x 12mm |
+|   .  |   .  |  16  |   8  |   .  |   8  |   8  |  14  |   54  |  Bolt M5 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M5 buttonhead x 16mm |
 |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  Bolt M5 countersunk x 12mm |
 |   .  |   .  |   2  |   1  |   .  |   .  |   .  |   1  |    4  |  Cork damper NEMA 17 |
@@ -134,8 +134,8 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Extrusion E2020 x 350mm |
 |   .  |   .  |   .  |   2  |   .  |   .  |   2  |   .  |    4  |  Extrusion E2020 x 450mm |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  Extrusion E2040 x 185mm |
-|   .  |   .  |   2  |   2  |   .  |   .  |   2  |   1  |    7  |  Extrusion E2040 x 350mm |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Extrusion E2060 x 350mm |
+|   .  |   .  |   1  |   2  |   .  |   .  |   2  |   1  |    6  |  Extrusion E2040 x 350mm |
+|   .  |   .  |   3  |   .  |   .  |   .  |   .  |   .  |    3  |  Extrusion E2060 x 350mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Extrusion E2080 x 350mm |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Fan 30mm x 10mm |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Filament sensor |
@@ -180,7 +180,7 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |    3  |  Washer penny M4 |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  XL4015 buck converter |
 |   3  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    3  |  Ziptie 2.5mm x 100mm min length |
-|  12  |   4  | 272  |  39  |  39  |  45  |  40  | 239  |  690  | Total vitamins count |
+|  12  |   4  | 274  |  39  |  39  |  45  |  40  | 239  |  692  | Total vitamins count |
 |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_Bracket_TFT35_E3.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_TFT35_E3.stl |
@@ -189,8 +189,8 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  | Foot_LShaped_12mm.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Front_Cover_350.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Front_Display_Wiring_Cover_350.stl |
+|   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Grovemount_Clamp.stl |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  | Handle.stl |
-|   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Hotend_Clamp.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | IEC_Housing.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | IEC_Housing_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Printbed_Strain_Relief.stl |
@@ -207,11 +207,11 @@ omitted from the build.
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Right_RB3.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Left_RB3.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Right_RB3.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Left_RB3.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Left_60_RB3.stl |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  | XY_Motor_Mount_Pulley_Spacer_M3.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Right_RB3.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Right_60_RB3.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Belt_Clamp.stl |
-|   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Belt_Side_RB3.stl |
+|   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Belt_Side_RB.stl |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  | X_Carriage_Belt_Tensioner_RB.stl |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Groovemount.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Brace_Left_RB3.stl |
@@ -252,9 +252,9 @@ omitted from the build.
 
 ### 3D Printed parts
 
-| 1 x Fan_Duct.stl | 1 x Hotend_Clamp.stl | 1 x X_Carriage_Groovemount.stl |
+| 1 x Fan_Duct.stl | 1 x Grovemount_Clamp.stl | 1 x X_Carriage_Groovemount.stl |
 |----------|----------|----------|
-| ![Fan_Duct.stl](stls/Fan_Duct.png) | ![Hotend_Clamp.stl](stls/Hotend_Clamp.png) | ![X_Carriage_Groovemount.stl](stls/X_Carriage_Groovemount.png) |
+| ![Fan_Duct.stl](stls/Fan_Duct.png) | ![Grovemount_Clamp.stl](stls/Grovemount_Clamp.png) | ![X_Carriage_Groovemount.stl](stls/X_Carriage_Groovemount.png) |
 
 ### Assembly instructions
 
@@ -263,7 +263,7 @@ omitted from the build.
 1. Bolt the fan onto the side of the **X_Carriage_Groovemount**, secure the fan wire with a ziptie.
 2. Ensure a good fit between the fan and the **Fan_Duct** and bolt the fan duct to the X_Carriage.
 3. Assemble the E3D hotend, including fan, thermistor cartridge and heater cartridge.
-4. Use the **Hotend_Clamp** to attach the E3D hotend to the X_Carriage.
+4. Use the **Grovemount_Clamp** to attach the E3D hotend to the X_Carriage.
 5. Collect the wires together, wrap them in spiral wrap, and secure them to the X_Carriage using the zipties. Note that
 the wiring is not shown in this diagram.
 
@@ -286,9 +286,9 @@ the wiring is not shown in this diagram.
 
 ### 3D Printed parts
 
-| 1 x X_Carriage_Belt_Side_RB3.stl | 2 x X_Carriage_Belt_Tensioner_RB.stl |
+| 1 x X_Carriage_Belt_Side_RB.stl | 2 x X_Carriage_Belt_Tensioner_RB.stl |
 |----------|----------|
-| ![X_Carriage_Belt_Side_RB3.stl](stls/X_Carriage_Belt_Side_RB3.png) | ![X_Carriage_Belt_Tensioner_RB.stl](stls/X_Carriage_Belt_Tensioner_RB.png) |
+| ![X_Carriage_Belt_Side_RB.stl](stls/X_Carriage_Belt_Side_RB.png) | ![X_Carriage_Belt_Tensioner_RB.stl](stls/X_Carriage_Belt_Tensioner_RB.png) |
 
 ### Assembly instructions
 
@@ -314,7 +314,8 @@ Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensi
 |   6 | Ball bearing F623-2RS 3mm x 10mm x 4mm |
 |   6 | Bolt M3 buttonhead x 10mm |
 |   2 | Bolt M3 countersunk x 35mm |
-|   3 | Bolt M4 buttonhead x 10mm |
+|   1 | Bolt M4 buttonhead x 10mm |
+|   2 | Bolt M4 buttonhead x 12mm |
 |   1 | Cork damper NEMA 17 |
 |   3 | Nut M4 hammer |
 |   1 | Pulley GT2OB 20 teeth |
@@ -324,9 +325,9 @@ Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensi
 
 ### 3D Printed parts
 
-| 1 x XY_Motor_Mount_Brace_Right_RB3.stl | 1 x XY_Motor_Mount_Pulley_Spacer_M3.stl | 1 x XY_Motor_Mount_Right_RB3.stl |
+| 1 x XY_Motor_Mount_Brace_Right_RB3.stl | 1 x XY_Motor_Mount_Pulley_Spacer_M3.stl | 1 x XY_Motor_Mount_Right_60_RB3.stl |
 |----------|----------|----------|
-| ![XY_Motor_Mount_Brace_Right_RB3.stl](stls/XY_Motor_Mount_Brace_Right_RB3.png) | ![XY_Motor_Mount_Pulley_Spacer_M3.stl](stls/XY_Motor_Mount_Pulley_Spacer_M3.png) | ![XY_Motor_Mount_Right_RB3.stl](stls/XY_Motor_Mount_Right_RB3.png) |
+| ![XY_Motor_Mount_Brace_Right_RB3.stl](stls/XY_Motor_Mount_Brace_Right_RB3.png) | ![XY_Motor_Mount_Pulley_Spacer_M3.stl](stls/XY_Motor_Mount_Pulley_Spacer_M3.png) | ![XY_Motor_Mount_Right_60_RB3.stl](stls/XY_Motor_Mount_Right_60_RB3.png) |
 
 ### Assembly instructions
 
@@ -358,7 +359,8 @@ and should not be omitted.
 |   6 | Ball bearing F623-2RS 3mm x 10mm x 4mm |
 |   6 | Bolt M3 buttonhead x 10mm |
 |   2 | Bolt M3 countersunk x 35mm |
-|   3 | Bolt M4 buttonhead x 10mm |
+|   1 | Bolt M4 buttonhead x 10mm |
+|   2 | Bolt M4 buttonhead x 12mm |
 |   1 | Cork damper NEMA 17 |
 |   3 | Nut M4 hammer |
 |   1 | Pulley GT2OB 20 teeth |
@@ -368,9 +370,9 @@ and should not be omitted.
 
 ### 3D Printed parts
 
-| 1 x XY_Motor_Mount_Brace_Left_RB3.stl | 1 x XY_Motor_Mount_Left_RB3.stl | 1 x XY_Motor_Mount_Pulley_Spacer_M3.stl |
+| 1 x XY_Motor_Mount_Brace_Left_RB3.stl | 1 x XY_Motor_Mount_Left_60_RB3.stl | 1 x XY_Motor_Mount_Pulley_Spacer_M3.stl |
 |----------|----------|----------|
-| ![XY_Motor_Mount_Brace_Left_RB3.stl](stls/XY_Motor_Mount_Brace_Left_RB3.png) | ![XY_Motor_Mount_Left_RB3.stl](stls/XY_Motor_Mount_Left_RB3.png) | ![XY_Motor_Mount_Pulley_Spacer_M3.stl](stls/XY_Motor_Mount_Pulley_Spacer_M3.png) |
+| ![XY_Motor_Mount_Brace_Left_RB3.stl](stls/XY_Motor_Mount_Brace_Left_RB3.png) | ![XY_Motor_Mount_Left_60_RB3.stl](stls/XY_Motor_Mount_Left_60_RB3.png) | ![XY_Motor_Mount_Pulley_Spacer_M3.stl](stls/XY_Motor_Mount_Pulley_Spacer_M3.png) |
 
 ### Assembly instructions
 
@@ -476,7 +478,7 @@ to turn freely again.
 | Qty | Description |
 |----:|:------------|
 |   4 | Ball bearing F623-2RS 3mm x 10mm x 4mm |
-|   2 | Bolt M3 caphead x 10mm |
+|   2 | Bolt M3 caphead x  8mm |
 |   1 | Bolt M3 caphead x 16mm |
 |   1 | Bolt M3 caphead x 25mm |
 |   2 | Heatfit insert M3 x 5.8mm |
@@ -550,7 +552,7 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 | Qty | Description |
 |----:|:------------|
 |   4 | Ball bearing F623-2RS 3mm x 10mm x 4mm |
-|   2 | Bolt M3 caphead x 10mm |
+|   2 | Bolt M3 caphead x  8mm |
 |   1 | Bolt M3 caphead x 16mm |
 |   1 | Bolt M3 caphead x 25mm |
 |   2 | Heatfit insert M3 x 5.8mm |
@@ -627,8 +629,9 @@ bolts at this stage - they will be fully tightened when the rail is racked at a 
 |   2 | Bolt M4 buttonhead x 10mm |
 |  20 | Bolt M4 countersunk x 10mm |
 |   6 | Bolt M5 buttonhead x 10mm |
-|   2 | Bolt M5 buttonhead x 12mm |
-|   2 | Extrusion E2040 x 350mm |
+|   4 | Bolt M5 buttonhead x 12mm |
+|   1 | Extrusion E2040 x 350mm |
+|   1 | Extrusion E2060 x 350mm |
 |   2 | Nut M4 hammer |
 |  28 | Nut M4 sliding T |
 
@@ -710,8 +713,8 @@ extreme and tighten the bolts on that end of the Y-rail. Finally tighten the rem
 
 | Qty | Description |
 |----:|:------------|
-|   1 | Belt GT2 x 6mm x 1476mm |
-|   1 | Belt GT2 x 6mm x 1500mm |
+|   1 | Belt GT2 x 6mm x 1470mm |
+|   1 | Belt GT2 x 6mm x 1496mm |
 |   2 | Bolt M3 countersunk x 10mm |
 |   4 | Bolt M3 countersunk x 12mm |
 |   8 | Bolt M4 buttonhead x 12mm |
