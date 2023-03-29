@@ -203,7 +203,7 @@ module heatedBed(size=_heatedBedSize, boltHoles=[], underlayThickness=0) {
             }
 
         // add underlay
-        if (_printbed4PointSupport)
+        *if (_printbed4PointSupport)
             foamUnderlay(size, holeOffset, 7);
         //else
             //explode(-40)
