@@ -15,13 +15,12 @@ _xRailLength = eX - 50;
 _yRailLength = eY;
 _zRodLength = eZ - 100;
 
-//_xCarriageDescriptor = "MGN9C";
 _xCarriageDescriptor = "MGN12H";
 _xCarriageCountersunk = true;
 _yCarriageDescriptor = "MGN12H";
 
 
-_coreXYDescriptor = "GT2_20_16";
+_coreXYDescriptor = "GT2_20_F623";
 
 _use2060ForTop = false;
 _use2060ForTopRear = false;
