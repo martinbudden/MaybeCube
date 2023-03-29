@@ -230,7 +230,6 @@ module xyMotorMountBase(motorType, size, offset, sideSupportSizeY, stepdown, use
                     if (useReversedBelts)
                         translate(left ? -leftDrivePulleyOffset() : [rightDrivePulleyOffset().x, -rightDrivePulleyOffset().y]) {
                             bore = coreXYIdlerBore();
-                            echo(bore=bore);
                             // use shoulder bolts for M4 and M5, thread radius is 1 smaller than bolt radius
                             tapRadius = bore == 3 ? M3_tap_radius : bore == 4 ? M3_tap_radius : M4_tap_radius;
                             boltHole(2*tapRadius, basePlateThickness);

@@ -40,7 +40,6 @@ module xCarriageXChange(coreXYType, halfCarriage) {
     xCarriageType = MGN12H_carriage;
     carriageSize = carriage_size(xCarriageType);
     size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(coreXYType), beltSeparation(coreXYType));
-    echo(size=size);
     topThickness = xCarriageTopThickness();
     railCarriageGap = 0.5;
     topSizeZ = 18.05 + railCarriageGap - 4.5;

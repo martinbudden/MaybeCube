@@ -219,7 +219,6 @@ module Extrusion_Drill_Jig_E20_to_E40_120_7_stl() {
 module Extrusion_Drill_Jig_Printbed_stl() {
     scsType = SCS12LUU;
     scsSize = scs_size(scsType);
-    echo(scsSize=scsSize);
     //holes = [eSize/2, 3*eSize/2, 5*eSize/2, 7*eSize/2, 85, 105];
     holes = [scsSize.x/2 - scs_screw_separation_x(scsType)/2, scsSize.x/2 + scs_screw_separation_x(scsType)/2,
         scsSize.x/2 + printbedFrameCrossPieceOffset() + eSize/2, scsSize.x/2 + printbedFrameCrossPieceOffset() + 3*eSize/2];
