@@ -33,6 +33,8 @@ GT2x20sd_pulley           = ["GT2x20sd_pulley",           "GT2sd", 20, 12.22, GT
 M4_shim = ["M4_shim",          4,   9,   0.5, false,  undef,  undef, undef, undef];
 M5_shim = ["M5_shim",          5,  10,   0.5, false,  undef,  undef, undef, undef];
 
+BBF694   = ["F694",  4,  11, 4,   "silver",    1.0,  1.0,  12.5,  1];
+
 function bearingStackHeight(bearingType=BBF623, washer=M3_washer) = 3*washer_thickness(washer) + 2*bb_width(bearingType);
 
 module bearingStack(bearingType=BBF623, explode=5) {
