@@ -42,10 +42,10 @@ module printheadAssembly(full=true) {
                         explode(-40, true) {
                             stl_colour(pp2_colour)
                                 if (blower_size(blowerType).x == 30)
-                                    Grovemount_Clamp_stl();
+                                    Groovemount_Clamp_stl();
                                 else
-                                    Grovemount_Clamp_40_stl();
-                            Grovemount_Clamp_hardware(xCarriageType, blowerType, hotendDescriptor);
+                                    Groovemount_Clamp_40_stl();
+                            Groovemount_Clamp_hardware(xCarriageType, blowerType, hotendDescriptor);
                         }
         }
 
@@ -60,7 +60,7 @@ module printheadAssembly(full=true) {
 //!1. Bolt the fan onto the side of the **X_Carriage_Groovemount**, secure the fan wire with a ziptie.
 //!2. Ensure a good fit between the fan and the **Fan_Duct** and bolt the fan duct to the X_Carriage.
 //!3. Assemble the E3D hotend, including fan, thermistor cartridge and heater cartridge.
-//!4. Use the **Grovemount_Clamp** to attach the E3D hotend to the X_Carriage.
+//!4. Use the **Groovemount_Clamp** to attach the E3D hotend to the X_Carriage.
 //!5. Collect the wires together, wrap them in spiral wrap, and secure them to the X_Carriage using the zipties. Note that
 //!the wiring is not shown in this diagram.
 module Printhead_E3DV6_assembly() pose(a=[55, 0, 25 + 180])
@@ -204,21 +204,21 @@ module Hotend_Strain_Relief_Clamp_hardware() {
             boltM3Buttonhead(12);
 }
 
-module Grovemount_Clamp_stl() {
-    stl("Grovemount_Clamp")
+module Groovemount_Clamp_stl() {
+    stl("Groovemount_Clamp")
         color(pp2_colour)
             mirror([1, 0, 0])
                 grooveMountClamp(grooveMountClampSize(BL30x10), tolerance=0.15);
 }
 
-module Grovemount_Clamp_40_stl() {
-    stl("Grovemount_Clamp")
+module Groovemount_Clamp_40_stl() {
+    stl("Groovemount_Clamp")
         color(pp2_colour)
             mirror([1, 0, 0])
                 grooveMountClamp(grooveMountClampSize(BL40x10), tolerance=0.15);
 }
 
-module Grovemount_Clamp_hardware(xCarriageType, blowerType, hotendDescriptor) {
+module Groovemount_Clamp_hardware(xCarriageType, blowerType, hotendDescriptor) {
     mirror([1, 0, 0])
         grooveMountClampHardware(grooveMountClampSize(blowerType, hotendDescriptor), countersunk=true);
 }
