@@ -1,12 +1,11 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/vitamins/displays.scad>
+include <../vitamins/displays.scad>
 use <NopSCADlib/vitamins/pcb.scad>
 
 include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>
 
-use <../vitamins/displays.scad>
 use <../../../BabyCube/scad/printed/DisplayHousing.scad>
 
 include <../Parameters_Main.scad>
