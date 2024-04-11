@@ -875,12 +875,12 @@ module XY_Motor_Mount_Left_60_RB3_stl() {
     xyMotorMountLeftStl(useReversedBelts=true, cnc=false);
 }
 
-module XY_Motor_Mount_Left_RB4_stl() {
+module XY_Motor_Mount_Left_40_RB4_stl() {
     stl("XY_Motor_Mount_Left_40_RB4");
     xyMotorMountLeftStl(useReversedBelts=true, cnc=false);
 }
 
-module XY_Motor_Mount_Left_RB4_stl() {
+module XY_Motor_Mount_Left_60_RB4_stl() {
     stl("XY_Motor_Mount_Left_60_RB4");
     xyMotorMountLeftStl(useReversedBelts=true, cnc=false);
 }
@@ -927,9 +927,9 @@ assembly("XY_Motor_Mount_Left", ngb=true) {
                         XY_Motor_Mount_Left_40_RB3_stl();
                 } else if (coreXYIdlerBore()==4) {
                     if (use2060ForTopRear())
-                        XY_Motor_Mount_Left_60_RB3_stl();
+                        XY_Motor_Mount_Left_60_RB4_stl();
                     else
-                        XY_Motor_Mount_Left_40_RB3_stl();
+                        XY_Motor_Mount_Left_40_RB4_stl();
                 }
             } else if (usePulley25()) {
                 XY_Motor_Mount_Left_25_stl();
