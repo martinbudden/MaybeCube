@@ -37,12 +37,11 @@ module IEC_Housing_stl() {
             rotate(180) // rotate so rear seam underneath and so hidden when assembled
                 translate([iecHousingSize().x, 0, 0])
                     mirror([1, 0, 0])
-                        iecHousingStl(bevelled=false);
+                        iecHousingStl(bevelled=false, extension=0);
 }
 
-module iecHousingStl(bevelled=false) {
+module iecHousingStl(bevelled=false, extension=0) {
     size = iecHousingSize();
-    extension = 15;
     fillet = 2;
     cutoutSize = [size.x - 10, 27.5];
     baseThickness = 3;
@@ -74,12 +73,12 @@ module iecHousingStl(bevelled=false) {
                                 rotate(90)
                                     right_triangle(triangleSize.x, triangleSize.y, 0);
                     }
-                if (!bevelled)
+                if (extension)
                     translate([-size.x/2, -size.y/2 - extension, 0])
                         rounded_cube_xy([size.x, extension + 2*fillet, blockHeight], fillet);
             }
 
-            if (bevelled) {
+            if (bevelled || extension==0) {
                 cableCutoutSize = [8, (size.y-cutoutSize.y)/2 + 2*eps, 8];
                 translate([size.x/2 - 12 - cableCutoutSize.x/2, -size.y/2 - eps, -eps])
                     cube(cableCutoutSize);
