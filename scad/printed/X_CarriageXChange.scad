@@ -5,6 +5,7 @@ include <../vitamins/bolts.scad>
 use <NopSCADlib/utils/fillet.scad>
 
 use <../printed/X_CarriageAssemblies.scad>
+use <../printed/X_CarriageE3DV6.scad> // for xCarriageHotendSideSizeM
 include <../utils/carriageTypes.scad>
 include <../utils/PrintheadOffsets.scad>
 

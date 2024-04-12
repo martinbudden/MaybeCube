@@ -143,16 +143,18 @@ module Stage_4_assembly()
 staged_assembly("Stage_4", big=true, ngb=true) {
 
     Stage_3_assembly();
-    explode(150, true) {
-        explode(50, true) {
-            printheadHotendSide();
-            printheadWiring();
-        }
-        if (_useBowdenExtruder)
+    explode(150, true)
+        if (_useBowdenExtruder) {
+            explode(50, true) {
+                printheadE3DV6();
+                printheadE3DV6Wiring();
+            }
             if (is_undef(_useBackMounts) || _useBackMounts == false)
                 explode([100, 0, 100])
                     BowdenTube(carriagePosition());
-    }
+        } else {
+            printheadOrbiterV3();
+        }
 }
 
 module FinalAssembly() {

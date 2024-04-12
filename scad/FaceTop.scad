@@ -193,7 +193,7 @@ module faceTopBack(height=40, fov_distance=0) {
     }
 }
 
-module printheadWiring() {
+module printheadE3DV6Wiring() {
     // don't show the incomplete cable if there are no extrusions to obscure it
     wireRadius = 2.5;
     bezierPos = wiringGuidePosition(useCamera ? cameraMountBaseSize.x/2 : 0, 5, eSize);
