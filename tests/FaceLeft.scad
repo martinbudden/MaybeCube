@@ -32,7 +32,7 @@ module Left_Side_test(showPrintBed=true) {
     Left_Side_assembly();
     if (showPrintBed && !printbedKinematic) zRods();
     //faceTopBack(fov_distance=0);
-    //printheadWiring();
+    //printheadE3DV6Wiring();
     //Right_Side_assembly(); if(is_true(_useDualZRods))zRods(left=false);
     //Extruder_Bracket_assembly();
     //let($hide_extrusions=true)
@@ -48,7 +48,7 @@ module Left_Side_test(showPrintBed=true) {
     //let($hide_extrusions=true)
     //Face_Top_Stage_1_assembly();
     //printheadBeltSide(t=t);
-    //printheadHotendSide(t=t);
+    //printheadE3DV6(t=t);
 
     //Partition_Guide_assembly();
     // always add the panels last, so they are transparent to other items

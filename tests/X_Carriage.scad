@@ -6,6 +6,7 @@ include <../scad/global_defs.scad>
 
 //use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/X_CarriageAssemblies.scad>
+use <../scad/printed/X_CarriageE3DV6.scad>
 //use <../scad/utils/X_Rail.scad>
 
 //include <../scad/utils/carriageTypes.scad>

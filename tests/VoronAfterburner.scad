@@ -25,7 +25,7 @@ module VoronAfterburner_test() {
         //CoreXYBelts(carriagePosition + [2, 0], x_gap = -25, show_pulleys = ![1, 0, 0]);
         rotate = 0;
         printheadBeltSide(rotate);
-        //printheadHotendSide(rotate);
+        //printheadE3DV6(rotate);
         printheadVoronAfterburner(rotate);
         translate_z(eZ)
             xRail(carriagePosition, MGN12H_carriage);

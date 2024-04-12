@@ -2,7 +2,9 @@
 
 use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/X_CarriageAssemblies.scad>
+use <../scad/printed/X_CarriageE3DV6.scad>
 use <../scad/printed/X_CarriageEVA.scad>
+use <../scad/printed/X_CarriageOrbiterV3.scad>
 use <../scad/MainAssemblyXChange.scad>
 use <../scad/MainAssemblyVoronAfterburner.scad>
 
@@ -35,7 +37,8 @@ module Printhead_test() {
     translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
         CoreXYBelts(carriagePosition, x_gap = -30, show_pulleys = ![1, 0, 0]);
         //printheadBeltSide();
-        printheadHotendSide();
+        //printheadE3DV6();
+        printheadOrbiterV3();
         //printheadEVA_2_4_2();
         //printheadVoronAfterburner();
         //printheadXChange();
@@ -99,5 +102,6 @@ module xCarriageTopTest() {
 //mirror([0, 1, 0])
 //X_Carriage_Belt_Tensioner_hardware(xCarriageBeltTensionerSize(beltWidth()), 40, 22.5);
 //X_Carriage_Belt_Tensioner_RB_stl();
+let($hide_bolts=true)
 if ($preview)
     Printhead_test();
