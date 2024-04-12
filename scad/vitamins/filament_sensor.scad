@@ -39,5 +39,6 @@ module filament_sensor() {
     }
     translate([5 - filamentOffset.x, -size.y/2 - tubeLength, 7])
         rotate([0, 180, -90])
-            jst_xh_header(jst_xh_header, 3, right_angle=true);
+            not_on_bom()
+                jst_xh_header(jst_xh_header, 3, right_angle=true);
 }
