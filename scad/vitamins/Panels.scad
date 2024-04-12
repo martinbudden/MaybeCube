@@ -15,7 +15,7 @@ include <../Parameters_Main.scad>
 PC3 = ["PC3", "Sheet polycarbonate", 3, [1,   1,   1,   0.25], false];
 accessHoleRadius = 2.5;
 
-function sidePanelSize(left) = [eY + 2*eSize - (left ? 0 : iecHousingMountSize().x), eZ, 3];
+function sidePanelSize(left, useBowdenExtruder=true) = [eY + 2*eSize - (left ? 0 : (useBowdenExtruder ? iecHousingMountSize().x : 0)), left ? eZ : eZ - (useBowdenExtruder ? 0 : iecHousingMountSize().y), 3];
 
 
 module sidePanelAccessHolePositions(size, left) {
@@ -281,7 +281,7 @@ module Back_Panel_Channel_Spacers() {
 
 
 module Right_Side_Panel_dxf() {
-    size = sidePanelSize(left=false);
+    size = sidePanelSize(left=false, useBowdenExtruder=_useBowdenExtruder);
     fillet = 1;
     sheet = PC3;
 
@@ -509,8 +509,9 @@ module Right_Side_Channel_Spacers() {
 }
 
 module rightSidePanelPC(addBolts=true, hammerNut=true) {
-    size = sidePanelSize(left=false);
+    size = sidePanelSize(left=false, useBowdenExtruder=_useBowdenExtruder);
 
+    if (_useBowdenExtruder)
     translate([size.z/2 + eX + 2*eSize, size.x/2, size.y/2])
         rotate([90, 0, 90]) {
             if (addBolts)

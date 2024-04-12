@@ -137,7 +137,7 @@ staged_assembly("Stage_3", big=true, ngb=true) {
 //!1. Bolt the **Printhead_E3DV6_assembly** to the MGN carriage.
 //!2. Route the wiring from the print head to the mainboard and secure it with the **Wiring_Guide_Clamp**.
 //!3. Adjust the belt tension.
-//!4. Connect the Bowden tube between the extruder and the printhead.
+//!4. If using a Bowden Extruder, connect the Bowden tube between the extruder and the printhead.
 //
 module Stage_4_assembly()
 staged_assembly("Stage_4", big=true, ngb=true) {
@@ -148,9 +148,10 @@ staged_assembly("Stage_4", big=true, ngb=true) {
             printheadHotendSide();
             printheadWiring();
         }
-        if (is_undef(_useBackMounts) || _useBackMounts == false)
-            explode([100, 0, 100])
-                BowdenTube(carriagePosition());
+        if (_useBowdenExtruder)
+            if (is_undef(_useBackMounts) || _useBackMounts == false)
+                explode([100, 0, 100])
+                    BowdenTube(carriagePosition());
     }
 }
 

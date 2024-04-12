@@ -24,10 +24,11 @@ _coreXYDescriptor = "GT2_20_F694";
 
 _use2060ForTop = true;
 _use2060ForTopRear = true;
+_useBowdenExtruder = false;
 _useDualZRods = false;
 _useDualZMotors = false;
 _useElectronicsInBase = true;
-_useFrontDisplay = true;
+_useFrontDisplay = false;
 _useRB40 = true;
 _useReversedBelts = true;
 _useSidePanels = true;

@@ -15,7 +15,7 @@ use <Parameters_Positions.scad>
 
 //!1. On a flat surface, bolt the upper and lower extrusions into the left and right uprights as shown.
 //!2. Bolt the **IEC_Housing_assembly** to the lower extrusion and upright.
-//!3. Bolt the **Extruder_Bracket_assembly** to the upper extrusion and upright.
+//!3. If using a Bowden Extruder, bolt the **Extruder_Bracket_assembly** to the upper extrusion and upright.
 //
 module Right_Side_assembly(bedHeight=undef, printbedKinematic=undef, sideAssemblies=undef) pose(a=[55, 0, 25 - 90])
 assembly("Right_Side", big=true) {
@@ -53,17 +53,20 @@ assembly("Right_Side", big=true) {
     }
     if ($target != "DualZRods" && $target != "KinematicBed" && !useBackMounts) {
         if (useElectronicsInBase) {
-            if (eZ >= 400)
-                explode([50, 75, 0], true)
-                    rightSidePanelAssembly();
+            if (_useBowdenExtruder)
+                if (eZ >= 400)
+                    explode([50, 75, 0], true)
+                        rightSidePanelAssembly();
         } else {
             explode([50, 75, 0])
                 IEC_Housing_assembly();
-            explode([75, 75, 0], true)
-                accessPanelAssembly();
+            if (_useBowdenExtruder)
+                explode([75, 75, 0], true)
+                    accessPanelAssembly();
         }
-        explode([50, 75, 0])
-            Extruder_Bracket_assembly();
+        if (_useBowdenExtruder)
+            explode([50, 75, 0])
+                Extruder_Bracket_assembly();
     }
 }
 
