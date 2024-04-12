@@ -28,7 +28,7 @@ skHoleOffsetFromTop = sk_size(SK_type).y - sk_hole_offset(SK_type);
 
 heatedBedOffset = !is_undef(_printbed4PointSupport) && _printbed4PointSupport
     ? [0, 40, _printbedExtrusionSize/2 + springLength - 8]
-    : [_printbedSize.x == 254 ? 17.5 : 0, skHoleOffsetFromTop + (_printbedSize.x == 254 ? 2 : 8), _printbedExtrusionSize/2 + 7.5];
+    : [_printbedSize.x == 254 ? 17.5 : 0, skHoleOffsetFromTop + (_printbedSize.x == 254 ? 2 : 8), _printbedExtrusionSize/2 + (_printbedSize.x == 254 ? 15 : 7.5)];
 
 _heatedBedSize = _printbedSize;
 /*_heatedBedSize = is_undef(_printbedSize) || _printbedSize == 100 ? [100, 100, 1.6] : // Openbuilds mini heated bed size
@@ -232,6 +232,15 @@ module heatedBed(size=_heatedBedSize, boltHoles=[], underlayThickness=0) {
     }
 }
 
+module siliconeSpacer() {
+    vitamin(str("Silicone Spacer(", 18, ", ", 16, "): Silicone Spacer ", 18, "mm x ", 16, "mm"));
+    color("FireBrick")
+        tube(8, 2, 18);
+    if($children)
+        translate_z(18)
+            explode(10, true)
+                children();
+}
 module heatedBedHardware(size=_heatedBedSize, boltHoles, underlayThickness=0) {
 
     module oRing() {
@@ -253,26 +262,38 @@ module heatedBedHardware(size=_heatedBedSize, boltHoles, underlayThickness=0) {
     translate([-size.y/2, 0, underlayThickness + size.z])
     //explode(-10, true)
         for (i = boltHoles)
-            translate(i) {
-                translate_z(size.x == 254 ? -4 : 0)
+            translate(i)
+                if (size.x == 254) {
+                    translate_z(-4)
+                        boltM3Caphead(25);
+                    translate_z(-size.z)
+                        vflip()
+                            explode(5,true)
+                                translate_z(size.z + 1)
+                                    siliconeSpacer()
+                                        translate_z(-7)
+                                            rotate(90)
+                                                explode(5)
+                                                    nutM3SlidingT();
+                } else {
                     boltM3Caphead(20);
-                translate_z(-size.z)
-                    vflip()
-                        explode(5,true)
-                            washer(M3_washer)
-                                oRing()
-                                    washer(M3_washer)
-                                        oRing()
-                                            washer(M3_washer)
-                                                oRing()
-                                                    washer(M3_washer)
-                                                        oRing()
-                                                            washer(M4_penny_washer)
-                                                                translate_z(2)
-                                                                    rotate(90)
-                                                                        explode(5)
-                                                                            nutM3Hammer();
-           }
+                    translate_z(-size.z)
+                        vflip()
+                            explode(5,true)
+                                washer(M3_washer)
+                                    oRing()
+                                        washer(M3_washer)
+                                            oRing()
+                                                washer(M3_washer)
+                                                    oRing()
+                                                        washer(M3_washer)
+                                                            oRing()
+                                                                washer(M4_penny_washer)
+                                                                    translate_z(2)
+                                                                        rotate(90)
+                                                                            explode(5)
+                                                                                nutM3Hammer();
+                }
 }
 
 module printbedFrameCrossPiece() {
