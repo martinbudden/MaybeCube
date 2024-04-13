@@ -6,6 +6,7 @@ include <NopSCADlib/vitamins/springs.scad>
 include <NopSCADlib/vitamins/bearing_blocks.scad>
 include <NopSCADlib/vitamins/pcb.scad>
 include <NopSCADlib/vitamins/sk_brackets.scad>
+include <NopSCADlib/printed/drag_chain.scad>
 use <NopSCADlib/utils/fillet.scad>
 use <NopSCADlib/vitamins/o_ring.scad>
 
@@ -60,7 +61,7 @@ function boltHoles(size, holeOffset, printbed4PointSupport) = printbed4PointSupp
 
 scs_type = _zRodDiameter == 8 ? SCS8LUU : _zRodDiameter == 10 ? SCS10LUU : SCS12LUU;
 dualCrossPieces = true;
-printbedFrameCrossPiece2Offset = -2*_zRodOffsetX - printbedFrameCrossPieceOffset() - (eX < 350 ? 0 : 3*eSize/2);
+printbedFrameCrossPiece2Offset = eX < 350 ? -2*_zRodOffsetX - printbedFrameCrossPieceOffset() : -scs_size(scs_type).x/2 - 50;
 
 
 extrusion_inner_corner_bracket_hole_offset = 15;
@@ -191,7 +192,7 @@ module heatedBed(size=_heatedBedSize, boltHoles=[], underlayThickness=0) {
             if (_printbed4PointSupport) {
                 magneticBase(size, boltHoles);
             } else if (size.x == 254) {
-                magneticBase(size, boltHoles);
+                //magneticBase(size, boltHoles);
                 siliconeHeater(size);
             } else {
                 offset = 5;
@@ -345,8 +346,7 @@ module printbedFrameCrossPiece() {
 
 //!1. Slide the **Z_Carriage_Center_assembly** to the approximate center of the first 2040 extrusion and loosely tighten
 //! the bolts. The bolts will be fully tightened when the Z_Carriage is aligned.
-//!2. Bolt the **Printbed_Strain_Relief** to the second extrusion.
-//!3. Slide the 2040 extrusion into the 2020 extrusions and loosely tighten the bolts. The bolts will be fully tightened after
+//!2. Slide the 2040 extrusion into the 2020 extrusions and loosely tighten the bolts. The bolts will be fully tightened after
 //!the Z carriages are added.
 //
 module Printbed_Frame_assembly()
@@ -457,13 +457,14 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                 explode([150, 0, 0])
                     Z_Carriage_Center_assembly();
 
-    explode([0, -20, 0], true)
-        translate([0, eX - 2*eSize + printbedFrameCrossPiece2Offset, -eSize/2])
-            rotate([90, 0, 0]) {
-                stl_colour(pp1_colour)
-                    Printbed_Strain_Relief_stl();
-                Printbed_Strain_Relief_hardware();
-            }
+    if (_printbedSize.x != 254)
+        explode([0, -20, 0], true)
+            translate([0, eX - 2*eSize + printbedFrameCrossPiece2Offset, -eSize/2])
+                rotate([90, 0, 0]) {
+                    stl_colour(pp1_colour)
+                        Printbed_Strain_Relief_stl();
+                    Printbed_Strain_Relief_hardware();
+                }
 }
 
 
@@ -520,9 +521,16 @@ assembly("Heated_Bed") {
     heatedBedHardware(_heatedBedSize, boltHoles, underlayThickness);
 }
 
+module Printbed_Drag_Chain() {
+    drag_chain = drag_chain("x", [30, 10, 5], travel=400, wall=1.6, bwall=1.5, twall=1.5);
+    pos = 0;
+    translate([pos , 0,0])
+    //vflip()
+        drag_chain_assembly(drag_chain, pos=pos, radius=0);
+}
+
 //!1. Attach the heated bed to the frame using the stacks of washers and O-rings as shown.
 //!2. Spiral wrap the wires from the heated bed.
-//!3. Use the **Printbed_Strain_Relief_Clamp** to clamp the wires to the frame.
 //
 module Printbed_assembly()  pose(a=[210, 0, 320])
 assembly("Printbed", big=true) {
@@ -547,14 +555,20 @@ assembly("Printbed", big=true) {
                             Heated_Bed_assembly();
                     }
                 }
-                translate([0, eX - 2*eSize + printbedFrameCrossPiece2Offset, -eSize/2])
-                    rotate([90, 0, 0]) {
-                        stl_colour(pp2_colour)
-                            explode(10)
-                                Printbed_Strain_Relief_Clamp_stl();
-                        explode(10, true)
-                            Printbed_Strain_Relief_Clamp_hardware();
-                    }
+                if (_printbedSize.x == 254) {
+                    *translate([-130, 350, -10])
+                        rotate(-90)
+                            Printbed_Drag_Chain();
+                } else {
+                    translate([0, eX - 2*eSize + printbedFrameCrossPiece2Offset, -eSize/2])
+                        rotate([90, 0, 0]) {
+                            stl_colour(pp2_colour)
+                                explode(10)
+                                    Printbed_Strain_Relief_Clamp_stl();
+                            explode(10, true)
+                                Printbed_Strain_Relief_Clamp_hardware();
+                        }
+                }
             }
 }
 
