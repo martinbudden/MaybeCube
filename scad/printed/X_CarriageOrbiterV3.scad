@@ -22,12 +22,49 @@ module xCarriageOrbiterV3HolePositions() {
     carriageSize = carriage_size(xCarriageType);
     railCarriageGap = 0.5;
     holeSpacing = [16.5, 0, 23];
-    offset = [size.x - holeSpacing.x - 4, 0, 15];
+    offset = [size.x - holeSpacing.x - 5, 0, 23];
 
     for (x = [0, holeSpacing.x], z = [0, holeSpacing.z])
         translate(offset + [x - size.x/2, carriageSize.y/2 + railCarriageGap + size.y, z - size.z + xCarriageTopThickness()])
             rotate([90, 90, 0])
                 children();
+}
+module xCarriageOrbitrerV3StrainRelief(xCarriageType, xCarriageBackSize, topThickness) {
+    carriageSize = carriage_size(xCarriageType);
+    carriageOffsetY = carriageSize.y/2;
+    size =  [xCarriageBackSize.x, xCarriageBackSize.y + carriageSize.y/2, topThickness];
+    tabSize = [15, xCarriageBackSize.y, 30]; // ensure room for bolt heads
+    railCarriageGap = 0.5;
+
+    fillet = 1;
+    translate([0, railCarriageGap, size.z - 2*fillet])
+        difference() {
+            rounded_cube_xz(tabSize, fillet);
+            for (x = [tabSize.x/2 - 4, tabSize.x/2 + 4], z = [10 + 2, tabSize.z - 10 + 2])
+                translate([x - 1, -eps, z])
+                    cube([2, tabSize.y + 2*eps, 4]);
+        }
+}
+
+module xCarriageOrbiterV3Back(xCarriageType, size, extraX=0, holeSeparationTop, holeSeparationBottom, countersunk=0, topHoleOffset=0) {
+    assert(is_list(xCarriageType));
+    internalFillet = 1.5;
+    carriageSize = carriage_size(xCarriageType);
+    isMGN12 = carriageSize.z >= 13;
+    topThickness = xCarriageTopThickness();
+    baseThickness = xCarriageBaseThickness();
+    railCarriageGap = 0.5;
+
+    baseSize = [size.x, carriageSize.y + size.y - 2*beltInsetBack(xCarriageType), baseThickness];
+    difference() {
+        translate([-size.x/2, carriageSize.y/2, 0])
+            union() {
+                translate([0, railCarriageGap, baseSize.z - size.z])
+                    rounded_cube_xz([size.x, size.y, size.z], 1);
+                // top
+                xCarriageOrbitrerV3StrainRelief(xCarriageType, size, topThickness);
+            } // end union
+    } // end difference
 }
 
 module xCarriageOrbiterV3(xCarriageType, inserts) {
@@ -39,26 +76,50 @@ module xCarriageOrbiterV3(xCarriageType, inserts) {
 
     rotate([0, 90, -90]) {
         difference() {
-            xCarriageBack(xCarriageType, size, 0, holeSeparationTop, holeSeparationBottom, halfCarriage=false, reflected=false, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), accelerometerOffset=accelerometerOffset());
-            translate([2, carriageSize.y/2 +size.y+1, 2]) {
+            xCarriageOrbiterV3Back(xCarriageType, size, 0, holeSeparationTop, holeSeparationBottom, countersunk=_xCarriageCountersunk ? 4 : 0);
+            translate([0, carriageSize.y/2 + size.y + 1, 2]) {
                 height = xCarriageTopThickness();
-                base = 8;
+                base = 6;
                 rotate([90, 0, 0])
-                    linear_extrude(size.y+1)
-                        polygon(points = [ [0,0], [base, 0], [base+height, height], [-height, height] ]);
+                    linear_extrude(size.y + 1)
+                        polygon(points = [ [0,0], [base + height, 0], [base+height, height], [-height, height] ]);
+                translate([base+height,0,height-2])
+                    rotate([90, 90, 0])
+                        fillet(1, size.y + 1);
             }
-            offsetZ = 15 + 3.5;
+            offsetZ = 23 + 3.5;
             cutoutSize = [size.x+2*eps,2,3];
-            translate([-size.x/2-eps, carriageSize.y/2 + railCarriageGap + size.y - cutoutSize.y + eps +0.5, offsetZ - size.z + xCarriageTopThickness()])
-                rounded_cube_yz(cutoutSize, 0.5);
+            // cutout for the hotend fan wiring
+            translate([-size.x/2-eps, carriageSize.y/2 + railCarriageGap + size.y - cutoutSize.y + eps +0.5, offsetZ - size.z + xCarriageTopThickness()]) {
+                cube(cutoutSize);
+                rotate([-90, 0, 0])
+                    fillet(1, cutoutSize.y + eps);
+                translate([cutoutSize.x, 0, 0])
+                    rotate([-90, 90, 0])
+                        fillet(1, cutoutSize.y + eps);
+                translate([cutoutSize.x, 0, cutoutSize.z])
+                    rotate([-90, 180, 0])
+                        fillet(1, cutoutSize.y + eps);
+                translate([-1.5, 0, 0]) {
+                    rounded_cube_xz([8, cutoutSize.y, 15], 1);
+                    translate([8, 0, cutoutSize.z])
+                        rotate([-90, -90, 0])
+                            fillet(1, cutoutSize.y + eps);
+                }
+                translate([0, 0, 15])
+                    rotate([-90, -90, 0])
+                        fillet(1, cutoutSize.y + eps);
+            }
 
             xCarriageHotendSideHolePositions()
                 if (inserts)
-                    insertHoleM3(size.y, horizontal=true, rotate=180);
+                    insertHoleM3(size.y);
                 else
-                    boltHoleM3Tap(size.y, horizontal=true, rotate=180);
+                    boltHoleM3Tap(size.y);
             xCarriageOrbiterV3HolePositions()
-                boltHoleM3Countersunk(size.y, horizontal=true);
+                vflip()
+                    translate_z(-size.y)
+                        boltPolyholeM3Countersunk(size.y);
         }
     }
 }
@@ -66,18 +127,20 @@ module xCarriageOrbiterV3(xCarriageType, inserts) {
 module X_Carriage_OrbiterV3_stl() {
     stl("X_Carriage_OrbiterV3")
         color(pp1_colour)
-            xCarriageOrbiterV3(MGN12H_carriage, inserts=false);
+            rotate([0, -90, 0])
+                xCarriageOrbiterV3(MGN12H_carriage, inserts=false);
 }
 
 module X_Carriage_OrbiterV3_I_stl() {
     stl("X_Carriage_OrbiterV3_I")
         color(pp1_colour)
-            xCarriageOrbiterV3(MGN12H_carriage, inserts=true);
+            rotate([0, -90, 0])
+                xCarriageOrbiterV3(MGN12H_carriage, inserts=true);
 }
 
 module xCarriageOrbiterV3Assembly(inserts=false) {
     stl_colour(pp1_colour)
-        rotate([-90, 0, 90])
+        rotate([-90, 0, 0])
             if (inserts)
                 X_Carriage_OrbiterV3_I_stl();
             else
