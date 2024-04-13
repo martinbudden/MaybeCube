@@ -40,16 +40,6 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
     Left_Side_Upper_Extrusion_assembly();
     Right_Side_Upper_Extrusion_assembly();
 
-    if (is_undef($hide_corexy) || !$hide_corexy) {
-        explode(-120, show_line=false) {
-            XY_Idler_Left_assembly();
-            XY_Idler_Right_assembly();
-        }
-        explode(-100, show_line=false) {
-            XY_Motor_Mount_Left_assembly();
-            XY_Motor_Mount_Right_assembly();
-        }
-    }
     faceTopFront(useRB40());
     faceTopBack(use2060ForTopRear() ? 60 : 40);
     if (is_undef($hide_extras) || !$hide_extras) {
@@ -68,43 +58,85 @@ assembly("Face_Top_Stage_1", big=true, ngb=true) {
     }
 }
 
-//!1. Bolt the MGN rail to the Y_Carriages as shown. Ensure the MGN rail is square to the frame.
-//!2. Turn the top face upside down and place on a flat surface. Rack the right side linear rail - move the X-rail
-//!to one extreme of the frame and tighten the bolts on that end of the Y-rail. Then move the X-rail to the other
-//!extreme and tighten the bolts on that end of the Y-rail. Finally tighten the remaining bolts on the Y-rail.
-//!3. Ensure the X-rail moves freely, if it doesn't loosen the bolts you have just tightened and repeat step 2.
+//!1. Turn the top face upside down and place on a flat surface.
+//!2. Bolt the **X_Rail_assmebly** to MGN Y carriages.
+//!3. Rack the right side linear rail - Kove the X-rail to one extreme of the frame and tighten the bolts
+//!on that end of the Y-rail. Then move the X-rail to the other extreme and tighten the bolts on that end
+//!of the Y-rail. Finally tighten the remaining bolts on the Y-rail.
+//!4. Ensure the X-rail moves freely, if it doesn't loosen the bolts you have just tightened and repeat step 3.
 //
 module Face_Top_Stage_2_assembly()
 assembly("Face_Top_Stage_2", big=true, ngb=true) {
 
-    explode(-100, show_line=false)
-        Face_Top_Stage_1_assembly();
-    //hidden() Y_Carriage_Left_AL_dxf();
-    //hidden() Y_Carriage_Right_AL_dxf();
+    translate([0, eY + 2*eSize, 2*(eZ - eSize)])
+        vflip() {
+            explode(100, show_line=false)
+                Face_Top_Stage_1_assembly();
+            //hidden() Y_Carriage_Left_AL_dxf();
+            //hidden() Y_Carriage_Right_AL_dxf();
 
-    translate_z(eZ) {
-        xRail(carriagePosition());
-        xRailBoltPositions(carriagePosition())
-            explode(20, true)
-                boltM3Caphead(10);
-    }
+            X_Rail_assembly();
+
+            yCarriageType = carriageType(_yCarriageDescriptor);
+            translate_z(eZ - eSize)
+                explode(-100, show_line=false)
+                    Y_Carriage_bolts(yCarriageType, yCarriageThickness(), left=true);
+            translate([eX + 2*eSize, 0, eZ - eSize])
+                explode(-100, show_line=false)
+                    Y_Carriage_bolts(yCarriageType, yCarriageThickness(), left=false);
+        }
+}
+
+//!1. Bolt the XY_Idlers to the frame.
+//!2. Bolt the XY_Motor mounts to the frame.
+//
+module Face_Top_Stage_3_assembly()
+assembly("Face_Top_Stage_3", big=true, ngb=true) {
+
+    Face_Top_Stage_2_assembly();
+
+    translate([0, eY + 2*eSize, 2*(eZ - eSize)])
+        vflip()
+            if (is_undef($hide_corexy) || !$hide_corexy) {
+                explode(-120, show_line=false) {
+                    XY_Idler_Left_assembly();
+                    XY_Idler_Right_assembly();
+                }
+                explode(-100, show_line=false) {
+                    XY_Motor_Mount_Left_assembly();
+                    XY_Motor_Mount_Right_assembly();
+                }
+            }
 }
 
 //!1. Bolt the **X_Carriage_Belt_Side_assembly** to the MGN carriage.
 //!2. Thread the belts as shown and attach them to the **X_Carriage_Belt_Side_assembly**
 //! using the **X_Carriage_Belt_Clamp**.
 //!3. Leave the belts fairly loose - tensioning of the belts is done after the frame is assembled.
-//!4. Bolt the handles to the previously inserted t-nuts.
+//
+module Face_Top_Stage_4_assembly()
+assembly("Face_Top_Stage_4", big=true, ngb=true) {
+
+    Face_Top_Stage_3_assembly();
+
+    translate([0, eY + 2*eSize, 2*(eZ - eSize)])
+        vflip() {
+            printheadBeltSide(explode=-100);
+
+            explode(-350, show_line=false)
+                CoreXYBelts(carriagePosition());
+    }
+}
+
+//!1. Turn the top face the correct way up.
+//!2. Bolt the handles to the previously inserted t-nuts.
 //
 module Face_Top_assembly()
 assembly("Face_Top", big=true) {
 
-    Face_Top_Stage_2_assembly();
-
-    printheadBeltSide(explode=100);
-
-    explode(350, show_line=false)
-        CoreXYBelts(carriagePosition());
+    translate([0, eY + 2*eSize, 2*(eZ - eSize)])
+        vflip()
+            Face_Top_Stage_4_assembly();
 
     for (x = [3*eSize/2, eX + eSize/2])
         translate([x, eY/2 + eSize, eZ])
@@ -223,7 +255,6 @@ module printheadE3DV6Wiring() {
 
 //!1. Bolt the MGN linear rail to the extrusion, using the **Rail_Centering_Jig** to align the rail. Fully tighten the
 //!bolts - the left rail is the fixed rail and the right rail will be aligned to it.
-//!bolts at this stage - they will be fully tightened when the rail is racked at a later stage.
 //!2. Bolt the **Y_Carriage_Left_assembly** to the MGN carriage.
 //!3. Screw the bolts into ends of the extrusion in preparation for attachment to the rest of the top face.
 //
@@ -243,12 +274,6 @@ assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
                     rail_assembly(yCarriageType, _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
                     railBoltsAndNuts(carriage_rail(yCarriageType), _yRailLength, 4);
                 }
-    translate_z(eZ - eSize) {
-        explode(-80, show_line=false)
-            Y_Carriage_Left_assembly();
-        explode(-100, show_line=false)
-            Y_Carriage_bolts(yCarriageType, yCarriageThickness(), left=true);
-    }
 }
 
 //!1. Bolt the MGN linear rail to the extrusion, using the **Rail_Centering_Jig** to align the rail. Do not fully tighten the
@@ -274,10 +299,25 @@ assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
                     rail_assembly(yCarriageType, _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
                     railBoltsAndNuts(carriage_rail(yCarriageType), _yRailLength, 4);
                 }
-    translate([eX + 2*eSize, 0, eZ - eSize]) {
+}
+
+//! Bolt the Y_Carriages to the ends of the linear rail.
+//
+module X_Rail_assembly() pose(a=[180 + 55, 0, 25 - 90])
+assembly("X_Rail", big=true, ngb=true) {
+
+    yCarriageType = carriageType(_yCarriageDescriptor);
+
+    translate_z(eZ) {
+        xRail(carriagePosition());
+        xRailBoltPositions(carriagePosition())
+            explode(20, true)
+                boltM3Caphead(10);
+    }
+    translate_z(eZ - eSize)
+        explode(-80, show_line=false)
+            Y_Carriage_Left_assembly();
+    translate([eX + 2*eSize, 0, eZ - eSize])
         explode(-80, show_line=false)
             Y_Carriage_Right_assembly();
-        explode(-100, show_line=false)
-            Y_Carriage_bolts(yCarriageType, yCarriageThickness(), left=false);
-    }
 }
