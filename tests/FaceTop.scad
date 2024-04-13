@@ -41,8 +41,12 @@ module Face_Top_test() {
             Wiring_Guide_Clamp_hardware();
         }
     }
+    //X_Rail_assembly();
     //Face_Top_Stage_1_assembly();
     //Face_Top_Stage_2_assembly();
+    //Face_Top_Stage_3_assembly();
+    //Face_Top_Stage_4_assembly();
+
     //let($hide_extrusions=true)
     Face_Top_assembly();
     //Left_Side_Upper_Extrusion_assembly();
