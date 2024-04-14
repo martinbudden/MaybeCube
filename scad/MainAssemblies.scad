@@ -83,7 +83,10 @@ staged_assembly("Stage_1", big=true, ngb=true) {
 
     explode(150)
         Left_Side_with_Printbed_assembly();
-    Base_Plate_assembly();
+    if (!is_undef(_useFrontDisplay) && _useFrontDisplay)
+        Base_Plate_With_Display_assembly();
+    else
+        Base_Plate_assembly();
 }
 
 //!1. Slide the right face into the base plate assembly.

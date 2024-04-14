@@ -223,8 +223,8 @@ module basePlateAssembly(rightExtrusion=false, hammerNut=true) {
 //!2. Bolt the extrusions and the L-shaped feet to the baseplate as shown.
 //!3. Bolt the PSU and the PCBs to the baseplate, using standoffs as appropriate.
 //
-module Base_Plate_Stage_1_assembly()
-assembly("Base_Plate_Stage_1", big=true, ngb=true) {
+module Base_Plate_assembly()
+assembly("Base_Plate", big=true, ngb=true) {
 
     basePlateAssembly(psuOnBase);
 
@@ -261,10 +261,10 @@ assembly("Base_Plate_Stage_1", big=true, ngb=true) {
 //!5. Bolt the **Front_Display_Wiring_Cover** to the top of the 2080 extrusion, covering the wiring.
 //!6. Route the wiring to the back of the base, ready for later connection to the mainboard.
 //
-module Base_Plate_assembly()
-assembly("Base_Plate", big=true, ngb=true) {
+module Base_Plate_With_Display_assembly()
+assembly("Base_Plate_With_Display", big=true, ngb=true) {
 
-    Base_Plate_Stage_1_assembly();
+    Base_Plate__assembly();
 
     if (!is_undef(_useFrontDisplay) && _useFrontDisplay) {
         explode([0, -50, 0], true)
