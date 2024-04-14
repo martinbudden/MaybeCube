@@ -16,13 +16,15 @@ use <../../../BabyCube/scad/printed/X_Carriage.scad>
 include <../Parameters_CoreXY.scad>
 include <../Parameters_Main.scad>
 
+orbiterV3HoleOffset = [-5, 0, 16];
+
 module xCarriageOrbiterV3HolePositions() {
     xCarriageType = MGN12H_carriage;
     size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
     carriageSize = carriage_size(xCarriageType);
     railCarriageGap = 0.5;
     holeSpacing = [16.5, 0, 23];
-    offset = [size.x - holeSpacing.x - 5, 0, 23];
+    offset = [size.x - holeSpacing.x, 0, 0] + orbiterV3HoleOffset;
 
     for (x = [0, holeSpacing.x], z = [0, holeSpacing.z])
         translate(offset + [x - size.x/2, carriageSize.y/2 + railCarriageGap + size.y, z - size.z + xCarriageTopThickness()])
@@ -77,18 +79,18 @@ module xCarriageOrbiterV3(xCarriageType, inserts) {
     rotate([0, 90, -90]) {
         difference() {
             xCarriageOrbiterV3Back(xCarriageType, size, 0, holeSeparationTop, holeSeparationBottom, countersunk=_xCarriageCountersunk ? 4 : 0);
-            translate([0, carriageSize.y/2 + size.y + 1, 2]) {
+            translate([0, carriageSize.y/2 + size.y + 1, eps]) {
                 height = xCarriageTopThickness();
                 base = 6;
                 rotate([90, 0, 0])
                     linear_extrude(size.y + 1)
                         polygon(points = [ [0,0], [base + height, 0], [base+height, height], [-height, height] ]);
-                translate([base+height,0,height-2])
+                translate([base + height, 0, height])
                     rotate([90, 90, 0])
                         fillet(1, size.y + 1);
             }
-            offsetZ = 23 + 3.5;
-            cutoutSize = [size.x+2*eps,2,3];
+            offsetZ = orbiterV3HoleOffset.z + 3.5;
+            cutoutSize = [size.x+2*eps, 2, 3];
             // cutout for the hotend fan wiring
             translate([-size.x/2-eps, carriageSize.y/2 + railCarriageGap + size.y - cutoutSize.y + eps +0.5, offsetZ - size.z + xCarriageTopThickness()]) {
                 cube(cutoutSize);
