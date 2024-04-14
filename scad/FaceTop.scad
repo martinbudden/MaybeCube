@@ -25,15 +25,14 @@ function use2060ForTop() = !is_undef(_use2060ForTop) && _use2060ForTop;
 useCamera = false;
 
 
-//!1. Bolt the two motor mounts and the **Wiring_Guide** to the rear extrusion.
-//!2. Bolt the two idlers to the front extrusion.
-//!3. Screw the bolts into the ends of the front and rear extrusions.
-//!4. Insert the t-nuts for the **Handle** into the extrusions.
-//!5. Insert the t-nuts for the **Top_Corner_Piece**s into the extrusions.
-//!6. Bolt the front and rear extrusions to the side extrusions, leaving the bolts slightly loose.
-//!7. Bolt the **Top_Corner_Piece**s to the extrusions leaving the bolts slightly loose.
-//!8. Turn the top face upside down and place on a flat surface. Ensure it is square and tighten the hidden bolts.
-//!9. Turn the top face the right way up and tighten the bolts on the **Top_Corner_Piece**s.
+//!1. Bolt the **Wiring_Guide** to the rear extrusion.
+//!2. Screw the bolts into the ends of the front and rear extrusions.
+//!3. Insert the t-nuts for the **Handle** into the extrusions.
+//!4. Insert the t-nuts for the **Top_Corner_Piece**s into the extrusions.
+//!5. Bolt the front and rear extrusions to the side extrusions, leaving the bolts slightly loose.
+//!6. Bolt the **Top_Corner_Piece**s to the extrusions leaving the bolts slightly loose.
+//!7. Turn the top face upside down and place on a flat surface. Ensure it is square and tighten the hidden bolts.
+//!8. Turn the top face the right way up and tighten the bolts on the **Top_Corner_Piece**s.
 //
 module Face_Top_Stage_1_assembly()
 assembly("Face_Top_Stage_1", big=true, ngb=true) {
