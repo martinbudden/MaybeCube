@@ -36,7 +36,7 @@ module Y_Carriage_Left_16_stl() {
     //endStopOffsetX = max(0, xMin - 68); // 12
     //endStopOffsetX = max(0, xMin - 75); // 5
     //endStopOffsetX = 5; // set this to zero and instead set software endstop offset (X_MIN_POS in Marlin) to -12
-    endStopOffsetX = 10.15;
+    endStopOffsetX = 9.65;
 
     stl("Y_Carriage_Left_16")
         color(pp2_colour)
@@ -53,7 +53,7 @@ module Y_Carriage_Right_16_stl() {
 module Y_Carriage_Left_RB3_stl() {
     pulleyStackHeight = idlerHeight + pulleyWasherHeight();
     assert(pulleyStackHeight + yCarriageBraceThickness() == coreXYSeparation().z);
-    endStopOffsetX = 10.15;
+    endStopOffsetX = 9.65;
     stl("Y_Carriage_Left_RB3");
     color(pp2_colour)
         Y_Carriage(carriageType(_yCarriageDescriptor), idlerHeight, coreXYIdlerBore(), railType(_xCarriageDescriptor), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), blockOffset, endStopOffsetX, tongueOffset(), plainIdlerOffset(), toothedIdlerOffset(), topInset, inserts=yCarriageInserts, reversedBelts=true, left=true, cnc=false);
@@ -69,7 +69,7 @@ module Y_Carriage_Right_RB3_stl() {
 module Y_Carriage_Left_RB4_stl() {
     pulleyStackHeight = idlerHeight + pulleyWasherHeight();
     assert(pulleyStackHeight + yCarriageBraceThickness() == coreXYSeparation().z);
-    endStopOffsetX = 10.15;
+    endStopOffsetX = 9.65;
     stl("Y_Carriage_Left_RB4");
     color(pp2_colour)
         Y_Carriage(carriageType(_yCarriageDescriptor), idlerHeight, coreXYIdlerBore(), railType(_xCarriageDescriptor), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), blockOffset, endStopOffsetX, tongueOffset(), plainIdlerOffset(), toothedIdlerOffset(), topInset, inserts=yCarriageInserts, reversedBelts=true, left=true, cnc=false);
@@ -85,7 +85,7 @@ module Y_Carriage_Right_RB4_stl() {
 module Y_Carriage_Left_25_stl() {
     pulleyStackHeight = idlerHeight + pulleyWasherHeight();
     assert(pulleyStackHeight + yCarriageBraceThickness() == coreXYSeparation().z);
-    endStopOffsetX = 10.15;
+    endStopOffsetX = 9.65;
     stl("Y_Carriage_Left_25")
         color(pp2_colour)
             Y_Carriage(carriageType(_yCarriageDescriptor), idlerHeight, coreXYIdlerBore(), railType(_xCarriageDescriptor), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), blockOffset, endStopOffsetX, tongueOffset(), plainIdlerOffset(), toothedIdlerOffset(), topInset, inserts=yCarriageInserts, left=true, cnc=false);
