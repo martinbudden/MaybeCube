@@ -19,16 +19,14 @@
 //!with a lead screw that is too long and cut to size, note however that lead screws are made from hardened steel and cannot
 //!be cut with a hacksaw - an angle grinder is required to cut them.
 //!
-//!For the MC350 variant I have specified a Voron aluminium tooling plate drilled for a 3 point fixing and a
-//!silicone heating pad.
+//!For the MC350 variant I have specified a Voron Trident build plate (this is an 250x250mm aluminium tooling plate drilled for a
+//!3-point fixing) and a silicone heating pad.
 //!A cheapr alternative would be an Ender-style 235x235mm print bed with 4 fixing bolts.
 //!
 //!This is a full build, some parts can be omitted to save cost, in particular:
 //!
 //!* the Raspberry Pi Camera and corresponding 8mm M2 caphead bolts
-//!* the filament sensor
 //!* the Big Tree Tech relay module, if you don't want auto shut off
-//!* the Big Tree Tech TFT display, if you are running Octoprint or Klipper
 //!* I've specified a Big Tree Tech mainboard, you of course can use any mainboard you like
 //!* the polycarbonate side and back panels, if you don't want to enclose your print volume for (say) printing ABS. Note
 //!that these panels also add rigidity to the printer.
