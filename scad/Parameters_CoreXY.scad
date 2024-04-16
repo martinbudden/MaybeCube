@@ -52,9 +52,9 @@ function yCarriageBraceThickness() = 1; // brace to support cantilevered pulleys
 function beltOffsetZ() = yCarriageThickness() - coreXYSeparation().z - 30.5;
 //function beltOffsetZ() = yCarriageThickness() + carriage_height(MGN12H_carriage) + coreXYSeparation().z - 55;
 
-function leftDrivePulleyOffset() = useReversedBelts() ? [30, use2060ForTopRear() ? -14 : -6] : [useXYDirectDrive ? 0 : 38 + 3*largePulleyOffset, -largePulleyOffsetTop];
-function rightDrivePulleyOffset() = [useXYDirectDrive ? 0 : -42.5 - 3*largePulleyOffset, useReversedBelts() ? (use2060ForTopRear()? -14 : -6) : -largePulleyOffsetTop]; // need to give clearance to extruder motor
-function plainIdlerPulleyOffset() = useReversedBelts() ? [0, use2060ForTopRear() ? -24 : -20] : largePulleyOffset ? [3, -3] : [0, 0];
+function leftDrivePulleyOffset() = useReversedBelts() ? [26, use2060ForTopRear() ? -7 : -6] : [useXYDirectDrive ? 0 : 38 + 3*largePulleyOffset, -largePulleyOffsetTop];
+function rightDrivePulleyOffset() = [useXYDirectDrive ? 0 : -42.5 - 3*largePulleyOffset, useReversedBelts() ? (use2060ForTopRear()? -7 : -6) : -largePulleyOffsetTop]; // need to give clearance to extruder motor
+function plainIdlerPulleyOffset() = useReversedBelts() ? [0, use2060ForTopRear() ? -20 : -20] : largePulleyOffset ? [3, -3] : [0, 0];
 
 // use -12.75 for separation.x to make y-carriage idlers coincident vertically
 function  coreXYSeparation(coreXYType=coreXY_type()) = [
