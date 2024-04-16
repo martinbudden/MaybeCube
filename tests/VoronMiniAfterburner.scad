@@ -25,7 +25,7 @@ module VoronMiniAfterburner_test() {
         //CoreXYBelts(carriagePosition, x_gap = -25, show_pulleys = ![1, 0, 0]);
         no_explode() printheadBeltSide();
         //printheadE3DV6();
-        printheadE3DV6Bolts();
+        printheadBeltSideBolts();
         *xRailCarriagePosition(carriagePosition) // rotate is for debug, to see belts better
             translate([-6, -5, 7])
                 printheadE3DV6Assembly(full=false);
