@@ -52,7 +52,7 @@ module printheadE3DV6Assembly(full=true) {
         }
 
     if (!exploded() && full)
-        translate(printheadWiringOffset())
+        translate(printheadWiringOffset(hotendDescriptor))
             for (z = [0, 10])
                 translate([0, -3.5, z + 30])
                     rotate([0, 90, 90])
@@ -72,10 +72,104 @@ assembly("Printhead_E3DV6", big=true) {
     printheadE3DV6Assembly();
 }
 
-module Printhead_OrbiterV3_assembly() pose(a=[55, 0, 25 + 180])
+module smartOrbterV3() {
+    vitamin(str("smartOrbterV3() : Smart Orbiter V3.0"));
+
+    color(grey(40)) {
+        import(str("../stlimport/OrbiterV3HeatSink.3mf"));
+        translate([0, 0, 9])
+            import(str("../stlimport/OrbiterV3HubHousing.3mf"));
+        translate([0, 2, 9])
+            rotate([0, -8, 0])
+                import(str("../stlimport/OrbiterV3GearHousing.3mf"));
+        translate([7.5, -8, 44.5])
+            rotate([90, -78, 0])
+        import(str("../stlimport/OrbiterV3Stepper.3mf"));
+    }
+    color("silver")
+        translate([6.5, -15, -16])
+            import(str("../stlimport/OrbiterV3HeatBlock.3mf"));
+}
+
+module Smart_Orbter_V3_Duct_stl() {
+    stl("Smart_Orbter_V3_Duct")
+        color(pp1_colour)
+            import(str("../stlimport/Smart_Orbter_V3_Duct_v1.3.3mf"));
+}
+
+module Smart_Orbter_V3_Fan_Bracket_stl() {
+    stl("Smart_Orbter_V3_Fan_Bracket")
+        color(pp2_colour)
+            rotate([90, 0, 0])
+                import(str("../stlimport/Smart_Orbter_V3_Fan_Bracket_v1.1.3mf"));
+}
+
+module printheadOrbiterV3Assembly(full=true) {
+    xCarriageType = MGN12H_carriage;
+    blowerType = RB5015;
+    hotendDescriptor = "OrbiterV3";
+    hotendOffset = hotendOffset(xCarriageType, hotendDescriptor);
+
+    rotate([0, 0, 90])
+        translate([39, -0.3, -31.4])
+            smartOrbterV3();
+    translate([22.5, 66.5, -64.2]) {
+        explode([0, 0, -50])
+            stl_colour(pp1_colour)
+                Smart_Orbter_V3_Duct_stl();
+        explode([0, 20, 0], true) {
+            rotate([-90, 0, 0])
+                stl_colour(pp2_colour)
+                    Smart_Orbter_V3_Fan_Bracket_stl();
+            translate([-0.55, -6.5, 52.58]) {    
+                translate([-17, 0, -26.25])
+                    rotate([-90, 0, 0])
+                        boltM3Buttonhead(6);
+                rotate([-90, 0, 0])
+                    boltM3Buttonhead(6);
+            }
+            translate([-2, -7.8, 20.25])
+                rotate([90, 0, 90])
+                    explode(20, true)
+                        boltM2Caphead(10);
+        }
+
+        explode([0, 60, 0], true)
+            translate([2.6, -5.5, 21.5])
+                rotate([90, 0, 180]) {
+                    blower(blowerType);
+                    blower_hole_positions(blowerType)
+                        translate([0, 0, blower_size(blowerType).z+1])
+                            boltM3Countersunk(20);
+                }
+    }
+
+    if (!exploded() && full)
+        translate(printheadWiringOffset(hotendDescriptor))
+            for (z = [0, 10])
+                translate([0, -3.5, z + 30])
+                    rotate([0, 90, 90])
+                        cable_tie(cable_r = 3, thickness = 4.5);
+    explode([0, -60, 0], true)
+        xCarriageOrbiterV3HolePositions()
+            boltM3Countersunk(10);
+}
+
+//!The **Smart_Orbter_V3_Fan_Bracket** and the **Smart_Orbter_V3_Duct** are based on the
+//![Smart Orbiter v3 - Detachable front 5015 fan](https://www.printables.com/es/model/700391-smart-orbiter-v3-detachable-front-5015-fan)
+//!by [@PrintNC](https://www.printables.com/es/@PrintNC) and are used under the terms of their
+//![Creative Commons (4.0 International License) Attribution Recognition](https://creativecommons.org/licenses/by/4.0/) license.
+//!
+//!1. Bolt the Smart Orbiter V3 to the **X_Carriage_OrbiterV3**
+//!2. Bolt the **Smart_Orbter_V3_Fan_Bracket** to the Smart Orbiter V3.
+//!3. Bolt the RB5015 blower to the **Smart_Orbter_V3_Fan_Bracket**
+//!4. Insert the  **Smart_Orbter_V3_Duct** into the blower outlet and bolt it to the **Smart_Orbter_V3_Fan_Bracket**.
+module Printhead_OrbiterV3_assembly() pose(a=[55, 0, 25 + 90])
 assembly("Printhead_OrbiterV3", big=true) {
 
-    xCarriageOrbiterV3Assembly();
+    explode([0, -40, 0])
+        xCarriageOrbiterV3Assembly();
+    printheadOrbiterV3Assembly();
 }
 
 module printheadBeltSide(rotate=0, explode=0, t=undef) {
@@ -91,7 +185,7 @@ module printheadBeltSide(rotate=0, explode=0, t=undef) {
         }
 }
 
-module printheadE3DV6Bolts(rotate=0, explode=0, t=undef, halfCarriage=false) {
+module printheadBeltSideBolts(rotate=0, explode=0, t=undef, halfCarriage=false) {
     xCarriageType = MGN12H_carriage;
     xCarriageBeltSideSize = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());
     boltLength = usePulley25() ? 40 : (halfCarriage ? 30 : 40);

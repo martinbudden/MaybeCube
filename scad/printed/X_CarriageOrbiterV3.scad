@@ -27,7 +27,7 @@ module xCarriageOrbiterV3HolePositions() {
     offset = [size.x - holeSpacing.x, 0, 0] + orbiterV3HoleOffset;
 
     for (x = [0, holeSpacing.x], z = [0, holeSpacing.z])
-        translate(offset + [x - size.x/2, carriageSize.y/2 + railCarriageGap + size.y, z - size.z + xCarriageTopThickness()])
+        translate(offset + [x - size.x/2, carriageSize.y/2 + railCarriageGap, z - size.z + xCarriageTopThickness()])
             rotate([90, 90, 0])
                 children();
 }
@@ -120,12 +120,10 @@ module xCarriageOrbiterV3(xCarriageType, inserts) {
                     boltHoleM3Tap(size.y);
             xCarriageOrbiterV3HolePositions()
                 vflip()
-                    translate_z(-size.y)
-                        boltPolyholeM3Countersunk(size.y);
+                    boltPolyholeM3Countersunk(size.y);
         }
     }
 }
-
 module X_Carriage_OrbiterV3_stl() {
     stl("X_Carriage_OrbiterV3")
         color(pp1_colour)
