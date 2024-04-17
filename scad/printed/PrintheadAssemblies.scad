@@ -9,12 +9,14 @@ use <NopSCADlib/vitamins/wire.scad>
 
 include <../utils/PrintheadOffsets.scad>
 include <../utils/X_Rail.scad>
+include <../vitamins/OrbiterV3.scad>
 
 include <../../../BabyCube/scad/vitamins/pcbs.scad>
 
 use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
 use <../../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
+include <OrbiterV3Fan.scad>
 use <X_CarriageAssemblies.scad>
 use <X_CarriageE3DV6.scad>
 use <X_CarriageOrbiterV3.scad>
@@ -72,38 +74,6 @@ assembly("Printhead_E3DV6", big=true) {
     printheadE3DV6Assembly();
 }
 
-module smartOrbterV3() {
-    vitamin(str("smartOrbterV3() : Smart Orbiter V3.0"));
-
-    color(grey(40)) {
-        import(str("../stlimport/OrbiterV3HeatSink.3mf"));
-        translate([0, 0, 9])
-            import(str("../stlimport/OrbiterV3HubHousing.3mf"));
-        translate([0, 2, 9])
-            rotate([0, -8, 0])
-                import(str("../stlimport/OrbiterV3GearHousing.3mf"));
-        translate([7.5, -8, 44.5])
-            rotate([90, -78, 0])
-        import(str("../stlimport/OrbiterV3Stepper.3mf"));
-    }
-    color("silver")
-        translate([6.5, -15, -16])
-            import(str("../stlimport/OrbiterV3HeatBlock.3mf"));
-}
-
-module Smart_Orbter_V3_Duct_stl() {
-    stl("Smart_Orbter_V3_Duct")
-        color(pp1_colour)
-            import(str("../stlimport/Smart_Orbter_V3_Duct_v1.3.3mf"));
-}
-
-module Smart_Orbter_V3_Fan_Bracket_stl() {
-    stl("Smart_Orbter_V3_Fan_Bracket")
-        color(pp2_colour)
-            rotate([90, 0, 0])
-                import(str("../stlimport/Smart_Orbter_V3_Fan_Bracket_v1.1.3mf"));
-}
-
 module printheadOrbiterV3Assembly(full=true) {
     xCarriageType = MGN12H_carriage;
     blowerType = RB5015;
@@ -112,15 +82,15 @@ module printheadOrbiterV3Assembly(full=true) {
 
     rotate([0, 0, 90])
         translate([39, -0.3, -31.4])
-            smartOrbterV3();
+            smartOrbiterV3();
     translate([22.5, 66.5, -64.2]) {
         explode([0, 0, -50])
             stl_colour(pp1_colour)
-                Smart_Orbter_V3_Duct_stl();
+                Smart_Orbiter_V3_Duct_stl();
         explode([0, 20, 0], true) {
             rotate([-90, 0, 0])
                 stl_colour(pp2_colour)
-                    Smart_Orbter_V3_Fan_Bracket_stl();
+                    Smart_Orbiter_V3_Fan_Bracket_stl();
             translate([-0.55, -6.5, 52.58]) {    
                 translate([-17, 0, -26.25])
                     rotate([-90, 0, 0])
@@ -139,7 +109,7 @@ module printheadOrbiterV3Assembly(full=true) {
                 rotate([90, 0, 180]) {
                     blower(blowerType);
                     blower_hole_positions(blowerType)
-                        translate([0, 0, blower_size(blowerType).z+1])
+                        translate([0, 0, blower_size(blowerType).z + 1])
                             boltM3Countersunk(20);
                 }
     }
@@ -155,15 +125,15 @@ module printheadOrbiterV3Assembly(full=true) {
             boltM3Countersunk(10);
 }
 
-//!The **Smart_Orbter_V3_Fan_Bracket** and the **Smart_Orbter_V3_Duct** are based on the
+//!The **Smart_Orbiter_V3_Fan_Bracket** and the **Smart_Orbiter_V3_Duct** are based on the
 //![Smart Orbiter v3 - Detachable front 5015 fan](https://www.printables.com/es/model/700391-smart-orbiter-v3-detachable-front-5015-fan)
 //!by [@PrintNC](https://www.printables.com/es/@PrintNC) and are used under the terms of their
 //![Creative Commons (4.0 International License) Attribution Recognition](https://creativecommons.org/licenses/by/4.0/) license.
 //!
 //!1. Bolt the Smart Orbiter V3 to the **X_Carriage_OrbiterV3**
-//!2. Bolt the **Smart_Orbter_V3_Fan_Bracket** to the Smart Orbiter V3.
-//!3. Bolt the RB5015 blower to the **Smart_Orbter_V3_Fan_Bracket**
-//!4. Insert the  **Smart_Orbter_V3_Duct** into the blower outlet and bolt it to the **Smart_Orbter_V3_Fan_Bracket**.
+//!2. Bolt the **Smart_Orbiter_V3_Fan_Bracket** to the Smart Orbiter V3.
+//!3. Bolt the RB5015 blower to the **Smart_Orbiter_V3_Fan_Bracket**
+//!4. Insert the  **Smart_Orbiter_V3_Duct** into the blower outlet and bolt it to the **Smart_Orbiter_V3_Fan_Bracket**.
 module Printhead_OrbiterV3_assembly() pose(a=[55, 0, 25 + 90])
 assembly("Printhead_OrbiterV3", big=true) {
 
