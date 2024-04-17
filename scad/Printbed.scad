@@ -514,7 +514,7 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
 //!2. Insert a bolt into each of the bolt holes in the heated bed and add a stack of O-rings, washers and a hammer nut as shown.
 //!3
 module Heated_Bed_assembly()
-assembly("Heated_Bed") {
+assembly("Heated_Bed", big=true) {
     boltHoles = boltHoles(_heatedBedSize, _heatedBedHoleOffset, _printbed4PointSupport);
     underlayThickness = 3;
     heatedBed(_heatedBedSize, boltHoles, underlayThickness);

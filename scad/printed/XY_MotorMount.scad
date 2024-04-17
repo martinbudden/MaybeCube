@@ -911,7 +911,7 @@ module XY_Motor_Mount_Left_M5_stl() {
 //!4. Add the bolts and t-nuts in preparation for later attachment to the frame.
 //
 module XY_Motor_Mount_Left_assembly()
-assembly("XY_Motor_Mount_Left", ngb=true) {
+assembly("XY_Motor_Mount_Left", big=true, ngb=true) {
 
     motorType = motorType(_xyMotorDescriptor);
     offset = leftDrivePulleyOffset();
@@ -1008,7 +1008,7 @@ module XY_Motor_Mount_Right_M5_stl() {
 //!4. Add the bolts and t-nuts in preparation for later attachment to the frame.
 //
 module XY_Motor_Mount_Right_assembly()
-assembly("XY_Motor_Mount_Right", ngb=true) {
+assembly("XY_Motor_Mount_Right", big=true, ngb=true) {
 
     motorType = motorType(_xyMotorDescriptor);
     offset = rightDrivePulleyOffset();

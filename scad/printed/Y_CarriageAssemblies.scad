@@ -167,7 +167,7 @@ module Y_Carriage_Brace_Right_25_stl() {
 //!4. Tighten the bolts until the pulleys no longer turn freely and then loosen by about 1/4 turn so the pulleys can again turn.
 //
 module Y_Carriage_Left_assembly() pose(a=[55 + 180, 0, 25])
-assembly("Y_Carriage_Left", ngb=true) {
+assembly("Y_Carriage_Left", big=true, ngb=true) {
 
     yCarriageType = carriageType(_yCarriageDescriptor);
     railOffsetX = coreXYPosBL().x;
@@ -216,7 +216,7 @@ assembly("Y_Carriage_Left", ngb=true) {
 //!4. Tighten the bolts until the pulleys no longer turn freely and then loosen by about 1/4 turn so the pulleys can again turn.
 //
 module Y_Carriage_Right_assembly() pose(a=[55 + 180, 0, 25])
-assembly("Y_Carriage_Right", ngb=true) {
+assembly("Y_Carriage_Right", big=true, ngb=true) {
 
     yCarriageType = carriageType(_yCarriageDescriptor);
     railOffsetX = coreXYPosBL().x;
