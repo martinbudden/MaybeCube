@@ -1,9 +1,7 @@
 include <../global_defs.scad>
 
-include <NopSCADlib/utils/core/core.scad>
-include <NopSCADlib/vitamins/blowers.scad>
-
 include <../vitamins/bolts.scad>
+include <NopSCADlib/vitamins/blowers.scad>
 
 
 module Smart_Orbiter_V3_Duct_stl() {
