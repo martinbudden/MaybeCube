@@ -130,6 +130,21 @@ module extrusionOX2060HEndBoltPositions(length, offset=0, bothEnds=true) {
             }
 }
 
+module extrusionOX2060VEndBoltPositions(length, offset=0) {
+    eSize = 20;
+    if ($preview && (is_undef($hide_bolts) || $hide_bolts == false))
+        translate([0, eSize/2, eSize])
+            rotate([90, 0, 90]) {
+                for (y = [-eSize/2, eSize/2, 3*eSize/2]) {
+                    translate([0, y, -offset - extrusion_tab_thickness(E2060)])
+                        vflip()
+                            children();
+                    translate([0, y, length + offset + extrusion_tab_thickness(E2060)])
+                        children();
+                }
+            }
+}
+
 module extrusionOX2080HEndBoltPositions(length, offset=0, bothEnds=true) {
     eSize = 20;
     if ($preview && (is_undef($hide_bolts) || $hide_bolts == false))
@@ -226,6 +241,19 @@ module extrusionOY2040VEndBoltPositions(length, offset=0) {
     translate([0, length, 0])
         rotate([0, 0, -90])
             extrusionOX2040VEndBoltPositions(length, offset)
+                children();
+}
+
+module extrusionOY2060V(length) {
+    translate([0, length, 0])
+        rotate([0, 0, -90])
+            extrusionOX2060V(length);
+}
+
+module extrusionOY2060VEndBoltPositions(length, offset=0) {
+    translate([0, length, 0])
+        rotate([0, 0, -90])
+            extrusionOX2060VEndBoltPositions(length, offset)
                 children();
 }
 
