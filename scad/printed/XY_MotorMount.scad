@@ -173,7 +173,7 @@ module xyMotorMountBaseCutouts(motorType, size, offset, sideSupportSizeY, left, 
     }
 }
 
-module xyMotorMountBase(motorType, size, offset, sideSupportSizeY, stepdown, useReversedBelts=false, left=true, M5=false, cnc=false) {
+module xyMotorMountBase(motorType, size, offset, sideSupportSizeY, stepdown, useReversedBelts=false, countersunk=false, left=true, M5=false, cnc=false) {
     basePlateThickness = size.z;
     baseFillet = 3;
     coreXYPosBL = coreXYPosBL();
@@ -238,7 +238,10 @@ module xyMotorMountBase(motorType, size, offset, sideSupportSizeY, stepdown, use
                         }
                     if (isNEMAType(motorType)) {
                         NEMA_screw_positions(motorType)
-                            if ($i < 2)
+                            if (countersunk)
+                                translate_z(basePlateThickness)
+                                    boltPolyholeM3Countersunk(basePlateThickness, sink=0.25);
+                            else if ($i < 2)
                                 translate_z(basePlateThickness)
                                     vflip()
                                         boltHoleM3CounterboreButtonhead(basePlateThickness, 0.5, twist=5);
@@ -469,16 +472,16 @@ module xyMotorMountBlock(motorType, size, basePlateThickness, offset=[0, 0], sid
     }
 }
 
-module xyMotorMount(motorType, basePlateThickness, offset=[0, 0], blockHeightExtra=0, stepdown=false, useReversedBelts=false, left=true, M5=false, cnc=false) {
+module xyMotorMount(motorType, basePlateThickness, offset=[0, 0], blockHeightExtra=0, stepdown=false, useReversedBelts=false, countersunk=false, left=true, M5=false, cnc=false) {
     motorWidth = motorWidth(motorType);
     size = xyMotorMountSize(motorWidth, offset, left, useReversedBelts, cnc);
     sideSupportSize = [useReversedBelts ? eSize + 1 : eSize, size.y - eSize + partitionExtension];
-    xyMotorMountBase(motorType, [size.x, size.y, basePlateThickness], offset, sideSupportSize.y, stepdown, useReversedBelts, left, M5, cnc);
+    xyMotorMountBase(motorType, [size.x, size.y, basePlateThickness], offset, sideSupportSize.y, stepdown, useReversedBelts, countersunk, left, M5, cnc);
     translate_z(basePlateThickness - eps)
         xyMotorMountBlock(motorType, size, basePlateThickness, offset, sideSupportSize, blockHeightExtra, stepdown, useReversedBelts, left, M5, cnc);
 }
 
-module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], corkDamperThickness=0, blockHeightExtra=0, stepdown=false, useReversedBelts=false, left=true, cnc=false) {
+module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], corkDamperThickness=0, blockHeightExtra=0, stepdown=false, useReversedBelts=false, countersunk=false, left=true, cnc=false) {
     motorWidth = motorWidth(motorType);
     coreXYPosBL = coreXYPosBL();
     coreXYPosTR = coreXYPosTR(motorWidth);
@@ -501,8 +504,10 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
             boltLength = screw_shorter_than(NEMA_hole_depth + basePlateThickness + corkDamperThickness - 0.5);
             if (isNEMAType(motorType)) {
                 xyMotorScrewPositions(motorType)
-                    if (useReversedBelts && $i < 2)
-                        translate_z(-0.5)
+                    if (countersunk)
+                        boltM3Countersunk(boltLength);
+                    else if (useReversedBelts)
+                        translate_z($i < 2 ? -0.5 : 0)
                             boltM3Buttonhead(boltLength);
                     else
                         boltM3Buttonhead(boltLength);
@@ -857,12 +862,12 @@ module XY_Motor_Mount_Brace_Right_25_stl() {
                     xyMotorMountBrace(braceThickness, -rightDrivePulleyOffset());
 }
 
-module xyMotorMountLeftStl(useReversedBelts=false, M5=false, cnc=false) {
+module xyMotorMountLeftStl(useReversedBelts=false, countersunk=false, cnc=false) {
     motorType = motorType(_xyMotorDescriptor);
     offset = leftDrivePulleyOffset();
     basePlateThickness = basePlateThickness(useReversedBelts, cnc);
     color(pp1_colour)
-        xyMotorMount(motorType, basePlateThickness, offset, blockHeightExtra, useReversedBelts=useReversedBelts, left=true, cnc=cnc);
+        xyMotorMount(motorType, basePlateThickness, offset, blockHeightExtra, useReversedBelts=useReversedBelts, countersunk=countersunk, left=true, cnc=cnc);
 }
 
 module XY_Motor_Mount_Left_40_RB3_stl() {
@@ -882,7 +887,7 @@ module XY_Motor_Mount_Left_40_RB4_stl() {
 
 module XY_Motor_Mount_Left_60_RB4_stl() {
     stl("XY_Motor_Mount_Left_60_RB4");
-    xyMotorMountLeftStl(useReversedBelts=true, cnc=false);
+    xyMotorMountLeftStl(useReversedBelts=true, countersunk=true, cnc=false);
 }
 
 module XY_Motor_Mount_Left_16_stl() {
@@ -936,7 +941,8 @@ assembly("XY_Motor_Mount_Left", big=true, ngb=true) {
             } else {
                 XY_Motor_Mount_Left_16_stl();
             }
-        XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, blockHeightExtra, useReversedBelts=useReversedBelts(), left=true);
+        countersunk = coreXYIdlerBore()==4 && use2060ForTopRear();
+        XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, blockHeightExtra, useReversedBelts=useReversedBelts(), countersunk=countersunk, left=true);
         if (offset.x != 0)
             stl_colour(pp2_colour)
                 if (useReversedBelts()) {
@@ -952,7 +958,7 @@ assembly("XY_Motor_Mount_Left", big=true, ngb=true) {
     }
 }
 
-module xyMotorMountRightStl(useReversedBelts=false, M5=false, cnc=false) {
+module xyMotorMountRightStl(useReversedBelts=false, countersunk=false, cnc=false) {
     motorType = motorType(_xyMotorDescriptor);
     offset = rightDrivePulleyOffset();
     basePlateThickness = basePlateThickness(useReversedBelts(), cnc);
@@ -960,7 +966,7 @@ module xyMotorMountRightStl(useReversedBelts=false, M5=false, cnc=false) {
     color(pp1_colour)
         translate([eX + 2*eSize, 0, 0])
             mirror([1, 0, 0])
-                xyMotorMount(motorType, basePlateThickness, -offset, blockHeightExtra, useReversedBelts=useReversedBelts, left=false);
+                xyMotorMount(motorType, basePlateThickness, -offset, blockHeightExtra, useReversedBelts=useReversedBelts, countersunk=countersunk, left=false);
 }
 
 module XY_Motor_Mount_Right_40_RB3_stl() {
@@ -970,7 +976,7 @@ module XY_Motor_Mount_Right_40_RB3_stl() {
 
 module XY_Motor_Mount_Right_60_RB3_stl() {
     stl("XY_Motor_Mount_Right_60_RB3");
-    xyMotorMountRightStl(useReversedBelts=true);
+    xyMotorMountRightStl(useReversedBelts=true, countersunk=true);
 }
 
 module XY_Motor_Mount_Right_40_RB4_stl() {
@@ -980,7 +986,7 @@ module XY_Motor_Mount_Right_40_RB4_stl() {
 
 module XY_Motor_Mount_Right_60_RB4_stl() {
     stl("XY_Motor_Mount_Right_60_RB4");
-    xyMotorMountRightStl(useReversedBelts=true);
+    xyMotorMountRightStl(useReversedBelts=true, countersunk=true);
 }
 
 module XY_Motor_Mount_Right_16_stl() {
@@ -1033,7 +1039,8 @@ assembly("XY_Motor_Mount_Right", big=true, ngb=true) {
             } else {
                 XY_Motor_Mount_Right_16_stl();
             }
-        XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, blockHeightExtra, useReversedBelts=useReversedBelts(), left=false);
+        countersunk = coreXYIdlerBore()==4 && use2060ForTopRear();
+        XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness, blockHeightExtra, useReversedBelts=useReversedBelts(), countersunk=countersunk, left=false);
         if (offset.x != 0)
             stl_colour(pp2_colour)
                 if (useReversedBelts()) {
