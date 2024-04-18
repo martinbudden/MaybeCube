@@ -103,12 +103,12 @@ module xCarriageTopTest() {
 //X_Carriage_Belt_Tensioner_hardware(xCarriageBeltTensionerSize(beltWidth()), 40, 22.5);
 //X_Carriage_Belt_Tensioner_RB_stl();
 //printheadOrbiterV3Assembly();
-//smartOrbterV3();
+//smartOrbiterV3();
 //Printhead_OrbiterV3_assembly();
 //xCarriageGroovemountAssembly();
 //X_Carriage_OrbiterV3_stl();
-//Smart_Orbter_V3_Duct_stl();
-//Smart_Orbter_V3_Fan_Bracket_stl();
+//Smart_Orbiter_V3_Duct_stl();
+//Smart_Orbiter_V3_Fan_Bracket_stl();
 //*let($hide_bolts=true)
 if ($preview)
     Printhead_test();

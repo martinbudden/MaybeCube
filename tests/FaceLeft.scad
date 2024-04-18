@@ -44,6 +44,7 @@ module Left_Side_test(showPrintBed=true) {
             translate_z(bedHeight(t=t)) jubilee_build_plate();
         else
             translate_z(bedHeight(t)) Printbed_assembly();
+    zMotor();
     //let($hide_corexy=true)
     //let($hide_extrusions=true)
     //Face_Top_Stage_1_assembly();

@@ -25,6 +25,8 @@ module XY_Motor_Mount_test() {
     }
 }
 
+//XY_Motor_Mount_Left_60_RB4_stl();
+//XY_Motor_Mount_Right_60_RB4_stl();
 if ($preview)
     translate([0, -eY - eSize, 0])
         XY_Motor_Mount_test();
