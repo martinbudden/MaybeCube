@@ -1,5 +1,5 @@
-use <NopSCADlib/vitamins/pcb.scad>
-use <NopSCADlib/vitamins/psu.scad>
+include <NopSCADlib/vitamins/screws.scad>
+include <NopSCADlib/vitamins/pcbs.scad>
 
 /*
 BTT_RELAY_V1_2 = [
@@ -44,14 +44,20 @@ module btt_relay_v1_2_pcb() {
 */
 
 module BTT_Relay_Base_stl() {
-    pcbSize = pcb_size(BTT_RELAY_V1_2);
-    size = [pcbSize.x + 2, pcbSize.y + 2, 3];
+    pcbType = BTT_RELAY_V1_2;
+    pcbSize = pcb_size(pcbType);
+    size = [pcbSize.x + 2, pcbSize.y + 1, 2];
+    standoffHeight = 3.5;
 
     stl("BTT_Relay_Base")
         translate_z(-size.z)
             difference() {
-                rounded_cube_xy(size, 1, xy_center=true);
-                pcb_hole_positions(BTT_RELAY_V1_2)
-                    boltHoleM3(size.z);
+                union() {
+                    rounded_cube_xy(size, 4, xy_center=true);
+                    pcb_hole_positions(pcbType)
+                        cylinder(r=3, h=size.z + standoffHeight);
+                }
+                pcb_hole_positions(pcbType)
+                    boltHoleM3(size.z + standoffHeight);
             }
 }
