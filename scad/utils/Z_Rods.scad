@@ -99,7 +99,7 @@ module zMountsLower(zMotorLength, includeMotor=false) {
         translate([0, _zRodOffsetY, 0]) {
             // add the motor mount
             explode([30, 0, 20], true)
-                translate([0, zRodSeparation()/2, 0]) {
+                translate([0, zRodSeparation()/2, eSize]) {
                     stl_colour(pp1_colour)
                         vflip()
                             Z_Motor_Mount_stl();
@@ -117,7 +117,7 @@ module zMountsLower(zMotorLength, includeMotor=false) {
 }
 
 module zMotor(explode=_zRodLength + 40) {
-    translate([0, eSize + _zRodOffsetY + zRodSeparation()/2, 0])
+    translate([0, eSize + _zRodOffsetY + zRodSeparation()/2, eSize])
         Z_Motor_Mount_Motor_hardware(explode);
 }
 

@@ -20,12 +20,13 @@ include <../Parameters_Main.scad>
 
 NEMA17_40L160 = ["NEMA17_40L160", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [160, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
 NEMA17_40L230 = ["NEMA17_40L230", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [230, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
+NEMA17_40L250 = ["NEMA17_40L250", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [250, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
 NEMA17_40L280 = ["NEMA17_40L280", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [280, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
-NEMA17_40L290 = ["NEMA17_40L290", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [290, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
+NEMA17_40L300 = ["NEMA17_40L300", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [300, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
 NEMA17_40L330 = ["NEMA17_40L330", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [330, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
-NEMA17_40L340 = ["NEMA17_40L340", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [340, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
+NEMA17_40L350 = ["NEMA17_40L350", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [350, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
 NEMA17_40L380 = ["NEMA17_40L380", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [380, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
-NEMA17_40L390 = ["NEMA17_40L390", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [390, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
+NEMA17_40L400 = ["NEMA17_40L400", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [400, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
 NEMA17_40L430 = ["NEMA17_40L430", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [430, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
 NEMA17_40L440 = ["NEMA17_40L440", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [440, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
 
@@ -37,10 +38,9 @@ wingSizeX = 7;
 motorBracketSizeZ = 5;
 motorBracketSizeX = NEMA_motorWidth + 2*motorBracketSizeZ;
 counterBoreDepth = 0;//1.5;
-counterBoreDepthTop = 2;
 
 function Z_Motor_MountSize(motorLength=NEMA_length(zMotorType), zLeadScrewOffset=_zLeadScrewOffset)
-    = [2*wingSizeX + motorBracketSizeX, zLeadScrewOffset + NEMA_motorWidth/2 - 1 + eSize, motorLength + motorBracketSizeZ + 1 + (is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness)];
+    = [2*wingSizeX + motorBracketSizeX, zLeadScrewOffset + NEMA_motorWidth/2 - 1 + eSize, motorLength + motorBracketSizeZ + 0 + 0*(is_undef(_corkDamperThickness) ? 0 : _corkDamperThickness)];
 
 module NEMA_baseplate(NEMA_type, size, zLeadScrewOffset=_zLeadScrewOffset) {
     assert(isNEMAType(NEMA_type));
@@ -69,6 +69,7 @@ module zMotorMount(zMotorType, eHeight=40, printbedKinematic=false) {
 
     zLeadScrewOffset = printbedKinematic ? 30 : _zLeadScrewOffset;
     size = Z_Motor_MountSize(NEMA_length(zMotorType), zLeadScrewOffset);
+    counterBoreDepthTop = size.z - NEMA_length(zMotorType) - motorBracketSizeZ;
     motorBracketSizeY = zLeadScrewOffset + NEMA_motorWidth/2;
     blockSizeZ = size.z - eHeight;
 
@@ -273,6 +274,7 @@ module Z_Motor_Mount_hardware(printbedKinematic=false, left=true) {
                 extrusionInnerCornerBracket(grubCount=1, boltLength=12, boltOffset=1);
     } else {
         topHolePitch = NEMA_hole_pitch(zMotorType);
+        counterBoreDepthTop = size.z - NEMA_length(zMotorType) - motorBracketSizeZ;
         for (y = [topHolePitch/2, -topHolePitch/2])
             translate([eSize/2, y, size.z - counterBoreDepthTop])
                 boltM4ButtonheadTNut(eHeight==40 ? 12 - counterBoreDepthTop : _frameBoltLength, rotate=90);
