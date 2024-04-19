@@ -4,6 +4,7 @@ include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/screws.scad>
 
 use <../scad/printed/extruderBracket.scad>
+use <../scad/printed/PrintheadAssemblies.scad>
 
 include <../scad/utils/CoreXYBelts.scad>
 
@@ -27,8 +28,10 @@ module Face_Top_test() {
     //let($hide_rails=true)
     //let($hide_corexy=true)
     //faceTopBack();
+    //printheadOrbiterV3();
+
     *if (!exploded())
-        printheadE3DV6Wiring();
+        printheadWiring(hotendDescriptor="OrbiterV3");
     *wiringGuidePosition() {
         Wiring_Guide_stl();
         Wiring_Guide_hardware();

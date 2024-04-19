@@ -5,7 +5,7 @@ include <../scad/global_defs.scad>
 //use <../scad/printed/extruderBracket.scad>
 //use <../scad/printed/IEC_Housing.scad>
 //use <../scad/printed/JubileeKinematicBed.scad>
-//use <../scad/printed/PrintheadAssemblies.scad>
+use <../scad/printed/PrintheadAssemblies.scad>
 //include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/printParameters.scad>
 include <../scad/utils/Z_Rods.scad>
@@ -32,24 +32,25 @@ module Left_Side_test(showPrintBed=true) {
     Left_Side_assembly();
     if (showPrintBed && !printbedKinematic) zRods();
     //faceTopBack(fov_distance=0);
-    //printheadE3DV6Wiring();
+    //printheadWiring();
     //Right_Side_assembly(); if(is_true(_useDualZRods))zRods(left=false);
     //Extruder_Bracket_assembly();
     //let($hide_extrusions=true)
     echo(bh0=bedHeight(t=3));
     echo(bh1=bedHeight(t=7)-20);
-    //translate_z(bedHeight(t=7)-20) Printbed_assembly();
     if (showPrintBed)
-        if (printbedKinematic)
-            translate_z(bedHeight(t=t)) jubilee_build_plate();
-        else
-            translate_z(bedHeight(t)) Printbed_assembly();
+        translate_z(bedHeight(t)) 
+            if (printbedKinematic)
+                jubilee_build_plate();
+            else
+                Printbed_assembly();
     zMotor();
     //let($hide_corexy=true)
     //let($hide_extrusions=true)
     //Face_Top_Stage_1_assembly();
     //printheadBeltSide(t=t);
     //printheadE3DV6(t=t);
+    //printheadOrbiterV3(t=t);
 
     //Partition_Guide_assembly();
     // always add the panels last, so they are transparent to other items

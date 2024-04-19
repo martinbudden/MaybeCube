@@ -31,7 +31,7 @@ module BackFace_test() {
     //Left_Side_Channel_Spacers();
     //Right_Side_assembly();
     //Face_Top_Stage_1_assembly();
-    //printheadE3DV6Wiring();
+    //printheadWiring();
     /*showPartition = !true;
     if (showPartition) {
         CoreXYBelts(carriagePosition());
