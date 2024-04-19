@@ -150,13 +150,14 @@ staged_assembly("Stage_4", big=true, ngb=true) {
         if (_useBowdenExtruder) {
             explode(50, true) {
                 printheadE3DV6();
-                printheadE3DV6Wiring();
+                printheadWiring(_hotendDescriptor);
             }
             if (is_undef(_useBackMounts) || _useBackMounts == false)
                 explode([100, 0, 100])
                     BowdenTube(carriagePosition());
         } else {
             printheadOrbiterV3();
+            printheadWiring(_hotendDescriptor);
         }
 }
 

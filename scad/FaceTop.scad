@@ -224,15 +224,15 @@ module faceTopBack(height=40, fov_distance=0) {
     }
 }
 
-module printheadE3DV6Wiring() {
+module printheadWiring(hotendDescriptor="E3DV6", showCable=true) {
     // don't show the incomplete cable if there are no extrusions to obscure it
     wireRadius = 2.5;
     bezierPos = wiringGuidePosition(useCamera ? cameraMountBaseSize.x/2 : 0, 5, eSize);
-    if (is_undef($hide_extrusions))
+    if (showCable && is_undef($hide_extrusions))
         color(grey(20))
-            bezierTube(bezierPos, [carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(), tubeRadius=wireRadius);
+            bezierTube(bezierPos, [carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(hotendDescriptor), tubeRadius=wireRadius);
 
-    /*translate([carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset())
+    /*translate([carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(hotendDescriptor))
         for (z = [11, 21])
             translate([0, -3.5, z])
                 rotate([0, 90, 90])
