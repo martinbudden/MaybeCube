@@ -22,6 +22,8 @@ _yCarriageDescriptor = "MGN12H";
 
 _coreXYDescriptor = "GT2_20_16";
 
+_hotendDescriptor = "E3DV6";
+
 _use2060ForTop = false;
 _useBowdenExtruder = true;
 _useDualZRods = false;

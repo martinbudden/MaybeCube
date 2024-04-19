@@ -22,6 +22,8 @@ _zCarriageDescriptor = "MGN12C";
 
 _coreXYDescriptor = "GT2_20_F694";
 
+_hotendDescriptor = "OrbiterV3";
+
 _use2060ForTop = false;
 _use2060ForTopRear = true;
 _useBowdenExtruder = false;

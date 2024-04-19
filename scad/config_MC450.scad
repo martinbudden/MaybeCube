@@ -8,7 +8,7 @@ eZ = __extrusionLengths.z;
 eSize = 20;
 
 _xyMotorDescriptor = "NEMA17_48";
-_zMotorDescriptor = "NEMA17_40L430";
+_zMotorDescriptor = "NEMA17_40L400";
 _corkDamperThickness = 2;
 
 _xRailLength = eX - 50;
@@ -20,7 +20,9 @@ _xCarriageCountersunk = true;
 _yCarriageDescriptor = "MGN12H";
 _zCarriageDescriptor = "MGN12C";
 
-_coreXYDescriptor = "GT2_20_F623";
+_coreXYDescriptor = "GT2_20_F694";
+
+_hotendDescriptor = "OrbiterV3";
 
 _use2060ForTop = true;
 _use2060ForTopRear = false;
