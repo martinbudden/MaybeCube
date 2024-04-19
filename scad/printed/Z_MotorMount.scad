@@ -48,7 +48,7 @@ module NEMA_baseplate(NEMA_type, size, zLeadScrewOffset=_zLeadScrewOffset) {
     difference() {
         rounded_cube_xy(size, 1);
         translate([size.x/2, zLeadScrewOffset, -eps]) {
-            tolerance = 1.0;
+            tolerance = 1.5;
             // center circle for the motor boss
             poly_cylinder(r=NEMA_boss_radius(NEMA_type) + tolerance, h=size.z + 2*eps);
             // motor boltholes
