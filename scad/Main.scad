@@ -25,7 +25,6 @@
 //!
 //!This is a full build, some parts can be omitted to save cost, in particular:
 //!
-//!* the Raspberry Pi Camera and corresponding 8mm M2 caphead bolts
 //!* the Big Tree Tech relay module, if you don't want auto shut off
 //!* I've specified a Big Tree Tech mainboard, you of course can use any mainboard you like
 //!* the polycarbonate side and back panels, if you don't want to enclose your print volume for (say) printing ABS. Note
