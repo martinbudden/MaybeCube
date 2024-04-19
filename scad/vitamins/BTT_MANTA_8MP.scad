@@ -22,20 +22,23 @@ module BTT_MANTA_8MP_V2_Base_stl() {
     pcbType = BTT_MANTA_8MP_V2_0;
     pcbSize = pcb_size(pcbType);
     size = [pcbSize.x + 2, pcbSize.y + 2, 2];
-    standoffHeight = 3.5;
+    standoffHeight = 5;
 
     stl("BTT_MANTA_8MP_V2_Base")
         translate_z(-size.z)
             difference() {
                 union() {
-                    rounded_cube_xy(size, 4, xy_center=true);
+                    width = 25;
+                    translate([(size.x - width)/2, 0, 0])
+                        rounded_cube_xy([width, size.y, size.z], 3, xy_center=true);
                     pcb_hole_positions(pcbType)
-                        cylinder(r=3, h=size.z + standoffHeight);
+                        if ($i == 1 || $i ==3)
+                            cylinder(r=3, h=size.z + standoffHeight);
                 }
                 pcb_hole_positions(pcbType)
                     if ($i == 1)
                         boltHoleM3Tap(size.z + standoffHeight);
-                    else
+                    else if ($i == 3)
                         boltHoleM3(size.z + standoffHeight);
             translate([pcb_coord(pcbType, pcb_holes(pcbType)[3]).x, pcb_coord(pcbType, pcb_holes(pcbType)[1]).y, 0])
                 boltHoleM3(size.z);
