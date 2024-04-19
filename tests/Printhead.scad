@@ -54,7 +54,7 @@ module Printhead_test() {
             xRail(carriagePosition);
         xRailCarriagePosition(carriagePosition) {
             //Printhead_E3DV6_assembly();
-            X_Carriage_Belt_Side_assembly();
+            X_Carriage_Beltside_assembly();
             xCarriageGroovemountAssembly();
         }
     }

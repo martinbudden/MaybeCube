@@ -108,8 +108,8 @@ assembly("Face_Top_Stage_3", big=true, ngb=true) {
             }
 }
 
-//!1. Bolt the **X_Carriage_Belt_Side_assembly** to the MGN carriage.
-//!2. Thread the belts as shown and attach them to the **X_Carriage_Belt_Side_assembly**
+//!1. Bolt the **X_Carriage_Beltside_assembly** to the MGN carriage.
+//!2. Thread the belts as shown and attach them to the **X_Carriage_Beltside_assembly**
 //! using the **X_Carriage_Belt_Clamp**.
 //!3. Leave the belts fairly loose - tensioning of the belts is done after the frame is assembled.
 //

@@ -30,10 +30,10 @@ module X_Carriage_test() {
     //rotate([0, -90, 0]) X_Carriage_Groovemount_HC_16_stl();
     //X_Carriage_Groovemount_stl();
     xCarriageGroovemountAssembly();
-    //X_Carriage_Belt_Side_assembly();
+    //X_Carriage_Beltside_assembly();
     //xCarriageBeltClampAssembly(MGN12H_carriage);
     //xCarriageBeltAttachment(30, beltWidth(), beltSeparation());
-    //X_Carriage_Belt_Side_HC_16_stl();
+    //X_Carriage_Beltside_HC_16_stl();
     //translate_z(-carriage_height(MGN12H_carriage)) carriage(MGN12H_carriage);
     //X_Carriage_Belt_Tensioner_stl();
     //Fan_Duct_stl();

@@ -65,64 +65,64 @@ module xCarriageHotendSideHolePositions() {
 }
 
 
-module X_Carriage_Belt_Side_HC_16_stl() {
+module X_Carriage_Beltside_HC_16_stl() {
     xCarriageType = MGN12H_carriage;
     size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 1];
 
-    stl("X_Carriage_Belt_Side_HC_16"); // semicolon required for XChange build as this is not on BOM
+    stl("X_Carriage_Beltside_HC_16"); // semicolon required for XChange build as this is not on BOM
     color(pp4_colour)
         rotate([90, 0, 0])// orientate for printing
             xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), halfCarriage=true, endCube=true);
 }
 
-module X_Carriage_Belt_Side_RB_stl() {
+module X_Carriage_Beltside_RB_stl() {
     xCarriageType = MGN12H_carriage;
     size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 1];
 
     // orientate for printing
-    stl("X_Carriage_Belt_Side_RB"); // semicolon required for XChange build as this is not on BOM
+    stl("X_Carriage_Beltside_RB"); // semicolon required for XChange build as this is not on BOM
     color(pp4_colour)
         rotate([90, 0, 0])// orientate for printing
             xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), reversedBelts=true, endCube=true);
 }
 
-module X_Carriage_Belt_Side_RB_MGN9C_stl() {
+module X_Carriage_Beltside_RB_MGN9C_stl() {
     xCarriageType = MGN9C_carriage;
     size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 1];
 
     // orientate for printing
-    stl("X_Carriage_Belt_Side_RB_MGN9C"); // semicolon required for XChange build as this is not on BOM
+    stl("X_Carriage_Beltside_RB_MGN9C"); // semicolon required for XChange build as this is not on BOM
     color(pp4_colour)
         rotate([90, 0, 0])// orientate for printing
             xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), reversedBelts=true, endCube=true);
 }
 
-module X_Carriage_Belt_Side_16_stl() {
+module X_Carriage_Beltside_16_stl() {
     xCarriageType = MGN12H_carriage;
     size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 1];
 
     // orientate for printing
-    stl("X_Carriage_Belt_Side_16"); // semicolon required for XChange build as this is not on BOM
+    stl("X_Carriage_Beltside_16"); // semicolon required for XChange build as this is not on BOM
     color(pp4_colour)
         rotate([90, 0, 0])// orientate for printing
             xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), endCube=true);
 }
 
-module X_Carriage_Belt_Side_25_stl() {
+module X_Carriage_Beltside_25_stl() {
     xCarriageType = MGN12H_carriage;
     size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 4];
 
-    stl("X_Carriage_Belt_Side_25"); // semicolon required for XChange build as this is not on BOM
+    stl("X_Carriage_Beltside_25"); // semicolon required for XChange build as this is not on BOM
     color(pp4_colour)
         rotate([90, 0, 0])// orientate for printing
             xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), pulley25=true, endCube=true);
 }
 
 //!Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensioners into the
-//!**X_Carriage_Belt_Side** part as shown. Note the belts are not shown in this diagram.
+//!**X_Carriage_Beltside** part as shown. Note the belts are not shown in this diagram.
 //
-module X_Carriage_Belt_Side_assembly()
-assembly("X_Carriage_Belt_Side", big=true) {
+module X_Carriage_Beltside_assembly()
+assembly("X_Carriage_Beltside", big=true) {
 
     //echo(dTooth=pulley_pr(GT2x25x7x3_toothed_idler)-pulley_pr(GT2x16_toothed_idler));
     //echo(dPlain=pulley_pr(GT2x25x7x3_plain_idler)-pulley_pr(GT2x16_plain_idler));
@@ -132,17 +132,17 @@ assembly("X_Carriage_Belt_Side", big=true) {
         stl_colour(pp4_colour)
             if (useReversedBelts) {
                 if (_xCarriageDescriptor == "MGN9C")
-                    X_Carriage_Belt_Side_RB_MGN9C_stl();
+                    X_Carriage_Beltside_RB_MGN9C_stl();
                 else
-                    X_Carriage_Belt_Side_RB_stl();
+                    X_Carriage_Beltside_RB_stl();
             } else if (usePulley25())
                 translate([0, 0, -pulley25Offset])
-                    X_Carriage_Belt_Side_25_stl();
+                    X_Carriage_Beltside_25_stl();
             else
                 if (halfCarriage)
-                    X_Carriage_Belt_Side_HC_16_stl();
+                    X_Carriage_Beltside_HC_16_stl();
                 else
-                    X_Carriage_Belt_Side_16_stl();
+                    X_Carriage_Beltside_16_stl();
 
     size = xCarriageBeltSideSizeM(MGN12H_carriage, beltWidth(), beltSeparation());
     beltTensionerSize = xCarriageBeltTensionerSize(beltWidth());

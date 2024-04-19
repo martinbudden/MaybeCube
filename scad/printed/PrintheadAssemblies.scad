@@ -149,7 +149,7 @@ module printheadBeltSide(rotate=0, explode=0, t=undef) {
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
         explode(explode, true) {
             explode([0, -20, 0], true)
-                X_Carriage_Belt_Side_assembly();
+                X_Carriage_Beltside_assembly();
             xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = halfCarriage ? [ [1, -1], [-1, -1] ] : [ [1, -1], [-1, -1], [1, 1], [-1, 1] ]);
             xCarriageBeltClampAssembly(xCarriageType);
         }

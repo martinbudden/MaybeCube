@@ -58,7 +58,7 @@ module xCarriageVoronMiniAfterburner() {
         translate([0, 76.57, -eps])
             cylinder(r=r, h=size2.z + 2*eps);
 
-        // bolt holes for attachment to X_Carriage_Belt_Side
+        // bolt holes for attachment to X_Carriage_Beltside
         for (x = [0, xCarriageBoltSeparation.x], y = [0])
             translate([x + -xCarriageBoltSeparation.x/2, y + 4, 0])
                 boltHoleM3Tap(xCarriageSize.y);
