@@ -53,7 +53,7 @@ module boltHoleM2p5(length, horizontal=false, rotate=0, chamfer=0.5, chamfer_bot
 }
 
 module boltHoleM2p5Tap(length, horizontal=false, rotate=0, chamfer=0.5, chamfer_both_ends=true, cnc=false, twist=undef) {
-    boltHole(M2_tap_radius*2, length, horizontal, rotate, chamfer, chamfer_both_ends, cnc, twist);
+    boltHole(M2p5_tap_radius*2, length, horizontal, rotate, chamfer, chamfer_both_ends, cnc, twist);
 }
 
 module boltHoleM2p5Counterbore(length, boreDepth=undef, boltHeadTolerance=0.4, horizontal=false, cnc=false, twist=0) {
