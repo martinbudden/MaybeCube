@@ -90,13 +90,14 @@ module printheadOrbiterV3Assembly(full=true) {
         explode([0, 20, 0], true) {
             rotate([-90, 0, 0])
                 stl_colour(pp2_colour)
-                    Smart_Orbiter_V3_Fan_Bracket_stl();
+                    vflip()
+                        Smart_Orbiter_V3_Fan_Bracket_5015_stl();
             translate([-0.55, -6.5, 52.58]) {    
                 translate([-17, 0, -26.25])
                     rotate([-90, 0, 0])
-                        boltM3Buttonhead(6);
+                        boltM3Countersunk(6);
                 rotate([-90, 0, 0])
-                    boltM3Buttonhead(6);
+                    boltM3Countersunk(6);
             }
             translate([-2, -7.8, 20.25])
                 rotate([90, 0, 90])
@@ -105,11 +106,11 @@ module printheadOrbiterV3Assembly(full=true) {
         }
 
         explode([0, 60, 0], true)
-            translate([2.6, -5.5, 21.5])
+            translate([2.6, -6, 21.5])
                 rotate([90, 0, 180]) {
                     blower(blowerType);
                     blower_hole_positions(blowerType)
-                        translate([0, 0, blower_size(blowerType).z + 1])
+                        translate([0, 0, blower_size(blowerType).z + 0.75])
                             boltM3Countersunk(20);
                 }
     }
