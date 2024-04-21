@@ -10,6 +10,8 @@ module XL4015_buck_converter_mount_stl() {
     standoffRadius = 3;
     standoffHeight = 10;
     baseHeight = 3;
+
+    stl("XL4015_buck_converter_mount");
     difference() {
         union() {
             hull()
