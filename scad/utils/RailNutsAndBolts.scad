@@ -14,7 +14,7 @@ module railBoltsAndNuts(type, length, thickness) { //! Place bolts and tNuts in 
                         translate_z(-5.55)
                             vflip()
                                 explode(20)
-                                    nutM3Hammer();
+                                    nutM3SlidingT();
                 }
         }
 }
