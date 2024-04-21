@@ -274,9 +274,9 @@ module XY_Idler_hardware(size, left=true, useReversedBelts=false) {
                                         if (coreXYIdlerBore() == 3)
                                             boltM3CapheadHammerNut(left ? 35 : 25, rotate=90);
                                         else if (coreXYIdlerBore() == 4)
-                                            boltM3ShoulderHammerNut(left ? 30 : 20, rotate=90);
+                                            boltM3ShoulderTNut(left ? 30 : 20, rotate=90);
                                         else if (coreXYIdlerBore() == 5)
-                                            boltM4ShoulderHammerNut(left ? 30 : 20, rotate=90);
+                                            boltM4ShoulderTNut(left ? 30 : 20, rotate=90);
                                     } else {
                                         boltM3Caphead(20);
                                     }
