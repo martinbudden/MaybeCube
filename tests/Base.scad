@@ -29,6 +29,7 @@ module Base_test() {
     //basePlateAssembly(rightExtrusion=false, hammerNut=false);
     //translate([eX + eSize, eSize, 0]) extrusionOY(eY);
     //pcbAssembly(BTT_SKR_V1_4_TURBO, pcbOnBase=true);
+    //Base_Plate_Stage_1_assembly();
     Base_Plate_assembly();
     //Left_Base_Channel_Spacers();
     //BaseAL();
@@ -38,7 +39,7 @@ module Base_test() {
     //Front_Cover_stl();
     //Left_Side_assembly();
     //translate_z(bedHeight(7)) Printbed_assembly();
-    Right_Side_assembly();
+    //Right_Side_assembly();
     //Base_Extrusions_assembly();
     //basePlate();
     //controlPanel();
@@ -51,5 +52,3 @@ module Base_test() {
 
 if ($preview)
     Base_test();
-else
-    Channel_Spacer_96_stl();

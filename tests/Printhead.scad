@@ -108,6 +108,8 @@ module xCarriageTopTest() {
 //xCarriageGroovemountAssembly();
 //X_Carriage_OrbiterV3_stl();
 //Smart_Orbiter_V3_Duct_stl();
+//rotate([-90, 0, 0])
+//vflip() Smart_Orbiter_V3_Fan_Bracket_5015_stl();
 //Smart_Orbiter_V3_Fan_Bracket_stl();
 //*let($hide_bolts=true)
 if ($preview)
