@@ -239,7 +239,7 @@ module XY_Idler_hardware(size, left=true, useReversedBelts=false) {
             if (useRB40()) {
                 translate([0, lowerBoltOffset - eSize, size.z])
                     explode(20, true)
-                        boltM4ButtonheadHammerNut(_frameBoltLength, rotate=90, nutExplode=60);
+                        boltM4ButtonheadTNut(_frameBoltLength, rotate=90, nutExplode=60);
             } else {
                 for (y = [lowerBoltOffset, size.y - upperBoltOffset])
                     translate([0, y, size.z])
@@ -258,7 +258,7 @@ module XY_Idler_hardware(size, left=true, useReversedBelts=false) {
 
             translate([0, size.y - tabThickness - (useRB40() ? eSize : 0), size.y - tabBoltOffset])
                 rotate([90, 0, 0])
-                    boltM4ButtonheadHammerNut(_frameBoltLength, rotate=90);
+                    boltM4ButtonheadTNut(_frameBoltLength, rotate=90);
         }
 
         washer = coreXYIdlerBore() == 3 ? M3_washer : coreXYIdlerBore() == 4 ? M4_washer : M5_washer;
