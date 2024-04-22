@@ -36,9 +36,9 @@ module Smart_Orbiter_V3_Fan_Bracket_5015_stl() {
     orbiterHoles = [ orbiterHolesOffset + [0, 0], orbiterHolesOffset+ [-17, 26.25] ];
     thickness = 3.5;
 
+    stl("Smart_Orbiter_V3_Fan_Bracket_5015")
     translate([-49, 74.31, 9.496])
     vflip()
-    stl("Smart_Orbiter_V3_Fan_Bracket_5015")
         color(pp2_colour)
             difference() {
                 union() {
