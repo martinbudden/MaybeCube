@@ -20,7 +20,7 @@ module pcbAssembly(pcbType, pcbOnBase=false) {
             explode(explode)
                 pcb(pcbType);
             pcb_screw_positions(pcbType) {
-                if (!mainboard || !pcbOnBase || $i==1 || $i == 2) {
+                if (!mainboard || !pcbOnBase) {
                     translate_z(pcb_thickness(pcbType))
                         explode(explode, true)
                             if (pcbType[0] == "XL4015_BUCK_CONVERTER")
@@ -36,12 +36,27 @@ module pcbAssembly(pcbType, pcbOnBase=false) {
                                     boltM3Buttonhead(10);
                     }
                 } else if (mainboard) {
-                    translate_z(-pcbOffsetZ + eSize)
-                        explode(pcbOffsetZ + 5)
-                            pillar(M3x5_nylon_hex_pillar);
-                    translate_z(pcb_thickness(pcbType))
-                        explode(explode, true)
-                            boltM3CapheadHammerNut(12, nutOffset=3.48);
+                    hammerNut = ((pcbType[0]=="BTT_MANTA_5MP_V1_0" && $i==1) || (pcbType[0]!="BTT_MANTA_5MP_V1_0" && ($i==0 || $i==3)));
+                    if (hammerNut) {
+                        translate_z(-pcbOffsetZ + eSize)
+                            explode(pcbOffsetZ + 5)
+                                pillar(M3x5_nylon_hex_pillar);
+                        translate_z(pcb_thickness(pcbType))
+                            explode(explode, true)
+                                boltM3CapheadHammerNut(12, nutOffset=3.48);
+                    } else {
+                        translate_z(pcb_thickness(pcbType))
+                            explode(explode, true)
+                                boltM3Caphead(pcbOffsetZ==6 ? 12 : 6);
+                        translate_z(-pcbOffsetZ) {
+                            explode(10)
+                                pillar(pcbOffsetZ==6 ? M3x6_nylon_hex_pillar : pcbOffsetZ==10 ? M3x10_nylon_hex_pillar : M3x25_nylon_hex_pillar);
+                            if (pcbOffsetZ > 6)
+                                translate_z(-_basePlateThickness)
+                                    vflip()
+                                        boltM3Buttonhead(10);
+                        }
+                    }
                 }
             }
         }
@@ -74,6 +89,11 @@ module pcbPosition(pcbType, pcbOnBase=false, z=0) {
             holeOffset = 4.43;
             translate([eX + 2*eSize - pcbSize.x/2 - eSize/2 + holeOffset, pcbSize.y/2 + eSize + (eY >= 300 ? 20 : 15), z])
                 children();
+        } else if (pcbType[0] == "BTT_MANTA_5MP_V1_0") {
+            holeOffset = 4;
+            translate([eX + 2*eSize - pcbSize.y/2 - eSize/2 + holeOffset, pcbSize.x/2 + eSize + (eY >= 300 ? 20 : 15), z])
+                rotate(-90)
+                    children();
         } else {
             holeOffset = 4;
             translate([eX + 2*eSize - pcbSize.y/2 - eSize/2 + holeOffset, pcbSize.x/2 + eSize + (eY >= 300 ? 20 : 15), z])

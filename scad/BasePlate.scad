@@ -15,6 +15,7 @@ include <utils/pcbs.scad>
 
 include <utils/FrameBolts.scad>
 include <vitamins/RPI3APlus.scad>
+include <vitamins/BTT_MANTA_5MP.scad>
 include <vitamins/BTT_MANTA_8MP.scad>
 include <vitamins/psus.scad>
 
@@ -26,10 +27,10 @@ psuOnBase = !is_undef(_useElectronicsInBase) && _useElectronicsInBase == true;
 pcbOnBase = !is_undef(_useElectronicsInBase) && _useElectronicsInBase == true;
 basePSUType = NG_CB_500W_24V;
 //basePSUType = S_300_12;
-pcbType = eY <= 250 ? BTT_SKR_MINI_E3_V2_0 : BTT_SKR_V1_4_TURBO;
+pcbType = eY <= 250 ? BTT_SKR_MINI_E3_V2_0 : eY <= 300 ? BTT_SKR_V1_4_TURBO : BTT_MANTA_5MP_V1_0;
 //pcbType = eY <= 250 ? BTT_SKR_MINI_E3_V2_0 : eY==350 ? BTT_MANTA_8MP_V2_0 : BTT_SKR_V1_4_TURBO;
 rpiType = RPI3APlus;
-basePCBs = eY <= 250 ? [pcbType] : pcbType[0] == "BTT_MANTA_8MP_V2_0" ? [pcbType, BTT_RELAY_V1_2] : [pcbType, rpiType, BTT_RELAY_V1_2, XL4015_BUCK_CONVERTER];
+basePCBs = eY <= 250 ? [pcbType] : (pcbType[0] == "BTT_MANTA_8MP_V2_0" || pcbType[0] == "BTT_MANTA_5MP_V1_0") ? [pcbType, BTT_RELAY_V1_2] : [pcbType, rpiType, BTT_RELAY_V1_2, XL4015_BUCK_CONVERTER];
 
 
 module BaseAL_dxf() {
@@ -111,11 +112,16 @@ module baseCutouts(cncSides=undef, radius=undef) {
             PSUBoltPositions(basePSUType)
                 poly_circle(is_undef(radius) ? M4_clearance_radius : radius, sides=cncSides);
     if (pcbOnBase)
-        for (pcb = basePCBs)
+        for (pcb = basePCBs) {
             pcbPosition(pcb, pcbOnBase)
                 pcb_screw_positions(pcb)
-                    if (pcb!=pcbType || $i==1 || $i == 2)
-                        poly_circle(is_undef(radius) ?(pcb==pcbType ? M3_clearance_radius : pcb==XL4015_BUCK_CONVERTER? M2_tap_radius : M3_tap_radius): radius, sides=cncSides);
+                    if (pcb[0] == "BTT_MANTA_5MP_V1_0") {
+                        if ($i!=1)
+                            #poly_circle(is_undef(radius) ? M4_tap_radius : radius, sides=cncSides);
+                    } else if (pcb!=pcbType || $i==1 || $i==2) {
+                        poly_circle(is_undef(radius) ? (pcb==pcbType ? M3_clearance_radius : pcb==XL4015_BUCK_CONVERTER? M2_tap_radius : M3_tap_radius): radius, sides=cncSides);
+                    }
+        }
 
 }
 
@@ -264,7 +270,7 @@ assembly("Base_Plate", big=true, ngb=true) {
 module Base_Plate_With_Display_assembly()
 assembly("Base_Plate_With_Display", big=true, ngb=true) {
 
-    Base_Plate__assembly();
+    Base_Plate_assembly();
 
     if (!is_undef(_useFrontDisplay) && _useFrontDisplay) {
         explode([0, -50, 0], true)
