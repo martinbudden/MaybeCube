@@ -117,7 +117,7 @@ module baseCutouts(cncSides=undef, radius=undef) {
                 pcb_screw_positions(pcb)
                     if (pcb[0] == "BTT_MANTA_5MP_V1_0") {
                         if ($i!=1)
-                            #poly_circle(is_undef(radius) ? M4_tap_radius : radius, sides=cncSides);
+                            poly_circle(is_undef(radius) ? M4_tap_radius : radius, sides=cncSides);
                     } else if (pcb!=pcbType || $i==1 || $i==2) {
                         poly_circle(is_undef(radius) ? (pcb==pcbType ? M3_clearance_radius : pcb==XL4015_BUCK_CONVERTER? M2_tap_radius : M3_tap_radius): radius, sides=cncSides);
                     }
@@ -227,20 +227,32 @@ module basePlateAssembly(rightExtrusion=false, hammerNut=true) {
 //!
 //!1. Insert the bolts into the ends of the E2040 and E2080 extrusions in preparation for connection to the frame uprights.
 //!2. Bolt the extrusions and the L-shaped feet to the baseplate as shown.
-//!3. Bolt the PSU and the PCBs to the baseplate, using standoffs as appropriate.
+//!3. Attach the **IEC Housing assembly** to the left side extrusion.
+//
+module Base_Plate_Stage_1_assembly()
+assembly("Base_Plate_Stage_1", big=true, ngb=true) {
+
+    basePlateAssembly(psuOnBase);
+
+    if (psuOnBase)
+        explode([80, 0, 20])
+            IEC_Housing_assembly();
+
+}
+
+//!1. Bolt the PSU and the PCBs to the baseplate, using standoffs as appropriate.
+//!2. Connect up the wiring, this is not shown in the illustrations.  
 //
 module Base_Plate_assembly()
 assembly("Base_Plate", big=true, ngb=true) {
 
-    basePlateAssembly(psuOnBase);
+    Base_Plate_Stage_1_assembly();
 
     if (pcbOnBase)
         for (pcb = basePCBs)
             pcbAssembly(pcb, pcbOnBase);
 
     if (psuOnBase) {
-        explode([80, 0, 20])
-            IEC_Housing_assembly();
         explode(50, true)
             basePSUPosition()
                 if (basePSUType[0] == "S_300_12") {
