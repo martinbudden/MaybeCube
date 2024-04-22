@@ -54,7 +54,8 @@ module pcbAssembly(pcbType, pcbOnBase=false) {
                             if (pcbOffsetZ > 6)
                                 translate_z(-_basePlateThickness)
                                     vflip()
-                                        boltM3Buttonhead(10);
+                                        explode(150, true)
+                                            boltM3Buttonhead(10);
                         }
                     }
                 }
