@@ -74,11 +74,9 @@ assembly("Printhead_E3DV6", big=true) {
     printheadE3DV6Assembly();
 }
 
-module printheadOrbiterV3Assembly(full=true) {
+module printheadOrbiterV3Assembly() {
     xCarriageType = MGN12H_carriage;
     blowerType = RB5015;
-    hotendDescriptor = "OrbiterV3";
-    hotendOffset = hotendOffset(xCarriageType, hotendDescriptor);
 
     rotate([0, 0, 90])
         translate([39, -0.3, -31.4])
@@ -114,16 +112,6 @@ module printheadOrbiterV3Assembly(full=true) {
                             boltM3Countersunk(20);
                 }
     }
-
-    if (!exploded() && full)
-        translate(printheadWiringOffset(hotendDescriptor))
-            for (z = [0, 10])
-                translate([0, -3.5, z + 30])
-                    rotate([0, 90, 90])
-                        cable_tie(cable_r = 3, thickness = 4.5);
-    explode([0, -60, 0], true)
-        xCarriageOrbiterV3HolePositions()
-            boltM3Countersunk(10);
 }
 
 //!The **Smart_Orbiter_V3_Fan_Bracket** and the **Smart_Orbiter_V3_Duct** are based on the
@@ -138,9 +126,21 @@ module printheadOrbiterV3Assembly(full=true) {
 module Printhead_OrbiterV3_assembly() pose(a=[55, 0, 25 + 90])
 assembly("Printhead_OrbiterV3", big=true) {
 
-    explode([0, -40, 0])
-        xCarriageOrbiterV3Assembly();
-    printheadOrbiterV3Assembly();
+    xCarriageType = MGN12H_carriage;
+    hotendDescriptor = "OrbiterV3";
+    explode([0, -40, 0], true)
+        xCarriageOrbiterV3Assembly(xCarriageType, inserts=true);
+    translate_z(orbiterV3HoleOffset().z - 16)
+        printheadOrbiterV3Assembly();
+    explode([0, -60, 0], true)
+        xCarriageOrbiterV3HolePositions(xCarriageType)
+            boltM3Countersunk(10);
+    if (!exploded())
+        translate(printheadWiringOffset(hotendDescriptor))
+            xCarriageOrbitrerV3CableTiePositions()
+                translate([0, -3.5, 18])
+                    rotate([0, 90, 90])
+                        cable_tie(cable_r = 3, thickness = 4.5);
 }
 
 module printheadBeltSide(rotate=0, explode=0, t=undef) {

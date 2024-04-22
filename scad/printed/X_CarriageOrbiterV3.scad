@@ -16,35 +16,43 @@ use <../../../BabyCube/scad/printed/X_Carriage.scad>
 include <../Parameters_CoreXY.scad>
 include <../Parameters_Main.scad>
 
-orbiterV3HoleOffset = [-5, 0, 16];
+function orbiterV3HoleOffset() = [-5, 0, 17];
 
-module xCarriageOrbiterV3HolePositions() {
-    xCarriageType = MGN12H_carriage;
+module xCarriageOrbiterV3HolePositions(xCarriageType) {
     size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
     carriageSize = carriage_size(xCarriageType);
     railCarriageGap = 0.5;
     holeSpacing = [16.5, 0, 23];
-    offset = [size.x - holeSpacing.x, 0, 0] + orbiterV3HoleOffset;
+    offset = [size.x - holeSpacing.x, 0, 0] + orbiterV3HoleOffset();
 
     for (x = [0, holeSpacing.x], z = [0, holeSpacing.z])
         translate(offset + [x - size.x/2, carriageSize.y/2 + railCarriageGap, z - size.z + xCarriageTopThickness()])
             rotate([90, 90, 0])
                 children();
 }
+
+module xCarriageOrbitrerV3CableTiePositions() {
+    for (z = [2, 20, 30])
+        translate_z(z)
+            children();
+}
+
 module xCarriageOrbitrerV3StrainRelief(xCarriageType, xCarriageBackSize, topThickness) {
     carriageSize = carriage_size(xCarriageType);
     carriageOffsetY = carriageSize.y/2;
     size =  [xCarriageBackSize.x, xCarriageBackSize.y + carriageSize.y/2, topThickness];
-    tabSize = [15, xCarriageBackSize.y, 30]; // ensure room for bolt heads
+    tabSize = [15, xCarriageBackSize.y, 38]; // ensure room for bolt heads
     railCarriageGap = 0.5;
 
     fillet = 1;
     translate([0, railCarriageGap, size.z - 2*fillet])
         difference() {
             rounded_cube_xz(tabSize, fillet);
-            for (x = [tabSize.x/2 - 4, tabSize.x/2 + 4], z = [10 + 2, tabSize.z - 10 + 2])
-                translate([x - 1, -eps, z])
-                    cube([2, tabSize.y + 2*eps, 4]);
+            cutoutSize = [2, tabSize.y + 2*eps, 4];
+            xCarriageOrbitrerV3CableTiePositions()
+                for (x = [tabSize.x/2 - 4, tabSize.x/2 + 4])
+                    translate([x - cutoutSize.x/2, -eps, 0])
+                        rounded_cube_xz(cutoutSize, 0.5);
         }
 }
 
@@ -89,7 +97,7 @@ module xCarriageOrbiterV3(xCarriageType, inserts) {
                     rotate([90, 90, 0])
                         fillet(1, size.y + 1);
             }
-            offsetZ = orbiterV3HoleOffset.z + 3.5;
+            offsetZ = orbiterV3HoleOffset().z + 3.5;
             cutoutSize = [size.x+2*eps, 2, 3];
             // cutout for the hotend fan wiring
             translate([-size.x/2-eps, carriageSize.y/2 + railCarriageGap + size.y - cutoutSize.y + eps +0.5, offsetZ - size.z + xCarriageTopThickness()]) {
@@ -113,12 +121,14 @@ module xCarriageOrbiterV3(xCarriageType, inserts) {
                         fillet(1, cutoutSize.y + eps);
             }
 
-            xCarriageHotendSideHolePositions()
+            xCarriageHotendSideHolePositions(xCarriageType)
                 if (inserts)
-                    insertHoleM3(size.y);
+                    vflip()
+                        translate_z(-size.y)
+                            insertHoleM3(size.y);
                 else
                     boltHoleM3Tap(size.y);
-            xCarriageOrbiterV3HolePositions()
+            xCarriageOrbiterV3HolePositions(xCarriageType)
                 vflip()
                     boltPolyholeM3Countersunk(size.y);
         }
@@ -138,7 +148,7 @@ module X_Carriage_OrbiterV3_I_stl() {
                 xCarriageOrbiterV3(MGN12H_carriage, inserts=true);
 }
 
-module xCarriageOrbiterV3Assembly(inserts=false) {
+module xCarriageOrbiterV3Assembly(xCarriageType, inserts=false) {
     stl_colour(pp1_colour)
         rotate([-90, 0, 0])
             if (inserts)
@@ -146,8 +156,8 @@ module xCarriageOrbiterV3Assembly(inserts=false) {
             else
                 X_Carriage_OrbiterV3_stl();
     if (inserts)
-        xCarriageHotendSideHolePositions()
-            vflip()
+        xCarriageHotendSideHolePositions(xCarriageType, flipSide=true)
+            explode(10, true)
                 threadedInsertM3();
 }
 

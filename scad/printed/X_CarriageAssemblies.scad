@@ -45,8 +45,7 @@ beltClampSize = [25, xCarriageBeltAttachmentSize(beltWidth(), beltSeparation()).
 beltsCenterZOffset = coreXYPosBL().z - xRailCarriagePositionZ();
 
 
-module xCarriageHotendSideHolePositions() {
-    xCarriageType = MGN12H_carriage;
+module xCarriageHotendSideHolePositions(xCarriageType, flipSide=false) {
     size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
     railCarriageGap = 0.5;
     holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
@@ -55,11 +54,11 @@ module xCarriageHotendSideHolePositions() {
     topHoleOffset = xCarriageHoleOffsetTop();
 
     for (x = xCarriageHolePositions(size.x, holeSeparationTop))
-        translate([x - size.x/2, carriageSize.y/2 + railCarriageGap, xCarriageTopThickness()/2 + topHoleOffset])
+        translate([x - size.x/2, carriageSize.y/2 + railCarriageGap + (flipSide ? size.y : 0), xCarriageTopThickness()/2 + topHoleOffset])
             rotate([-90, 90, 0])
                 children();
     for (x = xCarriageHolePositions(size.x, holeSeparationBottom))
-        translate([x - size.x/2, carriageSize.y/2 + railCarriageGap, -size.z + xCarriageTopThickness() + xCarriageBaseThickness()/2])
+        translate([x - size.x/2, carriageSize.y/2 + railCarriageGap + (flipSide ? size.y : 0), -size.z + xCarriageTopThickness() + xCarriageBaseThickness()/2])
             rotate([-90, 90, 0])
                 children();
 }
