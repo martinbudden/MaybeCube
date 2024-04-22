@@ -38,6 +38,6 @@ module threadedInsertM3() {
 }
 
 module insertHoleM3(length, horizontal=false, rotate=0) {
-    boltHole(2*insert_hole_radius(F1BM3), 5, horizontal=horizontal, rotate=rotate);
+    boltHole(2*insert_hole_radius(F1BM3) + 0.2, 5, horizontal=horizontal, rotate=rotate);
     boltHoleM3(length, horizontal=horizontal, rotate=rotate, twist=4);
 }
