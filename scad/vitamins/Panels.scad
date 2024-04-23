@@ -16,16 +16,21 @@ PC3 = ["PC3", "Sheet polycarbonate", 3, [1,   1,   1,   0.25], false];
 accessHoleRadius = 2.5;
 
 function sidePanelSize(left, useBowdenExtruder=true) = [eY + 2*eSize - (left ? 0 : (useBowdenExtruder ? iecHousingMountSize().x : 0)), left ? eZ : eZ - (useBowdenExtruder ? 0 : iecHousingMountSize().y), 3];
+function rightLowerSidePanelSize() = [eY + 2*eSize - iecHousingMountSize().y, iecHousingMountSize().y, 3];
 
 
 module sidePanelAccessHolePositions(size, left) {
-    for (x = left ? [-size.x/2 + eSize/2, size.x/2 - eSize/2] : [-size.x/2 + eSize/2], y = [-size.y/2 + eSize/2, size.y/2 - eSize/2])
+    *for (x = left ? [-size.x/2 + eSize/2, size.x/2 - eSize/2] : [-size.x/2 + eSize/2], y = [-size.y/2 + eSize/2, size.y/2 - eSize/2])
         translate([x, y])
             children();
-    for (y = [3*eSize/2, 5*eSize/2, 7*eSize/2])
-        translate([left ? size.x/2 - eSize/2 : -size.x/2 + eSize/2, y - size.y/2])
+    for (y = [eSize/2, 3*eSize/2])
+        translate([left ? size.x/2 - eSize/2 : -size.x/2 + eSize/2, size.y/2 - y])
             children();
-    if (left)
+    if (left || _useBowdenExtruder == false)
+        for (y = [eSize/2, 3*eSize/2, 5*eSize/2])
+            translate([left ? -size.x/2 + eSize/2 : size.x/2 - eSize/2, size.y/2 - y])
+                children();
+    *if (left)
         for (y = [3*eSize/2, size.y - 3*eSize/2])
             translate([-size.x/2 + eSize/2, y - size.y/2])
                 children();
@@ -36,7 +41,7 @@ module sidePanelBoltHolePositionsX(size, left, spoolHolder) {
         size.x <= 250 + 2*eSize ? [-size.x/2 + eSize + 60, size.x/2 - eSize - 60] :
         size.x <= 350 + 2*eSize ? [-size.x/2 + eSize + 50, 0, size.x/2 - eSize - 50] :
                                   [-size.x/2 + eSize + 20, -(size.x - 2*(eSize + 20))/6, (size.x - 2*(eSize + 20))/6, size.x/2 - eSize - 20];
-    xPositionsRight = [-size.x/2 + 4*eSize/2, eSize/2, size.x/2 - eSize];
+    xPositionsRight = _useBowdenExtruder ? [-size.x/2 + 4*eSize/2, eSize/2, size.x/2 - eSize] : [-size.x/2 + 4*eSize/2, eSize/2, size.x/2 - 2*eSize];
     for (x = left ? xPositionsLeft : xPositionsRight,
          y = concat([(-size.y + eSize)/2, (size.y - eSize)/2], left ? [_upperZRodMountsExtrusionOffsetZ - size.y/2 - eSize/2] : []))
         translate([x, y])
@@ -44,16 +49,16 @@ module sidePanelBoltHolePositionsX(size, left, spoolHolder) {
                 children();
     if (spoolHolder)
         for (x = [0, 40])
-            translate([spoolHolderPosition().y - eY/2 + x + 7.5, spoolHeight() + 3*eSize/2 - size.y/2])
+            translate([x + (_useBowdenExtruder ? spoolHolderPosition().y - eY/2 + 7.5 : -20), spoolHeight() - size.y/2 + (_useBowdenExtruder ? 3*eSize/2 : -3*eSize)])
                 children();
 }
 
 module sidePanelBoltHolePositions(size, left, spoolHolder=false) {
-    for (x = left ? [-size.x/2 + eSize/2, size.x/2 - eSize/2] : [-size.x/2 + eSize/2], y = [-size.y/2 + eSize, size.y/2 - eSize])
+    for (x = (left || _useBowdenExtruder== false) ? [-size.x/2 + eSize/2, size.x/2 - eSize/2] : [-size.x/2 + eSize/2], y = [-size.y/2 + eSize, size.y/2 - eSize])
         translate([x, y])
             rotate(exploded() ? 0 : 90)
                 children();
-    if (!left)
+    if (!left && _useBowdenExtruder)
         for (x = [size.x/2 - eSize/2], y = [spoolHeight() + 3*eSize/2 - size.y/2])
             translate([x, y])
                 rotate(exploded() ? 0 : 90)
@@ -62,10 +67,18 @@ module sidePanelBoltHolePositions(size, left, spoolHolder=false) {
     sidePanelBoltHolePositionsX(size, left, spoolHolder)
         children();
     //for (x = [-size.x/2 + eSize/2, size.x/2 - eSize/2], y = [(size.y - eSize)/6, -(size.y - eSize)/6])
-    for (x = left ? [-size.x/2 + eSize/2, size.x/2 - eSize/2] : [-size.x/2 + eSize/2], y = [size.y/2 - eSize - (size.y - 2*eSize)/3, -size.y/2 + eSize + (size.y - 2*eSize)/3])
+    for (x = (left || _useBowdenExtruder== false) ? [-size.x/2 + eSize/2, size.x/2 - eSize/2] : [-size.x/2 + eSize/2], y = [size.y/2 - eSize - (size.y - 2*eSize)/3, -size.y/2 + eSize + (size.y - 2*eSize)/3])
         translate([x, y])
             rotate(exploded() ? 0 : 90)
                 children();
+}
+
+module rightLowerSidePanelBoltHolePositions(size) {
+    for (x = [-size.x/2 + eSize/2, 0, size.x/2 - eSize/2], y = [-size.y/2 + eSize/2,  size.y/2 - eSize/2])
+        translate([x, y])
+            rotate(exploded() ? 0 : 90)
+                children();
+
 }
 
 module Left_Side_Panel_dxf() {
@@ -314,6 +327,19 @@ module Right_Side_Panel_dxf() {
             }
 }
 
+module Right_Lower_Side_Panel_dxf() {
+    size = rightLowerSidePanelSize();
+    fillet = 1;
+    sheet = PC3;
+
+    dxf("Right_Lower_Side_Panel")
+        color(sheet_colour(sheet))
+            difference() {
+                sheet_2D(sheet, size.x, size.y, fillet);
+                rightLowerSidePanelBoltHolePositions(size)
+                    circle(r=M4_clearance_radius);
+            }
+}
 module Channel_Nut_100_L_stl() {
     stl("Channel_Nut_100_L")
         color(pp3_colour)
@@ -511,8 +537,7 @@ module Right_Side_Channel_Spacers() {
 module rightSidePanelPC(addBolts=true, hammerNut=true) {
     size = sidePanelSize(left=false, useBowdenExtruder=_useBowdenExtruder);
 
-    if (_useBowdenExtruder)
-    translate([size.z/2 + eX + 2*eSize, size.x/2, size.y/2])
+    translate([size.z/2 + eX + 2*eSize, size.x/2, (_useBowdenExtruder ? size.y/2 : eZ - size.y/2)])
         rotate([90, 0, 90]) {
             if (addBolts)
                 sidePanelBoltHolePositions(size, left=false)
@@ -527,6 +552,18 @@ module rightSidePanelPC(addBolts=true, hammerNut=true) {
             render_2D_sheet(PC3, w=size.x, d=size.y)
                 Right_Side_Panel_dxf();
         }
+    if (!_useBowdenExtruder) {
+        lowerSize = rightLowerSidePanelSize();
+        translate([lowerSize.z/2 + eX + 2*eSize, lowerSize.x/2, lowerSize.y/2])
+            rotate([90, 0, 90]) {
+                if (addBolts)
+                    rightLowerSidePanelBoltHolePositions(lowerSize)
+                        translate_z(lowerSize.z/2)
+                            boltM4ButtonheadHammerNut(_sideBoltLength);
+                render_2D_sheet(PC3, w=lowerSize.x, d=lowerSize.y)
+                    Right_Lower_Side_Panel_dxf();
+            }
+    }
 }
 
 module Right_Side_Panel_assembly(hammerNut=true)
