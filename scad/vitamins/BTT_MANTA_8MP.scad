@@ -45,3 +45,16 @@ module BTT_MANTA_8MP_V2_Base_stl() {
             }
 }
 
+module BTT_MANTA_8MP_V2_Spacer_stl() {
+    pcbType = BTT_MANTA_8MP_V2_0;
+    pcbSize = pcb_size(pcbType);
+    size = [20, pcbSize.y + 2, 5];
+
+    stl("BTT_MANTA_8MP_V2_Spacer")
+        difference() {
+            rounded_cube_xy(size, 3, xy_center=true);
+            for (i = [ 0, 3])
+                translate([0, pcb_coord(pcbType, pcb_holes(pcbType)[i]).y, 0])
+                    boltHoleM3(size.z);
+        }
+}
