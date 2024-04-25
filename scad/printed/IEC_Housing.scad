@@ -79,7 +79,7 @@ module iecHousingStl(bevelled=false, extension=0) {
             }
 
             if (bevelled || extension==0) {
-                cableCutoutSize = [8, (size.y-cutoutSize.y)/2 + 2*eps, 8];
+                cableCutoutSize = [11, (size.y-cutoutSize.y)/2 + 2*eps, 9];
                 translate([size.x/2 - 12 - cableCutoutSize.x/2, -size.y/2 - eps, -eps])
                     cube(cableCutoutSize);
             } else {
