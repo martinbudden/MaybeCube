@@ -16,7 +16,7 @@ PC3 = ["PC3", "Sheet polycarbonate", 3, [1,   1,   1,   0.25], false];
 accessHoleRadius = 2.5;
 
 function sidePanelSize(left, useBowdenExtruder=true) = [eY + 2*eSize - (left ? 0 : (useBowdenExtruder ? iecHousingMountSize().x : 0)), left ? eZ : eZ - (useBowdenExtruder ? 0 : iecHousingMountSize().y), 3];
-function rightLowerSidePanelSize() = [eY + 2*eSize - iecHousingMountSize().y, iecHousingMountSize().y, 3];
+function rightLowerSidePanelSize() = [eY + 2*eSize - iecHousingMountSize().x, iecHousingMountSize().y, 3];
 
 
 module sidePanelAccessHolePositions(size, left) {
