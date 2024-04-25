@@ -28,17 +28,17 @@ module BTT_MANTA_8MP_V2_Base_stl() {
         translate_z(-size.z)
             difference() {
                 union() {
-                    width = 25;
+                    width = size.x;
                     translate([(size.x - width)/2, 0, 0])
                         rounded_cube_xy([width, size.y, size.z], 3, xy_center=true);
                     pcb_hole_positions(pcbType)
-                        if ($i == 1 || $i ==3)
+                        if ($i == 1 || $i == 3 || width == size.x)
                             cylinder(r=3, h=size.z + standoffHeight);
                 }
                 pcb_hole_positions(pcbType)
                     if ($i == 1)
                         boltHoleM3Tap(size.z + standoffHeight);
-                    else if ($i == 3)
+                    else
                         boltHoleM3(size.z + standoffHeight);
             translate([pcb_coord(pcbType, pcb_holes(pcbType)[3]).x, pcb_coord(pcbType, pcb_holes(pcbType)[1]).y, 0])
                 boltHoleM3(size.z);
