@@ -1,6 +1,7 @@
 //!Display the left and right idlers.
 
 include <../scad/printed/XY_Idler.scad>
+use <../scad/printed/XY_MotorMount.scad>
 include <../scad/utils/CoreXYBelts.scad>
 
 include <../scad/utils/carriageTypes.scad>

@@ -16,7 +16,6 @@ include <NopSCADlib/vitamins/screws.scad>
 
 use <../scad/printed/JubileeToolChanger.scad>
 
-include <utils/CoreXYBelts.scad>
 include <utils/X_Rail.scad>
 
 use <FaceTop.scad>
@@ -89,9 +88,6 @@ assembly("JubileeToolChanger", big=true) {
     not_on_bom()
         no_explode()
             Face_Top_Stage_2_assembly();
-    if (!exploded())
-        not_on_bom()
-            CoreXYBelts([carriagePosition.x, carriagePosition.y]);
 }
 
 

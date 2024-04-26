@@ -6,6 +6,7 @@ include <NopSCADlib/vitamins/bldc_motors.scad>
 
 include <../scad/printed/XY_EncoderMount.scad>
 include <../scad/printed/XY_MotorMountBLDC.scad>
+use <../scad/printed/XY_MotorMount.scad>
 include <../scad/utils/CoreXYBelts.scad>
 
 use <../scad/Parameters_Positions.scad>

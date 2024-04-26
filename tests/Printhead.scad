@@ -10,6 +10,7 @@ use <../scad/MainAssemblyVoronAfterburner.scad>
 
 include <../scad/vitamins/bolts.scad>
 
+use <../scad/printed/XY_MotorMount.scad>
 include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/X_Rail.scad>
 

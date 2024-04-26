@@ -34,6 +34,8 @@ include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/screws.scad>
 
 use <../scad/utils/PSU.scad>
+use <../scad/printed/XY_MotorMount.scad>
+
 
 include <../scad/utils/printParameters.scad>
 include <../scad/utils/CoreXYBelts.scad>

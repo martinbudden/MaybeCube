@@ -37,6 +37,8 @@ sizeT = [8.5, 9, sizeP.z];
 offsetP = usePulley25() ? [-4.5, -4.5, 0] : [-4.5, -5.25, 0];
 offsetT = usePulley25() ? [-4.5, -5, 0] : [-3.25, -4.5, 0];
 
+function leftDrivePulleyOffset() = useReversedBelts() ? [26, use2060ForTopRear() ? -8 : -6] : [useXYDirectDrive ? 0 : 38 + 3*largePulleyOffset, -largePulleyOffsetTop];
+function rightDrivePulleyOffset() = [useXYDirectDrive ? 0 : -42.5 - 3*largePulleyOffset, useReversedBelts() ? (use2060ForTopRear()? -8 : -6) : -largePulleyOffsetTop]; // need to give clearance to extruder motor
 
 function upperBoltPositions(sizeX) = [eSize/2 + 3, sizeX - 3*eSize/2 - 8];
 leftDrivePlainIdlerOffset    = [plainIdlerPulleyOffset().x, plainIdlerPulleyOffset().y, 0];
