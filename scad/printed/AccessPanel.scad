@@ -3,12 +3,13 @@ include <../global_defs.scad>
 include <../vitamins/bolts.scad>
 
 use <../printed/extruderBracket.scad> // for spoolHeight()
-include <../utils/XY_MotorMount.scad> // for partitionOffsetY()
+include <../utils/XY_MotorMount.scad> // for xyMotorMountSize()
 
 include <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>
 
+function partitionOffsetY() = xyMotorMountSize(motorWidth=motorWidth(motorType(_xyMotorDescriptor)), offset=leftDrivePulleyOffset()).y + 1;
 
 module Access_Panel_300_stl() {
     stl("Access_Panel_300")

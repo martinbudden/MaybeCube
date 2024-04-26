@@ -89,7 +89,7 @@ module faceLeftMotorUpright(upperZRodMountsExtrusionOffsetZ) {
                 translate([0, eSize/2, z])
                     rotate([0, 90, 0])
                         jointBoltHole();
-            if (use2060ForTopRear())
+            if (!is_undef(_use2060ForTopRear) && _use2060ForTopRear)
                 translate([0, eSize/2, eZ - 5*eSize/2])
                     rotate([0, 90, 0])
                         jointBoltHole();
