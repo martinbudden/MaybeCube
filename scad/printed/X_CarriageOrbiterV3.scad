@@ -31,8 +31,8 @@ module xCarriageOrbiterV3HolePositions(xCarriageType) {
                 children();
 }
 
-module xCarriageOrbitrerV3CableTiePositions() {
-    for (z = [2, 20, 30])
+module xCarriageOrbitrerV3CableTiePositions(full=true) {
+    for (z = full ? [2, 15, 25, 35, 45,55, 65] : [2, 15, 55, 65])
         translate_z(z)
             children();
 }
@@ -41,7 +41,7 @@ module xCarriageOrbitrerV3StrainRelief(xCarriageType, xCarriageBackSize, topThic
     carriageSize = carriage_size(xCarriageType);
     carriageOffsetY = carriageSize.y/2;
     size =  [xCarriageBackSize.x, xCarriageBackSize.y + carriageSize.y/2, topThickness];
-    tabSize = [15, xCarriageBackSize.y, 38]; // ensure room for bolt heads
+    tabSize = [15, xCarriageBackSize.y, 73]; // ensure room for bolt heads
     railCarriageGap = 0.5;
 
     fillet = 1;
@@ -66,15 +66,17 @@ module xCarriageOrbiterV3Back(xCarriageType, size, extraX=0, holeSeparationTop, 
     railCarriageGap = 0.5;
 
     baseSize = [size.x, carriageSize.y + size.y - 2*beltInsetBack(xCarriageType), baseThickness];
-    difference() {
-        translate([-size.x/2, carriageSize.y/2, 0])
+    translate([-size.x/2, carriageSize.y/2, 0])
+        difference() {
             union() {
                 translate([0, railCarriageGap, baseSize.z - size.z])
                     rounded_cube_xz([size.x, size.y, size.z], 1);
-                // top
                 xCarriageOrbitrerV3StrainRelief(xCarriageType, size, topThickness);
             } // end union
-    } // end difference
+            cutoutSize = [2, size.y + carriageSize.y/2 + 2*eps, 4];
+                translate([2.5 - cutoutSize.x/2, -eps, -16])
+                    rounded_cube_xz(cutoutSize, 0.5);
+        } // end difference
 }
 
 module xCarriageOrbiterV3(xCarriageType, inserts) {
@@ -98,7 +100,7 @@ module xCarriageOrbiterV3(xCarriageType, inserts) {
                         fillet(1, size.y + 1);
             }
             offsetZ = orbiterV3HoleOffset().z + 3.5;
-            cutoutSize = [size.x+2*eps, 2, 3];
+            cutoutSize = [size.x + 2*eps, 2, 3];
             // cutout for the hotend fan wiring
             translate([-size.x/2-eps, carriageSize.y/2 + railCarriageGap + size.y - cutoutSize.y + eps +0.5, offsetZ - size.z + xCarriageTopThickness()]) {
                 cube(cutoutSize);
@@ -111,12 +113,12 @@ module xCarriageOrbiterV3(xCarriageType, inserts) {
                     rotate([-90, 180, 0])
                         fillet(1, cutoutSize.y + eps);
                 translate([-1.5, 0, 0]) {
-                    rounded_cube_xz([8, cutoutSize.y, 15], 1);
+                    rounded_cube_xz([8, cutoutSize.y, 17.5], 1);
                     translate([8, 0, cutoutSize.z])
                         rotate([-90, -90, 0])
                             fillet(1, cutoutSize.y + eps);
                 }
-                translate([0, 0, 15])
+                translate([0, 0, 17.5])
                     rotate([-90, -90, 0])
                         fillet(1, cutoutSize.y + eps);
             }

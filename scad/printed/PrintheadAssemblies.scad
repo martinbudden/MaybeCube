@@ -136,11 +136,15 @@ assembly("Printhead_OrbiterV3", big=true) {
         xCarriageOrbiterV3HolePositions(xCarriageType)
             boltM3Countersunk(10);
     if (!exploded())
-        translate(printheadWiringOffset(hotendDescriptor))
-            xCarriageOrbitrerV3CableTiePositions()
+        translate(printheadWiringOffset(hotendDescriptor)) {
+            xCarriageOrbitrerV3CableTiePositions(full=false)
                 translate([0, -3.5, 18])
                     rotate([0, 90, 90])
                         cable_tie(cable_r = 3, thickness = 4.5);
+            translate([-8.5, -5.5, -4])
+                rotate([0, 90, -90])
+                    cable_tie(cable_r = 2.5, thickness = 3);
+        }
 }
 
 module printheadBeltSide(rotate=0, explode=0, t=undef) {
