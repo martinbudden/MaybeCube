@@ -69,7 +69,7 @@ module Y_Carriage_Right_RB3_stl() {
 module Y_Carriage_Left_RB4_stl() {
     pulleyStackHeight = idlerHeight + pulleyWasherHeight();
     assert(pulleyStackHeight + yCarriageBraceThickness() == coreXYSeparation().z);
-    endStopOffsetX = 9.65;
+    endStopOffsetX = 10.65;
     stl("Y_Carriage_Left_RB4");
     color(pp2_colour)
         Y_Carriage(carriageType(_yCarriageDescriptor), idlerHeight, coreXYIdlerBore(), railType(_xCarriageDescriptor), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), blockOffset, endStopOffsetX, tongueOffset(), plainIdlerOffset(), toothedIdlerOffset(), topInset, inserts=yCarriageInserts, reversedBelts=true, left=true, cnc=false);
