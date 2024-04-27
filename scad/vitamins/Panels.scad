@@ -552,7 +552,7 @@ module rightSidePanelPC(addBolts=true, hammerNut=true) {
             render_2D_sheet(PC3, w=size.x, d=size.y)
                 Right_Side_Panel_dxf();
         }
-    if (!_useBowdenExtruder) {
+    *if (!_useBowdenExtruder) {
         lowerSize = rightLowerSidePanelSize();
         translate([lowerSize.z/2 + eX + 2*eSize, lowerSize.x/2, lowerSize.y/2])
             rotate([90, 0, 90]) {

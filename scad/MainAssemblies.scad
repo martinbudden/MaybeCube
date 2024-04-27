@@ -6,6 +6,7 @@ use <printed/E20Cover.scad>
 use <printed/JubileeKinematicBed.scad>
 use <printed/PrintheadAssemblies.scad>
 use <printed/RightSidePanel.scad>
+use <printed/BaseCover.scad>
 
 include <utils/Z_Rods.scad>
 include <utils/CoreXYBelts.scad>
@@ -102,6 +103,8 @@ staged_assembly("Stage_2", big=true, ngb=true) {
 
     explode(150, true) {
         Right_Side_assembly(bedHeight(), printbedKinematic);
+        baseFanMountAssembly();
+
         // add the right side Z rods if using dual Z rods
         if (useDualZRods())
             zRods(left=false);
@@ -178,6 +181,10 @@ module FinalAssembly() {
             }
             explode([200, 0, 100])
                 faceRightSpool(offsetX);
+        }
+        explode([0, -400, 100], true) {
+            baseCoverSideSupportsAssembly();
+            baseCoverTopAssembly();
         }
         if (useSidePanels) {
             explode([50, 0, 0], true)

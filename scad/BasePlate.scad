@@ -8,6 +8,7 @@ include <NopSCADlib/vitamins/psus.scad>
 include <NopSCADlib/vitamins/pcbs.scad>
 
 use <printed/BaseFrontCover.scad>
+use <printed/BaseCover.scad>
 use <printed/IEC_Housing.scad>
 
 use <utils/PSU.scad>
@@ -160,14 +161,21 @@ module basePlateAssembly(rightExtrusion=false, hammerNut=true) {
     //hidden() Base_template_stl();
 
     // front extrusion
-    translate([eSize, 0, 0])
-        explode([0, -100, 0], true)
+    explode([0, -100, 0], true) {
+        translate([eSize, 0, 0])
             extrusionOX2080VEndBolts(eX);
+        explode(60, true)
+            baseCoverFrontSupportsAssembly();
+    }
 
     // rear extrusion
     translate([eSize, eY + eSize, 0])
-        explode([0, 100, 0], true)
+        explode([0, 100, 0], true) {
             extrusionOX2040VEndBolts(eX);
+            explode(50, true)
+                baseCoverBackSupportsAssembly();
+        }
+
     if (rightExtrusion)
         // right extrusion
         translate([eX + eSize, eSize, 0])
@@ -237,7 +245,6 @@ assembly("Base_Plate_Stage_1", big=true, ngb=true) {
     if (psuOnBase)
         explode([80, 0, 20])
             IEC_Housing_assembly();
-
 }
 
 //!1. Bolt the PSU and the PCBs to the baseplate, using standoffs as appropriate.
