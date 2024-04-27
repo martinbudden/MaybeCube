@@ -27,7 +27,6 @@ module main_test() {
     //let($hide_bolts=true)
     //let($hide_extrusions=true)
     //let($hide_rails=true)
-    //Stage_5_assembly();
     translate([eX/2 + eSize, eY/2 + eSize, eZ/2]) main_assembly();
 }
 

@@ -9,6 +9,7 @@ include <NopSCADlib/utils/core/core.scad>
 
 //use <../scad/printed/BaseFrontCover.scad>
 //use <../scad/printed/ControlPanel.scad>
+include <../scad/printed/BaseCover.scad>
 
 include <../scad/BasePlate.scad>
 use <../scad/FaceLeft.scad>
@@ -29,6 +30,9 @@ module Base_test() {
     //basePlateAssembly(rightExtrusion=false, hammerNut=false);
     //translate([eX + eSize, eSize, 0]) extrusionOY(eY);
     //pcbAssembly(BTT_SKR_V1_4_TURBO, pcbOnBase=true);
+    //baseCoverTopAssembly();
+    //baseCoverSideSupportsAssembly();
+    //baseCoverFrontSupportsAssembly();
     //Base_Plate_Stage_1_assembly();
     Base_Plate_assembly();
     //Left_Base_Channel_Spacers();
