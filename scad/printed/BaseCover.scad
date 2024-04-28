@@ -14,7 +14,7 @@ use <extruderBracket.scad> // for iecHousingMountSize()
 include <../Parameters_Main.scad>
 
 supportHeight = 70;
-baseCoverTopSize = [260, eY + eSize, 3];
+baseCoverTopSize = [eX > 300 ? 260 : 210, eY + eSize, 3];
 baseCoverBackSupportSize = [baseCoverTopSize.x, eSize, supportHeight - 2*eSize];
 baseCoverSideSupportSize = [8, eY/2, supportHeight];
 baseCoverFrontSupportSize = [baseCoverTopSize.x - baseCoverSideSupportSize.x, 12, 3*eSize/2];

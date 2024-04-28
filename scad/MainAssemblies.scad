@@ -182,10 +182,11 @@ module FinalAssembly() {
             explode([200, 0, 100])
                 faceRightSpool(offsetX);
         }
-        explode([0, -400, 100], true) {
-            baseCoverSideSupportsAssembly();
-            baseCoverTopAssembly();
-        }
+        if (eX < 400)
+            explode([0, -400, 100], true) {
+                baseCoverSideSupportsAssembly();
+                baseCoverTopAssembly();
+            }
         if (useSidePanels) {
             explode([50, 0, 0], true)
                 rightSidePanelPC();

@@ -164,16 +164,18 @@ module basePlateAssembly(rightExtrusion=false, hammerNut=true) {
     explode([0, -100, 0], true) {
         translate([eSize, 0, 0])
             extrusionOX2080VEndBolts(eX);
-        explode(60, true)
-            baseCoverFrontSupportsAssembly();
+        if (eX < 400)
+            explode(60, true)
+                baseCoverFrontSupportsAssembly();
     }
 
     // rear extrusion
     translate([eSize, eY + eSize, 0])
         explode([0, 100, 0], true) {
             extrusionOX2040VEndBolts(eX);
-            explode(50, true)
-                baseCoverBackSupportsAssembly();
+            if (eX < 400)
+                explode(50, true)
+                    baseCoverBackSupportsAssembly();
         }
 
     if (rightExtrusion)
