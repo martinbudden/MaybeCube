@@ -284,25 +284,30 @@ module baseFanMount(sizeX, offsetX=0) {
 module Base_Fan_Mount_120A_stl() {
     stl("Base_Fan_Mount_120A")
         color(pp1_colour)
-            baseFanMount((eY + 2*eSize - iecHousingMountSize(eX).x)/2, 50);
+            vflip() // better orientation for printing
+                baseFanMount((eY + 2*eSize - iecHousingMountSize(eX).x)/2, 50);
 }
 
 module Base_Fan_Mount_145A_stl() {
     stl("Base_Fan_Mount_145A")
-        color(pp1_colour)
-            baseFanMount((eY + 2*eSize - iecHousingMountSize(eX).x)/2, 50);
+        color(pp1_colour) {
+            vflip() // better orientation for printing
+                baseFanMount((eY + 2*eSize - iecHousingMountSize(eX).x)/2, 50);
+        }
 }
 
 module Base_Fan_Mount_120B_stl() {
     stl("Base_Fan_Mount_120B")
         color(pp2_colour)
-            baseFanMount((eY + 2*eSize - iecHousingMountSize(eX).x)/2, -40);
+            vflip() // better orientation for printing
+                baseFanMount((eY + 2*eSize - iecHousingMountSize(eX).x)/2, -40);
 }
 
 module Base_Fan_Mount_145B_stl() {
     stl("Base_Fan_Mount_145B")
         color(pp2_colour)
-            baseFanMount((eY + 2*eSize - iecHousingMountSize(eX).x)/2, -40);
+            vflip() // better orientation for printing
+                baseFanMount((eY + 2*eSize - iecHousingMountSize(eX).x)/2, -40);
 }
 
 module baseFanMountAssembly() {
@@ -313,10 +318,11 @@ module baseFanMountAssembly() {
         rotate([90, 0, 90]) 
             explode(50, true) {
                 color(pp1_colour)
-                    if (eX == 300)
-                        Base_Fan_Mount_120A_stl();
-                    else
-                        Base_Fan_Mount_145A_stl();
+                    vflip()
+                        if (eX == 300)
+                            Base_Fan_Mount_120A_stl();
+                        else
+                            Base_Fan_Mount_145A_stl();
                 baseFanMountHolePositions(size, size.z)
                     boltM4ButtonheadHammerNut(8);
                 baseFanPosition(size, 50, size.z/2 - fan_thickness(fan)) {
@@ -335,10 +341,11 @@ module baseFanMountAssembly() {
         rotate([90, 0, 90])
             explode(50, true) {
                 color(pp2_colour)
-                    if (eX == 300)
-                        Base_Fan_Mount_120B_stl();
-                    else
-                        Base_Fan_Mount_145B_stl();
+                    vflip()
+                        if (eX == 300)
+                            Base_Fan_Mount_120B_stl();
+                        else
+                            Base_Fan_Mount_145B_stl();
                 baseFanMountHolePositions(size, size.z)
                     boltM4ButtonheadHammerNut(8);
                 baseFanPosition(size, -40, size.z/2 - fan_thickness(fan)) {
