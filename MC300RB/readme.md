@@ -106,7 +106,9 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech TFT35 E3 v3.0 |
 |   4  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M2 caphead x  6mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M2 caphead x 12mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |  17  |   17  |  Bolt M3 buttonhead x  8mm |
 |   .  |   .  |   8  |   2  |   .  |   2  |   .  |   8  |   20  |  Bolt M3 buttonhead x 10mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   8  |    8  |  Bolt M3 buttonhead x 16mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   6  |    6  |  Bolt M3 caphead x  6mm |
 |   .  |   .  |  20  |   .  |   .  |   .  |   .  |   .  |   20  |  Bolt M3 caphead x  8mm |
 |   .  |   .  |  16  |   .  |   .  |   4  |   .  |   .  |   20  |  Bolt M3 caphead x 10mm |
@@ -121,7 +123,7 @@ omitted from the build.
 |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 countersunk x 25mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 countersunk x 35mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M3 countersunk x 40mm |
-|   .  |   .  |   .  |   8  |   .  |   .  |   .  |  57  |   65  |  Bolt M4 buttonhead x  8mm |
+|   .  |   .  |   .  |   8  |   .  |   .  |   .  |  65  |   73  |  Bolt M4 buttonhead x  8mm |
 |   .  |   .  |  12  |   .  |   .  |   6  |   2  |  12  |   32  |  Bolt M4 buttonhead x 10mm |
 |   .  |   .  |   8  |   .  |   .  |   .  |   2  |   4  |   14  |  Bolt M4 buttonhead x 12mm |
 |   .  |   .  |  20  |   .  |   .  |   .  |   8  |   .  |   28  |  Bolt M4 countersunk x 10mm |
@@ -139,6 +141,7 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  |  Extrusion E2060 x 300mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Extrusion E2080 x 300mm |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Fan 30mm x 10mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Fan 40mm x 11mm |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Filament sensor |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  Heated Bed 214mm x 214mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Heatfit insert M3 x 5.8mm |
@@ -151,9 +154,10 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Linear rod 12mm x 300mm |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  MK10 Dual Pulley Extruder |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Micro SD card |
-|   .  |   .  |   2  |   .  |   3  |   2  |   .  |   6  |   13  |  Nut M3 hammer |
+|   .  |   .  |   2  |   .  |   3  |   2  |   .  |  11  |   18  |  Nut M3 hammer |
 |   .  |   .  |  16  |   .  |   .  |   .  |   .  |   .  |   16  |  Nut M3 sliding T |
-|   .  |   .  |   8  |   8  |   .  |   .  |   .  |  69  |   85  |  Nut M4 hammer |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   8  |    8  |  Nut M3 x 2.4mm  |
+|   .  |   .  |   8  |   8  |   .  |   .  |   .  |  77  |   93  |  Nut M4 hammer |
 |   .  |   .  |  40  |   .  |   .  |   6  |  12  |   .  |   58  |  Nut M4 sliding T |
 |   .  |   .  |   .  |   .  |  12  |   .  |   .  |   .  |   12  |  O-ring nitrile 4mm x 2mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PSU NIUGUY CB-500W-24V |
@@ -166,7 +170,8 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Raspberry Pi 3A+ |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  |  SCS12LUU bearing block |
 |   .  |   .  |   .  |   .  |   .  |   .  |   4  |   .  |    4  |  SK12 shaft support bracket |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Sheet polycarbonate 245mm x 400mm x 3mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Sheet perspex 210mm x 320mm x 3mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Sheet polycarbonate 240mm x 400mm x 3mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Sheet polycarbonate 340mm x 400mm x 3mm |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Square radial fan 3010 |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Stepper motor NEMA17 x 40mm, 250mm integrated leadscrew |
@@ -179,8 +184,14 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |    3  |  Washer penny M4 x 14mm x 0.8mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  XL4015 buck converter |
 |   3  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    3  |  Ziptie 2.5mm x 100mm min length |
-|  12  |   4  | 268  |  39  |  34  |  46  |  42  | 239  |  684  | Total vitamins count |
+|  12  |   4  | 268  |  39  |  34  |  46  |  42  | 296  |  741  | Total vitamins count |
 |      |      |      |      |      |      |      |      |       | **3D printed parts** |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_Back_Support_210.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_Front_Support_202.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_Side_Support_150A.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_Side_Support_150B.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Fan_Mount_120A.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Fan_Mount_120B.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_Bracket_TFT35_E3.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Display_Housing_TFT35_E3.stl |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  | Extruder_Bracket.stl |
@@ -222,13 +233,14 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |    1  | Z_Motor_MountGuide_19mm.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |    2  | Z_RodMountGuide_50mm.stl |
-|   3  |   3  |  20  |   2  |   .  |   5  |   4  |  15  |   52  | Total 3D printed parts count |
+|   3  |   3  |  20  |   2  |   .  |   5  |   4  |  21  |   58  | Total 3D printed parts count |
 |      |      |      |      |      |      |      |      |       | **CNC routed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Back_Panel.dxf |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | BaseAL.dxf |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_210.dxf |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Left_Side_Panel.dxf |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Right_Side_Panel.dxf |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  | Total CNC routed parts count |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   5  |    5  | Total CNC routed parts count |
 
 <span></span>
 [Top](#TOP)
@@ -968,19 +980,21 @@ thermally isolates the motor from the **Extruder_Bracket** and should not be omi
 | Qty | Description |
 |----:|:------------|
 |   1 | Aluminium sheet 340mm x 340mm x 3mm |
+|   5 | Bolt M3 buttonhead x  8mm |
 |   8 | Bolt M4 buttonhead x  8mm |
 |   8 | Bolt M4 buttonhead x 10mm |
 |  14 | Bolt M5 buttonhead x 12mm |
 |   1 | Extrusion E2020 x 300mm |
 |   1 | Extrusion E2040 x 300mm |
 |   1 | Extrusion E2080 x 300mm |
+|   5 | Nut M3 hammer |
 |  16 | Nut M4 hammer |
 
 ### 3D Printed parts
 
-| 4 x Foot_LShaped_12mm.stl |
-|----------|
-| ![Foot_LShaped_12mm.stl](stls/Foot_LShaped_12mm.png) |
+| 1 x Base_Cover_Back_Support_210.stl | 1 x Base_Cover_Front_Support_202.stl | 4 x Foot_LShaped_12mm.stl |
+|----------|----------|----------|
+| ![Base_Cover_Back_Support_210.stl](stls/Base_Cover_Back_Support_210.png) | ![Base_Cover_Front_Support_202.stl](stls/Base_Cover_Front_Support_202.png) | ![Foot_LShaped_12mm.stl](stls/Foot_LShaped_12mm.png) |
 
 ### CNC Routed parts
 
@@ -1409,6 +1423,22 @@ and the **Z_Motor_Mount**. The bolt holes on the **Z_Motor_Mount** are oval to a
 
 ## Stage_2 assembly
 
+### Vitamins
+
+| Qty | Description |
+|----:|:------------|
+|   8 | Bolt M3 buttonhead x 16mm |
+|   8 | Bolt M4 buttonhead x  8mm |
+|   2 | Fan 40mm x 11mm |
+|   8 | Nut M3 x 2.4mm  |
+|   8 | Nut M4 hammer |
+
+### 3D Printed parts
+
+| 1 x Base_Fan_Mount_120A.stl | 1 x Base_Fan_Mount_120B.stl |
+|----------|----------|
+| ![Base_Fan_Mount_120A.stl](stls/Base_Fan_Mount_120A.png) | ![Base_Fan_Mount_120B.stl](stls/Base_Fan_Mount_120B.png) |
+
 ### Sub-assemblies
 
 | 1 x Right_Side_assembly | 1 x Stage_1_assembly |
@@ -1520,23 +1550,29 @@ see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
 
 | Qty | Description |
 |----:|:------------|
+|  12 | Bolt M3 buttonhead x  8mm |
 |  28 | Bolt M4 buttonhead x  8mm |
 |   2 | Bolt M4 buttonhead x 12mm |
 |  30 | Nut M4 hammer |
-|   1 | Sheet polycarbonate 245mm x 400mm x 3mm |
+|   1 | Sheet perspex 210mm x 320mm x 3mm |
+|   1 | Sheet polycarbonate 240mm x 400mm x 3mm |
 |   1 | Sheet polycarbonate 340mm x 400mm x 3mm |
 
 ### 3D Printed parts
 
-| 1 x Spool_Holder.stl | 1 x Spool_Holder_36.stl | 1 x Spool_Holder_Bracket.stl |
+| 1 x Base_Cover_Side_Support_150A.stl | 1 x Base_Cover_Side_Support_150B.stl | 1 x Spool_Holder.stl |
 |----------|----------|----------|
-| ![Spool_Holder.stl](stls/Spool_Holder.png) | ![Spool_Holder_36.stl](stls/Spool_Holder_36.png) | ![Spool_Holder_Bracket.stl](stls/Spool_Holder_Bracket.png) |
+| ![Base_Cover_Side_Support_150A.stl](stls/Base_Cover_Side_Support_150A.png) | ![Base_Cover_Side_Support_150B.stl](stls/Base_Cover_Side_Support_150B.png) | ![Spool_Holder.stl](stls/Spool_Holder.png) |
+
+| 1 x Spool_Holder_36.stl | 1 x Spool_Holder_Bracket.stl |
+|----------|----------|
+| ![Spool_Holder_36.stl](stls/Spool_Holder_36.png) | ![Spool_Holder_Bracket.stl](stls/Spool_Holder_Bracket.png) |
 
 ### CNC Routed parts
 
-| 1 x Left_Side_Panel.dxf | 1 x Right_Side_Panel.dxf |
-|----------|----------|
-| ![Left_Side_Panel.dxf](dxfs/Left_Side_Panel.png) | ![Right_Side_Panel.dxf](dxfs/Right_Side_Panel.png) 
+| 1 x Base_Cover_210.dxf | 1 x Left_Side_Panel.dxf | 1 x Right_Side_Panel.dxf |
+|----------|----------|----------|
+| ![Base_Cover_210.dxf](dxfs/Base_Cover_210.png) | ![Left_Side_Panel.dxf](dxfs/Left_Side_Panel.png) | ![Right_Side_Panel.dxf](dxfs/Right_Side_Panel.png) 
 
 
 
