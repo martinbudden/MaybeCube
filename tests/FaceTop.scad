@@ -34,7 +34,6 @@ module Face_Top_test() {
         printheadWiring(hotendDescriptor="OrbiterV3");
     *wiringGuidePosition() {
         Wiring_Guide_stl();
-        Wiring_Guide_hardware();
         *vflip() {
             Wiring_Guide_Socket_stl();
             Wiring_Guide_Socket_hardware();
