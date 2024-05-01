@@ -241,7 +241,6 @@ module printheadWiring(hotendDescriptor="E3DV6", showCable=true) {
     wiringGuidePosition(offsetX = useCamera ? cameraMountBaseSize.x/2 : 0) {
         stl_colour(pp1_colour)
             Wiring_Guide_stl();
-        Wiring_Guide_hardware();
         explode(20, true)
             translate_z(wiringGuideTabHeight()) {
                 stl_colour(pp2_colour)
