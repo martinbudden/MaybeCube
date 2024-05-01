@@ -10,20 +10,31 @@ sufficient detail that someone with a good understanding of 3D printers can buil
 
 ## Read this before you order parts
 
-2020, 2040 etc aluminium comes in variants with differing sized center holes - some are suitable for tapping for an
+**Extrusion:** 2020, 2040 etc aluminium comes in variants with differing sized center holes - some are suitable for tapping for an
 an M5 bolt and some are suitable for tapping for an M6 bolt. It doesn't really matter which you use, but ensure you
 buy the bolts that correspond to your extrusion size. These build instructions assume M5 bolts, if your extrusion
 requires M6 bolts then the 10mm and 12mm buttonhead M5 bolts should be replaced with M6 bolts.
 
-The motor for the Z-axis has an integrated lead screw: in the *Parts List* the length specified is the length that
+**Z-motor and leadscrew:** The motor for the Z-axis has an integrated lead screw: in the *Parts List* the length specified is the length that
 protrudes from the motor. Some suppliers specify the total length of the lead screw, that is including the part that
 is inside the motor, so check how your supplier specifies the part before ordering. Another option is to order a motor
 with a lead screw that is too long and cut to size, note however that lead screws are made from hardened steel and cannot
 be cut with a hacksaw - an angle grinder is required to cut them.
 
-For the MC350 variant I have specified a Voron Trident build plate (this is an 250x250mm aluminium tooling plate drilled for a
+**Build plate:** For the MC350 variant I have specified a Voron Trident build plate (this is an 250x250mm aluminium tooling plate drilled for a
 3-point fixing) and a silicone heating pad.
 A cheapr alternative would be an Ender-style 235x235mm print bed with 4 fixing bolts.
+
+**Sliding T-nuts and hammer nuts:** Sliding T-nuts and hammer nuts are somewhat interchangeable. I find T-nuts easier to use: sometimes it can be
+to get a hammer nut to "bite". Hammer nuts allow more flexibility: they can always be added or removed without disassembling the frame. Genenerally
+hammer nuts can be replaced with sliding T-nuts, as long as it is done early enough in the assembly. Sliding T-nuts can always be replaced with hammer
+nuts.
+
+**Washers/shims:** Standard M4 washers are 1mm thick. Where "M4 x 9mm x 0.5mm" washers are specified, these may be ordered as "M4 shims".
+
+**Side panels and base:** These are specified as "CNC routed parts" in the parts list, for the convenience of those with access to a CNC. CNC routing
+is not required, the only "machining" required is to drill holes for attachment to the frame, which can easily be done with a hand drill.
+
 
 This is a full build, some parts can be omitted to save cost, in particular:
 
@@ -117,8 +128,7 @@ omitted from the build.
 |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 countersunk x 20mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M3 countersunk x 40mm |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 shoulder x 12mm |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Bolt M3 shoulder x 20mm |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 shoulder x 20mm |
+|   .  |   .  |   3  |   .  |   .  |   .  |   .  |   .  |    3  |  Bolt M3 shoulder x 20mm |
 |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 shoulder x 25mm |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Bolt M3 shoulder x 30mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |  68  |   68  |  Bolt M4 buttonhead x  8mm |
@@ -169,10 +179,10 @@ omitted from the build.
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Stepper motor cable, 500mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Stepper motor cable, 850mm |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  Voron Trident Build Plate - 250x250 |
-|   .  |   2  |   8  |   .  |   .  |   .  |   .  |   .  |   10  |  Washer M3 x 7mm x 0.5mm |
-|   .  |   .  |  30  |   .  |   .  |   .  |   .  |   .  |   30  |  Washer M4 x 9mm x 0.5mm |
+|   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer M3 x 7mm x 0.5mm |
+|   .  |   .  |  46  |   .  |   .  |   .  |   .  |   .  |   46  |  Washer M4 x 9mm x 0.5mm |
 |   5  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    5  |  Ziptie 2.5mm x 100mm min length |
-|  20  |   4  | 270  |  12  |  13  |  39  |  42  | 257  |  657  | Total vitamins count |
+|  20  |   4  | 278  |  12  |  13  |  39  |  42  | 257  |  665  | Total vitamins count |
 |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_Back_Support_260.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_Front_Support_252.stl |
@@ -203,7 +213,7 @@ omitted from the build.
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Belt_Clamp.stl |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  | X_Carriage_Belt_Tensioner_RB.stl |
 |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Beltside_RB.stl |
-|   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_OrbiterV3_I.stl |
+|   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_OrbiterV3.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Brace_Left_RB4.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Brace_Right_RB4.stl |
 |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Left_RB4.stl |
@@ -245,9 +255,9 @@ omitted from the build.
 
 ### 3D Printed parts
 
-| 1 x Smart_Orbiter_V3_Duct.stl | 1 x Smart_Orbiter_V3_Fan_Bracket_5015.stl | 1 x X_Carriage_OrbiterV3_I.stl |
+| 1 x Smart_Orbiter_V3_Duct.stl | 1 x Smart_Orbiter_V3_Fan_Bracket_5015.stl | 1 x X_Carriage_OrbiterV3.stl |
 |----------|----------|----------|
-| ![Smart_Orbiter_V3_Duct.stl](stls/Smart_Orbiter_V3_Duct.png) | ![Smart_Orbiter_V3_Fan_Bracket_5015.stl](stls/Smart_Orbiter_V3_Fan_Bracket_5015.png) | ![X_Carriage_OrbiterV3_I.stl](stls/X_Carriage_OrbiterV3_I.png) |
+| ![Smart_Orbiter_V3_Duct.stl](stls/Smart_Orbiter_V3_Duct.png) | ![Smart_Orbiter_V3_Fan_Bracket_5015.stl](stls/Smart_Orbiter_V3_Fan_Bracket_5015.png) | ![X_Carriage_OrbiterV3.stl](stls/X_Carriage_OrbiterV3.png) |
 
 ### Assembly instructions
 
@@ -258,10 +268,12 @@ The **Smart_Orbiter_V3_Fan_Bracket** and the **Smart_Orbiter_V3_Duct** are based
 by [@PrintNC](https://www.printables.com/es/@PrintNC) and are used under the terms of their
 [Creative Commons (4.0 International License) Attribution Recognition](https://creativecommons.org/licenses/by/4.0/) license.
 
-1. Bolt the Smart Orbiter V3 to the **X_Carriage_OrbiterV3**
-2. Bolt the **Smart_Orbiter_V3_Fan_Bracket** to the Smart Orbiter V3.
-3. Bolt the RB5015 blower to the **Smart_Orbiter_V3_Fan_Bracket**
-4. Insert the  **Smart_Orbiter_V3_Duct** into the blower outlet and bolt it to the **Smart_Orbiter_V3_Fan_Bracket**.
+1. Fit the heatfit M3 inserts into the  **X_Carriage_OrbiterV3**.
+2. Bolt the Smart Orbiter V3 to the **X_Carriage_OrbiterV3**.
+3. Bolt the **Smart_Orbiter_V3_Fan_Bracket** to the Smart Orbiter V3.
+4. Bolt the RB5015 blower to the **Smart_Orbiter_V3_Fan_Bracket**.
+5. Insert the  **Smart_Orbiter_V3_Duct** into the blower outlet and bolt it to the **Smart_Orbiter_V3_Fan_Bracket**.
+6. Secure the cables to the **X_Carriage_OrbiterV3** using zipties.
 
 ![Printhead_OrbiterV3_assembled](assemblies/Printhead_OrbiterV3_assembled.png)
 
@@ -334,7 +346,7 @@ Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensi
 symmetrical - there is an orientation indicator and this should point towards the back of the printer. Tighten the
 pulley bolts until the pulleys no longer turn freely, and then loosen the bolts by about 1/4 turn until the pulleys
 turn freely again.
-2. Bolt the motor and the cork damper to the motor mount. The core damper thermally insulates the motor from the mount
+2. Bolt the motor and the cork damper to the motor mount. The cork damper thermally insulates the motor from the mount
 and should not be omitted.
 3. Align the drive pulley with the idler pulleys and bolt it to the motor shaft.
 4. Add the bolts and t-nuts in preparation for later attachment to the frame.
@@ -380,7 +392,7 @@ and should not be omitted.
 symmetrical - there is an orientation indicator and this should point towards the back of the printer. Tighten the
 pulley bolts until the pulleys no longer turn freely, and then loosen the bolts by about 1/4 turn until the pulleys
 turn freely again.
-2. Bolt the motor and the cork damper to the motor mount. The core damper thermally insulates the motor from the mount
+2. Bolt the motor and the cork damper to the motor mount. The cork damper thermally insulates the motor from the mount
 and should not be omitted.
 3. Align the drive pulley with the idler pulleys and bolt it to the motor shaft.
 4. Add the bolts and t-nuts in preparation for later attachment to the frame.
@@ -421,7 +433,6 @@ washer at the top and the bottom of the pulley stack.
 2. Tighten the bolt until the pulleys no longer turn freely, and then loosen the bolt by about 1/4 turn to allow the pulleys
 to turn freely again.
 3. Add the bolts and t-nuts in preparation for later attachment to the frame.
-4. Add the button head bolt and washer.
 
 ![XY_Idler_Right_assembled](assemblies/XY_Idler_Right_assembled.png)
 
@@ -459,7 +470,6 @@ washer at the top and the bottom of the pulley stack.
 2. Tighten the bolt until the pulleys no longer turn freely, and then loosen the bolt by about 1/4 turn to allow the pulleys
 to turn freely again.
 3. Add the bolts and t-nuts in preparation for later attachment to the frame.
-4. Add the button head bolt and washer.
 
 ![XY_Idler_Left_assembled](assemblies/XY_Idler_Left_assembled.png)
 
@@ -480,8 +490,7 @@ to turn freely again.
 |   1 | Bolt M3 shoulder x 12mm |
 |   1 | Bolt M3 shoulder x 20mm |
 |   2 | Heatfit insert M3 x 5.8mm |
-|   4 | Washer M3 x 7mm x 0.5mm |
-|   1 | Washer M4 x 9mm x 0.5mm |
+|   9 | Washer M4 x 9mm x 0.5mm |
 
 ### 3D Printed parts
 
@@ -518,8 +527,7 @@ Once this hole is tapped, remove the bolt.
 |   1 | Bolt M3 shoulder x 12mm |
 |   1 | Bolt M3 shoulder x 20mm |
 |   2 | Heatfit insert M3 x 5.8mm |
-|   4 | Washer M3 x 7mm x 0.5mm |
-|   1 | Washer M4 x 9mm x 0.5mm |
+|   9 | Washer M4 x 9mm x 0.5mm |
 
 ### 3D Printed parts
 
