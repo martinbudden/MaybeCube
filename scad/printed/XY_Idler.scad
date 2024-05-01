@@ -413,7 +413,6 @@ module XY_Idler_Right_M5_stl() {
 //!2. Tighten the bolt until the pulleys no longer turn freely, and then loosen the bolt by about 1/4 turn to allow the pulleys
 //!to turn freely again.
 //!3. Add the bolts and t-nuts in preparation for later attachment to the frame.
-//!4. Add the button head bolt and washer.
 //
 module XY_Idler_Left_assembly() pose(a=[70, 0, -180 + 30])
 assembly("XY_Idler_Left", big=true, ngb=true) {
@@ -442,7 +441,6 @@ assembly("XY_Idler_Left", big=true, ngb=true) {
 //!2. Tighten the bolt until the pulleys no longer turn freely, and then loosen the bolt by about 1/4 turn to allow the pulleys
 //!to turn freely again.
 //!3. Add the bolts and t-nuts in preparation for later attachment to the frame.
-//!4. Add the button head bolt and washer.
 //
 module XY_Idler_Right_assembly() pose(a=[70, 0, -180 + 30])
 assembly("XY_Idler_Right", big=true, ngb=true) {

@@ -119,10 +119,13 @@ module printheadOrbiterV3Assembly() {
 //!by [@PrintNC](https://www.printables.com/es/@PrintNC) and are used under the terms of their
 //![Creative Commons (4.0 International License) Attribution Recognition](https://creativecommons.org/licenses/by/4.0/) license.
 //!
-//!1. Bolt the Smart Orbiter V3 to the **X_Carriage_OrbiterV3**
-//!2. Bolt the **Smart_Orbiter_V3_Fan_Bracket** to the Smart Orbiter V3.
-//!3. Bolt the RB5015 blower to the **Smart_Orbiter_V3_Fan_Bracket**
-//!4. Insert the  **Smart_Orbiter_V3_Duct** into the blower outlet and bolt it to the **Smart_Orbiter_V3_Fan_Bracket**.
+//!1. Fit the heatfit M3 inserts into the  **X_Carriage_OrbiterV3**.
+//!2. Bolt the Smart Orbiter V3 to the **X_Carriage_OrbiterV3**.
+//!3. Bolt the **Smart_Orbiter_V3_Fan_Bracket** to the Smart Orbiter V3.
+//!4. Bolt the RB5015 blower to the **Smart_Orbiter_V3_Fan_Bracket**.
+//!5. Insert the  **Smart_Orbiter_V3_Duct** into the blower outlet and bolt it to the **Smart_Orbiter_V3_Fan_Bracket**.
+//!6. Secure the cables to the **X_Carriage_OrbiterV3** using zipties.
+//
 module Printhead_OrbiterV3_assembly() pose(a=[55, 0, 25 + 90])
 assembly("Printhead_OrbiterV3", big=true) {
 

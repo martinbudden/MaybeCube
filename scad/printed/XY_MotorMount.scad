@@ -884,7 +884,7 @@ module XY_Motor_Mount_Left_M5_stl() {
 //!symmetrical - there is an orientation indicator and this should point towards the back of the printer. Tighten the
 //!pulley bolts until the pulleys no longer turn freely, and then loosen the bolts by about 1/4 turn until the pulleys
 //!turn freely again.
-//!2. Bolt the motor and the cork damper to the motor mount. The core damper thermally insulates the motor from the mount
+//!2. Bolt the motor and the cork damper to the motor mount. The cork damper thermally insulates the motor from the mount
 //!and should not be omitted.
 //!3. Align the drive pulley with the idler pulleys and bolt it to the motor shaft.
 //!4. Add the bolts and t-nuts in preparation for later attachment to the frame.
@@ -982,7 +982,7 @@ module XY_Motor_Mount_Right_M5_stl() {
 //!symmetrical - there is an orientation indicator and this should point towards the back of the printer. Tighten the
 //!pulley bolts until the pulleys no longer turn freely, and then loosen the bolts by about 1/4 turn until the pulleys
 //!turn freely again.
-//!2. Bolt the motor and the cork damper to the motor mount. The core damper thermally insulates the motor from the mount
+//!2. Bolt the motor and the cork damper to the motor mount. The cork damper thermally insulates the motor from the mount
 //!and should not be omitted.
 //!3. Align the drive pulley with the idler pulleys and bolt it to the motor shaft.
 //!4. Add the bolts and t-nuts in preparation for later attachment to the frame.
