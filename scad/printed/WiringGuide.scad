@@ -10,7 +10,7 @@ include <../Parameters_Main.scad>
 
 wiringDiameter = 7;
 sideThickness = 6.5;
-wiringGuideSize = [30, 15, 5];
+wiringGuideSize = [30, 20, 5];
 wiringGuideClampSize = [wiringDiameter + 2*sideThickness, wiringGuideSize.y, 3];
 function wiringGuideTabHeight() = wiringDiameter + 2;
 
@@ -36,23 +36,10 @@ module wiringGuide(size, tabHeight) {
                     translate([x, 0, 0])
                         rounded_cube_xy([sideThickness, size.y, tabHeight], fillet);
             }
-            if (size.y >= eSize)
-                for (x = [5, size.x - 5])
-                    translate([x, size.y/2, 0])
-                        boltHoleM3(size.z, twist=4);
             for (x = [(size.x - wiringDiameter - sideThickness)/2, (size.x + wiringDiameter + sideThickness)/2])
                 translate([x, size.y/2, 1])
                     boltHoleM3Tap(tabHeight - 1);
         }
-}
-
-module Wiring_Guide_hardware() {
-    size = wiringGuideSize;
-
-    if (size.y >= eSize)
-        for (x = [5 - size.x/2, size.x/2 - 5])
-            translate([x, size.y/2, size.z])
-                boltM3ButtonheadHammerNut(_frameBoltLength);
 }
 
 module Wiring_Guide_Clamp_stl() {
@@ -81,13 +68,13 @@ module Wiring_Guide_Clamp_hardware() {
 }
 
 module Wiring_Guide_Socket_stl() {
-    size = [wiringGuideSize.x + eSize, eSize, 10];
+    size = [wiringGuideSize.x + eSize, wiringGuideSize.y + 5, 10];
     fillet = 1.5;
 
     stl("Wiring_Guide_Socket")
         color(pp3_colour)
             vflip()
-                translate([-size.x/2, 0, 0])
+                translate([-size.x/2, eSize - size.y, 0])
                     difference() {
                         union() {
                             rounded_cube_xy([size.x, 5, 3], fillet);
@@ -105,7 +92,7 @@ module Wiring_Guide_Socket_stl() {
                                     rounded_cube_xy(size3, fillet);
                         }
                         for (x = [5, size.x - 5])
-                            translate([x, size.y/2, size.z])
+                            translate([x, size.y - eSize/2, size.z])
                                 vflip()
                                     boltHoleM3HangingCounterbore(size.z - 5, boreDepth=size.z - 5);
                     }
