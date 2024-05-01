@@ -136,15 +136,16 @@ module xCarriageOrbiterV3(xCarriageType, inserts) {
         }
     }
 }
-module X_Carriage_OrbiterV3_stl() {
-    stl("X_Carriage_OrbiterV3")
+module X_Carriage_OrbiterV3_ST_stl() {
+    // self tapping version
+    stl("X_Carriage_OrbiterV3_ST")
         color(pp1_colour)
             rotate([0, -90, 0])
                 xCarriageOrbiterV3(MGN12H_carriage, inserts=false);
 }
 
-module X_Carriage_OrbiterV3_I_stl() {
-    stl("X_Carriage_OrbiterV3_I")
+module X_Carriage_OrbiterV3_stl() {
+    stl("X_Carriage_OrbiterV3")
         color(pp1_colour)
             rotate([0, -90, 0])
                 xCarriageOrbiterV3(MGN12H_carriage, inserts=true);
@@ -154,9 +155,9 @@ module xCarriageOrbiterV3Assembly(xCarriageType, inserts=false) {
     stl_colour(pp1_colour)
         rotate([-90, 0, 0])
             if (inserts)
-                X_Carriage_OrbiterV3_I_stl();
-            else
                 X_Carriage_OrbiterV3_stl();
+            else
+                X_Carriage_OrbiterV3_ST_stl();
     if (inserts)
         xCarriageHotendSideHolePositions(xCarriageType, flipSide=true)
             explode(10, true)

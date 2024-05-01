@@ -61,26 +61,27 @@ module X_Carriage_Groovemount_HC_16_stl() {
             xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCarriage, inserts);
 }
 
-module X_Carriage_Groovemount_stl() {
+module X_Carriage_Groovemount_ST_stl() {
+    // self tapping version
     xCarriageType = MGN12H_carriage;
     blowerType = blowerType();
     hotendDescriptor = "E3DV6";
     halfCarriage = false;
     inserts = false;
 
-    stl("X_Carriage_Groovemount")
+    stl("X_Carriage_Groovemount_ST")
         color(pp1_colour)
             xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCarriage, inserts);
 }
 
-module X_Carriage_Groovemount_I_stl() {
+module X_Carriage_Groovemount_stl() {
     xCarriageType = MGN12H_carriage;
     blowerType = blowerType();
     hotendDescriptor = "E3DV6";
     halfCarriage = false;
     inserts = true;
 
-    stl("X_Carriage_Groovemount_I")
+    stl("X_Carriage_Groovemount")
         color(pp1_colour)
             xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCarriage, inserts);
 }
@@ -100,9 +101,9 @@ module xCarriageGroovemountAssembly(inserts=false, halfCarriage=false) {
         stl_colour(pp1_colour)
             rotate([-90, 0, 90])
                 if (inserts)
-                    X_Carriage_Groovemount_I_stl();
-                else
                     X_Carriage_Groovemount_stl();
+                else
+                    X_Carriage_Groovemount_ST_stl();
         if (inserts)
             xCarriageHotendSideHolePositions(xCarriageType)
                 vflip()
