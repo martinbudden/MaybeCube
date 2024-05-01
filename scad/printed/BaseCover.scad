@@ -14,6 +14,7 @@ use <extruderBracket.scad> // for iecHousingMountSize()
 include <../Parameters_Main.scad>
 
 supportHeight = 70;
+holeOffset = 20;
 baseCoverTopSize = [eX > 300 ? 260 : 210, eY + eSize, 3];
 baseCoverBackSupportSize = [baseCoverTopSize.x, eSize, supportHeight - 2*eSize];
 baseCoverSideSupportSize = [8, eY/2, supportHeight];
@@ -21,11 +22,19 @@ baseCoverFrontSupportSize = [baseCoverTopSize.x - baseCoverSideSupportSize.x, 12
 
 module baseCoverBackSupport(size) {
     difference() {
-        rounded_cube_xy(baseCoverBackSupportSize, 2);
-        for (x = [10, size.x/2, size.x - 10])
+        union() {
+            translate([0, size.y - 5, 0]) {
+                rounded_cube_xy([size.x, 5, size.z], 2);
+                translate([size.x - 10, 0, 0])
+                    rotate(-90)
+                        fillet(2, size.z);
+            }
+            rounded_cube_xy([size.x - 10, size.y, size.z], 2);
+        }
+        for (x = [holeOffset, size.x/2, size.x - holeOffset])
             translate([x, size.y/2, size.z])
                 vflip()
-                    boltHoleM3(10);
+                    boltHoleM3Tap(10);
         for (x = [size.x/4, 3*size.x/4])
             translate([x, size.y/2, size.z])
                 vflip()
@@ -54,15 +63,16 @@ module Base_Cover_Back_Support_260_stl() {
 }
 
 module baseCoverFrontSupport(size) {
+    x1 = holeOffset - baseCoverSideSupportSize.x;
     difference() {
         rounded_cube_xy([size.x, size.z, 3], 1);
-        for (x = [10, size.x/2, size.x - 10])
+        for (x = [x1, baseCoverTopSize.x/2 - 8, size.x - holeOffset])
             translate([x, 20, 0])
                 boltHoleM3(3);
     }
     difference() {
         rounded_cube_xy([size.x, 5, size.y], 1);
-        for (x = [10, size.x/2, size.x - 10])
+        for (x = [x1, baseCoverTopSize.x/2 - 8, size.x - holeOffset])
             translate([x, 0, 7.5])
                 rotate([-90, 180, 0])
                     boltHoleM3(5, horizontal=true);
@@ -71,7 +81,7 @@ module baseCoverFrontSupport(size) {
 
 module Base_Cover_Front_Support_hardware() {
     size = baseCoverFrontSupportSize;
-    for (x = [10, size.x/2, size.x - 10])
+    for (x = [holeOffset - baseCoverSideSupportSize.x, baseCoverTopSize.x/2 - 8, size.x - holeOffset])
         translate([x, 20, 3])
             explode(30, true)
                 boltM3ButtonheadHammerNut(8, nutExplode=40);
@@ -139,17 +149,13 @@ module Base_Cover_Side_Support_175B_stl() {
 BaseCover = ["BaseCover", "Sheet perspex", 3, pp3_colour, false];
 
 module baseCoverTopHolePositions(size) {
-    xFront = baseCoverFrontSupportSize.x;
-    for (x = [10, xFront/2, xFront - 10])
-        translate([x - size.x/2 + baseCoverSideSupportSize.x, 8 - size.y/2, 0])
+    for (x = [holeOffset, size.x/2, size.x - holeOffset], y = [8 -size.y/2, size.y/2 -10]) {
+        translate([x - size.x/2, y, 0])
             children();
+    }
     yLeft = baseCoverSideSupportSize.y/4;
     for (y = [yLeft, 3*yLeft, 5*yLeft, 7*yLeft])
         translate([4 -size.x/2, y -size.y/2, 0])
-            children();
-    xBack = baseCoverBackSupportSize.x;
-    for (x = [10, xBack/2, xBack - 10])
-        translate([x - size.x/2, size.y/2 - 10, 0])
             children();
 }
 
