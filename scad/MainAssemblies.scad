@@ -76,34 +76,20 @@ staged_assembly("Left_Side_with_Printbed", big=true, ngb=true) {
     }
 }
 
-//!1. Slide the left face into the base plate assembly.
+//!1. Slide the right face into the base plate assembly.
 //!2. Ensuring the frame remains square, tighten the hidden bolts and the bolts under the baseplate.
 //
 module Stage_1_assembly() //pose(a=_poseMainAssembly)
 staged_assembly("Stage_1", big=true, ngb=true) {
 
-    explode(150)
-        Left_Side_with_Printbed_assembly();
     if (!is_undef(_useFrontDisplay) && _useFrontDisplay)
         Base_Plate_With_Display_assembly();
     else
         Base_Plate_assembly();
-}
-
-//!1. Slide the right face into the base plate assembly.
-//!2. Ensuring the frame remains square, tighten the hidden bolts and the bolts under the baseplate.
-//!3. Route the serial cable for the display in the top channel of the right side lower extrusion and route
-//!the ribbon cable along the bottom of the extrusion and cover with the **E20_RibbonCover_50mm**s to keep
-//!the cables in place.
-//
-module Stage_2_assembly() //pose(a=_poseMainAssembly)
-staged_assembly("Stage_2", big=true, ngb=true) {
-
-    Stage_1_assembly();
-
-    explode(150, true) {
+    explode(250, true) {
+        if (!printbedKinematic)
+            baseFanMountAssembly();
         Right_Side_assembly(bedHeight(), printbedKinematic);
-        baseFanMountAssembly();
 
         // add the right side Z rods if using dual Z rods
         if (useDualZRods())
@@ -118,6 +104,18 @@ staged_assembly("Stage_2", big=true, ngb=true) {
                     rotate([-90, -90, 0])
                         E20_RibbonCover_50mm_stl();
 */
+}
+
+//!1. Slide the left face into the base plate assembly.
+//!2. Ensuring the frame remains square, tighten the hidden bolts and the bolts under the baseplate.
+//
+module Stage_2_assembly() //pose(a=_poseMainAssembly)
+staged_assembly("Stage_2", big=true, ngb=true) {
+
+    Stage_1_assembly();
+
+    explode(150)
+        Left_Side_with_Printbed_assembly();
 }
 
 //!1. Slide the **Face_Top** assembly into the rest of the frame and tighten the hidden bolts.
