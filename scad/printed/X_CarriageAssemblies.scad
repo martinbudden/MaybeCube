@@ -82,7 +82,7 @@ module X_Carriage_Beltside_RB_stl() {
     stl("X_Carriage_Beltside_RB"); // semicolon required for XChange build as this is not on BOM
     color(pp4_colour)
         rotate([90, 0, 0])// orientate for printing
-            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), reversedBelts=true, endCube=true);
+            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), countersunk=true, reversedBelts=true, endCube=true);
 }
 
 module X_Carriage_Beltside_RB_MGN9C_stl() {
