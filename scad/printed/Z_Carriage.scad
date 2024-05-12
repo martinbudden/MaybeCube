@@ -106,7 +106,7 @@ module zCarriageSCS_hardware(cnc=false) {
             translate([boltOffset, scs_screw_separation_z(scsType)/2, 0])
                 vflip()
                     boltM4ButtonheadTNut(_frameBoltLength, 3.25);
-        if (!cnc)
+        *if (!cnc)
             translate([useTab ? (10 - baseSize.x/2) : 0.5, baseSize.y/2 - eSize -shelfThickness, baseSize.z + eSize/2])
                 rotate([-90, 0, 0])
                     vflip()
@@ -118,9 +118,9 @@ module zCarriageSCS_hardware(cnc=false) {
                     if (useTab)
                         boltM5Countersunk(12);
                     else
-                        translate_z(2) // offset for extrusion channel
+                        translate_z(2 - baseSize.z) // offset for extrusion channel
                             boltM5Buttonhead(16);
-        for (i = [2, 3])
+        *for (i = [2, 3])
             translate(holes[i])
                 explode(20, true)
                     boltM5Countersunk(12);
@@ -184,11 +184,27 @@ assembly("Z_Carriage_Right", ngb=true) {
     }
 }
 
+
+module zCarriageSideAssembly(sideSupports=false) {
+    if (sideSupports) {
+        Z_Carriage_Side_assembly();
+    } else {  
+        rotate(_invertedZRods ? 180 : 0)
+            translate_z(-scs_screw_separation_z(scsType)/2) {
+                rotate([90, 0, 90])
+                    zCarriageSCS_hardware();
+                explode([-30, 0, 0])
+                    rotate(90)
+                        scs_bearing_block(scsType);
+            }
+    }
+}
 //!1. Bolt the SCS bearing block to the **Z_Carriage**.
 //!2. Add the bolts and t-nuts in preparation for connection to the printbed.
 //
 module Z_Carriage_Side_assembly()
 assembly("Z_Carriage_Side", ngb=true) {
+
     rotate(_invertedZRods ? 180 : 0)
         translate_z(-scs_screw_separation_z(scsType)/2) {
             rotate([90, 0, 90]) {
@@ -202,6 +218,18 @@ assembly("Z_Carriage_Side", ngb=true) {
         }
 }
 
+module leadnut_screw_positions_i(type) { //! Position children at the screw holes
+    holes = leadnut_holes(type);
+    flat = leadnut_flat(type);
+    angles = flat ? [let(h = holes / 2, a = 90 / (h - 1)) for(i = [0 : h - 1], side = [-1, 1]) side * (45 + i * a)]
+                  : [for(i = [0 : holes - 1]) i * 360 / holes + 180];
+    for($i = angles)
+        rotate($i)
+            translate([leadnut_hole_pitch(type), 0, leadnut_flange_t(type)])
+                rotate(45)
+                    children();
+}
+
 module zCarriageCenter() {
     baseThickness = 5;
     size = [30, printbedFrameCrossPieceOffset() + 15, eSize + baseThickness];
@@ -213,8 +241,12 @@ module zCarriageCenter() {
             translate([-size.x/2, printbedFrameCrossPieceOffset() - size.y, 0])
                 rounded_cube_xy(size, fillet);
             translate_z(-leadnut_flange_t(leadnut))
-                leadnut_screw_positions(leadnut)
-                    boltHoleM3Tap(size.z);
+                leadnut_screw_positions_i(leadnut) {
+                    if ($i == 180 || $i == 360)
+                        boltHoleM3(size.z);
+                    else
+                        boltHoleM3Tap(size.z);
+                }
             translate_z(-eps) {
                 poly_cylinder(r=leadnut_od(leadnut)/2, h=size.z + 2*eps);
                 if (baseThickness == 0)
@@ -233,9 +265,8 @@ module zCarriageCenter() {
         difference() {
             translate_z(-eSize/2 - baseThickness)
                 rounded_cube_xy([tabSize.x, eSize + 5, baseThickness], 1);
-            for (x = [5, tabSize.x -5])
-                translate([x, eSize/2 + 5, -eSize/2 - baseThickness])
-                    boltHoleM4(tabSize.y);
+            translate([tabSize.x/2, eSize/2 + 5, -eSize/2 - baseThickness])
+                boltHoleM4(tabSize.y);
         }
     }
 }
@@ -245,21 +276,23 @@ module Z_Carriage_Center_hardware() {
     tabSize = [50, 5, eSize];
 
     vflip() {
-        explode(25, true)
-            translate_z(eSize/2 + baseThickness + eps) {
-                brassColor = "#B5A642";
+        explode(25, true) {
+            brassColor = "#B5A642";
+            translate_z(eSize/2 + baseThickness + eps)
                 color(brassColor)
                     leadnut(leadnut);
-                leadnut_screw_positions(leadnut)
-                    screw(leadnut_screw(leadnut), 10);
-            }
+            translate_z(-leadnut_flange_t(leadnut) - eSize/2)
+                leadnut_screw_positions_i(leadnut)
+                    if ($i == 180 || $i == 360)
+                        vflip()
+                            screw(leadnut_screw(leadnut), 30);
+        }
         for (x = [5, tabSize.x - 5])
-            translate([x - tabSize.x/2, tabSize.y - printbedFrameCrossPieceOffset(), 0]) {
+            translate([x - tabSize.x/2, tabSize.y - printbedFrameCrossPieceOffset(), 0])
                 rotate([-90, 0, 0])
                     boltM4ButtonheadTNut(_frameBoltLength);
-                translate([0, -eSize/2 - 5, eSize/2 + baseThickness])
-                    boltM4ButtonheadTNut(_frameBoltLength);
-            }
+        translate([0, tabSize.y - printbedFrameCrossPieceOffset() - eSize/2 - 5, eSize/2 + baseThickness])
+            boltM4ButtonheadTNut(_frameBoltLength);
     }
 }
 

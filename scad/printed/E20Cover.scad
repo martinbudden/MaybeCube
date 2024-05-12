@@ -95,6 +95,12 @@ module Z_Motor_MountGuide_19mm_stl() {
             E20Cover(19);
 }
 
+module Z_Motor_MountGuide_23mm_stl() {
+    color(pp2_colour)
+        stl("Z_Motor_MountGuide_23mm")
+            E20Cover(23);
+}
+
 module Z_Motor_MountGuide_25mm_stl() {
     color(pp2_colour)
         stl("Z_Motor_MountGuide_25mm")
@@ -130,6 +136,8 @@ module zMotorMountGuide(length) {
                 Z_Motor_MountGuide_17p5mm_stl();
             } else if (length==19) {
                 Z_Motor_MountGuide_19mm_stl();
+            } else if (length==23) {
+                Z_Motor_MountGuide_23mm_stl();
             } else if (length==25) {
                 Z_Motor_MountGuide_25mm_stl();
             } else if (length==55) {
