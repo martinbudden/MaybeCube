@@ -289,16 +289,24 @@ module baseFanMount(sizeX, offsetX=0) {
 
 module Base_Fan_Mount_120A_stl() {
     stl("Base_Fan_Mount_120A")
-        color(pp1_colour)
+        color(pp3_colour)
             vflip() // better orientation for printing
-                baseFanMount((eY + 2*eSize - iecHousingMountSize(eX).x)/2, 50);
+                baseFanMount(120, 50);
 }
 
 module Base_Fan_Mount_145A_stl() {
     stl("Base_Fan_Mount_145A")
-        color(pp1_colour) {
+        color(pp3_colour) {
             vflip() // better orientation for printing
-                baseFanMount((eY + 2*eSize - iecHousingMountSize(eX).x)/2, 50);
+                baseFanMount(145, 50);
+        }
+}
+
+module Base_Fan_Mount_170A_stl() {
+    stl("Base_Fan_Mount_170A")
+        color(pp3_colour) {
+            vflip() // better orientation for printing
+                baseFanMount(170, 50);
         }
 }
 
@@ -306,61 +314,59 @@ module Base_Fan_Mount_120B_stl() {
     stl("Base_Fan_Mount_120B")
         color(pp2_colour)
             vflip() // better orientation for printing
-                baseFanMount((eY + 2*eSize - iecHousingMountSize(eX).x)/2, -40);
+                baseFanMount(120, -40);
 }
 
 module Base_Fan_Mount_145B_stl() {
     stl("Base_Fan_Mount_145B")
         color(pp2_colour)
             vflip() // better orientation for printing
-                baseFanMount((eY + 2*eSize - iecHousingMountSize(eX).x)/2, -40);
+                baseFanMount(145, -40);
 }
 
 module baseFanMountAssembly() {
-    size = [(eY + 2*eSize - iecHousingMountSize(eX).x)/2, iecHousingMountSize(eX).y, 3];
+    sizeA = [eX==300 ? 120 : 170, iecHousingMountSize(eX).y, 3];
+    sizeB = [120, iecHousingMountSize(eX).y, 3];
     fan = fan40x11;
 
     translate([eX + 2*eSize, 0, 0])
         rotate([90, 0, 90]) 
-            explode(50, true) {
-                color(pp1_colour)
+            explode(100, true) {
+                color(pp3_colour)
                     vflip()
                         if (eX == 300)
                             Base_Fan_Mount_120A_stl();
                         else
-                            Base_Fan_Mount_145A_stl();
-                baseFanMountHolePositions(size, size.z)
+                            Base_Fan_Mount_170A_stl();
+                baseFanMountHolePositions(sizeA, sizeA.z)
                     boltM4ButtonheadHammerNut(8);
-                baseFanPosition(size, 50, size.z/2 - fan_thickness(fan)) {
+                baseFanPosition(sizeA, 50, sizeA.z/2 - fan_thickness(fan)) {
                     explode(-15)
                         fan(fan);
                     fan_hole_positions(fan) {
-                        translate_z(size.z)
+                        translate_z(sizeA.z)
                             boltM3Buttonhead(16);
-                        translate_z(-size.z - fan_thickness(fan))
+                        translate_z(-sizeA.z - fan_thickness(fan))
                             explode(-30)
                                 nutM3();
                     }
             }
         }
-    translate([eX + 2*eSize, (eY + 2*eSize - iecHousingMountSize(eX).x)/2, 0])
+    translate([eX + 2*eSize, sizeA.x, 0])
         rotate([90, 0, 90])
-            explode(50, true) {
+            explode(100, true) {
                 color(pp2_colour)
                     vflip()
-                        if (eX == 300)
-                            Base_Fan_Mount_120B_stl();
-                        else
-                            Base_Fan_Mount_145B_stl();
-                baseFanMountHolePositions(size, size.z)
+                        Base_Fan_Mount_120B_stl();
+                baseFanMountHolePositions(sizeB, sizeB.z)
                     boltM4ButtonheadHammerNut(8);
-                baseFanPosition(size, -40, size.z/2 - fan_thickness(fan)) {
+                baseFanPosition(sizeB, -40, sizeB.z/2 - fan_thickness(fan)) {
                     explode(-15)
                         fan(fan);
                     fan_hole_positions(fan) {
-                        translate_z(size.z)
+                        translate_z(sizeB.z)
                             boltM3Buttonhead(16);
-                        translate_z(-size.z - fan_thickness(fan))
+                        translate_z(-sizeB.z - fan_thickness(fan))
                             explode(-30)
                                 nutM3();
                     }

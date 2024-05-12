@@ -15,7 +15,7 @@ include <../Parameters_Main.scad>
 PC3 = ["PC3", "Sheet polycarbonate", 3, [1,   1,   1,   0.25], false];
 accessHoleRadius = 2.5;
 
-function sidePanelSize(left, useBowdenExtruder=true) = [eY + 2*eSize - (left ? 0 : (useBowdenExtruder ? iecHousingMountSize().x : 0)), left ? eZ : eZ - (useBowdenExtruder ? 0 : iecHousingMountSize().y), 3];
+function sidePanelSize(left, useBowdenExtruder=true, useElectronicsInBase=false) = [eY + 2*eSize - (left ? 0 : (useBowdenExtruder ? iecHousingMountSize().x : 0)), left ? eZ : eZ - (useElectronicsInBase ?  iecHousingMountSize().y : 0), 3];
 function rightLowerSidePanelSize() = [eY + 2*eSize - iecHousingMountSize().x, iecHousingMountSize().y, 3];
 
 
@@ -49,7 +49,7 @@ module sidePanelBoltHolePositionsX(size, left, spoolHolder) {
                 children();
     if (spoolHolder)
         for (x = [0, 40])
-            translate([x + (_useBowdenExtruder ? spoolHolderPosition().y - eY/2 + 7.5 : -20), spoolHeight() - size.y/2 + (_useBowdenExtruder ? 3*eSize/2 : -3*eSize)])
+            translate([x + (_useBowdenExtruder ? spoolHolderPosition().y - eY/2 + 7.5 : -20), spoolHeight() - size.y/2 + (_useElectronicsInBase ? -3*eSize : 3*eSize/2)])
                 children();
 }
 
@@ -59,7 +59,7 @@ module sidePanelBoltHolePositions(size, left, spoolHolder=false) {
             rotate(exploded() ? 0 : 90)
                 children();
     if (!left && _useBowdenExtruder)
-        for (x = [size.x/2 - eSize/2], y = [spoolHeight() + 3*eSize/2 - size.y/2])
+        for (x = [size.x/2 - eSize/2], y = [spoolHeight() +  - size.y/2 + (_useElectronicsInBase ? -3*eSize : 3*eSize/2)])
             translate([x, y])
                 rotate(exploded() ? 0 : 90)
                     children();
@@ -294,7 +294,7 @@ module Back_Panel_Channel_Spacers() {
 
 
 module Right_Side_Panel_dxf() {
-    size = sidePanelSize(left=false, useBowdenExtruder=_useBowdenExtruder);
+    size = sidePanelSize(left=false, useBowdenExtruder=_useBowdenExtruder, useElectronicsInBase=_useElectronicsInBase);
     fillet = 1;
     sheet = PC3;
 
@@ -535,9 +535,8 @@ module Right_Side_Channel_Spacers() {
 }
 
 module rightSidePanelPC(addBolts=true, hammerNut=true) {
-    size = sidePanelSize(left=false, useBowdenExtruder=_useBowdenExtruder);
-
-    translate([size.z/2 + eX + 2*eSize, size.x/2, (_useBowdenExtruder ? size.y/2 : eZ - size.y/2)])
+    size = sidePanelSize(left=false, useBowdenExtruder=_useBowdenExtruder, useElectronicsInBase=_useElectronicsInBase);
+    translate([size.z/2 + eX + 2*eSize, size.x/2, (_useElectronicsInBase ? eZ - size.y/2 : size.y/2)])
         rotate([90, 0, 90]) {
             if (addBolts)
                 sidePanelBoltHolePositions(size, left=false)
