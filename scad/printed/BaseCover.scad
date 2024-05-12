@@ -15,7 +15,7 @@ include <../Parameters_Main.scad>
 
 supportHeight = 70;
 holeOffset = 20;
-baseCoverTopSize = [eX > 300 ? 260 : 210, eY + eSize, 3];
+baseCoverTopSize = [eX > 300 ? 250 : 210, eY + eSize, 3];
 baseCoverBackSupportSize = [baseCoverTopSize.x, eSize, supportHeight - 2*eSize];
 baseCoverSideSupportSize = [8, eY/2, supportHeight];
 baseCoverFrontSupportSize = [baseCoverTopSize.x - baseCoverSideSupportSize.x, 12, 3*eSize/2];
@@ -56,8 +56,8 @@ module Base_Cover_Back_Support_210_stl() {
             baseCoverBackSupport(baseCoverBackSupportSize);
 }
 
-module Base_Cover_Back_Support_260_stl() {
-    stl("Base_Cover_Back_Support_260")
+module Base_Cover_Back_Support_250_stl() {
+    stl("Base_Cover_Back_Support_250")
         color(pp1_colour) 
             baseCoverBackSupport(baseCoverBackSupportSize);
 }
@@ -92,8 +92,8 @@ module Base_Cover_Front_Support_202_stl() {
         color(pp2_colour)
             baseCoverFrontSupport(baseCoverFrontSupportSize);
 }
-module Base_Cover_Front_Support_252_stl() {
-    stl("Base_Cover_Front_Support_252")
+module Base_Cover_Front_Support_242_stl() {
+    stl("Base_Cover_Front_Support_242")
         color(pp2_colour)
             baseCoverFrontSupport(baseCoverFrontSupportSize);
 }
@@ -171,7 +171,7 @@ module baseCoverTopAssembly(addBolts=true) {
             if (eX == 300)
                 Base_Cover_210_dxf();
             else
-                Base_Cover_260_dxf();
+                Base_Cover_250_dxf();
     }
 }
 
@@ -191,8 +191,8 @@ module Base_Cover_210_dxf() {
         baseCoverDxf(baseCoverTopSize);
 }
 
-module Base_Cover_260_dxf() {
-    dxf("Base_Cover_260")
+module Base_Cover_250_dxf() {
+    dxf("Base_Cover_250")
         baseCoverDxf(baseCoverTopSize);
 }
 
@@ -210,7 +210,7 @@ module baseCoverFrontSupportsAssembly() {
                 if (eX == 300)
                     Base_Cover_Front_Support_202_stl();
                 else
-                    Base_Cover_Front_Support_252_stl();
+                    Base_Cover_Front_Support_242_stl();
             Base_Cover_Front_Support_hardware();
         }
 }
@@ -221,7 +221,7 @@ module baseCoverBackSupportsAssembly() {
             if (eX == 300)
                 Base_Cover_Back_Support_210_stl();
             else
-                Base_Cover_Back_Support_260_stl();
+                Base_Cover_Back_Support_250_stl();
         Base_Cover_Back_Support_hardware();
     }
 }
