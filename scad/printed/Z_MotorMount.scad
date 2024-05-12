@@ -33,7 +33,7 @@ NEMA17_40L440 = ["NEMA17_40L440", 42.3,   40,   53.6/2, 25,     11,     2,     8
 NEMA_motorWidth = !is_undef(_zMotorDescriptor) && _zMotorDescriptor == "NEMA14" ? 36 : 43; // not part of standard, may vary, so give some clearance
 zMotorType = motorType(is_undef(_zMotorDescriptor) ? "NEMA17_40" : _zMotorDescriptor);
 
-//wingSizeX = 13; // so overall X size is 79, so Z_Motor_MountGuide_length is an integer
+//wingSizeX = 13; // so overall X size is 79, so Z_Motor_Mount_Guide_length is an integer
 wingSizeX = 7;
 motorBracketSizeZ = 5;
 motorBracketSizeX = NEMA_motorWidth + 2*motorBracketSizeZ;
