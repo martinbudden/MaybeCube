@@ -1131,10 +1131,10 @@ module XYMotorMountLeftAssembly(cnc=false, flat=false) {
                             XY_Motor_Mount_Brace_Left_RB3_stl();
                 } else if (coreXYIdlerBore()==4) {
                     if (cnc || flat) {
-                        explode(35)
+                        explode(35, show_line=false)
                             stl_colour(pp3_colour)
                                 XY_Motor_Mount_Brace_Left_Lower_RB4_stl();
-                        explode(70)
+                        explode(70, show_line=false)
                             stl_colour(pp2_colour)
                                 XY_Motor_Mount_Brace_Left_Upper_RB4_stl();
                     } else {
@@ -1262,11 +1262,11 @@ module XYMotorMountRightAssembly(cnc=false, flat=false) {
                                 XY_Motor_Mount_Brace_Right_RB3_stl();
                 } else if (coreXYIdlerBore()==4) {
                     if (cnc || flat) {
-                        explode(70)
+                        explode(70, show_line=false)
                             vflip()
                                 stl_colour(pp3_colour)
                                     XY_Motor_Mount_Brace_Right_Lower_RB4_stl();                            
-                        explode(100)
+                        explode(100, show_line=false)
                             stl_colour(pp2_colour)
                                 XY_Motor_Mount_Brace_Right_Upper_RB4_stl();                            
                     } else {
