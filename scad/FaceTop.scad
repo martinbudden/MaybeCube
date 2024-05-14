@@ -278,6 +278,9 @@ assembly("Left_Side_Upper_Extrusion", big=true, ngb=true) {
 //!bolts at this stage - they will be fully tightened when the rail is racked at a later stage.
 //!2. Bolt the **Y_Carriage_Right_assembly** to the MGN carriage.
 //!3. Screw the bolts into ends of the extrusion in preparation for attachment to the rest of the top face.
+//!4. Note that the last two holes of the rail are not used - the Y_Carriage cannot travel here since the motors are in the way.
+//!Not using these holes shortens the constrained length of rail and so reduces the flex of the Y axes caused by bimetalic expansion
+//!when the frame heats up during printing.
 //
 module Right_Side_Upper_Extrusion_assembly() pose(a=[180 + 55, 0, 25 - 90])
 assembly("Right_Side_Upper_Extrusion", big=true, ngb=true) {
