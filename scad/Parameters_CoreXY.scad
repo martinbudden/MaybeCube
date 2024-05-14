@@ -75,6 +75,6 @@ function coreXYPosBL() = [
 
 function coreXYPosTR(motorWidth) = [
     eX + 2*eSize - coreXYPosBL().x,
-    eY + 2*eSize - motorWidth/2 - motorClearance().y + largePulleyOffsetTop + (useReversedBelts() ? 6 : 0),
+    eY + 2*eSize - motorWidth/2 - motorClearance().y + largePulleyOffsetTop + (useReversedBelts() ? 5 : 0),
     coreXYPosBL().z
 ];
