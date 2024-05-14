@@ -25,7 +25,7 @@ _coreXYDescriptor = "GT2_20_F623";
 _hotendDescriptor = "E3DV6";
 
 _use2060ForTop = false;
-_use2060ForTopRear = false;
+_use2060ForTopRear = true;
 _useBowdenExtruder = true;
 _useDualZRods = false;
 _useDualZMotors = false;
