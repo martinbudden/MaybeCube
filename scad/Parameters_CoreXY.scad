@@ -9,17 +9,12 @@ coreXY_GT2_20_F623 =["coreXY_20_F623", GT2x6, GT2x20ob_pulley,  GT2_F623_plain_i
 coreXY_GT2_20_F694 =["coreXY_20_F694", GT2x6, GT2x20ob_pulley,  GT2_F694_plain_idler, GT2_F694_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
 coreXY_GT2_20_F695 =["coreXY_20_F695", GT2x6, GT2x20ob_pulley,  GT2_F695_plain_idler, GT2_F695_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
 coreXY_GT2_20_20_sf=["coreXY_20_20sf", GT2x6, GT2x20ob_pulley,  GT2x20x3_toothed_idler_sf, GT2x20x3_plain_idler_sf, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
-coreXY_GT2_20_25   =["coreXY_20_25",   GT2x6, GT2x20ob_pulley,  GT2x25x7x3_toothed_idler, GT2x25x7x3_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
 coreXY_GT2x9_20_20= ["coreXY_20_20x9", GT2x9, GT2x20x11_pulley, GT2x20x11x3_toothed_idler, GT2x20x11x3_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
-coreXY_GT2x9_20_25= ["coreXY_20_25x9", GT2x9, GT2x20x11_pulley, GT2x25x11x3_toothed_idler, GT2x25x11x3_plain_idler, [0, 0, 1], [0, 0, 0.5, 1], [0, 1, 0], [0, 0.5, 0, 1] ];
 
 useXYDirectDrive = !is_undef(_useXYDirectDrive) && _useXYDirectDrive;
 function useReversedBelts() = !is_undef(_useReversedBelts) && _useReversedBelts;
 function use2060ForTopRear() = !is_undef(_use2060ForTopRear) && _use2060ForTopRear;
-function usePulley25() = _coreXYDescriptor == "GT2_20_25" || _coreXYDescriptor == "GT2_20_25x9";
-pulley25Offset = usePulley25() ? 2.6 : 0;
-largePulleyOffset = usePulley25() ? 3 : _coreXYDescriptor == "GT2_20_F694" ? 0.5 : _coreXYDescriptor == "GT2_20_F695" ? 1.5 : 0;
-largePulleyOffsetTop = usePulley25() ? 5.5 : 0;
+largePulleyOffset = _coreXYDescriptor == "GT2_20_F694" ? 0.5 : _coreXYDescriptor == "GT2_20_F695" ? 1.5 : 0;
 
 function coreXY_type(coreXYDescriptor=_coreXYDescriptor) = coreXYDescriptor == "GT2_20_16" ? coreXY_GT2_20_16 :
                          coreXYDescriptor == "GT2_20_20" ? coreXY_GT2_20_20 :
@@ -28,9 +23,8 @@ function coreXY_type(coreXYDescriptor=_coreXYDescriptor) = coreXYDescriptor == "
                          coreXYDescriptor == "GT2_20_F694" ? coreXY_GT2_20_F694 :
                          coreXYDescriptor == "GT2_20_F695" ? coreXY_GT2_20_F695 :
                          coreXYDescriptor == "GT2_20_20_sf" ? coreXY_GT2_20_20_sf :
-                         coreXYDescriptor == "GT2_20_25" ? coreXY_GT2_20_25 :
                          coreXYDescriptor == "GT2_20_20x9" ? coreXY_GT2x9_20_20 :
-                         coreXY_GT2x9_20_25;
+                         undef;
 function coreXYBearing(coreXYDescriptor=_coreXYDescriptor) = coreXYDescriptor == "GT2_20_F623" ? BBF623 :
                          coreXYDescriptor == "GT2_20_F694" ? BBF694 :
                          coreXYDescriptor == "GT2_20_F695" ? BBF695 :
@@ -75,6 +69,6 @@ function coreXYPosBL() = [
 
 function coreXYPosTR(motorWidth) = [
     eX + 2*eSize - coreXYPosBL().x,
-    eY + 2*eSize - motorWidth/2 - motorClearance().y + largePulleyOffsetTop + (useReversedBelts() ? 5 : 0),
+    eY + 2*eSize - motorWidth/2 - motorClearance().y + (useReversedBelts() ? 5 : 0),
     coreXYPosBL().z
 ];

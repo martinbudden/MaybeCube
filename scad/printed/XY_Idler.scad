@@ -213,13 +213,6 @@ module XY_Idler_Channel_Nut_16_stl() {
         extrusionChannel(size.y, boltHoles=[lowerBoltOffset, size.y - upperBoltOffset]);
 }
 
-module XY_Idler_Channel_Nut_25_stl() {
-    size = xyIdlerSize();
-    stl("XY_Idler_Channel_Nut_25");
-    color(pp2_colour)
-        extrusionChannel(size.y, boltHoles=[lowerBoltOffset, size.y - upperBoltOffset]);
-}
-
 module XY_Idler_hardware(size, left=true, useReversedBelts=false) {
 
     module doubleWasher(left) {
@@ -344,14 +337,6 @@ module XY_Idler_Left_RB_20_stl() {
             xyIdler(xyIdlerSize(), left=true, useReversedBelts=true);
 }
 
-module XY_Idler_Left_25_stl() {
-    // rotate for printing, so that base filament pattern aligns with main diagonal
-    stl("XY_Idler_Left_25")
-        color(pp1_colour)
-            rotate([90, -90, 0])
-                xyIdler(xyIdlerSize());
-}
-
 module XY_Idler_Left_M5_stl() {
     // rotate for printing, so that base filament pattern aligns with main diagonal
     stl("XY_Idler_Left_M5")
@@ -392,14 +377,6 @@ module XY_Idler_Right_RB_20_stl() {
                 xyIdler(xyIdlerSize(), left=false, useReversedBelts=true);
 }
 
-module XY_Idler_Right_25_stl() {
-    stl("XY_Idler_Right_25")
-        color(pp1_colour)
-            rotate([0, 90, 0])
-                mirror([1, 0, 0])
-                    xyIdler(xyIdlerSize());
-}
-
 module XY_Idler_Right_M5_stl() {
     stl("XY_Idler_Right_M5")
         color(pp1_colour)
@@ -426,8 +403,6 @@ assembly("XY_Idler_Left", big=true, ngb=true) {
                         XY_Idler_Left_RB4_stl();
                 } else if (useReversedBelts()) {
                     XY_Idler_Left_RB_20_stl();
-                } else if (usePulley25()) {
-                    XY_Idler_Left_25_stl();
                 } else {
                     XY_Idler_Left_16_stl();
                 }
@@ -454,8 +429,6 @@ assembly("XY_Idler_Right", big=true, ngb=true) {
                         XY_Idler_Right_RB4_stl();
                 } else if (useReversedBelts()) {
                     XY_Idler_Right_RB_20_stl();
-                } else if (usePulley25()) {
-                    XY_Idler_Right_25_stl();
                 } else {
                     XY_Idler_Right_16_stl();
                 }

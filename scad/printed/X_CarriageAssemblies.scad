@@ -107,16 +107,6 @@ module X_Carriage_Beltside_16_stl() {
             xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), endCube=true);
 }
 
-module X_Carriage_Beltside_25_stl() {
-    xCarriageType = MGN12H_carriage;
-    size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 4];
-
-    stl("X_Carriage_Beltside_25"); // semicolon required for XChange build as this is not on BOM
-    color(pp4_colour)
-        rotate([90, 0, 0])// orientate for printing
-            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), pulley25=true, endCube=true);
-}
-
 //!Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensioners into the
 //!**X_Carriage_Beltside** part as shown. Note the belts are not shown in this diagram.
 //
@@ -134,21 +124,19 @@ assembly("X_Carriage_Beltside", big=true) {
                     X_Carriage_Beltside_RB_MGN9C_stl();
                 else
                     X_Carriage_Beltside_RB_stl();
-            } else if (usePulley25())
-                translate([0, 0, -pulley25Offset])
-                    X_Carriage_Beltside_25_stl();
-            else
+            } else {
                 if (halfCarriage)
                     X_Carriage_Beltside_HC_16_stl();
                 else
                     X_Carriage_Beltside_16_stl();
+            }
 
     size = xCarriageBeltSideSizeM(MGN12H_carriage, beltWidth(), beltSeparation());
     beltTensionerSize = xCarriageBeltTensionerSize(beltWidth());
     boltLength = 40;
     gap = 0.1; // small gap so can see clearance when viewing model
     offset = [ size.x/2 - 2,
-               beltTensionerSize.y - beltAttachmentOffsetY() + gap - pulley25Offset,
+               beltTensionerSize.y - beltAttachmentOffsetY() + gap,
                coreXYPosBL().z - xRailCarriagePositionZ()];
     translate(offset) {
         if (useReversedBelts) {
@@ -214,36 +202,18 @@ module X_Carriage_Belt_Clamp_Buttonhead_stl() {
         xCarriageBeltClamp(beltClampSize, offset=offset);
 }
 
-module X_Carriage_Belt_Clamp_25_stl() {
-    stl("X_Carriage_Belt_Clamp_25"); // semicolon required for XChange build as this is not on BOM
-    color(pp2_colour)
-        xCarriageBeltClamp(beltClampSize, offset=-1.25, countersunk=true);
-}
-
-module X_Carriage_Belt_Clamp_Buttonhead_25_stl() {
-    stl("X_Carriage_Belt_Clamp_Buttonhead_25"); // semicolon required for XChange build as this is not on BOM
-    color(pp2_colour)
-        xCarriageBeltClamp(beltClampSize, offset=-1.25);
-}
-
 module xCarriageBeltClampAssembly(xCarriageType, countersunk=true) {
     assert(is_list(xCarriageType));
 
     size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());
 
-    translate([0, 5 + pulley25Offset, beltsCenterZOffset])
+    translate([0, 5, beltsCenterZOffset])
         rotate([-90, 180, 0]) {
             stl_colour(pp2_colour)
                 if (countersunk)
-                    if (usePulley25())
-                        X_Carriage_Belt_Clamp_25_stl();
-                    else
-                        X_Carriage_Belt_Clamp_stl();
+                    X_Carriage_Belt_Clamp_stl();
                 else
-                    if (usePulley25())
-                        X_Carriage_Belt_Clamp_Buttonhead_25_stl();
-                    else
-                        X_Carriage_Belt_Clamp_Buttonhead_stl();
+                    X_Carriage_Belt_Clamp_Buttonhead_stl();
             X_Carriage_Belt_Clamp_hardware(beltClampSize, countersunk=countersunk);
         }
 }

@@ -166,30 +166,28 @@ module printheadBeltSide(rotate=0, explode=0, t=undef) {
 module printheadBeltSideBolts(rotate=0, explode=0, t=undef, halfCarriage=false) {
     xCarriageType = MGN12H_carriage;
     xCarriageBeltSideSize = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());
-    boltLength = usePulley25() ? 40 : (halfCarriage ? 30 : 40);
+    boltLength = halfCarriage ? 30 : 40;
 
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
         explode([0, -20, 0], true)
-            translate([0, -pulley25Offset + (usePulley25() ? 1 : 0), 0])
-                xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), countersunk=true, offsetT=xCarriageHoleOffsetTop());
+            xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), countersunk=true, offsetT=xCarriageHoleOffsetTop());
 }
 
 module printheadE3DV6(rotate=0, explode=0, t=undef, halfCarriage=false) {
     xCarriageType = MGN12H_carriage;
     xCarriageBeltSideSize = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());
     halfCarriage = (!is_undef(_useHalfCarriage) && _useHalfCarriage==true);
-    boltLength = usePulley25() ? 40 : (halfCarriage ? 30 : 40);
+    boltLength = halfCarriage ? 30 : 40;
 
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
         explode(explode, true) {
             Printhead_E3DV6_assembly();
 
             explode([0, -20, 0], true)
-                translate([0, -pulley25Offset + (usePulley25() ? 1 : 0), 0])
-                    xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), countersunk=true, offsetT=xCarriageHoleOffsetTop());
+                xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), countersunk=true, offsetT=xCarriageHoleOffsetTop());
             *translate([xCarriageFrontSize.x/2, 18, -18])
                 bl_touch_mount();
-            if (halfCarriage && !usePulley25())
+            if (halfCarriage)
                 xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = [ [1, 1], [-1, 1] ]);
         }
 }
@@ -204,8 +202,7 @@ module printheadOrbiterV3(rotate=0, explode=0, t=undef, halfCarriage=false) {
             Printhead_OrbiterV3_assembly();
 
             explode([0, -20, 0], true)
-                translate([0, -pulley25Offset + (usePulley25() ? 1 : 0), 0])
-                    xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), countersunk=true, offsetT=xCarriageHoleOffsetTop());
+                xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), countersunk=true, offsetT=xCarriageHoleOffsetTop());
         }
 }
 

@@ -30,13 +30,6 @@ module X_Carriage_XChange_16_stl() {
                 xCarriageXChange(coreXY_GT2_20_16, halfCarriage=false);
 }
 
-module X_Carriage_XChange_25_stl() {
-    stl("X_Carriage_XChange_25")
-        color(pp3_colour)
-            rotate([180, 0, 90]) // align for printing
-                xCarriageXChange(coreXY_GT2_20_25, halfCarriage=false);
-}
-
 module xCarriageXChange(coreXYType, halfCarriage) {
     xCarriageType = MGN12H_carriage;
     carriageSize = carriage_size(xCarriageType);
@@ -85,7 +78,7 @@ module xCarriageXChange(coreXYType, halfCarriage) {
         }
 }
 
-module X_Carriage_XChange_hardware(halfCarriage, usePulley25) {
+module X_Carriage_XChange_hardware(halfCarriage) {
     xCarriageType = MGN12H_carriage;
     size = xCarriageHotendSideSizeM(xCarriageType, beltWidth=6, beltSeparation=beltSeparation());
     topThickness = xCarriageTopThickness();
@@ -97,7 +90,7 @@ module X_Carriage_XChange_hardware(halfCarriage, usePulley25) {
         holeOffset = 3;
         boltLength = halfCarriage ? 30 : 40;
         for (x = halfCarriage ? [5, size.z - 4] : [4, size.z - 4], y = xCarriageHolePositions(size.x, holeSeparationTop))
-            translate([x, y, halfCarriage ? holeOffset + 30.6 : usePulley25 ? 35 : 33])
+            translate([x, y, halfCarriage ? holeOffset + 30.6 : 33])
                 explode(40, true)
                     boltM3Countersunk(boltLength);
 
@@ -130,11 +123,7 @@ module xCarriageXChangeAssembly() {
                 else
                     rotate([180, 0, 90])
                         translate_z(0.5)
-                            if (usePulley25())
-                                X_Carriage_XChange_25_stl();
-                            else
-                                X_Carriage_XChange_16_stl();
-            X_Carriage_XChange_hardware(halfCarriage, usePulley25());
+                            X_Carriage_XChange_16_stl();
+            X_Carriage_XChange_hardware(halfCarriage);
         }
-    hidden() stl_colour(pp3_colour) X_Carriage_XChange_25_stl();
 }

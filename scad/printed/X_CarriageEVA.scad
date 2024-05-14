@@ -130,10 +130,9 @@ module evaHotendBackHardware(explode=40) {
 
 module evaBeltClampPosition() {
 //    xCarriageBeltClampPosition(MGN12H_carriage, bottomMgn12Size, beltWidth(), beltSeparation())
-    pulley25Offset = 0;
     size = xCarriageBeltSideSizeM(MGN12H_carriage, beltWidth(), beltSeparation());
 
-    translate([0, -5 + pulley25Offset, -size.z + xCarriageTopThickness() + xCarriageBaseThickness() + 0.5 + 10])
+    translate([0, -5, -size.z + xCarriageTopThickness() + xCarriageBaseThickness() + 0.5 + 10])
         rotate([90, 0, 0])
             children();
 }

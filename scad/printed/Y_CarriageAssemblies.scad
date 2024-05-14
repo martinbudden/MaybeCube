@@ -20,8 +20,8 @@ function pulleyWasherHeight(coreXYIdlerBore=coreXYIdlerBore()) = 2*washer_thickn
 
 topInset = 0;
 yCarriageInserts = true;
-blockOffsetX = usePulley25() ? 2 : 0;
-blockOffset = usePulley25() ? [blockOffsetX, 0.5] : 0.5;
+blockOffsetX = 0;
+blockOffset = 0.5;
 
 idlerHeight = pulley_height(coreXY_plain_idler(coreXY_type()));
 chamfer = _xCarriageDescriptor == "MGN9C" || _xCarriageDescriptor == "MGN9H" ? 1 : 0;
@@ -82,22 +82,6 @@ module Y_Carriage_Right_RB4_stl() {
         Y_Carriage(carriageType(_yCarriageDescriptor), idlerHeight, coreXYIdlerBore(), railType(_xCarriageDescriptor), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), blockOffset, endStopOffsetX, tongueOffset(), plainIdlerOffset(left=false), toothedIdlerOffset(left=false), topInset, inserts=yCarriageInserts, reversedBelts=true, left=false, cnc=false);
 }
 
-module Y_Carriage_Left_25_stl() {
-    pulleyStackHeight = idlerHeight + pulleyWasherHeight();
-    assert(pulleyStackHeight + yCarriageBraceThickness() == coreXYSeparation().z);
-    endStopOffsetX = 9.65;
-    stl("Y_Carriage_Left_25")
-        color(pp2_colour)
-            Y_Carriage(carriageType(_yCarriageDescriptor), idlerHeight, coreXYIdlerBore(), railType(_xCarriageDescriptor), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), blockOffset, endStopOffsetX, tongueOffset(), plainIdlerOffset(), toothedIdlerOffset(), topInset, inserts=yCarriageInserts, left=true, cnc=false);
-}
-
-module Y_Carriage_Right_25_stl() {
-    endStopOffsetX = 0;
-    stl("Y_Carriage_Right_25")
-        color(pp2_colour)
-            Y_Carriage(carriageType(_yCarriageDescriptor), idlerHeight, coreXYIdlerBore(), railType(_xCarriageDescriptor), _xRailLength, yCarriageThickness(), chamfer, yCarriageBraceThickness(), blockOffset, endStopOffsetX, tongueOffset(), plainIdlerOffset(), toothedIdlerOffset(), topInset, inserts=yCarriageInserts, left=false, cnc=false);
-}
-
 module Y_Carriage_Left_AL_dxf() {
     endStopOffsetX = 5;
     dxf("Y_Carriage_Left_AL")
@@ -148,18 +132,6 @@ module Y_Carriage_Brace_Right_16_stl() {
             yCarriageBrace(carriageType(_yCarriageDescriptor), yCarriageBraceThickness(), plainIdlerOffset(), toothedIdlerOffset(), holeRadius, holeRadius, _coreXYDescriptor == "GT2_20_25" ? blockOffsetX : undef, left=false);
 }
 
-module Y_Carriage_Brace_Left_25_stl() {
-    stl("Y_Carriage_Brace_Left_25")
-        color(pp3_colour)
-            yCarriageBrace(carriageType(_yCarriageDescriptor), yCarriageBraceThickness(), plainIdlerOffset(), toothedIdlerOffset(), holeRadius, holeRadius, _coreXYDescriptor == "GT2_20_25" ? blockOffsetX : undef, left=true);
-}
-
-module Y_Carriage_Brace_Right_25_stl() {
-    stl("Y_Carriage_Brace_Right_25")
-        color(pp3_colour)
-            yCarriageBrace(carriageType(_yCarriageDescriptor), yCarriageBraceThickness(), plainIdlerOffset(), toothedIdlerOffset(), holeRadius, holeRadius, _coreXYDescriptor == "GT2_20_25" ? blockOffsetX : undef, left=false);
-}
-
 //!1. Insert the threaded inserts into the **Y_Carriage_Left** as shown.
 //!2. Drive a long M3 bolt through the Y carriage from the insert side to self tap the part of the hole after the insert.
 //!Once this hole is tapped, remove the bolt.
@@ -184,8 +156,6 @@ assembly("Y_Carriage_Left", big=true, ngb=true) {
                         Y_Carriage_Left_RB3_stl();
                     else
                         Y_Carriage_Left_RB4_stl();
-                } else if (usePulley25()) {
-                    Y_Carriage_Left_25_stl();
                 } else {
                     Y_Carriage_Left_16_stl();
                 }
@@ -198,8 +168,6 @@ assembly("Y_Carriage_Left", big=true, ngb=true) {
                                     Y_Carriage_Brace_Left_RB3_stl();
                                 else
                                     Y_Carriage_Brace_Left_RB4_stl();
-                            } else if (usePulley25()) {
-                                Y_Carriage_Brace_Left_25_stl();
                             } else {
                                 Y_Carriage_Brace_Left_16_stl();
                             }
@@ -233,8 +201,6 @@ assembly("Y_Carriage_Right", big=true, ngb=true) {
                         Y_Carriage_Right_RB3_stl();
                     else
                         Y_Carriage_Right_RB4_stl();
-                } else if (usePulley25()) {
-                    Y_Carriage_Right_25_stl();
                 } else {
                     Y_Carriage_Right_16_stl();
                 }
@@ -247,8 +213,6 @@ assembly("Y_Carriage_Right", big=true, ngb=true) {
                                     Y_Carriage_Brace_Right_RB3_stl();
                                 else
                                     Y_Carriage_Brace_Right_RB4_stl();
-                            } else if (usePulley25()) {
-                                Y_Carriage_Brace_Right_25_stl();
                             } else {
                                 Y_Carriage_Brace_Right_16_stl();
                             }
