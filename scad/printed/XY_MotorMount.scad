@@ -1033,8 +1033,8 @@ module XY_Motor_Mount_Left_40_RB3_stl() {
     xyMotorMountLeft(useReversedBelts=true, cnc=false);
 }
 
-module XY_Motor_Mount_Left_60_RB3_stl() {
-    stl("XY_Motor_Mount_Left_60_RB3");
+module XY_Motor_Mount_Left_RB3_stl() {
+    stl("XY_Motor_Mount_Left_RB3");
     xyMotorMountLeft(useReversedBelts=true, cnc=false);
 }
 
@@ -1043,8 +1043,8 @@ module XY_Motor_Mount_Left_40_RB4_stl() {
     xyMotorMountLeft(useReversedBelts=true, cnc=false);
 }
 
-module XY_Motor_Mount_Left_60_RB4_stl() {
-    stl("XY_Motor_Mount_Left_60_RB4");
+module XY_Motor_Mount_Left_RB4_stl() {
+    stl("XY_Motor_Mount_Left_RB4");
     xyMotorMountLeft(useReversedBelts=true, cnc=false);
 }
 
@@ -1094,7 +1094,7 @@ module XYMotorMountLeftAssembly(cnc=false, flat=false) {
             if (coreXYIdlerBore()==3) {
                 if (use2060ForTopRear())
                     stl_colour(pp1_colour)
-                        XY_Motor_Mount_Left_60_RB3_stl();
+                        XY_Motor_Mount_Left_RB3_stl();
                 else
                     stl_colour(pp1_colour)
                         XY_Motor_Mount_Left_40_RB3_stl();
@@ -1108,7 +1108,7 @@ module XYMotorMountLeftAssembly(cnc=false, flat=false) {
                             XY_Motor_Mount_Left_Base_stl();
                     else 
                         stl_colour(pp1_colour)
-                            XY_Motor_Mount_Left_60_RB4_stl();
+                            XY_Motor_Mount_Left_RB4_stl();
                 } else {
                     stl_colour(pp1_colour)
                         XY_Motor_Mount_Left_40_RB4_stl();
@@ -1163,8 +1163,8 @@ module XY_Motor_Mount_Right_40_RB3_stl() {
     xyMotorMountRight(useReversedBelts=true);
 }
 
-module XY_Motor_Mount_Right_60_RB3_stl() {
-    stl("XY_Motor_Mount_Right_60_RB3");
+module XY_Motor_Mount_Right_RB3_stl() {
+    stl("XY_Motor_Mount_Right_RB3");
     xyMotorMountRight(useReversedBelts=true, countersunk=true);
 }
 
@@ -1173,8 +1173,8 @@ module XY_Motor_Mount_Right_40_RB4_stl() {
     xyMotorMountRight(useReversedBelts=true);
 }
 
-module XY_Motor_Mount_Right_60_RB4_stl() {
-    stl("XY_Motor_Mount_Right_60_RB4");
+module XY_Motor_Mount_Right_RB4_stl() {
+    stl("XY_Motor_Mount_Right_RB4");
     xyMotorMountRight(useReversedBelts=true);
 }
 
@@ -1223,7 +1223,7 @@ module XYMotorMountRightAssembly(cnc=false, flat=false) {
             if (coreXYIdlerBore() == 3) {
                 if (use2060ForTopRear())
                     stl_colour(pp1_colour)
-                        XY_Motor_Mount_Right_60_RB3_stl();
+                        XY_Motor_Mount_Right_RB3_stl();
                 else
                     stl_colour(pp1_colour)
                         XY_Motor_Mount_Right_40_RB3_stl();
@@ -1237,7 +1237,7 @@ module XYMotorMountRightAssembly(cnc=false, flat=false) {
                             XY_Motor_Mount_Right_Base_stl();
                     } else {  
                         stl_colour(pp1_colour)
-                            XY_Motor_Mount_Right_60_RB4_stl();
+                            XY_Motor_Mount_Right_RB4_stl();
                     }
                 } else {
                     stl_colour(pp1_colour)
