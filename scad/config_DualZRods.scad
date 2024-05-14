@@ -34,8 +34,6 @@ _printbedSize = [254, 254, 8]; // Voron Trident 250x250 size
 _printbedArmSeparation = 185;
 _printbed4PointSupport = false;
 
-_blowerDescriptor = "BL30x10";
-
 // set this so the zRod brackets clear the xy motors
 // limited by printbed frame hitting XY motors and possibly extruder motor
 __skBracketWidth = 42; // same for SK8, SK10, and SK12

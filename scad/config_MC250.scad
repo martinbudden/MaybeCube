@@ -39,8 +39,6 @@ _printbedSize = [180, 180, 3];
 _printbedArmSeparation = 150;
 _printbed4PointSupport = false;
 
-_blowerDescriptor = "BL30x10";
-
 // set this so the zRod brackets clear the xy motors
 // limited by printbed frame hitting XY motors and possibly extruder motor
 __skBracketWidth = 42; // same for SK8, SK10, and SK12

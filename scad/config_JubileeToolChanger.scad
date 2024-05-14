@@ -26,8 +26,6 @@ _useReversedBelts = true;
 
 _printbedArmSeparation = 150;
 
-_blowerDescriptor = "BL30x10";
-
 __skBracketWidth = 42; // same for SK8, SK10, and SK12
 _zRodOffsetY = __skBracketWidth/2 + 40;
 _zLeadScrewOffset = 30;// ensures clearance of zMotor from frame and zRail

@@ -19,7 +19,7 @@ include <../Parameters_Main.scad>
 
 function hotendOffset(xCarriageType, hotendDescriptor="E3DV6") = printheadHotendOffset(hotendDescriptor) + [-xCarriageHotendSideSizeM(xCarriageType, 0, 0).x/2, xCarriageHotendOffsetY(xCarriageType), 0];
 function grooveMountSize(blowerType, hotendDescriptor="E3DV6") = [printheadHotendOffset(hotendDescriptor).x, blower_size(blowerType).x + 6.25, 12];
-function blowerType() = is_undef(_blowerDescriptor) || _blowerDescriptor == "BL30x10" ? BL30x10 : BL40x10;
+function blowerType() = BL30x10;
 
 
 module xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCarriage, inserts) {
