@@ -48,7 +48,7 @@ rightDrivePlainIdlerOffset   = [-plainIdlerPulleyOffset().x, plainIdlerPulleyOff
 
 frameBoltOffsetZ = 12.5; // this allows an inner corner bracket to be used
 blockHeightExtra = is_undef(_use2020TopExtrusion) || _use2020TopExtrusion == false ? 0 : eSize;
-boltHeadTolerance = 0.1;
+boltHeadTolerance = 0.4;
 sideSupportSizeY = 30;
 bearingOffsetZ = 0.5;
 stepdownPulleyOffsetZ = 0.5;
@@ -903,7 +903,7 @@ module XY_Motor_Mount_Brace_Left_Upper(coreXYIdlerBore) {
                     boltHoleM3(height);
                 translate([eSize/2, yPositions[1], height])
                     vflip()
-                        boltHoleM3Counterbore(height + eps, boreDepth=height - 5);
+                        boltHoleM3Counterbore(height + eps, boreDepth=height - 5, boltHeadTolerance=0.5);
                 for (y = [0, plainIdlerPulleyOffset().y])
                     translate([coreXYPosBL().x, coreXYPosTR(motorWidth).y + y, size.z])
                         vflip()
@@ -929,7 +929,7 @@ module XY_Motor_Mount_Brace_Right_Upper(coreXYIdlerBore) {
                     boltHoleM3(height);
                 translate([eSize/2, yPositions[1], height])
                     vflip()
-                        boltHoleM3Counterbore(height + eps, boreDepth=height - 5);
+                        boltHoleM3Counterbore(height + eps, boreDepth=height - 5, boltHeadTolerance=0.5);
             }
     }
 }
