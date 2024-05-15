@@ -25,11 +25,13 @@ include <../scad/Parameters_Main.scad>
 module Left_Side_test(showPrintBed=true) {
     t = 2;
     echoPrintSize();
-    printbedKinematic = !is_undef(_printbedKinematic) && _printbedKinematic == true;
+
     //CoreXYBelts(carriagePosition(t=t), show_pulleys=[1, 0, 0]);
     //let($hide_extrusions=true)
     //let($hide_rails=true)
     Left_Side_assembly();
+
+    printbedKinematic = !is_undef(_printbedKinematic) && _printbedKinematic == true;
     if (showPrintBed && !printbedKinematic) zRods();
     //faceTopBack(fov_distance=0);
     //printheadWiring();

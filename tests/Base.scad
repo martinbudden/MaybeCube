@@ -15,11 +15,11 @@ include <../scad/assemblies/BasePlate.scad>
 use <../scad/assemblies/FaceLeft.scad>
 use <../scad/assemblies/FaceRight.scad>
 //use <../scad/vitamins/Panels.scad>
-//use <../scad/assemblies/Printbed.scad>
+use <../scad/assemblies/Printbed.scad>
 //include <../scad/assemblies/FaceRightExtras.scad>
 
 include <../scad/Parameters_Main.scad>
-//use <../scad/Parameters_Positions.scad>
+use <../scad/Parameters_Positions.scad>
 
 
 //$explode = 1;
@@ -44,7 +44,11 @@ module Base_test() {
     //Front_Display_Wiring_Cover_stl();
     //Front_Cover_stl();
     //Left_Side_assembly();
-    //translate_z(bedHeight(7)) Printbed_assembly();
+    *translate([eSize + _zRodOffsetX, eSize + zRodSeparation()/2 + _zRodOffsetY, bedHeight($t)])
+        rotate(-90)
+            Printbed_Frame_assembly();
+
+    //translate_z(bedHeight($t)) Printbed_assembly();
     //Right_Side_assembly();
     //controlPanel();
     //BigTreeTechTFT_3_5v3_0_bracket_stl();
