@@ -1,10 +1,9 @@
 include <../global_defs.scad>
 
-include <../vitamins/bolts.scad>
 use <NopSCADlib/vitamins/wire.scad>
-
-
 use <NopSCADlib/utils/fillet.scad>
+
+include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>
@@ -96,7 +95,6 @@ module Cable_Chain_Bracket_hardware(size=cableChainBracketSize) {
         translate([size.x/4 + 1.25, size.y - cutout.y - y - 1, 21])
             rotate(90)
                 cable_tie(cable_r = 2, thickness = 21);
-
 }
 
 module Cable_Chain_Bracket_stl() {

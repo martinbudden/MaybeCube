@@ -518,21 +518,13 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
 
 //!1. Attach the print surface to the heated bed.
 //!2. Insert a bolt into each of the bolt holes in the heated bed and add a stack of O-rings, washers and a hammer nut as shown.
-//!3
+//
 module Heated_Bed_assembly()
 assembly("Heated_Bed", big=true) {
     boltHoles = boltHoles(_heatedBedSize, _heatedBedHoleOffset, _printbed4PointSupport);
     underlayThickness = 3;
     heatedBed(_heatedBedSize, boltHoles, underlayThickness);
     heatedBedHardware(_heatedBedSize, boltHoles, underlayThickness);
-}
-
-module Printbed_Drag_Chain() {
-    drag_chain = drag_chain("x", [30, 10, 5], travel=400, wall=1.6, bwall=1.5, twall=1.5);
-    pos = 0;
-    translate([pos , 0,0])
-    //vflip()
-        drag_chain_assembly(drag_chain, pos=pos, radius=0);
 }
 
 //!1. Attach the heated bed to the frame using the stacks of washers and O-rings as shown.
@@ -561,11 +553,7 @@ assembly("Printbed", big=true) {
                             Heated_Bed_assembly();
                     }
                 }
-                if (_printbedSize.x == 254) {
-                    *translate([-130, 350, -10])
-                        rotate(-90)
-                            Printbed_Drag_Chain();
-                } else {
+                if (_printbedSize.x != 254) {
                     translate([0, eX - 2*eSize + printbedFrameCrossPiece2Offset, -eSize/2])
                         rotate([90, 0, 0]) {
                             stl_colour(pp2_colour)

@@ -5,6 +5,7 @@ use <NopSCADlib/vitamins/sheet.scad>
 include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/screws.scad>
 include <NopSCADlib/vitamins/fans.scad>
+include <NopSCADlib/printed/drag_chain.scad>
 
 include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>
@@ -12,6 +13,7 @@ include <../vitamins/nuts.scad>
 use <extruderBracket.scad> // for iecHousingMountSize()
 
 include <../Parameters_Main.scad>
+include <../Parameters_Positions.scad>
 
 supportHeight = 70;
 holeOffset = 20;
@@ -20,34 +22,77 @@ baseCoverBackSupportSize = [baseCoverTopSize.x, eSize, supportHeight - 2*eSize];
 baseCoverSideSupportSize = [8, eY/2, supportHeight];
 baseCoverFrontSupportSize = [baseCoverTopSize.x - baseCoverSideSupportSize.x, 12, 3*eSize/2];
 
-module baseCoverBackSupport(size) {
+
+module chainAnchorHolePositions(size, offset=180) {
+    chainOffset = size.x - offset;
+    for (z = [0, 8])
+        translate([chainOffset, -5 + 10, size.z + z + 7])
+            children();
+}
+
+module baseCoverBackSupport(size, offset=180) {
+    chainOffset = size.x - offset;
+    cutoutSize = [7, 10, 15];
+    fillet = 1.5;
+    chainAnchorSize = [8, size.y + 5, size.z + 22];
     difference() {
         union() {
             translate([0, size.y - 5, 0]) {
-                rounded_cube_xy([size.x, 5, size.z], 2);
+                rounded_cube_xy([size.x, 5, size.z], fillet);
                 translate([size.x - 10, 0, 0])
                     rotate(-90)
                         fillet(2, size.z);
             }
-            rounded_cube_xy([size.x - 10, size.y, size.z], 2);
+            rounded_cube_xy([size.x - 10, size.y, size.z], fillet);
+            translate([chainOffset, size.y - chainAnchorSize.y, 0]) {
+                rounded_cube_xy(chainAnchorSize, fillet);
+                translate([0, -size.y + chainAnchorSize.y, 0])
+                    rotate(180)
+                        fillet(fillet, size.z - cutoutSize.z);
+                translate([chainAnchorSize.x, -size.y + chainAnchorSize.y, 0])
+                    rotate(-90)
+                        fillet(fillet, size.z);
+            }
         }
+        translate([chainOffset - cutoutSize.x, -fillet, size.z - cutoutSize.z + eps])
+            rounded_cube_xy([cutoutSize.x, cutoutSize.y + fillet, cutoutSize.z], fillet);
+        translate([chainOffset - cutoutSize.x, 0, size.z - cutoutSize.z + eps])
+            rotate(90)
+                fillet(fillet, cutoutSize.z);
+        chainAnchorHolePositions(size)
+            rotate([0, 90, 0])
+                boltHoleM3Tap(chainAnchorSize.x);
         for (x = [holeOffset, size.x/2, size.x - holeOffset])
             translate([x, size.y/2, size.z])
                 vflip()
                     boltHoleM3Tap(10);
-        for (x = [size.x/4, 3*size.x/4])
+        for (x = [50, 3*size.x/4])
             translate([x, size.y/2, size.z])
                 vflip()
                     boltHoleM3Counterbore(size.z, boreDepth = size.z - 5);
     }
 }
 
-module Base_Cover_Back_Support_hardware() {
+module Base_Cover_Back_Support_hardware(chain=true, offset=180) {
     size = baseCoverBackSupportSize;
-    for (x = [size.x/4, 3*size.x/4])
+    for (x = [50, 3*size.x/4])
         translate([x, size.y/2, 5])
             explode(30, true)
                 boltM3ButtonheadHammerNut(8, nutExplode=50);
+    chainAnchorHolePositions(size)
+        rotate([0, -90, 0])
+            translate_z(2)
+                boltM3Countersunk(8);
+    if (chain && $preview) {
+        dragChainSize = [15, 14, 10];
+        travel = 200;
+        drag_chain = drag_chain("x", dragChainSize, travel=travel, wall=1.6, bwall=1.5, twall=1.5);
+        translate([size.x - offset + 60, 5, 2*eSize + size.z -15])
+            rotate([0, -90, 0])
+                color(grey(25))
+                    not_on_bom()
+                        drag_chain_assembly(drag_chain, pos=(zPos($t) - 80), radius=0);
+    }
 }
 
 module Base_Cover_Back_Support_210_stl() {
