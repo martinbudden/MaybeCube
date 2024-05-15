@@ -11,6 +11,7 @@ use <NopSCADlib/utils/fillet.scad>
 use <NopSCADlib/vitamins/o_ring.scad>
 
 use <printed/Z_Carriage.scad>
+use <printed/CableChainBracket.scad>
 
 use <vitamins/extrusionBracket.scad>
 use <vitamins/HeatedBedLevelingKnob.scad>
@@ -457,7 +458,11 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                 explode([150, 0, 0])
                     Z_Carriage_Center_assembly();
 
-    if (_printbedSize.x != 254)
+    if (_printbedSize.x == 254) {
+        translate([-_printbedArmSeparation/2 - eSize, size.y - 80, -eSize/2])
+            rotate(90)
+                Cable_Chain_Bracket_assembly();
+    } else {
         explode([0, -20, 0], true)
             translate([0, eX - 2*eSize + printbedFrameCrossPiece2Offset, -eSize/2])
                 rotate([90, 0, 0]) {
@@ -465,6 +470,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                         Printbed_Strain_Relief_stl();
                     Printbed_Strain_Relief_hardware();
                 }
+    }
 }
 
 
