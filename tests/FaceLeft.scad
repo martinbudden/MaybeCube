@@ -47,7 +47,7 @@ module Left_Side_test(showPrintBed=true) {
     zMotor();
     //let($hide_corexy=true)
     //let($hide_extrusions=true)
-    //Face_Top_Stage_1_assembly();
+    //Face_Top_assembly();
     //printheadBeltSide(t=t);
     //printheadE3DV6(t=t);
     //printheadOrbiterV3(t=t);
@@ -57,7 +57,7 @@ module Left_Side_test(showPrintBed=true) {
     //Left_Side_Channel_Nuts();
     Left_Side_Channel_Spacers();
     //Left_Side_Panel_assembly();
-    leftSidePanelPC(hammerNut=false);
+    //leftSidePanelPC(hammerNut=false);
     //partitionPC();
 }
 

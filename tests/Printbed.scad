@@ -13,6 +13,7 @@ include <../scad/Parameters_main.scad>
 module Printbed_test() {
     if ($target[0]=="M" || $target[0]=="D")
         Printbed_assembly();
+    //Printbed_Frame_assembly();
     //translate_z(-_zRodLength/2) zRods();
     //if(is_true(_useDualZRods)) translate_z(-_zRodLength/2) zRods(left=false);
     //Heated_Bed_assembly();
