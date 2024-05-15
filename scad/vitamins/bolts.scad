@@ -20,7 +20,7 @@ module boltHole(diameter, length, horizontal=false, rotate=0, chamfer=0.5, chamf
 }
 
 module boltHoleCounterbore(screw_type, length, boreDepth=undef, boltHeadTolerance=0, horizontal=false, chamfer=0, cnc=false, twist=0) {
-    boltHole(2*screw_head_radius(screw_type) + boltHeadTolerance, is_undef(boreDepth) ? screw_head_height(screw_type) : boreDepth, horizontal=horizontal, chamfer=chamfer, chamfer_both_ends=false, cnc=cnc, twist=twist);
+    boltHole(2*(screw_head_radius(screw_type) + boltHeadTolerance), is_undef(boreDepth) ? screw_head_height(screw_type) : boreDepth, horizontal=horizontal, chamfer=chamfer, chamfer_both_ends=false, cnc=cnc, twist=twist);
     boltHole(2*screw_clearance_radius(screw_type), length, horizontal, chamfer=chamfer, cnc=cnc, twist=twist);
 }
 
