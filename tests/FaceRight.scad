@@ -14,10 +14,10 @@ use <../scad/printed/XY_MotorMount.scad>
 
 use <../scad/vitamins/Panels.scad>
 
-include <../scad/FaceRight.scad>
-include <../scad/FaceRightExtras.scad>
-//use <../scad/FaceLeft.scad>
-//use <../scad/FaceTop.scad>
+include <../scad/assemblies/FaceRight.scad>
+include <../scad/assemblies/FaceRightExtras.scad>
+//use <../scad/assemblies/FaceLeft.scad>
+//use <../scad/assemblies/FaceTop.scad>
 
 use <../scad/Parameters_Positions.scad>
 

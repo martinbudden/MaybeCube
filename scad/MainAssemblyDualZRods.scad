@@ -7,10 +7,10 @@ include <global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
 
-use <BasePlate.scad>
-use <FaceLeft.scad>
-use <FaceRight.scad>
-use <Printbed.scad>
+use <assemblies/BasePlate.scad>
+use <assemblies/FaceLeft.scad>
+use <assemblies/FaceRight.scad>
+use <assemblies/Printbed.scad>
 
 use <../scad/Parameters_Positions.scad>
 include <Parameters_Main.scad>

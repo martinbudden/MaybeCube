@@ -1,25 +1,25 @@
-include <global_defs.scad>
+include <../global_defs.scad>
 
-include <utils/FrameBolts.scad>
+include <../utils/FrameBolts.scad>
 
 use <NopSCADlib/utils/fillet.scad>
 
-include <printed/CameraMount.scad>
-use <printed/Handle.scad>
-use <printed/PrintheadAssemblies.scad>
-use <printed/TopCornerPiece.scad>
-use <printed/WiringGuide.scad>
-use <printed/XY_MotorMount.scad>
-use <printed/XY_Idler.scad>
-use <printed/Y_CarriageAssemblies.scad>
+include <../printed/CameraMount.scad>
+use <../printed/Handle.scad>
+use <../printed/PrintheadAssemblies.scad>
+use <../printed/TopCornerPiece.scad>
+use <../printed/WiringGuide.scad>
+use <../printed/XY_MotorMount.scad>
+use <../printed/XY_Idler.scad>
+use <../printed/Y_CarriageAssemblies.scad>
 
-include <utils/bezierTube.scad>
-include <utils/X_Rail.scad>
-include <utils/CoreXYBelts.scad>
-include <utils/RailNutsAndBolts.scad>
-include <utils/printheadOffsets.scad>
+include <../utils/bezierTube.scad>
+include <../utils/X_Rail.scad>
+include <../utils/CoreXYBelts.scad>
+include <../utils/RailNutsAndBolts.scad>
+include <../utils/printheadOffsets.scad>
 
-use <Parameters_Positions.scad>
+use <../Parameters_Positions.scad>
 
 function use2060ForTop() = !is_undef(_use2060ForTop) && _use2060ForTop;
 useCamera = false;

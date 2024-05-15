@@ -10,8 +10,8 @@ include <../scad/utils/CoreXYBelts.scad>
 
 use <../scad/vitamins/Panels.scad>
 
-use <../scad/FaceTop.scad>
-use <../scad/BackFace.scad>
+use <../scad/assemblies/FaceTop.scad>
+use <../scad/assemblies/BackFace.scad>
 use <../scad/printed/WiringGuide.scad>
 include <../scad/utils/printParameters.scad>
 

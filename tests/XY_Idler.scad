@@ -5,7 +5,7 @@ use <../scad/printed/XY_MotorMount.scad>
 include <../scad/utils/CoreXYBelts.scad>
 
 include <../scad/utils/carriageTypes.scad>
-//use <../scad/FaceTop.scad>
+//use <../scad/assemblies/FaceTop.scad>
 use <../scad/Parameters_Positions.scad>
 
 

@@ -7,9 +7,9 @@ include <../scad/global_defs.scad>
 include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/printed/JubileeKinematicBed.scad>
-use <../scad/BasePlate.scad>
-use <../scad/FaceLeft.scad>
-use <../scad/FaceRight.scad>
+use <../scad/assemblies/BasePlate.scad>
+use <../scad/assemblies/FaceLeft.scad>
+use <../scad/assemblies/FaceRight.scad>
 //use <../scad/printed/PrintheadAssemblies.scad>
 
 //$explode = 1;

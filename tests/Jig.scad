@@ -2,8 +2,8 @@
 
 include <NopSCADlib/utils/core/core.scad>
 
-use <../scad/FaceLeft.scad>
-use <../scad/FaceRight.scad>
+use <../scad/assemblies/FaceLeft.scad>
+use <../scad/assemblies/FaceRight.scad>
 
 use <../scad/jigs/ExtrusionDrillJig.scad>
 use <../scad/jigs/PanelJig.scad>

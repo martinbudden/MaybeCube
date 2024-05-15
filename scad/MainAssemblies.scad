@@ -13,13 +13,13 @@ include <utils/CoreXYBelts.scad>
 
 use <vitamins/Panels.scad>
 
-use <BackFace.scad>
-use <BasePlate.scad>
-use <FaceLeft.scad>
-use <FaceRight.scad>
-include <FaceRightExtras.scad>
-use <FaceTop.scad>
-use <Printbed.scad>
+use <assemblies/BackFace.scad>
+use <assemblies/BasePlate.scad>
+use <assemblies/FaceLeft.scad>
+use <assemblies/FaceRight.scad>
+include <assemblies/FaceRightExtras.scad>
+use <assemblies/FaceTop.scad>
+use <assemblies/Printbed.scad>
 
 use <Parameters_Positions.scad>
 

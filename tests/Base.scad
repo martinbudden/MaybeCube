@@ -11,12 +11,12 @@ include <NopSCADlib/utils/core/core.scad>
 //use <../scad/printed/ControlPanel.scad>
 include <../scad/printed/BaseCover.scad>
 
-include <../scad/BasePlate.scad>
-use <../scad/FaceLeft.scad>
-use <../scad/FaceRight.scad>
+include <../scad/assemblies/BasePlate.scad>
+use <../scad/assemblies/FaceLeft.scad>
+use <../scad/assemblies/FaceRight.scad>
 //use <../scad/vitamins/Panels.scad>
-//use <../scad/Printbed.scad>
-//include <../scad/FaceRightExtras.scad>
+//use <../scad/assemblies/Printbed.scad>
+//include <../scad/assemblies/FaceRightExtras.scad>
 
 include <../scad/Parameters_Main.scad>
 //use <../scad/Parameters_Positions.scad>

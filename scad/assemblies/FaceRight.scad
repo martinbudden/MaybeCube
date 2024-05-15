@@ -1,17 +1,17 @@
-include <global_defs.scad>
+include <../global_defs.scad>
 
-include <utils/FrameBolts.scad>
+include <../utils/FrameBolts.scad>
 
-use <printed/AccessPanel.scad>
-use <printed/extruderBracket.scad>
-use <printed/IEC_Housing.scad>
-use <printed/RightSidePanel.scad>
+use <../printed/AccessPanel.scad>
+use <../printed/extruderBracket.scad>
+use <../printed/IEC_Housing.scad>
+use <../printed/RightSidePanel.scad>
 
-include <utils/Z_Rods.scad>
+include <../utils/Z_Rods.scad>
 
 include <FaceRightExtras.scad>
 
-use <Parameters_Positions.scad>
+use <../Parameters_Positions.scad>
 
 //!1. On a flat surface, bolt the upper and lower extrusions into the left and right uprights as shown.
 //!2. Bolt the **IEC_Housing_assembly** to the lower extrusion and upright.

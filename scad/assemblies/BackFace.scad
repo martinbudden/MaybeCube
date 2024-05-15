@@ -1,21 +1,21 @@
-include <global_defs.scad>
+include <../global_defs.scad>
 
-include <utils/FrameBolts.scad>
+include <../utils/FrameBolts.scad>
 
 include <NopSCADlib/vitamins/pillar.scad>
 include <NopSCADlib/vitamins/pcbs.scad>
 include <NopSCADlib/vitamins/psus.scad>
 use <NopSCADlib/vitamins/sheet.scad>
 
-use <printed/extruderBracket.scad>
-include <utils/pcbs.scad>
-use <utils/PSU.scad>
+use <../printed/extruderBracket.scad>
+include <../utils/pcbs.scad>
+use <../utils/PSU.scad>
 
-include <vitamins/nuts.scad>
-include <vitamins/RPI3APlus.scad>
+include <../vitamins/nuts.scad>
+include <../vitamins/RPI3APlus.scad>
 
-use <Parameters_Positions.scad>
-include <Parameters_CoreXY.scad>
+use <../Parameters_Positions.scad>
+include <../Parameters_CoreXY.scad>
 
 
 PC3 = ["PC3", "Sheet polycarbonate", 3, [1,   1,   1,   0.25], false];

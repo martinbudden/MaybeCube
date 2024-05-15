@@ -11,10 +11,10 @@ include <../scad/utils/printParameters.scad>
 include <../scad/utils/Z_Rods.scad>
 use <../scad/vitamins/Panels.scad>
 
-use <../scad/FaceLeft.scad>
-//use <../scad/FaceRight.scad>
-//use <../scad/FaceTop.scad>
-use <../scad/Printbed.scad>
+use <../scad/assemblies/FaceLeft.scad>
+//use <../scad/assemblies/FaceRight.scad>
+//use <../scad/assemblies/FaceTop.scad>
+use <../scad/assemblies/Printbed.scad>
 
 use <../scad/Parameters_Positions.scad>
 include <../scad/Parameters_Main.scad>

@@ -43,10 +43,10 @@ include <../scad/utils/X_Rail.scad>
 
 use <../scad/vitamins/PrintheadBIQU_B1.scad>
 
-use <../scad/BasePlate.scad>
-use <../scad/FaceLeft.scad>
-use <../scad/FaceRight.scad>
-use <../scad/Printbed.scad>
+use <../scad/assemblies/BasePlate.scad>
+use <../scad/assemblies/FaceLeft.scad>
+use <../scad/assemblies/FaceRight.scad>
+use <../scad/assemblies/Printbed.scad>
 
 use <../scad/Parameters_Positions.scad>
 

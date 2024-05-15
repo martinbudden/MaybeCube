@@ -5,12 +5,12 @@ include <NopSCADlib/utils/core/core.scad>
 //include <../scad/utils/CoreXYBelts.scad>
 //use <../scad/printed/PSU.scad>
 //use <../scad/printed/XY_MotorMount.scad>
-use <../scad/BackFace.scad>
-//use <../scad/BasePlate.scad>
-//use <../scad/FaceLeft.scad>
-//use <../scad/FaceRight.scad>
-//include <../scad/FaceRightExtras.scad>
-//use <../scad/FaceTop.scad>
+use <../scad/assemblies/BackFace.scad>
+//use <../scad/assemblies/BasePlate.scad>
+//use <../scad/assemblies/FaceLeft.scad>
+//use <../scad/assemblies/FaceRight.scad>
+//include <../scad/assemblies/FaceRightExtras.scad>
+//use <../scad/assemblies/FaceTop.scad>
 use <../scad/vitamins/Panels.scad>
 
 use <../scad/Parameters_Positions.scad>

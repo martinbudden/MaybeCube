@@ -1,12 +1,12 @@
 include <NopSCADlib/vitamins/spools.scad>
 
-use <printed/extruderBracket.scad>
-use <printed/SpoolHolder.scad>
+use <../printed/extruderBracket.scad>
+use <../printed/SpoolHolder.scad>
 
-include <utils/bezierTube.scad>
-include <utils/printheadOffsets.scad>
+include <../utils/bezierTube.scad>
+include <../utils/printheadOffsets.scad>
 
-use <vitamins/Panels.scad>
+use <../vitamins/Panels.scad>
 
 
 module faceRightSpoolHolder(offsetX) {

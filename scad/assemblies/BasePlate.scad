@@ -1,24 +1,24 @@
-include <global_defs.scad>
+include <../global_defs.scad>
 
 use <NopSCADlib/vitamins/sheet.scad>
 
-include <printed/DisplayHousingAssemblies.scad>
-include <printed/BaseFoot.scad>
+include <../printed/DisplayHousingAssemblies.scad>
+include <../printed/BaseFoot.scad>
 include <NopSCADlib/vitamins/psus.scad>
 include <NopSCADlib/vitamins/pcbs.scad>
 
-use <printed/BaseFrontCover.scad>
-use <printed/BaseCover.scad>
-use <printed/IEC_Housing.scad>
+use <../printed/BaseFrontCover.scad>
+use <../printed/BaseCover.scad>
+use <../printed/IEC_Housing.scad>
 
-use <utils/PSU.scad>
-include <utils/pcbs.scad>
+use <../utils/PSU.scad>
+include <../utils/pcbs.scad>
 
-include <utils/FrameBolts.scad>
-include <vitamins/RPI3APlus.scad>
-include <vitamins/BTT_MANTA_5MP.scad>
-include <vitamins/BTT_MANTA_8MP.scad>
-include <vitamins/psus.scad>
+include <../utils/FrameBolts.scad>
+include <../vitamins/RPI3APlus.scad>
+include <../vitamins/BTT_MANTA_5MP.scad>
+include <../vitamins/BTT_MANTA_8MP.scad>
+include <../vitamins/psus.scad>
 
 AL3 = ["AL3", "Aluminium sheet", 3, [0.9, 0.9, 0.9, 1], false];
 
