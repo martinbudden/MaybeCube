@@ -558,7 +558,7 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
                                     bearingStack(bearingType);
                                 explode(30)
                                     translate_z(pulleyStackHeight)
-                                        stl_colour(pp3_colour)
+                                        stl_colour(pp4_colour)
                                             if (coreXYIdlerBore()==3)
                                                 XY_Motor_Mount_Pulley_Spacer_M3_stl();
                                             else if (coreXYIdlerBore()==4)
@@ -567,7 +567,7 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
                                                 XY_Motor_Mount_Pulley_Spacer_M5_stl();
                             } else {
                                 explode(5)
-                                    stl_colour(pp3_colour)
+                                    stl_colour(pp4_colour)
                                         if (coreXYIdlerBore()==3)
                                             XY_Motor_Mount_Pulley_Spacer_M3_stl();
                                         else if (coreXYIdlerBore()==4)
@@ -711,7 +711,7 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
 
 module XY_Motor_Mount_Pulley_Spacer_M3_stl() {
     stl("XY_Motor_Mount_Pulley_Spacer_M3");
-    color(pp3_colour)
+    color(pp4_colour)
         difference() {
             h = pulleyStackHeight + yCarriageBraceThickness();
             cylinder(h=h, d=7);
@@ -721,7 +721,7 @@ module XY_Motor_Mount_Pulley_Spacer_M3_stl() {
 
 module XY_Motor_Mount_Pulley_Spacer_M4_stl() {
     stl("XY_Motor_Mount_Pulley_Spacer_M4");
-    color(pp3_colour)
+    color(pp4_colour)
         difference() {
             h = pulleyStackHeight + yCarriageBraceThickness();
             cylinder(h=h, d=9);
@@ -731,7 +731,7 @@ module XY_Motor_Mount_Pulley_Spacer_M4_stl() {
 
 module XY_Motor_Mount_Pulley_Spacer_M5_stl() {
     stl("XY_Motor_Mount_Pulley_Spacer_M5");
-    color(pp3_colour)
+    color(pp4_colour)
         difference() {
             h = pulleyStackHeight + yCarriageBraceThickness();
             cylinder(h=h, d=10);
@@ -745,6 +745,17 @@ module XY_Motor_Mount_Brace_Left_RB3_stl() {
         XY_Motor_Mount_Brace_Left_RB(3);
 }
 
+module XY_Motor_Mount_Brace_Left_Lower_RB3_stl() {
+    stl("XY_Motor_Mount_Brace_Left_Lower_RB3"); // note - need semicolon to ensure explode of xyMotorMountBrace works
+    color(pp3_colour)
+        XY_Motor_Mount_Brace_Left_Lower(3);
+}
+
+module XY_Motor_Mount_Brace_Left_Upper_RB3_stl() {
+    stl("XY_Motor_Mount_Brace_Left_Upper_RB3"); // note - need semicolon to ensure explode of xyMotorMountBrace works
+    color(pp2_colour)
+        XY_Motor_Mount_Brace_Left_Upper(3);
+}
 module XY_Motor_Mount_Brace_Left_RB4_stl() {
     stl("XY_Motor_Mount_Brace_Left_RB4"); // note - need semicolon to ensure explode of xyMotorMountBrace works
     color(pp2_colour)
@@ -946,6 +957,19 @@ module XY_Motor_Mount_Brace_Right_RB3_stl() {
         XY_Motor_Mount_Brace_Right_RB(3);
 }
 
+module XY_Motor_Mount_Brace_Right_Lower_RB3_stl() {
+    stl("XY_Motor_Mount_Brace_Right_Lower_RB3"); // note - need semicolon to ensure explode of xyMotorMountBrace works
+    vflip()
+        color(pp3_colour)
+            XY_Motor_Mount_Brace_Right_Lower(3);
+}
+
+module XY_Motor_Mount_Brace_Right_Upper_RB3_stl() {
+    stl("XY_Motor_Mount_Brace_Right_Upper_RB3"); // note - need semicolon to ensure explode of xyMotorMountBrace works
+    color(pp2_colour)
+        XY_Motor_Mount_Brace_Right_Upper(3);
+}
+
 module XY_Motor_Mount_Brace_Right_RB4_stl() {
     stl("XY_Motor_Mount_Brace_Right_RB4"); // note - need semicolon to ensure explode of xyMotorMountBrace works
     color(pp2_colour)
@@ -1041,6 +1065,16 @@ module XY_Motor_Mount_Left_RB3_stl() {
     xyMotorMountLeft(useReversedBelts=true, cnc=false);
 }
 
+module XY_Motor_Mount_Left_Base_RB3_stl() {
+    stl("XY_Motor_Mount_Left_Base_RB3");
+    xyMotorMountLeft(useReversedBelts=true, cnc=false, flat=true);
+}
+
+module XY_Motor_Mount_Left_Base_RB3_dxf() {
+    dxf("XY_Motor_Mount_Left_Base_RB3");
+    xyMotorMountLeft(useReversedBelts=true, cnc=true);
+}
+
 module XY_Motor_Mount_Left_40_RB4_stl() {
     stl("XY_Motor_Mount_Left_40_RB4");
     xyMotorMountLeft(useReversedBelts=true, cnc=false);
@@ -1051,13 +1085,13 @@ module XY_Motor_Mount_Left_RB4_stl() {
     xyMotorMountLeft(useReversedBelts=true, cnc=false);
 }
 
-module XY_Motor_Mount_Left_Base_stl() {
-    stl("XY_Motor_Mount_Left_Base");
+module XY_Motor_Mount_Left_Base_RB4_stl() {
+    stl("XY_Motor_Mount_Left_Base_RB4");
     xyMotorMountLeft(useReversedBelts=true, cnc=false, flat=true);
 }
 
-module XY_Motor_Mount_Left_Base_dxf() {
-    dxf("XY_Motor_Mount_Left_Base");
+module XY_Motor_Mount_Left_Base_RB4_dxf() {
+    dxf("XY_Motor_Mount_Left_Base_RB4");
     xyMotorMountLeft(useReversedBelts=true, cnc=true);
 }
 
@@ -1084,7 +1118,7 @@ module XY_Motor_Mount_Left_M5_stl() {
 module XY_Motor_Mount_Left_assembly()
 assembly("XY_Motor_Mount_Left", big=true, ngb=true) {
 
-    XYMotorMountLeftAssembly(cnc=false, flat=coreXYIdlerBore()==4);
+    XYMotorMountLeftAssembly(cnc=false, flat=true);
 }
 
 module XYMotorMountLeftAssembly(cnc=false, flat=false) {
@@ -1095,20 +1129,28 @@ module XYMotorMountLeftAssembly(cnc=false, flat=false) {
     translate_z(eZ - eSize - basePlateThickness - bracketHeightLeft) {
         if (useReversedBelts()) {
             if (coreXYIdlerBore()==3) {
-                if (use2060ForTopRear())
-                    stl_colour(pp1_colour)
-                        XY_Motor_Mount_Left_RB3_stl();
-                else
+                if (use2060ForTopRear()) {
+                    if (cnc)
+                        stl_colour(silver)
+                            XY_Motor_Mount_Left_Base_RB3_dxf();
+                    else if (flat)
+                        stl_colour(pp1_colour)
+                            XY_Motor_Mount_Left_Base_RB3_stl();
+                    else 
+                        stl_colour(pp1_colour)
+                            XY_Motor_Mount_Left_RB3_stl();
+                } else {
                     stl_colour(pp1_colour)
                         XY_Motor_Mount_Left_40_RB3_stl();
+                }
             } else if (coreXYIdlerBore()==4) {
                 if (use2060ForTopRear()){
                     if (cnc)
                         stl_colour(silver)
-                            XY_Motor_Mount_Left_Base_dxf();
+                            XY_Motor_Mount_Left_Base_RB4_dxf();
                     else if (flat)
                         stl_colour(pp1_colour)
-                            XY_Motor_Mount_Left_Base_stl();
+                            XY_Motor_Mount_Left_Base_RB4_stl();
                     else 
                         stl_colour(pp1_colour)
                             XY_Motor_Mount_Left_RB4_stl();
@@ -1126,9 +1168,18 @@ module XYMotorMountLeftAssembly(cnc=false, flat=false) {
         if (offset.x != 0)
             if (useReversedBelts()) {
                 if (coreXYIdlerBore()==3) {
-                    explode(70, show_line=false)
-                        stl_colour(pp2_colour)
-                            XY_Motor_Mount_Brace_Left_RB3_stl();
+                    if (cnc || flat) {
+                        explode(35, show_line=false)
+                            stl_colour(pp3_colour)
+                                XY_Motor_Mount_Brace_Left_Lower_RB3_stl();
+                        explode(70, show_line=false)
+                            stl_colour(pp2_colour)
+                                XY_Motor_Mount_Brace_Left_Upper_RB3_stl();
+                    } else {
+                        explode(70, show_line=false)
+                            stl_colour(pp2_colour)
+                                XY_Motor_Mount_Brace_Left_RB3_stl();
+                    }
                 } else if (coreXYIdlerBore()==4) {
                     if (cnc || flat) {
                         explode(35, show_line=false)
@@ -1171,6 +1222,16 @@ module XY_Motor_Mount_Right_RB3_stl() {
     xyMotorMountRight(useReversedBelts=true, countersunk=true);
 }
 
+module XY_Motor_Mount_Right_Base_RB3_stl() {
+    stl("XY_Motor_Mount_Right_Base_RB3");
+    xyMotorMountRight(useReversedBelts=true, flat=true);
+}
+
+module XY_Motor_Mount_Right_Base_RB3_dxf() {
+    dxf("XY_Motor_Mount_Right_Base_RB3");
+    xyMotorMountRight(useReversedBelts=true, cnc=true);
+}
+
 module XY_Motor_Mount_Right_40_RB4_stl() {
     stl("XY_Motor_Mount_Right_40_RB4");
     xyMotorMountRight(useReversedBelts=true);
@@ -1181,13 +1242,13 @@ module XY_Motor_Mount_Right_RB4_stl() {
     xyMotorMountRight(useReversedBelts=true);
 }
 
-module XY_Motor_Mount_Right_Base_stl() {
-    stl("XY_Motor_Mount_Right_Base");
+module XY_Motor_Mount_Right_Base_RB4_stl() {
+    stl("XY_Motor_Mount_Right_Base_RB4");
     xyMotorMountRight(useReversedBelts=true, flat=true);
 }
 
-module XY_Motor_Mount_Right_Base_dxf() {
-    dxf("XY_Motor_Mount_Right_Base");
+module XY_Motor_Mount_Right_Base_RB4_dxf() {
+    dxf("XY_Motor_Mount_Right_Base_RB4");
     xyMotorMountRight(useReversedBelts=true, cnc=true);
 }
 
@@ -1213,7 +1274,7 @@ module XY_Motor_Mount_Right_M5_stl() {
 module XY_Motor_Mount_Right_assembly()
 assembly("XY_Motor_Mount_Right", big=true, ngb=true) {
 
-    XYMotorMountRightAssembly(cnc=false, flat=coreXYIdlerBore()==4);
+    XYMotorMountRightAssembly(cnc=false, flat=true);
 }
 
 module XYMotorMountRightAssembly(cnc=false, flat=false) {
@@ -1224,20 +1285,29 @@ module XYMotorMountRightAssembly(cnc=false, flat=false) {
     translate_z(eZ - eSize - basePlateThickness - (useReversedBelts() ? bracketHeightLeft : bracketHeightRight)) {
         if (useReversedBelts()) {
             if (coreXYIdlerBore() == 3) {
-                if (use2060ForTopRear())
-                    stl_colour(pp1_colour)
-                        XY_Motor_Mount_Right_RB3_stl();
-                else
+                if (use2060ForTopRear()) {
+                    if (cnc) {
+                        stl_colour(silver)
+                            XY_Motor_Mount_Right_Base_RB3_dxf();
+                    } else if (flat) {
+                        stl_colour(pp1_colour)
+                            XY_Motor_Mount_Right_Base_RB3_stl();
+                    } else {  
+                        stl_colour(pp1_colour)
+                            XY_Motor_Mount_Right_RB3_stl();
+                    }
+                } else {
                     stl_colour(pp1_colour)
                         XY_Motor_Mount_Right_40_RB3_stl();
+                }
             } else if (coreXYIdlerBore() == 4) {
                 if (use2060ForTopRear()) {
                     if (cnc) {
                         stl_colour(silver)
-                            XY_Motor_Mount_Right_Base_dxf();
+                            XY_Motor_Mount_Right_Base_RB4_dxf();
                     } else if (flat) {
                         stl_colour(pp1_colour)
-                            XY_Motor_Mount_Right_Base_stl();
+                            XY_Motor_Mount_Right_Base_RB4_stl();
                     } else {  
                         stl_colour(pp1_colour)
                             XY_Motor_Mount_Right_RB4_stl();
@@ -1256,10 +1326,20 @@ module XYMotorMountRightAssembly(cnc=false, flat=false) {
         if (offset.x != 0)
             if (useReversedBelts()) {
                 if (coreXYIdlerBore()==3) {
-                    explode(80, show_line=false)
-                        vflip()
+                    if (cnc || flat) {
+                        explode(70, show_line=false)
+                            vflip()
+                                stl_colour(pp3_colour)
+                                    XY_Motor_Mount_Brace_Right_Lower_RB3_stl();                            
+                        explode(100, show_line=false)
                             stl_colour(pp2_colour)
-                                XY_Motor_Mount_Brace_Right_RB3_stl();
+                                XY_Motor_Mount_Brace_Right_Upper_RB3_stl();                            
+                    } else {
+                        explode(80, show_line=false)
+                            vflip()
+                                stl_colour(pp2_colour)
+                                    XY_Motor_Mount_Brace_Right_RB3_stl();
+                    }
                 } else if (coreXYIdlerBore()==4) {
                     if (cnc || flat) {
                         explode(70, show_line=false)
