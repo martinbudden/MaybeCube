@@ -6,6 +6,7 @@ include <NopSCADlib/vitamins/screws.scad>
 use <../scad/printed/extruderBracket.scad>
 use <../scad/printed/PrintheadAssemblies.scad>
 
+include <../scad/printed/XY_MotorMount.scad> // for idler offsets
 include <../scad/utils/CoreXYBelts.scad>
 
 use <../scad/vitamins/Panels.scad>
@@ -33,14 +34,9 @@ module Face_Top_test() {
     *if (!exploded())
         printheadWiring(hotendDescriptor="OrbiterV3");
     *wiringGuidePosition() {
-        Wiring_Guide_stl();
-        *vflip() {
+        vflip() {
             Wiring_Guide_Socket_stl();
             Wiring_Guide_Socket_hardware();
-        }
-        *translate_z(9) {
-            Wiring_Guide_Clamp_stl();
-            Wiring_Guide_Clamp_hardware();
         }
     }
     //X_Rail_assembly();
@@ -48,9 +44,9 @@ module Face_Top_test() {
     //Face_Top_Stage_2_assembly();
     //Face_Top_Stage_3_assembly();
     //Face_Top_Stage_4_assembly();
-
     //let($hide_extrusions=true)
     Face_Top_assembly();
+
     //Left_Side_Upper_Extrusion_assembly();
     //Right_Side_Upper_Extrusion_assembly();
     //Extruder_Bracket_assembly();

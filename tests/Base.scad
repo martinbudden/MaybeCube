@@ -14,6 +14,7 @@ include <../scad/printed/BaseCover.scad>
 include <../scad/assemblies/BasePlate.scad>
 use <../scad/assemblies/FaceLeft.scad>
 use <../scad/assemblies/FaceRight.scad>
+use <../scad/assemblies/FaceTop.scad>
 //use <../scad/vitamins/Panels.scad>
 use <../scad/assemblies/Printbed.scad>
 //include <../scad/assemblies/FaceRightExtras.scad>
@@ -38,6 +39,8 @@ module Base_test() {
     //baseCoverFrontSupportsAssembly();
     //baseCoverBackSupportsAssembly();
     //baseFanMountAssembly();
+    printheadWiring(hotendDescriptor="OrbiterV3");
+
     //Left_Base_Channel_Spacers();
     //translate_z(-3) Panel_Jig_stl();
     //translate([eX + 2*eSize, 0, -3]) rotate(90) Panel_Jig_stl();
