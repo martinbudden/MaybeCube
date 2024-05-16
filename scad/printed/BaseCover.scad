@@ -11,26 +11,28 @@ include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>
 
 use <extruderBracket.scad> // for iecHousingMountSize()
+use <WiringGuide.scad>
 
 include <../Parameters_Main.scad>
 include <../Parameters_Positions.scad>
 
 supportHeight = 70;
 holeOffset = 20;
+chainAnchorOffset = 160;
 baseCoverTopSize = [eX > 300 ? 250 : 210, eY + eSize, 3];
 baseCoverBackSupportSize = [baseCoverTopSize.x, eSize, supportHeight - 2*eSize];
 baseCoverSideSupportSize = [8, eY/2, supportHeight];
 baseCoverFrontSupportSize = [baseCoverTopSize.x - baseCoverSideSupportSize.x, 12, 3*eSize/2];
 
 
-module chainAnchorHolePositions(size, offset=180) {
+module chainAnchorHolePositions(size, offset=chainAnchorOffset) {
     chainOffset = size.x - offset;
     for (z = [0, 8])
         translate([chainOffset, -5 + 10, size.z + z + 7])
             children();
 }
 
-module baseCoverBackSupport(size, offset=180) {
+module baseCoverBackSupport(size, offset=chainAnchorOffset) {
     chainOffset = size.x - offset;
     cutoutSize = [7, 10, 15];
     fillet = 1.5;
@@ -73,7 +75,7 @@ module baseCoverBackSupport(size, offset=180) {
     }
 }
 
-module Base_Cover_Back_Support_hardware(chain=true, offset=180) {
+module Base_Cover_Back_Support_hardware(chain=true, offset=chainAnchorOffset) {
     size = baseCoverBackSupportSize;
     for (x = [50, 3*size.x/4])
         translate([x, size.y/2, 5])
@@ -84,10 +86,10 @@ module Base_Cover_Back_Support_hardware(chain=true, offset=180) {
             translate_z(2)
                 boltM3Countersunk(8);
     if (chain && $preview) {
-        dragChainSize = [15, 14, 10];
-        travel = 200;
-        drag_chain = drag_chain("x", dragChainSize, travel=travel, wall=1.6, bwall=1.5, twall=1.5);
-        translate([size.x - offset + 60, 5, 2*eSize + size.z -15])
+        dragChainSize = [15, 10.5, 10];
+        travel = 215;
+        drag_chain = drag_chain("x", dragChainSize, travel=travel, wall=1.5, bwall=1.5, twall=1.5);
+        translate([size.x - offset + 40, 5, 2*eSize + size.z -15])
             rotate([0, -90, 0])
                 color(grey(25))
                     not_on_bom()
@@ -222,15 +224,37 @@ module baseCoverTopAssembly(addBolts=true) {
 
 module baseCoverDxf(size) {
     sheet = BaseCover;
-    fillet = 1;
+    fillet = 1.5;
 
     color(sheet_colour(sheet))
         difference() {
             sheet_2D(sheet, size.x, size.y, fillet);
             baseCoverTopHolePositions(size)
                 circle(r=M3_clearance_radius);
+            chainCutoutSize = [15, 24 + 2* fillet];
+            translate([size.x/2 - chainAnchorOffset - 7, size.y/2]) {
+                translate([0, -chainCutoutSize.y + fillet])
+                    rounded_square(chainCutoutSize, fillet, center=false);
+                rotate(180)
+                    fillet(fillet);
+                translate([chainCutoutSize.x, 0])
+                    rotate(-90)
+                        fillet(fillet);
+            }
+            wiringGuidePosition = wiringGuidePosition(0, wiringGuideCableOffsetY(), eSize);
+            wiringCutoutSize = [8, 26 + 2* fillet];
+            translate([size.x/2 - wiringGuidePosition.x - 34, size.y/2]) {
+                translate([0, -wiringCutoutSize.y + fillet])
+                    rounded_square(wiringCutoutSize, fillet, center=false);
+                rotate(180)
+                    fillet(fillet);
+                translate([wiringCutoutSize.x, 0])
+                    rotate(-90)
+                        fillet(fillet);
+            }
         }
 }
+
 module Base_Cover_210_dxf() {
     dxf("Base_Cover_210")
         baseCoverDxf(baseCoverTopSize);
@@ -260,14 +284,14 @@ module baseCoverFrontSupportsAssembly() {
         }
 }
 
-module baseCoverBackSupportsAssembly() {
-    translate([eX - baseCoverBackSupportSize.x, 0, 2*eSize]) {
+module baseCoverBackSupportsAssembly(chain=true) {
+    translate([eX + eSize - baseCoverBackSupportSize.x, eY + eSize, 2*eSize]) {
         color(pp1_colour)
             if (eX == 300)
                 Base_Cover_Back_Support_210_stl();
             else
                 Base_Cover_Back_Support_250_stl();
-        Base_Cover_Back_Support_hardware();
+        Base_Cover_Back_Support_hardware(chain);
     }
 }
 
