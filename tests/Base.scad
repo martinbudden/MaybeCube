@@ -27,6 +27,7 @@ use <../scad/Parameters_Positions.scad>
 //$pose = 1;
 module Base_test() {
     Base_Plate_assembly();
+
     //Base_Plate_Stage_1_assembly();
     //basePlateAssembly(rightExtrusion=false, hammerNut=false);
     //Base_Extrusions_assembly();
@@ -34,12 +35,12 @@ module Base_test() {
     //BaseAL();
     //translate([eX + eSize, eSize, 0]) extrusionOY(eY);
     //pcbAssembly(BTT_SKR_V1_4_TURBO, pcbOnBase=true);
-    //baseCoverTopAssembly();
+    //baseCoverTopAssembly(false);
     //baseCoverSideSupportsAssembly();
     //baseCoverFrontSupportsAssembly();
-    //baseCoverBackSupportsAssembly();
+    //baseCoverBackSupportsAssembly(chain=!true);
     //baseFanMountAssembly();
-    printheadWiring(hotendDescriptor="OrbiterV3");
+    //printheadWiring(hotendDescriptor="OrbiterV3");
 
     //Left_Base_Channel_Spacers();
     //translate_z(-3) Panel_Jig_stl();
