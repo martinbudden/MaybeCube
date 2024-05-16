@@ -459,9 +459,13 @@ assembly("Printbed_Frame", big=true, ngb=true) {
                     Z_Carriage_Center_assembly();
 
     if (_printbedSize.x == 254) {
-        translate([-_printbedArmSeparation/2 - eSize, size.y - 80, -eSize/2])
-            rotate(90)
-                Cable_Chain_Bracket_assembly();
+        explode([-80, 0, 0], true)
+            translate([-_printbedArmSeparation/2 - eSize, size.y - 80, -eSize/2])
+                rotate(90) {
+                    color(pp1_colour)
+                        Cable_Chain_Bracket_stl();
+                    Cable_Chain_Bracket_hardware();
+                }
     } else {
         explode([0, -20, 0], true)
             translate([0, eX - 2*eSize + printbedFrameCrossPiece2Offset, -eSize/2])
@@ -553,7 +557,12 @@ assembly("Printbed", big=true) {
                             Heated_Bed_assembly();
                     }
                 }
-                if (_printbedSize.x != 254) {
+                if (_printbedSize.x == 254) {
+                    sizeY = !is_undef(_useDualZRods) && _useDualZRods ? eY - 3 : eY <= 250 ? 225 : eY <= 300 ? 265 : eY <= 350 ? 300 : 375;
+                    translate([-_printbedArmSeparation/2 - eSize, sizeY - 80, -eSize/2])
+                        rotate(90)
+                            Cable_Chain_Bracket_cable_ties();
+                } else {
                     translate([0, eX - 2*eSize + printbedFrameCrossPiece2Offset, -eSize/2])
                         rotate([90, 0, 0]) {
                             stl_colour(pp2_colour)
