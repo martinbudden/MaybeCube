@@ -12,7 +12,9 @@ wiringDiameter = 7;
 sideThickness = 6.5;
 wiringGuideSize = [30, 20, 5];
 wiringGuideClampSize = [wiringDiameter + 2*sideThickness, wiringGuideSize.y, 3];
-function wiringGuideTabHeight() = wiringDiameter + 2;
+
+function wiringGuideCableOffsetY() = 10;
+function wiringGuideTabHeight() = wiringDiameter + wiringGuideCableOffsetY() - 3;
 
 function wiringGuidePosition(offsetX=0, offsetY=0, offsetZ=0) = [eX/2 + eSize - (wiringGuideSize.x + eSize)/2 - offsetX, eY + eSize - offsetY, eZ - eSize - offsetZ];
 
@@ -29,6 +31,8 @@ module wiringGuide(size, tabHeight) {
         difference() {
             union() {
                 rounded_cube_xy([size.x, size.y, 3], fillet);
+                translate([(wiringGuideSize.x - wiringDiameter - 2*sideThickness)/2, 0, 0])
+                    rounded_cube_xy([wiringDiameter + 2*sideThickness, size.y, wiringGuideCableOffsetY() - 1], fillet);
                 for (x = [0, (size.x + wiringDiameter)/2])
                     translate([x, 0, 0])
                         rounded_cube_xy([(size.x - wiringDiameter)/2, size.y, size.z - 0.25], fillet);
@@ -68,7 +72,7 @@ module Wiring_Guide_Clamp_hardware() {
 }
 
 module Wiring_Guide_Socket_stl() {
-    size = [wiringGuideSize.x + eSize, wiringGuideSize.y + 5, 10];
+    size = [wiringGuideSize.x + eSize, wiringGuideSize.y + 15, 10];
     fillet = 1.5;
 
     stl("Wiring_Guide_Socket")
@@ -77,7 +81,8 @@ module Wiring_Guide_Socket_stl() {
                 translate([-size.x/2, eSize - size.y, 0])
                     difference() {
                         union() {
-                            rounded_cube_xy([size.x, 5, 3], fillet);
+                            translate([0, 0, 0])
+                                rounded_cube_xy([size.x, size.y - wiringGuideSize.y, wiringGuideCableOffsetY() - 2], fillet);
                             size1 = [(size.x - wiringGuideSize.x)/2 + 5, 5, size.z];
                             for (x = [0, size.x - size1.x])
                                 translate([x, 0, 0])

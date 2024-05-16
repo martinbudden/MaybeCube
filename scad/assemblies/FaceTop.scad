@@ -227,10 +227,14 @@ module faceTopBack(height=40, fov_distance=0) {
 module printheadWiring(hotendDescriptor="E3DV6", showCable=true) {
     // don't show the incomplete cable if there are no extrusions to obscure it
     wireRadius = 2.5;
-    bezierPos = wiringGuidePosition(useCamera ? cameraMountBaseSize.x/2 : 0, 5, eSize);
+    bezierPos = wiringGuidePosition(useCamera ? cameraMountBaseSize.x/2 : 0, wiringGuideCableOffsetY(), eSize);
     if (showCable && is_undef($hide_extrusions))
-        color(grey(20))
+        color(grey(20)) {
             bezierTube(bezierPos, [carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(hotendDescriptor), tubeRadius=wireRadius);
+            translate(bezierPos)
+                vflip()
+                    cylinder(h=bezierPos.z - 20, r=wireRadius, center=false);
+        }
 
     /*translate([carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(hotendDescriptor))
         for (z = [11, 21])
