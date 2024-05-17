@@ -111,14 +111,15 @@ module Base_Cover_Back_Support_250_stl() {
 
 module baseCoverFrontSupport(size) {
     x1 = holeOffset - baseCoverSideSupportSize.x;
+    fillet = 1;
     difference() {
-        rounded_cube_xy([size.x, size.z, 3], 1);
+        rounded_cube_xy([size.x, size.z, 3], fillet);
         for (x = [x1, baseCoverTopSize.x/2 - 8, size.x - holeOffset])
             translate([x, 20, 0])
                 boltHoleM3(3);
     }
     difference() {
-        rounded_cube_xy([size.x, 5, size.y], 1);
+        rounded_cube_xy([size.x, 5, size.y], fillet);
         for (x = [x1, baseCoverTopSize.x/2 - 8, size.x - holeOffset])
             translate([x, 0, 7.5])
                 rotate([-90, 180, 0])
