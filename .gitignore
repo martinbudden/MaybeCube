@@ -71,6 +71,7 @@ M5/
 nuts/
 
 Voron_Afterburner/
+
 Voron_Mini_Afterburner/assemblies/*
 Voron_Mini_Afterburner/bom/
 Voron_Mini_Afterburner/dxfs/
@@ -85,6 +86,36 @@ Voron_Mini_Afterburner/*.md
 !Voron_Mini_Afterburner/stls/*.png
 Voron_Mini_Afterburner/assemblies/*_diff.png
 Voron_Mini_Afterburner/stls/*_diff.png
+
+Voron_Dragon_Burner/assemblies/*
+Voron_Dragon_Burner/bom/
+Voron_Dragon_Burner/dxfs/
+Voron_Dragon_Burner/stls/*
+!Voron_Dragon_Burner/stls/X_Carriage_Voron_Dragon_Burner.stl
+!Voron_Dragon_Burner/stls/X_Carriage_Voron_Dragon_Burner.png
+Voron_Dragon_Burner/tmp/
+Voron_Dragon_Burner/*.html
+Voron_Dragon_Burner/*.md
+Voron_Dragon_Burner/readme.md
+Voron_Dragon_Burner/assemblies/*.png
+!Voron_Dragon_Burner/assemblies/X_Carriage_Voron_Dragon_Burner_assembled.png
+Voron_Dragon_Burner/assemblies/*_diff.png
+Voron_Dragon_Burner/stls/*_diff.png
+
+Voron_Rapid_Burner/assemblies/*
+Voron_Rapid_Burner/bom/
+Voron_Rapid_Burner/dxfs/
+Voron_Rapid_Burner/stls/*
+!Voron_Rapid_Burner/stls/X_Carriage_Voron_Rapid_Burner.stl
+!Voron_Rapid_Burner/stls/X_Carriage_Voron_Rapid_Burner.png
+Voron_Rapid_Burner/tmp/
+Voron_Rapid_Burner/*.html
+Voron_Rapid_Burner/*.md
+Voron_Rapid_Burner/readme.md
+Voron_Rapid_Burner/assemblies/*.png
+!Voron_Rapid_Burner/assemblies/X_Carriage_Voron_Rapid_Burner_assembled.png
+Voron_Rapid_Burner/assemblies/*_diff.png
+Voron_Rapid_Burner/stls/*_diff.png
 
 jigs/assemblies/*
 jigs/bom/
