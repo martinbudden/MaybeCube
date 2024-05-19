@@ -166,7 +166,7 @@ module printheadBeltSide(rotate=0, explode=0, t=undef) {
 module printheadBeltSideBolts(rotate=0, explode=0, t=undef, halfCarriage=false) {
     xCarriageType = MGN12H_carriage;
     xCarriageBeltSideSize = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());
-    boltLength = halfCarriage ? 30 : 40;
+    boltLength = halfCarriage ? 30 : 35;
 
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
         explode([0, -20, 0], true)
@@ -177,7 +177,7 @@ module printheadE3DV6(rotate=0, explode=0, t=undef, halfCarriage=false) {
     xCarriageType = MGN12H_carriage;
     xCarriageBeltSideSize = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());
     halfCarriage = (!is_undef(_useHalfCarriage) && _useHalfCarriage==true);
-    boltLength = halfCarriage ? 30 : 40;
+    boltLength = halfCarriage ? 30 : 35;
 
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
         explode(explode, true) {
@@ -195,14 +195,14 @@ module printheadE3DV6(rotate=0, explode=0, t=undef, halfCarriage=false) {
 module printheadOrbiterV3(rotate=0, explode=0, t=undef, halfCarriage=false) {
     xCarriageType = MGN12H_carriage;
     xCarriageBeltSideSize = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());
-    boltLength = 40;
+    boltLength = 35;
 
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
         explode(explode, true) {
             Printhead_OrbiterV3_assembly();
 
             explode([0, -20, 0], true)
-                xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), countersunk=true, offsetT=xCarriageHoleOffsetTop());
+                xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), screwType=hs_cap, offsetT=xCarriageHoleOffsetTop());
         }
 }
 
