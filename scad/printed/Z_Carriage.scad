@@ -119,7 +119,7 @@ module zCarriageSCS_hardware(cnc=false) {
                         boltM5Countersunk(12);
                     else
                         translate_z(2 - baseSize.z) // offset for extrusion channel
-                            boltM5Buttonhead(16);
+                            boltM5Buttonhead(10);
         *for (i = [2, 3])
             translate(holes[i])
                 explode(20, true)
