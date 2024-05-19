@@ -116,6 +116,9 @@ staged_assembly("Stage_2", big=true, ngb=true) {
 
     explode(150)
         Left_Side_with_Printbed_assembly();
+    baseDragChain();
+    if (eX < 400)
+        baseCoverLeftSideSupportsAssembly();
 }
 
 //!1. Slide the **Face_Top** assembly into the rest of the frame and tighten the hidden bolts.
@@ -182,7 +185,6 @@ module FinalAssembly() {
         }
         if (eX < 400)
             explode([0, -400, 100], true) {
-                baseCoverSideSupportsAssembly();
                 baseCoverTopAssembly();
             }
         if (useSidePanels) {

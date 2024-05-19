@@ -21,8 +21,9 @@ holeOffset = 20;
 chainAnchorOffset = 160;
 baseCoverTopSize = [eX > 300 ? 250 : 210, eY + eSize, 3];
 baseCoverBackSupportSize = [baseCoverTopSize.x, eSize, supportHeight - 2*eSize];
-baseCoverSideSupportSize = [8, eY/2, supportHeight];
-baseCoverFrontSupportSize = [baseCoverTopSize.x - baseCoverSideSupportSize.x, 12, 3*eSize/2];
+baseCoverLeftSideSupportSize = [8, eY/2, supportHeight];
+baseCoverRightSideSupportSize = [eSize + 10, eY/2, 5];
+baseCoverFrontSupportSize = [baseCoverTopSize.x - baseCoverLeftSideSupportSize.x, 12, 3*eSize/2];
 
 
 module chainAnchorHolePositions(size, offset=chainAnchorOffset) {
@@ -75,7 +76,7 @@ module baseCoverBackSupport(size, offset=chainAnchorOffset) {
     }
 }
 
-module Base_Cover_Back_Support_hardware(chain=true, offset=chainAnchorOffset) {
+module Base_Cover_Back_Support_hardware() {
     size = baseCoverBackSupportSize;
     for (x = [50, 3*size.x/4])
         translate([x, size.y/2, 5])
@@ -85,15 +86,18 @@ module Base_Cover_Back_Support_hardware(chain=true, offset=chainAnchorOffset) {
         rotate([0, -90, 0])
             translate_z(2)
                 boltM3Countersunk(8);
-    if (chain && $preview) {
-        dragChainSize = [15, 10.5, 10];
-        travel = 215;
-        drag_chain = drag_chain("x", dragChainSize, travel=travel, wall=1.5, bwall=1.5, twall=1.5);
-        translate([size.x - offset + 40, 5, 2*eSize + size.z -15])
-            rotate([0, -90, 0])
-                color(grey(25))
-                    not_on_bom()
-                        drag_chain_assembly(drag_chain, pos=(zPos($t) - 80), radius=0);
+}
+
+module baseDragChain(offset=chainAnchorOffset) {
+    dragChainSize = [15, 10.5, 10];
+    travel = 215;
+    drag_chain = drag_chain("x", dragChainSize, travel=travel, wall=1.5, bwall=1.5, twall=1.5);
+
+    translate([eX + eSize - offset + 40, eY + eSize + 5, 4*eSize + baseCoverBackSupportSize.z - 15]) {
+        rotate([0, -90, 0])
+            color(grey(25))
+                not_on_bom()
+                    drag_chain_assembly(drag_chain, pos=(zPos($t) - 80), radius=0);
     }
 }
 
@@ -110,7 +114,7 @@ module Base_Cover_Back_Support_250_stl() {
 }
 
 module baseCoverFrontSupport(size) {
-    x1 = holeOffset - baseCoverSideSupportSize.x;
+    x1 = holeOffset - baseCoverLeftSideSupportSize.x;
     fillet = 1;
     difference() {
         rounded_cube_xy([size.x, size.z, 3], fillet);
@@ -129,7 +133,7 @@ module baseCoverFrontSupport(size) {
 
 module Base_Cover_Front_Support_hardware() {
     size = baseCoverFrontSupportSize;
-    for (x = [holeOffset - baseCoverSideSupportSize.x, baseCoverTopSize.x/2 - 8, size.x - holeOffset])
+    for (x = [holeOffset - baseCoverLeftSideSupportSize.x, baseCoverTopSize.x/2 - 8, size.x - holeOffset])
         translate([x, 20, 3])
             explode(30, true)
                 boltM3ButtonheadHammerNut(8, nutExplode=40);
@@ -146,7 +150,7 @@ module Base_Cover_Front_Support_242_stl() {
             baseCoverFrontSupport(baseCoverFrontSupportSize);
 }
 
-module baseCoverSideSupport(size, tap=false) {
+module baseCoverLeftSideSupport(size, tap=false) {
     overlap = 5;
     difference() {
         union() {
@@ -170,41 +174,93 @@ module baseCoverSideSupport(size, tap=false) {
     }
 }
 
-module Base_Cover_Side_Support_150A_stl() {
-    stl("Base_Cover_Side_Support_150A")
+module Base_Cover_Left_Side_Support_150A_stl() {
+    stl("Base_Cover_Left_Side_Support_150A")
         color(pp1_colour)
-            baseCoverSideSupport(baseCoverSideSupportSize, tap=false);
+            baseCoverLeftSideSupport(baseCoverLeftSideSupportSize, tap=false);
 }
 
-module Base_Cover_Side_Support_150B_stl() {
-    stl("Base_Cover_Side_Support_150B")
+module Base_Cover_Left_Side_Support_150B_stl() {
+    stl("Base_Cover_Left_Side_Support_150B")
         color(pp2_colour)
-            baseCoverSideSupport(baseCoverSideSupportSize, tap=true);
+            baseCoverLeftSideSupport(baseCoverLeftSideSupportSize, tap=true);
 }
 
-module Base_Cover_Side_Support_175A_stl() {
-    stl("Base_Cover_Side_Support_175A")
+module Base_Cover_Left_Side_Support_175A_stl() {
+    stl("Base_Cover_Left_Side_Support_175A")
         color(pp1_colour)
-            baseCoverSideSupport(baseCoverSideSupportSize, tap=false);
+            baseCoverLeftSideSupport(baseCoverLeftSideSupportSize, tap=false);
 }
 
-module Base_Cover_Side_Support_175B_stl() {
-    stl("Base_Cover_Side_Support_175B")
+module Base_Cover_Left_Side_Support_175B_stl() {
+    stl("Base_Cover_Left_Side_Support_175B")
         color(pp2_colour)
-            baseCoverSideSupport(baseCoverSideSupportSize, tap=true);
+            baseCoverLeftSideSupport(baseCoverLeftSideSupportSize, tap=true);
+}
+module Base_Cover_Left_Side_Support_hardware() {
+    for (y = [baseCoverLeftSideSupportSize.y/4, 3*baseCoverLeftSideSupportSize.y/4])
+        translate([-_basePlateThickness, y, baseCoverLeftSideSupportSize.x/2])
+            rotate([0, -90, 0])
+                boltM3Buttonhead(10);
 }
 
-BaseCover = ["BaseCover", "Sheet perspex", 3, pp3_colour, false];
+module baseCoverRightSideSupport(size) {
+    difference() {
+        translate([baseCoverTopSize.x/2 - size.x + eSize, -baseCoverTopSize.y/2, 0])
+            rounded_cube_xy(size, 1.5);
+        baseCoverRightHolePositions(baseCoverTopSize)
+            boltHoleM3Tap(size.z);
+        for (y = [10, size.y - 10])
+            translate([baseCoverTopSize.x/2 + eSize/2, -baseCoverTopSize.y/2 +y, 0])
+                boltHoleM3(size.z);
+    }
+}
+
+module Base_Cover_Right_Side_Support_stl() {
+    stl("Base_Cover_Right_Side_Support")
+       color(pp2_colour)
+            baseCoverRightSideSupport(baseCoverRightSideSupportSize);
+}
+
+module baseCoverRightSideSupportAssembly() {
+    size = baseCoverRightSideSupportSize;
+    translate([eX + eSize - baseCoverTopSize.x/2, eSize + baseCoverTopSize.y/2, supportHeight - size.z]) {
+        Base_Cover_Right_Side_Support_stl();
+        for (y = [10, size.y - 10])
+            translate([baseCoverTopSize.x/2 + eSize/2, -baseCoverTopSize.y/2 +y, 0])
+                vflip()
+                    boltM4ButtonheadHammerNut(10);
+    }
+}
+
+BaseCover = ["BaseCover", "Sheet perspex", 3, pp4_colour, false];
+
+module baseCoverRightHolePositions(size) {
+    yLeft = baseCoverLeftSideSupportSize.y/4;
+    for (y = [3*yLeft])
+        translate([size.x/2 - 4, y - size.y/2, 0])
+            children();
+}
+
+module baseCoverLeftHolePositions(size=baseCoverTopSize) {
+    yLeft = baseCoverLeftSideSupportSize.y/4;
+
+    translate([eX + eSize - size.x/2, eSize + size.y/2, 0])
+        for (y = [yLeft, 3*yLeft, 5*yLeft, 7*yLeft])
+            translate([4 - size.x/2, y - size.y/2, 0])
+                children();
+}
 
 module baseCoverTopHolePositions(size) {
     for (x = [holeOffset, size.x/2, size.x - holeOffset], y = [8 -size.y/2, size.y/2 -10]) {
         translate([x - size.x/2, y, 0])
             children();
     }
-    yLeft = baseCoverSideSupportSize.y/4;
-    for (y = [yLeft, 3*yLeft, 5*yLeft, 7*yLeft])
-        translate([4 -size.x/2, y -size.y/2, 0])
+    translate(-[eX + eSize - size.x/2, eSize + size.y/2, 0])
+        baseCoverLeftHolePositions(size)
             children();
+    baseCoverRightHolePositions(size)
+        children();
 }
 
 module baseCoverTopAssembly(addBolts=true) {
@@ -285,38 +341,41 @@ module baseCoverFrontSupportsAssembly() {
         }
 }
 
-module baseCoverBackSupportsAssembly(chain=true) {
+module baseCoverBackSupportsAssembly() {
     translate([eX + eSize - baseCoverBackSupportSize.x, eY + eSize, 2*eSize]) {
         color(pp1_colour)
             if (eX == 300)
                 Base_Cover_Back_Support_210_stl();
             else
                 Base_Cover_Back_Support_250_stl();
-        Base_Cover_Back_Support_hardware(chain);
+        Base_Cover_Back_Support_hardware();
     }
 }
 
-module baseCoverSideSupportsAssembly() {
-    size = baseCoverSideSupportSize;
+module baseCoverLeftSideSupportsAssembly() {
+    size = baseCoverLeftSideSupportSize;
     translate([eX + eSize - baseCoverBackSupportSize.x + size.x, eSize, 0])
         rotate([0, -90, 0]) {
-            color(pp1_colour)
+            *color(pp1_colour)
                 if (eX == 300)
-                    Base_Cover_Side_Support_150A_stl();
+                    Base_Cover_Left_Side_Support_150A_stl();
                 else
-                    Base_Cover_Side_Support_175A_stl();
+                    Base_Cover_Left_Side_Support_175A_stl();
             for (x = [size.z/4, 3*size.z/4])
                 translate([x, size.y, 0])
                     vflip()
                         boltM3Buttonhead(size.x);
+            Base_Cover_Left_Side_Support_hardware();
         }
     translate([eX + eSize - baseCoverBackSupportSize.x, eSize + 2*size.y, 0])
-        rotate([180, -90, 0])
-            color(pp2_colour)
+        rotate([180, -90, 0]) {
+            *color(pp2_colour)
                 if (eX == 300)
-                    Base_Cover_Side_Support_150B_stl();
+                    Base_Cover_Left_Side_Support_150B_stl();
                 else
-                    Base_Cover_Side_Support_175B_stl();
+                    Base_Cover_Left_Side_Support_175B_stl();
+            Base_Cover_Left_Side_Support_hardware();
+        }
 }
 
 module baseCoverTopSupportsAssembly() {
@@ -327,7 +386,7 @@ module baseCoverTopSupportsAssembly() {
 module baseCoverSupportsAssembly() {
     baseCoverFrontSupportsAssembly();
     baseCoverBackSupportsAssembly();
-    baseCoverSideSupportsAssembly();
+    baseCoverLeftSideSupportsAssembly();
 }
 
 module baseFanMountHolePositions(size, z=0) {
@@ -343,7 +402,7 @@ module baseFanPosition(size, offsetX=0, z=0) {
         children();
 }
 
-module baseFanMount(sizeX, offsetX=0) {
+module baseFanMount(sizeX, offsetX=0, support=false) {
     size = [sizeX, iecHousingMountSize(eX).y, 3];
     fillet = 2;
     fan = fan40x11;
@@ -355,20 +414,29 @@ module baseFanMount(sizeX, offsetX=0) {
         baseFanMountHolePositions(size)
             boltHoleM4(size.z);
     }
+    supportSize = [40, 5, eSize + 10];
+    if (support)
+        difference() {
+            translate([size.x - supportSize.x, size.y - eSize - supportSize.y, -supportSize.z])
+                rounded_cube_xy(supportSize, 1.5);
+            translate([eSize + 3*baseCoverLeftSideSupportSize.y/4, size.y - eSize - supportSize.y, -supportSize.z + 6])
+                rotate([-90, 0, 0])
+                    boltHoleM3Tap(supportSize.y, horizontal=true);
+        }
 }
 
 module Base_Fan_Mount_120A_stl() {
     stl("Base_Fan_Mount_120A")
         color(pp3_colour)
             vflip() // better orientation for printing
-                baseFanMount(120, 50);
+                baseFanMount(120, 50, support=true);
 }
 
 module Base_Fan_Mount_145A_stl() {
     stl("Base_Fan_Mount_145A")
         color(pp3_colour) {
             vflip() // better orientation for printing
-                baseFanMount(145, 50);
+                baseFanMount(145, 50, support=true);
         }
 }
 
@@ -376,7 +444,7 @@ module Base_Fan_Mount_170A_stl() {
     stl("Base_Fan_Mount_170A")
         color(pp3_colour) {
             vflip() // better orientation for printing
-                baseFanMount(170, 50);
+                baseFanMount(170, 50, support=true);
         }
 }
 
