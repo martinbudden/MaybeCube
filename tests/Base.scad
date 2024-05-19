@@ -27,18 +27,17 @@ use <../scad/Parameters_Positions.scad>
 //$pose = 1;
 module Base_test() {
     Base_Plate_assembly();
-
     //Base_Plate_Stage_1_assembly();
+    //IEC_Housing_assembly();
     //basePlateAssembly(rightExtrusion=false, hammerNut=false);
-    //Base_Extrusions_assembly();
-    //basePlate();
     //BaseAL();
     //translate([eX + eSize, eSize, 0]) extrusionOY(eY);
     //pcbAssembly(BTT_SKR_V1_4_TURBO, pcbOnBase=true);
-    //baseCoverTopAssembly(false);
-    //baseCoverSideSupportsAssembly();
+    //baseCoverTopAssembly(!false);
+    //baseCoverLeftSideSupportsAssembly();
+    //baseCoverRightSideSupportAssembly();
     //baseCoverFrontSupportsAssembly();
-    //baseCoverBackSupportsAssembly(chain=!true);
+    //baseCoverBackSupportsAssembly();
     //baseFanMountAssembly();
     //printheadWiring(hotendDescriptor="OrbiterV3");
 
