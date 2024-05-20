@@ -48,21 +48,47 @@ module xCarriageVoronDragonBurner(inserts=true) {
     topOffset = 0;
     size1 = [xCarriageSize.x, 9 + topOffset, xCarriageSize.y];
     size2 = [32.5, 23 + topOffset, size1.z + xCarriageVoronDragonBurnerOffsetZ];
+    braceOffsetY = 10;
+    fillet = 1.5;
     difference() {
         union() {
             /*sizeT = [8, 3, size0.z];
             translate([-sizeT.x/2, xCarriageSize.z -sizeT.y + 1, 0])
                 rounded_cube_xy(sizeT, 1);*/
+
             translate([-size0.x/2, xCarriageSize.z -size0.y, 0])
                 rounded_cube_xy(size0, 1);
-            translate([-size1.x/2, xCarriageSize.z -size1.y + topOffset, 0])
+            translate([-size1.x/2, xCarriageSize.z -size1.y + topOffset, 0]) {
                 rounded_cube_xy(size1, 1);
+                translate([(-size0.x + size1.x)/2, 0, 0])
+                    rotate(180)
+                        fillet(fillet, size0.z);
+                translate([(size0.x + size1.x)/2, 0, 0])
+                    rotate(-90)
+                        fillet(fillet, size0.z);
+            }
             translate([-size2.x/2, xCarriageSize.z - size2.y + topOffset, 0])
                 rounded_cube_xy(size2, 1);
             size3 = [5, 45, xCarriageSize.y];
             for (x = [12, -12])
                 translate([x - size3.x/2, 9, 0])
                     cube(size3);
+            translate([12 - size3.x/2, 0, 0]) {
+                translate([0, xCarriageSize.z - size0.y, 0])
+                    rotate(180)
+                        fillet(fillet, size3.z);
+                translate([0, braceOffsetY + 2, 0])
+                    rotate(90)
+                        fillet(fillet, size3.z);
+            }
+            translate([-12 + size3.x/2, 0, 0]) {
+                translate([0, xCarriageSize.z - size0.y, 0])
+                    rotate(-90)
+                        fillet(fillet, size3.z);
+                translate([0, braceOffsetY + 2, 0])
+                    rotate(0)
+                        fillet(fillet, size3.z);
+            }
             hull() {
                 xCarriageVoronDragonBurnerCowlingBoltHoles(0)
                     cylinder(h=size1.z, r=4.5);
@@ -84,9 +110,9 @@ module xCarriageVoronDragonBurner(inserts=true) {
                     cylinder(h=size1.z, r=3);
             }
             hull() {
-                translate([-xCarriageBoltSeparation.x/2 + 7, 10, 0])
+                translate([-xCarriageBoltSeparation.x/2 + 7, braceOffsetY, 0])
                     cylinder(h=size1.z, r=2);
-                translate([xCarriageBoltSeparation.x/2 - 7, 10, 0])
+                translate([xCarriageBoltSeparation.x/2 - 7, braceOffsetY, 0])
                     cylinder(h=size1.z, r=2);
             }
         }
@@ -188,6 +214,8 @@ module xCarriageVoronRapidBurner(inserts=true) {
     topOffset = 0;
     size1 = [xCarriageSize.x, 9 + topOffset, xCarriageSize.y];
     size2 = [32.5, 23 + topOffset, size1.z + xCarriageVoronDragonBurnerOffsetZ];
+    braceOffsetY = 10;
+    fillet = 1.5;
     difference() {
         union() {
             /*sizeT = [8, 3, size0.z];
@@ -195,14 +223,31 @@ module xCarriageVoronRapidBurner(inserts=true) {
                 rounded_cube_xy(sizeT, 1);*/
             translate([-size0.x/2, xCarriageSize.z -size0.y, 0])
                 rounded_cube_xy(size0, 1);
-            translate([-size1.x/2, xCarriageSize.z -size1.y + topOffset, 0])
+            translate([-size1.x/2, xCarriageSize.z -size1.y + topOffset, 0]) {
                 rounded_cube_xy(size1, 1);
+                translate([(-size0.x + size1.x)/2, 0, 0])
+                    rotate(180)
+                        fillet(fillet, size0.z);
+                translate([(size0.x + size1.x)/2, 0, 0])
+                    rotate(-90)
+                        fillet(fillet, size0.z);
+            }
             translate([-size2.x/2, xCarriageSize.z - size2.y + topOffset, 0])
                 rounded_cube_xy(size2, 1);
             size3 = [5, 45, xCarriageSize.y];
             for (x = [12, -12])
                 translate([x - size3.x/2, 9, 0])
                     cube(size3);
+            translate([12 - size3.x/2, 0, 0]) {
+                translate([0, braceOffsetY + 2, 0])
+                    rotate(90)
+                        fillet(fillet, size3.z);
+            }
+            translate([-12 + size3.x/2, 0, 0]) {
+                translate([0, braceOffsetY + 2, 0])
+                    rotate(0)
+                        fillet(fillet, size3.z);
+            }
             hull() {
                 xCarriageVoronDragonBurnerCowlingBoltHoles(0)
                     cylinder(h=size1.z, r=4.5);
