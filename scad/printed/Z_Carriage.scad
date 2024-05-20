@@ -15,7 +15,7 @@ include <../Parameters_Main.scad>
 _useSCSBearingBlocksForZAxis = true;
 
 scsType = _zRodDiameter == 8 ? SCS8LUU : _zRodDiameter == 10 ? SCS10LUU : SCS12LUU;
-baseSize = [scs_size(scsType).x, scs_size(scsType).z, _zCarriageSCS_sizeZ];
+baseSize = [scs_size(scsType).x, scs_size(scsType).z - eSize, 5];
 shelfThickness = 5;
 function zCarriageTab() = false;
 useTab = zCarriageTab();
@@ -39,7 +39,7 @@ module zCarriageSCS(cnc=false) {
         // the base
         difference() {
             linear_extrude(baseSize.z, convexity=2) {
-                translate([-baseSize.x/2, -baseSize.y/2])
+                translate([-baseSize.x/2, -baseSize.y/2 -eSize/2])
                     rounded_square([baseSize.x, baseSize.y], fillet, center=false);
                 if (useTab)
                     difference() {
@@ -89,13 +89,14 @@ module zCarriageSCS(cnc=false) {
         }
         // add the shelf
         if (!cnc)
-            translate([-baseSize.x/2, baseSize.y/2 - eSize - shelfThickness, 0])
+            translate([-baseSize.x/2, baseSize.y/2 - eSize/2 - shelfThickness, 0])
                 difference() {
                     sizeX = baseSize.x + shelfExtension;
-                    rounded_cube_xy([sizeX, shelfThickness, eSize + baseSize.z], uprightFillet);
-                    translate([useTab ? 10 : sizeX/2, 0, baseSize.z + eSize/2])
-                        rotate([-90, 180, 0])
-                            boltHoleM4(shelfThickness, horizontal=true);
+                    rounded_cube_xy([sizeX, shelfThickness, eSize], uprightFillet);
+                    for (x = useTab ? [10] : [sizeX/4, 3*sizeX/4])
+                        translate([x, 0, eSize/2])
+                            rotate([-90, 180, 0])
+                                boltHoleM4(shelfThickness, horizontal=true);
                 }
     }
 }
@@ -106,11 +107,13 @@ module zCarriageSCS_hardware(cnc=false) {
             translate([boltOffset, scs_screw_separation_z(scsType)/2, 0])
                 vflip()
                     boltM4ButtonheadTNut(_frameBoltLength, 3.25);
-        *if (!cnc)
-            translate([useTab ? (10 - baseSize.x/2) : 0.5, baseSize.y/2 - eSize -shelfThickness, baseSize.z + eSize/2])
-                rotate([-90, 0, 0])
-                    vflip()
+        *if (!cnc) {
+            sizeX = baseSize.x + tabRightLength;
+            for (x = useTab ? [(10 - baseSize.x/2)] : [-sizeX/4, sizeX/4])
+               translate([x, baseSize.y/2 - eSize/2 -shelfThickness, eSize/2])
+                    rotate([-90, 0, 180])
                         boltM4ButtonheadTNut(_frameBoltLength);
+        }
 
         for (i = [0, 1])
             translate(holes[i])
