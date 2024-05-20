@@ -14,8 +14,7 @@ include <FaceRightExtras.scad>
 use <../Parameters_Positions.scad>
 
 //!1. On a flat surface, bolt the upper and lower extrusions into the left and right uprights as shown.
-//!2. Bolt the **IEC_Housing_assembly** to the lower extrusion and upright.
-//!3. If using a Bowden Extruder, bolt the **Extruder_Bracket_assembly** to the upper extrusion and upright.
+//!2. If using a Bowden Extruder, bolt the **Extruder_Bracket_assembly** to the upper extrusion and upright.
 //
 module Right_Side_assembly(bedHeight=undef, printbedKinematic=undef, sideAssemblies=undef) pose(a=[55, 0, 25 - 90])
 assembly("Right_Side", big=true) {

@@ -241,6 +241,7 @@ module basePlateAssembly(rightExtrusion=false, hammerNut=true) {
 //!1. Insert the bolts into the ends of the E2040 and E2080 extrusions in preparation for connection to the frame uprights.
 //!2. Bolt the extrusions and the L-shaped feet to the baseplate as shown.
 //!3. Attach the **IEC Housing assembly** to the left side extrusion.
+//!4. Attach the **Base_Cover_Front_Support** and the **Base_Cover_Back_Support** to the front and rear extrusions.
 //
 module Base_Plate_Stage_1_assembly()
 assembly("Base_Plate_Stage_1", big=true, ngb=true) {

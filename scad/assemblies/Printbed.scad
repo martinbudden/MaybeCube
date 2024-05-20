@@ -521,7 +521,7 @@ assembly("Printbed_Frame_with_Z_Carriages", big=true, ngb=true) {
 }
 
 //!1. Attach the print surface to the heated bed.
-//!2. Insert a bolt into each of the bolt holes in the heated bed and add a stack of O-rings, washers and a hammer nut as shown.
+//!2. Insert a bolt into each of the bolt holes in the heated bed and add a silicone spacer and a hammer nut as shown.
 //
 module Heated_Bed_assembly()
 assembly("Heated_Bed", big=true) {
