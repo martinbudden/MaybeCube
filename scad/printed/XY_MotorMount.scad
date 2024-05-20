@@ -651,8 +651,9 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
     if (left) {
         size = [xyMotorMountSize(motorWidth, offset, left, useReversedBelts, cnc, flat).x, -offset.y + eY + 2*eSize + motorWidth/2 - coreXYPosTR.y, eZ + basePlateThickness - coreXYPosTR.z];
         yPositions = sideBoltPositions(size.y, cnc, flat);
-        for (x = upperBoltPositions(size.x))
-            translate([x + eSize, eY + 3*eSize/2, basePlateThickness + bracketHeightLeft - 5 + blockHeightExtra - (use2060ForTopRear() ? 2*eSize + 2 : eSize)])
+       for (x = upperBoltPositions(size.x))
+            //translate([x + eSize, eY + 3*eSize/2, basePlateThickness + bracketHeightLeft - 5 + blockHeightExtra - (use2060ForTopRear() ? 2*eSize + 2 : eSize)])
+            translate([x + eSize, eY + 3*eSize/2, (use2060ForTopRear() ? 0 : 2*eSize - 1.5)])
                 vflip()
                     boltM4ButtonheadHammerNut(use2060ForTopRear() ? _frameBoltLength + 2 : _frameBoltLength );
         if (sideSupportSize.y)
@@ -660,14 +661,13 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
                 if (flat || cnc)
                     vflip() {
                         translate([0, -yPositions[0], 0])
-                            boltM3CapheadHammerNut(50, nutOffset=1.98, nutExplode=90);
+                            boltM3CapheadHammerNut(50, nutOffset=1.98, rotate=90, nutExplode=90);
                         translate([0, -yPositions[1], 0]) {
                             explode(20, true)
-                                boltM3Caphead(10);
-                            translate_z(-bracketHeightLeft - basePlateThickness + 10)
-                                vflip()
-                                    explode(100)
-                                        boltM3Caphead(10);
+                                boltM3Caphead(35);
+                            translate_z(-basePlateThickness - braceOffsetZ - 5)
+                                explode(-100)
+                                    nutM3();
                         }
                     }
                 else
@@ -684,21 +684,21 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
         yPositions = sideBoltPositions(size.y, cnc, flat);
         bracketHeight = useReversedBelts ? bracketHeightLeft : bracketHeightRight;
         for (x = upperBoltPositions(size.x))
-            translate([eX + eSize - x, eY + 3*eSize/2, basePlateThickness + bracketHeight - 5 + blockHeightExtra - (use2060ForTopRear() ? 2*eSize + 2: eSize)])
+            //translate([eX + eSize - x, eY + 3*eSize/2, basePlateThickness + bracketHeight - 4 + blockHeightExtra - (use2060ForTopRear() ? 2*eSize + 2: eSize)])
+            translate([eX + eSize - x, eY + 3*eSize/2, (use2060ForTopRear() ? 0 : 2*eSize - 1.5)])
                 vflip()
                     boltM4ButtonheadHammerNut(use2060ForTopRear() ? _frameBoltLength + 2 : _frameBoltLength );
         translate([eX + 3*eSize/2, 0,  0])
             if (flat || cnc) 
                 vflip() {
                     translate([0, -yPositions[0], 0])
-                        boltM3CapheadHammerNut(50, nutOffset=1.98, nutExplode=120);
+                        boltM3CapheadHammerNut(50, nutOffset=1.98, rotate=90, nutExplode=120);
                     translate([0, -yPositions[1], 0]) {
                         explode(20, true)
-                            boltM3Caphead(10);
-                        translate_z(-bracketHeight - basePlateThickness + 10)
-                            vflip()
-                                explode(130)
-                                    boltM3Caphead(10);
+                            boltM3Caphead(40);
+                        translate_z(-basePlateThickness - braceOffsetZ - braceThickness - 5)
+                            explode(-130)
+                                nutM3();
                     }
                 }
             else
@@ -841,7 +841,7 @@ module XY_Motor_Mount_Brace_Left_Lower(coreXYIdlerBore) {
             translate([eSize/2, yPositions[0], 0])
                 boltHoleM3(braceOffsetZ);
             translate([eSize/2, yPositions[1], 0])
-                boltHoleM3Tap(braceOffsetZ);
+                boltHoleM3(braceOffsetZ);
         }
         translate([0, eY + 2*eSize - xyMotorMountSize.y, 0]) {
             translate([eSize, 18, 0])
@@ -874,7 +874,7 @@ module XY_Motor_Mount_Brace_Right_Lower(coreXYIdlerBore) {
             translate([eSize/2, yPositions[0], 0])
                 boltHoleM3(height);
             translate([eSize/2, yPositions[1], 0])
-                boltHoleM3Tap(height);
+                boltHoleM3(height);
             for (y = [0, plainIdlerPulleyOffset().y])
                 translate([eSize - coreXYPosBL().x, coreXYPosTR(motorWidth).y + y, size.z + braceOffsetZ])
                     vflip()
@@ -912,9 +912,11 @@ module XY_Motor_Mount_Brace_Left_Upper(coreXYIdlerBore) {
                 yPositions = sideBoltPositions(xyMotorMountSize.y, flat=true);
                 translate([eSize/2, yPositions[0], 0])
                     boltHoleM3(height);
-                translate([eSize/2, yPositions[1], height])
+                translate([eSize/2, yPositions[1], height]) {
                     vflip()
-                        boltHoleM3Counterbore(height + eps, boreDepth=height - 5, boltHeadTolerance=0.5);
+                        nutHoleM3(height, nutHoleTolerance=0.4, nutDepth=height - 5);
+                        //boltHoleM3Counterbore(height + eps, boreDepth=height - 5, boltHeadTolerance=0.5);
+                }
                 for (y = [0, plainIdlerPulleyOffset().y])
                     translate([coreXYPosBL().x, coreXYPosTR(motorWidth).y + y, size.z])
                         vflip()
@@ -940,7 +942,8 @@ module XY_Motor_Mount_Brace_Right_Upper(coreXYIdlerBore) {
                     boltHoleM3(height);
                 translate([eSize/2, yPositions[1], height])
                     vflip()
-                        boltHoleM3Counterbore(height + eps, boreDepth=height - 5, boltHeadTolerance=0.5);
+                        nutHoleM3(height, nutHoleTolerance=0.4, nutDepth=height - 5);
+                        //boltHoleM3Counterbore(height + eps, boreDepth=height - 5, boltHeadTolerance=0.5);
             }
     }
 }
@@ -1106,9 +1109,8 @@ module XY_Motor_Mount_Left_M5_stl() {
 }
 
 
-//!1. Bolt the idler pulleys and the **XY_Motor_Mount_Brace_Left** to the **XY_Motor_Mount_Left**. Note the brace is not
-//!symmetrical - there is an orientation indicator and this should point towards the back of the printer. Tighten the
-//!pulley bolts until the pulleys no longer turn freely, and then loosen the bolts by about 1/4 turn until the pulleys
+//!1. Bolt the idler pulleys, shims,  and the to XY_Motor_Mount braces to the **XY_Motor_Mount_Left** as show.
+//!Tighten the shoulder bolts until the pulleys no longer turn freely, and then loosen the bolts by about 1/4 turn until the pulleys
 //!turn freely again.
 //!2. Bolt the motor and the cork damper to the motor mount. The cork damper thermally insulates the motor from the mount
 //!and should not be omitted.
@@ -1262,9 +1264,8 @@ module XY_Motor_Mount_Right_M5_stl() {
         xyMotorMountRight(M5=true);
 }
 
-//!1. Bolt the idler pulleys and the **XY_Motor_Mount_Brace_Right** to the **XY_Motor_Mount_Right**. Note the brace is not
-//!symmetrical - there is an orientation indicator and this should point towards the back of the printer. Tighten the
-//!pulley bolts until the pulleys no longer turn freely, and then loosen the bolts by about 1/4 turn until the pulleys
+//!1. Bolt the idler pulleys, shims,  and the to XY_Motor_Mount braces to the **XY_Motor_Mount_Right** as show.
+//!Tighten the shoulder bolts until the pulleys no longer turn freely, and then loosen the bolts by about 1/4 turn until the pulleys
 //!turn freely again.
 //!2. Bolt the motor and the cork damper to the motor mount. The cork damper thermally insulates the motor from the mount
 //!and should not be omitted.
