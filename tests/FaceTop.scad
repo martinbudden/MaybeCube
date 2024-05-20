@@ -32,7 +32,7 @@ module Face_Top_test() {
     //printheadOrbiterV3();
 
     *if (!exploded())
-        printheadWiring(hotendDescriptor="OrbiterV3");
+        printheadWiring(hotendDescriptor="OrbiterV3", showCable=true);
     *wiringGuidePosition() {
         vflip() {
             Wiring_Guide_Socket_stl();

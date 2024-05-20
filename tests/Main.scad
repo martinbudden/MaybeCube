@@ -27,10 +27,9 @@ module main_test() {
     //let($hide_bolts=true)
     //let($hide_extrusions=true)
     //let($hide_rails=true)
-    translate([eX/2 + eSize, eY/2 + eSize, eZ/2]) main_assembly();
+    rotate($vpr.z == 25 ? 0 : -90 + 30)
+        main_assembly();
 }
 
 if ($preview)
-    //rotate($vpr.z == 25 ? 0 : -90 + 30)
-        translate([-eX/2 - eSize, -eY/2 - eSize, -eZ/2])
-            main_test();
+    main_test();

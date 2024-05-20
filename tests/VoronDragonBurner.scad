@@ -48,6 +48,12 @@ module VoronDragonBurner_test() {
 X_Carriage_Voron_Dragon_Burner_stl();
 xCarriageVoronDragonBurner_hardware();
 }
+
+*translate([0.15, -32.25, 0])  {
+    X_Carriage_Voron_Rapid_Burner_stl();
+    xCarriageVoronDragonBurner_hardware();
+}
+
 //vdb_Carriage_Base_Short();
 //vdb_MGN12H_X_Carriage_Lite();
 //vdb_Boop_Front_Extended();
@@ -65,10 +71,6 @@ inserts=false;
 //vrb_DFA_Hotend_Mount();
 //vrb_Cowl_NoProbe();
 //vrb_Cowl_NoProbe_hardware();
-*translate([0.15, -32.25, 0])  {
-    X_Carriage_Voron_Rapid_Burner_stl();
-    xCarriageVoronDragonBurner_hardware();
-}
 //X_Carriage_Voron_Dragon_Burner_assembly();
 //Printhead_Voron_Dragon_Burner_assembly();
 
