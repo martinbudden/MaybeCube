@@ -1,6 +1,8 @@
 include <NopSCADlib/vitamins/nuts.scad>
 
 nutHoleTolerance = 0.2;
+boltHoleEpsilon = eps;
+boltHoleCapHeightTolerance = 0;
 
 METRIC_NUT_AC_WIDTHS = [
     -1, //0 index is not used but reduces computation
@@ -29,26 +31,26 @@ module nutHole(diameter, length=0, tolerance=nutHoleTolerance, nutDepth=0) {
     radius = METRIC_NUT_AC_WIDTHS[diameter]/2 + tolerance;
     depth = nutDepth ? nutDepth : METRIC_NUT_THICKNESS[diameter];
     translate([0, 0, -boltHoleEpsilon])
-        linear_extrude(depth+boltHoleCapHeightTolerance + 2*boltHoleEpsilon)
+        linear_extrude(depth + boltHoleCapHeightTolerance + 2*boltHoleEpsilon)
             circle(r=radius, $fn=6);
     if (length) {
         boltHole(diameter, length, tolerance);
     }
 }
 
-module nutHoleM3(length=0, tolerance=nutHoleTolerance, nutDepth=0) {
-    radius = METRIC_NUT_AC_WIDTHS[3]/2 + tolerance;
+module nutHoleM3(length=0, nutHoleTolerance=nutHoleTolerance, nutDepth=0) {
+    radius = METRIC_NUT_AC_WIDTHS[3]/2 + nutHoleTolerance;
     depth = nutDepth ? nutDepth : METRIC_NUT_THICKNESS[3];
     translate([0, 0, -boltHoleEpsilon])
-        linear_extrude(depth+boltHoleCapHeightTolerance + 2*boltHoleEpsilon)
+        linear_extrude(depth + boltHoleCapHeightTolerance + 2*boltHoleEpsilon)
             circle(r=radius, $fn=6);
     if (length) {
-        boltHoleM3(length, tolerance);
+        boltHoleM3(length);
     }
 }
 
 module nutM3(tolerance=nutHoleTolerance, nutDepth=0) {
-    if ($preview&&is_undef($hide_bolts))
+    if ($preview && is_undef($hide_bolts))
         translate_z(nutDepth-METRIC_NUT_THICKNESS[3])
             nut(M3_nut);
 }
@@ -82,7 +84,7 @@ module nutHoleM4(length=0, tolerance=nutHoleTolerance, nutDepth=0) {
 }
 
 module nutM4(tolerance=nutHoleTolerance, nutDepth=0) {
-    if ($preview&&is_undef($hide_bolts))
+    if ($preview && is_undef($hide_bolts))
         translate_z(nutDepth-METRIC_NUT_THICKNESS[3])
             nut(M4_nut);
 }
