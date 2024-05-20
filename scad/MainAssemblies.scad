@@ -78,6 +78,8 @@ staged_assembly("Left_Side_with_Printbed", big=true, ngb=true) {
 
 //!1. Slide the right face into the base plate assembly.
 //!2. Ensuring the frame remains square, tighten the hidden bolts and the bolts under the baseplate.
+//!3. Attach the fan mounts and fans to the right face.
+//!4. Connect the fans to the mainboard.
 //
 module Stage_1_assembly() //pose(a=_poseMainAssembly)
 staged_assembly("Stage_1", big=true, ngb=true) {
@@ -106,19 +108,27 @@ staged_assembly("Stage_1", big=true, ngb=true) {
 */
 }
 
-//!1. Slide the left face into the base plate assembly.
-//!2. Ensuring the frame remains square, tighten the hidden bolts and the bolts under the baseplate.
+//!1. Bolt together the two **Base_Cover_Left_Side_Supports** and bolt them to the base.
+//!1. Thread the heated bed cables through the cable chain and secure the cable chain to the print bed.
+//!2. Wrap the remaining part of the heated bed cables in cable wrap.
+//!3. Slide the left face into the base plate assembly.
+//!4. Ensuring the frame remains square, tighten the hidden bolts and the bolts under the baseplate.
+//!5. Attach the other end of the cable chain to the rear extrusion.
+//!6. Connect the heated bed cables to the mainboard.
 //
 module Stage_2_assembly() //pose(a=_poseMainAssembly)
 staged_assembly("Stage_2", big=true, ngb=true) {
 
     Stage_1_assembly();
 
-    explode(150)
+    explode([-50, 0, 250]) {
         Left_Side_with_Printbed_assembly();
-    baseDragChain();
+        baseDragChain();
+    }
+    cable_wrap(100);
     if (eX < 400)
-        baseCoverLeftSideSupportsAssembly();
+        explode(150)
+            baseCoverLeftSideSupportsAssembly();
 }
 
 //!1. Slide the **Face_Top** assembly into the rest of the frame and tighten the hidden bolts.
@@ -141,7 +151,7 @@ staged_assembly("Stage_3", big=true, ngb=true) {
    //Partition_assembly();
 }
 
-//!1. Bolt the **Printhead_E3DV6_assembly** to the MGN carriage.
+//!1. Bolt the **Printhead_OrbiterV3_assembly** to the  X_Carriage.
 //!2. Route the wiring from the print head to the mainboard and secure it with the **Wiring_Guide_Clamp**.
 //!3. Adjust the belt tension.
 //!4. If using a Bowden Extruder, connect the Bowden tube between the extruder and the printhead.

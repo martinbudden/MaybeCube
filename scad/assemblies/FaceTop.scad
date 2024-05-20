@@ -26,7 +26,8 @@ useCamera = false;
 
 
 //!1. Bolt the **Wiring_Guide** to the rear extrusion.
-//!2. Screw the bolts into the ends of the front and rear extrusions.
+//!2. Screw the bolts into the ends of the front and rear extrusions. Note that the top bolts on the front and rear extensions are shorter then the
+//!other bolts, this is so they do not block access to the hidden bolts on the left and right extrusions during assembly.
 //!3. Insert the t-nuts for the **Handle** into the extrusions.
 //!4. Insert the t-nuts for the **Top_Corner_Piece**s into the extrusions.
 //!5. Bolt the front and rear extrusions to the side extrusions, leaving the bolts slightly loose.
@@ -153,11 +154,11 @@ module faceTopFront(use2040=true) {
         explode([0, -120, 0], true) {
             extrusionOXEndBoltPositions(eX)
                 boltM5Buttonhead(_endBoltShortLength);
-            // second bolt also needs to be _endBoltShortLength, to give room to XY_Idler pulley bolt
+            // second bolt also needs to be _endBoltShortLength when not using reversed belts, to give room to XY_Idler pulley bolt
             if (use2040)
                 translate_z(-eSize)
                     extrusionOXEndBoltPositions(eX)
-                        boltM5Buttonhead(_endBoltShortLength);
+                        boltM5Buttonhead(_useReversedBelts ? _endBoltLength : _endBoltShortLength);
             difference() {
                 if (use2040)
                     translate_z(-eSize)
@@ -177,7 +178,7 @@ module faceTopFront(use2040=true) {
     }
 }
 
-module faceTopBack(height=40, fov_distance=0) {
+module faceTopBack(height=60, fov_distance=0) {
     // add the back top extrusion oriented in the X direction
     explode([0, 120, 0], true, show_line=false) {
         translate([eSize, eY + eSize, eZ - eSize]) {

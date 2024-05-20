@@ -9,6 +9,7 @@ use <NopSCADlib/vitamins/wire.scad>
 
 include <../utils/PrintheadOffsets.scad>
 include <../utils/X_Rail.scad>
+include <../vitamins/cables.scad>
 include <../vitamins/OrbiterV3.scad>
 
 include <../../../BabyCube/scad/vitamins/pcbs.scad>
@@ -124,7 +125,8 @@ module printheadOrbiterV3Assembly() {
 //!3. Bolt the **Smart_Orbiter_V3_Fan_Bracket** to the Smart Orbiter V3.
 //!4. Bolt the RB5015 blower to the **Smart_Orbiter_V3_Fan_Bracket**.
 //!5. Insert the  **Smart_Orbiter_V3_Duct** into the blower outlet and bolt it to the **Smart_Orbiter_V3_Fan_Bracket**.
-//!6. Secure the cables to the **X_Carriage_OrbiterV3** using zipties.
+//!6  Wrap the cables in cable wrap.
+//!7. Secure the cables to the **X_Carriage_OrbiterV3** using zipties.
 //
 module Printhead_OrbiterV3_assembly() pose(a=[55, 0, 25 + 90])
 assembly("Printhead_OrbiterV3", big=true) {
@@ -138,6 +140,7 @@ assembly("Printhead_OrbiterV3", big=true) {
     explode([0, -60, 0], true)
         xCarriageOrbiterV3HolePositions(xCarriageType)
             boltM3Countersunk(10);
+    cable_wrap(110);
     if (!exploded())
         translate(printheadWiringOffset(hotendDescriptor)) {
             xCarriageOrbitrerV3CableTiePositions(full=false)
@@ -170,7 +173,7 @@ module printheadBeltSideBolts(rotate=0, explode=0, t=undef, halfCarriage=false) 
 
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
         explode([0, -20, 0], true)
-            xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), countersunk=true, offsetT=xCarriageHoleOffsetTop());
+            xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), screwType=hs_cap, offsetT=xCarriageHoleOffsetTop());
 }
 
 module printheadE3DV6(rotate=0, explode=0, t=undef, halfCarriage=false) {
@@ -184,7 +187,7 @@ module printheadE3DV6(rotate=0, explode=0, t=undef, halfCarriage=false) {
             Printhead_E3DV6_assembly();
 
             explode([0, -20, 0], true)
-                xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), countersunk=true, offsetT=xCarriageHoleOffsetTop());
+                xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), screwType=hs_cap, offsetT=xCarriageHoleOffsetTop());
             *translate([xCarriageFrontSize.x/2, 18, -18])
                 bl_touch_mount();
             if (halfCarriage)
