@@ -93,6 +93,7 @@ module baseDragChain(offset=chainAnchorOffset) {
     travel = 215;
     drag_chain = drag_chain("x", dragChainSize, travel=travel, wall=1.5, bwall=1.5, twall=1.5);
 
+    drag_chain(390);
     translate([eX + eSize - offset + 40, eY + eSize + 5, 4*eSize + baseCoverBackSupportSize.z - 15]) {
         rotate([0, -90, 0])
             color(grey(25))
@@ -356,7 +357,7 @@ module baseCoverLeftSideSupportsAssembly() {
     size = baseCoverLeftSideSupportSize;
     translate([eX + eSize - baseCoverBackSupportSize.x + size.x, eSize, 0])
         rotate([0, -90, 0]) {
-            *color(pp1_colour)
+            color(pp1_colour)
                 if (eX == 300)
                     Base_Cover_Left_Side_Support_150A_stl();
                 else
@@ -369,7 +370,7 @@ module baseCoverLeftSideSupportsAssembly() {
         }
     translate([eX + eSize - baseCoverBackSupportSize.x, eSize + 2*size.y, 0])
         rotate([180, -90, 0]) {
-            *color(pp2_colour)
+            color(pp2_colour)
                 if (eX == 300)
                     Base_Cover_Left_Side_Support_150B_stl();
                 else
