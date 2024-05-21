@@ -40,7 +40,7 @@ offsetT = [-3.25, -4.5, 0];
 function leftDrivePulleyOffset() = useReversedBelts() ? [26, use2060ForTopRear() ? -6 : -6] : [useXYDirectDrive ? 0 : 38 + 3*largePulleyOffset, 0];
 function rightDrivePulleyOffset() = [useXYDirectDrive ? 0 : -42.5 - 3*largePulleyOffset, useReversedBelts() ? (use2060ForTopRear()? -6 : -6) : 0]; // need to give clearance to extruder motor
 
-function upperBoltPositions(sizeX) = [eSize/2 + 3, sizeX - 3*eSize/2 - 8];
+function upperBoltPositions(sizeX) = [eSize/2, sizeX - 3*eSize/2];
 //function sideBoltPositions(sizeY, cnc, flat) = (cnc || flat) ? [eY + 5*eSize/2 - sizeY, eY + 7*eSize/2 - sizeY] : [eY + 5*eSize/2 - sizeY];
 function sideBoltPositions(sizeY, cnc, flat) = (cnc || flat) ? [eY + 2 * eSize - sizeY + 8, eY + eSize - 8] : [eY + 2 * eSize - sizeY + 8];
 leftDrivePlainIdlerOffset    = [plainIdlerPulleyOffset().x, plainIdlerPulleyOffset().y, 0];
@@ -499,7 +499,7 @@ module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], cor
                         boltM3Buttonhead(boltLength);
                 translate_z(-basePlateThickness - corkDamperThickness) {
                     explode(-30)
-                        rotate(left ? -90 : 90)
+                        rotate(left ? 0 : 0)
                             NEMA(motorType, jst_connector=true);
                         explode(-15)
                             corkDamper(motorType, corkDamperThickness);
