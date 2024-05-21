@@ -255,32 +255,31 @@ MC300/assemblies/*_diff.png
 MC300/dxfs/*_diff.png
 MC300/stls/*_diff.png
 
-MC300RB/assemblies/*
-MC300RB/bom/
-MC300RB/dxfs/*
-MC300RB/stls/*
-MC300RB/tmp/
-MC300RB/*.html
+MC300SB/assemblies/*
+MC300SB/bom/
+MC300SB/dxfs/*
+MC300SB/stls/*
+MC300SB/tmp/
+MC300SB/*.html
 # change to !, except for _diff, .stl, and .dxf, once released
-!MC300RB/readme.md
-!MC300RB/assemblies/main_assembled.png
-!MC300RB/assemblies/*.png
+!MC300SB/readme.md
+!MC300SB/assemblies/main_assembled.png
+!MC300SB/assemblies/*.png
 !MC300/dxfs/*.dxf
-!MC300RB/dxfs/*.png
-#!MC300RB/stls/*.stl
-!MC300RB/stls/*.png
-MC300RB/assemblies/*_diff.png
-MC300RB/dxfs/*_diff.png
-MC300RB/stls/*_diff.png
+!MC300SB/dxfs/*.png
+#!MC300SB/stls/*.stl
+!MC300SB/stls/*.png
+MC300SB/assemblies/*_diff.png
+MC300SB/dxfs/*_diff.png
+MC300SB/stls/*_diff.png
 
-MC300EB/
+MC300RB/
 
 MC300EBack/
 
-MC300RB40/
+MC300SB40/
 
 MC350_16/
-MC350_25/
 
 MC350/assemblies/*
 MC350/bom/
