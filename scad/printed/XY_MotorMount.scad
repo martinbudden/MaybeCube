@@ -1109,7 +1109,7 @@ module XY_Motor_Mount_Left_M5_stl() {
 }
 
 
-//!1. Bolt the idler pulleys, shims,  and the to XY_Motor_Mount braces to the **XY_Motor_Mount_Left** as show.
+//!1. Bolt the idler pulleys, shims,  and spacers **XY_Motor_Mount_Left** as shown.
 //!Tighten the shoulder bolts until the pulleys no longer turn freely, and then loosen the bolts by about 1/4 turn until the pulleys
 //!turn freely again.
 //!2. Bolt the motor and the cork damper to the motor mount. The cork damper thermally insulates the motor from the mount
@@ -1264,7 +1264,7 @@ module XY_Motor_Mount_Right_M5_stl() {
         xyMotorMountRight(M5=true);
 }
 
-//!1. Bolt the idler pulleys, shims,  and the to XY_Motor_Mount braces to the **XY_Motor_Mount_Right** as show.
+//!1. Bolt the idler pulleys, shims,  and spacers **XY_Motor_Mount_Right** as shown.
 //!Tighten the shoulder bolts until the pulleys no longer turn freely, and then loosen the bolts by about 1/4 turn until the pulleys
 //!turn freely again.
 //!2. Bolt the motor and the cork damper to the motor mount. The cork damper thermally insulates the motor from the mount
