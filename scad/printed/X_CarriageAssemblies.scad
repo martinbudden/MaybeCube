@@ -26,7 +26,8 @@ function xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation) =  [ma
 //function accelerometerOffset() = [10, -1, 8];
 //function accelerometerOffset() = [6.5, -2, 8];
 function accelerometerOffset() = [0, -10.5, 8];
-function xCarriageHoleOffsetTop() = halfCarriage ? -1 : 0;//[5.65, -1]; // for alignment with EVA
+function xCarriageHoleOffsetTop() = halfCarriage ? -1 : (xCarriageBoltSeparation.y - 50)/2;//[5.65, -1]; // for alignment with EVA
+function xCarriageHoleOffsetBottom() = -xCarriageHoleOffsetTop();
 //function xCarriageHoleOffsetTop() = [4, 0];
 //function xCarriageHoleOffsetBottom() = [9.7, 4.5]; // for alignment with EVA
 //function xCarriageHoleOffsetBottom() = [9.7, 0];
@@ -82,7 +83,7 @@ module X_Carriage_Beltside_RB_stl() {
     stl("X_Carriage_Beltside_RB"); // semicolon required for XChange build as this is not on BOM
     color(pp4_colour)
         rotate([90, 0, 0])// orientate for printing
-            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), screwType=hs_cap, reversedBelts=true, endCube=true);
+            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(), screwType=hs_cap, reversedBelts=true, endCube=true);
 }
 
 module X_Carriage_Beltside_RB_MGN9C_stl() {
