@@ -745,16 +745,16 @@ module XY_Motor_Mount_Brace_Left_RB3_stl() {
         XY_Motor_Mount_Brace_Left_RB(3);
 }
 
-module XY_Motor_Mount_Brace_Left_Lower_RB3_stl() {
-    stl("XY_Motor_Mount_Brace_Left_Lower_RB3"); // note - need semicolon to ensure explode of xyMotorMountBrace works
+module XY_Motor_Mount_Left_Middle_RB3_stl() {
+    stl("XY_Motor_Mount_Left_Middle_RB3"); // note - need semicolon to ensure explode of xyMotorMountBrace works
     color(pp3_colour)
-        XY_Motor_Mount_Brace_Left_Lower(3);
+        XY_Motor_Mount_Left_Middle(3);
 }
 
-module XY_Motor_Mount_Brace_Left_Upper_RB3_stl() {
-    stl("XY_Motor_Mount_Brace_Left_Upper_RB3"); // note - need semicolon to ensure explode of xyMotorMountBrace works
+module XY_Motor_Mount_Left_Upper_RB3_stl() {
+    stl("XY_Motor_Mount_Left_Upper_RB3"); // note - need semicolon to ensure explode of xyMotorMountBrace works
     color(pp2_colour)
-        XY_Motor_Mount_Brace_Left_Upper(3);
+        XY_Motor_Mount_Left_Upper(3);
 }
 module XY_Motor_Mount_Brace_Left_RB4_stl() {
     stl("XY_Motor_Mount_Brace_Left_RB4"); // note - need semicolon to ensure explode of xyMotorMountBrace works
@@ -762,16 +762,16 @@ module XY_Motor_Mount_Brace_Left_RB4_stl() {
         XY_Motor_Mount_Brace_Left_RB(4);
 }
 
-module XY_Motor_Mount_Brace_Left_Lower_RB4_stl() {
-    stl("XY_Motor_Mount_Brace_Left_Lower_RB4"); // note - need semicolon to ensure explode of xyMotorMountBrace works
+module XY_Motor_Mount_Left_Middle_RB4_stl() {
+    stl("XY_Motor_Mount_Left_Middle_RB4"); // note - need semicolon to ensure explode of xyMotorMountBrace works
     color(pp3_colour)
-        XY_Motor_Mount_Brace_Left_Lower(4);
+        XY_Motor_Mount_Left_Middle(4);
 }
 
-module XY_Motor_Mount_Brace_Left_Upper_RB4_stl() {
-    stl("XY_Motor_Mount_Brace_Left_Upper_RB4"); // note - need semicolon to ensure explode of xyMotorMountBrace works
+module XY_Motor_Mount_Left_Upper_RB4_stl() {
+    stl("XY_Motor_Mount_Left_Upper_RB4"); // note - need semicolon to ensure explode of xyMotorMountBrace works
     color(pp2_colour)
-        XY_Motor_Mount_Brace_Left_Upper(4);
+        XY_Motor_Mount_Left_Upper(4);
 }
 
 module XY_Motor_Mount_Brace_Left_RB(coreXYIdlerBore) {
@@ -825,7 +825,7 @@ module xyMotorMountBeltGuide2(sizeZ=10) {
             fillet(size.x - 3*fillet - 2, size.z);
 }
 
-module XY_Motor_Mount_Brace_Left_Lower(coreXYIdlerBore) {
+module XY_Motor_Mount_Left_Middle(coreXYIdlerBore) {
     motorWidth = motorWidth(motorType(_xyMotorDescriptor));
     offset = leftDrivePulleyOffset();
     xyMotorMountSize = xyMotorMountSize(motorWidth, offset, left=true, useReversedBelts=true, cnc=false, flat=true);
@@ -852,7 +852,7 @@ module XY_Motor_Mount_Brace_Left_Lower(coreXYIdlerBore) {
     }
 }
 
-module XY_Motor_Mount_Brace_Right_Lower(coreXYIdlerBore) {
+module XY_Motor_Mount_Right_Middle(coreXYIdlerBore) {
     motorWidth = motorWidth(motorType(_xyMotorDescriptor));
     offset = rightDrivePulleyOffset();
     xyMotorMountSize = xyMotorMountSize(motorWidth, -offset, left=false, useReversedBelts=true, cnc=false, flat=true);
@@ -891,7 +891,7 @@ module XY_Motor_Mount_Brace_Right_Lower(coreXYIdlerBore) {
     }
 }
 
-module XY_Motor_Mount_Brace_Left_Upper(coreXYIdlerBore) {
+module XY_Motor_Mount_Left_Upper(coreXYIdlerBore) {
     motorWidth = motorWidth(motorType(_xyMotorDescriptor));
     offset = leftDrivePulleyOffset();
     xyMotorMountSize = xyMotorMountSize(motorWidth, offset, left=true, useReversedBelts=true, cnc=false, flat=true);
@@ -925,7 +925,7 @@ module XY_Motor_Mount_Brace_Left_Upper(coreXYIdlerBore) {
     }
 }
 
-module XY_Motor_Mount_Brace_Right_Upper(coreXYIdlerBore) {
+module XY_Motor_Mount_Right_Upper(coreXYIdlerBore) {
     motorWidth = motorWidth(motorType(_xyMotorDescriptor));
     xyMotorMountSize = xyMotorMountSize(motorWidth, -rightDrivePulleyOffset(), left=false, useReversedBelts=true, cnc=false, flat=true);
     size = [25 - 1, xyMotorMountSize.y - eSize, braceThickness];
@@ -960,17 +960,17 @@ module XY_Motor_Mount_Brace_Right_RB3_stl() {
         XY_Motor_Mount_Brace_Right_RB(3);
 }
 
-module XY_Motor_Mount_Brace_Right_Lower_RB3_stl() {
-    stl("XY_Motor_Mount_Brace_Right_Lower_RB3"); // note - need semicolon to ensure explode of xyMotorMountBrace works
+module XY_Motor_Mount_Right_Middle_RB3_stl() {
+    stl("XY_Motor_Mount_Right_Middle_RB3"); // note - need semicolon to ensure explode of xyMotorMountBrace works
     vflip()
         color(pp3_colour)
-            XY_Motor_Mount_Brace_Right_Lower(3);
+            XY_Motor_Mount_Right_Middle(3);
 }
 
-module XY_Motor_Mount_Brace_Right_Upper_RB3_stl() {
-    stl("XY_Motor_Mount_Brace_Right_Upper_RB3"); // note - need semicolon to ensure explode of xyMotorMountBrace works
+module XY_Motor_Mount_Right_Upper_RB3_stl() {
+    stl("XY_Motor_Mount_Right_Upper_RB3"); // note - need semicolon to ensure explode of xyMotorMountBrace works
     color(pp2_colour)
-        XY_Motor_Mount_Brace_Right_Upper(3);
+        XY_Motor_Mount_Right_Upper(3);
 }
 
 module XY_Motor_Mount_Brace_Right_RB4_stl() {
@@ -979,17 +979,17 @@ module XY_Motor_Mount_Brace_Right_RB4_stl() {
         XY_Motor_Mount_Brace_Right_RB(4);
 }
 
-module XY_Motor_Mount_Brace_Right_Lower_RB4_stl() {
-    stl("XY_Motor_Mount_Brace_Right_Lower_RB4"); // note - need semicolon to ensure explode of xyMotorMountBrace works
+module XY_Motor_Mount_Right_Middle_RB4_stl() {
+    stl("XY_Motor_Mount_Right_Middle_RB4"); // note - need semicolon to ensure explode of xyMotorMountBrace works
     vflip()
         color(pp3_colour)
-            XY_Motor_Mount_Brace_Right_Lower(4);
+            XY_Motor_Mount_Right_Middle(4);
 }
 
-module XY_Motor_Mount_Brace_Right_Upper_RB4_stl() {
-    stl("XY_Motor_Mount_Brace_Right_Upper_RB4"); // note - need semicolon to ensure explode of xyMotorMountBrace works
+module XY_Motor_Mount_Right_Upper_RB4_stl() {
+    stl("XY_Motor_Mount_Right_Upper_RB4"); // note - need semicolon to ensure explode of xyMotorMountBrace works
     color(pp2_colour)
-        XY_Motor_Mount_Brace_Right_Upper(4);
+        XY_Motor_Mount_Right_Upper(4);
 }
 
 module XY_Motor_Mount_Brace_Right_RB(coreXYIdlerBore) {
@@ -1173,10 +1173,10 @@ module XYMotorMountLeftAssembly(cnc=false, flat=false) {
                     if (cnc || flat) {
                         explode(35, show_line=false)
                             stl_colour(pp3_colour)
-                                XY_Motor_Mount_Brace_Left_Lower_RB3_stl();
+                                XY_Motor_Mount_Left_Middle_RB3_stl();
                         explode(70, show_line=false)
                             stl_colour(pp2_colour)
-                                XY_Motor_Mount_Brace_Left_Upper_RB3_stl();
+                                XY_Motor_Mount_Left_Upper_RB3_stl();
                     } else {
                         explode(70, show_line=false)
                             stl_colour(pp2_colour)
@@ -1186,10 +1186,10 @@ module XYMotorMountLeftAssembly(cnc=false, flat=false) {
                     if (cnc || flat) {
                         explode(35, show_line=false)
                             stl_colour(pp3_colour)
-                                XY_Motor_Mount_Brace_Left_Lower_RB4_stl();
+                                XY_Motor_Mount_Left_Middle_RB4_stl();
                         explode(70, show_line=false)
                             stl_colour(pp2_colour)
-                                XY_Motor_Mount_Brace_Left_Upper_RB4_stl();
+                                XY_Motor_Mount_Left_Upper_RB4_stl();
                     } else {
                         explode(70, show_line=false)
                             stl_colour(pp2_colour)
@@ -1331,10 +1331,10 @@ module XYMotorMountRightAssembly(cnc=false, flat=false) {
                         explode(70, show_line=false)
                             vflip()
                                 stl_colour(pp3_colour)
-                                    XY_Motor_Mount_Brace_Right_Lower_RB3_stl();                            
+                                    XY_Motor_Mount_Right_Middle_RB3_stl();                            
                         explode(100, show_line=false)
                             stl_colour(pp2_colour)
-                                XY_Motor_Mount_Brace_Right_Upper_RB3_stl();                            
+                                XY_Motor_Mount_Right_Upper_RB3_stl();                            
                     } else {
                         explode(80, show_line=false)
                             vflip()
@@ -1346,10 +1346,10 @@ module XYMotorMountRightAssembly(cnc=false, flat=false) {
                         explode(70, show_line=false)
                             vflip()
                                 stl_colour(pp3_colour)
-                                    XY_Motor_Mount_Brace_Right_Lower_RB4_stl();                            
+                                    XY_Motor_Mount_Right_Middle_RB4_stl();                            
                         explode(100, show_line=false)
                             stl_colour(pp2_colour)
-                                XY_Motor_Mount_Brace_Right_Upper_RB4_stl();                            
+                                XY_Motor_Mount_Right_Upper_RB4_stl();                            
                     } else {
                         explode(80, show_line=false)
                             vflip()
