@@ -99,7 +99,8 @@ module Y_Carriage_Right_AL_dxf() {
 module Y_Carriage_Brace_Left_RB3_stl() {
     stl("Y_Carriage_Brace_Left_RB3");
     color(pp3_colour)
-        yCarriageBrace(carriageType(_yCarriageDescriptor), yCarriageBraceThickness(), plainIdlerOffset(), toothedIdlerOffset(), holeRadius, holeRadius, _coreXYDescriptor == "GT2_20_25" ? blockOffsetX : undef, reversedBelts=true, left=true);
+        vflip() // better orientation for printing
+            yCarriageBrace(carriageType(_yCarriageDescriptor), yCarriageBraceThickness(), plainIdlerOffset(), toothedIdlerOffset(), holeRadius, holeRadius, _coreXYDescriptor == "GT2_20_25" ? blockOffsetX : undef, reversedBelts=true, left=true);
 }
 
 module Y_Carriage_Brace_Right_RB3_stl() {
@@ -111,25 +112,29 @@ module Y_Carriage_Brace_Right_RB3_stl() {
 module Y_Carriage_Brace_Left_RB4_stl() {
     stl("Y_Carriage_Brace_Left_RB4");
     color(pp3_colour)
-        yCarriageBrace(carriageType(_yCarriageDescriptor), yCarriageBraceThickness(), plainIdlerOffset(), toothedIdlerOffset(), M3_tap_radius, holeRadius, _coreXYDescriptor == "GT2_20_25" ? blockOffsetX : undef, reversedBelts=true, left=true);
+        vflip() // better orientation for printing
+            yCarriageBrace(carriageType(_yCarriageDescriptor), yCarriageBraceThickness(), plainIdlerOffset(), toothedIdlerOffset(), M3_tap_radius, holeRadius, _coreXYDescriptor == "GT2_20_25" ? blockOffsetX : undef, reversedBelts=true, left=true);
 }
 
 module Y_Carriage_Brace_Right_RB4_stl() {
     stl("Y_Carriage_Brace_Right_RB4");
     color(pp3_colour)
-        yCarriageBrace(carriageType(_yCarriageDescriptor), yCarriageBraceThickness(), plainIdlerOffset(left=false), toothedIdlerOffset(left=false), M3_tap_radius, holeRadius, _coreXYDescriptor == "GT2_20_25" ? blockOffsetX : undef, reversedBelts=true, left=false);
+        vflip() // better orientation for printing
+            yCarriageBrace(carriageType(_yCarriageDescriptor), yCarriageBraceThickness(), plainIdlerOffset(left=false), toothedIdlerOffset(left=false), M3_tap_radius, holeRadius, _coreXYDescriptor == "GT2_20_25" ? blockOffsetX : undef, reversedBelts=true, left=false);
 }
 
 module Y_Carriage_Brace_Left_16_stl() {
     stl("Y_Carriage_Brace_Left_16")
         color(pp3_colour)
-            yCarriageBrace(carriageType(_yCarriageDescriptor), yCarriageBraceThickness(), plainIdlerOffset(), toothedIdlerOffset(), holeRadius, holeRadius, _coreXYDescriptor == "GT2_20_25" ? blockOffsetX : undef, left=true);
+            vflip() // better orientation for printing
+                yCarriageBrace(carriageType(_yCarriageDescriptor), yCarriageBraceThickness(), plainIdlerOffset(), toothedIdlerOffset(), holeRadius, holeRadius, _coreXYDescriptor == "GT2_20_25" ? blockOffsetX : undef, left=true);
 }
 
 module Y_Carriage_Brace_Right_16_stl() {
     stl("Y_Carriage_Brace_Right_16")
         color(pp3_colour)
-            yCarriageBrace(carriageType(_yCarriageDescriptor), yCarriageBraceThickness(), plainIdlerOffset(), toothedIdlerOffset(), holeRadius, holeRadius, _coreXYDescriptor == "GT2_20_25" ? blockOffsetX : undef, left=false);
+            vflip() // better orientation for printing
+                yCarriageBrace(carriageType(_yCarriageDescriptor), yCarriageBraceThickness(), plainIdlerOffset(), toothedIdlerOffset(), holeRadius, holeRadius, _coreXYDescriptor == "GT2_20_25" ? blockOffsetX : undef, left=false);
 }
 
 //!1. Insert the threaded inserts into the **Y_Carriage_Left** as shown.
@@ -163,14 +168,15 @@ assembly("Y_Carriage_Left", big=true, ngb=true) {
                 translate_z(yCarriageThickness() + pulleyStackHeight + eps)
                     explode(5*yCarriageExplodeFactor())
                         stl_colour(pp3_colour)
-                            if (useReversedBelts()) {
-                                if (coreXYIdlerBore() == 3)
-                                    Y_Carriage_Brace_Left_RB3_stl();
-                                else
-                                    Y_Carriage_Brace_Left_RB4_stl();
-                            } else {
-                                Y_Carriage_Brace_Left_16_stl();
-                            }
+                            vflip()
+                                if (useReversedBelts()) {
+                                    if (coreXYIdlerBore() == 3)
+                                        Y_Carriage_Brace_Left_RB3_stl();
+                                    else
+                                        Y_Carriage_Brace_Left_RB4_stl();
+                                } else {
+                                    Y_Carriage_Brace_Left_16_stl();
+                                }
             yCarriagePulleys(yCarriageType, plainIdler, toothedIdler, yCarriageThickness(), yCarriageBraceThickness(), plainIdlerOffset(), toothedIdlerOffset(), blockOffsetX, left=true);
             if (yCarriageInserts)
                 Y_Carriage_inserts(yCarriageType, tongueOffset(), railType(_xCarriageDescriptor), _xRailLength, thickness=yCarriageTongueThickness(yCarriageType));
@@ -208,14 +214,15 @@ assembly("Y_Carriage_Right", big=true, ngb=true) {
                 translate_z(yCarriageThickness() + pulleyStackHeight + 2*eps)
                     explode(5*yCarriageExplodeFactor())
                         stl_colour(pp3_colour)
-                            if (useReversedBelts()) {
-                                if (coreXYIdlerBore() == 3)
-                                    Y_Carriage_Brace_Right_RB3_stl();
-                                else
-                                    Y_Carriage_Brace_Right_RB4_stl();
-                            } else {
-                                Y_Carriage_Brace_Right_16_stl();
-                            }
+                            vflip()
+                                if (useReversedBelts()) {
+                                    if (coreXYIdlerBore() == 3)
+                                        Y_Carriage_Brace_Right_RB3_stl();
+                                    else
+                                        Y_Carriage_Brace_Right_RB4_stl();
+                                } else {
+                                    Y_Carriage_Brace_Right_16_stl();
+                                }
             yCarriagePulleys(yCarriageType, plainIdler, toothedIdler, yCarriageThickness(), yCarriageBraceThickness(), plainIdlerOffset(left=false), toothedIdlerOffset(left=false), blockOffsetX, left=false);
             if (yCarriageInserts)
                 Y_Carriage_inserts(yCarriageType, tongueOffset(), railType(_xCarriageDescriptor), _xRailLength, thickness=yCarriageTongueThickness(yCarriageType));
