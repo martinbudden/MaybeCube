@@ -72,7 +72,7 @@ module X_Carriage_Beltside_HC_16_stl() {
     stl("X_Carriage_Beltside_HC_16"); // semicolon required for XChange build as this is not on BOM
     color(pp4_colour)
         rotate([90, 0, 0])// orientate for printing
-            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), halfCarriage=true, endCube=true);
+            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), halfCarriage=true, inserts=false, endCube=true);
 }
 
 module X_Carriage_Beltside_RB_stl() {
@@ -83,7 +83,18 @@ module X_Carriage_Beltside_RB_stl() {
     stl("X_Carriage_Beltside_RB"); // semicolon required for XChange build as this is not on BOM
     color(pp4_colour)
         rotate([90, 0, 0])// orientate for printing
-            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(), screwType=hs_cap, reversedBelts=true, endCube=true);
+            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(), screwType=hs_cap, inserts=true, reversedBelts=true, endCube=true);
+}
+
+module X_Carriage_Beltside_RB_ST_stl() {
+    xCarriageType = MGN12H_carriage;
+    size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 1];
+
+    // orientate for printing
+    stl("X_Carriage_Beltside_RB_ST"); // semicolon required for XChange build as this is not on BOM
+    color(pp4_colour)
+        rotate([90, 0, 0])// orientate for printing
+            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(), screwType=hs_cap, inserts=false, reversedBelts=true, endCube=true);
 }
 
 module X_Carriage_Beltside_RB_MGN9C_stl() {
@@ -94,7 +105,7 @@ module X_Carriage_Beltside_RB_MGN9C_stl() {
     stl("X_Carriage_Beltside_RB_MGN9C"); // semicolon required for XChange build as this is not on BOM
     color(pp4_colour)
         rotate([90, 0, 0])// orientate for printing
-            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), reversedBelts=true, endCube=true);
+            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), inserts=false, reversedBelts=true, endCube=true);
 }
 
 module X_Carriage_Beltside_16_stl() {
@@ -105,7 +116,7 @@ module X_Carriage_Beltside_16_stl() {
     stl("X_Carriage_Beltside_16"); // semicolon required for XChange build as this is not on BOM
     color(pp4_colour)
         rotate([90, 0, 0])// orientate for printing
-            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), endCube=true);
+            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), inserts=false, endCube=true);
 }
 
 //!Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensioners into the
@@ -139,6 +150,11 @@ assembly("X_Carriage_Beltside", big=true) {
     offset = [ size.x/2 - 2,
                beltTensionerSize.y - beltAttachmentOffsetY() + gap,
                coreXYPosBL().z - xRailCarriagePositionZ()];
+    if (useReversedBelts)
+        for (x = [-xCarriageBeltClampHoleSeparation()/2, xCarriageBeltClampHoleSeparation()/2])
+            translate([x, 4.5, offset.z])
+                rotate([-90, 180, 0])
+                    threadedInsertM3();
     translate(offset) {
         if (useReversedBelts) {
             translate([0, 0, -(beltSeparation() + beltWidth())/2]) // -1.0 to -1.2
