@@ -724,7 +724,7 @@ module XY_Motor_Mount_Pulley_Spacer_M4_stl() {
     color(pp4_colour)
         difference() {
             h = pulleyStackHeight + yCarriageBraceThickness();
-            cylinder(h=h, d=9);
+            cylinder(h=h, d=8.5);
             boltHoleM4(h);
         }
 }
@@ -734,7 +734,7 @@ module XY_Motor_Mount_Pulley_Spacer_M5_stl() {
     color(pp4_colour)
         difference() {
             h = pulleyStackHeight + yCarriageBraceThickness();
-            cylinder(h=h, d=10);
+            cylinder(h=h, d=9);
             boltHoleM5(h);
         }
 }
