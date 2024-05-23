@@ -11,8 +11,10 @@ include <NopSCADlib/vitamins/hot_ends.scad>
 include <NopSCADlib/vitamins/inserts.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
 
+use <../printed/X_CarriageAssemblies.scad>
 include <../utils/X_Carriage.scad>
 include <../vitamins/nuts.scad>
+include <../vitamins/inserts.scad>
 
 function voronColor() = grey(25);
 function voronAccentColor() = crimson;
@@ -24,12 +26,19 @@ module X_Carriage_Voron_Mini_Afterburner_stl() {
     stl("X_Carriage_Voron_Mini_Afterburner");
     color(pp3_colour)
         rotate(180) // align for printing
-            xCarriageVoronMiniAfterburner();
+            xCarriageVoronMiniAfterburner(inserts=true);
+}
+
+module X_Carriage_Voron_Mini_Afterburner_ST_stl() {
+    stl("X_Carriage_Voron_Mini_Afterburner");
+    color(pp3_colour)
+        rotate(180) // align for printing
+            xCarriageVoronMiniAfterburner(inserts=false);
 }
 
 xCarriageVoronMiniAfterburnerOffsetZ = 4.5; // was 4.25, increased for cable clearance
 
-module xCarriageVoronMiniAfterburner() {
+module xCarriageVoronMiniAfterburner(inserts=true) {
     size = [xCarriageSize.x, xCarriageSize.z + 5.35, xCarriageSize.y];
     size2 = [35, 20, size.z + xCarriageVoronMiniAfterburnerOffsetZ];
 
@@ -59,24 +68,32 @@ module xCarriageVoronMiniAfterburner() {
             cylinder(r=r, h=size2.z + 2*eps);
 
         // bolt holes for attachment to X_Carriage_Beltside
-        for (x = [0, xCarriageBoltSeparation.x], y = [0])
-            translate([x + -xCarriageBoltSeparation.x/2, y + 4, 0])
-                boltHoleM3Tap(xCarriageSize.y);
-        for (x = [0, xCarriageBoltSeparation.x], y = [xCarriageBoltSeparation.y])
-            translate([x + -xCarriageBoltSeparation.x/2, y + 4, 0])
-                boltHoleM3Tap(xCarriageSize.y - 1);
+        for (x = [0, xCarriageBoltSeparation.x]) {
+            translate([x - xCarriageBoltSeparation.x/2, 4 + xCarriageHoleOffsetBottom(), 0])
+                if (inserts)
+                    insertHoleM3(xCarriageSize.y);
+                else
+                    boltHoleM3Tap(xCarriageSize.y);
+            translate([x - xCarriageBoltSeparation.x/2, xCarriageBoltSeparation.y + 4 - xCarriageHoleOffsetTop(), 0])
+                if (inserts)
+                    insertHoleM3(xCarriageSize.y + 1);
+                else
+                    boltHoleM3Tap(xCarriageSize.y + 1);
+        }
 
         // bolt holes for attachment to Voron Mini Afterburner
         translate([6.27, 51.33, size2.z]) {
-            *translate_z(size2.z - 5)
-                boltHole(2*insert_hole_radius(F1BM3), 5);
+            if (inserts)
+                translate_z(size2.z - 5)
+                    boltHole(2*insert_hole_radius(F1BM3), 5);
             vflip()
                 boltHoleM3Tap(size2.z - 1);
         }
         for (x = [-13, 13])
             translate([x, 48.05, size2.z]) {
-                *translate_z(-5)
-                    boltHole(2*insert_hole_radius(F1BM3), 5);
+                if (inserts)
+                    translate_z(-5)
+                        boltHole(2*insert_hole_radius(F1BM3), 5);
                 vflip()
                     boltHoleM3Tap(size2.z - 1);
             }
@@ -89,7 +106,7 @@ module xCarriageVoronMiniAfterburner() {
 
 M2_self_tapping_screw    = ["M2_self_tapping", "M2 self tapping (Pan Head)", hs_pan,  2, 3.5, 1.3,  0, 0, 0,  M2_washer, false,   M2_tap_radius,    M2_clearance_radius];
 
-module xCarriageVoronMiniAfterburner_hardware() {
+module xCarriageVoronMiniAfterburner_hardware(inserts=true) {
     *translate([0, 0, 42.5]) {
         translate([6.270, 51.33, 0])
             boltM3Countersunk(40);
