@@ -44,7 +44,7 @@ function xCarriageHotendOffsetY(xCarriageType) = carriage_size(xCarriageType).y/
 xCarriageBeltTensionerSizeX = 23;
 beltClampSize = [25, xCarriageBeltAttachmentSize(beltWidth(), beltSeparation()).x + 1, 4.5];
 beltsCenterZOffset = coreXYPosBL().z - xRailCarriagePositionZ();
-
+screwTypeCapheadSmallWasher = -2;
 
 module xCarriageHotendSideHolePositions(xCarriageType, flipSide=false) {
     size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
@@ -59,7 +59,7 @@ module xCarriageHotendSideHolePositions(xCarriageType, flipSide=false) {
             rotate([-90, 90, 0])
                 children();
     for (x = xCarriageHolePositions(size.x, holeSeparationBottom))
-        translate([x - size.x/2, carriageSize.y/2 + railCarriageGap + (flipSide ? size.y : 0), -size.z + xCarriageTopThickness() + xCarriageBaseThickness()/2])
+        translate([x - size.x/2, carriageSize.y/2 + railCarriageGap + (flipSide ? size.y : 0), -size.z + xCarriageTopThickness() + xCarriageBaseThickness()/2 + xCarriageHoleOffsetBottom()])
             rotate([-90, 90, 0])
                 children();
 }
@@ -83,7 +83,7 @@ module X_Carriage_Beltside_RB_stl() {
     stl("X_Carriage_Beltside_RB"); // semicolon required for XChange build as this is not on BOM
     color(pp4_colour)
         rotate([90, 0, 0])// orientate for printing
-            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(), screwType=hs_cap, inserts=true, reversedBelts=true, endCube=true);
+            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(), screwType=screwTypeCapheadSmallWasher, inserts=true, reversedBelts=true, endCube=true);
 }
 
 module X_Carriage_Beltside_RB_ST_stl() {
@@ -94,7 +94,7 @@ module X_Carriage_Beltside_RB_ST_stl() {
     stl("X_Carriage_Beltside_RB_ST"); // semicolon required for XChange build as this is not on BOM
     color(pp4_colour)
         rotate([90, 0, 0])// orientate for printing
-            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(), screwType=hs_cap, inserts=false, reversedBelts=true, endCube=true);
+            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(), screwType=screwTypeCapheadSmallWasher, inserts=false, reversedBelts=true, endCube=true);
 }
 
 module X_Carriage_Beltside_RB_MGN9C_stl() {
