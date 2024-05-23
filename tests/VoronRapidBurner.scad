@@ -1,4 +1,4 @@
-//! Display the Voron Afterburner X carriage
+//! Display the Voron Rapid Burner X carriage
 
 include <../scad/global_defs.scad>
 include <NopSCADlib/utils/core/core.scad>
@@ -19,25 +19,31 @@ use <../scad/Parameters_Positions.scad>
 //$explode = 1;
 //$pose = 1;
 
-module VoronRapidBurner_test() {
+module VoronRapidBurner_test(full=true) {
     carriagePosition = carriagePosition();
     translate(-[carriagePosition.x, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
-        //CoreXYBelts(carriagePosition, x_gap = -25, show_pulleys = ![1, 0, 0]);
-        no_explode() printheadBeltSide();
-        printheadBeltSideBolts();
 
-        //printheadE3DV6();
-        //printheadOrbiterV3();
         explode([0, 50, 0], true)
             xRailCarriagePosition(carriagePosition) {
                 Printhead_Voron_Rapid_Burner_assembly();
+                //printheadVoronRapidBurnerAssembly();
+                //xCarriageVoronRapidBurnerAssembly(inserts=true);
+
+                //Printhead_OrbiterV3_assembly();
+                //Printhead_E3DV6_assembly();
             }
-        translate_z(eZ)
-            xRail(carriagePosition, MGN12H_carriage);
-        *translate([0, carriagePosition.y - carriagePosition().y, eZ - eSize]) {
-            Y_Carriage_Left_assembly();
-            translate([2*eSize + eX, 0])
-                Y_Carriage_Right_assembly();
+        if (full) {
+            //CoreXYBelts(carriagePosition, x_gap = -25, show_pulleys = ![1, 0, 0]);
+            no_explode()
+                printheadBeltSide(rotate=180);
+            printheadBeltSideBolts(rotate=180);
+            translate_z(eZ)
+                xRail(carriagePosition, MGN12H_carriage);
+            *translate([0, carriagePosition.y - carriagePosition().y, eZ - eSize]) {
+                Y_Carriage_Left_assembly();
+                translate([2*eSize + eX, 0])
+                    Y_Carriage_Right_assembly();
+            }
         }
     }
 }
@@ -53,18 +59,18 @@ xCarriageVoronDragonBurner_hardware();
     xCarriageVoronDragonBurner_hardware();
 }
 
+//translate_z(voronRapidToDragonOffsetZ()) bondtechLGXLite();
 //vrb_LGX_Lite_Mount();
-//();
-//rotate([-90, 0, 0]) vrb_LGX_Lite_Mount_stl();
 //vrb_LGX_Lite_Mount_hardware();
-inserts=false;
-//vrb_Orbiter2_Hotend_Mount(inserts=inserts);
+inserts=true;
 //phaetusRapido();
-//vrb_Orbiter2_Hotend_Mount(inserts=inserts);
-//vrb_Orbiter2_Hotend_Mount_hardware(inserts=inserts);
-//vrb_DFA_Hotend_Mount();
+//vrb_LGX_Lite_Hotend_Mount(inserts=inserts);
+//vrb_LGX_Lite_Hotend_Mount_hardware(inserts=inserts);
 //vrb_Cowl_NoProbe();
 //vrb_Cowl_NoProbe_hardware();
+//vrb_Cowl_NoProbe_stl();
+//vrb_LGX_Lite_Mount_stl();
+//vrb_LGX_Lite_Hotend_Mount_stl();
 
 if ($preview)
     rotate(180)

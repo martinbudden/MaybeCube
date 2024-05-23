@@ -6,10 +6,12 @@ use <NopSCADlib/utils/fillet.scad>
 include <NopSCADlib/vitamins/ball_bearings.scad>
 include <NopSCADlib/vitamins/rails.scad>
 include <NopSCADlib/vitamins/blowers.scad>
+include <NopSCADlib/vitamins/e3d.scad>
 include <NopSCADlib/vitamins/fans.scad>
 include <NopSCADlib/vitamins/hot_ends.scad>
 include <NopSCADlib/vitamins/inserts.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
+use <NopSCADlib/vitamins/wire.scad>
 
 use <../printed/X_CarriageAssemblies.scad>
 include <../utils/X_Carriage.scad>
@@ -19,6 +21,7 @@ include <../vitamins/inserts.scad>
 function voronColor() = grey(25);
 function voronAccentColor() = crimson;
 function voronAdaptorColor() = pp3_colour;
+function voronRapidToDragonOffsetZ() = 8.5;
 
 xCarriageType = MGN12H_carriage;
 
@@ -425,8 +428,8 @@ module bondtechImportStl(file) {
 }
 
 module bondtechLGXLite() {
-    translate([0.3, 53.2, 29.7])
-        rotate([0, 0, 0])
+    translate([0, 6.2, 88.2])
+        rotate([90, 0, 180])
             color(grey(30))
                 bondtechImportStl("LGX-Lite");
 }
@@ -436,12 +439,17 @@ module revoImportStl(file) {
 }
 
 module revoVoron() {
-    translate([0.28, -12.12, 23.3])
-        rotate([0, 90, 0])
+    translate([0, 0, 22.8])
+        rotate([90, 0, 90])
             color(grey(40))
                 revoImportStl("RevoVoron");
 }
 
+module vdbE3DV6() {
+    translate([0, 0, 57.81])
+        rotate([0, 0, 0])
+            e3d_hot_end(E3Dv6, filament=1.75, naked=true, bowden=false);
+}
 
 module phaetusImportStl(file) {
     import(str("../../../stlimport/Phaetus/", file, ".stl"), convexity=10);
@@ -449,8 +457,8 @@ module phaetusImportStl(file) {
 
 module phaetusRapido() {
     brassColor = "#B5A642";
-    translate([5.2, 9.5, 44.9])
-        rotate([-90, 0, 0]) {
+    translate([5.0, -21.5, 52.5])
+        rotate([0, 0, 0]) {
             color("#1966FF")
                 phaetusImportStl("Phaetus-Heatsink");
             color(grey(20))
@@ -475,41 +483,39 @@ module vrbImportStl(file) {
 }
 
 module vdb_LGX_Lite_Mount() {
-    vflip()
-        translate([-35.75, -27.25, -37.5 -47])
-            rotate([90, 180, 0])
-                vdbImportStl("LGX_Lite_Mount");
+    translate([35.96, 61.15, 62.1965])
+        rotate([0, 0, 0])
+            vdbImportStl("LGX_Lite_Mount");
 }
 
 module vdb_V6_Mount_Front() {
-    translate([-147.5, -118, 33])
-        rotate([180, 0, 0])
+    translate([147.8, 9.71, -82.93])
+        rotate([-90, 0, 180])
             vdbImportStl("V6_Mount_Front");
 }
 
 module vdb_V6_Mount_Rear() {
-    translate([-147.5, 146.25, 12])
-        rotate([0, 0, 0])
+    translate([147.8, -11.3, 181.25])
+        rotate([90, 0, 180])
             vdbImportStl("V6_Mount_Rear");
 }
 
 module vdb_RevoVoron_Mount() {
-    vflip()
-        translate([167, -68, 14 - 47])
-            rotate([0, 0, 180])
-                vdbImportStl("RevoVoron_Mount");
+    translate([-166.75, 9.715, 102.91])
+        rotate([90, 0, 0])
+            vdbImportStl("RevoVoron_Mount");
 }
 
 module vdb_Cowl_NoProbe() {
     vitamin(str(": Voron Dragon Burner assembly"));
-    vflip()
-        translate([-147.75, 135.5, -47])
+    translate([147.905, 23.7, -100.55])
+        rotate([-90, 0, 180])
             vdbImportStl("Cowl_NoProbe");
 }
 
 module vdb_Cowl_NoProbe_hardware() {
-    vflip()
-        translate_z(-47)
+    rotate([-90, 0, 180])
+        translate([-0.1, -35, -23.7])
             not_on_bom()
                 if ($preview) {
                     translate([-147.75, 135.5, 0])
@@ -543,136 +549,109 @@ module vrb_DFA_Hotend_Mount() {
                 vrbImportStl("DFA_Hotend_Mount");
 }
 
-module vrb_Orbiter2_Hotend_Mount_stl() {
-    stl("vrb_Orbiter2_Hotend_Mount")
+module vrb_LGX_Lite_Hotend_Mount_stl() {
+    stl("vrb_LGX_Lite_Hotend_Mount")
         color(voronColor())
-            vflip() // better orientation for printing
-                vrb_Orbiter2_Hotend_Mount(inserts=true);
+            rotate([-90, 0, 0]) // better orientation for printing
+                vrb_LGX_Lite_Hotend_Mount(inserts=true);
 }
 
-module vrb_Orbiter2_Hotend_Mount_ST_stl() {
-    stl("vrb_Orbiter2_Hotend_Mount_ST")
+module vrb_LGX_Lite_Hotend_Mount_ST_stl() {
+    stl("vrb_LGX_Lite_Hotend_Mount_ST")
         color(voronColor())
-            vflip() // better orientation for printing
-                vrb_Orbiter2_Hotend_Mount(inserts=false);
+            rotate([-90, 0, 0]) // better orientation for printing
+                vrb_LGX_Lite_Hotend_Mount(inserts=false);
 }
 
-module vrb_Orbiter2_Hotend_Mount(inserts=true) {
-    color(voronColor())
-        difference() {
-            union() {
-                translate([166.9, 65.6, 33])
-                    rotate([0, 180, 0])
-                        vrbImportStl("Orbiter2_Hotend_Mount");
-                for (x = [-19.2, 17.7])
-                    translate([x, 27.5, 23.4])
-                        rotate([90, 0, 0])
-                            cylinder(r=3, h=6);
-                if (!inserts)
-                    for (x = [-16.2, 16.6])
-                        translate([x, 23.2, 33])
-                            vflip()
-                                cylinder(r=3, h=7);
-
-            }
-            for (x = [-21.5, 22])
-                translate([x, 27.5, 23.4])
-                    rotate([90, 180, 0])
-                        if (inserts)
-                            insertHoleM3(0);
-                        else
-                            boltHoleM3Tap(10, horizontal=true, chamfer_both_ends=false);
-            if (!inserts)
-                for (x = [-16.2, 16.6])
-                    translate([x, 23.2, 33])
-                        vflip()
-                            boltHoleM3Tap(10);
+module vrb_LGX_Lite_Hotend_Mount(inserts=true) {
+    difference() {
+        union() {
+            translate([-166.7, 9.62, 108.85])
+                rotate([90, 0, 0])
+                    vrbImportStl("Orbiter2_Hotend_Mount");
+            // block in the old top holes
+            for (x = [-17.5, 19.5])
+                translate([x, 0, 70.72])
+                    vflip()
+                        cylinder(r=2.9, h=6);
         }
+        // create some new holes with LGX_Lite spacing
+        for (x = [-21.5, 22])
+            translate([x, 0, 70.72])
+                vflip()
+                    if (inserts)
+                        insertHoleM3(0);
+                    else
+                        boltHoleM3Tap(10, horizontal=true, chamfer_both_ends=false);
+    }
 }
 
-module vrb_Orbiter2_Hotend_Mount_hardware(inserts=true) {
-    *for (x = [-19.2, 17.7])
-        translate([x, 27.4, 23.4])
+module vrb_LGX_Lite_Hotend_Mount_hardware(inserts=true) {
+    for (x = [-12.5, 12.5])
+        translate([x, -7, 55.1])
             rotate([-90, 0, 0])
-                insert(F1BM3);
+                boltM3Caphead(12);
+        translate([0, -8.5, 65.1])
+            rotate([-90, 30, 0])
+                nutM3();
+    for (x = [-21.5, 21.5])
+        translate([x, -9, 65])
+            rotate([90, 90, 0])
+                cable_tie(cable_r=2, thickness=0.5);
+
     if (inserts) {
         for (x = [-21.5, 22])
-            translate([x, 27.5, 23.4])
+            translate([x, 0, 70.72])
+                insert(F1BM3);
+
+        for (x = [16.4, -16.4])
+            translate([x, 9.8, 66.4])
                 rotate([-90, 0, 0])
                     insert(F1BM3);
-        for (x = [-16.2, 16.6])
-            translate([x, 23.2, 33])
-                rotate([0, 0, 0])
-                    insert(F1BM3);
     }
-    for (x = [-12.3, 12.7])
-        translate([x, 11.8, 17])
-            rotate([0, 0, 0])
-                boltM3Caphead(12);
 }
 
 module vrb_LGX_Lite_Mount_stl() {
     stl("vrb_LGX_Lite_Mount")
         color(voronColor())
-            rotate([90, 0, 0])
-                vrb_LGX_Lite_Mount();
+            vrb_LGX_Lite_Mount();
 }
 
 module vrb_LGX_Lite_Mount() {
-    vflip()
-        translate([-35.75, -27.25, -37.5 -47])
-            rotate([90, 180, 0])
-                color(voronColor())
-                    vrbImportStl("LGX_Lite_Extruder_Mount");
+    translate([36, 61.1, 70.75])
+        color(voronColor())
+            vrbImportStl("LGX_Lite_Extruder_Mount");
 }
 
 module vrb_LGX_Lite_Mount_hardware() {
-    for (x = [-21.5, 22])
-        translate([x, 34, 23.4])
-            rotate([-90, 0, 0])
-                boltM3Caphead(12);
-    for (x = [-9.2, 9.8])
-        translate([x, 31.8, 21.1])
-            rotate([90, 0, 0])
-                boltM3Caphead(8);
+    translate([0, 0, 75.4]) {
+        for (x = [-21.75, 21.75])
+            translate([x, 0, 2.3])
+                rotate([0, 0, 0])
+                    boltM3Caphead(12);
+        for (x = [-9.5, 9.5])
+            translate([x, -2.2, 0])
+                vflip()
+                    boltM3Caphead(8);
+    }
 }
 
 module vrb_Cowl_NoProbe_stl() {
     stl("vrb_Cowl_NoProbe")
-        vflip() // better orientation for printing
+        rotate([-90, 0, 0]) // better orientation for printing
             color(voronAccentColor())
-                vrb_Cowl_NoProbe(inserts=true);
+                vrb_Cowl_NoProbe();
 }
 
-module vrb_Cowl_NoProbe_ST_stl() {
-    stl("vrb_Cowl_NoProbe_ST")
-        vflip() // better orientation for printing
-            color(voronAccentColor())
-                vrb_Cowl_NoProbe(inserts=false);
+module vrb_Cowl_NoProbe() {
+    translate([147.9, 23.6, -96.2])
+        rotate([-90, 0, 180])
+            vrbImportStl("Cowl_NoProbe");
 }
 
-module vrb_Cowl_NoProbe(inserts=true) {
-    //vitamin(str(": Voron Rapid Burner assembly"));
-    vflip()
-        union() {
-            translate([-147.75, 135.5+4, -47])
-                vrbImportStl("Cowl_NoProbe");
-            if (!inserts)
-                translate([0, 8.25, -47]) {
-                    for (x = [0, 41.8])
-                        translate([x - 20.75, 25.8, 40])
-                            vflip()
-                                cylinder(r=3, h=6.1);
-                    for (x = [0, -30.2])
-                        translate([x + 15.3, 23.4, 37])
-                            vflip()
-                                cylinder(r=2, h=3.6);
-                }
-        }
-}
 module vrb_Cowl_NoProbe_hardware(inserts=true) {
-    vflip()
-        translate([0, 8.25, -47])
+    translate([0, 23.6, 35.3])
+        rotate([90, 180, 0])
             not_on_bom()
                 if ($preview) {
                     translate([-147.75, 135.5, 0])

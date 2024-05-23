@@ -1,4 +1,4 @@
-//! Display the Voron Afterburner X carriage
+//! Display the Voron Dragon Burner X carriage
 
 include <../scad/global_defs.scad>
 include <NopSCADlib/utils/core/core.scad>
@@ -18,25 +18,27 @@ use <../scad/Parameters_Positions.scad>
 //$explode = 1;
 //$pose = 1;
 
-module VoronDragonBurner_test() {
+module VoronDragonBurner_test(full=true) {
+    vorongDragonBurnerOffsetZ = 47.8;
     carriagePosition = carriagePosition();
-    translate(-[carriagePosition.x, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
-        //CoreXYBelts(carriagePosition, x_gap = -25, show_pulleys = ![1, 0, 0]);
-        no_explode() printheadBeltSide();
-        printheadBeltSideBolts();
-
-        //printheadE3DV6();
-        //printheadOrbiterV3();
+    translate(-[carriagePosition.x, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor)) - vorongDragonBurnerOffsetZ]) {
         explode([0, 50, 0], true)
             xRailCarriagePosition(carriagePosition) {
                 Printhead_Voron_Dragon_Burner_assembly();
+                //Printhead_OrbiterV3_assembly();
+                //Printhead_E3DV6_assembly();
             }
-        translate_z(eZ)
-            xRail(carriagePosition, MGN12H_carriage);
-        *translate([0, carriagePosition.y - carriagePosition().y, eZ - eSize]) {
-            Y_Carriage_Left_assembly();
-            translate([2*eSize + eX, 0])
-                Y_Carriage_Right_assembly();
+        if (full) {
+            //CoreXYBelts(carriagePosition, x_gap = -25, show_pulleys = ![1, 0, 0]);
+            no_explode() printheadBeltSide(rotate=180);
+            printheadBeltSideBolts(rotate=180);
+            translate_z(eZ)
+                xRail(carriagePosition, MGN12H_carriage);
+            *translate([0, carriagePosition.y - carriagePosition().y, eZ - eSize]) {
+                Y_Carriage_Left_assembly();
+                translate([2*eSize + eX, 0])
+                    Y_Carriage_Right_assembly();
+            }
         }
     }
 }
@@ -59,6 +61,7 @@ xCarriageVoronDragonBurner_hardware();
 //bondtechLGXLite();
 //vdb_V6_Mount_Front();
 //vdb_V6_Mount_Rear();
+//vdbE3DV6();
 //vdb_RevoVoron_Mount();
 //revoVoron();
 //vdb_Cowl_NoProbe();

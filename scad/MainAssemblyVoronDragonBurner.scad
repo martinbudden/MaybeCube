@@ -7,7 +7,6 @@ include <global_defs.scad>
 include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/screws.scad>
 include <NopSCADlib/vitamins/rails.scad>
-include <NopSCADlib/vitamins/e3d.scad>
 
 use <printed/PrintheadAssemblies.scad>
 use <printed/X_CarriageVoronDragonBurner.scad>
@@ -23,7 +22,7 @@ include <target.scad>
 
 module xCarriageVoronDragonBurnerAssembly(inserts=true) {
     explode = 20;
-    translate([0, 14, -50])
+    translate([0, 13.97, -50])
         rotate([90, 0, 180]) {
             stl_colour(pp3_colour)
                 if (inserts)
@@ -35,9 +34,9 @@ module xCarriageVoronDragonBurnerAssembly(inserts=true) {
         }
 }
 
-module printheadVoronDragonBurnerAssembly(extruderDescriptor="LGX_Lite", hotendDescriptor="E3DV6") {
-    rotate([90, 0, 180])
-        translate([0, -26, 14]) {
+module printheadVoronDragonBurnerAssembly(extruderDescriptor="LGX_Lite", hotendDescriptor="RevoVoron") {
+    translate([0, 37.3, -61.25]) 
+        rotate([0, 0, 0]) {
             if (extruderDescriptor == "LGX_Lite") {
                 color(voronColor())
                     vdb_LGX_Lite_Mount();
@@ -48,11 +47,11 @@ module printheadVoronDragonBurnerAssembly(extruderDescriptor="LGX_Lite", hotendD
                     vdb_V6_Mount_Front();
                 color(voronColor())
                     vdb_V6_Mount_Rear();
-                translate([0.2, 22.8, 23.4])
-                    rotate([-90, 180, 0])
-                        e3d_hot_end(E3Dv6, filament=1.75, naked=true, bowden=false);
+                vdbE3DV6();
             } else if (hotendDescriptor == "RevoVoron") {
-                vdb_RevoVoron_Mount();
+                color(voronColor())
+                    vdb_RevoVoron_Mount();
+                revoVoron();
             }
             color(voronAccentColor())
                 vdb_Cowl_NoProbe();
@@ -80,7 +79,6 @@ assembly("Voron_Dragon_Burner", big=true) {
             xRailCarriagePosition(carriagePosition, rotate=0) {
                 printheadPosition()
                     Printhead_Voron_Dragon_Burner_assembly();
-                //xCarriageVoronDragonBurnerAssembly(inserts=true);
             }
             no_explode() not_on_bom() {
                 printheadBeltSide();
