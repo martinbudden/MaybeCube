@@ -16,7 +16,7 @@ use <../../../BabyCube/scad/printed/X_Carriage.scad>
 include <../Parameters_CoreXY.scad>
 include <../Parameters_Main.scad>
 
-function orbiterV3HoleOffset() = [-5, 0, 17];
+function orbiterV3HoleOffset() = [-5, 0, 17]; // !!MJB perhaps change z value to 18 to allign with Dragon_Burner
 
 module xCarriageOrbiterV3HolePositions(xCarriageType) {
     size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
@@ -91,7 +91,7 @@ module xCarriageOrbiterV3(xCarriageType, inserts) {
             xCarriageOrbiterV3Back(xCarriageType, size, 0, holeSeparationTop, holeSeparationBottom, countersunk=_xCarriageCountersunk ? 4 : 0);
             translate([0, carriageSize.y/2 + size.y + 1, eps]) {
                 height = xCarriageTopThickness();
-                base = 6;
+                base = 5;
                 rotate([90, 0, 0])
                     linear_extrude(size.y + 1)
                         polygon(points = [ [0,0], [base + height, 0], [base+height, height], [-height, height] ]);
