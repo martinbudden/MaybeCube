@@ -44,7 +44,6 @@ module VoronMiniAfterburner_test() {
 
 //Printhead_Voron_Mini_Afterburner_assembly();
 //xCarriageVoronMiniAfterburner();
-X_Carriage_Voron_Mini_Afterburner_assembly();
 rotate(180) translate([0, 14 + 7.3 + 4.25, 2.2]) {
 //vma_x_carriage_90_x1();
 //vma_vlatch_dd_x1();
@@ -59,5 +58,6 @@ rotate(180) translate([0, 14 + 7.3 + 4.25, 2.2]) {
 vmalgxl_x_carriage_sls();
 vmalgxl_hotend_mount_mosquito_3010_fan();
 }
-*if ($preview)
+
+if ($preview)
     VoronMiniAfterburner_test();

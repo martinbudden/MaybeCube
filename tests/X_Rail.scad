@@ -17,7 +17,8 @@ module xRail_test() {
     translate(-[eSize + eX/2, carriagePosition().y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
         //fullPrinthead(accelerometer=true);
         printheadBeltSide();
-        printheadE3DV6();
+        xRailPrintheadPosition()
+            Printhead_E3DV6_assembly();
         translate_z(eZ)
             xRail(carriagePosition());
     }

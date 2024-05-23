@@ -42,7 +42,8 @@ module Exploded_View_test() {
         Face_Top_assembly();
         //fullPrinthead();
         printheadBeltSide();
-        printheadE3DV6();
+        xRailPrintheadPosition()
+            Printhead_E3DV6_assembly();
     }
 }
 

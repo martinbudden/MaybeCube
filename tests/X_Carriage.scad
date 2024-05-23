@@ -31,8 +31,9 @@ module X_Carriage_test() {
     //X_Carriage_Groovemount_stl();
     xCarriageGroovemountAssembly();
     //X_Carriage_Beltside_assembly();
+    //X_Carriage_Beltside_RB_stl();
     //xCarriageBeltClampAssembly(MGN12H_carriage);
-    //xCarriageBeltAttachment(30, beltWidth(), beltSeparation());
+    //xCarriageBeltAttachment([21,23.2,46], beltWidth(), beltSeparation(), inserts=true);
     //X_Carriage_Beltside_HC_16_stl();
     //X_Carriage_Beltside_RB_stl();
     //translate_z(-carriage_height(MGN12H_carriage)) carriage(MGN12H_carriage);

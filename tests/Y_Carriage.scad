@@ -31,14 +31,17 @@ module Y_Carriage_test1() {
             Y_Carriage_Right_RB4_stl();
             //Y_Carriage_Right_AL_dxf();
         }
-    *Y_Carriage_Left_assembly();
-    *translate([100, 0, 0])
-        Y_Carriage_Right_assembly();
 }
 
 //translate([-15.5, 0, 0]) Y_Carriage_Left_RB4_stl();
 //translate([-15.5, 55, 0]) Y_Carriage_Right_RB4_stl();
-//translate([-15.5, carriagePosition().y, -13]) vflip() Y_Carriage_Left_assembly();
-//translate([180, carriagePosition().y, -13]) vflip() Y_Carriage_Right_assembly();
+module Y_Carriage_test2() {
+    translate([-15.5-90, carriagePosition().y, -13])
+        vflip() Y_Carriage_Left_assembly();
+    translate([100, carriagePosition().y, -13])
+        vflip()
+            Y_Carriage_Right_assembly();
+}
+
 if ($preview)
     Y_Carriage_test0();

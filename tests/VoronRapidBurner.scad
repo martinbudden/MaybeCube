@@ -8,6 +8,7 @@ use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/X_CarriageVoronDragonBurner.scad>
 use <../scad/printed/Y_CarriageAssemblies.scad>
 use <../scad/MainAssemblyVoronDragonBurner.scad>
+use <../scad/MainAssemblyVoronRapidBurner.scad>
 
 include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/X_Rail.scad>
@@ -18,7 +19,7 @@ use <../scad/Parameters_Positions.scad>
 //$explode = 1;
 //$pose = 1;
 
-module VoronDragonBurner_test() {
+module VoronRapidBurner_test() {
     carriagePosition = carriagePosition();
     translate(-[carriagePosition.x, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
         //CoreXYBelts(carriagePosition, x_gap = -25, show_pulleys = ![1, 0, 0]);
@@ -29,7 +30,7 @@ module VoronDragonBurner_test() {
         //printheadOrbiterV3();
         explode([0, 50, 0], true)
             xRailCarriagePosition(carriagePosition) {
-                Printhead_Voron_Dragon_Burner_assembly();
+                Printhead_Voron_Rapid_Burner_assembly();
             }
         translate_z(eZ)
             xRail(carriagePosition, MGN12H_carriage);
@@ -52,22 +53,19 @@ xCarriageVoronDragonBurner_hardware();
     xCarriageVoronDragonBurner_hardware();
 }
 
-//vdb_Carriage_Base_Short();
-//vdb_MGN12H_X_Carriage_Lite();
-//vdb_Boop_Front_Extended();
-//vdb_LGX_Lite_Mount();
-//bondtechLGXLite();
-//vdb_V6_Mount_Front();
-//vdb_V6_Mount_Rear();
-//vdb_RevoVoron_Mount();
-//revoVoron();
-//vdb_Cowl_NoProbe();
-//vdb_Cowl_NoProbe_hardware();
+//vrb_LGX_Lite_Mount();
+//();
 //rotate([-90, 0, 0]) vrb_LGX_Lite_Mount_stl();
 //vrb_LGX_Lite_Mount_hardware();
-//X_Carriage_Voron_Dragon_Burner_assembly();
-//Printhead_Voron_Dragon_Burner_assembly();
+inserts=false;
+//vrb_Orbiter2_Hotend_Mount(inserts=inserts);
+//phaetusRapido();
+//vrb_Orbiter2_Hotend_Mount(inserts=inserts);
+//vrb_Orbiter2_Hotend_Mount_hardware(inserts=inserts);
+//vrb_DFA_Hotend_Mount();
+//vrb_Cowl_NoProbe();
+//vrb_Cowl_NoProbe_hardware();
 
 if ($preview)
     rotate(180)
-        VoronDragonBurner_test();
+        VoronRapidBurner_test();

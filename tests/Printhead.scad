@@ -7,6 +7,9 @@ use <../scad/printed/X_CarriageEVA.scad>
 use <../scad/printed/X_CarriageOrbiterV3.scad>
 use <../scad/MainAssemblyXChange.scad>
 use <../scad/MainAssemblyVoronAfterburner.scad>
+use <../scad/MainAssemblyVoronMiniAfterburner.scad>
+use <../scad/MainAssemblyVoronDragonBurner.scad>
+use <../scad/MainAssemblyVoronRapidBurner.scad>
 
 include <../scad/vitamins/bolts.scad>
 
@@ -36,12 +39,18 @@ module Printhead_test() {
 
     halfCarriage = false;
     translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
-        CoreXYBelts(carriagePosition, x_gap = -30, show_pulleys = ![1, 0, 0]);
-        //printheadBeltSide();
-        //printheadE3DV6();
-        printheadOrbiterV3();
-        //printheadEVA_2_4_2();
+        //CoreXYBelts(carriagePosition, x_gap = -30, show_pulleys = ![1, 0, 0]);
+        printheadBeltSide();
+        //printheadBeltSideBolts();
+        xRailPrintheadPosition() {
+            //Printhead_E3DV6_assembly();
+            Printhead_OrbiterV3_assembly();
+            //Printhead_Voron_Mini_Afterburner_assembly();
+            //Printhead_Voron_Dragon_Burner_assembly();
+            //Printhead_Voron_Rapid_Burner_assembly();
+        }
         //printheadVoronAfterburner();
+        //printheadEVA_2_4_2();
         //printheadXChange();
         translate_z(eZ) {
             xRail(carriagePosition);
@@ -112,6 +121,6 @@ module xCarriageTopTest() {
 //rotate([-90, 0, 0])
 //vflip() Smart_Orbiter_V3_Fan_Bracket_5015_stl();
 //Smart_Orbiter_V3_Fan_Bracket_stl();
-//*let($hide_bolts=true)
+//let($hide_bolts=true)
 if ($preview)
     Printhead_test();
