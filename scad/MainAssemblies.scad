@@ -163,14 +163,16 @@ staged_assembly("Stage_4", big=true, ngb=true) {
     explode(150, true)
         if (_useBowdenExtruder) {
             explode(50, true) {
-                printheadE3DV6();
+                xRailPrintheadPosition()
+                    Printhead_E3DV6_assembly();
                 printheadWiring(_hotendDescriptor);
             }
             if (is_undef(_useBackMounts) || _useBackMounts == false)
                 explode([100, 0, 100])
                     BowdenTube(carriagePosition());
         } else {
-            printheadOrbiterV3();
+            xRailPrintheadPosition()
+                Printhead_OrbiterV3_assembly();
             printheadWiring(_hotendDescriptor);
         }
 }

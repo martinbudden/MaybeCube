@@ -173,40 +173,30 @@ module printheadBeltSideBolts(rotate=0, explode=0, t=undef, halfCarriage=false) 
 
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
         explode([0, -20, 0], true)
-            xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), screwType=hs_cap, offsetT=xCarriageHoleOffsetTop());
+            xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), screwType=hs_cap, offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom());
 }
 
-module printheadE3DV6(rotate=0, explode=0, t=undef, halfCarriage=false) {
+module xRailPrintheadPosition(rotate=0, explode=0, t=undef, halfCarriage=false) {
+    xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
+        printheadPosition(explode=explode, t=t, halfCarriage=halfCarriage)
+            children();
+}
+
+module printheadPosition(rotate=0, explode=0, t=undef, halfCarriage=false) {
     xCarriageType = MGN12H_carriage;
     xCarriageBeltSideSize = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());
-    halfCarriage = (!is_undef(_useHalfCarriage) && _useHalfCarriage==true);
     boltLength = halfCarriage ? 30 : 35;
 
-    xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
-        explode(explode, true) {
-            Printhead_E3DV6_assembly();
+    explode(explode, true) {
+        children();
 
-            explode([0, -20, 0], true)
-                xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), screwType=hs_cap, offsetT=xCarriageHoleOffsetTop());
-            *translate([xCarriageFrontSize.x/2, 18, -18])
-                bl_touch_mount();
-            if (halfCarriage)
-                xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = [ [1, 1], [-1, 1] ]);
-        }
-}
-
-module printheadOrbiterV3(rotate=0, explode=0, t=undef, halfCarriage=false) {
-    xCarriageType = MGN12H_carriage;
-    xCarriageBeltSideSize = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());
-    boltLength = 35;
-
-    xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
-        explode(explode, true) {
-            Printhead_OrbiterV3_assembly();
-
-            explode([0, -20, 0], true)
-                xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), screwType=hs_cap, offsetT=xCarriageHoleOffsetTop());
-        }
+        explode([0, -20, 0], true)
+            xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), screwType=hs_cap, offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom());
+        if (halfCarriage)
+            xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = [ [1, 1], [-1, 1] ]);
+        *translate([xCarriageFrontSize.x/2, 18, -18])
+            bl_touch_mount();
+    }
 }
 
 module bl_touch_mount_stl() {

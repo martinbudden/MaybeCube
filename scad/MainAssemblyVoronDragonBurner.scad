@@ -21,31 +21,29 @@ include <target.scad>
 
 //$explode=1;
 
-module X_Carriage_Voron_Dragon_Burner_assembly()
-assembly("X_Carriage_Voron_Dragon_Burner") {
+module xCarriageVoronDragonBurnerAssembly(inserts=true) {
     explode = 20;
-    rotate(180) {
-        translate([0, 14, -50])
-            rotate([90, 0, 180]) {
-                stl_colour(pp3_colour)
+    translate([0, 14, -50])
+        rotate([90, 0, 180]) {
+            stl_colour(pp3_colour)
+                if (inserts)
                     X_Carriage_Voron_Dragon_Burner_stl();
-                stl_colour(pp3_colour)
+                else
                     X_Carriage_Voron_Dragon_Burner_ST_stl();
-                explode(explode, true)
-                    xCarriageVoronDragonBurner_hardware();
-            }
+            explode(explode, true)
+                xCarriageVoronDragonBurner_hardware(inserts=inserts);
         }
 }
 
-module Printhead_Voron_Dragon_Burner_assembly()
-assembly("Printhead_Voron_Dragon_Burner") {
-    explode = 50;
-    rotate([90, 0, 0])
-        explode([0, explode, 0], true)
-            translate([0, -26, 14]) {
+module printheadVoronDragonBurnerAssembly(extruderDescriptor="LGX_Lite", hotendDescriptor="E3DV6") {
+    rotate([90, 0, 180])
+        translate([0, -26, 14]) {
+            if (extruderDescriptor == "LGX_Lite") {
                 color(voronColor())
                     vdb_LGX_Lite_Mount();
-                //vdb_RevoVoron_Mount();
+                bondtechLGXLite();
+            }
+            if (hotendDescriptor == "E3DV6") {
                 color(voronColor())
                     vdb_V6_Mount_Front();
                 color(voronColor())
@@ -53,11 +51,19 @@ assembly("Printhead_Voron_Dragon_Burner") {
                 translate([0.2, 22.8, 23.4])
                     rotate([-90, 180, 0])
                         e3d_hot_end(E3Dv6, filament=1.75, naked=true, bowden=false);
-                color(voronAccentColor())
-                    vdb_Cowl_NoProbe();
-                vdb_Cowl_NoProbe_hardware();
+            } else if (hotendDescriptor == "RevoVoron") {
+                vdb_RevoVoron_Mount();
             }
-    X_Carriage_Voron_Dragon_Burner_assembly();
+            color(voronAccentColor())
+                vdb_Cowl_NoProbe();
+            vdb_Cowl_NoProbe_hardware();
+        }
+}
+
+module Printhead_Voron_Dragon_Burner_assembly()
+assembly("Printhead_Voron_Dragon_Burner", big=true) {
+    printheadVoronDragonBurnerAssembly();
+    xCarriageVoronDragonBurnerAssembly(inserts=true);
 }
 
 module Voron_Dragon_Burner_assembly()
@@ -66,13 +72,16 @@ assembly("Voron_Dragon_Burner", big=true) {
     xCarriageType = MGN12H_carriage;
     carriagePosition = carriagePosition();
 
-    rotate(180) {
+    rotate(0) {
         translate(-[carriagePosition.x, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(xCarriageType)]) {
             *if (!exploded())
                 not_on_bom()
                     CoreXYBelts(carriagePosition, x_gap=-25, show_pulleys=![1, 0, 0]);
-            xRailCarriagePosition(carriagePosition)
-                Printhead_Voron_Dragon_Burner_assembly();
+            xRailCarriagePosition(carriagePosition, rotate=0) {
+                printheadPosition()
+                    Printhead_Voron_Dragon_Burner_assembly();
+                //xCarriageVoronDragonBurnerAssembly(inserts=true);
+            }
             no_explode() not_on_bom() {
                 printheadBeltSide();
                 printheadBeltSideBolts();
