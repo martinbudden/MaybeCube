@@ -3,6 +3,7 @@
 include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/printed/PrintheadAssemblies.scad>
+use <../scad/printed/PrintheadAssemblyE3DV6.scad>
 include <../scad/utils/Z_Rods.scad>
 
 use <../scad/assemblies/BackFace.scad>

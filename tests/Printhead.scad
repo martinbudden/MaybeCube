@@ -1,6 +1,8 @@
 //! Display the print head
 
 use <../scad/printed/PrintheadAssemblies.scad>
+use <../scad/printed/PrintheadAssemblyE3DV6.scad>
+use <../scad/printed/PrintheadAssemblyOrbiterV3.scad>
 use <../scad/printed/X_CarriageAssemblies.scad>
 use <../scad/printed/X_CarriageE3DV6.scad>
 use <../scad/printed/X_CarriageEVA.scad>

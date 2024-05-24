@@ -7,6 +7,7 @@ include <NopSCADlib/vitamins/rails.scad>
 
 include <../scad/utils/X_Rail.scad>
 use <../scad/printed/PrintheadAssemblies.scad>
+use <../scad/printed/PrintheadAssemblyE3DV6.scad>
 
 include <../scad/Parameters_CoreXY.scad>
 use <../scad/Parameters_Positions.scad>
