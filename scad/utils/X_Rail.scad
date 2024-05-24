@@ -27,11 +27,18 @@ module xRail(carriagePosition, xCarriageType=undef) {
                     carriage(xCarriageType, end_colour="green", wiper_colour="red");
 
 }
+
+function xRailCarriageOffsetZ() =
+    let(xCarriageType = carriageType(_xCarriageDescriptor),
+        xRailType = carriage_rail(xCarriageType),
+        yRailType = railType(_yCarriageDescriptor))
+    -eSize - rail_height(xRailType) - rail_height(yRailType) + carriage_clearance(xCarriageType) + carriage_height(xCarriageType);
+
 function xRailCarriagePositionZ() =
     let(xCarriageType = carriageType(_xCarriageDescriptor),
         xRailType = carriage_rail(xCarriageType),
         yRailType = railType(_yCarriageDescriptor))
-    eZ - eSize - rail_height(xRailType) - rail_height(yRailType) + carriage_clearance(xCarriageType) + carriage_height(xCarriageType);
+    eZ + xRailCarriageOffsetZ();
 
 module xRailCarriagePosition(carriagePosition, rotate=180) {
     xCarriageType = carriageType(_xCarriageDescriptor);
@@ -39,7 +46,7 @@ module xRailCarriagePosition(carriagePosition, rotate=180) {
     yRailType = railType(_yCarriageDescriptor);
     translate([ carriagePosition.x + eSize + 5 - (eX - _xRailLength)/2,
                 carriagePosition.y,
-                eZ - eSize - rail_height(xRailType) - rail_height(yRailType) + carriage_clearance(xCarriageType) + carriage_height(xCarriageType)
+                xRailCarriagePositionZ()
             ])
         rotate(rotate)
             children();
