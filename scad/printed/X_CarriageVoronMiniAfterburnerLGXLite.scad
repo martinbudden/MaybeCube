@@ -60,10 +60,10 @@ module xCarriageVoronMiniAfterburnerLGXLite() {
 
         // bolt holes for attachment to X_Carriage_Beltside
         for (x = [0, xCarriageBoltSeparation.x], y = [0])
-            translate([x + -xCarriageBoltSeparation.x/2, y + 4, 0])
+            translate([x - xCarriageBoltSeparation.x/2, y + 4, 0])
                 boltHoleM3Tap(xCarriageSize.y);
         for (x = [0, xCarriageBoltSeparation.x], y = [xCarriageBoltSeparation.y])
-            translate([x + -xCarriageBoltSeparation.x/2, y + 4, 0])
+            translate([x - xCarriageBoltSeparation.x/2, y + 4, 0])
                 boltHoleM3Tap(xCarriageSize.y - 1);
 
         // bolt holes for attachment to Voron Mini Afterburner

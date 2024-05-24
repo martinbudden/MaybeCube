@@ -55,7 +55,7 @@ module cableChainBracket(size=cableChainBracketSize) {
                     right_triangle(2, 2, cutout.y - endStopSizeY +2*eps);
             translate([size.x/2 - cutout.x + eps, 0, 0])
                 rotate([90, 0, 180])
-                    right_triangle(2, 2, cutout.y + -endStopSizeY + 2*eps);
+                    right_triangle(2, 2, cutout.y - endStopSizeY + 2*eps);
         }
 
 
