@@ -22,6 +22,12 @@ function voronRapidToDragonOffsetZ() = 8.5;
 
 xCarriageVoronDragonBurnerOffsetZ = 5; // was 4.25, increased for cable clearance
 
+module voronDragonBurnerAttachmentHoles(offsetZ=0) {
+    for (x = [-12.5, 12.5])
+        translate([x, 44, offsetZ])
+            children();
+}
+
 module xCarriageVoronDragonBurnerAdapter(inserts=true) {
     size0 = [32.5, 23, xCarriageSize.y];
     topOffset = 0;
@@ -142,13 +148,12 @@ module xCarriageVoronDragonBurnerAdapter(inserts=true) {
             }
         }
         // bolt holes for attachment to Dragon Burner
-        for (x = [-12.5, 12.5])
-            translate([x, 44, size2.z])
-                vflip()
-                    if (inserts)
-                        insertHoleM3(size2.z);
-                    else
-                        boltHoleM3Tap(size2.z);
+        voronDragonBurnerAttachmentHoles(size2.z)
+            vflip()
+                if (inserts)
+                    insertHoleM3(size2.z);
+                else
+                    boltHoleM3Tap(size2.z);
         translate([0, 54.5, 0])
             boltPolyholeM3Countersunk(size1.z+2, sink=0.25);
             //boltHoleM3HangingCounterbore(size1.z);
@@ -167,11 +172,10 @@ module xCarriageVoronDragonBurnerAdapter_hardware(inserts=true, bolts=true) {
                 translate([0, xCarriageBoltSeparation.y + 4 - xCarriageHoleOffsetTop(), 0])
                     threadedInsertM3();
             }
-    for (x = [-12.5, 12.5])
-        translate([x, 44, xCarriageSize.y + xCarriageVoronDragonBurnerOffsetZ])
-            if (inserts)
-                explode(20, true)
-                    threadedInsertM3();
+    voronDragonBurnerAttachmentHoles(xCarriageSize.y + xCarriageVoronDragonBurnerOffsetZ)
+        if (inserts)
+            explode(20, true)
+                threadedInsertM3();
     if (bolts) {
         translate([0, 54.5, 0])
             vflip()
@@ -343,13 +347,11 @@ module vdb_Cowl_NoProbe_hardware(inserts=true) {
 }
 
 module vdb_Cowl_NoProbe_Attachment_Bolts() {
-   rotate([-90, 0, 180])
-        translate([-0.1, -35, -23.7]) {
-            for (x = [0, 25])
-                translate([x - 12.35, -20.25, 6.5])
-                    vflip()
-                        boltM3Caphead(40);
-        }
+    rotate([-90, 0, 180])
+        for (x = [0, 25])
+            translate([x - 12.25, 6, -54.5])
+                vflip()
+                    boltM3Caphead(40);
 }
 
 module vdb_Boop_Front_Extended() {

@@ -115,16 +115,15 @@ module xCarriageVoronRapidBurnerAdapter(inserts=true) {
                 }
             }
         }
-        // bolt holes for attachment to Dragon Burner
-        for (x = [-12.5, 12.5])
-            translate([x, 44, size2.z])
-                vflip()
-                    if (inserts)
-                        insertHoleM3(size2.z);
-                    else
-                        boltHoleM3Tap(size2.z);
+        // bolt holes for attachment to Rapid Burner
+        voronDragonBurnerAttachmentHoles(size2.z)
+            vflip()
+                if (inserts)
+                    insertHoleM3(size2.z);
+                else
+                    boltHoleM3Tap(size2.z);
         translate([0, 54.5, 0])
-            boltPolyholeM3Countersunk(size1.z+2, sink=0.25);
+            boltPolyholeM3Countersunk(size1.z + 2, sink=0.25);
             //boltHoleM3HangingCounterbore(size1.z);
         // bolt holes for attachment to Cowling
         xCarriageVoronDragonBurnerCowlingBoltHoles()
@@ -134,17 +133,16 @@ module xCarriageVoronRapidBurnerAdapter(inserts=true) {
 
 module xCarriageVoronRapidBurnerAdapter_hardware(inserts=true, bolts=true) {
     for (x = [0, xCarriageBoltSeparation.x])
-        translate([x + -xCarriageBoltSeparation.x/2, 0, xCarriageSize.y])
+        translate([x - xCarriageBoltSeparation.x/2, 0, xCarriageSize.y])
             if (inserts) {
                 translate([0, 4 + xCarriageHoleOffsetBottom(), 0])
                     threadedInsertM3();
                 translate([0, xCarriageBoltSeparation.y + 4 - xCarriageHoleOffsetTop(), 0])
                     threadedInsertM3();
             }
-    for (x = [-12.5, 12.5])
-        translate([x, 44, xCarriageSize.y + xCarriageVoronRapidBurnerOffsetZ])
-            if (inserts)
-                threadedInsertM3();
+    voronDragonBurnerAttachmentHoles(xCarriageSize.y + xCarriageVoronRapidBurnerOffsetZ)
+        if (inserts)
+            threadedInsertM3();
     if (bolts) {
         translate([0, 54.5, 0])
             vflip()
