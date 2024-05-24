@@ -7,7 +7,7 @@ use <NopSCADlib/vitamins/wire.scad>
 
 include <../utils/X_Rail.scad>
 include <../vitamins/cables.scad>
-include <../vitamins/OrbiterV3.scad>
+use <../vitamins/OrbiterV3.scad>
 
 include <OrbiterV3Fan.scad>
 use <X_CarriageOrbiterV3.scad>
@@ -18,9 +18,9 @@ module printheadOrbiterV3Assembly() {
     blowerType = RB5015;
 
     rotate([0, 0, 90])
-        translate([39, -0.3, -31.4])
+        translate([39, -0.3, 0])
             smartOrbiterV3();
-    translate([22.5, 66.5, -64.2]) {
+    translate([22.5, 66.5, -1.3]) {
         explode([0, 0, -50])
             stl_colour(pp1_colour)
                 Smart_Orbiter_V3_Duct_stl();
@@ -30,7 +30,7 @@ module printheadOrbiterV3Assembly() {
                     vflip()
                         Smart_Orbiter_V3_Fan_Bracket_5015_stl();
             translate([-0.55, -6.5, 52.58]) {    
-                translate([-17, 0, -26.25])
+                translate([-smartOrbiterV3FanBoltSpacing().x, 0, -smartOrbiterV3FanBoltSpacing().y])
                     rotate([-90, 0, 0])
                         boltM3Countersunk(6);
                 rotate([-90, 0, 0])
@@ -73,7 +73,7 @@ assembly("Printhead_OrbiterV3", big=true) {
     hotendDescriptor = "OrbiterV3";
     explode([0, -40, 0], true)
         xCarriageOrbiterV3Assembly(xCarriageType, inserts=true);
-    translate_z(orbiterV3HoleOffset().z - 16)
+    translate([-0.3, 0, -orbiterV3NozzleOffsetFromMGNCarriageZ()])
         printheadOrbiterV3Assembly();
     explode([0, -60, 0], true)
         xCarriageOrbiterV3HolePositions(xCarriageType)
