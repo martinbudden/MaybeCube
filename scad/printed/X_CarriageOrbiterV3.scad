@@ -1,6 +1,7 @@
 include <../global_defs.scad>
 
 include <../vitamins/bolts.scad>
+use <../vitamins/OrbiterV3.scad>
 
 use <NopSCADlib/utils/fillet.scad>
 
@@ -16,23 +17,26 @@ use <../../../BabyCube/scad/printed/X_Carriage.scad>
 include <../Parameters_CoreXY.scad>
 include <../Parameters_Main.scad>
 
-function orbiterV3HoleOffset() = [-5, 0, 17]; // !!MJB perhaps change z value to 18 to allign with Dragon_Burner
+function orbiterV3NozzleOffsetFromMGNCarriageZ() = 61.4; // offset from tip of nozzle to top of MGN carriage
+
+ cutoutZ = 17.5;
+cutoutOffsetZ = 3.1;
 
 module xCarriageOrbiterV3HolePositions(xCarriageType) {
     size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
     carriageSize = carriage_size(xCarriageType);
     railCarriageGap = 0.5;
-    holeSpacing = [16.5, 0, 23];
-    offset = [size.x - holeSpacing.x, 0, 0] + orbiterV3HoleOffset();
+    holeSpacing = [smartOrbiterV3AttachmentBoltSpacing().x, 0, smartOrbiterV3AttachmentBoltSpacing().y];
+    offset = [size.x - 5 - holeSpacing.x, 0, 0];
 
     for (x = [0, holeSpacing.x], z = [0, holeSpacing.z])
-        translate(offset + [x - size.x/2, carriageSize.y/2 + railCarriageGap, z - size.z + xCarriageTopThickness()])
+        translate(offset + [x - size.x/2, carriageSize.y/2 + railCarriageGap, z - orbiterV3NozzleOffsetFromMGNCarriageZ() + smartOrbiterV3LowerFixingHolesToNozzleTipOffsetZ()])
             rotate([90, 90, 0])
                 children();
 }
 
 module xCarriageOrbitrerV3CableTiePositions(full=true) {
-    for (z = full ? [2, 15, 25, 35, 45,55, 65] : [2, 15, 55, 65])
+    for (z = full ? [2, 15, 25, 35, 45, 55, 65] : [2, 15, 55, 65])
         translate_z(z)
             children();
 }
@@ -73,9 +77,11 @@ module xCarriageOrbiterV3Back(xCarriageType, size, extraX=0, holeSeparationTop, 
                     rounded_cube_xz([size.x, size.y, size.z], 1);
                 xCarriageOrbitrerV3StrainRelief(xCarriageType, size, topThickness);
             } // end union
+            // cutout for ziptie
+            offsetZ = cutoutOffsetZ + cutoutZ +smartOrbiterV3LowerFixingHolesToNozzleTipOffsetZ() - orbiterV3NozzleOffsetFromMGNCarriageZ();
             cutoutSize = [2, size.y + carriageSize.y/2 + 2*eps, 4];
-                translate([2.5 - cutoutSize.x/2, -eps, -16])
-                    rounded_cube_xz(cutoutSize, 0.5);
+            translate([2.5 - cutoutSize.x/2, -eps, offsetZ - cutoutSize.z])
+                rounded_cube_xz(cutoutSize, 0.5);
         } // end difference
 }
 
@@ -99,10 +105,10 @@ module xCarriageOrbiterV3(xCarriageType, inserts) {
                     rotate([90, 90, 0])
                         fillet(1, size.y + 1);
             }
-            offsetZ = orbiterV3HoleOffset().z + 3.5;
-            cutoutSize = [size.x + 2*eps, 2, 3];
             // cutout for the hotend fan wiring
-            translate([-size.x/2-eps, carriageSize.y/2 + railCarriageGap + size.y - cutoutSize.y + eps +0.5, offsetZ - size.z + xCarriageTopThickness()]) {
+            cutoutSize = [size.x + 2*eps, 2, 3];
+            offsetZ = cutoutOffsetZ + smartOrbiterV3LowerFixingHolesToNozzleTipOffsetZ() - orbiterV3NozzleOffsetFromMGNCarriageZ();
+            translate([-size.x/2-eps, carriageSize.y/2 + railCarriageGap + size.y - cutoutSize.y + eps + 0.5, offsetZ]) {
                 cube(cutoutSize);
                 rotate([-90, 0, 0])
                     fillet(1, cutoutSize.y + eps);
@@ -113,7 +119,7 @@ module xCarriageOrbiterV3(xCarriageType, inserts) {
                     rotate([-90, 180, 0])
                         fillet(1, cutoutSize.y + eps);
                 translate([-1.5, 0, 0]) {
-                    rounded_cube_xz([8, cutoutSize.y, 17.5], 1);
+                    rounded_cube_xz([8, cutoutSize.y, cutoutZ], 1);
                     translate([8, 0, cutoutSize.z])
                         rotate([-90, -90, 0])
                             fillet(1, cutoutSize.y + eps);
