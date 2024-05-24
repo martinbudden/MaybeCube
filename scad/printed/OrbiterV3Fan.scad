@@ -1,6 +1,7 @@
 include <../global_defs.scad>
 
 include <../vitamins/bolts.scad>
+use <../vitamins/OrbiterV3.scad>
 include <NopSCADlib/vitamins/blowers.scad>
 
 
@@ -33,7 +34,7 @@ module Smart_Orbiter_V3_Fan_Bracket_5015_stl() {
     blowerType = RB5015;
     blowerHoles = blower_screw_holes(blowerType);
     orbiterHolesOffset = [48.42, 21.72];
-    orbiterHoles = [ orbiterHolesOffset + [0, 0], orbiterHolesOffset+ [-17, 26.25] ];
+    orbiterHoles = [ orbiterHolesOffset + [0, 0], orbiterHolesOffset + [-smartOrbiterV3FanBoltSpacing().x, smartOrbiterV3FanBoltSpacing().y] ];
     thickness = 3.5;
 
     stl("Smart_Orbiter_V3_Fan_Bracket_5015")
@@ -117,7 +118,7 @@ module Smart_Orbiter_V3_Fan_Bracket_5015_stl() {
                     for (i = orbiterHoles)
                         translate(i)
                             vflip()
-                                boltPolyholeM3Countersunk(thickness+1);
+                                boltPolyholeM3Countersunk(thickness + 1);
                 translate([36.8, 54, thickness/2])
                     rotate([-90, 0, -90])
                         boltHoleM2p5Tap(10, horizontal=true, chamfer=0);
