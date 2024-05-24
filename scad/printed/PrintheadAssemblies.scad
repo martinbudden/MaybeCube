@@ -10,7 +10,7 @@ use <NopSCADlib/vitamins/wire.scad>
 include <../utils/PrintheadOffsets.scad>
 include <../utils/X_Rail.scad>
 include <../vitamins/cables.scad>
-include <../vitamins/OrbiterV3.scad>
+use <../vitamins/OrbiterV3.scad>
 
 include <../../../BabyCube/scad/vitamins/pcbs.scad>
 
