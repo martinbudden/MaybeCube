@@ -5,6 +5,8 @@ include <NopSCADlib/utils/core/core.scad>
 use <printed/E20Cover.scad>
 use <printed/JubileeKinematicBed.scad>
 use <printed/PrintheadAssemblies.scad>
+use <printed/PrintheadAssemblyE3DV6.scad>
+use <printed/PrintheadAssemblyOrbiterV3.scad>
 use <printed/RightSidePanel.scad>
 use <printed/BaseCover.scad>
 
