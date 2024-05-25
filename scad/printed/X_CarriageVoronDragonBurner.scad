@@ -148,12 +148,11 @@ module xCarriageVoronDragonBurnerAdapter(inserts=true) {
             }
         }
         // bolt holes for attachment to Dragon Burner
-        voronDragonBurnerAttachmentHoles(size2.z)
-            vflip()
-                if (inserts)
-                    insertHoleM3(size2.z);
-                else
-                    boltHoleM3Tap(size2.z);
+        voronDragonBurnerAttachmentHoles(0)
+            if (inserts)
+                insertHoleM3(size2.z);
+            else
+                boltHoleM3Tap(size2.z);
         translate([0, 54.5, 0])
             boltPolyholeM3Countersunk(size1.z+2, sink=0.25);
             //boltHoleM3HangingCounterbore(size1.z);
@@ -172,10 +171,11 @@ module xCarriageVoronDragonBurnerAdapter_hardware(inserts=true, bolts=true) {
                 translate([0, xCarriageBoltSeparation.y + 4 - xCarriageHoleOffsetTop(), 0])
                     threadedInsertM3();
             }
-    voronDragonBurnerAttachmentHoles(xCarriageSize.y + xCarriageVoronDragonBurnerOffsetZ)
+    voronDragonBurnerAttachmentHoles()
         if (inserts)
-            explode(20, true)
-                threadedInsertM3();
+            explode(-20, true)
+                vflip()
+                    threadedInsertM3();
     if (bolts) {
         translate([0, 54.5, 0])
             vflip()
@@ -211,9 +211,12 @@ module bondtechImportStl(file) {
 
 module bondtechLGXLite() {
     translate([0, 6.2, 88.2])
-        rotate([90, 0, 180])
-            color(grey(30))
-                bondtechImportStl("LGX-Lite");
+        rotate([90, 0, 180]) {
+            color(grey(40))
+                bondtechImportStl("LGX-Lite-Extruder");
+            color(grey(20))
+                bondtechImportStl("LGX-Lite-Motor");
+        }
 }
 
 module vdbImportStl(file) {
@@ -236,11 +239,11 @@ module vdb_LGX_Lite_Mount() {
             vdbImportStl("LGX_Lite_Mount");
 }
 
-module vdb_LGX_Lite_Mount_hardware(zOffset=0, nut=true) {
+module vdb_LGX_Lite_Mount_hardware(zOffset=0, boltLength=12, nut=true) {
     translate([0, 0, 66.9 + zOffset]) {
         for (x = [-21.75, 21.75])
             translate([x, 0, 2.3])
-                boltM3Caphead(12);
+                boltM3Caphead(boltLength);
         for (x = [-9.5, 9.5])
             translate([x, -2.2, 0])
                 vflip()
@@ -254,10 +257,16 @@ module vdb_LGX_Lite_Mount_hardware(zOffset=0, nut=true) {
 }
 
 module revoVoron() {
-    translate([0, 0, 22.8])
-        rotate([90, 0, -90])
-            color(grey(40))
-                revoImportStl("RevoVoron");
+    color(grey(40))
+        intersection() {
+            size = [30, 30, 50];
+            rotate(45)
+                translate([-size.x/2, -size.y/2, 0])
+                    cube(size);
+            translate([0, 0, 22.8])
+                rotate([90, 0, -90])
+                    revoImportStl("RevoVoron");
+        }
 }
 
 module vdb_RevoVoron_Mount() {
@@ -278,6 +287,9 @@ module vdb_RevoVoron_Mount_hardware() {
         translate([x, 0, 54.15])
             vflip()
                 insert(F1BM3);
+    for (x = [-5, 5], y = [-4.5, 4.5])
+        translate([x, y, 52.3])
+            boltM2p5Caphead(8);
 }
 
 module vdb_V6_Mount_Front() {
