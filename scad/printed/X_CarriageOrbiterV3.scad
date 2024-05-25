@@ -17,7 +17,7 @@ use <../../../BabyCube/scad/printed/X_Carriage.scad>
 include <../Parameters_CoreXY.scad>
 include <../Parameters_Main.scad>
 
-function orbiterV3NozzleOffsetFromMGNCarriageZ() = 61.4; // offset from tip of nozzle to top of MGN carriage
+function orbiterV3NozzleOffsetFromMGNCarriageZ() = 61.2; // offset from tip of nozzle to top of MGN carriage
 
  cutoutZ = 17.5;
 cutoutOffsetZ = 3.1;
