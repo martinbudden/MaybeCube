@@ -91,14 +91,14 @@ Voron_Dragon_Burner/assemblies/*
 Voron_Dragon_Burner/bom/
 Voron_Dragon_Burner/dxfs/
 Voron_Dragon_Burner/stls/*
-!Voron_Dragon_Burner/stls/X_Carriage_Voron_Dragon_Burner.stl
-!Voron_Dragon_Burner/stls/X_Carriage_Voron_Dragon_Burner.png
+!Voron_Dragon_Burner/stls/Voron_Dragon_Burner_Adapter.stl
+!Voron_Dragon_Burner/stls/Voron_Dragon_Burner_Adapter.png
 Voron_Dragon_Burner/tmp/
 Voron_Dragon_Burner/*.html
 Voron_Dragon_Burner/*.md
 Voron_Dragon_Burner/readme.md
 Voron_Dragon_Burner/assemblies/*.png
-!Voron_Dragon_Burner/assemblies/X_Carriage_Voron_Dragon_Burner_assembled.png
+!Voron_Dragon_Burner/assemblies/Printhead_Voron_Dragon_Burner_assembled.png
 Voron_Dragon_Burner/assemblies/*_diff.png
 Voron_Dragon_Burner/stls/*_diff.png
 
@@ -106,14 +106,16 @@ Voron_Rapid_Burner/assemblies/*
 Voron_Rapid_Burner/bom/
 Voron_Rapid_Burner/dxfs/
 Voron_Rapid_Burner/stls/*
-!Voron_Rapid_Burner/stls/X_Carriage_Voron_Rapid_Burner.stl
-!Voron_Rapid_Burner/stls/X_Carriage_Voron_Rapid_Burner.png
+!Voron_Rapid_Burner/stls/Voron_Rapid_Burner_Adapter.stl
+!Voron_Rapid_Burner/stls/Voron_Rapid_Burner_Adapter.png
+!Voron_Rapid_Burner/stls/vrb_LGX_Lite_Hotend_Mount.stl
+!Voron_Rapid_Burner/stls/vrb_LGX_Lite_Hotend_Mount_ST.stl
 Voron_Rapid_Burner/tmp/
 Voron_Rapid_Burner/*.html
 Voron_Rapid_Burner/*.md
 Voron_Rapid_Burner/readme.md
 Voron_Rapid_Burner/assemblies/*.png
-!Voron_Rapid_Burner/assemblies/X_Carriage_Voron_Rapid_Burner_assembled.png
+!Voron_Rapid_Burner/assemblies/Printhead_Voron_Rapid_Burner_assembled.png
 Voron_Rapid_Burner/assemblies/*_diff.png
 Voron_Rapid_Burner/stls/*_diff.png
 
@@ -262,13 +264,13 @@ MC300SB/stls/*
 MC300SB/tmp/
 MC300SB/*.html
 # change to !, except for _diff, .stl, and .dxf, once released
-!MC300SB/readme.md
-!MC300SB/assemblies/main_assembled.png
-!MC300SB/assemblies/*.png
-!MC300/dxfs/*.dxf
-!MC300SB/dxfs/*.png
-#!MC300SB/stls/*.stl
-!MC300SB/stls/*.png
+MC300SB/readme.md
+#!MC300SB/assemblies/main_assembled.png
+#!MC300SB/assemblies/*.png
+#!MC300/dxfs/*.dxf
+#!MC300SB/dxfs/*.png
+##!MC300SB/stls/*.stl
+#!MC300SB/stls/*.png
 MC300SB/assemblies/*_diff.png
 MC300SB/dxfs/*_diff.png
 MC300SB/stls/*_diff.png
