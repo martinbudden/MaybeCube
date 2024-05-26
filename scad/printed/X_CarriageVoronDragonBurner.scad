@@ -21,148 +21,168 @@ function voronAdaptorColor() = pp3_colour;
 function voronRapidToDragonOffsetZ() = 8.5;
 
 xCarriageVoronDragonBurnerOffsetZ = 5; // was 4.25, increased for cable clearance
+dragonBurnerAttachmentHoleOffset = [12.5, 0, -13.866];
+dragonBurnerTopAttachmentHoleOffset = [0, 0, 10.116]; // offset from attachment holes
+dragonBurnerCowlingBaseAttachmentHoleOffset = [-20.93, 0, -46.06];
 
 module voronDragonBurnerAttachmentHoles(offsetZ=0) {
-    for (x = [-12.5, 12.5])
+    for (x = [-dragonBurnerAttachmentHoleOffset.x, dragonBurnerAttachmentHoleOffset.x])
         translate([x, 44, offsetZ])
             children();
 }
 
-module xCarriageVoronDragonBurnerAdapter(inserts=true) {
-    size0 = [32.5, 23, xCarriageSize.y];
-    topOffset = 0;
-    size1 = [xCarriageSize.x, 9 + topOffset, xCarriageSize.y];
-    size2 = [32.5, 23 + topOffset, size1.z + xCarriageVoronDragonBurnerOffsetZ];
-    braceOffsetY = 10;
+module xCarriageVoronDragonBurnerAdapter(inserts=true, rapid=false) {
+
+    // "T" arms at top of adapter
+    sizeT = [xCarriageSize.x, 9, xCarriageSize.y];
+
+    // main block of adapter
+    sizeB = [32.5, 23, sizeT.z + xCarriageVoronDragonBurnerOffsetZ];
+
+    // extra block for rapid version
+    sizeR = [26, 3.2, sizeB.z];
+
+    // side bars
+    sizeS = [5, 50, sizeT.z];
+    sideBarOffsetX = 12;
+    braceSizeY = 4;
+    braceOffsetY = -50;
+
     fillet = 1.5;
-    difference() {
-        union() {
-            /*sizeT = [8, 3, size0.z];
-            translate([-sizeT.x/2, xCarriageSize.z -sizeT.y + 1, 0])
-                rounded_cube_xy(sizeT, 1);*/
-
-            translate([-size0.x/2, xCarriageSize.z -size0.y, 0])
-                rounded_cube_xy(size0, 1);
-            translate([-size1.x/2, xCarriageSize.z -size1.y + topOffset, 0]) {
-                rounded_cube_xy(size1, 1);
-                translate([(-size0.x + size1.x)/2, 0, 0])
-                    rotate(180)
-                        fillet(fillet, size0.z);
-                translate([(size0.x + size1.x)/2, 0, 0])
-                    rotate(-90)
-                        fillet(fillet, size0.z);
-            }
-            translate([-size2.x/2, xCarriageSize.z - size2.y + topOffset, 0])
-                rounded_cube_xy(size2, 1);
-            size3 = [5, 45, xCarriageSize.y];
-            for (x = [12, -12])
-                translate([x - size3.x/2, 9, 0])
-                    cube(size3);
-            translate([12 - size3.x/2, 0, 0]) {
-                translate([0, xCarriageSize.z - size0.y, 0])
-                    rotate(180)
-                        fillet(fillet, size3.z);
-                translate([0, braceOffsetY + 2, 0])
-                    rotate(90)
-                        fillet(fillet, size3.z);
-            }
-            translate([-12 + size3.x/2, 0, 0]) {
-                translate([0, xCarriageSize.z - size0.y, 0])
-                    rotate(-90)
-                        fillet(fillet, size3.z);
-                translate([0, braceOffsetY + 2, 0])
-                    rotate(0)
-                        fillet(fillet, size3.z);
-            }
-            hull() {
-                xCarriageVoronDragonBurnerCowlingBoltHoles(0)
-                    cylinder(h=size1.z, r=4.5);
-                translate([-xCarriageBoltSeparation.x/2, 4 + xCarriageHoleOffsetBottom(), 0])
-                    cylinder(h=size1.z, r=4);
-                translate([-xCarriageSize.x/2 + 1, 7, 0])
-                    cylinder(h=size1.z, r=1);
-                translate([-xCarriageBoltSeparation.x/2 + 5, 10, 0])
-                    cylinder(h=size1.z, r=3);
-            }
-            hull() {
-                xCarriageVoronDragonBurnerCowlingBoltHoles(1)
-                    cylinder(h=size1.z, r=4.5);
-                translate([xCarriageBoltSeparation.x/2, 4 + xCarriageHoleOffsetBottom(), 0])
-                    cylinder(h=size1.z, r=4);
-                translate([xCarriageSize.x/2 - 1, 7, 0])
-                    cylinder(h=size1.z, r=1);
-                translate([xCarriageBoltSeparation.x/2 - 5, 10, 0])
-                    cylinder(h=size1.z, r=3);
-            }
-            hull() {
-                translate([-xCarriageBoltSeparation.x/2 + 7, braceOffsetY, 0])
-                    cylinder(h=size1.z, r=2);
-                translate([xCarriageBoltSeparation.x/2 - 7, braceOffsetY, 0])
-                    cylinder(h=size1.z, r=2);
-            }
-        }
-        // cutout for extruder mount
-        hull() {
-            cutoutSize1 = [15, eps, 3];
-            cutoutSize2 = [7, eps, cutoutSize1.z];
-            translate([-cutoutSize1.x/2, 58 + topOffset + eps, size2.z - cutoutSize1.z + eps])
-                cube(cutoutSize1);
-            translate([-cutoutSize1.x/2, 58 + eps, size2.z - cutoutSize1.z + eps])
-                cube(cutoutSize1);
-            translate([-cutoutSize2.x/2, 51, size2.z - cutoutSize2.z + eps])
-                cube(cutoutSize2);
-        }
-        // cutout for hotend cooling fan exhaust
-        translate([0, 24, -eps])
-            cylinder(d=26-2, h=size2.z + 2*eps);
-        // cutout to avoid heat block
-        hull() {
-            fillet = 1;
-            r1Size = [20, 24 + fillet, eps];
-            translate([-r1Size.x/2, -fillet - eps, size1.z])
-                rounded_cube_xy(r1Size, fillet);
-            r2Size = [5, r1Size.y, eps];
-            translate([-r2Size.x/2, -fillet - eps, size1.z - 5])
-                rounded_cube_xy(r2Size, fillet);
-        }
-
-        // bolt holes for attachment to X_Carriage_Beltside
-        for (x = [0, xCarriageBoltSeparation.x]) {
-            translate([x - xCarriageBoltSeparation.x/2, 0, xCarriageSize.y]) {
-                translate([0, 4 + xCarriageHoleOffsetBottom(), 0]) {
-                    vflip()
-                        if (inserts)
-                            insertHoleM3(xCarriageSize.y);
-                        else
-                            boltHoleM3Tap(xCarriageSize.y);
+    translate([0, xCarriageSize.z, 0])
+        difference() {
+            union() {
+                translate([-sizeT.x/2, -sizeT.y, 0]) {
+                    rounded_cube_xy(sizeT, 1);
+                    translate([(sizeT.x - sizeB.x)/2, 0, 0])
+                        rotate(180)
+                            fillet(fillet, sizeT.z);
+                    translate([(sizeT.x + sizeB.x)/2, 0, 0])
+                        rotate(-90)
+                            fillet(fillet, sizeT.z);
                 }
-                translate([0, xCarriageBoltSeparation.y + 4 - xCarriageHoleOffsetTop(), 0]) {
-                    vflip()
-                        if (inserts)
-                            insertHoleM3(xCarriageSize.y);
-                        else
-                            boltHoleM3Tap(xCarriageSize.y);
-                    // clearance for inserting insert during assembly
-                    boltHole(2*insert_hole_radius(F1BM3) + 1, 5);
+                translate([-sizeB.x/2, -sizeB.y, 0])
+                    rounded_cube_xy(sizeB, 1);
+                if (rapid)
+                    translate([-sizeR.x/2, -sizeR.y/2, 0])
+                        rounded_cube_xy(sizeR, 1);
+                for (x = [sideBarOffsetX, -sideBarOffsetX])
+                    translate([x - sizeS.x/2, -sizeS.y, 0])
+                        cube(sizeS);
+                translate([sideBarOffsetX - sizeS.x/2, -sizeB.y, 0])
+                    rotate(180)
+                        fillet(fillet, sizeT.z);
+                translate([-sideBarOffsetX + sizeS.x/2, -sizeB.y, 0])
+                    rotate(-90)
+                        fillet(fillet, sizeT.z);
+                for (x = [-1, 1])
+                    hull()
+                        linear_extrude(sizeT.z) {
+                            translate([x*20.9, -60.06])
+                                circle(4.5);
+                            translate([x*xCarriageBoltSeparation.x/2, -54 + xCarriageHoleOffsetBottom()])
+                                circle(4);
+                            translate([x*(sizeT.x/2 - 1), -51])
+                                circle(1);
+                            translate([x*(xCarriageBoltSeparation.x/2 - 5), -48])
+                                circle(3);
+                        }
+                translate([0, braceOffsetY, 0]) {
+                    translate([sideBarOffsetX - sizeS.x/2, braceSizeY, 0])
+                        rotate(90)
+                            fillet(fillet, sizeT.z);
+                    translate([-sideBarOffsetX + sizeS.x/2, braceSizeY, 0])
+                        rotate(0)
+                            fillet(fillet, sizeT.z);
+                    translate([-sideBarOffsetX, 0, 0])
+                        cube([2*sideBarOffsetX, braceSizeY, sizeT.z]);
+                    *hull() {
+                        translate([-xCarriageBoltSeparation.x/2 + 7, braceSizeY/2, 0])
+                            cylinder(h=sizeT.z, r=braceSizeY/2);
+                        translate([xCarriageBoltSeparation.x/2 - 7, braceSizeY/2, 0])
+                            cylinder(h=sizeT.z, r=braceSizeY/2);
+                    }
+                }
+            } // end union
+
+            // trapezoidal cutout for extruder mount
+            cutoutDepth = 3.5;
+            translate_z(-cutoutDepth + eps)
+                hull() {
+                    cutoutSizeT = [15, eps, cutoutDepth];
+                    cutoutSizeB = [7, eps, cutoutDepth];
+                    if (rapid)
+                        translate([-cutoutSizeT.x/2, sizeR.y/2 + eps, sizeB.z])
+                            cube(cutoutSizeT);
+                    translate([-cutoutSizeT.x/2, eps, sizeB.z])
+                        cube(cutoutSizeT);
+                    translate([-cutoutSizeB.x/2, -7, sizeB.z])
+                        cube(cutoutSizeB);
+                }
+            // cutout for hotend cooling fan exhaust
+            fanExaustOffsetY = rapid ? -22.5 : -34; 
+            fanExaustDiameter = rapid ? 22 : 24;
+            translate([0, fanExaustOffsetY, -eps])
+                cylinder(d=fanExaustDiameter, h=sizeB.z + 2*eps);
+
+            // trapezoidal cutout to avoid heat block
+            hull() {
+                r1Size = [2*sideBarOffsetX - sizeS.x, braceSizeY + 2*fillet + 2*eps, eps];
+                translate([-r1Size.x/2, braceOffsetY - eps, sizeT.z])
+                    cube(r1Size);
+                r2Size = [5, r1Size.y, eps];
+                translate([-r2Size.x/2, braceOffsetY - eps, sizeT.z - 5])
+                    cube(r2Size);
+            }
+
+            // bolt holes for attachment to X_Carriage_Beltside
+            for (x = [-xCarriageBoltSeparation.x/2, xCarriageBoltSeparation.x/2]) {
+                translate([x, -54, sizeT.z]) {
+                    translate([0, xCarriageHoleOffsetBottom(), 0]) {
+                        vflip()
+                            if (inserts)
+                                insertHoleM3(sizeT.z);
+                            else
+                                boltHoleM3Tap(sizeT.z);
+                    }
+                    translate([0, xCarriageBoltSeparation.y - xCarriageHoleOffsetTop(), 0]) {
+                        vflip()
+                            if (inserts)
+                                insertHoleM3(sizeT.z);
+                            else
+                                boltHoleM3Tap(sizeT.z);
+                        // clearance for inserting insert during assembly
+                        boltHole(2*insert_hole_radius(F1BM3) + 1, 5);
+                    }
                 }
             }
-        }
-        // bolt holes for attachment to Dragon Burner
-        voronDragonBurnerAttachmentHoles(0)
-            if (inserts)
-                insertHoleM3(size2.z);
-            else
-                boltHoleM3Tap(size2.z);
-        translate([0, 54.5, 0])
-            boltPolyholeM3Countersunk(size1.z+2, sink=0.25);
-            //boltHoleM3HangingCounterbore(size1.z);
-        // bolt holes for attachment to Cowling
-        xCarriageVoronDragonBurnerCowlingBoltHoles()
-            boltPolyholeM3Countersunk(size1.z, sink=0.25);
-    }
+
+            // Dragon Burner attachment bolt holes
+            translate([0, dragonBurnerAttachmentHoleOffset.z, 0]) {
+                // top bolt hole for attachment to Dragon Burner
+                translate([0.05, dragonBurnerTopAttachmentHoleOffset.z, 0])
+                    //cylinder(h=20, r=2.17);
+                    boltPolyholeM3Countersunk(sizeT.z + 2, sink=0.25);
+                    //boltHoleM3HangingCounterbore(sizeT.z);
+                // bolt holes for attachment to Dragon Burner
+                for (x = [-dragonBurnerAttachmentHoleOffset.x, dragonBurnerAttachmentHoleOffset.x])
+                    translate([x, 0, 0])
+                        if (inserts)
+                                insertHoleM3(sizeB.z);
+                            else
+                                boltHoleM3Tap(sizeB.z);
+
+                // bolt holes for attachment to Cowling
+                //xCarriageVoronDragonBurnerCowlingBoltHoles()
+                for (x = [-dragonBurnerCowlingBaseAttachmentHoleOffset.x, dragonBurnerCowlingBaseAttachmentHoleOffset.x])
+                    translate([x, dragonBurnerCowlingBaseAttachmentHoleOffset.z, 0])
+                        //cylinder(h=20, r=2.8);
+                        boltPolyholeM3Countersunk(sizeT.z, sink=0.25);
+            }
+        } // end difference
 }
 
-module xCarriageVoronDragonBurnerAdapter_hardware(inserts=true, bolts=true) {
+module xCarriageVoronDragonBurnerAdapter_hardware(inserts=true, bolts=true, rapid=false) {
     for (x = [0, xCarriageBoltSeparation.x])
         translate([x - xCarriageBoltSeparation.x/2, 0, xCarriageSize.y])
             if (inserts) {
@@ -171,11 +191,12 @@ module xCarriageVoronDragonBurnerAdapter_hardware(inserts=true, bolts=true) {
                 translate([0, xCarriageBoltSeparation.y + 4 - xCarriageHoleOffsetTop(), 0])
                     threadedInsertM3();
             }
+
     voronDragonBurnerAttachmentHoles()
-        if (inserts)
-            explode(-20, true)
-                vflip()
-                    threadedInsertM3();
+        explode(-20, true)
+            vflip()
+                threadedInsertM3();
+
     if (bolts) {
         translate([0, 54.5, 0])
             vflip()
@@ -199,9 +220,9 @@ module Voron_Dragon_Burner_Adapter_ST_stl() {
 }
 
 module xCarriageVoronDragonBurnerCowlingBoltHoles(index=undef) {
-    holes = [-21, 21];
+    holes = [-20.9, 20.93];
     for (x = is_undef(index) ? holes : holes[index])
-        translate([x, -1.8, 0])
+        translate([x, -2.05, 0])
             children();
 }
 
@@ -228,7 +249,7 @@ module revoImportStl(file) {
 }
 
 module vdb_LGX_Lite_Mount_stl() {
-   stl("vdb_LGX_Lite_Mount");
+    stl("vdb_LGX_Lite_Mount");
     color(voronColor())
         vdb_LGX_Lite_Mount();
 }
@@ -337,25 +358,22 @@ module vdb_Cowl_NoProbe() {
             vdbImportStl("Cowl_NoProbe");
 }
 
-module vdb_Cowl_Common_hardware(fanOffsetZ=0, inserts=true) {
-    translate([-16.25, 20.775, 40])
+module vdb_Cowl_fans(fanOffsetZ=0) {
+    translate([-16.491, 20.63, 40])
         rotate([180, 90, 0])
             blower(BL40x10);
-    translate([16.5, 20.775, 0])
+    translate([16.515, 20.63, 0])
         rotate([180, -90, 0])
             blower(BL40x10);
     translate([0, fanOffsetZ, 6])
         fan(fan30x10);
-    if (inserts)
-        for (x = [0, 41.8])
-            translate([x - 20.75, 25.8, 40])
-                insert(F1BM3);
 }
 
-module vdb_Cowl_NoProbe_hardware(inserts=true) {
+module vdb_Cowl_inserts() {
     rotate([-90, 0, 180])
-        translate([-0.1, -35, -23.7])
-            vdb_Cowl_Common_hardware(fanOffsetZ=0, inserts=inserts);
+        for (x = [-20.9, 20.93])
+            translate([x, -9.18, 16.3])
+                insert(F1BM3);
 }
 
 module vdb_Cowl_NoProbe_Attachment_Bolts() {
@@ -364,6 +382,14 @@ module vdb_Cowl_NoProbe_Attachment_Bolts() {
             translate([x - 12.25, 6, -54.5])
                 vflip()
                     boltM3Caphead(40);
+}
+
+module vdb_Cowl_NoProbe_hardware(inserts=true, fanOffsetZ=0) {
+    rotate([-90, 0, 180])
+        translate([0, -34.8, -23.7])
+            vdb_Cowl_fans(fanOffsetZ=fanOffsetZ);
+    if (inserts)
+        vdb_Cowl_inserts();
 }
 
 module vdb_Boop_Front_Extended() {

@@ -18,7 +18,7 @@ use <../scad/Parameters_Positions.scad>
 //$explode = 1;
 //$pose = 1;
 
-module VoronDragonBurner_test(full=true) {
+module VoronDragonBurner_test(full=!true) {
     vorongDragonBurnerOffsetZ = 47.8;
     carriagePosition = carriagePosition();
     translate(-[carriagePosition.x, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor)) - vorongDragonBurnerOffsetZ]) {
@@ -50,7 +50,7 @@ xCarriageVoronDragonBurner_hardware();
 }
 
 *translate([0.15, -32.25, 0])  {
-    X_Carriage_Voron_Rapid_Burner_stl();
+    Voron_Rapid_Burner_Adapter_stl();
     xCarriageVoronDragonBurner_hardware();
 }
 
@@ -58,18 +58,41 @@ xCarriageVoronDragonBurner_hardware();
 //vdb_MGN12H_X_Carriage_Lite();
 //vdb_Boop_Front_Extended();
 //vdb_LGX_Lite_Mount();
+//vdb_LGX_Lite_Mount_hardware();
 //bondtechLGXLite();
 //vdb_V6_Mount_Front();
 //vdb_V6_Mount_Rear();
 //vdbE3DV6();
-//vdb_RevoVoron_Mount();
-//revoVoron();
+//-55.23 is offset from nozzle to center of attachment holes
+*translate([0, 12, -56.93+3.4/2]) {
+vdb_RevoVoron_Mount();
+//vdb_RevoVoron_Mount_hardware();
+revoVoron();
+}
+//vdb_Cowl_inserts();
 //vdb_Cowl_NoProbe();
 //vdb_Cowl_NoProbe_hardware();
+//voronDragonBurnerExtruderAssembly();
+//voronDragonBurnerHotendAssembly();
+//voronDragonBurnerAssembly();
+*translate([0, -23.30, 11.1]) rotate([90, 0, 180])
+Voron_Dragon_Burner_Adapter_stl();
+
+*translate([0,-69.22+0.134,23.3])
+rotate([90, 0, 180]){
+vdb_Cowl_NoProbe();
+rotate([90, 0, 0]) vdb_RevoVoron_Mount_stl();
+vdb_LGX_Lite_Mount_stl();
+}
+//vdb_Cowl_NoProbe_stl();
+//vdb_LGX_Lite_Mount_hardware();
+//vdb_V6_Mount_Front_stl();
+//vdb_V6_Mount_Rear_stl();
 //rotate([-90, 0, 0]) vrb_LGX_Lite_Mount_stl();
-//vrb_LGX_Lite_Mount_hardware();
 //X_Carriage_Voron_Dragon_Burner_assembly();
 //Printhead_Voron_Dragon_Burner_assembly();
+//xCarriageVoronDragonBurnerAdapter();
+//xCarriageVoronDragonBurnerAdapter_hardware();
 
 if ($preview)
     rotate(180)

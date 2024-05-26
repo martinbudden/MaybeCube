@@ -25,31 +25,39 @@ module xCarriageVoronRapidBurnerAssembly(inserts=true) {
     translate([0, 14, -50])
         rotate([90, 0, 180]) {
             stl_colour(pp3_colour)
-                X_Carriage_Voron_Rapid_Burner_stl();
-            stl_colour(pp3_colour)
-                X_Carriage_Voron_Rapid_Burner_ST_stl();
+                if (inserts)
+                    Voron_Rapid_Burner_Adapter_stl();
+                else
+                    Voron_Rapid_Burner_Adapter_ST_stl();
             explode(explode, true)
-                xCarriageVoronRapidBurnerAdapter_hardware(inserts=inserts);
+                xCarriageVoronDragonBurnerAdapter_hardware(inserts=inserts, rapid=true);
         }
+}
+
+module voronRapidBurnerExtruderAssembly(extruderDescriptor="LGX_Lite") {
+    if (extruderDescriptor == "LGX_Lite") {
+        color(voronColor())
+            vrb_LGX_Lite_Mount_stl();
+        vrb_LGX_Lite_Mount_hardware();
+    }
+    translate_z(voronRapidToDragonOffsetZ())
+        bondtechLGXLite();
+}
+
+module voronRapidBurnerHotendAssembly(hotendDescriptor=undef) {
+    color(voronColor())
+        rotate([90, 0, 0])
+            vrb_LGX_Lite_Hotend_Mount_stl();
+    hidden() vrb_LGX_Lite_Hotend_Mount_ST_stl();
+    vrb_LGX_Lite_Hotend_Mount_hardware(inserts=false);
+    phaetusRapido();
 }
 
 module voronRapidBurnerAssembly(extruderDescriptor="LGX_Lite", hotendDescriptor=undef) {
     explode = 50;
     explode([0, explode, 0], true) {
-        if (extruderDescriptor == "LGX_Lite") {
-            rotate([0, 0, 0]) {
-                color(voronColor())
-                    vrb_LGX_Lite_Mount_stl();
-                vrb_LGX_Lite_Mount_hardware();
-            }
-            translate_z(voronRapidToDragonOffsetZ())
-                bondtechLGXLite();
-        }
-        color(voronColor())
-            rotate([90, 0, 0])
-                vrb_LGX_Lite_Hotend_Mount_stl();
-            vrb_LGX_Lite_Hotend_Mount_hardware(inserts=false);
-        phaetusRapido();
+        voronRapidBurnerExtruderAssembly(extruderDescriptor);
+        voronRapidBurnerHotendAssembly(hotendDescriptor);
         color(voronAccentColor())
             rotate([90, 0, 0])
                 vrb_Cowl_NoProbe_stl();

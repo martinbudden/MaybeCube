@@ -5,9 +5,8 @@ include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/screws.scad>
 
 use <../scad/printed/PrintheadAssemblies.scad>
-use <../scad/printed/X_CarriageVoronDragonBurner.scad>
+use <../scad/printed/X_CarriageVoronRapidBurner.scad>
 use <../scad/printed/Y_CarriageAssemblies.scad>
-use <../scad/MainAssemblyVoronDragonBurner.scad>
 use <../scad/MainAssemblyVoronRapidBurner.scad>
 
 include <../scad/utils/CoreXYBelts.scad>
@@ -19,15 +18,15 @@ use <../scad/Parameters_Positions.scad>
 //$explode = 1;
 //$pose = 1;
 
-module VoronRapidBurner_test(full=true) {
+module VoronRapidBurner_test(full=!true) {
     carriagePosition = carriagePosition();
     translate(-[carriagePosition.x, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
 
         explode([0, 50, 0], true)
             xRailCarriagePosition(carriagePosition) {
                 Printhead_Voron_Rapid_Burner_assembly();
-                //printheadVoronRapidBurnerAssembly();
-                //xCarriageVoronRapidBurnerAssembly(inserts=true);
+
+             //xCarriageVoronRapidBurnerAssembly(inserts=true);
 
                 //Printhead_OrbiterV3_assembly();
                 //Printhead_E3DV6_assembly();
@@ -55,21 +54,27 @@ xCarriageVoronDragonBurner_hardware();
 }
 
 *translate([0.15, -32.25, 0])  {
-    X_Carriage_Voron_Rapid_Burner_stl();
+    Voron_Rapid_Burner_Adapter_stl();
     xCarriageVoronDragonBurner_hardware();
 }
 
+inserts=true;
 //translate_z(voronRapidToDragonOffsetZ()) bondtechLGXLite();
 //vrb_LGX_Lite_Mount();
 //vrb_LGX_Lite_Mount_hardware();
-inserts=true;
+//translate([0, -23.30, 11.1]) rotate([90, 0, 180])
+//rotate([90, 0, 180]) translate([0, 11.1, -23.30]) 
+//Voron_Rapid_Burner_Adapter_stl();
+//xCarriageVoronDragonBurnerAdapter_hardware(inserts=inserts, rapid=true);
 //phaetusRapido();
 //vrb_LGX_Lite_Hotend_Mount(inserts=inserts);
 //vrb_LGX_Lite_Hotend_Mount_hardware(inserts=inserts);
 //vrb_Cowl_NoProbe();
+//vdb_Cowl_inserts();
 //vrb_Cowl_NoProbe_hardware();
 //vrb_Cowl_NoProbe_stl();
 //vrb_LGX_Lite_Mount_stl();
+//vrb_LGX_Lite_Mount_hardware();
 //vrb_LGX_Lite_Hotend_Mount_stl();
 
 if ($preview)
