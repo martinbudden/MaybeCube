@@ -37,7 +37,8 @@ module threadedInsertM3() {
     if ($preview && is_undef($hide_bolts)) color(boltColorBrass) insert(F1BM3);
 }
 
-module insertHoleM3(length, horizontal=false, rotate=0) {
-    boltHole(2*insert_hole_radius(F1BM3) + 0.2, 5, horizontal=horizontal, rotate=rotate);
-    boltHoleM3(length, horizontal=horizontal, rotate=rotate, twist=4);
+module insertHoleM3(boltHoleLength, insertHoleLength=5.5, horizontal=false) {
+    insert_type = F1BM3;
+    boltHole(2*insert_hole_radius(insert_type) + 0.2, insertHoleLength, horizontal=horizontal);
+    boltHoleM3(boltHoleLength, horizontal=horizontal, twist=4);
 }
