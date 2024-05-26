@@ -49,19 +49,23 @@ module voronRapidBurnerHotendAssembly(hotendDescriptor=undef) {
         rotate([90, 0, 0])
             vrb_LGX_Lite_Hotend_Mount_stl();
     hidden() vrb_LGX_Lite_Hotend_Mount_ST_stl();
-    vrb_LGX_Lite_Hotend_Mount_hardware(inserts=false);
-    phaetusRapido();
+    not_on_bom() {
+        vrb_LGX_Lite_Hotend_Mount_hardware(inserts=false);
+        phaetusRapido();
+    }
 }
 
 module voronRapidBurnerAssembly(extruderDescriptor="LGX_Lite", hotendDescriptor=undef) {
     explode = 50;
     explode([0, explode, 0], true) {
-        voronRapidBurnerExtruderAssembly(extruderDescriptor);
+        not_on_bom() {
+            voronRapidBurnerExtruderAssembly(extruderDescriptor);
+            color(voronAccentColor())
+                rotate([90, 0, 0])
+                    vrb_Cowl_NoProbe_stl();
+            vrb_Cowl_NoProbe_hardware(inserts=true);
+        }
         voronRapidBurnerHotendAssembly(hotendDescriptor);
-        color(voronAccentColor())
-            rotate([90, 0, 0])
-                vrb_Cowl_NoProbe_stl();
-        vrb_Cowl_NoProbe_hardware(inserts=true);
     }
 }
 

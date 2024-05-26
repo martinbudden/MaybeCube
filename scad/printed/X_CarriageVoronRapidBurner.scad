@@ -60,12 +60,12 @@ module vrb_LGX_Lite_Hotend_Mount(inserts=true) {
             translate([-166.7, 9.62, 108.85])
                 rotate([90, 0, 0])
                     vrbImportStl("Orbiter2_Hotend_Mount");
+            // block in the old top holes, which are in the wrong position
+            for (x = [-17.5, 19.5])
+                translate([x, 0, 70.72])
+                    vflip()
+                        cylinder(r=2.9, h=6);
             if (!inserts) {
-                // block in the old top holes
-                for (x = [-17.5, 19.5])
-                    translate([x, 0, 70.72])
-                        vflip()
-                            cylinder(r=2.9, h=6);
                 // block in the old inserts
                 for (x = [16.4, -16.4])
                     translate([x, 9.625, 66.4])
@@ -73,23 +73,23 @@ module vrb_LGX_Lite_Hotend_Mount(inserts=true) {
                             cylinder(r=2.9, h=6);
             }
         }
-        if (!inserts) {
-            // create some new holes with LGX_Lite spacing
-                    length = 16.45;
-            for (x = [-21.75, 21.75])
-                translate([x, 0, 70.72])
-                    if (inserts)
-                        translate_z(-length)
-                            insertHoleM3(length, insertHoleLength=10.25);
-                    else
-                        vflip()
-                            boltHoleM3Tap(length, horizontal=true, chamfer_both_ends=true);
-            // create some new self tapping holes where the old inserts were
+        // create some new holes with LGX_Lite spacing
+        length = 16.45;
+        for (x = [-21.75, 21.75])
+            translate([x, 0, 70.72])
+                if (inserts)
+                    translate_z(-length)
+                        rotate(180)
+                            insertHoleM3(length, insertHoleLength=10.25, horizontal=true);
+                else
+                    vflip()
+                        boltHoleM3Tap(length, horizontal=true, chamfer_both_ends=true);
+        // create some new self tapping holes where the old inserts were
+        if (!inserts)
             for (x = [16.4, -16.4])
                 translate([x, 9.625, 66.4])
                     rotate([90, 0, 0])
                         boltHoleM3Tap(15);
-        }
     }
 }
 
@@ -126,9 +126,9 @@ module vrb_LGX_Lite_Hotend_Mount_hardware(inserts=true) {
 }
 
 module vrb_LGX_Lite_Mount_stl() {
-    stl("vrb_LGX_Lite_Mount")
-        color(voronColor())
-            vrb_LGX_Lite_Mount();
+    stl("vrb_LGX_Lite_Mount");
+    color(voronColor())
+        vrb_LGX_Lite_Mount();
 }
 
 module vrb_LGX_Lite_Mount() {
@@ -141,10 +141,10 @@ module vrb_LGX_Lite_Mount_hardware() {
 }
 
 module vrb_Cowl_NoProbe_stl() {
-    stl("vrb_Cowl_NoProbe")
-        rotate([-90, 0, 0]) // better orientation for printing
-            color(voronAccentColor())
-                vrb_Cowl_NoProbe();
+    stl("vrb_Cowl_NoProbe");
+    rotate([-90, 0, 0]) // better orientation for printing
+        color(voronAccentColor())
+            vrb_Cowl_NoProbe();
 }
 
 module vrb_Cowl_NoProbe() {

@@ -116,7 +116,7 @@ assembly("Voron_Dragon_Burner", big=true) {
                     CoreXYBelts(carriagePosition, x_gap=-25, show_pulleys=![1, 0, 0]);
             xRailCarriagePosition(carriagePosition, rotate=0)
                 Printhead_Voron_Dragon_Burner_assembly();
-            no_explode() {
+            no_explode() not_on_bom() {
                 printheadBeltSide();
                 printheadBeltSideBolts();
             }
