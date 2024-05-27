@@ -26,7 +26,7 @@ assembly("Voron_Dragon_Burner_Adapter", big=true) {
     stl_colour(pp3_colour)
         Voron_Dragon_Burner_Adapter_stl();
     explode(explode, true, show_line=false)
-        xCarriageVoronDragonBurnerAdapter_hardware(inserts=true, bolts=false);
+        xCarriageVoronDragonBurnerAdapter_inserts();
 }
 
 module xCarriageVoronDragonBurnerAdapterAssembly(inserts=true) {
@@ -43,8 +43,10 @@ module xCarriageVoronDragonBurnerAdapterAttachmentBolts() {
     explode = 20;
     translate([0, 13.95, -50])
         rotate([90, 0, 180])
-            explode(explode, true)
-                xCarriageVoronDragonBurnerAdapter_hardware(inserts=false, bolts=true);
+            explode(explode, true) {
+                xCarriageVoronDragonBurnerAdapter_topBolt();
+                xCarriageVoronDragonBurnerAdapter_cowlingBolts();
+            }
 }
 
 module voronDragonBurnerExtruderAssembly(extruderDescriptor="LGX_Lite") {
@@ -75,12 +77,15 @@ module voronDragonBurnerHotendAssembly(hotendDescriptor="RevoVoron") {
 }
 
 module voronDragonBurnerAssembly(extruderDescriptor="LGX_Lite", hotendDescriptor="RevoVoron") {
-    voronDragonBurnerExtruderAssembly(extruderDescriptor);
-    voronDragonBurnerHotendAssembly(hotendDescriptor);
-    color(voronAccentColor())
-        rotate([90, 0, 0])
-            vdb_Cowl_NoProbe_stl();
-    vdb_Cowl_NoProbe_hardware();
+    not_on_bom() no_explode() {
+        voronDragonBurnerExtruderAssembly(extruderDescriptor);
+        voronDragonBurnerHotendAssembly(hotendDescriptor);
+        color(voronAccentColor())
+            rotate([90, 0, 0])
+                vdb_Cowl_NoProbe_stl();
+        vdb_Cowl_fans();
+        vdb_Cowl_inserts();
+    }
 }
 
 module Dragon_Burner_assembly()
@@ -91,13 +96,12 @@ assembly("Dragon_Burner", big=true) {
 module Printhead_Voron_Dragon_Burner_assembly()
 assembly("Printhead_Voron_Dragon_Burner", big=true) {
     translate([0, 37.3, -61.25]) {
-        not_on_bom() no_explode()
-            voronDragonBurnerAssembly();
+        voronDragonBurnerAssembly();
         //Dragon_Burner_assembly();
     }
     explode([0, 100, 0])
         vdb_Cowl_NoProbe_Attachment_Bolts();
-    explode([0, -200, 0], true)
+    explode([0, -200, 0], true, show_line=false)
         xCarriageVoronDragonBurnerAdapterAttachmentBolts();
     explode([0, -100, 0], show_line=false)
         xCarriageVoronDragonBurnerAdapterAssembly(inserts=true);

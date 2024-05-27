@@ -41,17 +41,17 @@ module vrb_DFA_Hotend_Mount() {
 }
 
 module vrb_LGX_Lite_Hotend_Mount_stl() {
-    stl("vrb_LGX_Lite_Hotend_Mount")
-        color(voronColor())
-            rotate([-90, 0, 0]) // better orientation for printing
-                vrb_LGX_Lite_Hotend_Mount(inserts=true);
+    color(voronColor())
+        stl("vrb_LGX_Lite_Hotend_Mount");
+    rotate([-90, 0, 0]) // better orientation for printing
+        vrb_LGX_Lite_Hotend_Mount(inserts=true);
 }
 
 module vrb_LGX_Lite_Hotend_Mount_ST_stl() {
-    stl("vrb_LGX_Lite_Hotend_Mount_ST")
-        color(voronColor())
-            rotate([-90, 0, 0]) // better orientation for printing
-                vrb_LGX_Lite_Hotend_Mount(inserts=false);
+    stl("vrb_LGX_Lite_Hotend_Mount_ST");
+    color(voronColor())
+        rotate([-90, 0, 0]) // better orientation for printing
+            vrb_LGX_Lite_Hotend_Mount(inserts=false);
 }
 
 module vrb_LGX_Lite_Hotend_Mount(inserts=true) {
@@ -93,12 +93,20 @@ module vrb_LGX_Lite_Hotend_Mount(inserts=true) {
     }
 }
 
-module vrb_LGX_Lite_Hotend_Mount_hardware(inserts=true) {
-    // attachment bolts
+module vrb_LGX_Lite_Hotend_Mount_cableTies() {
+    for (x = [-21.5, 21.5])
+        translate([x, -9, 65])
+            rotate([90, 90, 0])
+                cable_tie(cable_r=2, thickness=0.5);
+}
+
+module vrb_LGX_Lite_Hotend_Mount_attachmentBolts(inserts=true, cableTies=true) {
     for (x = [-12.5, 12.5])
         translate([x, -7, 55.1])
             rotate([-90, 0, 0])
                 boltM3Caphead(16);
+}
+module vrb_LGX_Lite_Hotend_Mount_hardware(inserts=true, cableTies=true) {
     translate([0, -8.5, 65.1])
         rotate([-90, 30, 0])
             nutM3();
@@ -107,10 +115,9 @@ module vrb_LGX_Lite_Hotend_Mount_hardware(inserts=true) {
     for (x = [-5.75, 5.75], y = [-5.75, 5.75])
         translate([x, y, 67.8])
             boltM2p5Caphead(10);
-    for (x = [-21.5, 21.5])
-        translate([x, -9, 65])
-            rotate([90, 90, 0])
-                cable_tie(cable_r=2, thickness=0.5);
+
+    if (cableTies)
+        vrb_LGX_Lite_Hotend_Mount_cableTies();
 
     if (inserts) {
         for (x = [-21.75, 21.75])
@@ -137,7 +144,11 @@ module vrb_LGX_Lite_Mount() {
 }
 
 module vrb_LGX_Lite_Mount_hardware() {
-    vdb_LGX_Lite_Mount_hardware(zOffset=8.5, boltLength=20, nut=false);
+    vdb_LGX_Lite_Mount_hardware(zOffset=8.5, nut=false);
+}
+
+module vrb_LGX_Lite_Mount_hotendBolts() {
+    vdb_LGX_Lite_Mount_hotendBolts(zOffset=8.5, boltLength=20);
 }
 
 module vrb_Cowl_NoProbe_stl() {
@@ -153,8 +164,7 @@ module vrb_Cowl_NoProbe() {
             vrbImportStl("Cowl_NoProbe");
 }
 
-module vrb_Cowl_NoProbe_hardware(inserts=true) {
-    vdb_Cowl_NoProbe_hardware(fanOffsetZ=-11.5, inserts=inserts);
+module vrb_Cowl_NoProbe_bolts() {
     translate([0, 12.6, 66.4])
         rotate([90, 180, 0]) {
             for (x = [-16.4, 16.4])

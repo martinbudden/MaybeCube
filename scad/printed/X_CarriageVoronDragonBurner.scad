@@ -182,29 +182,30 @@ module xCarriageVoronDragonBurnerAdapter(inserts=true, rapid=false) {
         } // end difference
 }
 
-module xCarriageVoronDragonBurnerAdapter_hardware(inserts=true, bolts=true, rapid=false) {
+module xCarriageVoronDragonBurnerAdapter_inserts() {
     for (x = [0, xCarriageBoltSeparation.x])
-        translate([x - xCarriageBoltSeparation.x/2, 0, xCarriageSize.y])
-            if (inserts) {
-                translate([0, 4 + xCarriageHoleOffsetBottom(), 0])
-                    threadedInsertM3();
-                translate([0, xCarriageBoltSeparation.y + 4 - xCarriageHoleOffsetTop(), 0])
-                    threadedInsertM3();
-            }
-
-    voronDragonBurnerAttachmentHoles()
-        explode(-20, true)
-            vflip()
+        translate([x - xCarriageBoltSeparation.x/2, 0, xCarriageSize.y]) {
+            translate([0, 4 + xCarriageHoleOffsetBottom(), 0])
                 threadedInsertM3();
+            translate([0, xCarriageBoltSeparation.y + 4 - xCarriageHoleOffsetTop(), 0])
+                threadedInsertM3();
+        }
+    voronDragonBurnerAttachmentHoles()
+        vflip()
+            explode(50, false)
+                threadedInsertM3();
+}
 
-    if (bolts) {
-        translate([0, 54.5, 0])
-            vflip()
-                boltM3Countersunk(16);
-        xCarriageVoronDragonBurnerCowlingBoltHoles()
-            vflip()
-                boltM3Countersunk(10);
-    }
+module xCarriageVoronDragonBurnerAdapter_topBolt() {
+    translate([0, 54.5, 0])
+        vflip()
+            boltM3Countersunk(16);
+}
+
+module xCarriageVoronDragonBurnerAdapter_cowlingBolts() {
+    xCarriageVoronDragonBurnerCowlingBoltHoles()
+        vflip()
+            boltM3Countersunk(10);
 }
 
 module Voron_Dragon_Burner_Adapter_stl() {
@@ -260,11 +261,15 @@ module vdb_LGX_Lite_Mount() {
             vdbImportStl("LGX_Lite_Mount");
 }
 
-module vdb_LGX_Lite_Mount_hardware(zOffset=0, boltLength=12, nut=true) {
-    translate([0, 0, 66.9 + zOffset]) {
+module vdb_LGX_Lite_Mount_hotendBolts(zOffset=0, boltLength=12) {
+    translate([0, 0, 66.9 + zOffset])
         for (x = [-21.75, 21.75])
             translate([x, 0, 2.3])
                 boltM3Caphead(boltLength);
+}
+
+module vdb_LGX_Lite_Mount_hardware(zOffset=0, nut=true) {
+    translate([0, 0, 66.9 + zOffset]) {
         for (x = [-9.5, 9.5])
             translate([x, -2.2, 0])
                 vflip()
@@ -359,14 +364,17 @@ module vdb_Cowl_NoProbe() {
 }
 
 module vdb_Cowl_fans(fanOffsetZ=0) {
-    translate([-16.491, 20.63, 40])
-        rotate([180, 90, 0])
-            blower(BL40x10);
-    translate([16.515, 20.63, 0])
-        rotate([180, -90, 0])
-            blower(BL40x10);
-    translate([0, fanOffsetZ, 6])
-        fan(fan30x10);
+    rotate([-90, 0, 180])
+        translate([0, -34.8, -23.7]) {
+            translate([-16.491, 20.63, 40])
+                rotate([180, 90, 0])
+                    blower(BL40x10);
+            translate([16.515, 20.63, 0])
+                rotate([180, -90, 0])
+                    blower(BL40x10);
+            translate([0, fanOffsetZ, 6])
+                fan(fan30x10);
+        }
 }
 
 module vdb_Cowl_inserts() {
@@ -382,14 +390,6 @@ module vdb_Cowl_NoProbe_Attachment_Bolts() {
             translate([x - 12.25, 6, -54.5])
                 vflip()
                     boltM3Caphead(40);
-}
-
-module vdb_Cowl_NoProbe_hardware(inserts=true, fanOffsetZ=0) {
-    rotate([-90, 0, 180])
-        translate([0, -34.8, -23.7])
-            vdb_Cowl_fans(fanOffsetZ=fanOffsetZ);
-    if (inserts)
-        vdb_Cowl_inserts();
 }
 
 module vdb_Boop_Front_Extended() {
