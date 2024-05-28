@@ -14,7 +14,7 @@ include <../Parameters_CoreXY.scad>
 axisOffset = coreXYPosBL().x - eSize;
 upperBoltOffset = 11;
 lowerBoltOffset = 5; // so does not interfere with pulley axel bolt
-frontOffset = 0.75; // so idler does not interfere with sliding front panel
+frontOffset = 0.5; // so idler does not interfere with sliding front panel
 function useRB40() = !is_undef(_useRB40) && _useRB40; // use reversed belts with 2040 extrusion on front
 
 function xyIdlerSize() = [eSize - 1 - frontOffset + (pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 4 : 0), pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 65 : (useRB40() ? 45 : 60), 5]; // eSize - 1 to allow for imprecisely cut Y rails
@@ -72,18 +72,17 @@ module xyIdler(size, left=true, useReversedBelts=false, M5=false, coreXYIdlerBor
     sizeY1 = (coreXYPosBL().z - (left || !useReversedBelts ? separation.z : 0)) - (eZ - size.y - (useRB40() ? 2*eSize : eSize));
     washerClearance = 0.25; // to make assembly easier
     sizeY2 = size.y - sizeY1 - (useReversedBelts ? separation.z : 2*separation.z)  - washerClearance + yCarriageBraceThickness()/2;
-    baseThickness = 2;
+    baseThickness = 1.5;
     // cutout for y rail
     cutoutFillet = 0.5;
     cutoutSize = [size.x >= eSize ? 4 : 0, 8.5 + cutoutFillet, 13];
-    tabLength = size.y - armSize.z - 1; //was 27
+    tabLength = size.y - armSize.z - 3; //was 27
 
     fillet = 0.5;
     translate([0, eZ - size.y - (useRB40() ? 2*eSize : eSize), 0]) {
         difference() {
             translate([frontOffset, 0, 0])
                 union() {
-                    sideThickness = 2;
                     rounded_cube_yz([size.x, size.y, baseThickness], fillet);
                     // side block below pulley
                     rounded_cube_yz([size.x, sizeY1 - 1, size.z], fillet);
@@ -105,6 +104,7 @@ module xyIdler(size, left=true, useReversedBelts=false, M5=false, coreXYIdlerBor
                                     fillet(1, size.x);
                         }
                     }
+                    sideThickness = 1.5;
                     *translate([0, sizeY1 - armSize.y, 0])
                         rounded_cube_yz([sideThickness, size.y - sizeY1 + armSize.y, armSize.z], fillet);
                     rotate([0, -90, 0])
@@ -113,12 +113,13 @@ module xyIdler(size, left=true, useReversedBelts=false, M5=false, coreXYIdlerBor
                                 offset(fillet) offset(-fillet)
                                     //polygon([ [0, 0], [0, size.y], [armSize.z + tabLength, size.y], [armSize.z + tabLength, size.y-tabThickness], [armSize.z, sizeY1 - armSize.y], [size.z, 0] ]);
                                     polygon([ [0, 0], [0, size.y], [size.y, size.y], [size.y, size.y-tabThickness], [size.z, 0] ]);
+                    // fillet to help threading belts
                     translate([sideThickness, size.y - sizeY2, baseThickness])
                         rotate([90, 0, 0])
-                            fillet(6, size.y - sizeY1 - sizeY2);
+                            fillet(5, size.y - sizeY1 - sizeY2);
                     translate([0, size.y - sizeY2, baseThickness])
                         rotate([90, -90, 90])
-                            fillet(1, size.x);
+                            fillet(0.75, size.x);
                     tNutWidth = 10.25;
                     cubeHeight = 1.5;
                     triangleHeight = 4;
@@ -185,7 +186,7 @@ module xyIdler(size, left=true, useReversedBelts=false, M5=false, coreXYIdlerBor
         }
         translate([0, armSize.y, baseThickness])
             rotate([90, 0, 90])
-                fillet(1, size.x);
+                fillet(0.75, size.x);
         translate([0, 0, size.z])
             rotate([90, -90, 90])
                 fillet(1, size.x);
