@@ -174,6 +174,10 @@ module boltHoleM6(length, horizontal=false, rotate=0, chamfer=0.5, chamfer_both_
     boltHole(M6_clearance_radius*2, length, horizontal, rotate, chamfer, chamfer_both_ends, cnc, twist);
 }
 
+module boltHoleM6Tap(length, horizontal=false, rotate=0, chamfer=0.5, chamfer_both_ends=true, cnc=false, twist=undef) {
+    boltHole(M6_tap_radius*2, length, horizontal, rotate, chamfer, chamfer_both_ends, cnc, twist);
+}
+
 module boltHoleM6Counterbore(length, boreDepth=undef, boltHeadTolerance=0.4, cnc=false, twist=0) {
     boltHoleCounterbore(M6_cap_screw, length=length, boreDepth=boreDepth, boltHeadTolerance=boltHeadTolerance, cnc=cnc, twist=twist);
 }
