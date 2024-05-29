@@ -19,7 +19,8 @@ function useRB40() = !is_undef(_useRB40) && _useRB40; // use reversed belts with
 
 function xyIdlerSize() = [eSize - 1 - frontOffset + (pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 4 : 0), pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 65 : (useRB40() ? 45 : 60), 5]; // eSize - 1 to allow for imprecisely cut Y rails
 function xyIdlerRailOffset() = eSize - 1 - (pulley_hub_dia(coreXY_toothed_idler(coreXY_type())) > 15 ? 0 : 0);
-armSize = [xyIdlerSize().x, useRB40() ? (coreXYIdlerBore() == 3 ? 8 : coreXYIdlerBore() == 4 ? 9 : 11) : 5.5, 17.5]; // 5.5 y size so 30mm bolt fits exactly
+// armSize.x reduced to make assembly of pullies easier
+armSize = [xyIdlerSize().x - 2, useRB40() ? (coreXYIdlerBore() == 3 ? 8 : coreXYIdlerBore() == 4 ? 9 : 11) : 5.5, 17.5]; // 5.5 y size so 30mm bolt fits exactly
 tabThickness = 5;
 tabBoltOffset = 6;
 
@@ -172,7 +173,10 @@ module xyIdler(size, left=true, useReversedBelts=false, M5=false, coreXYIdlerBor
     }
     translate([frontOffset, coreXYPosBL().z - armSize.y + yCarriageBraceThickness()/2 - washerClearance - (left || !useReversedBelts ? separation.z : 0), 0]) {
         difference() {
-            rounded_cube_yz(armSize, fillet);
+            union() {
+                rounded_cube_yz(armSize, fillet);
+                rounded_cube_yz([size.x, armSize.y, size.z], fillet);
+            }
             if (left && useRB40() && size.y == 40)
                 translate([-eps, -eps, armSize.z + eps])
                     rotate([90, 90, 90])
@@ -189,7 +193,7 @@ module xyIdler(size, left=true, useReversedBelts=false, M5=false, coreXYIdlerBor
                 fillet(0.75, size.x);
         translate([0, 0, size.z])
             rotate([90, -90, 90])
-                fillet(1, size.x);
+                fillet(1, armSize.x);
         *translate([0, armSize.y + 2*separation.z, 0])
             difference() {
                 rounded_cube_yz(armSize, fillet);
