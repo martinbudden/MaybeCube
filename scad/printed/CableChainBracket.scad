@@ -46,7 +46,8 @@ module cableChainBracket(size=cableChainBracketSize) {
         translate([size.x/2, size.y - cutout.y, size.z])
             rotate([180, 90,  0])
                 fillet(8, cutout.x);
-        for (x = [-2.5, 2], y = [12, 24])
+        // cutouts for cable ties
+        for (x = [-4.5, 2], y = [12, 30])
             translate([x + size.x/4 + 1.5, size.y - cutout.y - y, -eps])
                 rounded_cube_xy([2, 5, size.z + 2*eps], 0.25, xy_center=true);
         translate([0, size.y - cutout.y/2 - endStopSizeY/2, -eps]) {
@@ -86,10 +87,10 @@ module Cable_Chain_Bracket_hardware(size=cableChainBracketSize) {
 }
 module Cable_Chain_Bracket_cable_ties(size=cableChainBracketSize) {
     cutout = [8, 15];
-    for (y = [12, 24])
-        translate([size.x/4 + 1.25, size.y - cutout.y - y - 1, 21])
+    for (y = [12, 30])
+        translate([size.x/4 + 0.25, size.y - cutout.y - y - 1, 20])
             rotate(90)
-                cable_tie(cable_r = 2, thickness = 21);
+                cable_tie(cable_r = 2.75, thickness = 20);
     translate([-2, 0, 0])
         cableChainBracketHolePositions()
             rotate([0, -90, 0])
