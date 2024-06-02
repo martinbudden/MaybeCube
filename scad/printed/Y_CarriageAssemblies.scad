@@ -12,8 +12,16 @@ use <../../../BabyCube/scad/printed/Y_Carriage.scad>
 include <../Parameters_CoreXY.scad>
 use <../Parameters_Positions.scad>
 
-
-function plainIdlerOffset(left=true) = [useReversedBelts() ? -2.15 + (coreXYIdlerBore()==4 ? 1 : 0) : -yRailShiftX() + plainIdlerPulleyOffset().x, left ? -coreXYOffsetY()/2 : coreXYOffsetY()/2, undef];
+// When using standard belts the inside idler is plain and the outside idler is toothed.
+// When using reversed belts the inside idler is toothed and the outside idler is plain.
+// Need to compensate for belt teeth when using bearings rather than toothed pulleys.
+// Note that when using reversed belts, plainIdler refers to the toothed idler and toothIdler refers to he plain idler,
+// hence the beltToothHeight compensation is appled to the "plainIdler".
+// In principle both the x and y offsets should be compensated, but the y offset is not compensated here, instead it is
+// handled at the X_Carriage. This improves belt clearances on the Y_Carriage.
+beltToothHeight = coreXYBearing() ? 1*belt_tooth_height(coreXY_belt(coreXY_type())) : 0;
+plainIdlerOffsetY = 1; // offset to increase amount of support around left Y_Carriage shoulder bolt
+function plainIdlerOffset(left=true) = [useReversedBelts() ? -2.15 + beltToothHeight + (coreXYIdlerBore()==4 ? 1 : 0) : -yRailShiftX() + plainIdlerPulleyOffset().x, left ? -coreXYOffsetY()/2 - plainIdlerOffsetY : coreXYOffsetY()/2 + plainIdlerOffsetY, undef];
 function toothedIdlerOffset(left=true) = [-yRailShiftX(), left ? coreXYOffsetY()/2 : -coreXYOffsetY()/2, undef];
 function tongueOffset() = (eX + 2*eSize - _xRailLength - 2*yRailOffset().x)/2;
 function pulleyWasherHeight(coreXYIdlerBore=coreXYIdlerBore()) = 2*washer_thickness(coreXYIdlerBore == 3 ? M3_washer : coreXYIdlerBore == 4 ? M4_shim : M5_shim);

@@ -55,7 +55,7 @@ function  coreXYSeparation(coreXYType=coreXY_type()) = [
     // Z separation is a pulley with a washer either side and an optional brace for the yCarriage pulleys
     pulley_height(coreXY_plain_idler(coreXYType)) + 2*washer_thickness(coreXYWasher(coreXYType)) + yCarriageBraceThickness()
 ];
-function coreXYOffsetY(coreXYType=coreXY_type()) = coreXYIdlerBore(coreXYType) == 3 ? 0 : -1.0;
+function coreXYOffsetY(coreXYType=coreXY_type()) = 0;
 
 function motorClearance() = [0, 14];
 
