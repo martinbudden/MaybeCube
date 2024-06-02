@@ -118,7 +118,7 @@ module xyIdler(size, left=true, useReversedBelts=false, M5=false, coreXYIdlerBor
                     translate([sideThickness, size.y - sizeY2, baseThickness])
                         rotate([90, 0, 0])
                             fillet(5, size.y - sizeY1 - sizeY2);
-                    translate([0, size.y - sizeY2, baseThickness])
+                    *#translate([0, size.y - sizeY2, baseThickness])
                         rotate([90, -90, 90])
                             fillet(0.75, size.x);
                     tNutWidth = 10.25;
@@ -188,7 +188,7 @@ module xyIdler(size, left=true, useReversedBelts=false, M5=false, coreXYIdlerBor
                     else
                         boltHole(coreXYIdlerBore, armSize.y, horizontal=true);
         }
-        translate([0, armSize.y, baseThickness])
+        *#translate([0, armSize.y, baseThickness])
             rotate([90, 0, 90])
                 fillet(0.75, size.x);
         translate([0, 0, size.z])
