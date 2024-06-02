@@ -32,7 +32,7 @@ module filamentFeed() {
             boltHoleM6Tap(size.z);
         for (y = [size.y - 7, size.y - sizeY + 7])
             translate([eSize/2, y, 0])
-                boltHoleM4(size.z);
+                boltPolyholeM4Countersunk(size.z);
     }
 }
 
@@ -51,7 +51,7 @@ module Filament_Feed_hardware() {
         bowden_connector();
     for (y = [size.y - 7, size.y - sizeY + 7])
         translate([eSize/2, y, size.z])
-            boltM4ButtonheadHammerNut(10);
+            boltM4CountersunkHammerNut(10);
 }
 
 module Filament_Feed_assembly()
@@ -63,4 +63,3 @@ assembly("Filament_Feed") {
         Filament_Feed_hardware();
     }
 }
-
