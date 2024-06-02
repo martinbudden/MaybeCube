@@ -31,7 +31,7 @@ module filamentFeed() {
         translate([(eSize + size.x)/2, size.y/2, 0])
             boltHoleM6Tap(size.z);
         for (y = [size.y - 7, size.y - sizeY + 7])
-            translate([eSize/2, y, 0])
+            translate([eSize/2, y, size.z])
                 boltPolyholeM4Countersunk(size.z);
     }
 }
@@ -39,8 +39,7 @@ module filamentFeed() {
 module Filament_Feed_stl() {
     stl("Filament_Feed")
         color(pp2_colour)
-            vflip() // better orientation for printing
-                filamentFeed();
+            filamentFeed();
 }
 
 module Filament_Feed_hardware() {
@@ -48,7 +47,8 @@ module Filament_Feed_hardware() {
     sizeY = 30;
 
     translate(filamentFeedBowdenOffset)
-        bowden_connector();
+        explode(20)
+            bowden_connector();
     for (y = [size.y - 7, size.y - sizeY + 7])
         translate([eSize/2, y, size.z])
             boltM4CountersunkHammerNut(10);
@@ -58,8 +58,7 @@ module Filament_Feed_assembly()
 assembly("Filament_Feed") {
     translate(filamentFeedOffset() - filamentFeedBowdenOffset) {
         color(pp2_colour)
-            vflip()
-                Filament_Feed_stl();
+            Filament_Feed_stl();
         Filament_Feed_hardware();
     }
 }
