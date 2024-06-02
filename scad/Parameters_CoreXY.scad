@@ -46,7 +46,7 @@ function yCarriageBraceThickness() = 1; // brace to support cantilevered pulleys
 function beltOffsetZ() = yCarriageThickness() - coreXYSeparation().z - 30.5;
 //function beltOffsetZ() = yCarriageThickness() + carriage_height(MGN12H_carriage) + coreXYSeparation().z - 55;
 
-function plainIdlerPulleyOffset() = useReversedBelts() ? [0, use2060ForTopRear() ? -20 : -20] : largePulleyOffset ? [3, -3] : [0, 0];
+function plainIdlerPulleyOffset() = useReversedBelts() ? [0, -19] : largePulleyOffset ? [3, -3] : [0, 0];
 
 // use -12.75 for separation.x to make y-carriage idlers coincident vertically
 function  coreXYSeparation(coreXYType=coreXY_type()) = [
@@ -67,8 +67,9 @@ function coreXYPosBL() = [
     eZ - yCarriageThickness() - yCarriageBraceThickness()/2 - (beltWidth() == 6 ? 34 + pulley_height(coreXY_toothed_idler(coreXY_type())) : 35 + pulley_height(coreXY_toothed_idler(coreXY_type())))
 ];
 
+function coreXYTROffsetY() = useReversedBelts() ? 4 : 0;
 function coreXYPosTR(motorWidth) = [
     eX + 2*eSize - coreXYPosBL().x,
-    eY + 2*eSize - motorWidth/2 - motorClearance().y + (useReversedBelts() ? 5 : 0),
+    eY + 2*eSize - motorWidth/2 - motorClearance().y + coreXYTROffsetY(),
     coreXYPosBL().z
 ];
