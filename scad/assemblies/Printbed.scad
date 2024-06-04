@@ -462,7 +462,7 @@ assembly("Printbed_Frame", big=true, ngb=true) {
         explode([-80, 0, 0], true)
             translate([-_printbedArmSeparation/2 - eSize, size.y - 80, -eSize/2])
                 rotate(90) {
-                    color(pp1_colour)
+                    color(pp3_colour)
                         Cable_Chain_Bracket_stl();
                     Cable_Chain_Bracket_hardware();
                 }

@@ -99,13 +99,13 @@ module Cable_Chain_Bracket_cable_ties(size=cableChainBracketSize) {
 
 module Cable_Chain_Bracket_stl() {
     stl("Cable_Chain_Bracket")
-        color(pp1_colour)
+        color(pp3_colour)
             cableChainBracket();
 }
 
 module cableChainBracketAssembly() {
 //size 250:49, 300:51, 350:54, 400:55
-    stl_colour(pp1_colour)
+    stl_colour(pp3_colour)
         Cable_Chain_Bracket_stl();
     Cable_Chain_Bracket_hardware();
 }

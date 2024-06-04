@@ -301,7 +301,7 @@ module Z_Carriage_Center_hardware() {
 
 module Z_Carriage_Center_stl() {
     stl("Z_Carriage_Center")
-        color(pp2_colour)
+        color(pp3_colour)
             zCarriageCenter();
 }
 
@@ -310,7 +310,7 @@ module Z_Carriage_Center_stl() {
 module Z_Carriage_Center_assembly()
 assembly("Z_Carriage_Center", ngb=true) {
 
-    stl_colour(pp2_colour)
+    stl_colour(pp3_colour)
         Z_Carriage_Center_stl();
     Z_Carriage_Center_hardware();
 }

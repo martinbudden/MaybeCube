@@ -104,13 +104,13 @@ module baseDragChain(offset=chainAnchorOffset) {
 
 module Base_Cover_Back_Support_210_stl() {
     stl("Base_Cover_Back_Support_210")
-        color(pp1_colour) 
+        color(pp2_colour) 
             baseCoverBackSupport(baseCoverBackSupportSize);
 }
 
 module Base_Cover_Back_Support_250_stl() {
     stl("Base_Cover_Back_Support_250")
-        color(pp1_colour) 
+        color(pp2_colour) 
             baseCoverBackSupport(baseCoverBackSupportSize);
 }
 
@@ -142,12 +142,12 @@ module Base_Cover_Front_Support_hardware() {
 
 module Base_Cover_Front_Support_202_stl() {
     stl("Base_Cover_Front_Support_202")
-        color(pp2_colour)
+        color(pp1_colour)
             baseCoverFrontSupport(baseCoverFrontSupportSize);
 }
 module Base_Cover_Front_Support_242_stl() {
     stl("Base_Cover_Front_Support_242")
-        color(pp2_colour)
+        color(pp1_colour)
             baseCoverFrontSupport(baseCoverFrontSupportSize);
 }
 
@@ -177,25 +177,25 @@ module baseCoverLeftSideSupport(size, tap=false) {
 
 module Base_Cover_Left_Side_Support_150A_stl() {
     stl("Base_Cover_Left_Side_Support_150A")
-        color(pp1_colour)
+        color(pp2_colour)
             baseCoverLeftSideSupport(baseCoverLeftSideSupportSize, tap=false);
 }
 
 module Base_Cover_Left_Side_Support_150B_stl() {
     stl("Base_Cover_Left_Side_Support_150B")
-        color(pp2_colour)
+        color(pp1_colour)
             baseCoverLeftSideSupport(baseCoverLeftSideSupportSize, tap=true);
 }
 
 module Base_Cover_Left_Side_Support_175A_stl() {
     stl("Base_Cover_Left_Side_Support_175A")
-        color(pp1_colour)
+        color(pp2_colour)
             baseCoverLeftSideSupport(baseCoverLeftSideSupportSize, tap=false);
 }
 
 module Base_Cover_Left_Side_Support_175B_stl() {
     stl("Base_Cover_Left_Side_Support_175B")
-        color(pp2_colour)
+        color(pp1_colour)
             baseCoverLeftSideSupport(baseCoverLeftSideSupportSize, tap=true);
 }
 module Base_Cover_Left_Side_Support_hardware() {
@@ -333,7 +333,7 @@ module Base_Cover_Top_stl() {
 module baseCoverFrontSupportsAssembly() {
     translate([eX + eSize - baseCoverFrontSupportSize.x, eSize, supportHeight])
         rotate([-90, 0, 0]) {
-            color(pp2_colour)
+            color(pp1_colour)
                 if (eX == 300)
                     Base_Cover_Front_Support_202_stl();
                 else
@@ -344,7 +344,7 @@ module baseCoverFrontSupportsAssembly() {
 
 module baseCoverBackSupportsAssembly() {
     translate([eX + eSize - baseCoverBackSupportSize.x, eY + eSize, 2*eSize]) {
-        color(pp1_colour)
+        color(pp2_colour)
             if (eX == 300)
                 Base_Cover_Back_Support_210_stl();
             else
@@ -357,7 +357,7 @@ module baseCoverLeftSideSupportsAssembly() {
     size = baseCoverLeftSideSupportSize;
     translate([eX + eSize - baseCoverBackSupportSize.x + size.x, eSize, 0])
         rotate([0, -90, 0]) {
-            color(pp1_colour)
+            color(pp2_colour)
                 if (eX == 300)
                     Base_Cover_Left_Side_Support_150A_stl();
                 else
@@ -370,7 +370,7 @@ module baseCoverLeftSideSupportsAssembly() {
         }
     translate([eX + eSize - baseCoverBackSupportSize.x, eSize + 2*size.y, 0])
         rotate([180, -90, 0]) {
-            color(pp2_colour)
+            color(pp1_colour)
                 if (eX == 300)
                     Base_Cover_Left_Side_Support_150B_stl();
                 else

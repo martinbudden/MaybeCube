@@ -211,7 +211,7 @@ module faceTopBack(height=60, fov_distance=0) {
             explode([0, -40, 0], true, show_line=false)
                 wiringGuidePosition(offsetX = useCamera ? cameraMountBaseSize.x/2 : 0)
                     vflip() {
-                        stl_colour(pp3_colour)
+                        stl_colour(pp2_colour)
                             Wiring_Guide_Socket_stl();
                         Wiring_Guide_Socket_hardware();
                     }

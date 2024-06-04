@@ -77,7 +77,7 @@ module Wiring_Guide_Socket_stl() {
     fillet = 1.5;
 
     stl("Wiring_Guide_Socket")
-        color(pp3_colour)
+        color(pp2_colour)
             vflip()
                 translate([-size.x/2, eSize - size.y, 0])
                     difference() {
