@@ -45,6 +45,7 @@ xCarriageBeltTensionerSizeX = 23;
 beltClampSize = [25, xCarriageBeltAttachmentSize(beltWidth(), beltSeparation()).x + 1, 4.5];
 beltsCenterZOffset = coreXYPosBL().z - xRailCarriagePositionZ();
 screwTypeCapheadSmallWasher = -2;
+extraBeltOffset = 1.75;
 
 module xCarriageHotendSideHolePositions(xCarriageType, flipSide=false) {
     size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
@@ -83,7 +84,7 @@ module X_Carriage_Beltside_RB_stl() {
     stl("X_Carriage_Beltside_RB"); // semicolon required for XChange build as this is not on BOM
     color(pp4_colour)
         rotate([90, 0, 0])// orientate for printing
-            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(), screwType=screwTypeCapheadSmallWasher, inserts=true, reversedBelts=true, endCube=true);
+            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(), screwType=screwTypeCapheadSmallWasher, inserts=true, reversedBelts=true, extraBeltOffset=extraBeltOffset, endCube=true);
 }
 
 module X_Carriage_Beltside_RB_ST_stl() {
@@ -94,7 +95,7 @@ module X_Carriage_Beltside_RB_ST_stl() {
     stl("X_Carriage_Beltside_RB_ST"); // semicolon required for XChange build as this is not on BOM
     color(pp4_colour)
         rotate([90, 0, 0])// orientate for printing
-            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(), screwType=screwTypeCapheadSmallWasher, inserts=false, reversedBelts=true, endCube=true);
+            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(), screwType=screwTypeCapheadSmallWasher, inserts=false, reversedBelts=true, extraBeltOffset=extraBeltOffset, endCube=true);
 }
 
 module X_Carriage_Beltside_RB_MGN9C_stl() {
@@ -224,7 +225,7 @@ module xCarriageBeltClampAssembly(xCarriageType, countersunk=true) {
 
     size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());
 
-    translate([0, 5, beltsCenterZOffset])
+    translate([0, 5+extraBeltOffset, beltsCenterZOffset])
         rotate([-90, 180, 0]) {
             stl_colour(pp2_colour)
                 if (countersunk)
