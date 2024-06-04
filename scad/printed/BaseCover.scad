@@ -18,7 +18,8 @@ include <../Parameters_Positions.scad>
 
 supportHeight = 70;
 holeOffset = 20;
-chainAnchorOffset = 160;
+chainAnchorOffset = 180;
+chainAnchorSizeX = 8;
 baseCoverTopSize = [eX > 300 ? 250 : 210, eY + eSize, 3];
 baseCoverBackSupportSize = [baseCoverTopSize.x, eSize, supportHeight - 2*eSize];
 baseCoverLeftSideSupportSize = [8, eY/2, supportHeight];
@@ -29,7 +30,7 @@ baseCoverFrontSupportSize = [baseCoverTopSize.x - baseCoverLeftSideSupportSize.x
 module chainAnchorHolePositions(size, offset=chainAnchorOffset) {
     chainOffset = size.x - offset;
     for (z = [0, 8])
-        translate([chainOffset, -5 + 10, size.z + z + 7])
+        translate([chainOffset + chainAnchorSizeX, -5 + 10, size.z + z + 7])
             children();
 }
 
@@ -37,7 +38,7 @@ module baseCoverBackSupport(size, offset=chainAnchorOffset) {
     chainOffset = size.x - offset;
     cutoutSize = [7, 10, 15];
     fillet = 1.5;
-    chainAnchorSize = [8, size.y + 5, size.z + 22];
+    chainAnchorSize = [chainAnchorSizeX, size.y + 5, size.z + 22];
     difference() {
         union() {
             translate([0, size.y - 5, 0]) {
@@ -51,20 +52,22 @@ module baseCoverBackSupport(size, offset=chainAnchorOffset) {
                 rounded_cube_xy(chainAnchorSize, fillet);
                 translate([0, -size.y + chainAnchorSize.y, 0])
                     rotate(180)
-                        fillet(fillet, size.z - cutoutSize.z);
+                        fillet(fillet, size.z);
                 translate([chainAnchorSize.x, -size.y + chainAnchorSize.y, 0])
                     rotate(-90)
-                        fillet(fillet, size.z);
+                        fillet(fillet, size.z - cutoutSize.z);
             }
         }
-        translate([chainOffset - cutoutSize.x, -fillet, size.z - cutoutSize.z + eps])
-            rounded_cube_xy([cutoutSize.x, cutoutSize.y + fillet, cutoutSize.z], fillet);
-        translate([chainOffset - cutoutSize.x, 0, size.z - cutoutSize.z + eps])
-            rotate(90)
-                fillet(fillet, cutoutSize.z);
+        translate([chainOffset + chainAnchorSize.x, 0, 0]) {
+            translate([0, -fillet, size.z - cutoutSize.z + eps])
+                rounded_cube_xy([cutoutSize.x, cutoutSize.y + fillet, cutoutSize.z], fillet);
+            translate([cutoutSize.x, 0, size.z - cutoutSize.z + eps])
+                rotate(0)
+                    fillet(fillet, cutoutSize.z);
+        }
         chainAnchorHolePositions(size)
-            rotate([0, 90, 0])
-                boltHoleM3Tap(chainAnchorSize.x);
+            rotate([90, 0, -90])
+                boltHoleM3Tap(chainAnchorSize.x, horizontal=true);
         for (x = [holeOffset, size.x/2, size.x - holeOffset])
             translate([x, size.y/2, size.z])
                 vflip()
@@ -83,7 +86,7 @@ module Base_Cover_Back_Support_hardware() {
             explode(30, true)
                 boltM3ButtonheadHammerNut(8, nutExplode=50);
     chainAnchorHolePositions(size)
-        rotate([0, -90, 0])
+        rotate([0, 90, 0])
             translate_z(2)
                 boltM3Countersunk(8);
 }
@@ -94,7 +97,7 @@ module baseDragChain(offset=chainAnchorOffset) {
     drag_chain = drag_chain("x", dragChainSize, travel=travel, wall=1.5, bwall=1.5, twall=1.5);
 
     drag_chain(390);
-    translate([eX + eSize - offset + 40, eY + eSize + 5, 4*eSize + baseCoverBackSupportSize.z - 15]) {
+    translate([eX + eSize - offset + 60.2, eY + eSize + 5, 4*eSize + baseCoverBackSupportSize.z - 15]) {
         rotate([0, -90, 0])
             color(grey(25))
                 not_on_bom()
