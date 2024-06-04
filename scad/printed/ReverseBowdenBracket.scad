@@ -8,14 +8,14 @@ include <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>
 
-filamentFeedSize = [2* eSize, eSize, 5];
-filamentFeedBowdenOffset = [(eSize + filamentFeedSize.x)/2, filamentFeedSize.y/2, filamentFeedSize.z];
+reverseBowdenBracketSize = [eSize + 15, eSize, 5];
+reverseBowdenBracketBowdenOffset = [(eSize + reverseBowdenBracketSize.x)/2, reverseBowdenBracketSize.y/2, reverseBowdenBracketSize.z];
 
-function filamentFeedOffset() = [eX + eSize, eY - 2*eSize, eZ] + filamentFeedBowdenOffset;;
+function reverseBowdenBracketOffset() = [eX + eSize, eY - 2*eSize, eZ] + reverseBowdenBracketBowdenOffset;;
 
 
-module filamentFeed() {
-    size = filamentFeedSize;
+module reverseBowdenBracket() {
+    size = reverseBowdenBracketSize;
     sizeY = 30;
     fillet = 2;
 
@@ -36,17 +36,17 @@ module filamentFeed() {
     }
 }
 
-module Filament_Feed_stl() {
-    stl("Filament_Feed")
-        color(pp2_colour)
-            filamentFeed();
+module Reverse_Bowden_Bracket_stl() {
+    stl("Reverse_Bowden_Bracket")
+        color(pp3_colour)
+            reverseBowdenBracket();
 }
 
-module Filament_Feed_hardware() {
-    size = filamentFeedSize;
+module Reverse_Bowden_Bracket_hardware() {
+    size = reverseBowdenBracketSize;
     sizeY = 30;
 
-    translate(filamentFeedBowdenOffset)
+    translate(reverseBowdenBracketBowdenOffset)
         explode(20)
             bowden_connector();
     for (y = [size.y - 7, size.y - sizeY + 7])
@@ -54,11 +54,14 @@ module Filament_Feed_hardware() {
             boltM4CountersunkHammerNut(10);
 }
 
-module Filament_Feed_assembly()
-assembly("Filament_Feed") {
-    translate(filamentFeedOffset() - filamentFeedBowdenOffset) {
-        color(pp2_colour)
-            Filament_Feed_stl();
-        Filament_Feed_hardware();
+module Reverse_Bowden_Bracket_assembly()
+assembly("Reverse_Bowden_Bracket") {
+    translate(reverseBowdenBracketOffset() - reverseBowdenBracketBowdenOffset) {
+        color(pp3_colour)
+            Reverse_Bowden_Bracket_stl();
+        Reverse_Bowden_Bracket_hardware();
     }
 }
+
+translate([-eX,-eY,-eZ])
+Reverse_Bowden_Bracket_assembly();

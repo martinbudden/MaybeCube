@@ -1,7 +1,7 @@
 include <NopSCADlib/vitamins/spools.scad>
 
 use <../printed/extruderBracket.scad>
-use <../printed/FilamentFeed.scad>
+use <../printed/ReverseBowdenBracket.scad>
 use <../printed/SpoolHolder.scad>
 
 include <../utils/bezierTube.scad>
@@ -51,7 +51,7 @@ module BowdenTube(carriagePosition) {
 
 module reverseBowdenTube(carriagePosition, hotendDescriptor="OrbiterV3") {
     color("white")
-        bezierTube(filamentFeedOffset(),
+        bezierTube(reverseBowdenBracketOffset(),
             [carriagePosition.x, carriagePosition.y, eZ] + printheadBowdenOffset(hotendDescriptor),
             tubeRadius=2,
             bowdenTube=false,

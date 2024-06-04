@@ -177,7 +177,7 @@ staged_assembly("Stage_4", big=true, ngb=true) {
                 Printhead_OrbiterV3_assembly();
             printheadWiring(_hotendDescriptor);
             reverseBowdenTube(carriagePosition());
-            Filament_Feed_assembly();
+            Reverse_Bowden_Bracket_assembly();
         }
 }
 
