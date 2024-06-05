@@ -101,13 +101,13 @@ module zCarriageSCS(cnc=false) {
     }
 }
 
-module zCarriageSCS_hardware(cnc=false) {
+module zCarriageSCS_hardware(sideSupports=true, cnc=false) {
     translate_z(scs_hole_offset(scsType)) {
         if (useTab)
             translate([boltOffset, scs_screw_separation_z(scsType)/2, 0])
                 vflip()
                     boltM4ButtonheadTNut(_frameBoltLength, 3.25);
-        *if (!cnc) {
+        if (sideSupports && !cnc) {
             sizeX = baseSize.x + tabRightLength;
             for (x = useTab ? [(10 - baseSize.x/2)] : [-sizeX/4, sizeX/4])
                translate([x, baseSize.y/2 - eSize/2 -shelfThickness, eSize/2])
@@ -123,10 +123,11 @@ module zCarriageSCS_hardware(cnc=false) {
                     else
                         translate_z(2 - baseSize.z) // offset for extrusion channel
                             boltM5Buttonhead(10);
-        *for (i = [2, 3])
-            translate(holes[i])
-                explode(20, true)
-                    boltM5Countersunk(12);
+        if (sideSupports)
+            for (i = [2, 3])
+                translate(holes[i])
+                    explode(20, true)
+                        boltM5Countersunk(12);
     }
 }
 
@@ -161,7 +162,7 @@ assembly("Z_Carriage_Left", ngb=true) {
             stl_colour(pp1_colour)
                 Z_Carriage_Left_stl();
             mirror([0, 1, 0])
-                zCarriageSCS_hardware();
+                zCarriageSCS_hardware(sideSupports=true);
         }
         explode([30, 0, 0])
             rotate(-90)
@@ -179,7 +180,7 @@ assembly("Z_Carriage_Right", ngb=true) {
         rotate([90, 0, 90]) {
             stl_colour(pp1_colour)
                 Z_Carriage_Right_stl();
-            zCarriageSCS_hardware();
+            zCarriageSCS_hardware(sideSupports=true);
         }
         explode([-30, 0, 0])
             rotate(90)
@@ -188,14 +189,14 @@ assembly("Z_Carriage_Right", ngb=true) {
 }
 
 
-module zCarriageSideAssembly(sideSupports=false) {
+module zCarriageSideAssembly(sideSupports=true) {
     if (sideSupports) {
         Z_Carriage_Side_assembly();
     } else {  
         rotate(_invertedZRods ? 180 : 0)
             translate_z(-scs_screw_separation_z(scsType)/2) {
                 rotate([90, 0, 90])
-                    zCarriageSCS_hardware();
+                    zCarriageSCS_hardware(sideSupports);
                 explode([-30, 0, 0])
                     rotate(90)
                         scs_bearing_block(scsType);
