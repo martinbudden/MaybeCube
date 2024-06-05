@@ -60,6 +60,7 @@ omitted from the build.
 ## Table of Contents
 
 1. [Parts list](#Parts_list)
+1. [Reverse_Bowden_Bracket assembly](#Reverse_Bowden_Bracket_assembly)
 1. [Printhead_OrbiterV3 assembly](#Printhead_OrbiterV3_assembly)
 1. [X_Carriage_Beltside assembly](#X_Carriage_Beltside_assembly)
 1. [XY_Motor_Mount_Right assembly](#XY_Motor_Mount_Right_assembly)
@@ -77,6 +78,7 @@ omitted from the build.
 1. [Face_Top_Stage_4 assembly](#Face_Top_Stage_4_assembly)
 1. [Face_Top assembly](#Face_Top_assembly)
 1. [Heated_Bed assembly](#Heated_Bed_assembly)
+1. [Z_Carriage_Side assembly](#Z_Carriage_Side_assembly)
 1. [Z_Carriage_Center assembly](#Z_Carriage_Center_assembly)
 1. [Printbed_Frame assembly](#Printbed_Frame_assembly)
 1. [Printbed_Frame_with_Z_Carriages assembly](#Printbed_Frame_with_Z_Carriages_assembly)
@@ -101,141 +103,171 @@ omitted from the build.
 
 ## Parts list
 
-| <span style="writing-mode: vertical-rl; text-orientation: mixed;">Printhead OrbiterV3</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">X Carriage Beltside</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Face Top</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Heated Bed</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Printbed</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Left Side</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Right Side</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Main</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">TOTALS</span> |  |
-|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|------:|:-------------|
-|      |      |      |      |      |      |      |      |       | **Vitamins** |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Aluminium sheet 390mm x 390mm x 3mm |
-|   .  |   .  |  24  |   .  |   .  |   .  |   .  |   .  |   24  |  Ball bearing F694ZZ 4mm x 11mm x 4mm |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1466mm |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1502mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech Manta 5MP v1.0 |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech Relay Module v1.2 |
-|   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Blower Runda RB5015 |
-|   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Bolt M2 caphead x 10mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |  18  |   18  |  Bolt M3 buttonhead x  8mm |
-|   .  |   .  |   8  |   .  |   .  |   .  |   .  |  13  |   21  |  Bolt M3 buttonhead x 10mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   8  |    8  |  Bolt M3 buttonhead x 16mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   3  |    3  |  Bolt M3 caphead x  6mm |
-|   .  |   .  |  18  |   2  |   .  |   .  |   .  |   .  |   20  |  Bolt M3 caphead x  8mm |
-|   .  |   .  |  12  |   .  |   .  |   .  |   .  |   .  |   12  |  Bolt M3 caphead x 10mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   5  |    5  |  Bolt M3 caphead x 12mm |
-|   .  |   .  |   .  |   3  |   .  |   .  |   .  |   .  |    3  |  Bolt M3 caphead x 25mm |
-|   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 30mm |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   4  |    5  |  Bolt M3 caphead x 35mm |
-|   .  |   2  |   1  |   .  |   .  |   .  |   .  |   .  |    3  |  Bolt M3 caphead x 40mm |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 50mm |
-|   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 countersunk x  6mm |
-|   .  |   .  |   .  |   .  |   2  |   .  |   .  |   2  |    4  |  Bolt M3 countersunk x  8mm |
-|   4  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    6  |  Bolt M3 countersunk x 10mm |
-|   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 countersunk x 12mm |
-|   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 countersunk x 20mm |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 shoulder x 12mm |
-|   .  |   .  |   3  |   .  |   .  |   .  |   .  |   .  |    3  |  Bolt M3 shoulder x 20mm |
-|   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 shoulder x 25mm |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Bolt M3 shoulder x 30mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |  68  |   68  |  Bolt M4 buttonhead x  8mm |
-|   .  |   .  |   6  |   .  |   5  |   2  |   .  |   8  |   21  |  Bolt M4 buttonhead x 10mm |
-|   .  |   .  |  12  |   .  |   .  |   2  |   .  |   4  |   18  |  Bolt M4 buttonhead x 12mm |
-|   .  |   .  |  20  |   .  |   .  |   8  |   .  |   .  |   28  |  Bolt M4 countersunk x 10mm |
-|   .  |   .  |   4  |   .  |   4  |   .  |   .  |   .  |    8  |  Bolt M5 buttonhead x 10mm |
-|   .  |   .  |  14  |   .  |   8  |  10  |   8  |  14  |   54  |  Bolt M5 buttonhead x 12mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Cable wrap, 100mm |
-|   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Cable wrap, 110mm |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   1  |    3  |  Cork damper NEMA 17 |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Drag chain, 390mm |
-|   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Extrusion E2020 x 300mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Extrusion E2020 x 350mm |
-|   .  |   .  |   .  |   .  |   .  |   2  |   2  |   .  |    4  |  Extrusion E2020 x 450mm |
-|   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Extrusion E2040 x 185mm |
-|   .  |   .  |   3  |   .  |   .  |   1  |   2  |   1  |    7  |  Extrusion E2040 x 350mm |
-|   .  |   .  |   1  |   .  |   .  |   1  |   .  |   .  |    2  |  Extrusion E2060 x 350mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Extrusion E2080 x 350mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Fan 40mm x 11mm |
-|   4  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    8  |  Heatfit insert M3 x 5.8mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  IEC320 C14 switched fused inlet module |
-|   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  Leadscrew nut 8 x 2 |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Linear rail MGN12 x 300mm |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Linear rail MGN12 x 350mm |
-|   .  |   .  |   3  |   .  |   .  |   .  |   .  |   .  |    3  |  Linear rail carriage MGN12H |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Linear rod 12mm x 350mm |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   6  |    8  |  Nut M3 hammer |
-|   .  |   .  |  16  |   3  |   .  |   .  |   .  |   .  |   19  |  Nut M3 sliding T |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   8  |   10  |  Nut M3 x 2.4mm  |
-|   .  |   .  |   6  |   .  |   2  |   .  |   .  |  76  |   84  |  Nut M4 hammer |
-|   .  |   .  |  40  |   .  |   3  |  12  |   .  |   .  |   55  |  Nut M4 sliding T |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PSU NIUGUY CB-500W-24V |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   3  |    3  |  Pillar hex nylon F/F M3x25 |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Pillar hex nylon F/F M3x5 |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Pillar hex nylon F/F M3x6 |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Pulley GT2OB 20 teeth |
-|   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  SCS12LUU bearing block |
-|   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  SK12 shaft support bracket |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Sheet perspex 250mm x 370mm x 3mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Sheet polycarbonate 390mm x 360mm x 3mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Sheet polycarbonate 390mm x 450mm x 3mm |
-|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Silicone Heater with thermistor - 200mm x 200mm |
-|   .  |   .  |   .  |   3  |   .  |   .  |   .  |   .  |    3  |  Silicone Spacer 18mm x 16mm |
-|   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Smart Orbiter V3.0 |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Stepper motor NEMA17 x 40mm, 300mm integrated leadscrew |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Stepper motor NEMA17 x 47mm |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Stepper motor cable, 300mm |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Stepper motor cable, 500mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Stepper motor cable, 850mm |
-|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Voron Trident Build Plate - 250x250 |
-|   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer M3 x 7mm x 0.5mm |
-|   .  |   .  |  46  |   .  |   .  |   .  |   .  |   .  |   46  |  Washer M4 x 9mm x 0.5mm |
-|   5  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    7  |  Ziptie 2.5mm x 100mm min length |
-|  21  |   4  | 274  |  13  |  35  |  42  |  12  | 266  |  667  | Total vitamins count |
-|      |      |      |      |      |      |      |      |       | **3D printed parts** |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_Back_Support_250.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_Front_Support_242.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_Left_Side_Support_175A.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_Left_Side_Support_175B.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Fan_Mount_120B.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Fan_Mount_170A.stl |
-|   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | Cable_Chain_Bracket.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  | Foot_LShaped_12mm.stl |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  | Handle.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | IEC_Housing.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | IEC_Housing_Mount.stl |
-|   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Smart_Orbiter_V3_Duct.stl |
-|   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Smart_Orbiter_V3_Fan_Bracket_5015.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder_36.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder_Bracket.stl |
-|   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  | Top_Corner_Piece.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Wiring_Guide.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Wiring_Guide_Clamp.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Wiring_Guide_Socket.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Left_RB4.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Right_RB4.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Left_Lower_RB4.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Left_Upper_RB4.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Right_Lower_RB4.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Brace_Right_Upper_RB4.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Left_Base_RB4.stl |
-|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  | XY_Motor_Mount_Pulley_Spacer_M4.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Right_Base_RB4.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Belt_Clamp.stl |
-|   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  | X_Carriage_Belt_Tensioner_RB.stl |
-|   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Beltside_RB.stl |
-|   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_OrbiterV3.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Brace_Left_RB4.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Brace_Right_RB4.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Left_RB4.stl |
-|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Right_RB4.stl |
-|   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | Z_Carriage_Center.stl |
-|   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Z_Motor_Mount.stl |
-|   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Z_Motor_Mount_Guide_23mm.stl |
-|   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  | Z_RodMountGuide_100mm.stl |
-|   3  |   3  |  22  |   .  |   2  |   4  |   .  |  17  |   51  | Total 3D printed parts count |
-|      |      |      |      |      |      |      |      |       | **CNC routed parts** |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Back_Panel.dxf |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | BaseAL.dxf |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_250.dxf |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Left_Side_Panel.dxf |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Right_Side_Panel.dxf |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   5  |    5  | Total CNC routed parts count |
+| <span style="writing-mode: vertical-rl; text-orientation: mixed;">Reverse Bowden Bracket</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Printhead OrbiterV3</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">X Carriage Beltside</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Face Top</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Heated Bed</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Printbed</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Left Side</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Right Side</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Main</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">TOTALS</span> |  |
+|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|------:|:-------------|
+|      |      |      |      |      |      |      |      |      |       | **Vitamins** |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Aluminium sheet 390mm x 390mm x 3mm |
+|   .  |   .  |   .  |  24  |   .  |   .  |   .  |   .  |   .  |   24  |  Ball bearing F694ZZ 4mm x 11mm x 4mm |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1468mm |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1502mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech Manta 5MP v1.0 |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech Relay Module v1.2 |
+|   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Blower Runda RB5015 |
+|   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Bolt M2 caphead x 10mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |  18  |   18  |  Bolt M3 buttonhead x  8mm |
+|   .  |   .  |   .  |   8  |   .  |   .  |   .  |   .  |  13  |   21  |  Bolt M3 buttonhead x 10mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   8  |    8  |  Bolt M3 buttonhead x 16mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   3  |    3  |  Bolt M3 caphead x  6mm |
+|   .  |   .  |   .  |  18  |   2  |   .  |   .  |   .  |   .  |   20  |  Bolt M3 caphead x  8mm |
+|   .  |   .  |   .  |  12  |   .  |   .  |   .  |   .  |   .  |   12  |  Bolt M3 caphead x 10mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   5  |    5  |  Bolt M3 caphead x 12mm |
+|   .  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |   .  |    3  |  Bolt M3 caphead x 25mm |
+|   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 30mm |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   4  |    5  |  Bolt M3 caphead x 35mm |
+|   .  |   .  |   2  |   1  |   .  |   .  |   .  |   .  |   .  |    3  |  Bolt M3 caphead x 40mm |
+|   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 50mm |
+|   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 countersunk x  6mm |
+|   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   2  |    4  |  Bolt M3 countersunk x  8mm |
+|   .  |   4  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    6  |  Bolt M3 countersunk x 10mm |
+|   .  |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 countersunk x 12mm |
+|   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 countersunk x 20mm |
+|   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 shoulder x 12mm |
+|   .  |   .  |   .  |   3  |   .  |   .  |   .  |   .  |   .  |    3  |  Bolt M3 shoulder x 20mm |
+|   .  |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 shoulder x 25mm |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Bolt M3 shoulder x 30mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |  68  |   68  |  Bolt M4 buttonhead x  8mm |
+|   .  |   .  |   .  |   6  |   .  |   9  |   2  |   .  |   8  |   25  |  Bolt M4 buttonhead x 10mm |
+|   .  |   .  |   .  |  12  |   .  |   .  |   2  |   .  |   4  |   18  |  Bolt M4 buttonhead x 12mm |
+|   2  |   .  |   .  |  20  |   .  |   .  |   8  |   .  |   .  |   30  |  Bolt M4 countersunk x 10mm |
+|   .  |   .  |   .  |   4  |   .  |   4  |   .  |   .  |   .  |    8  |  Bolt M5 buttonhead x 10mm |
+|   .  |   .  |   .  |  14  |   .  |   8  |  10  |   8  |  14  |   54  |  Bolt M5 buttonhead x 12mm |
+|   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |   .  |    4  |  Bolt M5 countersunk x 12mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Cable wrap, 100mm |
+|   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Cable wrap, 110mm |
+|   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   1  |    3  |  Cork damper NEMA 17 |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Drag chain, 390mm |
+|   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Extrusion E2020 x 300mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Extrusion E2020 x 350mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   2  |   2  |   .  |    4  |  Extrusion E2020 x 450mm |
+|   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Extrusion E2040 x 185mm |
+|   .  |   .  |   .  |   3  |   .  |   .  |   1  |   2  |   1  |    7  |  Extrusion E2040 x 350mm |
+|   .  |   .  |   .  |   1  |   .  |   .  |   1  |   .  |   .  |    2  |  Extrusion E2060 x 350mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Extrusion E2080 x 350mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Fan 40mm x 11mm |
+|   .  |   4  |   2  |   4  |   .  |   .  |   .  |   .  |   .  |   10  |  Heatfit insert M3 x 5.8mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  IEC320 C14 switched fused inlet module |
+|   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  Leadscrew nut 8 x 2 |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Linear rail MGN12 x 300mm |
+|   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Linear rail MGN12 x 350mm |
+|   .  |   .  |   .  |   3  |   .  |   .  |   .  |   .  |   .  |    3  |  Linear rail carriage MGN12H |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Linear rod 12mm x 350mm |
+|   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   6  |    8  |  Nut M3 hammer |
+|   .  |   .  |   .  |  16  |   3  |   .  |   .  |   .  |   .  |   19  |  Nut M3 sliding T |
+|   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   8  |   10  |  Nut M3 x 2.4mm  |
+|   2  |   .  |   .  |   6  |   .  |   2  |   .  |   .  |  76  |   86  |  Nut M4 hammer |
+|   .  |   .  |   .  |  40  |   .  |   7  |  12  |   .  |   .  |   59  |  Nut M4 sliding T |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PSU NIUGUY CB-500W-24V |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   3  |    3  |  Pillar hex nylon F/F M3x25 |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Pillar hex nylon F/F M3x5 |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Pillar hex nylon F/F M3x6 |
+|   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Pulley GT2OB 20 teeth |
+|   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  SCS12LUU bearing block |
+|   .  |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |    4  |  SK12 shaft support bracket |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Sheet perspex 250mm x 370mm x 3mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Sheet polycarbonate 390mm x 360mm x 3mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Sheet polycarbonate 390mm x 450mm x 3mm |
+|   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Silicone Heater with thermistor - 200mm x 200mm |
+|   .  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |   .  |    3  |  Silicone Spacer 18mm x 16mm |
+|   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Smart Orbiter V3.0 |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Stepper motor NEMA17 x 40mm, 300mm integrated leadscrew |
+|   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Stepper motor NEMA17 x 47mm |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Stepper motor cable, 300mm |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Stepper motor cable, 500mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Stepper motor cable, 850mm |
+|   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Voron Trident Build Plate - 250x250 |
+|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer M3 x 7mm x 0.5mm |
+|   .  |   .  |   .  |  42  |   .  |   .  |   .  |   .  |   .  |   42  |  Washer M4 x 9mm x 0.5mm |
+|   .  |   5  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    7  |  Ziptie 2.5mm x 100mm min length |
+|   4  |  21  |   6  | 270  |  13  |  47  |  42  |  12  | 266  |  681  | Total vitamins count |
+|      |      |      |      |      |      |      |      |      |       | **3D printed parts** |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_Back_Support_250.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_Front_Support_242.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_Left_Side_Support_175A.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_Left_Side_Support_175B.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Fan_Mount_120B.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Fan_Mount_170A.stl |
+|   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | Cable_Chain_Bracket.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  | Foot_LShaped_12mm.stl |
+|   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  | Handle.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | IEC_Housing.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | IEC_Housing_Mount.stl |
+|   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Reverse_Bowden_Bracket.stl |
+|   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Smart_Orbiter_V3_Duct.stl |
+|   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Smart_Orbiter_V3_Fan_Bracket_5015.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder_36.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder_Bracket.stl |
+|   .  |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  | Top_Corner_Piece.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Wiring_Guide.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Wiring_Guide_Clamp.stl |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Wiring_Guide_Socket.stl |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Left_RB4.stl |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Idler_Right_RB4.stl |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Left_Base_RB4.stl |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Left_Middle_RB4.stl |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Left_Upper_RB4.stl |
+|   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  | XY_Motor_Mount_Pulley_Spacer_M4.stl |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Right_Base_RB4.stl |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Right_Middle_RB4.stl |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | XY_Motor_Mount_Right_Upper_RB4.stl |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Belt_Clamp.stl |
+|   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  | X_Carriage_Belt_Tensioner_RB.stl |
+|   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_Beltside_RB.stl |
+|   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | X_Carriage_OrbiterV3.stl |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Brace_Left_RB4.stl |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Brace_Right_RB4.stl |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Left_RB4.stl |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  | Y_Carriage_Right_RB4.stl |
+|   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | Z_Carriage_Center.stl |
+|   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  | Z_Carriage_Side.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Z_Motor_Mount.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Z_Motor_Mount_Guide_23mm.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  | Z_RodMountGuide_100mm.stl |
+|   1  |   3  |   3  |  22  |   .  |   4  |   4  |   .  |  17  |   54  | Total 3D printed parts count |
+|      |      |      |      |      |      |      |      |      |       | **CNC routed parts** |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Back_Panel.dxf |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | BaseAL.dxf |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_250.dxf |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Left_Side_Panel.dxf |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Right_Side_Panel.dxf |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   5  |    5  | Total CNC routed parts count |
+
+<span></span>
+[Top](#TOP)
+
+---
+<a name="Reverse_Bowden_Bracket_assembly"></a>
+
+## Reverse_Bowden_Bracket assembly
+
+### Vitamins
+
+| Qty | Description |
+|----:|:------------|
+|   2 | Bolt M4 countersunk x 10mm |
+|   2 | Nut M4 hammer |
+
+### 3D Printed parts
+
+| 1 x Reverse_Bowden_Bracket.stl |
+|----------|
+| ![Reverse_Bowden_Bracket.stl](stls/Reverse_Bowden_Bracket.png) |
+
+### Assembly instructions
+
+![Reverse_Bowden_Bracket_assembly](assemblies/Reverse_Bowden_Bracket_assembly_tn.png)
+
+![Reverse_Bowden_Bracket_assembled](assemblies/Reverse_Bowden_Bracket_assembled_tn.png)
 
 <span></span>
 [Top](#TOP)
@@ -297,6 +329,7 @@ by [@PrintNC](https://www.printables.com/es/@PrintNC) and are used under the ter
 | Qty | Description |
 |----:|:------------|
 |   2 | Bolt M3 caphead x 40mm |
+|   2 | Heatfit insert M3 x 5.8mm |
 |   2 | Washer M3 x 7mm x 0.5mm |
 
 ### 3D Printed parts
@@ -343,19 +376,19 @@ Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensi
 
 ### 3D Printed parts
 
-| 1 x XY_Motor_Mount_Brace_Right_Lower_RB4.stl | 1 x XY_Motor_Mount_Brace_Right_Upper_RB4.stl | 1 x XY_Motor_Mount_Pulley_Spacer_M4.stl |
+| 1 x XY_Motor_Mount_Pulley_Spacer_M4.stl | 1 x XY_Motor_Mount_Right_Base_RB4.stl | 1 x XY_Motor_Mount_Right_Middle_RB4.stl |
 |----------|----------|----------|
-| ![XY_Motor_Mount_Brace_Right_Lower_RB4.stl](stls/XY_Motor_Mount_Brace_Right_Lower_RB4.png) | ![XY_Motor_Mount_Brace_Right_Upper_RB4.stl](stls/XY_Motor_Mount_Brace_Right_Upper_RB4.png) | ![XY_Motor_Mount_Pulley_Spacer_M4.stl](stls/XY_Motor_Mount_Pulley_Spacer_M4.png) |
+| ![XY_Motor_Mount_Pulley_Spacer_M4.stl](stls/XY_Motor_Mount_Pulley_Spacer_M4.png) | ![XY_Motor_Mount_Right_Base_RB4.stl](stls/XY_Motor_Mount_Right_Base_RB4.png) | ![XY_Motor_Mount_Right_Middle_RB4.stl](stls/XY_Motor_Mount_Right_Middle_RB4.png) |
 
-| 1 x XY_Motor_Mount_Right_Base_RB4.stl |
+| 1 x XY_Motor_Mount_Right_Upper_RB4.stl |
 |----------|
-| ![XY_Motor_Mount_Right_Base_RB4.stl](stls/XY_Motor_Mount_Right_Base_RB4.png) |
+| ![XY_Motor_Mount_Right_Upper_RB4.stl](stls/XY_Motor_Mount_Right_Upper_RB4.png) |
 
 ### Assembly instructions
 
 ![XY_Motor_Mount_Right_assembly](assemblies/XY_Motor_Mount_Right_assembly.png)
 
-1. Bolt the idler pulleys, shims,  and the to XY_Motor_Mount braces to the **XY_Motor_Mount_Right** as show.
+1. Bolt the idler pulleys, shims,  and spacers **XY_Motor_Mount_Right** as shown.
 Tighten the shoulder bolts until the pulleys no longer turn freely, and then loosen the bolts by about 1/4 turn until the pulleys
 turn freely again.
 2. Bolt the motor and the cork damper to the motor mount. The cork damper thermally insulates the motor from the mount
@@ -394,9 +427,9 @@ and should not be omitted.
 
 ### 3D Printed parts
 
-| 1 x XY_Motor_Mount_Brace_Left_Lower_RB4.stl | 1 x XY_Motor_Mount_Brace_Left_Upper_RB4.stl | 1 x XY_Motor_Mount_Left_Base_RB4.stl |
+| 1 x XY_Motor_Mount_Left_Base_RB4.stl | 1 x XY_Motor_Mount_Left_Middle_RB4.stl | 1 x XY_Motor_Mount_Left_Upper_RB4.stl |
 |----------|----------|----------|
-| ![XY_Motor_Mount_Brace_Left_Lower_RB4.stl](stls/XY_Motor_Mount_Brace_Left_Lower_RB4.png) | ![XY_Motor_Mount_Brace_Left_Upper_RB4.stl](stls/XY_Motor_Mount_Brace_Left_Upper_RB4.png) | ![XY_Motor_Mount_Left_Base_RB4.stl](stls/XY_Motor_Mount_Left_Base_RB4.png) |
+| ![XY_Motor_Mount_Left_Base_RB4.stl](stls/XY_Motor_Mount_Left_Base_RB4.png) | ![XY_Motor_Mount_Left_Middle_RB4.stl](stls/XY_Motor_Mount_Left_Middle_RB4.png) | ![XY_Motor_Mount_Left_Upper_RB4.stl](stls/XY_Motor_Mount_Left_Upper_RB4.png) |
 
 | 1 x XY_Motor_Mount_Pulley_Spacer_M4.stl |
 |----------|
@@ -406,7 +439,7 @@ and should not be omitted.
 
 ![XY_Motor_Mount_Left_assembly](assemblies/XY_Motor_Mount_Left_assembly.png)
 
-1. Bolt the idler pulleys, shims,  and the to XY_Motor_Mount braces to the **XY_Motor_Mount_Left** as show.
+1. Bolt the idler pulleys, shims,  and spacers **XY_Motor_Mount_Left** as shown.
 Tighten the shoulder bolts until the pulleys no longer turn freely, and then loosen the bolts by about 1/4 turn until the pulleys
 turn freely again.
 2. Bolt the motor and the cork damper to the motor mount. The cork damper thermally insulates the motor from the mount
@@ -507,7 +540,7 @@ to turn freely again.
 |   1 | Bolt M3 shoulder x 12mm |
 |   1 | Bolt M3 shoulder x 20mm |
 |   2 | Heatfit insert M3 x 5.8mm |
-|   9 | Washer M4 x 9mm x 0.5mm |
+|   7 | Washer M4 x 9mm x 0.5mm |
 
 ### 3D Printed parts
 
@@ -544,7 +577,7 @@ Once this hole is tapped, remove the bolt.
 |   1 | Bolt M3 shoulder x 12mm |
 |   1 | Bolt M3 shoulder x 20mm |
 |   2 | Heatfit insert M3 x 5.8mm |
-|   9 | Washer M4 x 9mm x 0.5mm |
+|   7 | Washer M4 x 9mm x 0.5mm |
 
 ### 3D Printed parts
 
@@ -778,7 +811,7 @@ of the Y-rail. Finally tighten the remaining bolts on the Y-rail.
 
 | Qty | Description |
 |----:|:------------|
-|   1 | Belt GT2 x 6mm x 1466mm |
+|   1 | Belt GT2 x 6mm x 1468mm |
 |   1 | Belt GT2 x 6mm x 1502mm |
 |   2 | Bolt M3 countersunk x 10mm |
 |   4 | Bolt M3 countersunk x 12mm |
@@ -874,6 +907,39 @@ using the **X_Carriage_Belt_Clamp**.
 [Top](#TOP)
 
 ---
+<a name="Z_Carriage_Side_assembly"></a>
+
+## 2 x Z_Carriage_Side assembly
+
+### Vitamins
+
+| Qty | Description |
+|----:|:------------|
+|   4 | Bolt M4 buttonhead x 10mm |
+|   4 | Bolt M5 buttonhead x 10mm |
+|   4 | Bolt M5 countersunk x 12mm |
+|   4 | Nut M4 sliding T |
+|   2 | SCS12LUU bearing block |
+
+### 3D Printed parts
+
+| 2 x Z_Carriage_Side.stl |
+|----------|
+| ![Z_Carriage_Side.stl](stls/Z_Carriage_Side.png) |
+
+### Assembly instructions
+
+![Z_Carriage_Side_assembly](assemblies/Z_Carriage_Side_assembly_tn.png)
+
+1. Bolt the SCS bearing block to the **Z_Carriage**.
+2. Add the bolts and t-nuts in preparation for connection to the printbed.
+
+![Z_Carriage_Side_assembled](assemblies/Z_Carriage_Side_assembled_tn.png)
+
+<span></span>
+[Top](#TOP)
+
+---
 <a name="Z_Carriage_Center_assembly"></a>
 
 ## Z_Carriage_Center assembly
@@ -951,18 +1017,11 @@ the Z carriages are added.
 
 ## Printbed_Frame_with_Z_Carriages assembly
 
-### Vitamins
-
-| Qty | Description |
-|----:|:------------|
-|   4 | Bolt M5 buttonhead x 10mm |
-|   2 | SCS12LUU bearing block |
-
 ### Sub-assemblies
 
-| 1 x Printbed_Frame_assembly |
-|----------|
-| ![Printbed_Frame_assembled](assemblies/Printbed_Frame_assembled_tn.png) |
+| 1 x Printbed_Frame_assembly | 2 x Z_Carriage_Side_assembly |
+|----------|----------|
+| ![Printbed_Frame_assembled](assemblies/Printbed_Frame_assembled_tn.png) | ![Z_Carriage_Side_assembled](assemblies/Z_Carriage_Side_assembled_tn.png) |
 
 ### Assembly instructions
 
@@ -1395,9 +1454,9 @@ see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
 
 ### Sub-assemblies
 
-| 1 x Printhead_OrbiterV3_assembly | 1 x Stage_3_assembly |
-|----------|----------|
-| ![Printhead_OrbiterV3_assembled](assemblies/Printhead_OrbiterV3_assembled_tn.png) | ![Stage_3_assembled](assemblies/Stage_3_assembled_tn.png) |
+| 1 x Printhead_OrbiterV3_assembly | 1 x Reverse_Bowden_Bracket_assembly | 1 x Stage_3_assembly |
+|----------|----------|----------|
+| ![Printhead_OrbiterV3_assembled](assemblies/Printhead_OrbiterV3_assembled_tn.png) | ![Reverse_Bowden_Bracket_assembled](assemblies/Reverse_Bowden_Bracket_assembled_tn.png) | ![Stage_3_assembled](assemblies/Stage_3_assembled_tn.png) |
 
 ### Assembly instructions
 
