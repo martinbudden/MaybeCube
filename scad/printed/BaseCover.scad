@@ -18,7 +18,7 @@ include <../Parameters_Positions.scad>
 
 supportHeight = 70;
 holeOffset = 20;
-chainAnchorOffset = 180;
+chainAnchorOffset = eX > 300 ? 180 : 150;
 chainAnchorSizeX = 8;
 baseCoverTopSize = [eX > 300 ? 250 : 210, eY + eSize, 3];
 baseCoverBackSupportSize = [baseCoverTopSize.x, eSize, supportHeight - 2*eSize];
