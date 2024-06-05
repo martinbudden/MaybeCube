@@ -48,16 +48,17 @@ module NEMA_baseplate(NEMA_type, size, zLeadScrewOffset=_zLeadScrewOffset) {
     difference() {
         rounded_cube_xy(size, 1);
         translate([size.x/2, zLeadScrewOffset, -eps]) {
-            tolerance = 1.5;
+            tolerance = [-1, 1.5];
             // center circle for the motor boss
-            poly_cylinder(r=NEMA_boss_radius(NEMA_type) + tolerance, h=size.z + 2*eps);
+            for (y = tolerance)
+                translate([0, y, 0])
+                    poly_cylinder(r=NEMA_boss_radius(NEMA_type) + 0.5, h=size.z + 2*eps);
             // motor boltholes
             NEMA_screw_positions(NEMA_type)
                 hull() {
-                    translate([0, -tolerance/2, 0])
-                        poly_cylinder(r=M3_clearance_radius, h=size.z + 2*eps, sides=8, twist=0);
-                    translate([0, tolerance/2, 0])
-                        poly_cylinder(r=M3_clearance_radius, h=size.z + 2*eps, sides=8, twist=0);
+                    for (y = tolerance)
+                        translate([0, y, 0])
+                            poly_cylinder(r=M3_clearance_radius, h=size.z + 2*eps, sides=8, twist=0);
                 }
         }
     }
@@ -70,7 +71,7 @@ module zMotorMount(zMotorType, eHeight=40, printbedKinematic=false) {
     zLeadScrewOffset = printbedKinematic ? 30 : _zLeadScrewOffset;
     size = Z_Motor_MountSize(NEMA_length(zMotorType), zLeadScrewOffset);
     counterBoreDepthTop = size.z - NEMA_length(zMotorType) - motorBracketSizeZ;
-    motorBracketSizeY = zLeadScrewOffset + NEMA_motorWidth/2;
+    motorBracketSizeY = zLeadScrewOffset + NEMA_motorWidth/2 + 1;
     blockSizeZ = size.z - eHeight;
 
     translate([wingSizeX, eSize, size.z - motorBracketSizeZ]) difference() {
@@ -235,7 +236,7 @@ module Z_Motor_Mount_Motor_hardware(explode=50, zLeadScrewOffset=_zLeadScrewOffs
                     // integrated lead screw, so set shaft length to zero and use leadscrewX rather than NopSCADlib leadscrew
                     NEMA_no_shaft = [ for (i = [0 : len(zMotorType) - 1]) i==8 ? [1, shaft_length[1], shaft_length[2]] : zMotorType[i] ];
                     no_explode() {
-                        rotate(-90)
+                        rotate(0)
                             NEMA(NEMA_no_shaft, jst_connector=true);
                         translate_z(eps)
                             leadscrewX(shaft_length[1], shaft_length[0], shaft_length[2], center=false);
