@@ -32,11 +32,13 @@ assembly("Voron_Dragon_Burner_Adapter", big=true) {
 module xCarriageVoronDragonBurnerAdapterAssembly(inserts=true) {
     translate([0, 13.97, -50])
         rotate([90, 0, 180])
-            if (inserts)
+            if (inserts) {
                 Voron_Dragon_Burner_Adapter_assembly();
-            else
+                hidden() Voron_Dragon_Burner_Adapter_ST_stl();
+            } else {
                 stl_colour(pp3_colour)
-                    Voron_Dragon_Burner_ST_Adapter_stl();
+                    Voron_Dragon_Burner_Adapter_ST_stl();
+            }
 }
 
 module xCarriageVoronDragonBurnerAdapterAttachmentBolts() {
