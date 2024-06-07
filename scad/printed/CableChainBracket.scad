@@ -41,8 +41,8 @@ module cableChainBracket(size=cableChainBracketSize) {
                 rounded_cube_xy([size.x - cutout.x, size.y, size.z], fillet);
         }
         cableChainBracketHolePositions(size)
-            rotate([0, 90, 0])
-                boltHoleM3Tap(size.x - cutout.x - 2);
+            rotate([90, 0, 90])
+                boltHoleM3Tap(size.x - cutout.x - 2, horizontal=true);
         translate([size.x/2, size.y - cutout.y, size.z])
             rotate([180, 90,  0])
                 fillet(8, cutout.x);
@@ -50,6 +50,9 @@ module cableChainBracket(size=cableChainBracketSize) {
         for (x = [-4.5, 2], y = [12, 30])
             translate([x + size.x/4 + 1.5, size.y - cutout.y - y, -eps])
                 rounded_cube_xy([2, 5, size.z + 2*eps], 0.25, xy_center=true);
+        for (y = [-3.5, 3.5])
+            translate([-4, y + size.y - 10, -eps])
+                rounded_cube_xy([5, 2, size.z + 2*eps], 0.25, xy_center=true);
         translate([0, size.y - cutout.y/2 - endStopSizeY/2, -eps]) {
             translate([-size.x/2 - eps, 0, 0])
                 rotate([90, 0, 0])
@@ -91,6 +94,9 @@ module Cable_Chain_Bracket_cable_ties(size=cableChainBracketSize) {
         translate([size.x/4 + 0.25, size.y - cutout.y - y - 1, 20])
             rotate(90)
                 cable_tie(cable_r = 2.75, thickness = 20);
+    translate([-4, size.y - 10, 16])
+        cable_tie(cable_r = 2.75, thickness = 20);
+
     translate([-2, 0, 0])
         cableChainBracketHolePositions()
             rotate([0, -90, 0])
