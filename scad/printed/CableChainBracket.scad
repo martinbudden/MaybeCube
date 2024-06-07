@@ -88,6 +88,7 @@ module Cable_Chain_Bracket_hardware(size=cableChainBracketSize) {
             rotate([-90, 0, 0])
                 boltM4ButtonheadHammerNut(_frameBoltLength);
 }
+
 module Cable_Chain_Bracket_cable_ties(size=cableChainBracketSize) {
     cutout = [8, 15];
     for (y = [12, 30])
@@ -100,7 +101,8 @@ module Cable_Chain_Bracket_cable_ties(size=cableChainBracketSize) {
     translate([-2, 0, 0])
         cableChainBracketHolePositions()
             rotate([0, -90, 0])
-                boltM3Countersunk(8);
+                explode(110, true)
+                    boltM3Countersunk(8);
 }
 
 module Cable_Chain_Bracket_stl() {

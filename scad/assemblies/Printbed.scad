@@ -12,6 +12,7 @@ use <NopSCADlib/vitamins/o_ring.scad>
 
 use <../printed/Z_Carriage.scad>
 use <../printed/CableChainBracket.scad>
+use <../printed/BaseCover.scad>
 
 use <../vitamins/extrusionBracket.scad>
 use <../vitamins/HeatedBedLevelingKnob.scad>
@@ -521,13 +522,15 @@ assembly("Heated_Bed", big=true) {
     heatedBedHardware(_heatedBedSize, boltHoles, underlayThickness);
 }
 
-//!1. Attach the heated bed to the frame using the stacks of washers and O-rings as shown.
-//!2. Spiral wrap the wires from the heated bed.
+//!1. Spiral wrap the wires from the heated bed up to where they will enter the cable chain.
+//!2. Attach the headed bed to the frame.
+//!3. Thread the heated be wires through the cable chain and attach the cable chain to the **Cable_Chain_Bracket**.
+//!4. Secure the wires with cable ties.
 //
 module Printbed_assembly()  pose(a=[210, 0, 320])
 assembly("Printbed", big=true) {
 
-    if (is_undef(_printbedKinematic) || _printbedKinematic == false)
+    if (is_undef(_printbedKinematic) || _printbedKinematic == false) {
         translate([eSize + _zRodOffsetX, eSize + zRodSeparation()/2 + _zRodOffsetY, 0])
             rotate(-90) {
                 Printbed_Frame_with_Z_Carriages_assembly();
@@ -537,13 +540,13 @@ assembly("Printbed", big=true) {
                 translate(heatedBedOffset) {
                     if (_printbed4PointSupport)
                             explode(120, true)
-                            heatedBed(_heatedBedSize, boltHoles, underlayThickness);
+                                heatedBed(_heatedBedSize, boltHoles, underlayThickness);
                     else {
                         if (_heatedBedSize.x != 254)
                             translate([-_heatedBedSize.y/2, 0, 0])
                                 explode(40)
                                     corkUnderlay(_heatedBedSize, boltHoles, underlayThickness);
-                        explode(80, true)
+                        explode(120, true)
                             Heated_Bed_assembly();
                     }
                 }
@@ -563,6 +566,10 @@ assembly("Printbed", big=true) {
                         }
                 }
             }
+        translate_z(-bedHeight())
+            explode([-50, 0, 0])
+                baseDragChain();
+    }
 }
 
 module heatedBed_only() {

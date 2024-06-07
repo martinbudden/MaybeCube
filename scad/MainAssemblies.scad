@@ -123,10 +123,8 @@ staged_assembly("Stage_2", big=true, ngb=true) {
 
     Stage_1_assembly();
 
-    explode([-50, 0, 250]) {
+    explode([-50, 0, 250])
         Left_Side_with_Printbed_assembly();
-        baseDragChain();
-    }
     cable_wrap(100);
     if (eX < 400)
         explode(150)
