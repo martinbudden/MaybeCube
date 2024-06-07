@@ -90,15 +90,16 @@ staged_assembly("Stage_1", big=true, ngb=true) {
         Base_Plate_With_Display_assembly();
     else
         Base_Plate_assembly();
-    explode(250, true) {
-        if (!printbedKinematic)
-            baseFanMountAssembly();
+
+    explode([0, -50, 200], true, show_line=false) {
         Right_Side_assembly(bedHeight(), printbedKinematic);
 
         // add the right side Z rods if using dual Z rods
         if (useDualZRods())
             zRods(left=false);
     }
+    if (!printbedKinematic)
+        baseFanMountAssembly();
 /*
     coverLength = 50;
     explode([-50, 0, 0])

@@ -469,7 +469,7 @@ module baseFanMountAssembly() {
 
     translate([eX + 2*eSize, 0, 0])
         rotate([90, 0, 90]) 
-            explode(100, true) {
+            explode(75, true) {
                 color(pp3_colour)
                     vflip()
                         if (eX == 300)
@@ -492,7 +492,7 @@ module baseFanMountAssembly() {
         }
     translate([eX + 2*eSize, sizeA.x, 0])
         rotate([90, 0, 90])
-            explode(100, true) {
+            explode(150, true) {
                 color(pp2_colour)
                     vflip()
                         Base_Fan_Mount_120B_stl();
