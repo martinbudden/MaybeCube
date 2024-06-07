@@ -40,6 +40,13 @@ module extrusionOX2040VEndBolts(eX) {
             boltM5Buttonhead(_endBoltLength);
 }
 
+module extrusionOX2060VEndBolts(eX) {
+    extrusionOX2060V(eX);
+    if (_useBlindJoints)
+        extrusionOX2060VEndBoltPositions(eX)
+            boltM5Buttonhead(_endBoltLength);
+}
+
 module extrusionOX2080VEndBolts(eX) {
     extrusionOX2080V(eX);
     if (_useBlindJoints)

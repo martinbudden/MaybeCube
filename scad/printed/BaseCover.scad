@@ -21,7 +21,7 @@ holeOffset = 20;
 chainAnchorOffset = eX > 300 ? 180 : 150;
 chainAnchorSizeX = 8;
 baseCoverTopSize = [eX > 300 ? 250 : 210, eY + eSize, 3];
-baseCoverBackSupportSize = [baseCoverTopSize.x, eSize, supportHeight - 2*eSize];
+baseCoverBackSupportSize = [baseCoverTopSize.x, eSize, supportHeight - 3*eSize];
 baseCoverLeftSideSupportSize = [8, eY/2, supportHeight];
 baseCoverRightSideSupportSize = [eSize + 10, eY/2, 5];
 baseCoverFrontSupportSize = [baseCoverTopSize.x - baseCoverLeftSideSupportSize.x, 12, 3*eSize/2];
@@ -30,15 +30,15 @@ baseCoverFrontSupportSize = [baseCoverTopSize.x - baseCoverLeftSideSupportSize.x
 module chainAnchorHolePositions(size, offset=chainAnchorOffset) {
     chainOffset = size.x - offset;
     for (z = [0, 8])
-        translate([chainOffset + chainAnchorSizeX, -5 + 10, size.z + z + 7])
+        translate([chainOffset + chainAnchorSizeX, -5 + 10, size.z + z + 17])
             children();
 }
 
 module baseCoverBackSupport(size, offset=chainAnchorOffset) {
     chainOffset = size.x - offset;
-    cutoutSize = [7, 10, 15];
+    cutoutSize = [9, 10, size.z];
     fillet = 1.5;
-    chainAnchorSize = [chainAnchorSizeX, size.y + 5, size.z + 22];
+    chainAnchorSize = [chainAnchorSizeX, size.y + 5, size.z + 32];
     difference() {
         union() {
             translate([0, size.y - 5, 0]) {
@@ -53,21 +53,17 @@ module baseCoverBackSupport(size, offset=chainAnchorOffset) {
                 translate([0, -size.y + chainAnchorSize.y, 0])
                     rotate(180)
                         fillet(fillet, size.z);
-                translate([chainAnchorSize.x, -size.y + chainAnchorSize.y, 0])
-                    rotate(-90)
-                        fillet(fillet, size.z - cutoutSize.z);
             }
-        }
+        } // end union
         translate([chainOffset + chainAnchorSize.x, 0, 0]) {
-            translate([0, -fillet, size.z - cutoutSize.z + eps])
-                rounded_cube_xy([cutoutSize.x, cutoutSize.y + fillet, cutoutSize.z], fillet);
+            translate([0, -fillet, size.z - cutoutSize.z - eps])
+                rounded_cube_xy([cutoutSize.x, cutoutSize.y + fillet, cutoutSize.z + 2*eps], fillet);
             translate([cutoutSize.x, 0, size.z - cutoutSize.z + eps])
-                rotate(0)
-                    fillet(fillet, cutoutSize.z);
+                fillet(fillet, cutoutSize.z);
         }
         chainAnchorHolePositions(size)
             rotate([90, 0, -90])
-                boltHoleM3Tap(chainAnchorSize.x, horizontal=true);
+                boltHole(M3_tap_radius*2 + 0.4, chainAnchorSize.x, horizontal=true);
         for (x = [holeOffset, size.x/2, size.x - holeOffset])
             translate([x, size.y/2, size.z])
                 vflip()
@@ -75,7 +71,7 @@ module baseCoverBackSupport(size, offset=chainAnchorOffset) {
         for (x = [50, 3*size.x/4])
             translate([x, size.y/2, size.z])
                 vflip()
-                    boltHoleM3Counterbore(size.z, boreDepth = size.z - 5);
+                    boltHoleM3Counterbore(size.z, boreDepth=size.z - 5);
     }
 }
 
@@ -97,11 +93,11 @@ module baseDragChain(offset=chainAnchorOffset) {
     drag_chain = drag_chain("x", dragChainSize, travel=travel, wall=1.5, bwall=1.5, twall=1.5);
 
     drag_chain(390);
-    translate([eX + eSize - offset + 60.2, eY + eSize + 5, 4*eSize + baseCoverBackSupportSize.z - 15]) {
+    translate([eX + eSize - offset + 60.2, eY + eSize + 5, 3*eSize + baseCoverBackSupportSize.z + 30]) {
         rotate([0, -90, 0])
             color(grey(25))
                 not_on_bom()
-                    drag_chain_assembly(drag_chain, pos=(zPos($t) - 80), radius=0);
+                    drag_chain_assembly(drag_chain, pos=(zPos($t) - 85), radius=0);
     }
 }
 
@@ -346,7 +342,7 @@ module baseCoverFrontSupportsAssembly() {
 }
 
 module baseCoverBackSupportsAssembly() {
-    translate([eX + eSize - baseCoverBackSupportSize.x, eY + eSize, 2*eSize]) {
+    translate([eX + eSize - baseCoverBackSupportSize.x, eY + eSize, 3*eSize]) {
         color(pp2_colour)
             if (eX == 300)
                 Base_Cover_Back_Support_210_stl();

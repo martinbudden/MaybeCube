@@ -148,7 +148,7 @@ module faceRightMotorUpright(upperZRodMountsExtrusionOffsetZ, useElectronicsInBa
                     translate([eSize/2, 0, z])
                         rotate([-90, 0, 0])
                             jointBoltHole();
-            for (z = [eSize/2, 3*eSize/2, eZ - 3*eSize/2, eZ - eSize/2])
+            for (z = [eSize/2, 3*eSize/2, 5*eSize/2, eZ - 3*eSize/2, eZ - eSize/2])
                 translate([eSize, eSize/2, z])
                     rotate([0, -90, 0])
                         jointBoltHole();

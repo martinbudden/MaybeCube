@@ -244,7 +244,7 @@ module iceHousingMount(eX, extended=false) {
             iecHousingMountAttachmentHolePositions(eX, extended)
                 boltHoleM4(size.z);
             // access holes
-            for (y = [eSize/2, 3*eSize/2])
+            for (y = [eSize/2, 3*eSize/2, 5*eSize/2])
                 translate([size.x - eSize/2, y - 2*eSize, 0])
                     boltHole(5, size.z);
         } // end difference
