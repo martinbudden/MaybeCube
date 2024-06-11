@@ -106,6 +106,7 @@ omitted from the build.
 | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Reverse Bowden Bracket</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Printhead OrbiterV3</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">X Carriage Beltside</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Face Top</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Heated Bed</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Printbed</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Left Side</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Right Side</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">Main</span> | <span style="writing-mode: vertical-rl; text-orientation: mixed;">TOTALS</span> |  |
 |-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|------:|:-------------|
 |      |      |      |      |      |      |      |      |      |       | **Vitamins** |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Afterburner Breakout PCB |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Aluminium sheet 390mm x 390mm x 3mm |
 |   .  |   .  |   .  |  24  |   .  |   .  |   .  |   .  |   .  |   24  |  Ball bearing F694ZZ 4mm x 11mm x 4mm |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1468mm |
@@ -114,12 +115,13 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech Relay Module v1.2 |
 |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Blower Runda RB5015 |
 |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Bolt M2 caphead x 10mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  |  Bolt M2.5 caphead x  6mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |  18  |   18  |  Bolt M3 buttonhead x  8mm |
 |   .  |   .  |   .  |   8  |   .  |   .  |   .  |   .  |  13  |   21  |  Bolt M3 buttonhead x 10mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   8  |    8  |  Bolt M3 buttonhead x 16mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   3  |    3  |  Bolt M3 caphead x  6mm |
 |   .  |   .  |   .  |  18  |   2  |   .  |   .  |   .  |   .  |   20  |  Bolt M3 caphead x  8mm |
-|   .  |   .  |   .  |  12  |   .  |   .  |   .  |   .  |   .  |   12  |  Bolt M3 caphead x 10mm |
+|   .  |   .  |   .  |  14  |   .  |   .  |   .  |   .  |   .  |   14  |  Bolt M3 caphead x 10mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   5  |    5  |  Bolt M3 caphead x 12mm |
 |   .  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |   .  |    3  |  Bolt M3 caphead x 25mm |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Bolt M3 caphead x 30mm |
@@ -131,40 +133,42 @@ omitted from the build.
 |   .  |   4  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    6  |  Bolt M3 countersunk x 10mm |
 |   .  |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 countersunk x 12mm |
 |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 countersunk x 20mm |
-|   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M3 shoulder x 12mm |
-|   .  |   .  |   .  |   3  |   .  |   .  |   .  |   .  |   .  |    3  |  Bolt M3 shoulder x 20mm |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Bolt M3 shoulder x 20mm |
 |   .  |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  |  Bolt M3 shoulder x 25mm |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Bolt M3 shoulder x 30mm |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |  68  |   68  |  Bolt M4 buttonhead x  8mm |
-|   .  |   .  |   .  |   6  |   .  |   9  |   2  |   .  |   8  |   25  |  Bolt M4 buttonhead x 10mm |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |  70  |   70  |  Bolt M4 buttonhead x  8mm |
+|   .  |   .  |   .  |   4  |   .  |   9  |   2  |   .  |   8  |   23  |  Bolt M4 buttonhead x 10mm |
 |   .  |   .  |   .  |  12  |   .  |   .  |   2  |   .  |   4  |   18  |  Bolt M4 buttonhead x 12mm |
+|   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M4 caphead x 20mm |
+|   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M4 caphead x 25mm |
 |   2  |   .  |   .  |  20  |   .  |   .  |   8  |   .  |   .  |   30  |  Bolt M4 countersunk x 10mm |
 |   .  |   .  |   .  |   4  |   .  |   4  |   .  |   .  |   .  |    8  |  Bolt M5 buttonhead x 10mm |
-|   .  |   .  |   .  |  14  |   .  |   8  |  10  |   8  |  14  |   54  |  Bolt M5 buttonhead x 12mm |
+|   .  |   .  |   .  |  14  |   .  |   8  |  10  |   8  |  16  |   56  |  Bolt M5 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |   .  |    4  |  Bolt M5 countersunk x 12mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Cable wrap, 100mm |
 |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Cable wrap, 110mm |
 |   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   1  |    3  |  Cork damper NEMA 17 |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Drag chain, 390mm |
+|   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  Drag chain, 390mm |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Extrusion E2020 x 300mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Extrusion E2020 x 350mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   2  |   .  |    4  |  Extrusion E2020 x 450mm |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Extrusion E2040 x 185mm |
-|   .  |   .  |   .  |   3  |   .  |   .  |   1  |   2  |   1  |    7  |  Extrusion E2040 x 350mm |
-|   .  |   .  |   .  |   1  |   .  |   .  |   1  |   .  |   .  |    2  |  Extrusion E2060 x 350mm |
+|   .  |   .  |   .  |   3  |   .  |   .  |   1  |   2  |   .  |    6  |  Extrusion E2040 x 350mm |
+|   .  |   .  |   .  |   1  |   .  |   .  |   1  |   .  |   1  |    3  |  Extrusion E2060 x 350mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Extrusion E2080 x 350mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Fan 40mm x 11mm |
 |   .  |   4  |   2  |   4  |   .  |   .  |   .  |   .  |   .  |   10  |  Heatfit insert M3 x 5.8mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  IEC320 C14 switched fused inlet module |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  LDO Toolhead Breakout PCB v1.1 |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  Leadscrew nut 8 x 2 |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Linear rail MGN12 x 300mm |
 |   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Linear rail MGN12 x 350mm |
 |   .  |   .  |   .  |   3  |   .  |   .  |   .  |   .  |   .  |    3  |  Linear rail carriage MGN12H |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   2  |    2  |  Linear rod 12mm x 350mm |
-|   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   6  |    8  |  Nut M3 hammer |
+|   .  |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   6  |   10  |  Nut M3 hammer |
 |   .  |   .  |   .  |  16  |   3  |   .  |   .  |   .  |   .  |   19  |  Nut M3 sliding T |
 |   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   8  |   10  |  Nut M3 x 2.4mm  |
-|   2  |   .  |   .  |   6  |   .  |   2  |   .  |   .  |  76  |   86  |  Nut M4 hammer |
+|   2  |   .  |   .  |   4  |   .  |   2  |   .  |   .  |  78  |   86  |  Nut M4 hammer |
 |   .  |   .  |   .  |  40  |   .  |   7  |  12  |   .  |   .  |   59  |  Nut M4 sliding T |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  PSU NIUGUY CB-500W-24V |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   3  |    3  |  Pillar hex nylon F/F M3x25 |
@@ -186,9 +190,9 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Stepper motor cable, 850mm |
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Voron Trident Build Plate - 250x250 |
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer M3 x 7mm x 0.5mm |
-|   .  |   .  |   .  |  42  |   .  |   .  |   .  |   .  |   .  |   42  |  Washer M4 x 9mm x 0.5mm |
-|   .  |   5  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    7  |  Ziptie 2.5mm x 100mm min length |
-|   4  |  21  |   6  | 270  |  13  |  47  |  42  |  12  | 266  |  681  | Total vitamins count |
+|   .  |   .  |   .  |  46  |   .  |   .  |   .  |   .  |   .  |   46  |  Washer M4 x 9mm x 0.5mm |
+|   .  |   5  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |    8  |  Ziptie 2.5mm x 100mm min length |
+|   4  |  21  |   6  | 274  |  13  |  49  |  42  |  12  | 277  |  698  | Total vitamins count |
 |      |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_Back_Support_250.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_Front_Support_242.stl |
@@ -196,6 +200,7 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_Left_Side_Support_175B.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Fan_Mount_120B.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Fan_Mount_170A.stl |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Breakout_PCB_Bracket.stl |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  | Cable_Chain_Bracket.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   4  |    4  | Foot_LShaped_12mm.stl |
 |   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  | Handle.stl |
@@ -233,7 +238,7 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Z_Motor_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Z_Motor_Mount_Guide_23mm.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  | Z_RodMountGuide_100mm.stl |
-|   1  |   3  |   3  |  22  |   .  |   4  |   4  |   .  |  17  |   54  | Total 3D printed parts count |
+|   1  |   3  |   3  |  22  |   .  |   4  |   4  |   .  |  18  |   55  | Total 3D printed parts count |
 |      |      |      |      |      |      |      |      |      |       | **CNC routed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Back_Panel.dxf |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | BaseAL.dxf |
@@ -537,10 +542,10 @@ to turn freely again.
 |----:|:------------|
 |   4 | Ball bearing F694ZZ 4mm x 11mm x 4mm |
 |   2 | Bolt M3 caphead x  8mm |
-|   1 | Bolt M3 shoulder x 12mm |
-|   1 | Bolt M3 shoulder x 20mm |
+|   1 | Bolt M4 caphead x 20mm |
+|   1 | Bolt M4 caphead x 25mm |
 |   2 | Heatfit insert M3 x 5.8mm |
-|   7 | Washer M4 x 9mm x 0.5mm |
+|   9 | Washer M4 x 9mm x 0.5mm |
 
 ### 3D Printed parts
 
@@ -574,10 +579,10 @@ Once this hole is tapped, remove the bolt.
 |----:|:------------|
 |   4 | Ball bearing F694ZZ 4mm x 11mm x 4mm |
 |   2 | Bolt M3 caphead x  8mm |
-|   1 | Bolt M3 shoulder x 12mm |
-|   1 | Bolt M3 shoulder x 20mm |
+|   1 | Bolt M4 caphead x 20mm |
+|   1 | Bolt M4 caphead x 25mm |
 |   2 | Heatfit insert M3 x 5.8mm |
-|   7 | Washer M4 x 9mm x 0.5mm |
+|   9 | Washer M4 x 9mm x 0.5mm |
 
 ### 3D Printed parts
 
@@ -702,13 +707,13 @@ bolts - the left rail is the fixed rail and the right rail will be aligned to it
 
 | Qty | Description |
 |----:|:------------|
-|   2 | Bolt M4 buttonhead x 10mm |
+|   2 | Bolt M3 caphead x 10mm |
 |  20 | Bolt M4 countersunk x 10mm |
 |   4 | Bolt M5 buttonhead x 10mm |
 |   6 | Bolt M5 buttonhead x 12mm |
 |   1 | Extrusion E2040 x 350mm |
 |   1 | Extrusion E2060 x 350mm |
-|   2 | Nut M4 hammer |
+|   2 | Nut M3 hammer |
 |  28 | Nut M4 sliding T |
 
 ### 3D Printed parts
@@ -1046,7 +1051,8 @@ the Z carriages are added.
 | Qty | Description |
 |----:|:------------|
 |   2 | Bolt M3 countersunk x  8mm |
-|   2 | Ziptie 2.5mm x 100mm min length |
+|   1 | Drag chain, 390mm |
+|   3 | Ziptie 2.5mm x 100mm min length |
 
 ### Sub-assemblies
 
@@ -1058,8 +1064,10 @@ the Z carriages are added.
 
 ![Printbed_assembly](assemblies/Printbed_assembly.png)
 
-1. Attach the heated bed to the frame using the stacks of washers and O-rings as shown.
-2. Spiral wrap the wires from the heated bed.
+1. Spiral wrap the wires from the heated bed up to where they will enter the cable chain.
+2. Attach the headed bed to the frame.
+3. Thread the heated be wires through the cable chain and attach the cable chain to the **Cable_Chain_Bracket**.
+4. Secure the wires with cable ties.
 
 ![Printbed_assembled](assemblies/Printbed_assembled.png)
 
@@ -1225,9 +1233,9 @@ and the **Z_Motor_Mount**. The bolt holes on the **Z_Motor_Mount** are oval to a
 |   2 | Bolt M3 countersunk x  8mm |
 |   8 | Bolt M4 buttonhead x  8mm |
 |   8 | Bolt M4 buttonhead x 10mm |
-|  14 | Bolt M5 buttonhead x 12mm |
+|  16 | Bolt M5 buttonhead x 12mm |
 |   1 | Extrusion E2020 x 350mm |
-|   1 | Extrusion E2040 x 350mm |
+|   1 | Extrusion E2060 x 350mm |
 |   1 | Extrusion E2080 x 350mm |
 |   5 | Nut M3 hammer |
 |  16 | Nut M4 hammer |
@@ -1278,17 +1286,27 @@ as a template to drill the holes in the base plate.
 
 | Qty | Description |
 |----:|:------------|
+|   1 | Afterburner Breakout PCB |
 |   1 | BigTreeTech Manta 5MP v1.0 |
 |   1 | BigTreeTech Relay Module v1.2 |
+|   4 | Bolt M2.5 caphead x  6mm |
 |   3 | Bolt M3 buttonhead x 10mm |
 |   3 | Bolt M3 caphead x  6mm |
 |   5 | Bolt M3 caphead x 12mm |
-|   2 | Bolt M4 buttonhead x  8mm |
+|   4 | Bolt M4 buttonhead x  8mm |
+|   1 | LDO Toolhead Breakout PCB v1.1 |
 |   1 | Nut M3 hammer |
+|   2 | Nut M4 hammer |
 |   1 | PSU NIUGUY CB-500W-24V |
 |   3 | Pillar hex nylon F/F M3x25 |
 |   1 | Pillar hex nylon F/F M3x5 |
 |   4 | Pillar hex nylon F/F M3x6 |
+
+### 3D Printed parts
+
+| 1 x Breakout_PCB_Bracket.stl |
+|----------|
+| ![Breakout_PCB_Bracket.stl](stls/Breakout_PCB_Bracket.png) |
 
 ### Sub-assemblies
 
@@ -1361,7 +1379,6 @@ as a template to drill the holes in the base plate.
 |   2 | Bolt M3 buttonhead x  8mm |
 |   4 | Bolt M3 buttonhead x 10mm |
 |   1 | Cable wrap, 100mm |
-|   1 | Drag chain, 390mm |
 
 ### 3D Printed parts
 
