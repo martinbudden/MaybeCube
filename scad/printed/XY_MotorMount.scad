@@ -463,8 +463,8 @@ module xyMotorMountBlock(motorType, size, basePlateThickness, offset=[0, 0], sid
 module xyMotorMount(motorType, basePlateThickness, offset=[0, 0], blockHeightExtra=0, stepdown=false, useReversedBelts=false, countersunk=false, left=true, M5=false, cnc=false, flat=false) {
     motorWidth = motorWidth(motorType);
     size = xyMotorMountSize(motorWidth, offset, left, useReversedBelts, cnc, flat);
-    if (left) echo(sizeL=size); else echo(sizeR=size);
-    if (left) echo(offsetL=offset); else echo(offsetR=offset);
+    //if (left) echo(sizeL=size); else echo(sizeR=size);
+    //if (left) echo(offsetL=offset); else echo(offsetR=offset);
     sideSupportSize = [useReversedBelts ? eSize + 1 : eSize, size.y - eSize];
     xyMotorMountBase(motorType, [size.x, size.y, basePlateThickness], offset, sideSupportSize.y, stepdown, useReversedBelts, countersunk, left, M5, cnc, flat);
     translate_z(basePlateThickness - eps)
