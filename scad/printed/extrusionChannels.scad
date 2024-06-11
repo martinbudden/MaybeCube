@@ -15,7 +15,7 @@ module _E20Base(coverSizeX, coverSizeY) {
         square([coverSizeX, coverSizeY]);
 }
 
-module E20Clip2d(channelWidth=6.0, channelDepth=1.9, lipOverhang = 0.3) {
+module E20Clip2d(channelWidth=6.0, channelDepth=1.9, lipOverhang=0.3) {
 /*
     taperBottomX = 5.9;
     taperTopX = 5.9;
@@ -48,7 +48,7 @@ module E20Clip2d(channelWidth=6.0, channelDepth=1.9, lipOverhang = 0.3) {
 
 module E20Clip(size, channelWidth=6.0, channelDepth=1.9, lipOverhang=0.3) {
     linear_extrude(size)
-        E20Clip2d(channelWidth, channelDepth);
+        E20Clip2d(channelWidth, channelDepth, lipOverhang);
 }
 
 module _E20Stripe(channelWidth, channelDepth, lipOverhang=0.3) {
@@ -66,13 +66,14 @@ module _E20Stripe(channelWidth, channelDepth, lipOverhang=0.3) {
     }
 }
 
-module E20Cover(length, topOnlyLength=0, channelWidth=6.0, channelDepth=1.8, coverSizeX=e20CoverSizeX) {
+module E20Cover(length, topOnlyLength=0, channelWidth=5.7, channelDepth=2.2, coverSizeX=e20CoverSizeX, lipOverhang=0.4) {
+//module E20Cover(length, topOnlyLength=0, channelWidth=6.0, channelDepth=1.8, coverSizeX=e20CoverSizeX, lipOverhang=0.3) {
     assert(length > 0);
 
     linear_extrude(length - topOnlyLength) {
         _E20Base(coverSizeX, e20CoverSizeY);
         translate([0, e20CoverSizeY])
-            E20Clip2d(channelWidth, channelDepth);
+            E20Clip2d(channelWidth, channelDepth, lipOverhang);
     }
     translate_z(length - topOnlyLength)
         linear_extrude(topOnlyLength)
