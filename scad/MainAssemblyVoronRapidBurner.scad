@@ -24,8 +24,8 @@ module Voron_Rapid_Burner_Adapter_assembly()
 assembly("Voron_Rapid_Burner_Adapter", big=true) {
     explode = 20;
     stl_colour(pp3_colour)
-        Voron_Dragon_Burner_Adapter_stl();
-    hidden() Voron_Dragon_Burner_Adapter_ST_stl();
+        Voron_Rapid_Burner_Adapter_stl();
+    hidden() Voron_Rapid_Burner_Adapter_ST_stl();
     explode(explode, true, show_line=false)
         xCarriageVoronDragonBurnerAdapter_inserts();
 }
