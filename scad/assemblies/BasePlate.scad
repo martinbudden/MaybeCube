@@ -9,6 +9,7 @@ include <NopSCADlib/vitamins/pcbs.scad>
 
 use <../printed/BaseFrontCover.scad>
 use <../printed/BaseCover.scad>
+use <../printed/BreakoutPCBBracket.scad>
 use <../printed/IEC_Housing.scad>
 
 use <../utils/PSU.scad>
@@ -261,9 +262,11 @@ assembly("Base_Plate", big=true, ngb=true) {
 
     Base_Plate_Stage_1_assembly();
 
-    if (pcbOnBase)
+    if (pcbOnBase) {
         for (pcb = basePCBs)
             pcbAssembly(pcb, pcbOnBase);
+        breakoutPCBBracketAssembly();
+    }
 
     if (psuOnBase) {
         explode(50, true)

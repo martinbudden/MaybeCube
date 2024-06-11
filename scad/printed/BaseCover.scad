@@ -22,6 +22,7 @@ chainAnchorOffset = eX > 300 ? 180 : 150;
 chainAnchorSizeX = 8;
 baseCoverTopSize = [eX > 300 ? 250 : 210, eY + eSize, 3];
 baseCoverBackSupportSize = [baseCoverTopSize.x, eSize, supportHeight - 3*eSize];
+function baseCoverBackSupportSizeZ() = baseCoverBackSupportSize.z;
 baseCoverLeftSideSupportSize = [8, eY/2, supportHeight];
 baseCoverRightSideSupportSize = [eSize + 10, eY/2, 5];
 baseCoverFrontSupportSize = [baseCoverTopSize.x - baseCoverLeftSideSupportSize.x, 12, 3*eSize/2];
@@ -52,7 +53,7 @@ module baseCoverBackSupport(size, offset=chainAnchorOffset) {
                 rounded_cube_xy(chainAnchorSize, fillet);
                 translate([0, -size.y + chainAnchorSize.y, 0])
                     rotate(180)
-                        fillet(fillet, size.z);
+                        fillet(1, size.z);
             }
         } // end union
         translate([chainOffset + chainAnchorSize.x, 0, 0]) {
@@ -298,7 +299,7 @@ module baseCoverDxf(size) {
                     rotate(-90)
                         fillet(fillet);
             }
-            wiringGuidePosition = wiringGuidePosition(0, wiringGuideCableOffsetY(), eSize);
+            wiringGuidePosition = wiringGuidePosition(offsetY=wiringGuideCableOffsetY(), offsetZ=eSize);
             wiringCutoutSize = [8, 26 + 2* fillet];
             translate([size.x/2 - wiringGuidePosition.x - 34, size.y/2]) {
                 translate([0, -wiringCutoutSize.y + fillet])

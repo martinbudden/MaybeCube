@@ -209,12 +209,13 @@ module faceTopBack(height=60, fov_distance=0) {
         }
         if (_variant != "JubileeToolChanger" && (is_undef($hide_extras) || !$hide_extras)) {
             explode([0, -40, 0], true, show_line=false)
-                wiringGuidePosition(offsetX = useCamera ? cameraMountBaseSize.x/2 : 0)
-                    vflip() {
-                        stl_colour(pp2_colour)
-                            Wiring_Guide_Socket_stl();
-                        Wiring_Guide_Socket_hardware();
-                    }
+                translate([useCamera ? cameraMountBaseSize.x/2 : 0, 0, 0])
+                    wiringGuidePosition()
+                        vflip() {
+                            stl_colour(pp2_colour)
+                                Wiring_Guide_Socket_stl();
+                            Wiring_Guide_Socket_hardware();
+                        }
             if (useCamera)
                 cameraMountPosition() {
                     stl_colour(pp1_colour)
@@ -228,14 +229,14 @@ module faceTopBack(height=60, fov_distance=0) {
 module printheadWiring(hotendDescriptor="E3DV6", showCable=true) {
     // don't show the incomplete cable if there are no extrusions to obscure it
     wireRadius = 2.5;
-    bezierPos = wiringGuidePosition(useCamera ? cameraMountBaseSize.x/2 : 0, wiringGuideCableOffsetY(), eSize);
+    bezierPos = wiringGuidePosition(offsetY=wiringGuideCableOffsetY(), offsetZ=eSize) - [useCamera ? cameraMountBaseSize.x/2 : 0, 0, 0];
     if (showCable && is_undef($hide_extrusions))
         color(grey(20)) {
             bezierTube(bezierPos, [carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(hotendDescriptor), tubeRadius=wireRadius);
             translate(bezierPos)
                 vflip()
                     rotate([1, 0, 0])
-                        cylinder(h=bezierPos.z - 20, r=wireRadius, center=false);
+                        cylinder(h=bezierPos.z - 3*eSize, r=wireRadius, center=false);
         }
 
     /*translate([carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(hotendDescriptor))
@@ -244,16 +245,17 @@ module printheadWiring(hotendDescriptor="E3DV6", showCable=true) {
                 rotate([0, 90, 90])
                     cable_tie(cable_r=3, thickness=4.5);*/
 
-    wiringGuidePosition(offsetX = useCamera ? cameraMountBaseSize.x/2 : 0) {
-        stl_colour(pp1_colour)
-            Wiring_Guide_stl();
-        explode(20, true)
-            translate_z(wiringGuideTabHeight()) {
-                stl_colour(pp2_colour)
-                    Wiring_Guide_Clamp_stl();
-                Wiring_Guide_Clamp_hardware();
-            }
-    }
+    translate([useCamera ? cameraMountBaseSize.x/2 : 0, 0, 0])
+        wiringGuidePosition() {
+            stl_colour(pp1_colour)
+                Wiring_Guide_stl();
+            explode(20, true)
+                translate_z(wiringGuideTabHeight()) {
+                    stl_colour(pp2_colour)
+                        Wiring_Guide_Clamp_stl();
+                    Wiring_Guide_Clamp_hardware();
+                }
+        }
 }
 
 
