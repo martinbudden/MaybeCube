@@ -290,7 +290,7 @@ module baseCoverDxf(size) {
             baseCoverTopHolePositions(size)
                 circle(r=M3_clearance_radius);
             chainCutoutSize = [15, 24 + 2* fillet];
-            translate([size.x/2 - chainAnchorOffset - 7, size.y/2]) {
+            translate([size.x/2 - chainAnchorOffset + 7, size.y/2]) {
                 translate([0, -chainCutoutSize.y + fillet])
                     rounded_square(chainCutoutSize, fillet, center=false);
                 rotate(180)
@@ -300,8 +300,9 @@ module baseCoverDxf(size) {
                         fillet(fillet);
             }
             wiringGuidePosition = wiringGuidePosition(offsetY=wiringGuideCableOffsetY(), offsetZ=eSize);
-            wiringCutoutSize = [8, 26 + 2* fillet];
-            translate([size.x/2 - wiringGuidePosition.x - 34, size.y/2]) {
+            //wiringCutoutSize = [8, 26 + 2*fillet];// for just wire
+            wiringCutoutSize = [25, 35 + 2*fillet];
+            translate([size.x/2 - eX - eSize + wiringGuidePosition.x - wiringCutoutSize.x/2, size.y/2]) {
                 translate([0, -wiringCutoutSize.y + fillet])
                     rounded_square(wiringCutoutSize, fillet, center=false);
                 rotate(180)
