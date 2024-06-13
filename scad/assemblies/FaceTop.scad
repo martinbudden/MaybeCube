@@ -17,7 +17,7 @@ include <../utils/bezierTube.scad>
 include <../utils/X_Rail.scad>
 include <../utils/CoreXYBelts.scad>
 include <../utils/RailNutsAndBolts.scad>
-include <../utils/printheadOffsets.scad>
+include <../utils/PrintheadOffsets.scad>
 
 use <../Parameters_Positions.scad>
 

@@ -5,7 +5,7 @@ use <../printed/ReverseBowdenBracket.scad>
 use <../printed/SpoolHolder.scad>
 
 include <../utils/bezierTube.scad>
-include <../utils/printheadOffsets.scad>
+include <../utils/PrintheadOffsets.scad>
 
 use <../vitamins/Panels.scad>
 
