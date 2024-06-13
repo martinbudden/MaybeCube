@@ -282,8 +282,10 @@ module vdb_LGX_Lite_Mount_hardware(zOffset=0, nut=true) {
 
 }
 
+// z-distance from top of RevoVoron to tip of nozzle is 48.80mm, see https://e3d-online.zendesk.com/hc/en-us/articles/5927310441373-Revo-Voron-Datasheet
+function revoVoronSizeZ() = 48.8;
+
 module revoVoron() {
-    // z-distance from top of RevoVoron to tip of nozzle is 48.80mm, see https://e3d-online.zendesk.com/hc/en-us/articles/5927310441373-Revo-Voron-Datasheet
     color(grey(40))
         intersection() {
             size = [30, 30, 50];
