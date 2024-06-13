@@ -200,8 +200,8 @@ module Base_Cover_Left_Side_Support_175B_stl() {
 }
 module Base_Cover_Left_Side_Support_hardware() {
     for (y = [baseCoverLeftSideSupportSize.y/4, 3*baseCoverLeftSideSupportSize.y/4])
-        translate([-_basePlateThickness, y, baseCoverLeftSideSupportSize.x/2])
-            rotate([0, -90, 0])
+        translate([baseCoverLeftSideSupportSize.z + _basePlateThickness, y, baseCoverLeftSideSupportSize.x/2])
+            rotate([0, 90, 0])
                 boltM3Buttonhead(10);
 }
 
@@ -356,8 +356,8 @@ module baseCoverBackSupportsAssembly() {
 
 module baseCoverLeftSideSupportsAssembly() {
     size = baseCoverLeftSideSupportSize;
-    translate([eX + eSize - baseCoverBackSupportSize.x + size.x, eSize, 0])
-        rotate([0, -90, 0]) {
+    translate([eX + eSize - baseCoverBackSupportSize.x, eSize, size.z])
+        rotate([0, 90, 0]) {
             color(pp2_colour)
                 if (eX == 300)
                     Base_Cover_Left_Side_Support_150A_stl();
@@ -369,8 +369,8 @@ module baseCoverLeftSideSupportsAssembly() {
                         boltM3Buttonhead(size.x);
             Base_Cover_Left_Side_Support_hardware();
         }
-    translate([eX + eSize - baseCoverBackSupportSize.x, eSize + 2*size.y, 0])
-        rotate([180, -90, 0]) {
+    translate([eX + eSize - baseCoverBackSupportSize.x + size.x, eSize + 2*size.y, size.z])
+        rotate([180, 90, 0]) {
             color(pp1_colour)
                 if (eX == 300)
                     Base_Cover_Left_Side_Support_150B_stl();
