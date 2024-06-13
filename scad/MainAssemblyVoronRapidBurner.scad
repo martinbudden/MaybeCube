@@ -30,19 +30,6 @@ assembly("Voron_Rapid_Burner_Adapter", big=true) {
         xCarriageVoronDragonBurnerAdapter_inserts();
 }
 
-module xCarriageVoronRapidBurnerAdapterAssembly(inserts=true) {
-    //translate([0, 14, -50])
-       # rotate([90, 0, 180])
-        {
-            stl_colour(pp3_colour)
-                if (inserts)
-                    Voron_Rapid_Burner_Adapter_stl();
-                else
-                    Voron_Rapid_Burner_Adapter_ST_stl();
-                xCarriageVoronDragonBurnerAdapter_hardware(inserts=inserts, bolts=false, rapid=true);
-        }
-}
-
 module Extruder_assembly()
 assembly("Extruder", big=true) {
     voronRapidBurnerExtruderAssembly();
@@ -129,13 +116,6 @@ assembly("Rapid_Burner", big=true) {
         voronRapidBurnerAssembly();
 }
 
-/*module Printhead_Voron_Rapid_Burner_assembly()
-assembly("Printhead_Voron_Rapid_Burner", big=true) {
-    //voronRapidBurnerAssembly();
-    Rapid_Burner_assembly();
-}*/
-
-
 module Voron_Rapid_Burner_assembly()
 assembly("Voron_Rapid_Burner", big=true) {
 
@@ -163,19 +143,6 @@ assembly("Voron_Rapid_Burner", big=true) {
             rail_assembly(xCarriageType, _xRailLength, pos=-2, carriage_end_colour="green", carriage_wiper_colour="red");
     }
 }
-
-//let($hide_bolts=true)
-//voronRapidBurnerAssembly();
-//voronRapidBurnerExtruderAssembly();
-//voronRapidBurnerHotendAssembly();
-//voronRapidBurnerExtruderAndHotendAssembly();
-//voronRapidBurnerAssembly();
-
-//Voron_Rapid_Burner_Adapter_assembly();
-//Hotend_assembly();
-//Extruder_assembly();
-//Extruder_and_Hotend_assembly();
-//Rapid_Burner_assembly();
 
 if ($preview)
     Voron_Rapid_Burner_assembly();
