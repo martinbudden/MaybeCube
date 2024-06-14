@@ -1,5 +1,7 @@
 include <NopSCADlib/utils/core/core.scad>
 use <NopSCADlib/vitamins/pcb.scad>
+use <NopSCADlib/vitamins/pin_header.scad>
+
 
 // Imported from https://github.com/MotorDynamicsLab/LDO-Voron-Hardware/tree/master/Afterburner%20Breakout%20PCB
 // See also https://docs.ldomotors.com/en/voron/toolhead_harness
@@ -33,7 +35,8 @@ LDO_TOOLHEAD_BREAKOUT_V1_1 = [
     [], // grid
 ];
 
-
+//Molex Microfit 3.0, 43045
+Microfit3  = ["Microfit3",   3, 11.6, 3.2, 0.66, silver,   grey(30), 7.6, [0,   0,    8.7], 2.4, 0,     0,    0  ];
 
 function ABBreakoutPCBSize() = [39.37, 47.1, 1];
 
@@ -46,8 +49,13 @@ module breakoutPCBHolePositions(z=0) {
 module ABBreakoutPCB() {
     vitamin(str("ABBreakooutPCB3() : Afterburner Breakout PCB"));
     pcbSize = pcb_size(LDO_TOOLHEAD_BREAKOUT_V1_1);
-    translate([pcbSize.x/2, pcbSize.y/2, 0])
+    translate([pcbSize.x/2, pcbSize.y/2, 0]) {
         pcb(LDO_TOOLHEAD_BREAKOUT_V1_1);
+        translate([0.8, 13, 1.5])
+            rotate(180)
+                not_on_bom()
+                    pin_socket(Microfit3, 7, 2, right_angle=true);
+    }
     /*color([.3,.3,.3])
         translate([0, ABBreakoutPCBSize().y, ABBreakoutPCBSize().z/2])
             rotate(-90)

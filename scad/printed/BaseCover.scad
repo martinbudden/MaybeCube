@@ -302,7 +302,7 @@ module baseCoverDxf(size) {
             wiringGuidePosition = wiringGuidePosition(offsetY=wiringGuideCableOffsetY(), offsetZ=eSize);
             //wiringCutoutSize = [8, 26 + 2*fillet];// for just wire
             wiringCutoutSize = [25, 35 + 2*fillet];
-            translate([size.x/2 - eX - eSize + wiringGuidePosition.x - wiringCutoutSize.x/2, size.y/2]) {
+            translate([size.x/2 - eX - eSize + wiringGuidePosition.x - wiringCutoutSize.x/2 + 0.75, size.y/2]) {
                 translate([0, -wiringCutoutSize.y + fillet])
                     rounded_square(wiringCutoutSize, fillet, center=false);
                 rotate(180)
