@@ -235,8 +235,7 @@ module printheadWiring(hotendDescriptor="E3DV6", showCable=true) {
             bezierTube(bezierPos, [carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(hotendDescriptor), tubeRadius=wireRadius);
             translate(bezierPos)
                 vflip()
-                    rotate([1, 0, 0])
-                        cylinder(h=bezierPos.z - 3*eSize, r=wireRadius, center=false);
+                    cylinder(h=bezierPos.z - 3*eSize, r=wireRadius, center=false);
         }
 
     /*translate([carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(hotendDescriptor))

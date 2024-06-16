@@ -64,7 +64,7 @@ module Breakout_PCB_Bracket_stl() {
 }
 
 module breakoutPCBBracketAssembly() {
-    translate([wiringGuidePosition().x, eY + eSize, 3*eSize])
+    translate([wiringGuidePosition().x, eY + eSize - 2, 3*eSize])
         rotate([90, 0, 0]) {
             stl_colour(pp3_colour)
                 Breakout_PCB_Bracket_stl();

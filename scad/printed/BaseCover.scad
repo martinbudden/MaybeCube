@@ -5,6 +5,7 @@ use <NopSCADlib/vitamins/sheet.scad>
 include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/screws.scad>
 include <NopSCADlib/vitamins/fans.scad>
+use <NopSCADlib/vitamins/psu.scad> // for psu_grill
 include <NopSCADlib/printed/drag_chain.scad>
 
 include <../vitamins/bolts.scad>
@@ -12,15 +13,16 @@ include <../vitamins/nuts.scad>
 
 use <extruderBracket.scad> // for iecHousingMountSize()
 use <WiringGuide.scad>
+use <CableChainBracket.scad>
 
 include <../Parameters_Main.scad>
 include <../Parameters_Positions.scad>
 
 supportHeight = 70;
 holeOffset = 20;
-chainAnchorOffset = eX > 300 ? 180 : 150;
+chainAnchorOffset = eX + 50 - cableChainBracketOffsetX();
 chainAnchorSizeX = 8;
-baseCoverTopSize = [eX > 300 ? 250 : 210, eY + eSize, 3];
+baseCoverTopSize = [eX > 300 ? 240 : 210, eY + eSize, 3];
 baseCoverBackSupportSize = [baseCoverTopSize.x, eSize, supportHeight - 3*eSize];
 function baseCoverBackSupportSizeZ() = baseCoverBackSupportSize.z;
 baseCoverLeftSideSupportSize = [8, eY/2, supportHeight];
@@ -56,11 +58,11 @@ module baseCoverBackSupport(size, offset=chainAnchorOffset) {
                         fillet(1, size.z);
             }
         } // end union
-        translate([chainOffset + chainAnchorSize.x, 0, 0]) {
-            translate([0, -fillet, size.z - cutoutSize.z - eps])
+        translate([chainOffset + chainAnchorSize.x, 0, size.z - cutoutSize.z - eps]) {
+            translate([0, -fillet, 0])
                 rounded_cube_xy([cutoutSize.x, cutoutSize.y + fillet, cutoutSize.z + 2*eps], fillet);
-            translate([cutoutSize.x, 0, size.z - cutoutSize.z + eps])
-                fillet(fillet, cutoutSize.z);
+            translate([cutoutSize.x, 0, 0])
+                fillet(fillet, cutoutSize.z + 2*eps);
         }
         chainAnchorHolePositions(size)
             rotate([90, 0, -90])
@@ -108,8 +110,8 @@ module Base_Cover_Back_Support_210_stl() {
             baseCoverBackSupport(baseCoverBackSupportSize);
 }
 
-module Base_Cover_Back_Support_250_stl() {
-    stl("Base_Cover_Back_Support_250")
+module Base_Cover_Back_Support_240_stl() {
+    stl("Base_Cover_Back_Support_240")
         color(pp2_colour) 
             baseCoverBackSupport(baseCoverBackSupportSize);
 }
@@ -145,8 +147,8 @@ module Base_Cover_Front_Support_202_stl() {
         color(pp1_colour)
             baseCoverFrontSupport(baseCoverFrontSupportSize);
 }
-module Base_Cover_Front_Support_242_stl() {
-    stl("Base_Cover_Front_Support_242")
+module Base_Cover_Front_Support_232_stl() {
+    stl("Base_Cover_Front_Support_232")
         color(pp1_colour)
             baseCoverFrontSupport(baseCoverFrontSupportSize);
 }
@@ -276,7 +278,7 @@ module baseCoverTopAssembly(addBolts=true) {
             if (eX == 300)
                 Base_Cover_210_dxf();
             else
-                Base_Cover_250_dxf();
+                Base_Cover_240_dxf();
     }
 }
 
@@ -289,8 +291,8 @@ module baseCoverDxf(size) {
             sheet_2D(sheet, size.x, size.y, fillet);
             baseCoverTopHolePositions(size)
                 circle(r=M3_clearance_radius);
-            chainCutoutSize = [15, 24 + 2* fillet];
-            translate([size.x/2 - chainAnchorOffset + 7, size.y/2]) {
+            chainCutoutSize = [18, 24 + 2* fillet];
+            translate([size.x/2 - chainAnchorOffset-0.5, size.y/2]) {
                 translate([0, -chainCutoutSize.y + fillet])
                     rounded_square(chainCutoutSize, fillet, center=false);
                 rotate(180)
@@ -319,8 +321,8 @@ module Base_Cover_210_dxf() {
         baseCoverDxf(baseCoverTopSize);
 }
 
-module Base_Cover_250_dxf() {
-    dxf("Base_Cover_250")
+module Base_Cover_240_dxf() {
+    dxf("Base_Cover_240")
         baseCoverDxf(baseCoverTopSize);
 }
 
@@ -338,7 +340,7 @@ module baseCoverFrontSupportsAssembly() {
                 if (eX == 300)
                     Base_Cover_Front_Support_202_stl();
                 else
-                    Base_Cover_Front_Support_242_stl();
+                    Base_Cover_Front_Support_232_stl();
             Base_Cover_Front_Support_hardware();
         }
 }
@@ -349,7 +351,7 @@ module baseCoverBackSupportsAssembly() {
             if (eX == 300)
                 Base_Cover_Back_Support_210_stl();
             else
-                Base_Cover_Back_Support_250_stl();
+                Base_Cover_Back_Support_240_stl();
         Base_Cover_Back_Support_hardware();
     }
 }
@@ -404,15 +406,21 @@ module baseFanPosition(size, offsetX=0, z=0) {
         children();
 }
 
-module baseFanMount(sizeX, offsetX=0, support=false) {
+module baseFanMount(sizeX, offsetX=0, fan=fan40x11, support=false) {
     size = [sizeX, iecHousingMountSize(eX).y, 3];
     fillet = 2;
-    fan = fan40x11;
 
     difference() {
-        rounded_cube_xy(size, fillet);
-        baseFanPosition(size, offsetX, size.z/2)
-            fan_holes(fan, h=size.z + 2*eps);
+        linear_extrude(size.z)
+            difference() {
+                rounded_rectangle([size.x, size.y], fillet, xy_center=false);
+                if (!fan)
+                    baseFanPosition(size, offsetX, size.z/2)
+                        psu_grill(40, 40, grill_hole=2.5, grill_gap=1.5, fn=6, avoid=[]);
+            }
+        if (fan)
+            baseFanPosition(size, offsetX, size.z/2)
+                fan_holes(fan, h=size.z + 2*eps);
         baseFanMountHolePositions(size)
             boltHoleM4(size.z);
     }
@@ -431,14 +439,14 @@ module Base_Fan_Mount_120A_stl() {
     stl("Base_Fan_Mount_120A")
         color(pp3_colour)
             vflip() // better orientation for printing
-                baseFanMount(120, 50, support=true);
+                baseFanMount(120, 50, fan=false, support=true);
 }
 
 module Base_Fan_Mount_145A_stl() {
     stl("Base_Fan_Mount_145A")
         color(pp3_colour) {
             vflip() // better orientation for printing
-                baseFanMount(145, 50, support=true);
+                baseFanMount(145, 50, fan=false, support=true);
         }
 }
 
@@ -446,7 +454,7 @@ module Base_Fan_Mount_170A_stl() {
     stl("Base_Fan_Mount_170A")
         color(pp3_colour) {
             vflip() // better orientation for printing
-                baseFanMount(170, 50, support=true);
+                baseFanMount(170, 50, fan=false, support=true);
         }
 }
 
@@ -480,7 +488,7 @@ module baseFanMountAssembly() {
                             Base_Fan_Mount_170A_stl();
                 baseFanMountHolePositions(sizeA, sizeA.z)
                     boltM4ButtonheadHammerNut(8);
-                baseFanPosition(sizeA, 50, sizeA.z/2 - fan_thickness(fan)) {
+                /*baseFanPosition(sizeA, 50, sizeA.z/2 - fan_thickness(fan)) {
                     explode(-15)
                         fan(fan);
                     fan_hole_positions(fan) {
@@ -490,7 +498,7 @@ module baseFanMountAssembly() {
                             explode(-30)
                                 nutM3();
                     }
-            }
+                }*/
         }
     translate([eX + 2*eSize, sizeA.x, 0])
         rotate([90, 0, 90])

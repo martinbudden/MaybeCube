@@ -8,6 +8,7 @@ include <../vitamins/nuts.scad>
 
 include <../Parameters_Main.scad>
 
+function cableChainBracketOffsetX() = eX > 300 ? 240 : 210;
 //cableChainBracketSize = [25, eY - (_zRodOffsetY + (zRodSeparation() + _printbedArmSeparation)/2) - 5, eSize];
 cableChainBracketSize = [25, 55, eSize];
 

@@ -17,7 +17,7 @@ function wiringGuideCableOffsetY() = 10;
 wiringClearance = 0.5;
 function wiringGuideTabHeight() = wiringGuideCableOffsetY() + wiringDiameter - 2 + wiringClearance;
 
-function wiringGuidePosition(offsetX=10, offsetY=0, offsetZ=0) = [eX/2 + eSize - (wiringGuideSize.x + eSize)/2 - offsetX, eY + eSize - offsetY, eZ - eSize - offsetZ];
+function wiringGuidePosition(offsetX=10, offsetY=0, offsetZ=0) = [eX/2 + eSize + 10 - (wiringGuideSize.x + eSize)/2 - offsetX, eY + eSize - offsetY, eZ - eSize - offsetZ];
 
 
 module Wiring_Guide_stl() {
