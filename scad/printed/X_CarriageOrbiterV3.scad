@@ -52,7 +52,7 @@ module xCarriageOrbitrerV3StrainRelief(xCarriageType, xCarriageBackSize, topThic
     translate([0, railCarriageGap, size.z - 2*fillet])
         difference() {
             rounded_cube_xz(tabSize, fillet);
-            cutoutSize = [2, tabSize.y + 2*eps, 4];
+            cutoutSize = [2.2, tabSize.y + 2*eps, 4.5];
             xCarriageOrbitrerV3CableTiePositions()
                 for (x = [tabSize.x/2 - 4, tabSize.x/2 + 4])
                     translate([x - cutoutSize.x/2, -eps, 0])
