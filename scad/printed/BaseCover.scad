@@ -236,7 +236,7 @@ module baseCoverRightSideSupportAssembly() {
     }
 }
 
-BaseCover = ["BaseCover", "Sheet perspex", 3, pp4_colour, false];
+BaseCover = ["BaseCover", "Sheet perspex", 3, grey(30), false];
 
 module baseCoverRightHolePositions(size) {
     yLeft = baseCoverLeftSideSupportSize.y/4;
