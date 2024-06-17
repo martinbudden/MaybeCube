@@ -106,7 +106,7 @@ module xCarriageOrbiterV3(xCarriageType, inserts) {
                         fillet(1, size.y + 1);
             }
             // cutout for the hotend fan wiring
-            cutoutSize = [size.x + 2*eps, 2, 3];
+            cutoutSize = [size.x + 2*eps, 2, 4];
             offsetZ = cutoutOffsetZ + smartOrbiterV3LowerFixingHolesToNozzleTipOffsetZ() - orbiterV3NozzleOffsetFromMGNCarriageZ();
             translate([-size.x/2-eps, carriageSize.y/2 + railCarriageGap + size.y - cutoutSize.y + eps + 0.5, offsetZ]) {
                 cube(cutoutSize);
