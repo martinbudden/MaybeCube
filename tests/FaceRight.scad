@@ -6,11 +6,9 @@ include <NopSCADlib/utils/core/core.scad>
 
 use <../scad/printed/AccessPanel.scad>
 use <../scad/printed/BaseCover.scad>
+use <../scad/printed/BambuFanBracket.scad>
 use <../scad/printed/extruderBracket.scad>
 use <../scad/printed/XY_MotorMount.scad>
-
-//include <../scad/utils/Z_Rods.scad>
-//include <../scad/utils/CoreXYBelts.scad>
 
 use <../scad/vitamins/Panels.scad>
 
@@ -27,11 +25,11 @@ use <../scad/Parameters_Positions.scad>
 module Right_Side_test() {
     //CoreXYBelts(carriagePosition(), show_pulleys=!true);
     Right_Side_assembly();
-    //baseFanMountAssembly();
+    bambuFanBracketAssembly();
+    baseFanMountAssembly();
     //accessPanelAssembly();
     //Left_Side_assembly();
     //Face_Top_assembly();
-    //zRods(left=false);
     //Extruder_Bracket_assembly();
     //iecHousing();
     //IEC_Housing_stl();

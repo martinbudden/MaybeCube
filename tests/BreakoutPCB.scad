@@ -8,7 +8,7 @@ use <../scad/printed/BreakoutPCBBracket.scad>
 //$pose = 1;
 module BreakoutPCB_test() {
     //ABBreakoutPCB();
-    breakoutPCBBracket();
+    Breakout_PCB_Bracket_stl();
     Breakout_PCB_Bracket_hardware();
 }
 

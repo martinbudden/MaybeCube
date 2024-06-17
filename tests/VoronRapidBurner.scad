@@ -24,7 +24,7 @@ module VoronRapidBurner_test(full=!true) {
 
         explode([0, 50, 0], true)
             xRailCarriagePosition(carriagePosition) {
-                Printhead_Voron_Rapid_Burner_assembly();
+                Rapid_Burner_assembly();
 
              //xCarriageVoronRapidBurnerAssembly(inserts=true);
 

@@ -57,7 +57,7 @@ module Left_Side_test(showPrintBed=true) {
     //Partition_Guide_assembly();
     // always add the panels last, so they are transparent to other items
     //Left_Side_Channel_Nuts();
-    Left_Side_Channel_Spacers();
+    //Left_Side_Channel_Spacers();
     //Left_Side_Panel_assembly();
     //leftSidePanelPC(hammerNut=false);
     //partitionPC();

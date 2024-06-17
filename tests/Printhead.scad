@@ -39,28 +39,29 @@ module Printhead_test() {
     echo(coreXYSeparation=coreXYSeparation());
     carriagePosition = carriagePosition();
 
+    zOffset = eZ - yRailOffset().x + carriage_height(carriageType(_xCarriageDescriptor)) - carriage_clearance(carriageType(_xCarriageDescriptor));
     halfCarriage = false;
-    translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
-        //CoreXYBelts(carriagePosition, x_gap = -30, show_pulleys = ![1, 0, 0]);
+    translate(-[eSize + eX/2, carriagePosition.y, zOffset - orbiterV3NozzleOffsetFromMGNCarriageZ()]) {
+        CoreXYBelts(carriagePosition, x_gap = -30, show_pulleys = ![1, 0, 0]);
         printheadBeltSide();
         //printheadBeltSideBolts();
-        xRailPrintheadPosition() {
+        *xRailPrintheadPosition() {
             //Printhead_E3DV6_assembly();
-            Printhead_OrbiterV3_assembly();
+            translate_z(-0.4) Printhead_OrbiterV3_assembly();
             //Printhead_Voron_Mini_Afterburner_assembly();
-            //Printhead_Voron_Dragon_Burner_assembly();
-            //Printhead_Voron_Rapid_Burner_assembly();
+            //translate_z(-0.7) Printhead_Voron_Dragon_Burner_assembly();
+            //translate_z(-0.7) Printhead_Voron_Rapid_Burner_assembly();
         }
         //printheadVoronAfterburner();
         //printheadEVA_2_4_2();
         //printheadXChange();
-        translate_z(eZ) {
+        *translate_z(eZ) {
             xRail(carriagePosition);
             xRailBoltPositions(carriagePosition)
                 boltM3Caphead(10);
         }
     }
-    *translate(-[eSize + eX/2, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
+    *translate(-[eSize + eX/2, carriagePosition.y, zOffset]) {
         CoreXYBelts(carriagePosition, x_gap = -25, show_pulleys = ![1, 0, 0]);
         translate_z(eZ)
             xRail(carriagePosition);
@@ -78,6 +79,18 @@ module Printhead_test() {
     //rotate([90, 0, -90]) Hotend_Clamp_stl();
     //Hotend_Clamp_hardware();
     //Hotend_Strain_Relief_Clamp_stl();
+}
+
+module Printhead_test1() {
+    translate_z(orbiterV3NozzleOffsetFromMGNCarriageZ()) {
+        X_Carriage_Beltside_assembly();
+        *translate([-carriagePosition().x, -carriagePosition().y, xRailCarriagePositionZ()])
+            printheadBeltSide();
+        translate([-carriagePosition().x, -carriagePosition().y, -xRailCarriageOffsetZ()])
+            xRail(carriagePosition());
+        Printhead_OrbiterV3_assembly();
+        Printhead_Voron_Dragon_Burner_assembly();
+    }
 }
 
 module xCarriageTopTest() {

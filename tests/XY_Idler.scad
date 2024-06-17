@@ -20,19 +20,14 @@ module XY_Idler_test() {
     translate([coreXYPosBL().x, xyIdlerRailOffset() + _yRailLength/2, eZ - eSize])
         rotate([180, 0, 90])
             rail_assembly(carriageType(_yCarriageDescriptor), _yRailLength, carriagePosition().y - eSize - _yRailLength/2, carriage_end_colour="green", carriage_wiper_colour="red");
+}
 
-    *translate(-[0, eZ - eSize - 60, 0])
-        xyIdler(xyIdlerSize());
-        *translate([0, -eZ, eZ]) {
-            XY_Idler_Left_stl();
-            XY_Idler_hardware(xyIdlerSize(), left=true);
-        }
-    *translate([-120, -eZ, eZ]) {
-        XY_Idler_Right_stl();
-        translate([0, 0, eSize])
-            rotate([0, 180, 0])
-                XY_Idler_hardware(xyIdlerSize(), left=false);
-    }
+module XY_Idler_test1() {
+    translate([100, -eZ + 40, eZ])
+        rotate(-90)
+            XY_Idler_Left_RB4_stl();
+    translate([0, -eZ + 40, eZ])
+        XY_Idler_Right_RB4_stl();
 }
 
 if ($preview)

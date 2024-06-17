@@ -7,9 +7,7 @@ include <NopSCADlib/utils/core/core.scad>
 
 //use <../scad/jigs/PanelJig.scad>
 
-//use <../scad/printed/BaseFrontCover.scad>
 //use <../scad/printed/ControlPanel.scad>
-include <../scad/printed/BaseCover.scad>
 
 include <../scad/assemblies/BasePlate.scad>
 use <../scad/assemblies/FaceLeft.scad>
@@ -33,13 +31,17 @@ module Base_test() {
     //BaseAL();
     //translate([eX + eSize, eSize, 0]) extrusionOY(eY);
     //pcbAssembly(BTT_SKR_V1_4_TURBO, pcbOnBase=true);
-    //baseCoverTopAssembly(!false);
+    #baseCoverTopAssembly(!false);
     //baseCoverLeftSideSupportsAssembly();
     //baseCoverRightSideSupportAssembly();
     //baseCoverFrontSupportsAssembly();
+    //translate([0,-2,0])
     //baseCoverBackSupportsAssembly();
+    //Base_Cover_Back_Support_240_stl();
+    baseDragChain();
     //baseFanMountAssembly();
-    //printheadWiring(hotendDescriptor="OrbiterV3");
+    //breakoutPCBBracketAssembly();
+    printheadWiring(hotendDescriptor="OrbiterV3");
 
     //Left_Base_Channel_Spacers();
     //translate_z(-3) Panel_Jig_stl();

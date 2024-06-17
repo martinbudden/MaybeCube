@@ -19,7 +19,7 @@ module ExtrusionCover_test() {
     translate([0, 2*eSize + 1, 0])
         rotate(180)
             extrusionPiping(height);
-    translate([eSize/2, eSize/2, 0])
+    translate([eSize/2 - 0.6, eSize/2, 0])
         rotate([90, 0, 90])
             extrusionChannel(height);
     translate([eSize/2 - 2.1, 3*eSize/2, 5.5])
@@ -27,7 +27,8 @@ module ExtrusionCover_test() {
             sliding_t_nut(M4_sliding_t_nut);
     translate([-eSize/2 - 1.5, eSize/2, 0])
         rotate(-90)
-            E20_RibbonCover_50mm_stl();
+            //E20_RibbonCover_50mm_stl();
+            E20Cover(height, channelDepth=2);
     translate([0, eSize, 0])
         extrusion(E2040, height, center=false);
 }

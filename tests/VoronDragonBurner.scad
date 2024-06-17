@@ -4,7 +4,8 @@ include <../scad/global_defs.scad>
 include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/screws.scad>
 
-use <../scad/printed/PrintheadAssemblies.scad>
+use <../scad/printed/PrintheadAssemblyOrbiterV3.scad>
+use <../scad/printed/PrintheadAssemblyE3DV6.scad>
 use <../scad/printed/X_CarriageVoronDragonBurner.scad>
 use <../scad/printed/Y_CarriageAssemblies.scad>
 use <../scad/MainAssemblyVoronDragonBurner.scad>
@@ -63,15 +64,14 @@ xCarriageVoronDragonBurner_hardware();
 //vdb_V6_Mount_Front();
 //vdb_V6_Mount_Rear();
 //vdbE3DV6();
-//-55.23 is offset from nozzle to center of attachment holes
-*translate([0, 12, -56.93+3.4/2]) {
-vdb_RevoVoron_Mount();
-//vdb_RevoVoron_Mount_hardware();
-revoVoron();
+//55.23 (=48.8+6.43) is offset from nozzle to center of attachment holes
+*translate([0, 12, -revoVoronSizeZ() - 6.43]) {
+    vdb_RevoVoron_Mount();
+    vdb_RevoVoron_Mount_hardware();
+    revoVoron();
 }
 //vdb_Cowl_inserts();
 //vdb_Cowl_NoProbe();
-//vdb_Cowl_NoProbe_hardware();
 //voronDragonBurnerExtruderAssembly();
 //voronDragonBurnerHotendAssembly();
 //voronDragonBurnerAssembly();
@@ -88,11 +88,10 @@ vdb_LGX_Lite_Mount_stl();
 //vdb_LGX_Lite_Mount_hardware();
 //vdb_V6_Mount_Front_stl();
 //vdb_V6_Mount_Rear_stl();
-//rotate([-90, 0, 0]) vrb_LGX_Lite_Mount_stl();
-//X_Carriage_Voron_Dragon_Burner_assembly();
+//rotate([-90, 0, 0]) vdb_LGX_Lite_Mount_stl();
+//xCarriageVoronDragonBurnerAdapterAssembly();
 //Printhead_Voron_Dragon_Burner_assembly();
 //xCarriageVoronDragonBurnerAdapter();
-//xCarriageVoronDragonBurnerAdapter_hardware();
 
 if ($preview)
     rotate(180)
