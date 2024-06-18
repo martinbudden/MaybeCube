@@ -8,6 +8,7 @@ include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/screws.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
+use <printed/X_CarriageAssemblies.scad>
 use <printed/PrintheadAssemblies.scad>
 use <printed/X_CarriageVoronMiniAfterburner.scad>
 
@@ -21,7 +22,7 @@ include <target.scad>
 
 module xCarriageVoronMiniAfterburnerAssembly(inserts=true) {
     explode = 20;
-    translate([0, 14, -50])
+    translate([0, 14 + railCarriageGap(), -50])
         rotate([90, 0, 180]) {
             stl_colour(pp3_colour)
                 rotate(180)
@@ -40,14 +41,14 @@ module xCarriageVoronMiniAfterburnerAssembly(inserts=true) {
 module printheadVoronMiniAfterburnerAssembly(extruderDescriptor=undef, hotendDescriptor=undef) {
     explode = 50;
     explode([0, explode, 0], true)
-        translate([0, 14 + 7.3 + 4.25, 2.2]) {
-            //vma_x_carriage_90_x1();
-            //vma_motor_frame_x1();
+        translate([0, 14 + 7.3 + 4.25 + railCarriageGap() - 0.2, 2.2]) {
+            //vma_x_carriage_90_x1(); // to check with original
+            vma_motor_frame_x1();
             vma_mid_body_x1();
-            vma_cowling_mosquito_x1();
             vma_vlatch_dd_x1();
             vma_vlatch_shuttle_dd_x1();
             vma_guidler_dd_x1();
+            vma_cowling_mosquito_x1();
         }
 }
 

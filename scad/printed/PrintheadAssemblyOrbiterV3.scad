@@ -11,6 +11,7 @@ use <../vitamins/OrbiterV3.scad>
 
 include <OrbiterV3Fan.scad>
 use <X_CarriageOrbiterV3.scad>
+use <X_CarriageAssemblies.scad>
 
 
 module printheadOrbiterV3Assembly() {
@@ -72,8 +73,8 @@ assembly("Printhead_OrbiterV3", big=true) {
     xCarriageType = MGN12H_carriage;
     hotendDescriptor = "OrbiterV3";
     explode([0, -40, 0], true)
-        xCarriageOrbiterV3Assembly(xCarriageType, inserts=true);
-    translate([-0.3, 0, -orbiterV3NozzleOffsetFromMGNCarriageZ()])
+        xCarriageOrbiterV3Assembly(inserts=true);
+    translate([-0.3, railCarriageGap() - 0.5, -orbiterV3NozzleOffsetFromMGNCarriageZ()])
         printheadOrbiterV3Assembly();
     explode([0, -60, 0], true)
         xCarriageOrbiterV3HolePositions(xCarriageType)
@@ -82,10 +83,10 @@ assembly("Printhead_OrbiterV3", big=true) {
     if (!exploded())
         translate(printheadWiringOffset(hotendDescriptor)) {
             xCarriageOrbitrerV3CableTiePositions(full=false)
-                translate([0, -3.5, 18])
-                    rotate([0, 90, 90])
-                        cable_tie(cable_r = 3, thickness = 4.5);
-            translate([-8.5, -5.5, -4])
+                translate([-0.5, railCarriageGap() - 3, 18])
+                    rotate([0, 90, -90])
+                        cable_tie(cable_r = 3.5, thickness = 5.5);
+            translate([-8.5, railCarriageGap() - 4.5, -4])
                 rotate([0, 90, -90])
                     cable_tie(cable_r = 2.5, thickness = 3);
         }

@@ -37,9 +37,11 @@ function xCarriageHoleOffsetBottom() = -xCarriageHoleOffsetTop();
 evaHoleSeparationTop = 34;
 function xCarriageHoleSeparationTopMGN12H() = halfCarriage ? evaHoleSeparationTop : xCarriageBoltSeparation.x; //45.4 - 8
 function xCarriageHoleSeparationBottomMGN12H() = halfCarriage ? 38 : xCarriageBoltSeparation.x;
+function xCarriageBoreDepth() = 3.5;
 
 function xCarriageHotendSideSizeM(xCarriageType, beltWidth, beltSeparation) = [xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation).x, halfCarriage ? 5 : xCarriageSize.y, xCarriageBeltSideSizeM(xCarriageType, beltWidth, beltSeparation).z];
 function xCarriageHotendOffsetY(xCarriageType) = carriage_size(xCarriageType).y/2 + xCarriageHotendSideSizeM(xCarriageType, 0, 0).y + 0.5;
+function railCarriageGap() = 2.5;;
 
 xCarriageBeltTensionerSizeX = 23;
 beltClampSize = [25, xCarriageBeltAttachmentSize(beltWidth(), beltSeparation()).x + 1, 4.5];
@@ -49,18 +51,17 @@ extraBeltOffset = 1.75;
 
 module xCarriageHotendSideHolePositions(xCarriageType, flipSide=false) {
     size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
-    railCarriageGap = 0.5;
     holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
     holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
     carriageSize = carriage_size(xCarriageType);
     topHoleOffset = xCarriageHoleOffsetTop();
 
     for (x = xCarriageHolePositions(size.x, holeSeparationTop))
-        translate([x - size.x/2, carriageSize.y/2 + railCarriageGap + (flipSide ? size.y : 0), xCarriageTopThickness()/2 + topHoleOffset])
+        translate([x - size.x/2, carriageSize.y/2 + railCarriageGap() + (flipSide ? size.y : 0), xCarriageTopThickness()/2 + topHoleOffset])
             rotate([-90, 90, 0])
                 children();
     for (x = xCarriageHolePositions(size.x, holeSeparationBottom))
-        translate([x - size.x/2, carriageSize.y/2 + railCarriageGap + (flipSide ? size.y : 0), -size.z + xCarriageTopThickness() + xCarriageBaseThickness()/2 + xCarriageHoleOffsetBottom()])
+        translate([x - size.x/2, carriageSize.y/2 + railCarriageGap() + (flipSide ? size.y : 0), -size.z + xCarriageTopThickness() + xCarriageBaseThickness()/2 + xCarriageHoleOffsetBottom()])
             rotate([-90, 90, 0])
                 children();
 }
@@ -78,13 +79,13 @@ module X_Carriage_Beltside_HC_16_stl() {
 
 module X_Carriage_Beltside_RB_stl() {
     xCarriageType = MGN12H_carriage;
-    size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());// + [1, 0, 1];
+    size = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());// + [0, 0, 0];
 
     // orientate for printing
     stl("X_Carriage_Beltside_RB"); // semicolon required for XChange build as this is not on BOM
     color(pp4_colour)
         rotate([90, 0, 0])// orientate for printing
-            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(), screwType=screwTypeCapheadSmallWasher, inserts=true, reversedBelts=true, extraBeltOffset=extraBeltOffset, endCube=true);
+            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(), screwType=screwTypeCapheadSmallWasher, boreDepth=xCarriageBoreDepth(), inserts=true, reversedBelts=true, extraBeltOffset=extraBeltOffset, endCube=true);
 }
 
 module X_Carriage_Beltside_RB_ST_stl() {
@@ -95,7 +96,7 @@ module X_Carriage_Beltside_RB_ST_stl() {
     stl("X_Carriage_Beltside_RB_ST"); // semicolon required for XChange build as this is not on BOM
     color(pp4_colour)
         rotate([90, 0, 0])// orientate for printing
-            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(), screwType=screwTypeCapheadSmallWasher, inserts=false, reversedBelts=true, extraBeltOffset=extraBeltOffset, endCube=true);
+            xCarriageBeltSide(xCarriageType, size, beltsCenterZOffset, beltWidth(), beltSeparation(), xCarriageHoleSeparationTopMGN12H(), xCarriageHoleSeparationBottomMGN12H(), accelerometerOffset=accelerometerOffset(), offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom(), screwType=screwTypeCapheadSmallWasher, boreDepth=xCarriageBoreDepth(), inserts=false, reversedBelts=true, extraBeltOffset=extraBeltOffset, endCube=true);
 }
 
 module X_Carriage_Beltside_RB_MGN9C_stl() {

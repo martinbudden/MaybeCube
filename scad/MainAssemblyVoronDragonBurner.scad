@@ -8,6 +8,7 @@ include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/screws.scad>
 include <NopSCADlib/vitamins/rails.scad>
 
+use <printed/X_CarriageAssemblies.scad>
 use <printed/PrintheadAssemblies.scad>
 use <printed/X_CarriageVoronDragonBurner.scad>
 
@@ -97,16 +98,18 @@ assembly("Dragon_Burner", big=true) {
 
 module Printhead_Voron_Dragon_Burner_assembly()
 assembly("Printhead_Voron_Dragon_Burner", big=true) {
-    translate([0, 37.3, -61.25]) {
-        voronDragonBurnerAssembly();
-        //Dragon_Burner_assembly();
+    translate([0, railCarriageGap() - 0.5, 0]) {
+        translate([0, 37.3, -61.25]) {
+            voronDragonBurnerAssembly();
+            //Dragon_Burner_assembly();
+        }
+        explode([0, 100, 0])
+            vdb_Cowl_NoProbe_Attachment_Bolts();
+        explode([0, -200, 0], true, show_line=false)
+            xCarriageVoronDragonBurnerAdapterAttachmentBolts();
+        explode([0, -100, 0], show_line=false)
+            xCarriageVoronDragonBurnerAdapterAssembly(inserts=true);
     }
-    explode([0, 100, 0])
-        vdb_Cowl_NoProbe_Attachment_Bolts();
-    explode([0, -200, 0], true, show_line=false)
-        xCarriageVoronDragonBurnerAdapterAttachmentBolts();
-    explode([0, -100, 0], show_line=false)
-        xCarriageVoronDragonBurnerAdapterAssembly(inserts=true);
 }
 
 module Voron_Dragon_Burner_assembly()

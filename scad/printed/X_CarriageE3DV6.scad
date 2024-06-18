@@ -31,6 +31,7 @@ module xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCar
 
     rotate([0, 90, -90]) {
         difference() {
+            translate([0, railCarriageGap() - 0.5, 0])
             union() {
                 xCarriageBack(xCarriageType, size, 0, holeSeparationTop, holeSeparationBottom, halfCarriage=halfCarriage, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), accelerometerOffset=accelerometerOffset());
                 hotEndHolder(xCarriageType, xCarriageHotendSideSizeM(xCarriageType, 0, 0), grooveMountSize, hotendOffset, hotendDescriptor, blowerType, baffle=true, left=false);

@@ -25,12 +25,11 @@ cutoutOffsetZ = 3.1;
 module xCarriageOrbiterV3HolePositions(xCarriageType) {
     size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
     carriageSize = carriage_size(xCarriageType);
-    railCarriageGap = 0.5;
     holeSpacing = [smartOrbiterV3AttachmentBoltSpacing().x, 0, smartOrbiterV3AttachmentBoltSpacing().y];
     offset = [size.x - 5 - holeSpacing.x, 0, 0];
 
     for (x = [0, holeSpacing.x], z = [0, holeSpacing.z])
-        translate(offset + [x - size.x/2, carriageSize.y/2 + railCarriageGap, z - orbiterV3NozzleOffsetFromMGNCarriageZ() + smartOrbiterV3LowerFixingHolesToNozzleTipOffsetZ()])
+        translate(offset + [x - size.x/2, carriageSize.y/2 + railCarriageGap(), z - orbiterV3NozzleOffsetFromMGNCarriageZ() + smartOrbiterV3LowerFixingHolesToNozzleTipOffsetZ()])
             rotate([90, 90, 0])
                 children();
 }
@@ -41,15 +40,12 @@ module xCarriageOrbitrerV3CableTiePositions(full=true) {
             children();
 }
 
-module xCarriageOrbitrerV3StrainRelief(xCarriageType, xCarriageBackSize, topThickness) {
-    carriageSize = carriage_size(xCarriageType);
-    carriageOffsetY = carriageSize.y/2;
+module xCarriageOrbitrerV3StrainRelief(carriageSize, xCarriageBackSize, topThickness) {
     size =  [xCarriageBackSize.x, xCarriageBackSize.y + carriageSize.y/2, topThickness];
     tabSize = [15, xCarriageBackSize.y, 73]; // ensure room for bolt heads
-    railCarriageGap = 0.5;
 
     fillet = 1;
-    translate([0, railCarriageGap, size.z - 2*fillet])
+    translate_z(size.z - 2*fillet)
         difference() {
             rounded_cube_xz(tabSize, fillet);
             cutoutSize = [2.2, tabSize.y + 2*eps, 4.5];
@@ -64,22 +60,20 @@ module xCarriageOrbiterV3Back(xCarriageType, size, extraX=0, holeSeparationTop, 
     assert(is_list(xCarriageType));
     internalFillet = 1.5;
     carriageSize = carriage_size(xCarriageType);
-    isMGN12 = carriageSize.z >= 13;
     topThickness = xCarriageTopThickness();
     baseThickness = xCarriageBaseThickness();
-    railCarriageGap = 0.5;
 
     baseSize = [size.x, carriageSize.y + size.y - 2*beltInsetBack(xCarriageType), baseThickness];
     translate([-size.x/2, carriageSize.y/2, 0])
         difference() {
             union() {
-                translate([0, railCarriageGap, baseSize.z - size.z])
+                translate_z(baseSize.z - size.z)
                     rounded_cube_xz([size.x, size.y, size.z], 1);
-                xCarriageOrbitrerV3StrainRelief(xCarriageType, size, topThickness);
+                    xCarriageOrbitrerV3StrainRelief(carriageSize, size, topThickness);
             } // end union
             // cutout for ziptie
-            offsetZ = cutoutOffsetZ + cutoutZ +smartOrbiterV3LowerFixingHolesToNozzleTipOffsetZ() - orbiterV3NozzleOffsetFromMGNCarriageZ();
-            cutoutSize = [2, size.y + carriageSize.y/2 + 2*eps, 4];
+            offsetZ = cutoutOffsetZ + cutoutZ + smartOrbiterV3LowerFixingHolesToNozzleTipOffsetZ() - orbiterV3NozzleOffsetFromMGNCarriageZ();
+            cutoutSize = [2, size.y + 2*eps, 4];
             translate([2.5 - cutoutSize.x/2, -eps, offsetZ - cutoutSize.z])
                 rounded_cube_xz(cutoutSize, 0.5);
         } // end difference
@@ -88,27 +82,27 @@ module xCarriageOrbiterV3Back(xCarriageType, size, extraX=0, holeSeparationTop, 
 module xCarriageOrbiterV3(xCarriageType, inserts) {
     size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
     carriageSize = carriage_size(xCarriageType);
-    railCarriageGap = 0.5;
     holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
     holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
 
     rotate([0, 90, -90]) {
-        difference() {
-            xCarriageOrbiterV3Back(xCarriageType, size, 0, holeSeparationTop, holeSeparationBottom, countersunk=_xCarriageCountersunk ? 4 : 0);
-            translate([0, carriageSize.y/2 + size.y + 1, eps]) {
+        translate([0, railCarriageGap() + 2*eps, 0])
+            difference() {
+                xCarriageOrbiterV3Back(xCarriageType, size, 0, holeSeparationTop, holeSeparationBottom, countersunk=_xCarriageCountersunk ? 4 : 0);
+            translate([0, carriageSize.y/2 + size.y + eps, eps]) {
                 height = xCarriageTopThickness();
                 base = 5;
                 rotate([90, 0, 0])
-                    linear_extrude(size.y + 1)
+                    linear_extrude(size.y + 2*eps)
                         polygon(points = [ [0,0], [base + height, 0], [base+height, height], [-height, height] ]);
                 translate([base + height, 0, height])
                     rotate([90, 90, 0])
-                        fillet(1, size.y + 1);
+                        fillet(1, size.y + 2*eps);
             }
             // cutout for the hotend fan wiring
             cutoutSize = [size.x + 2*eps, 2, 4];
             offsetZ = cutoutOffsetZ + smartOrbiterV3LowerFixingHolesToNozzleTipOffsetZ() - orbiterV3NozzleOffsetFromMGNCarriageZ();
-            translate([-size.x/2-eps, carriageSize.y/2 + railCarriageGap + size.y - cutoutSize.y + eps + 0.5, offsetZ]) {
+            translate([-size.x/2 - eps, carriageSize.y/2 + railCarriageGap() + size.y - cutoutSize.y + eps + 0.5, offsetZ]) {
                 cube(cutoutSize);
                 rotate([-90, 0, 0])
                     fillet(1, cutoutSize.y + eps);
@@ -129,16 +123,18 @@ module xCarriageOrbiterV3(xCarriageType, inserts) {
                         fillet(1, cutoutSize.y + eps);
             }
 
-            xCarriageHotendSideHolePositions(xCarriageType)
-                if (inserts)
+            translate([0, -railCarriageGap(), 0]) {
+                xCarriageHotendSideHolePositions(xCarriageType)
+                    if (inserts)
+                        vflip()
+                            translate_z(-size.y)
+                                insertHoleM3(size.y);
+                    else
+                        boltHoleM3Tap(size.y);
+                xCarriageOrbiterV3HolePositions(xCarriageType)
                     vflip()
-                        translate_z(-size.y)
-                            insertHoleM3(size.y);
-                else
-                    boltHoleM3Tap(size.y);
-            xCarriageOrbiterV3HolePositions(xCarriageType)
-                vflip()
-                    boltPolyholeM3Countersunk(size.y);
+                        boltPolyholeM3Countersunk(size.y);
+            }
         }
     }
 }
@@ -157,7 +153,7 @@ module X_Carriage_OrbiterV3_stl() {
                 xCarriageOrbiterV3(MGN12H_carriage, inserts=true);
 }
 
-module xCarriageOrbiterV3Assembly(xCarriageType, inserts=false) {
+module xCarriageOrbiterV3Assembly(inserts=false) {
     stl_colour(pp1_colour)
         rotate([-90, 0, 0])
             if (inserts)
@@ -165,7 +161,7 @@ module xCarriageOrbiterV3Assembly(xCarriageType, inserts=false) {
             else
                 X_Carriage_OrbiterV3_ST_stl();
     if (inserts)
-        xCarriageHotendSideHolePositions(xCarriageType, flipSide=true)
+        xCarriageHotendSideHolePositions(MGN12H_carriage, flipSide=true)
             explode(10, true)
                 threadedInsertM3();
 }

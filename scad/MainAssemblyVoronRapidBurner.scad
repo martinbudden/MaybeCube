@@ -9,6 +9,7 @@ include <NopSCADlib/vitamins/screws.scad>
 include <NopSCADlib/vitamins/rails.scad>
 include <NopSCADlib/vitamins/e3d.scad>
 
+use <printed/X_CarriageAssemblies.scad>
 use <printed/PrintheadAssemblies.scad>
 use <printed/X_CarriageVoronRapidBurner.scad>
 
@@ -92,22 +93,24 @@ module xCarriageVoronRapidBurnerAdapterAttachmentBolts() {
 
 
 module voronRapidBurnerAssembly(extruderDescriptor="LGX_Lite", hotendDescriptor=undef) {
-    not_on_bom()
-        explode([0, 80, 0], true) {
-            color(voronAccentColor())
-                rotate([90, 0, 0])
-                    vrb_Cowl_NoProbe_stl();
-                explode([0, 40, 0])
-                    vrb_Cowl_NoProbe_bolts();
-            no_explode() {
-                vdb_Cowl_fans(fanOffsetZ=-11.5);
-                vdb_Cowl_inserts();
+    translate([0, railCarriageGap() - 0.5, 0]) {
+        not_on_bom()
+            explode([0, 80, 0], true) {
+                color(voronAccentColor())
+                    rotate([90, 0, 0])
+                        vrb_Cowl_NoProbe_stl();
+                    explode([0, 40, 0])
+                        vrb_Cowl_NoProbe_bolts();
+                no_explode() {
+                    vdb_Cowl_fans(fanOffsetZ=-11.5);
+                    vdb_Cowl_inserts();
+                }
             }
-        }
-    //voronRapidBurnerExtruderAndHotendAssembly(extruderDescriptor, hotendDescriptor);
-    Extruder_and_Hotend_assembly();
-    explode([0, -20, 0], true, show_line=false)
-        xCarriageVoronRapidBurnerAdapterAttachmentBolts();
+        //voronRapidBurnerExtruderAndHotendAssembly(extruderDescriptor, hotendDescriptor);
+        Extruder_and_Hotend_assembly();
+        explode([0, -20, 0], true, show_line=false)
+            xCarriageVoronRapidBurnerAdapterAttachmentBolts();
+    }
 }
 
 module Rapid_Burner_assembly()

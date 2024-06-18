@@ -153,7 +153,7 @@ module vma_guidler_dd_x1() {
 
 module vma_motor_frame_x1() {
     vitamin(str(": Voron Mini Afterburner motor frame"));
-    translate([5.75, 35, 8.5])
+    translate([5.75, 35.43+eps, 8.5])
         rotate([0, 90, 90])
             color(voronColor())
                 vmaImportStl("Motor_Frame_x1");

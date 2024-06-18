@@ -42,11 +42,11 @@ module printheadBeltSide(rotate=0, explode=0, t=undef) {
 module printheadBeltSideBolts(rotate=0, explode=0, t=undef, halfCarriage=false) {
     xCarriageType = MGN12H_carriage;
     xCarriageBeltSideSize = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());
-    boltLength = halfCarriage ? 30 : 35;
+    boltLength = halfCarriage ? 30 : 40;
 
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
         explode([0, -20, 0], true)
-            xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), screwType=hs_cap, offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom());
+            xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), screwType=hs_cap, boreDepth=xCarriageBoreDepth(), offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom());
 }
 
 module xRailPrintheadPosition(rotate=0, explode=0, t=undef, halfCarriage=false) {
@@ -58,13 +58,13 @@ module xRailPrintheadPosition(rotate=0, explode=0, t=undef, halfCarriage=false) 
 module printheadPosition(rotate=0, explode=0, t=undef, halfCarriage=false) {
     xCarriageType = MGN12H_carriage;
     xCarriageBeltSideSize = xCarriageBeltSideSizeM(xCarriageType, beltWidth(), beltSeparation());
-    boltLength = halfCarriage ? 30 : 35;
+    boltLength = halfCarriage ? 30 : 40;
 
     explode(explode, true) {
         children();
 
         explode([0, -20, 0], true)
-            xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), screwType=hs_cap, offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom());
+            xCarriageBeltSideBolts(xCarriageType, xCarriageBeltSideSize, topBoltLength=boltLength, holeSeparationTop=xCarriageHoleSeparationTopMGN12H(), bottomBoltLength=boltLength, holeSeparationBottom=xCarriageHoleSeparationBottomMGN12H(), screwType=hs_cap, boreDepth=xCarriageBoreDepth(), offsetT=xCarriageHoleOffsetTop(), offsetB=xCarriageHoleOffsetBottom());
         if (halfCarriage)
             xCarriageTopBolts(xCarriageType, countersunk=_xCarriageCountersunk, positions = [ [1, 1], [-1, 1] ]);
         *translate([xCarriageFrontSize.x/2, 18, -18])
