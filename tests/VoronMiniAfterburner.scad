@@ -5,6 +5,7 @@ include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/screws.scad>
 
 use <../scad/printed/PrintheadAssemblies.scad>
+use <../scad/printed/PrintheadAssemblyE3DV6.scad>
 use <../scad/printed/X_CarriageVoronMiniAfterburner.scad>
 use <../scad/printed/X_CarriageVoronMiniAfterburnerLGXLite.scad>
 use <../scad/printed/Y_CarriageAssemblies.scad>
@@ -19,21 +20,22 @@ use <../scad/Parameters_Positions.scad>
 //$explode = 1;
 //$pose = 1;
 
-module VoronMiniAfterburner_test() {
+module VoronMiniAfterburner_test(full=!true) {
     carriagePosition = carriagePosition();
     translate(-[carriagePosition.x, carriagePosition.y, eZ - yRailOffset().x - carriage_clearance(carriageType(_xCarriageDescriptor))]) {
-        //CoreXYBelts(carriagePosition, x_gap = -25, show_pulleys = ![1, 0, 0]);
-        no_explode() printheadBeltSide();
-        //printheadE3DV6();
-        printheadBeltSideBolts();
-        *xRailCarriagePosition(carriagePosition) // rotate is for debug, to see belts better
-            translate([-6, -5, 7])
-                printheadE3DV6Assembly(full=false);
-
         explode([0, 50, 0], true)
             xRailCarriagePosition(carriagePosition)
                 Printhead_Voron_Mini_Afterburner_assembly();
-        translate_z(eZ)
+        if (full) {
+            //CoreXYBelts(carriagePosition, x_gap = -25, show_pulleys = ![1, 0, 0]);
+            no_explode() printheadBeltSide(rotate=180);
+            //printheadE3DV6();
+            printheadBeltSideBolts(rotate=180);
+            xRailCarriagePosition(carriagePosition) // rotate is for debug, to see belts better
+                *translate([-6, -5, 7])
+                    printheadE3DV6Assembly(full=false);
+        }
+        *translate_z(eZ)
             xRail(carriagePosition, MGN12H_carriage);
         *translate([0, carriagePosition.y - carriagePosition().y, eZ - eSize])
             Y_Carriage_Left_assembly();
@@ -55,8 +57,8 @@ rotate(180) translate([0, 14 + 7.3 + 4.25, 2.2]) {
 //xCarriageVoronMiniAfterburner_hardware();
 //vma_cowling_mosquito_x1();
 //vmalgxl_cowling_universal();
-vmalgxl_x_carriage_sls();
-vmalgxl_hotend_mount_mosquito_3010_fan();
+//vmalgxl_x_carriage_sls();
+//vmalgxl_hotend_mount_mosquito_3010_fan();
 }
 
 if ($preview)

@@ -13,7 +13,7 @@ use <../scad/vitamins/OrbiterV3.scad>
 module PrintheadOrbiterV3_test() {
     //X_Carriage_OrbiterV3_stl();
     //printheadOrbiterV3Assembly();
-    //X_Carriage_Beltside_assembly();
+    X_Carriage_Beltside_assembly();
     Printhead_OrbiterV3_assembly();
     //smartOrbiterV3();
 }

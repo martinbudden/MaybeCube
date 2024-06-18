@@ -4,11 +4,14 @@ include <../scad/global_defs.scad>
 include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/screws.scad>
 
+use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/PrintheadAssemblyOrbiterV3.scad>
 use <../scad/printed/PrintheadAssemblyE3DV6.scad>
 use <../scad/printed/X_CarriageVoronDragonBurner.scad>
+use <../scad/printed/X_CarriageVoronMiniAfterBurner.scad>
 use <../scad/printed/Y_CarriageAssemblies.scad>
 use <../scad/MainAssemblyVoronDragonBurner.scad>
+use <../scad/MainAssemblyVoronMiniAfterburner.scad>
 
 include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/X_Rail.scad>
@@ -28,12 +31,13 @@ module VoronDragonBurner_test(full=!true) {
                 Printhead_Voron_Dragon_Burner_assembly();
                 //Printhead_OrbiterV3_assembly();
                 //Printhead_E3DV6_assembly();
+                //Printhead_Voron_Mini_Afterburner_assembly();
             }
         if (full) {
             //CoreXYBelts(carriagePosition, x_gap = -25, show_pulleys = ![1, 0, 0]);
             no_explode() printheadBeltSide(rotate=180);
             printheadBeltSideBolts(rotate=180);
-            translate_z(eZ)
+            *translate_z(eZ)
                 xRail(carriagePosition, MGN12H_carriage);
             *translate([0, carriagePosition.y - carriagePosition().y, eZ - eSize]) {
                 Y_Carriage_Left_assembly();

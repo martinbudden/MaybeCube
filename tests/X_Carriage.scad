@@ -7,6 +7,7 @@ include <../scad/global_defs.scad>
 use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/X_CarriageAssemblies.scad>
 use <../scad/printed/X_CarriageE3DV6.scad>
+use <../scad/printed/X_CarriageOrbiterV3.scad>
 use <../scad/utils/X_Rail.scad>
 
 //include <../scad/utils/carriageTypes.scad>
@@ -31,9 +32,12 @@ module X_Carriage_test() {
     //rotate([0, -90, 0]) X_Carriage_Groovemount_HC_16_stl();
     //X_Carriage_Groovemount_stl();
     xCarriageGroovemountAssembly();
-    //X_Carriage_Beltside_assembly();
-    *translate([-carriagePosition().x, -carriagePosition().y, xRailCarriagePositionZ()])
-        printheadBeltSide();
+    X_Carriage_Beltside_assembly();
+
+    translate([-carriagePosition().x, -carriagePosition().y, -xRailCarriagePositionZ()]) {
+        //printheadBeltSide();
+        printheadBeltSideBolts();
+    }
     *translate([-carriagePosition().x, -carriagePosition().y, -xRailCarriageOffsetZ()])
         xRail(carriagePosition());
 
@@ -51,6 +55,8 @@ module X_Carriage_test() {
     //vflip() xCarriageBeltClamp([xCarriageBeltAttachmentSize().x - 0.5, 25+2, 4.5], holeSeparation=18, countersunk=true);
 }
 
+//X_Carriage_Groovemount_stl();
+//X_Carriage_OrbiterV3_stl();
 //xCarriageBeltAttachmentTest_stl();
 //translate([0, 0, 5.5])// offset to belts
 if ($preview)

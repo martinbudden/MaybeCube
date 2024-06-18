@@ -42,12 +42,12 @@ module Printhead_test() {
     zOffset = eZ - yRailOffset().x + carriage_height(carriageType(_xCarriageDescriptor)) - carriage_clearance(carriageType(_xCarriageDescriptor));
     halfCarriage = false;
     translate(-[eSize + eX/2, carriagePosition.y, zOffset - orbiterV3NozzleOffsetFromMGNCarriageZ()]) {
-        CoreXYBelts(carriagePosition, x_gap = -30, show_pulleys = ![1, 0, 0]);
+        //CoreXYBelts(carriagePosition, x_gap = -30, show_pulleys = ![1, 0, 0]);
         printheadBeltSide();
-        //printheadBeltSideBolts();
-        *xRailPrintheadPosition() {
+        printheadBeltSideBolts();
+        xRailPrintheadPosition() {
             //Printhead_E3DV6_assembly();
-            translate_z(-0.4) Printhead_OrbiterV3_assembly();
+            Printhead_OrbiterV3_assembly();
             //Printhead_Voron_Mini_Afterburner_assembly();
             //translate_z(-0.7) Printhead_Voron_Dragon_Burner_assembly();
             //translate_z(-0.7) Printhead_Voron_Rapid_Burner_assembly();

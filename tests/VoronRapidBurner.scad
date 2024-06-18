@@ -25,9 +25,7 @@ module VoronRapidBurner_test(full=!true) {
         explode([0, 50, 0], true)
             xRailCarriagePosition(carriagePosition) {
                 Rapid_Burner_assembly();
-
-             //xCarriageVoronRapidBurnerAssembly(inserts=true);
-
+                //xCarriageVoronRapidBurnerAssembly(inserts=true);
                 //Printhead_OrbiterV3_assembly();
                 //Printhead_E3DV6_assembly();
             }
@@ -36,7 +34,7 @@ module VoronRapidBurner_test(full=!true) {
             no_explode()
                 printheadBeltSide(rotate=180);
             printheadBeltSideBolts(rotate=180);
-            translate_z(eZ)
+            *translate_z(eZ)
                 xRail(carriagePosition, MGN12H_carriage);
             *translate([0, carriagePosition.y - carriagePosition().y, eZ - eSize]) {
                 Y_Carriage_Left_assembly();

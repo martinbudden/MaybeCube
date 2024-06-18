@@ -40,7 +40,7 @@ module Base_test() {
     //Base_Cover_Back_Support_240_stl();
     baseDragChain();
     //baseFanMountAssembly();
-    //breakoutPCBBracketAssembly();
+    breakoutPCBBracketAssembly();
     printheadWiring(hotendDescriptor="OrbiterV3");
 
     //Left_Base_Channel_Spacers();
