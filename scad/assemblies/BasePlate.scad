@@ -265,7 +265,7 @@ assembly("Base_Plate", big=true, ngb=true) {
     if (pcbOnBase) {
         for (pcb = basePCBs)
             pcbAssembly(pcb, pcbOnBase);
-        breakoutPCBBracketAssembly();
+        //breakoutPCBBracketAssembly();
     }
 
     if (psuOnBase) {
