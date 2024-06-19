@@ -16,7 +16,6 @@ module faceRightSpoolHolder(offsetX) {
     //translate([-eSize - 5,  - 10, 0])
         rotate([90, 0, 0])
             Spool_Holder_stl();
-    hidden() Spool_Holder_36_stl();
 }
 
 module faceRightSpoolHolderBracket(offsetX) {
