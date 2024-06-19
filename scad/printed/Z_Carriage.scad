@@ -230,8 +230,7 @@ module leadnut_screw_positions_i(type) { //! Position children at the screw hole
     for($i = angles)
         rotate($i)
             translate([leadnut_hole_pitch(type), 0, leadnut_flange_t(type)])
-                rotate(45)
-                    children();
+                children();
 }
 
 module zCarriageCenter() {
@@ -252,9 +251,10 @@ module zCarriageCenter() {
                         boltHoleM3Tap(size.z);
                 }
             translate_z(-eps) {
-                poly_cylinder(r=leadnut_od(leadnut)/2, h=size.z + 2*eps);
+                tolerance = 0.2;
+                poly_cylinder(r=leadnut_od(leadnut)/2 + tolerance, h=size.z + 2*eps);
                 if (baseThickness == 0)
-                    poly_cylinder(r=leadnut_flange_dia(leadnut)/2, h=leadnutInset + eps);
+                    poly_cylinder(r=leadnut_flange_dia(leadnut)/2 + tolerance, h=leadnutInset + eps);
             }
         }
     translate([-tabSize.x/2, printbedFrameCrossPieceOffset() - tabSize.y, 0]) {
@@ -306,7 +306,7 @@ module Z_Carriage_Center_stl() {
             zCarriageCenter();
 }
 
-//!1. Bolt the leadscrew to the **Z_Carriage_Center**.
+//!1. Bolt the leadscrew nut to the **Z_Carriage_Center**.
 //!2. Add the bolts and t-nuts in preparation for later attachment to the printbed frame.
 module Z_Carriage_Center_assembly()
 assembly("Z_Carriage_Center", ngb=true) {
