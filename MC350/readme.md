@@ -32,9 +32,8 @@ nuts.
 
 **Washers/shims:** Standard M4 washers are 1mm thick. Where "M4 x 9mm x 0.5mm" washers are specified, these may be ordered as "M4 shims".
 
-**Side panels and base:** These are specified as "CNC routed parts" in the parts list, for the convenience of those with access to a CNC. CNC routing
-is not required, the only "machining" required is to drill holes for attachment to the frame, which can easily be done with a hand drill.
-
+**Side and back panels, base, and base cover:** These are specified as "CNC routed parts" in the parts list, for the convenience of those with access to a CNC.
+CNC routing is not required, the only "machining" required is to drill holes for attachment to the frame, which can easily be done with a hand drill.
 
 This is a full build, some parts can be omitted to save cost, in particular:
 
@@ -43,15 +42,20 @@ This is a full build, some parts can be omitted to save cost, in particular:
 * the polycarbonate side and back panels, if you don't want to enclose your print volume for (say) printing ABS. Note
 that these panels also add rigidity to the printer.
 
-I've specified buttonhead bolts for the side and back panels. For a neater look you could countersink the holes and
-use countersunk bolts.
-
 ## Printing the parts
 
 A number of parts are in proximity with heat sources, namely the hotend, the heated bed and the motors. Ideally these
-should be printed in ABS, but I have used PETG successfully. These parts are insulated from direct contact with the heat
-sources, by cork underlay (for the heated bed) and by cork dampers (for the motors). These insulators should not be
-omitted from the build.
+should be printed in ABS, but I have used PETG successfully.
+
+The STL files for the parts are in the recommended orientation for printing.
+
+Parts are designed so that vertical features are aligned on a 0.5mm grid, so parts should be printed with either a 0.25mm or a 0.5mm layer height.
+For speed of printing most parts can be printed with a 0.6mm nozzle with a 1.0mm layer width and a 0.5mm layer height. Some parts, however, require a finer
+resolution and should be printed with a 0.25mm layer height namely:
+*All parts of the **X_Carriages** (ie anything prefixed **X_Carriage_**)
+*All parts of the **Y_Carriages** (ie anything prefixed **Y_Carriage_**)
+*The **XY_Motor_Mount_Pulley_Spacer**s
+*The **Smart_Orbiter_V3_Duct** and the **Smart_Orbiter_V3_Fan_Bracket**
 
 <span></span>
 
@@ -143,6 +147,7 @@ omitted from the build.
 |   .  |   .  |   .  |   4  |   .  |   4  |   .  |   .  |   .  |    8  |  Bolt M5 buttonhead x 10mm |
 |   .  |   .  |   .  |  14  |   .  |   8  |  10  |   8  |  16  |   56  |  Bolt M5 buttonhead x 12mm |
 |   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |   .  |    4  |  Bolt M5 countersunk x 12mm |
+|   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Bowden connector |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Cable wrap, 100mm |
 |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Cable wrap, 110mm |
 |   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   1  |    3  |  Cork damper NEMA 17 |
@@ -189,7 +194,7 @@ omitted from the build.
 |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |   .  |    2  |  Washer M3 x 7mm x 0.5mm |
 |   .  |   .  |   .  |  46  |   .  |   .  |   .  |   .  |   .  |   46  |  Washer M4 x 9mm x 0.5mm |
 |   .  |   5  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |    8  |  Ziptie 2.5mm x 100mm min length |
-|   4  |  21  |   6  | 274  |  13  |  49  |  42  |  12  | 258  |  679  | Total vitamins count |
+|   5  |  21  |   6  | 274  |  13  |  49  |  42  |  12  | 258  |  680  | Total vitamins count |
 |      |      |      |      |      |      |      |      |      |       | **3D printed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_Back_Support_240.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Base_Cover_Front_Support_232.stl |
@@ -206,7 +211,6 @@ omitted from the build.
 |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Smart_Orbiter_V3_Duct.stl |
 |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  | Smart_Orbiter_V3_Fan_Bracket_5015.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder.stl |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder_36.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Spool_Holder_Bracket.stl |
 |   .  |   .  |   .  |   4  |   .  |   .  |   .  |   .  |   .  |    4  | Top_Corner_Piece.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Wiring_Guide.stl |
@@ -234,7 +238,7 @@ omitted from the build.
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Z_Motor_Mount.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |    1  | Z_Motor_Mount_Guide_23mm.stl |
 |   .  |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |    2  | Z_RodMountGuide_100mm.stl |
-|   1  |   3  |   3  |  22  |   .  |   4  |   4  |   .  |  17  |   54  | Total 3D printed parts count |
+|   1  |   3  |   3  |  22  |   .  |   4  |   4  |   .  |  16  |   53  | Total 3D printed parts count |
 |      |      |      |      |      |      |      |      |      |       | **CNC routed parts** |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | Back_Panel.dxf |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  | BaseAL.dxf |
@@ -256,6 +260,7 @@ omitted from the build.
 | Qty | Description |
 |----:|:------------|
 |   2 | Bolt M4 countersunk x 10mm |
+|   1 | Bowden connector |
 |   2 | Nut M4 hammer |
 
 ### 3D Printed parts
@@ -267,6 +272,9 @@ omitted from the build.
 ### Assembly instructions
 
 ![Reverse_Bowden_Bracket_assembly](assemblies/Reverse_Bowden_Bracket_assembly_tn.png)
+
+1. Screw the Bowden connector into the **Reverse_Bowde_Bracket**. This is easier if you use an M6 bolt to "tap" the hole first.
+2. Add the bolts and hammer nuts, ready for later attachment to the frame.
 
 ![Reverse_Bowden_Bracket_assembled](assemblies/Reverse_Bowden_Bracket_assembled_tn.png)
 
@@ -964,7 +972,7 @@ using the **X_Carriage_Belt_Clamp**.
 
 ![Z_Carriage_Center_assembly](assemblies/Z_Carriage_Center_assembly_tn.png)
 
-1. Bolt the leadscrew to the **Z_Carriage_Center**.
+1. Bolt the leadscrew nut to the **Z_Carriage_Center**.
 2. Add the bolts and t-nuts in preparation for later attachment to the printbed frame.
 
 ![Z_Carriage_Center_assembled](assemblies/Z_Carriage_Center_assembled_tn.png)
@@ -1494,9 +1502,9 @@ see [Face_Top_Stage_2 assembly](#Face_Top_Stage_2_assembly).
 
 ### 3D Printed parts
 
-| 1 x Spool_Holder.stl | 1 x Spool_Holder_36.stl | 1 x Spool_Holder_Bracket.stl |
-|----------|----------|----------|
-| ![Spool_Holder.stl](stls/Spool_Holder.png) | ![Spool_Holder_36.stl](stls/Spool_Holder_36.png) | ![Spool_Holder_Bracket.stl](stls/Spool_Holder_Bracket.png) |
+| 1 x Spool_Holder.stl | 1 x Spool_Holder_Bracket.stl |
+|----------|----------|
+| ![Spool_Holder.stl](stls/Spool_Holder.png) | ![Spool_Holder_Bracket.stl](stls/Spool_Holder_Bracket.png) |
 
 ### CNC Routed parts
 
