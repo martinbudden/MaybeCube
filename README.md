@@ -103,6 +103,7 @@ MC300             | 2040  | 300 x 300 x 400   | 185 x 185 x 200  | 340 x 340 x 4
 MC350             | 2040  | 350 x 350 x 450   | 225 x 225 x 235  | 390 x 390 x 470
 MC400             | 2040  | 400 x 400 x 500   | 275 x 275 x 285  | 440 x 440 x 520
 MC450             | 2040  | 450 x 450 x 550   | 325 x 325 x 335  | 490 x 490 x 570
+[Bambu Labs X1](https://wiki.bambulab.com/en/x1/manual/x1e-faq) | - | - | 256 x 256 x 256 |  389 x 389 x 457
 [BLV MGN Cube](https://www.blvprojects.com/blv-mgn-cube-3d-printer) | 2040 | 496 x 496 x 560 | 300 x 300 x 365 | 576 x 536 x 560
 [Clock 3](https://github.com/jon-harper/clock-3) | 2020 | 620 x 620 x 800 (est) | 300 x 300 x 350 | 640 x 675 x 875
 [Creality Ender 5 S1](https://www.creality.com/products/ender-5-s1-3d-printer) | 2020/2040 | 375 x 440 x 550 (est) | 220 x 220 x 280 | 425 x 460 x 570
@@ -186,11 +187,44 @@ It does seem that the MC300 compares very favourably with the other printers for
 
 ## Customisations
 
+### Voron Dragon Burner printhead
+
+I've created an adaptor for the [Voron Dragon Burner](https://github.com/chirpy2605/voron/tree/main/V0/Dragon_Burner)
+(as used on the [Voron V0](https://github.com/VoronDesign/Voron-0)) printhead.
+
+![Dragon Burner](Voron_Dragon_Burner/assemblies/Printhead_Voron_Dragon_Burner_assembled.png)
+
+More details on using the Voron Dragon Burner adaptor are [here](https://github.com/martinbudden/MaybeCube/tree/main/Voron_Dragon_Burner).
+
+The STL file is [here](https://github.com/martinbudden/MaybeCube/blob/main/Voron_Dragon_Burner/stls).
+
+### Voron Rapid Burner printhead
+
+I've created an adaptor for the [Voron Rapid Burner](https://github.com/chirpy2605/voron/tree/main/V0/Rapid_Burner)
+(as used on the [Voron V0](https://github.com/VoronDesign/Voron-0)) printhead.
+
+![Rapid Burner](Voron_Rapid_Burner/assemblies/Rapid_Burner_assembled.png)
+
+More details on using the Voron Rapid Burner adaptor are
+[here](https://github.com/martinbudden/MaybeCube/tree/main/Voron_Rapid_Burner).
+
+The STL fils are [here](https://github.com/martinbudden/MaybeCube/tree/main/Voron_Rapid_Burner/stls).
+
+### Voron Mini Afterburner printhead
+
+I've created an adaptor for the Voron Mini Afterburner
+(as used on the [Voron V0](https://github.com/VoronDesign/Voron-0)) printhead.
+
+![Mini Afterburner](Voron_Mini_Afterburner/assemblies/Printhead_Voron_Mini_Afterburner_assembled.png)
+
+More details on using the Voron Mini Afterburner adaptor are [here](https://github.com/martinbudden/MaybeCube/tree/main/Voron_Mini_Afterburner).
+
+The STL file is [here](https://github.com/martinbudden/MaybeCube/blob/main/Voron_Mini_Afterburner/stls/X_Carriage_Voron_Mini_Afterburner.stl).
+
 ### EVA module printhead system (version 2.4.2)
 
-In its default configuration the MaybeCube has an E3D V6 hotend with a Bowden extruder. However I've created adaptors
-so that the [EVA modular printhead system](https://main.eva-3d.page) can be used. The EVA system supports a wide variety
-of hotends and extruders. More details on using the EVA adaptors are [here](https://github.com/martinbudden/MaybeCube/tree/main/EVA_2_4_2).
+I've created adaptors so that the [EVA modular printhead system](https://main.eva-3d.page) can be used. The EVA system
+supports a wide variety of hotends and extruders. More details on using the EVA adaptors are [here](https://github.com/martinbudden/MaybeCube/tree/main/EVA_2_4_2).
 
 The STL files are on [thingiverse](https://www.thingiverse.com/thing:4912099).
 
@@ -208,15 +242,6 @@ More details on using the XChange adaptor are [here](https://github.com/martinbu
 The STL files are on [thingiverse](https://www.thingiverse.com/thing:4924355).
 
 ![XChange](pictures/XChange3.jpg)
-
-### Voron Mini Afterburner printhead
-
-I've created an adaptor for the Voron Mini Afterburner (as used on the [Voron V0](https://github.com/VoronDesign/Voron-0))
-printhead.
-
-More details on using the Voron Mini Afterburner adaptor are [here](https://github.com/martinbudden/MaybeCube/tree/main/Voron_Mini_Afterburner).
-
-The STL file is [here](https://github.com/martinbudden/MaybeCube/blob/main/Voron_Mini_Afterburner/stls/X_Carriage_Voron_Mini_Afterburner.stl).
 
 ### E3D tool changer
 
