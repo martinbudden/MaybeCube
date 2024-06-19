@@ -833,7 +833,7 @@ module xyMotorMountBeltGuide2(sizeZ=10) {
         translate([-2*fillet, 0, 0])
             rounded_cube_xy(size, fillet);
         rotate(270)
-            fillet(size.x - 2*fillet, size.z);
+            fillet(size.x - 3*fillet, size.z);
     }
 }
 
