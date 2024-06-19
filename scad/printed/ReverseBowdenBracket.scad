@@ -37,15 +37,16 @@ module reverseBowdenBracket() {
 }
 
 module Reverse_Bowden_Bracket_stl() {
-    stl("Reverse_Bowden_Bracket")
-        color(pp3_colour)
-            reverseBowdenBracket();
+    stl("Reverse_Bowden_Bracket");
+    color(pp3_colour)
+        reverseBowdenBracket();
 }
 
 module Reverse_Bowden_Bracket_hardware() {
     size = reverseBowdenBracketSize;
     sizeY = 30;
 
+    vitamin(str(": Bowden connector"));
     translate(reverseBowdenBracketBowdenOffset)
         explode(20)
             bowden_connector();
@@ -54,6 +55,9 @@ module Reverse_Bowden_Bracket_hardware() {
             boltM4CountersunkHammerNut(10);
 }
 
+//!1. Screw the Bowden connector into the **Reverse_Bowde_Bracket**. This is easier if you use an M6 bolt to "tap" the hole first.
+//!2. Add the bolts and hammer nuts, ready for later attachment to the frame.
+//
 module Reverse_Bowden_Bracket_assembly()
 assembly("Reverse_Bowden_Bracket") {
     translate(reverseBowdenBracketOffset() - reverseBowdenBracketBowdenOffset) {
@@ -63,5 +67,3 @@ assembly("Reverse_Bowden_Bracket") {
     }
 }
 
-translate([-eX,-eY,-eZ])
-Reverse_Bowden_Bracket_assembly();
