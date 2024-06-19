@@ -64,17 +64,23 @@ module zRodMountGuide(length) {
             if (length==0) {
                 // do nothing
             } else if (length==40) {
-                Z_RodMountGuide_40mm_stl();
+                color(pp2_colour)
+                    Z_RodMountGuide_40mm_stl();
             } else if (length==48) {
-                Z_RodMountGuide_48mm_stl();
+                color(pp2_colour)
+                    Z_RodMountGuide_48mm_stl();
             } else if (length==50) {
-                Z_RodMountGuide_50mm_stl();
+                color(pp2_colour)
+                    Z_RodMountGuide_50mm_stl();
             } else if (length==70) {
-                Z_RodMountGuide_70mm_stl();
+                color(pp2_colour)
+                    Z_RodMountGuide_70mm_stl();
             } else if (length==100) {
-                Z_RodMountGuide_100mm_stl();
+                color(pp2_colour)
+                    Z_RodMountGuide_100mm_stl();
             } else if (length==105) {
-                Z_RodMountGuide_105mm_stl();
+                color(pp2_colour)
+                    Z_RodMountGuide_105mm_stl();
             } else {
                 echo(zRodMountGuide_length=length);
                 color("red")
@@ -133,19 +139,26 @@ module zMotorMountGuide(length) {
             if (length==0) {
                 // do nothing
             } else if (length==17.5) {
-                Z_Motor_Mount_Guide_17p5mm_stl();
+                color(pp2_colour)
+                    Z_Motor_Mount_Guide_17p5mm_stl();
             } else if (length==19) {
-                Z_Motor_Mount_Guide_19mm_stl();
+                color(pp2_colour)
+                    Z_Motor_Mount_Guide_19mm_stl();
             } else if (length==23) {
-                Z_Motor_Mount_Guide_23mm_stl();
+                color(pp2_colour)
+                    Z_Motor_Mount_Guide_23mm_stl();
             } else if (length==25) {
-                Z_Motor_Mount_Guide_25mm_stl();
+                color(pp2_colour)
+                    Z_Motor_Mount_Guide_25mm_stl();
             } else if (length==55) {
-                Z_Motor_Mount_Guide_55mm_stl();
+                color(pp2_colour)
+                    Z_Motor_Mount_Guide_55mm_stl();
             } else if (length==61) {
-                Z_Motor_Mount_Guide_61mm_stl();
+                color(pp2_colour)
+                    Z_Motor_Mount_Guide_61mm_stl();
             } else if (length==92.5) {
-                Z_Motor_Mount_Guide_92p5mm_stl();
+                color(pp2_colour)
+                    Z_Motor_Mount_Guide_92p5mm_stl();
             } else {
                 echo(Z_Motor_Mount_Guide_length = length);
                 if (length > 0)
