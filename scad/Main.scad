@@ -30,9 +30,8 @@
 //!
 //!**Washers/shims:** Standard M4 washers are 1mm thick. Where "M4 x 9mm x 0.5mm" washers are specified, these may be ordered as "M4 shims".
 //!
-//!**Side panels and base:** These are specified as "CNC routed parts" in the parts list, for the convenience of those with access to a CNC. CNC routing
-//!is not required, the only "machining" required is to drill holes for attachment to the frame, which can easily be done with a hand drill.
-//!
+//!**Side and back panels, base, and base cover:** These are specified as "CNC routed parts" in the parts list, for the convenience of those with access to a CNC.
+//!CNC routing is not required, the only "machining" required is to drill holes for attachment to the frame, which can easily be done with a hand drill.
 //!
 //!This is a full build, some parts can be omitted to save cost, in particular:
 //!
@@ -41,15 +40,20 @@
 //!* the polycarbonate side and back panels, if you don't want to enclose your print volume for (say) printing ABS. Note
 //!that these panels also add rigidity to the printer.
 //!
-//!I've specified buttonhead bolts for the side and back panels. For a neater look you could countersink the holes and
-//!use countersunk bolts.
-//!
 //!## Printing the parts
 //!
 //!A number of parts are in proximity with heat sources, namely the hotend, the heated bed and the motors. Ideally these
-//!should be printed in ABS, but I have used PETG successfully. These parts are insulated from direct contact with the heat
-//!sources, by cork underlay (for the heated bed) and by cork dampers (for the motors). These insulators should not be
-//!omitted from the build.
+//!should be printed in ABS, but I have used PETG successfully.
+//!
+//!The STL files for the parts are in the recommended orientation for printing.
+//!
+//!Parts are designed so that vertical features are aligned on a 0.5mm grid, so parts should be printed with either a 0.25mm or a 0.5mm layer height.
+//!For speed of printing most parts can be printed with a 0.6mm nozzle with a 1.0mm layer width and a 0.5mm layer height. Some parts, however, require a finer
+//!resolution and should be printed with a 0.25mm layer height namely:
+//!*All parts of the **X_Carriages** (ie anything prefixed **X_Carriage_**)
+//!*All parts of the **Y_Carriages** (ie anything prefixed **Y_Carriage_**)
+//!*The **XY_Motor_Mount_Pulley_Spacer**s
+//!*The **Smart_Orbiter_V3_Duct** and the **Smart_Orbiter_V3_Fan_Bracket**
 //
 include <global_defs.scad>
 
