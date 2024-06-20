@@ -19,8 +19,12 @@ include <../utils/XY_MotorMount.scad>
 include <../vitamins/cables.scad>
 include <../vitamins/nuts.scad>
 
-
-NEMA17_60  = ["NEMA17_60",   42.3, 60,     53.6/2, 25,     11,     2,     5,     24,          31,    [11.5,  9]];
+//                                                    corner  body    boss    boss          shaft               cap         thread black  end    shaft    shaft
+//                                      side, length, radius, radius, radius, depth, shaft, length,      holes, heights,    dia,   caps,  conn,  length2, bore
+NEMA17_60  =       ["NEMA17_60",        42.3, 60,     53.6/2, 25,     11,     2,     5,     24,          31,    [11.5,  9], 3,     false, false, 0,       0];
+// Kraken By Omranello (LDO-42STH60-3004AC/MAC) NEMA17 Steppers
+// https://github.com/D3vil-Design/Kraken-Stepper
+NEMA17_61_KRAKEN = ["NEMA17_61_KRAKEN", 42.3, 61,     53.6/2, 25,     11,     2,     5,     40,          31,    [9,  9],    3,     true, false, 0,       0];
 
 NEMA_hole_depth = 5;
 
@@ -460,7 +464,7 @@ module xyMotorMountBlock(motorType, size, basePlateThickness, offset=[0, 0], sid
     }
 }
 
-module xyMotorMount(motorType, basePlateThickness, offset=[0, 0], blockHeightExtra=0, stepdown=false, useReversedBelts=false, countersunk=false, left=true, M5=false, cnc=false, flat=false) {
+module xyMotorMount(motorType, basePlateThickness, offset=[0, 0], blockHeightExtra=0, stepdown=false, useReversedBelts=true, countersunk=false, left=true, M5=false, cnc=false, flat=false) {
     motorWidth = motorWidth(motorType);
     size = xyMotorMountSize(motorWidth, offset, left, useReversedBelts, cnc, flat);
     //if (left) echo(sizeL=size); else echo(sizeR=size);
@@ -471,7 +475,7 @@ module xyMotorMount(motorType, basePlateThickness, offset=[0, 0], blockHeightExt
         xyMotorMountBlock(motorType, size, basePlateThickness, offset, sideSupportSize, blockHeightExtra, stepdown, useReversedBelts, left, M5, cnc, flat);
 }
 
-module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], corkDamperThickness=0, blockHeightExtra=0, stepdown=false, useReversedBelts=false, countersunk=false, left=true, cnc=false, flat=false) {
+module XY_Motor_Mount_hardware(motorType, basePlateThickness, offset=[0, 0], corkDamperThickness=0, blockHeightExtra=0, stepdown=false, useReversedBelts=true, countersunk=false, left=true, cnc=false, flat=false) {
     motorWidth = motorWidth(motorType);
     coreXYPosBL = coreXYPosBL();
     coreXYPosTR = coreXYPosTR(motorWidth);
@@ -1132,11 +1136,11 @@ module XY_Motor_Mount_Left_M5_stl() {
 module XY_Motor_Mount_Left_assembly()
 assembly("XY_Motor_Mount_Left", big=true, ngb=true) {
 
-    XYMotorMountLeftAssembly(cnc=false, flat=true);
+    motorType = motorType(_xyMotorDescriptor);
+    XYMotorMountLeftAssembly(motorType);
 }
 
-module XYMotorMountLeftAssembly(cnc=false, flat=false) {
-    motorType = motorType(_xyMotorDescriptor);
+module XYMotorMountLeftAssembly(motorType, cnc=false, flat=true) {
     offset = leftDrivePulleyOffset();
     basePlateThickness = basePlateThickness(useReversedBelts(), cnc, flat);
 
@@ -1287,11 +1291,11 @@ module XY_Motor_Mount_Right_M5_stl() {
 module XY_Motor_Mount_Right_assembly()
 assembly("XY_Motor_Mount_Right", big=true, ngb=true) {
 
-    XYMotorMountRightAssembly(cnc=false, flat=true);
+    motorType = motorType(_xyMotorDescriptor);
+    XYMotorMountRightAssembly(motorType);
 }
 
-module XYMotorMountRightAssembly(cnc=false, flat=false) {
-    motorType = motorType(_xyMotorDescriptor);
+module XYMotorMountRightAssembly(motorType, cnc=false, flat=true) {
     offset = rightDrivePulleyOffset();
     basePlateThickness = basePlateThickness(useReversedBelts(), cnc, flat);
 

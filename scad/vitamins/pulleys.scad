@@ -29,6 +29,7 @@ GT2x40sd_pulley           = ["GT2x40sd_pulley",           "GT2sd", 40, 24.95, GT
 GT2x20sd_pulley           = ["GT2x20sd_pulley",           "GT2sd", 20, 12.22, GT2x6,  7.0,  18, 0.0, 5, 14.02,0.8, 0, 0,    false,         0];
 //GT2x20um_pulley         = ["GT2x20um_pulley",           "GT2UM", 20, 12.22, GT2x6,  7.5,  18, 6.5, 5, 18.0, 1.0, 6, 3.75, M3_grub_screw, 2]; //Ultimaker
 //GT2x20ob_pulley         = ["GT2x20ob_pulley",           "GT2OB", 20, 12.22, GT2x6,  7.5,  16, 5.5, 5, 16.0, 1.0, 6, 3.25, M3_grub_screw, 2]; //Openbuilds
+GT2x30po_pulley           = ["GT2x20po_pulley",           "GT2PO", 30, 18.59, GT2x6,  7.0,  15, 8.0, 5, 23.0, 1.0, 6, 4,    M4_grub_screw, 2]; //POWGE
 
 M4_shim = ["M4_shim",          4,   9,   0.5, false,  undef,  undef, undef, undef];
 M5_shim = ["M5_shim",          5,  10,   0.5, false,  undef,  undef, undef, undef];
