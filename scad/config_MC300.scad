@@ -20,7 +20,7 @@ _xCarriageCountersunk = true;
 _yCarriageDescriptor = "MGN12H";
 
 
-_coreXYDescriptor = "GT2_20_F623";
+_coreXYDescriptor = "GT2_20_F694";
 
 _hotendDescriptor = "E3DV6";
 
