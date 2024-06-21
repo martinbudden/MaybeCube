@@ -11,6 +11,7 @@ include <../Parameters_Main.scad>
 function cableChainBracketOffsetX() = eX > 300 ? 240 : 210;
 //cableChainBracketSize = [25, eY - (_zRodOffsetY + (zRodSeparation() + _printbedArmSeparation)/2) - 5, eSize];
 cableChainBracketSize = [25, 55, eSize];
+cableChainBracketTabSize = [45, 5, eSize];
 
 /*
 module cableChainBracketHolePositions(size=cableChainBracketSize) {
@@ -27,7 +28,7 @@ module cableChainBracketHolePositions(size=cableChainBracketSize) {
 }
 
 module cableChainBracket(size=cableChainBracketSize) {
-    tabSize = [50, 5, eSize];
+    tabSize = cableChainBracketTabSize;
     fillet = 1;
     cutout = [8, 15 + fillet];
     endStopSizeY = 4;
@@ -66,10 +67,10 @@ module cableChainBracket(size=cableChainBracketSize) {
 
     }
     translate([size.x/2, tabSize.y, 0])
-        fillet(1.5, size.z);
+        fillet(1, size.z);
     translate([-size.x/2, tabSize.y, 0])
         rotate(90)
-            fillet(1.5, size.z);
+            fillet(1, size.z);
     translate([-tabSize.x/2, 0, 0])
         difference() {
             rounded_cube_xy(tabSize, 1);
@@ -81,7 +82,7 @@ module cableChainBracket(size=cableChainBracketSize) {
 }
 
 module Cable_Chain_Bracket_hardware(size=cableChainBracketSize) {
-    tabSize = [50, 5, eSize];
+    tabSize = cableChainBracketTabSize;
     cutout = [8, 15];
 
     for (x = [5, tabSize.x - 5])
