@@ -22,6 +22,7 @@ scratch/
 documents/*
 !documents/MarlinConfiguration.md
 !documents/klipper_btt_skr_v1_4.cfg
+!documents/klipper_MC350_btt_manta_mp8_V2_0.cfg
 !documents/BOM_MC300.ods
 
 scad/target.scad
