@@ -9,6 +9,7 @@ use <../printed/Handle.scad>
 use <../printed/PrintheadAssemblies.scad>
 use <../printed/TopCornerPiece.scad>
 use <../printed/WiringGuide.scad>
+use <../printed/ReverseBowdenBracket.scad>
 use <../printed/XY_MotorMount.scad>
 use <../printed/XY_Idler.scad>
 use <../printed/Y_CarriageAssemblies.scad>
@@ -255,6 +256,24 @@ module printheadWiring(hotendDescriptor="E3DV6", showCable=true) {
                     Wiring_Guide_Clamp_hardware();
                 }
         }
+}
+
+module reverseBowdenTube(hotendDescriptor="OrbiterV3") {
+    color("white")
+        bezierTube(reverseBowdenBracketOffset(),
+            [carriagePosition().x, carriagePosition().y, eZ] + printheadBowdenOffset(hotendDescriptor),
+            tubeRadius=2,
+            bowdenTube=false,
+            length = eX + eY - 100);
+}
+
+module BowdenTube(hotendDescriptor="E3DV6") {
+    color("white")
+        bezierTube(extruderPosition() + Extruder_Bracket_assembly_bowdenOffset(),
+            [carriagePosition().x, carriagePosition().y, eZ] + printheadBowdenOffset(hotendDescriptor),
+            tubeRadius=2,
+            bowdenTube=true,
+            length = eX + eY - 100);
 }
 
 

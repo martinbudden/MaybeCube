@@ -1,11 +1,11 @@
+include <../global_defs.scad>
+
+include <NopSCADlib/utils/core/core.scad>
+
 include <NopSCADlib/vitamins/spools.scad>
 
 use <../printed/extruderBracket.scad>
-use <../printed/ReverseBowdenBracket.scad>
 use <../printed/SpoolHolder.scad>
-
-include <../utils/bezierTube.scad>
-include <../utils/PrintheadOffsets.scad>
 
 use <../vitamins/Panels.scad>
 
@@ -37,24 +37,6 @@ module faceRightSpool(offsetX) {
             rotate([0, 90, 0])
                 not_on_bom()
                     spool(spool, 46, "DeepSkyBlue", 1.75);
-}
-
-module BowdenTube(carriagePosition) {
-    color("white")
-        bezierTube(extruderPosition() + Extruder_Bracket_assembly_bowdenOffset(),
-            [carriagePosition.x, carriagePosition.y, eZ] + printheadBowdenOffset(),
-            tubeRadius=2,
-            bowdenTube=true,
-            length = eX + eY - 100);
-}
-
-module reverseBowdenTube(carriagePosition, hotendDescriptor="OrbiterV3") {
-    color("white")
-        bezierTube(reverseBowdenBracketOffset(),
-            [carriagePosition.x, carriagePosition.y, eZ] + printheadBowdenOffset(hotendDescriptor),
-            tubeRadius=2,
-            bowdenTube=false,
-            length = eX + eY - 100);
 }
 
 /*

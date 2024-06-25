@@ -19,8 +19,8 @@ use <assemblies/BackFace.scad>
 use <assemblies/BasePlate.scad>
 use <assemblies/FaceLeft.scad>
 use <assemblies/FaceRight.scad>
-include <assemblies/FaceRightExtras.scad>
-use <assemblies/FaceTop.scad>
+use <assemblies/FaceRightExtras.scad>
+include <assemblies/FaceTop.scad>
 use <assemblies/Printbed.scad>
 
 use <Parameters_Positions.scad>
@@ -170,12 +170,12 @@ staged_assembly("Stage_4", big=true, ngb=true) {
             }
             if (is_undef(_useBackMounts) || _useBackMounts == false)
                 explode([100, 0, 100])
-                    BowdenTube(carriagePosition());
+                    BowdenTube(_hotendDescriptor);
         } else {
             xRailPrintheadPosition()
                 Printhead_OrbiterV3_assembly();
             printheadWiring(_hotendDescriptor);
-            reverseBowdenTube(carriagePosition());
+            reverseBowdenTube(_hotendDescriptor);
             Reverse_Bowden_Bracket_assembly();
         }
 }

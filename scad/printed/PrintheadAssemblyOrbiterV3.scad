@@ -82,10 +82,10 @@ assembly("Printhead_OrbiterV3", big=true) {
     if (!exploded())
         translate(printheadWiringOffset(hotendDescriptor)) {
             xCarriageOrbiterV3CableTiePositions(full=false)
-                translate([-0.5, railCarriageGap() - 3, 18])
+                translate([-0.5, railCarriageGap() - 5, 18])
                     rotate([0, 90, -90])
                         cable_tie(cable_r = 3.5, thickness = 5.5);
-            translate([-8.5, railCarriageGap() - 4.5, -4])
+            translate([-8.5, railCarriageGap() - 6.5, -4])
                 rotate([0, 90, -90])
                     cable_tie(cable_r = 2.5, thickness = 3);
         }
