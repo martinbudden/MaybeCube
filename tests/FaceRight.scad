@@ -8,7 +8,7 @@ use <../scad/printed/AccessPanel.scad>
 use <../scad/printed/BaseCover.scad>
 use <../scad/printed/BambuFanBracket.scad>
 use <../scad/printed/extruderBracket.scad>
-use <../scad/printed/XY_MotorMount.scad>
+use <../scad/utils/XY_MotorMount.scad>
 
 use <../scad/vitamins/Panels.scad>
 

@@ -15,7 +15,7 @@ use <../scad/MainAssemblyVoronRapidBurner.scad>
 
 include <../scad/vitamins/bolts.scad>
 
-use <../scad/printed/XY_MotorMount.scad>
+use <../scad/utils/XY_MotorMount.scad>
 include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/X_Rail.scad>
 

@@ -41,11 +41,6 @@ sizeT = [8.5, 9, sizeP.z];
 offsetP = [-4.5, -5.25, 0];
 offsetT = [-3.25, -4.5, 0];
 
-function leftDrivePulleyOffset() = useReversedBelts() ? [25.5 + largePulleyOffset, -0.5 - coreXYTROffsetY()]: [useXYDirectDrive ? 0 : 38 + 3*largePulleyOffset, 0];
-function rightDrivePulleyOffset() = [useXYDirectDrive ? 0 : -25.5 - largePulleyOffset, useReversedBelts() ? (-0.5 - coreXYTROffsetY()) : 0];
-//function leftDrivePulleyOffset() = useReversedBelts() ? [26, 5 - coreXYTROffsetY() + (use2060ForTopRear() ? -5.5 : -5.5)]: [useXYDirectDrive ? 0 : 38 + 3*largePulleyOffset, 0];
-//function rightDrivePulleyOffset() = [useXYDirectDrive ? 0 : -42.5 - 3*largePulleyOffset, useReversedBelts() ? (5 - coreXYTROffsetY() + (use2060ForTopRear() ? -5.5 : -5.5)) : 0]; // need to give clearance to extruder motor
-
 function upperBoltPositions(sizeX) = [eSize/2, sizeX - 3*eSize/2];
 //function sideBoltPositions(sizeY, cnc, flat) = (cnc || flat) ? [eY + 5*eSize/2 - sizeY, eY + 7*eSize/2 - sizeY] : [eY + 5*eSize/2 - sizeY];
 function sideBoltPositions(sizeY, cnc, flat) = (cnc || flat) ? [eY + 2 * eSize - sizeY + 8, eY + eSize - 8] : [eY + 2 * eSize - sizeY + 8];
