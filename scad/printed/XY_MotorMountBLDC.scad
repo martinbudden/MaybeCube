@@ -63,7 +63,7 @@ module XY_Motor_Mount_4250_Right_stl() {
         color(pp1_colour)
             translate([eX + 2*eSize, 0, 0])
                 mirror([1, 0, 0])
-                    xyMotorMount(motorType, drivePulley, basePlateThickness, -offset, stepdown=stepdown4250, left=false);
+                    xyMotorMount(motorType, basePlateThickness, -offset, stepdown=stepdown4250, left=false);
 }
 
 module XY_Motor_Mount_4250_Right_assembly()
@@ -84,19 +84,19 @@ assembly("XY_Motor_Mount_4250_Right", ngb=true) {
 
 module XY_Motor_Mount_4933_Left_stl() {
     motorType = BLDC4933;
-    drivePulley = GT2x20ob_pulley;
     basePlateThickness = 6;
     offset = [40.303, 0];
 
     stl("XY_Motor_Mount_4933_Left")
         color(pp1_colour)
-            xyMotorMount(motorType, drivePulley, basePlateThickness, offset, stepdown=true, left=true);
+            xyMotorMount(motorType, basePlateThickness, offset, stepdown=true, left=true);
 }
 
 module XY_Motor_Mount_4933_Left_assembly()
 assembly("XY_Motor_Mount_4933_Left", ngb=true) {
 
     motorType = BLDC4933;
+    drivePulley = GT2x20ob_pulley;
     basePlateThickness = 6;
     offset = [40.303, 0];
     corkDamperThickness = 0;
@@ -104,7 +104,7 @@ assembly("XY_Motor_Mount_4933_Left", ngb=true) {
     translate_z(eZ - eSize - basePlateThickness - bracketHeightLeft) {
         stl_colour(pp1_colour)
             XY_Motor_Mount_4933_Left_stl();
-        XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, corkDamperThickness, stepdown=true, left=true);
+        XY_Motor_Mount_hardware(motorType, drivePulley, basePlateThickness, offset, corkDamperThickness, stepdown=true, left=true);
     }
 }
 
@@ -125,13 +125,14 @@ assembly("XY_Motor_Mount_4933_Right", ngb=true) {
 
     motorType = BLDC4933;
     basePlateThickness = 6;
+    drivePulley = GT2x20ob_pulley;
     offset = [-45.3595, 0];
     corkDamperThickness = 0;
 
     translate_z(eZ - eSize - basePlateThickness - bracketHeightRight) {
         stl_colour(pp1_colour)
             XY_Motor_Mount_4933_Right_stl();
-        XY_Motor_Mount_hardware(motorType, basePlateThickness, offset, corkDamperThickness, stepdown=true, left=false);
+        XY_Motor_Mount_hardware(motorType, drivePulley, basePlateThickness, offset, corkDamperThickness, stepdown=true, left=false);
     }
 }
 
