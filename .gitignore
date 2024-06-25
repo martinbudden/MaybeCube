@@ -13,9 +13,11 @@ Thumbs.db
 *.log
 *.echo
 *.3mf
-
 times.txt
 cmd_times.txt
+
+/*.gco
+/*.gcode
 
 scratch/
 
