@@ -18,10 +18,9 @@ module printheadOrbiterV3Assembly() {
     xCarriageType = MGN12H_carriage;
     blowerType = RB5015;
 
-    rotate([0, 0, 90])
-        translate([39, -0.3, 0])
-            smartOrbiterV3();
-    translate([22.5, 66.5, -1.3]) {
+    smartOrbiterV3();
+
+    translate([22.5, 45.5, -1.3]) {
         explode([0, 0, -50])
             stl_colour(pp1_colour)
                 Smart_Orbiter_V3_Duct_stl();
@@ -42,7 +41,6 @@ module printheadOrbiterV3Assembly() {
                     explode(20, true)
                         boltM2Caphead(10);
         }
-
         explode([0, 60, 0], true)
             translate([2.6, -6, 21.5])
                 rotate([90, 0, 180]) {
@@ -72,17 +70,18 @@ assembly("Printhead_OrbiterV3", big=true) {
 
     xCarriageType = MGN12H_carriage;
     hotendDescriptor = "OrbiterV3";
+
+    translate([orbiterV3OffsetX(), 21 + railCarriageGap() - 0.5, -orbiterV3NozzleOffsetFromMGNCarriageZ()])
+        printheadOrbiterV3Assembly();
     explode([0, -40, 0], true)
         xCarriageOrbiterV3Assembly(inserts=true);
-    translate([-0.3, railCarriageGap() - 0.5, -orbiterV3NozzleOffsetFromMGNCarriageZ()])
-        printheadOrbiterV3Assembly();
     explode([0, -60, 0], true)
         xCarriageOrbiterV3HolePositions(xCarriageType)
             boltM3Countersunk(10);
     cable_wrap(110);
     if (!exploded())
         translate(printheadWiringOffset(hotendDescriptor)) {
-            xCarriageOrbitrerV3CableTiePositions(full=false)
+            xCarriageOrbiterV3CableTiePositions(full=false)
                 translate([-0.5, railCarriageGap() - 3, 18])
                     rotate([0, 90, -90])
                         cable_tie(cable_r = 3.5, thickness = 5.5);
