@@ -94,7 +94,7 @@ module zMotorMount(zMotorType, eHeight=40, printbedKinematic=false) {
                     cube([wingSizeX + motorBracketSizeZ, motorBracketSizeZ, wingSizeZ]);
                 translate([-wingSizeX, 0, -2*eSize])
                     cube([wingSizeX + motorBracketSizeZ, motorBracketSizeZ, 2*eSize]);
-                translate([motorBracketSizeX - motorBracketSizeZ, , 0])
+                translate([motorBracketSizeX - motorBracketSizeZ, 0, 0])
                     cube([wingSizeX + motorBracketSizeZ, motorBracketSizeZ, wingSizeZ]);
                 translate([motorBracketSizeX - motorBracketSizeZ, 0, -2*eSize])
                     cube([wingSizeX + motorBracketSizeZ, motorBracketSizeZ, 2*eSize]);
@@ -146,10 +146,10 @@ module zMotorMount(zMotorType, eHeight=40, printbedKinematic=false) {
                         }
                     }
         // fillet the wings
-        translate([-wingSizeX, motorBracketSizeZ, -size.z + motorBracketSizeZ + eps])
+        translate([-wingSizeX, motorBracketSizeZ, -size.z + motorBracketSizeZ - eps])
             rotate(-90)
                 fillet(1, size.z + 2*eps);
-        translate([size.x - wingSizeX, motorBracketSizeZ, -size.z + motorBracketSizeZ + eps])
+        translate([size.x - wingSizeX, motorBracketSizeZ, -size.z + motorBracketSizeZ - eps])
             rotate(180)
                 fillet(1, size.z + 2*eps);
         // fillet the base
