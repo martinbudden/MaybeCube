@@ -100,9 +100,9 @@ The following table compares the sizes and build volumes of various CoreXY 3D pr
 Printer           | EType | Extrusion lengths | Build Volume     | Exterior Dimensions
 ------------------|------ | ----------------- | ---------------- | -------------------
 MC300             | 2040  | 300 x 300 x 400   | 185 x 185 x 200  | 340 x 340 x 420
-MC350             | 2040  | 350 x 350 x 450   | 225 x 225 x 235  | 390 x 390 x 470
-MC400             | 2040  | 400 x 400 x 500   | 275 x 275 x 285  | 440 x 440 x 520
-MC450             | 2040  | 450 x 450 x 550   | 325 x 325 x 335  | 490 x 490 x 570
+MC350             | 2040  | 350 x 350 x 450   | 226 x 210 x 240  | 390 x 390 x 470
+MC400             | 2040  | 400 x 400 x 500   | 276 x 260 x 290  | 440 x 440 x 520
+MC450             | 2040  | 450 x 450 x 550   | 326 x 310 x 340  | 490 x 490 x 570
 [Bambu Labs X1](https://wiki.bambulab.com/en/x1/manual/x1e-faq) | - | - | 256 x 256 x 256 |  389 x 389 x 457
 [BLV MGN Cube](https://www.blvprojects.com/blv-mgn-cube-3d-printer) | 2040 | 496 x 496 x 560 | 300 x 300 x 365 | 576 x 536 x 560
 [Clock 3](https://github.com/jon-harper/clock-3) | 2020 | 620 x 620 x 800 (est) | 300 x 300 x 350 | 640 x 675 x 875
