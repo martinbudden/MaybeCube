@@ -113,7 +113,7 @@ resolution and should be printed with a 0.25mm layer height namely:
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Aluminium sheet 390mm x 390mm x 3mm |
 |   .  |   .  |   .  |  24  |   .  |   .  |   .  |   .  |   .  |   24  |  Ball bearing F694ZZ 4mm x 11mm x 4mm |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1468mm |
-|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1502mm |
+|   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Belt GT2 x 6mm x 1468mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech Manta 5MP v1.0 |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  BigTreeTech Relay Module v1.2 |
 |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Blower Runda RB5015 |
@@ -821,7 +821,7 @@ of the Y-rail. Finally tighten the remaining bolts on the Y-rail.
 | Qty | Description |
 |----:|:------------|
 |   1 | Belt GT2 x 6mm x 1468mm |
-|   1 | Belt GT2 x 6mm x 1502mm |
+|   1 | Belt GT2 x 6mm x 1468mm |
 |   2 | Bolt M3 countersunk x 10mm |
 |   4 | Bolt M3 countersunk x 12mm |
 
