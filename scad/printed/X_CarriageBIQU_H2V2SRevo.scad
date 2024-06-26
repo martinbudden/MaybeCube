@@ -48,7 +48,6 @@ module xCarriageBiquH2V2SRevoCableTiePositions(xCarriageType) {
 }
 
 module xCarriageBiquH2V2SRevoStrainRelief(carriageSize, xCarriageBackSize, topThickness) {
-    size =  [xCarriageBackSize.x, xCarriageBackSize.y + carriageSize.y/2, topThickness];
     fillet = 1;
     tabSize = [strainReliefSizeX, xCarriageBackSize.y, 40 + 2*fillet]; // ensure room for bolt heads
 
@@ -69,7 +68,6 @@ module xCarriageBiquH2V2SRevoStrainRelief(carriageSize, xCarriageBackSize, topTh
 }
 
 module xCarriageBiquH2V2SRevoBack(carriageSize, size, extraX=0, holeSeparationTop, holeSeparationBottom, countersunk=0, topHoleOffset=0) {
-    internalFillet = 1.5;
     topThickness = xCarriageTopThickness();
     baseThickness = xCarriageBaseThickness();
 
