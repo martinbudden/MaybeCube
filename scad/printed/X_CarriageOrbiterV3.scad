@@ -20,6 +20,7 @@ include <../Parameters_Main.scad>
 function orbiterV3NozzleOffsetFromMGNCarriageZ() = 61.2; // offset from tip of nozzle to top of MGN carriage
 function orbiterV3OffsetX() = 1.5;
 
+strainReliefSizeX =  15;
 cutoutZ = 17.5;
 cutoutOffsetZ = 3.1;
 
@@ -34,26 +35,46 @@ module xCarriageOrbiterV3HolePositions(xCarriageType) {
                 children();
 }
 
-module xCarriageOrbiterV3CableTiePositions(full=true) {
+module xCarriageOrbiterV3CableTieOffsets(full=true) {
     for (z = full ? [2, 15, 25, 35, 45, 55, 65] : [2, 15, 55, 65])
-        translate_z(z)
+        translate([strainReliefSizeX/2, 0, z + 2.25-2])
+            children();
+}
+
+module xCarriageOrbiterV3CableTiePositions(xCarriageType, full=false) {
+    xCarriageBackSize = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
+    carriageSize = carriage_size(xCarriageType);
+
+    translate([-xCarriageBackSize.x/2, carriageSize.y/2, xCarriageBaseThickness()])
+        xCarriageOrbiterV3CableTieOffsets(full)
+            children();
+}
+
+module xCarriageOrbiterV3LowerCableTiePosition(xCarriageType) {
+    xCarriageBackSize = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
+    carriageSize = carriage_size(xCarriageType);
+
+    offsetZ = cutoutOffsetZ + cutoutZ + smartOrbiterV3LowerFixingHolesToNozzleTipOffsetZ() - orbiterV3NozzleOffsetFromMGNCarriageZ();
+    cutoutSize = [2, 7 + 2*eps, 4];
+    translate([-xCarriageBackSize.x/2+1, carriageSize.y/2, 0])
+        translate([2.5 - cutoutSize.x/2, -eps, offsetZ - cutoutSize.z/2])
             children();
 }
 
 module xCarriageOrbiterV3StrainRelief(carriageSize, xCarriageBackSize, topThickness) {
     size =  [xCarriageBackSize.x, xCarriageBackSize.y + carriageSize.y/2, topThickness];
-    tabSize = [15, xCarriageBackSize.y, 73]; // ensure room for bolt heads
+    tabSize = [strainReliefSizeX, xCarriageBackSize.y, 73]; // ensure room for bolt heads
 
     fillet = 1;
-    translate_z(size.z - 2*fillet)
-        difference() {
+    difference() {
+        translate_z(-2*fillet)
             rounded_cube_xz(tabSize, fillet);
-            cutoutSize = [2.2, tabSize.y + 2*eps, 4.5];
-            xCarriageOrbiterV3CableTiePositions()
-                for (x = [tabSize.x/2 - 4, tabSize.x/2 + 4])
-                    translate([x - cutoutSize.x/2, -eps, 0])
-                        rounded_cube_xz(cutoutSize, 0.5);
-        }
+        cutoutSize = [2.2, tabSize.y + 2*eps, 4.5];
+        xCarriageOrbiterV3CableTieOffsets()
+            for (x = [-4, 4])
+                translate([x - cutoutSize.x/2, -eps, -cutoutSize.z/2])
+                    rounded_cube_xz(cutoutSize, 0.5);
+    }
 }
 
 module xCarriageOrbiterV3Back(xCarriageType, size, extraX=0, holeSeparationTop, holeSeparationBottom, countersunk=0, topHoleOffset=0) {
@@ -63,12 +84,12 @@ module xCarriageOrbiterV3Back(xCarriageType, size, extraX=0, holeSeparationTop, 
     topThickness = xCarriageTopThickness();
     baseThickness = xCarriageBaseThickness();
 
-    baseSize = [size.x, carriageSize.y + size.y - 2*beltInsetBack(xCarriageType), baseThickness];
     translate([-size.x/2, carriageSize.y/2, 0])
         difference() {
             union() {
-                translate_z(baseSize.z - size.z)
+                translate_z(baseThickness - size.z)
                     rounded_cube_xz([size.x, size.y, size.z], 1);
+                translate_z(topThickness)
                     xCarriageOrbiterV3StrainRelief(carriageSize, size, topThickness);
             } // end union
             // cutout for ziptie

@@ -69,7 +69,6 @@ module Printhead_OrbiterV3_assembly() pose(a=[55, 0, 25 + 90])
 assembly("Printhead_OrbiterV3", big=true) {
 
     xCarriageType = MGN12H_carriage;
-    hotendDescriptor = "OrbiterV3";
 
     translate([orbiterV3OffsetX(), 21 + railCarriageGap() - 0.5, -orbiterV3NozzleOffsetFromMGNCarriageZ()])
         printheadOrbiterV3Assembly();
@@ -79,15 +78,16 @@ assembly("Printhead_OrbiterV3", big=true) {
         xCarriageOrbiterV3HolePositions(xCarriageType)
             boltM3Countersunk(10);
     cable_wrap(110);
-    if (!exploded())
-        translate(printheadWiringOffset(hotendDescriptor)) {
-            xCarriageOrbiterV3CableTiePositions(full=false)
-                translate([-0.5, railCarriageGap() - 5, 18])
-                    rotate([0, 90, -90])
-                        cable_tie(cable_r = 3.5, thickness = 5.5);
-            translate([-8.5, railCarriageGap() - 6.5, -4])
+    if (!exploded()) {
+        xCarriageOrbiterV3CableTiePositions(xCarriageType)
+            translate([0, railCarriageGap() + 5.4, 0])
                 rotate([0, 90, -90])
-                    cable_tie(cable_r = 2.5, thickness = 3);
+                    cable_tie(cable_r=3.5, thickness=5.5);
+        xCarriageOrbiterV3LowerCableTiePosition(xCarriageType) {
+            translate([-3, railCarriageGap() + 4, 0])
+                rotate([0, 90, -90])
+                    cable_tie(cable_r=2.5, thickness=3);
         }
+    }
 }
 
