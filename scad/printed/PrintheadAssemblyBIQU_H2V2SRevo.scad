@@ -1,5 +1,7 @@
 include <../global_defs.scad>
 
+use <NopSCADlib/vitamins/wire.scad>
+
 include <../vitamins/bolts.scad>
 
 include <../utils/X_Rail.scad>
@@ -25,5 +27,9 @@ assembly("Printhead_BIQU_H2V2SRevo", big=true) {
     explode([0, -60, 0], true)
         xCarriageBiquH2V2SRevoHolePositions(xCarriageType)
             boltM3Countersunk(10);
+    xCarriageBiquH2V2SRevoCableTiePositions(xCarriageType)
+        translate([0, railCarriageGap() + 5.4, 0])
+            rotate([0, 90, -90])
+                cable_tie(cable_r = 3.5, thickness = 5.5);
 }
 
