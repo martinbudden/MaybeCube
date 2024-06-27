@@ -1,8 +1,8 @@
 include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/utils/tube.scad>
-include <NopSCADlib/utils/rounded_cylinder.scad>
 use <NopSCADlib/vitamins/stepper_motor.scad>
 use <NopSCADlib/vitamins/fan.scad>
+use <RevoNozzle.scad>
 include <bolts.scad>
 
 //                                              corner  body    boss    boss          shaft               cap         thread black  end    shaft    shaft
@@ -27,8 +27,6 @@ function biquH2V2SRevoLowerFixingHoleToNozzleTipOffsetZ() =  biquH2V2SRevoBaseTo
 function biquH2V2SRevoAttachmentBoltSpacing() = 15;
 
 biquH2V2SRevoSize = [35, 35, 39];
-revoNozzleLength = 44.1;
-revoNozzleOffsetZ = 22.8;
 
 module reverseBowdenConnector(cap_colour = grey(80)) {
     ir = 4.25 / 2;
@@ -53,32 +51,6 @@ module reverseBowdenConnector(cap_colour = grey(80)) {
     color(cap_colour)
         translate_z(12)
             tube(or=4, ir=ir, h=4, center=false);
-}
-
-module revoNozzle() {
-    brassColor="#B5A642";
-    color(brassColor) {
-        cylinder(h=2, r1=0.5, r2=2);
-        translate_z(2)
-            cylinder(h=5, r=5);
-        translate_z(7)
-            cylinder(h=12, r=3);
-        translate_z(22)
-            cylinder(h=0.8, r=3);
-        translate_z(22.8)
-            cylinder(h=revoNozzleLength - revoNozzleOffsetZ, r=1.5);
-    }
-    color("silver")
-        translate_z(18)
-            cylinder(h=4, r=1);
-    color("red")
-        translate_z(2.5)
-            cylinder(h=4.5, r=6.5);
-    color(grey(20))
-        translate_z(12 + 7 - eps)
-            vflip()
-                rounded_cylinder(h=12, r=8, r2=1);
-
 }
 
 module biquH2V2SCube(size) {
@@ -129,13 +101,13 @@ module biquH2V2SRevo() {
                     biquH2V2SCube(size - [0, 0, attachmentSize.z]);
                 translate([0, -size.y/2, nozzleOffset.y])
                     rotate([90, 0, 0]) {
-                        h = biquH2V2SRevoBaseToNozzleTip - revoNozzleOffsetZ;
+                        h = biquH2V2SRevoBaseToNozzleTip - revoNozzleOffsetZ();
                         cylinder(h=h, r1=8.5, r2=6);
                     }
             }
             translate([0, -size.y/2 - biquH2V2SRevoBaseToNozzleTip, nozzleOffset.y])
                 rotate([-90, 0, 0])
-                    revoNozzle();
+                    RevoNozzle();
             translate([0, size.y/2, nozzleOffset.y])
                 rotate([-90, 0, 0])
                     reverseBowdenConnector();
