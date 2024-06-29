@@ -141,11 +141,8 @@ module xyMotorMountBaseCutouts(motorType, size, offset, sideSupportSizeY, left, 
         // dogbone for corner
         r = 1.5;
         translate([eSize, eY + eSize])
-            hull() {
+            translate([-r, 0])
                 circle(r=r);
-                translate([-r, r])
-                    circle(r=r);
-            }
     }
     for (x = upperBoltPositions(size.x))
         translate([x + eSize, eY + 3*eSize/2])
@@ -356,17 +353,6 @@ module xyMotorMountBlock(motorType, size, basePlateThickness, offset=[0, 0], sid
                         rounded_cube_xy([sideSupportSize.x, sideSupportSize.y, tabHeight + eSize], fillet);
                 }
         } // end union
-        if (cnc) {
-            r = 1.5;
-            translate([eSize, eY + eSize, -eps]) {
-                hull() {
-                    translate([2*r, -2*r, 0])
-                        cylinder(r=r, h = blockSize.z + 2*eps);
-                    translate([-r, r, 0])
-                        cylinder(r=r, h = blockSize.z + 2*eps);
-                }
-            }
-        }
         if (stepdown)
             translate([coreXYPosBL.x + coreXY_drive_pulley_x_alignment(coreXY_type), coreXYPosTR.y, 5])
                 cylinder(d=30, h=sideSupportSize.y + 10);
