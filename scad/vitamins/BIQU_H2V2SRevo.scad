@@ -7,7 +7,7 @@ include <bolts.scad>
 
 //                                              corner  body    boss    boss          shaft               cap         thread black  end    shaft    shaft
 //                                side, length, radius, radius, radius, depth, shaft, length,      holes, heights,    dia,   caps,  conn,  length2, bore
-NEMA14_22     = ["NEMA14_22",     35  , 22,     46.4/2, 21,     11,     2,     5,     21,          26,    [9,     7], 3,     true, false, 0,       0];
+NEMA14_22     = ["NEMA14_22",     35  , 22,     46.4/2, 21,     11,     1,     5,     21,          26,    [9,     7], 3,     true, false, 0,       0];
 
 //          w     d   b   h      s              h     t    o   b  b    a
 //          i     e   o   o      c              u     h    u   l  o    p

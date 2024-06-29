@@ -19,7 +19,7 @@ include <../Parameters_CoreXY.scad>
 include <../Parameters_Main.scad>
 
 function biquH2V2SRevoNozzleOffsetFromMGNCarriageZ() = 61.2; // offset from tip of nozzle to top of MGN carriage
-function biquH2V2SRevoOffsetX() = -5;
+function biquH2V2SRevoOffsetX() = -6;
 strainReliefSizeX =  15;
 
 module ToolheadPCB() {
@@ -49,7 +49,7 @@ module xCarriageBiquH2V2SRevoCableTiePositions(xCarriageType, pcb=false) {
     xCarriageBackSize = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
     carriageSize = carriage_size(xCarriageType);
 
-    translate([pcb ? xCarriageBackSize.x/2  - strainReliefSizeX : -xCarriageBackSize.x/2, carriageSize.y/2, xCarriageBaseThickness()])
+    translate([pcb ? xCarriageBackSize.x/2 -38 -4.5 + strainReliefSizeX : -xCarriageBackSize.x/2, carriageSize.y/2, xCarriageBaseThickness()])
         xCarriageBiquH2V2SRevoCableTieOffsets(pcb=pcb)
             children();
 }
@@ -110,27 +110,37 @@ module xCarriageBiquH2V2SRevoBackPCB(carriageSize, size, extraX=0, holeSeparatio
     fillet = 1;
 
     translate([-size.x/2, carriageSize.y/2, baseThickness]) {
-        extraSize = [1, 0, 0];
         translate_z(-size.z)
-            rounded_cube_xz(size + extraSize, fillet);
+            rounded_cube_xz(size, fillet);
         pcbCubeSize = [38, size.y, 45 + 2*fillet];
         pcbOffsetY = 2.5;
-        translate([size.x + extraSize.x, 0, 0]) {
+        translate([pcbCubeSize.x, 0, 0]) {
             difference() {
                 union() {
-                    translate([-pcbCubeSize.x , 0, -2*fillet])
+                    translate([-pcbCubeSize.x, 0, -2*fillet])
                         rounded_cube_xz(pcbCubeSize, fillet);
-                    translate([-strainReliefSizeX , 0, 0])
+                    rotate([-90, -90, 0])
+                        fillet(2, size.y);
+                    translate([-strainReliefSizeX - 4.5, 0, 0]) {
                         xCarriageBiquH2V2SRevoStrainReliefPCB(carriageSize, size, topThickness);
+                        translate_z(pcbCubeSize.z - 2*fillet)
+                            rotate([-90, 180, 0])
+                                fillet(2, size.y);
+                        translate([strainReliefSizeX, 0, pcbCubeSize.z - 2*fillet])
+                            rotate([-90, -90, 0])
+                                fillet(2, size.y);
+                    }
                     b1Size = [20, size.y + pcbOffsetY, 12];
                     translate([-pcbCubeSize.x, 0, 0])
                         rounded_cube_xz(b1Size, 1);
                     b2Size = [15, size.y + pcbOffsetY, 10];
                     translate([-b2Size.x, 0, 21])
                         rounded_cube_xz(b2Size, 1);
-                }
+                } // end union
+                // hole for cable tie
                 translate([-pcbCubeSize.x + 2, -eps, 4])
                     rounded_cube_xz([2.2, size.y + pcbOffsetY +2*eps, 4.5], 0.5);
+                // mounting holes for PCB
                 translate([-24.3, 0, 7.7]) {
                     rotate([-90, 180, 0])
                         boltHoleM3Tap(size.y + pcbOffsetY);
@@ -138,13 +148,7 @@ module xCarriageBiquH2V2SRevoBackPCB(carriageSize, size, extraX=0, holeSeparatio
                         rotate([-90, 180, 0])
                             boltHoleM3Tap(size.y + pcbOffsetY);
                 }
-            }
-            translate([-pcbCubeSize.x, 0, 0])
-                rotate([-90, 180, 0])
-                    fillet(2, size.y);
-            translate([-strainReliefSizeX, 0, pcbCubeSize.z - 2*fillet])
-                rotate([-90, 180, 0])
-                    fillet(2, size.y);
+            } // end difference
         }
     }
 }
@@ -225,10 +229,9 @@ module xCarriageBIQU_H2V2SRevoAssembly(inserts=false, pcb=false) {
     if (pcb) {
         xCarriageBackSize = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
         carriageSize = carriage_size(xCarriageType);
-        translate([xCarriageBackSize.x/2, carriageSize.y/2 + xCarriageBackSize.y - 0.5, xCarriageBaseThickness()])
-            translate([0, 5, 0])
-                rotate([90, 0, 180])
-                    ToolheadPCB();
+        translate([xCarriageBackSize.x/2 - 9, carriageSize.y/2 + xCarriageBackSize.y + 5, xCarriageBaseThickness()])
+            rotate([90, 0, 180])
+                ToolheadPCB();
     }
 
     if (inserts)
