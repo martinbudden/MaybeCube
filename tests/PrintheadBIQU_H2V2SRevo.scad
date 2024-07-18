@@ -31,6 +31,6 @@ module PrintheadBIQU_H2V2SRevo_test(wiring=false) {
 
 
 //translate_z(biquH2V2SRevoNozzleOffsetFromMGNCarriageZ())
-let($hide_bolts=true)
+//let($hide_bolts=true)
 if ($preview)
     PrintheadBIQU_H2V2SRevo_test();
