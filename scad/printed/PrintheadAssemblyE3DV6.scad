@@ -12,7 +12,7 @@ use <X_CarriageAssemblies.scad>
 use <X_CarriageE3DV6.scad>
 
 
-function hotendClampOffset(xCarriageType, hotendDescriptor="E3DV6") =  [hotendOffset(xCarriageType, hotendDescriptor).x, 18 + xCarriageHotendOffsetY(xCarriageType) + grooveMountOffsetX(hotendDescriptor), hotendOffset(xCarriageType, hotendDescriptor).z];
+function hotendClampOffset(xCarriageType, hotendDescriptor="E3DV6") =  [hotendOffset(xCarriageType, hotendDescriptor).x, 18 + xCarriageHotendOffsetY(xCarriageType), hotendOffset(xCarriageType, hotendDescriptor).z];
 grooveMountFillet = 1;
 function grooveMountClampSize(blowerType, hotendDescriptor) = [grooveMountSize(blowerType, hotendDescriptor).y - 2*grooveMountFillet - grooveMountClampOffsetX(), 12, 15];
 
@@ -23,29 +23,30 @@ module printheadE3DV6Assembly(full=true) {
     hotendOffset = hotendOffset(xCarriageType, hotendDescriptor);
 
     rotate(180)
-        translate([0, -2*hotendOffset.y, 0]) {
+        translate([hotendOffset.x, -hotendOffset.y, hotendOffset.z]) {
             explode([20, 0, 0])
-                hotEndHolderHardware(xCarriageType, hotendDescriptor);
+                E3Dv6plusFan();
 
             if (full)
-                translate(hotendClampOffset(xCarriageType, hotendDescriptor))
-                    rotate([90, 0, -90])
-                        explode(-40, true) {
-                            stl_colour(pp2_colour)
-                                if (blower_size(blowerType).x == 30)
-                                    Groovemount_Clamp_stl();
-                                else
-                                    Groovemount_Clamp_40_stl();
-                            Groovemount_Clamp_hardware(xCarriageType, blowerType, hotendDescriptor);
-                        }
+                rotate([90, 0, -90])
+                    explode(-40, true) {
+                        stl_colour(pp2_colour)
+                            if (blower_size(blowerType).x == 30)
+                                Groovemount_Clamp_stl();
+                            else
+                                Groovemount_Clamp_40_stl();
+                        Groovemount_Clamp_hardware(xCarriageType, blowerType, hotendDescriptor);
+                    }
         }
 
     if (!exploded() && full)
-        translate(printheadWiringOffset(hotendDescriptor))
+        translate(printheadWiringOffset(hotendDescriptor)) {
+            thickness = 6;
             for (z = [0, 10])
-                translate([0, -3.5, z + 30])
+                translate([0, thickness - 9.25, z + 26])
                     rotate([0, 90, 90])
-                        cable_tie(cable_r = 3, thickness = 4.5);
+                        cable_tie(cable_r = 3, thickness = thickness);
+        }
 }
 
 //!1. Bolt the fan onto the side of the **X_Carriage_Groovemount**, secure the fan wire with a ziptie.
@@ -59,13 +60,6 @@ assembly("Printhead_E3DV6", big=true) {
 
     xCarriageGroovemountAssembly();
     printheadE3DV6Assembly();
-}
-
-module hotEndHolderHardware(xCarriageType, hotendDescriptor="E3DV6") {
-    hotendOffset = hotendOffset(xCarriageType, hotendDescriptor);
-
-    translate(hotendOffset)
-        E3Dv6plusFan();
 }
 
 /*module Hotend_Strain_Relief_Clamp_stl() {
@@ -97,14 +91,14 @@ module Groovemount_Clamp_stl() {
     stl("Groovemount_Clamp")
         color(pp2_colour)
             mirror([1, 0, 0])
-                grooveMountClamp(grooveMountClampSize(BL30x10), tolerance=0.15);
+                grooveMountClamp(grooveMountClampSize(BL30x10), tolerance=0.15, left=false);
 }
 
 module Groovemount_Clamp_40_stl() {
     stl("Groovemount_Clamp")
         color(pp2_colour)
             mirror([1, 0, 0])
-                grooveMountClamp(grooveMountClampSize(BL40x10), tolerance=0.15);
+                grooveMountClamp(grooveMountClampSize(BL40x10), tolerance=0.15, left=false);
 }
 
 module Groovemount_Clamp_hardware(xCarriageType, blowerType, hotendDescriptor) {

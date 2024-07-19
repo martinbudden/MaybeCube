@@ -22,9 +22,11 @@ function grooveMountSize(blowerType, hotendDescriptor="E3DV6") = [printheadHoten
 function blowerType() = BL30x10;
 
 
-module xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCarriage, inserts) {
+module xCarriageGroovemount(xCarriageType, blowerType, inserts) {
     size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
+    hotendDescriptor = "E3DV6";
     grooveMountSize = grooveMountSize(blowerType, hotendDescriptor);
+    grooveMountOffsetX = 0;
     hotendOffset = hotendOffset(xCarriageType, hotendDescriptor);
     holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
     holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
@@ -32,10 +34,10 @@ module xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCar
     rotate([0, 90, -90]) {
         difference() {
             translate([0, railCarriageGap() - 0.5, 0])
-            union() {
-                xCarriageBack(xCarriageType, size, 0, holeSeparationTop, holeSeparationBottom, halfCarriage=halfCarriage, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), accelerometerOffset=accelerometerOffset());
-                hotEndHolder(xCarriageType, xCarriageHotendSideSizeM(xCarriageType, 0, 0), grooveMountSize, hotendOffset, hotendDescriptor, blowerType, baffle=true, left=false);
-            }
+                union() {
+                    xCarriageBack(xCarriageType, size, 0, holeSeparationTop, holeSeparationBottom, halfCarriage=false, reflected=true, strainRelief=true, countersunk=_xCarriageCountersunk ? 4 : 0, offsetT=xCarriageHoleOffsetTop(), accelerometerOffset=accelerometerOffset());
+                    E3DV6HotendHolder(xCarriageType, xCarriageHotendSideSizeM(xCarriageType, 0, 0), grooveMountSize, hotendOffset-[0,2,0], blowerType, baffle=true, left=false);
+                }
             xCarriageHotendSideHolePositions(xCarriageType)
                 if (inserts)
                     insertHoleM3(size.y, horizontal=true);
@@ -50,73 +52,51 @@ module xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCar
     }
 }
 
-module X_Carriage_Groovemount_HC_16_stl() {
-    xCarriageType = MGN12H_carriage;
-    blowerType = blowerType();
-    hotendDescriptor = "E3DV6";
-    halfCarriage = true;
-    inserts = false;
-
-    stl("X_Carriage_Groovemount_HC_16")
-        color(pp1_colour)
-            xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCarriage, inserts);
-}
-
 module X_Carriage_Groovemount_ST_stl() {
     // self tapping version
     xCarriageType = MGN12H_carriage;
     blowerType = blowerType();
-    hotendDescriptor = "E3DV6";
-    halfCarriage = false;
     inserts = false;
 
     stl("X_Carriage_Groovemount_ST")
         color(pp1_colour)
-            xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCarriage, inserts);
+            xCarriageGroovemount(xCarriageType, blowerType, inserts);
 }
 
 module X_Carriage_Groovemount_stl() {
     xCarriageType = MGN12H_carriage;
     blowerType = blowerType();
-    hotendDescriptor = "E3DV6";
-    halfCarriage = false;
     inserts = true;
 
     stl("X_Carriage_Groovemount")
         color(pp1_colour)
-            xCarriageGroovemount(xCarriageType, blowerType, hotendDescriptor, halfCarriage, inserts);
+            xCarriageGroovemount(xCarriageType, blowerType, inserts);
 }
 
-module xCarriageGroovemountAssembly(inserts=false, halfCarriage=false) {
+module xCarriageGroovemountAssembly(inserts=false) {
 
     xCarriageType = MGN12H_carriage;
     blowerType = blowerType();
     hotendDescriptor = "E3DV6";
     hotendOffset = hotendOffset(xCarriageType, hotendDescriptor);
 
-    if (halfCarriage) {
-        stl_colour(pp1_colour)
-            rotate([0, -90, 0])
-                X_Carriage_Groovemount_HC_16_stl();
-    } else {
-        stl_colour(pp1_colour)
-            rotate([-90, 0, 90])
-                if (inserts)
-                    X_Carriage_Groovemount_stl();
-                else
-                    X_Carriage_Groovemount_ST_stl();
-        if (inserts)
-            xCarriageHotendSideHolePositions(xCarriageType)
-                vflip()
-                    threadedInsertM3();
-    }
+    stl_colour(pp1_colour)
+        rotate([-90, 0, 90])
+            if (inserts)
+                X_Carriage_Groovemount_stl();
+            else
+                X_Carriage_Groovemount_ST_stl();
+    if (inserts)
+        xCarriageHotendSideHolePositions(xCarriageType)
+            vflip()
+                threadedInsertM3();
 
     grooveMountSize = grooveMountSize(blowerType, hotendDescriptor);
 
     explode([40, 0, 0], true)
         hotEndPartCoolingFan(xCarriageType, grooveMountSize, hotendOffset, blowerType, left=false);
     explode([40, 0, -10], true)
-        hotEndHolderAlign(hotendOffset, left=false)
+        E3DV6HotendHolderAlign(hotendOffset, left=false)
             blowerTranslate(xCarriageType, grooveMountSize, hotendOffset, blowerType)
                 rotate([-90, 0, 0]) {
                     stl_colour(pp2_colour)

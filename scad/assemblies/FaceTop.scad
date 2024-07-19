@@ -5,11 +5,12 @@ include <../utils/FrameBolts.scad>
 use <NopSCADlib/utils/fillet.scad>
 
 include <../printed/CameraMount.scad>
+use <../printed/extruderBracket.scad>
 use <../printed/Handle.scad>
 use <../printed/PrintheadAssemblies.scad>
+use <../printed/ReverseBowdenBracket.scad>
 use <../printed/TopCornerPiece.scad>
 use <../printed/WiringGuide.scad>
-use <../printed/ReverseBowdenBracket.scad>
 use <../printed/XY_MotorMount.scad>
 use <../printed/XY_Idler.scad>
 use <../printed/Y_CarriageAssemblies.scad>
