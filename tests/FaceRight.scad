@@ -16,6 +16,7 @@ include <../scad/assemblies/FaceRight.scad>
 include <../scad/assemblies/FaceRightExtras.scad>
 //use <../scad/assemblies/FaceLeft.scad>
 //use <../scad/assemblies/FaceTop.scad>
+//include <../scad/printed/XY_MotorMount.scad>
 
 use <../scad/Parameters_Positions.scad>
 
@@ -25,7 +26,7 @@ use <../scad/Parameters_Positions.scad>
 module Right_Side_test() {
     //CoreXYBelts(carriagePosition(), show_pulleys=!true);
     Right_Side_assembly();
-    bambuFanBracketAssembly();
+    //bambuFanBracketAssembly();
     baseFanMountAssembly();
     //accessPanelAssembly();
     //Left_Side_assembly();

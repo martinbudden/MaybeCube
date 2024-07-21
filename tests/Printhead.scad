@@ -74,7 +74,6 @@ module Printhead_test() {
     *let($hide_bolts=true) Printhead_E3DV6_assembly();
     //translate([-11.4, 0, 8]) rotate(180) xCarriageTopTest();
     //xCarriageGroovemountAssembly();
-    //X_Carriage_Groovemount_HC_16_stl();
     //Fan_Duct_stl();
     //rotate([90, 0, -90]) Hotend_Clamp_stl();
     //Hotend_Clamp_hardware();

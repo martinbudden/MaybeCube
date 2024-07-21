@@ -29,7 +29,6 @@ include <../scad/Parameters_Positions.scad>
 }*/
 
 module X_Carriage_test() {
-    //rotate([0, -90, 0]) X_Carriage_Groovemount_HC_16_stl();
     //X_Carriage_Groovemount_stl();
     xCarriageGroovemountAssembly();
     X_Carriage_Beltside_assembly();
