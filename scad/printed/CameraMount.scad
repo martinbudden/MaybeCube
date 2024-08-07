@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <../vitamins/bolts.scad>
 
@@ -8,7 +8,7 @@ use <NopSCADlib/vitamins/pcb.scad>
 
 include <../vitamins/nuts.scad>
 
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 
 
 cameraType = rpi_camera_v2;

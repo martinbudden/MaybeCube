@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <../vitamins/bolts.scad>
 
@@ -11,7 +11,7 @@ use <../../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 use <X_CarriageAssemblies.scad>
 
 include <../utils/X_Rail.scad>
-use <../Parameters_Positions.scad>
+use <../config/Parameters_Positions.scad>
 
 
 function evaColorGrey() = grey(25);

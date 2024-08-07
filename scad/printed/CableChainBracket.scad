@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 use <NopSCADlib/vitamins/wire.scad>
 use <NopSCADlib/utils/fillet.scad>
@@ -6,7 +6,7 @@ use <NopSCADlib/utils/fillet.scad>
 include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>
 
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 
 function cableChainBracketOffsetX() = eX > 300 ? 240 : 210;
 //cableChainBracketSize = [25, eY - (_zRodOffsetY + (zRodSeparation() + _printbedArmSeparation)/2) - 5, eSize];

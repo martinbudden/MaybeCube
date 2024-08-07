@@ -1,12 +1,11 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
 
 include <NopSCADlib/vitamins/spools.scad>
 
-use <../printed/extruderBracket.scad>
 use <../printed/SpoolHolder.scad>
-
+use <../utils/extruderBracket.scad>
 use <../vitamins/Panels.scad>
 
 

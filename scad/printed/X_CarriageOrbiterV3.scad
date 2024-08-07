@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <../vitamins/bolts.scad>
 use <../vitamins/OrbiterV3.scad>
@@ -10,12 +10,8 @@ include <../utils/carriageTypes.scad>
 include <../utils/PrintheadOffsets.scad>
 include <../utils/X_Carriage.scad>
 
-
-use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
 
-include <../Parameters_CoreXY.scad>
-include <../Parameters_Main.scad>
 
 function orbiterV3NozzleOffsetFromMGNCarriageZ() = 61.2; // offset from tip of nozzle to top of MGN carriage
 function orbiterV3OffsetX() = 1.5;
@@ -77,7 +73,7 @@ module xCarriageOrbiterV3StrainRelief(carriageSize, xCarriageBackSize, topThickn
     }
 }
 
-module xCarriageOrbiterV3Back(xCarriageType, size, extraX=0, holeSeparationTop, holeSeparationBottom, countersunk=0, topHoleOffset=0) {
+module xCarriageOrbiterV3Back(xCarriageType, size) {
     assert(is_list(xCarriageType));
     internalFillet = 1.5;
     carriageSize = carriage_size(xCarriageType);
@@ -103,13 +99,11 @@ module xCarriageOrbiterV3Back(xCarriageType, size, extraX=0, holeSeparationTop, 
 module xCarriageOrbiterV3(xCarriageType, inserts) {
     size = xCarriageHotendSideSizeM(xCarriageType, beltWidth(), beltSeparation());
     carriageSize = carriage_size(xCarriageType);
-    holeSeparationTop = xCarriageHoleSeparationTopMGN12H();
-    holeSeparationBottom = xCarriageHoleSeparationBottomMGN12H();
 
     rotate([0, 90, -90]) {
         translate([0, railCarriageGap() + 2*eps, 0])
             difference() {
-                xCarriageOrbiterV3Back(xCarriageType, size, 0, holeSeparationTop, holeSeparationBottom, countersunk=_xCarriageCountersunk ? 4 : 0);
+                xCarriageOrbiterV3Back(xCarriageType, size);
                 translate([0, carriageSize.y/2 + size.y + eps, eps]) {
                     height = xCarriageTopThickness();
                     base = 5;

@@ -1,11 +1,18 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 use <NopSCADlib/utils/fillet.scad>
 
 include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>
 
-include <../Parameters_Main.scad>
+include <../utils/bezierTube.scad>
+include <../utils/PrintheadOffsets.scad>
+
+include <../utils/extruderBracket.scad>
+
+use <ReverseBowdenBracket.scad>
+
+use <../config/Parameters_Positions.scad>
 
 
 wiringDiameter = 7;
@@ -18,7 +25,7 @@ wiringClearance = 0.5;
 function wiringGuideTabHeight() = wiringGuideCableOffsetY() + wiringDiameter - 2 + wiringClearance;
 
 function wiringGuidePosition(offsetX=10, offsetY=0, offsetZ=0) = [eX/2 + eSize + 10 - (wiringGuideSize.x + eSize)/2 - offsetX, eY + eSize - offsetY, eZ - eSize - offsetZ];
-
+function useCamera() = false;
 
 module Wiring_Guide_stl() {
     stl("Wiring_Guide")
@@ -119,3 +126,54 @@ module wiringGuidePosition(offsetX=10, offsetY=0) {
         rotate([90, 0, 0])
             children();
 }
+
+module printheadWiring(hotendDescriptor="E3DV6", showCable=true) {
+    // don't show the incomplete cable if there are no extrusions to obscure it
+    wireRadius = 2.5;
+    bezierPos = wiringGuidePosition(offsetY=wiringGuideCableOffsetY(), offsetZ=eSize) - [useCamera() ? cameraMountBaseSize.x/2 : 0, 0, 0];
+    if (showCable && is_undef($hide_extrusions))
+        color(grey(20)) {
+            bezierTube(bezierPos, [carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(hotendDescriptor), tubeRadius=wireRadius);
+            translate(bezierPos)
+                vflip()
+                    cylinder(h=bezierPos.z - 3*eSize, r=wireRadius, center=false);
+        }
+
+    /*translate([carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(hotendDescriptor))
+        for (z = [11, 21])
+            translate([0, -3.5, z])
+                rotate([0, 90, 90])
+                    cable_tie(cable_r=3, thickness=4.5);*/
+
+    translate([useCamera() ? cameraMountBaseSize.x/2 : 0, 0, 0])
+        wiringGuidePosition() {
+            stl_colour(pp1_colour)
+                Wiring_Guide_stl();
+            explode(20, true)
+                translate_z(wiringGuideTabHeight()) {
+                    stl_colour(pp2_colour)
+                        Wiring_Guide_Clamp_stl();
+                    Wiring_Guide_Clamp_hardware();
+                }
+        }
+}
+
+module reverseBowdenTube(hotendDescriptor="OrbiterV3") {
+    color("white")
+        bezierTube(reverseBowdenBracketOffset(),
+            [carriagePosition().x, carriagePosition().y, eZ] + printheadBowdenOffset(hotendDescriptor),
+            tubeRadius=2,
+            bowdenTube=false,
+            length = eX + eY - 100);
+}
+
+module BowdenTube(hotendDescriptor="E3DV6") {
+    color("white")
+        bezierTube(extruderPosition() + Extruder_Bracket_assembly_bowdenOffset(),
+            [carriagePosition().x, carriagePosition().y, eZ] + printheadBowdenOffset(hotendDescriptor),
+            tubeRadius=2,
+            bowdenTube=true,
+            length = eX + eY - 100);
+}
+
+

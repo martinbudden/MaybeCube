@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
 use <NopSCADlib/utils/fillet.scad>
@@ -6,7 +6,7 @@ use <NopSCADlib/utils/fillet.scad>
 include <extrusionCornerBracket.scad>
 use <../vitamins/AntiBacklashNut.scad>
 
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 
 
 //braceY = eSize + _zLeadScrewOffset + antiBacklashNutSize().z/2;

@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 use <NopSCADlib/vitamins/e3d.scad>
 use <NopSCADlib/utils/fillet.scad>
@@ -6,7 +6,7 @@ use <NopSCADlib/utils/fillet.scad>
 include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>
 
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 
 reverseBowdenBracketSize = [eSize + 15, eSize, 5];
 reverseBowdenBracketBowdenOffset = [(eSize + reverseBowdenBracketSize.x)/2, reverseBowdenBracketSize.y/2, reverseBowdenBracketSize.z];
@@ -55,7 +55,7 @@ module Reverse_Bowden_Bracket_hardware() {
             boltM4CountersunkHammerNut(10);
 }
 
-//!1. Screw the Bowden connector into the **Reverse_Bowde_Bracket**. This is easier if you use an M6 bolt to "tap" the hole first.
+//!1. Screw the Bowden connector into the **Reverse_Bowden_Bracket**. This is easier if you use an M6 bolt to "tap" the hole first.
 //!2. Add the bolts and hammer nuts, ready for later attachment to the frame.
 //
 module Reverse_Bowden_Bracket_assembly()

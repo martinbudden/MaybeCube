@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 use <NopSCADlib/utils/fillet.scad>
 
@@ -10,7 +10,7 @@ include <../vitamins/cables.scad>
 include <../vitamins/AS5048_PCB.scad>
 include <../printed/XY_MotorMountBLDC.scad>
 
-include <../Parameters_CoreXY.scad>
+include <../config/Parameters_CoreXY.scad>
 
 function xyEncoderMountSize(BLDC_type) = BLDC_type == BLDC4250 ? [48, 48, 55] : [55, 55, 45];
 encoderMountBaseThickness = 5;

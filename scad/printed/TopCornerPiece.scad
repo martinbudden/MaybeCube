@@ -1,13 +1,12 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 use <NopSCADlib/utils/fillet.scad>
 
 include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>
 
-include <../Parameters_Main.scad>
 
-
+eSize = 20;
 topCornerPieceHoles = [ [eSize/2, 3*eSize/2], [eSize/2, 5*eSize/2], [3*eSize/2, eSize/2], [3*eSize/2, 3*eSize/2], [5*eSize/2, eSize/2] ];
 topCornerPieceSize = [3*eSize, 3*eSize, 5];
 

@@ -1,14 +1,15 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <../vitamins/bolts.scad>
 
 include <NopSCADlib/vitamins/blowers.scad>
 use <NopSCADlib/vitamins/wire.scad>
 
+use <../../../BabyCube/scad/printed/PrintheadE3DV6.scad>
+
 include <../utils/X_Rail.scad>
 include <../vitamins/cables.scad>
 
-use <X_CarriageAssemblies.scad>
 use <X_CarriageE3DV6.scad>
 
 
@@ -23,7 +24,7 @@ module printheadE3DV6Assembly(full=true) {
     hotendOffset = hotendOffset(xCarriageType, hotendDescriptor);
 
     rotate(180)
-        translate([hotendOffset.x, -hotendOffset.y, hotendOffset.z]) {
+        translate([hotendOffset.x, -hotendOffset.y+2, hotendOffset.z]) {
             explode([20, 0, 0])
                 E3Dv6plusFan();
 

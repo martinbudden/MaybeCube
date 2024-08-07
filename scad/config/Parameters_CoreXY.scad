@@ -1,7 +1,7 @@
 include <NopSCADlib/vitamins/rails.scad>
 include <NopSCADlib/utils/core_xy.scad>
 
-include <vitamins/pulleys.scad>
+include <../vitamins/pulleys.scad>
 include <Parameters_Main.scad>
 
 

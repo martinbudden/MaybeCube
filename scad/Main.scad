@@ -55,7 +55,7 @@
 //!*The **XY_Motor_Mount_Pulley_Spacer**s
 //!*The **Smart_Orbiter_V3_Duct** and the **Smart_Orbiter_V3_Fan_Bracket**
 //
-include <global_defs.scad>
+include <config/global_defs.scad>
 
 include <MainAssemblies.scad>
 

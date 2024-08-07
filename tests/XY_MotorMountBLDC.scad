@@ -9,7 +9,7 @@ include <../scad/printed/XY_MotorMountBLDC.scad>
 use <../scad/printed/XY_MotorMount.scad>
 include <../scad/utils/CoreXYBelts.scad>
 
-use <../scad/Parameters_Positions.scad>
+use <../scad/config/Parameters_Positions.scad>
 
 
 //$explode = 1;

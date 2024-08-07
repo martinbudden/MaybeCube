@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <../utils/FrameBolts.scad>
 
@@ -11,7 +11,7 @@ include <../utils/Z_Rods.scad>
 
 include <FaceRightExtras.scad>
 
-use <../Parameters_Positions.scad>
+use <../config/Parameters_Positions.scad>
 
 //!1. On a flat surface, bolt the upper and lower extrusions into the left and right uprights as shown.
 //!2. If using a Bowden Extruder, bolt the **Extruder_Bracket_assembly** to the upper extrusion and upright.
@@ -20,7 +20,6 @@ module Right_Side_assembly(bedHeight=undef, printbedKinematic=undef, sideAssembl
 assembly("Right_Side", big=true) {
 
     printbedKinematic = is_undef(printbedKinematic) ? (!is_undef(_printbedKinematic) && _printbedKinematic == true) : printbedKinematic;
-    bedHeight = is_undef(bedHeight) ? bedHeight() : bedHeight;
     useBackMounts = !is_undef(_useBackMounts) && _useBackMounts == true;
     useElectronicsInBase = !is_undef(_useElectronicsInBase) && _useElectronicsInBase == true;
     sideAssemblies = is_undef(sideAssemblies) ? (is_undef(_useBackMounts) || _useBackMounts == false) : sideAssemblies;
@@ -37,6 +36,7 @@ assembly("Right_Side", big=true) {
 
     // extra extrusion for mounting spool holder
     if (printbedKinematic) {
+        bedHeight = is_undef(bedHeight) ? bedHeight() : bedHeight;
         zRails(bedHeight, left=false, useElectronicsInBase=true, spoolHeight=spoolHeight());
         supportLength = eY - _zRodOffsetY - _printbedArmSeparation/2;
         translate([eX + eSize, eY + eSize - supportLength, spoolHeight()])

@@ -1,9 +1,9 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
 
-include <../Parameters_Main.scad>
-include <../Parameters_Positions.scad>
+include <../config/Parameters_Main.scad>
+include <../config/Parameters_Positions.scad>
 
 /*
 layer height ranges:

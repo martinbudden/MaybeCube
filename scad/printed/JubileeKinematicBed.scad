@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <../vitamins/bolts.scad>
 
@@ -7,7 +7,7 @@ include <NopSCADlib/vitamins/rod.scad>
 
 include <../utils/carriageTypes.scad>
 
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 
 brassColor = "#B5A642";
 leadnut = LSN8x2;

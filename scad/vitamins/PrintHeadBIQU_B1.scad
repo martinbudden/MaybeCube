@@ -6,7 +6,7 @@ include <NopSCADlib/vitamins/microswitches.scad>
 
 include <../vitamins/cables.scad>
 
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 
 
 fan_colour = grey(20);

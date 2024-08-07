@@ -13,8 +13,8 @@ use <../scad/assemblies/FaceRight.scad>
 use <../scad/assemblies/FaceTop.scad>
 use <../scad/assemblies/Printbed.scad>
 
-use <../scad/Parameters_Positions.scad>
-include <../scad/Parameters_Main.scad>
+use <../scad/config/Parameters_Positions.scad>
+include <../scad/config/Parameters_Main.scad>
 
 
 $explode = 1;

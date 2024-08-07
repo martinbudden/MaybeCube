@@ -1,5 +1,5 @@
 //!! This is a copy of the BabyCube file with alterations
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <../vitamins/bolts.scad>
 
@@ -13,11 +13,10 @@ include <../utils/X_Rail.scad>
 include <../utils/X_Carriage.scad>
 include <../vitamins/inserts.scad>
 
-use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
 use <../../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 
-include <../Parameters_CoreXY.scad>
+include <../config/Parameters_CoreXY.scad>
 
 halfCarriage = (!is_undef(_useHalfCarriage) && _useHalfCarriage==true);
 // HC_size = [45.4, 4, 57]

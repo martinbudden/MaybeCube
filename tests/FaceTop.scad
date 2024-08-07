@@ -3,7 +3,7 @@
 include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/screws.scad>
 
-use <../scad/printed/extruderBracket.scad>
+//use <../scad/printed/extruderBracket.scad>
 use <../scad/printed/PrintheadAssemblies.scad>
 
 include <../scad/printed/XY_MotorMount.scad> // for idler offsets
@@ -16,7 +16,7 @@ use <../scad/assemblies/BackFace.scad>
 use <../scad/printed/WiringGuide.scad>
 include <../scad/utils/printParameters.scad>
 
-use <../scad/Parameters_Positions.scad>
+use <../scad/config/Parameters_Positions.scad>
 
 
 //$explode = 1;

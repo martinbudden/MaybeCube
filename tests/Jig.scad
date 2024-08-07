@@ -7,7 +7,7 @@ use <../scad/assemblies/FaceRight.scad>
 
 use <../scad/jigs/ExtrusionDrillJig.scad>
 use <../scad/jigs/PanelJig.scad>
-include <../scad/Parameters_Main.scad>
+include <../scad/config/Parameters_Main.scad>
 
 
 //$pose = 1;

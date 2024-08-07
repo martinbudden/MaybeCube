@@ -48,7 +48,7 @@ use <../scad/assemblies/FaceLeft.scad>
 use <../scad/assemblies/FaceRight.scad>
 use <../scad/assemblies/Printbed.scad>
 
-use <../scad/Parameters_Positions.scad>
+use <../scad/config/Parameters_Positions.scad>
 
 
 //$explode = 1;

@@ -1,19 +1,17 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <../vitamins/bolts.scad>
 
 use <NopSCADlib/utils/fillet.scad>
+include <NopSCADlib/utils/core_xy.scad>
 
 use <../printed/X_CarriageAssemblies.scad>
 use <../printed/X_CarriageE3DV6.scad> // for xCarriageHotendSideSizeM
 include <../utils/carriageTypes.scad>
 include <../utils/PrintheadOffsets.scad>
 
-use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
 
-include <../Parameters_CoreXY.scad>
-include <../Parameters_Main.scad>
 
 xChangeBoltOffset = 4 - 0.2; // 0.2 to allow clearance for xCarriage countersunk bolts
 

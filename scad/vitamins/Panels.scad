@@ -3,13 +3,13 @@ include <../vitamins/bolts.scad>
 use <NopSCADlib/vitamins/sheet.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
 
-use <../printed/extruderBracket.scad> // for spoolHeight(), spoolHolderPosition()
+use <../utils/extruderBracket.scad> // for spoolHeight(), spoolHolderPosition()
 use <../printed/extrusionChannels.scad>
 
 include <../vitamins/filament_sensor.scad>
 include <../vitamins/nuts.scad>
 
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 
 
 PC3 = ["PC3", "Sheet polycarbonate", 3, [1,   1,   1,   0.25], false];

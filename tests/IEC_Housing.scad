@@ -6,7 +6,7 @@ include <../scad/vitamins/BTT_MANTA_5MP.scad>
 include <../scad/vitamins/BTT_MANTA_8MP.scad>
 use <../scad/printed/IEC_Housing.scad>
 use <../scad/vitamins/Panels.scad>
-include <../scad/Parameters_Main.scad>
+include <../scad/config/Parameters_Main.scad>
 
 
 //$explode = 1;

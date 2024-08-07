@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 use <NopSCADlib/vitamins/blower.scad>
 use <NopSCADlib/utils/fillet.scad>
@@ -6,9 +6,9 @@ use <NopSCADlib/utils/fillet.scad>
 include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>
 
-use <../printed/extruderBracket.scad>
+use <../utils/extruderBracket.scad> // for spoolHeight()
 
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 
 holeOffsetY = 15;
 fanOffsetY = 134;

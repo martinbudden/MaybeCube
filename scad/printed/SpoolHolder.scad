@@ -1,11 +1,11 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>
 
 use <../../../BabyCube/scad/printed/SpoolHolder.scad>
 
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 
 
 function spoolOffset() = [3, 0, 7];

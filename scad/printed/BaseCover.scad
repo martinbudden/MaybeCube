@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 use <NopSCADlib/utils/fillet.scad>
 use <NopSCADlib/vitamins/sheet.scad>
@@ -15,8 +15,8 @@ use <extruderBracket.scad> // for iecHousingMountSize()
 use <WiringGuide.scad>
 use <CableChainBracket.scad>
 
-include <../Parameters_Main.scad>
-include <../Parameters_Positions.scad>
+include <../config/Parameters_Main.scad>
+include <../config/Parameters_Positions.scad>
 
 supportHeight = 70;
 holeOffset = 20;

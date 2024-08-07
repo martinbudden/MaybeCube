@@ -13,7 +13,7 @@ use <../scad/assemblies/BackFace.scad>
 //use <../scad/assemblies/FaceTop.scad>
 use <../scad/vitamins/Panels.scad>
 
-use <../scad/Parameters_Positions.scad>
+use <../scad/config/Parameters_Positions.scad>
 
 //$explode = 1;
 //$pose = 1;

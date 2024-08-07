@@ -18,7 +18,7 @@ include <../scad/assemblies/FaceRightExtras.scad>
 //use <../scad/assemblies/FaceTop.scad>
 //include <../scad/printed/XY_MotorMount.scad>
 
-use <../scad/Parameters_Positions.scad>
+use <../scad/config/Parameters_Positions.scad>
 
 
 //$explode = 1;

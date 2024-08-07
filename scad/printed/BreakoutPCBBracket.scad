@@ -1,10 +1,10 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 use <NopSCADlib/utils/fillet.scad>
 
 include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 
 include <../vitamins/AB_Breakout_PCB.scad>
 use <../printed/BaseCover.scad>

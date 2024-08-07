@@ -19,7 +19,7 @@ include <../scad/utils/X_Rail.scad>
 
 include <../scad/vitamins/extrusion.scad>
 
-use <../scad/Parameters_Positions.scad>
+use <../scad/config/Parameters_Positions.scad>
 
 //$vpr = [55,0,25];
 //$vpr = [70,0,315]; // for tests
@@ -35,7 +35,7 @@ module CoreXY_test() {
     carriagePosition = carriagePosition(t);
     NEMA_width = _xyMotorDescriptor == "NEMA14" ? 35.2 : 42.3;
     coreXYSize = coreXYPosTR(NEMA_width) - coreXYPosBL();
-    CoreXYBelts(carriagePosition, x_gap = -40, show_pulleys = ![1, 0, 0]);
+    CoreXYBelts(carriagePosition + [15, 0], x_gap = -40, show_pulleys = ![1, 0, 0]);
     printheadBeltSide(t=t);
     //fullPrinthead(t=t);
 
@@ -73,11 +73,11 @@ module CoreXY_test() {
     translate([eX + 2*eSize, carriagePosition.y - carriagePosition().y, eZ - eSize])
         Y_Carriage_Right_assembly();
 
-    XY_Idler_Left_assembly();
-    XY_Idler_Right_assembly();
+    //XY_Idler_Left_assembly();
+    //XY_Idler_Right_assembly();
 
-    XY_Motor_Mount_Left_assembly();
-    XY_Motor_Mount_Right_assembly();
+    //XY_Motor_Mount_Left_assembly();
+    //XY_Motor_Mount_Right_assembly();
 }
 
 if ($preview)

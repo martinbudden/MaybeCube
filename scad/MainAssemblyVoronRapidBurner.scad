@@ -2,7 +2,7 @@
 //!
 
 
-include <global_defs.scad>
+include <config/global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/screws.scad>
@@ -16,7 +16,7 @@ use <printed/X_CarriageVoronRapidBurner.scad>
 include <utils/CoreXYBelts.scad>
 include <utils/X_Rail.scad>
 
-use <../scad/Parameters_Positions.scad>
+use <config/Parameters_Positions.scad>
 include <target.scad>
 
 //$explode=1;

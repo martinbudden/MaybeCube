@@ -1,11 +1,11 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
-use <../printed/extruderBracket.scad> // for spoolHeight(), extruderBracketSize()
+use <../utils/extruderBracket.scad> // for spoolHeight(), extruderBracketSize()
 
 include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>
 
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 
 module Right_Side_Panel_Bracket_stl() {
     stl("Right_Side_Panel_Bracket")

@@ -1,6 +1,6 @@
 include <NopSCADlib/vitamins/stepper_motors.scad>
 include <../utils/motorTypes.scad>
-include <../Parameters_CoreXY.scad>
+include <../config/Parameters_CoreXY.scad>
 
 function basePlateThickness(useReversedBelts, cnc, flat) = cnc ? 4 : flat ? 4.5 : useReversedBelts ? 5 : 6.5;
 

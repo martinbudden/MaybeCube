@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <../vitamins/bolts.scad>
 
@@ -9,7 +9,7 @@ include <NopSCADlib/vitamins/linear_bearings.scad>
 
 include <../vitamins/nuts.scad>
 
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 
 
 _useSCSBearingBlocksForZAxis = true;

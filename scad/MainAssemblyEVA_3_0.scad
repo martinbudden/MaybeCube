@@ -21,14 +21,14 @@
 //!as are all EVA community contributions.
 
 
-include <global_defs.scad>
+include <config/global_defs.scad>
 
 include <NopSCADlib/vitamins/rails.scad>
 
 use <printed/X_CarriageEVA.scad>
 include <utils/CoreXYBelts.scad>
 
-use <../scad/Parameters_Positions.scad>
+use <config/Parameters_Positions.scad>
 include <target.scad>
 
 

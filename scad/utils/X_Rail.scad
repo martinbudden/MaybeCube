@@ -1,6 +1,6 @@
 include <carriageTypes.scad>
 
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 
 
 module xRailBoltPositions(carriagePosition) {

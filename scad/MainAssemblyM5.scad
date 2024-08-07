@@ -5,7 +5,7 @@ include <NopSCADlib/utils/core/core.scad>
 use <printed/XY_Idler.scad>
 use <printed/XY_MotorMount.scad>
 
-include <Parameters_Main.scad>
+include <config/Parameters_Main.scad>
 
 
 module M5_assembly()

@@ -1,18 +1,18 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 use <NopSCADlib/utils/fillet.scad>
 
 use <NopSCADlib/vitamins/iec.scad>
 use <NopSCADlib/vitamins/sheet.scad>
 
-use <extruderBracket.scad> // for spoolHeight()
+use <../utils/extruderBracket.scad> // for spoolHeight()
 
 include <../vitamins/bolts.scad>
 
 use <../vitamins/iec320c14.scad>
 include <../vitamins/nuts.scad>
 
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 
 function partitionSize() = [eX, eZ, 2];
 PC2 = ["PC2", "Sheet polycarbonate", 2, [1,   1,   1,   0.25], false];

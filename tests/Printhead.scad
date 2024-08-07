@@ -19,10 +19,7 @@ use <../scad/utils/XY_MotorMount.scad>
 include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/X_Rail.scad>
 
-use <../../BabyCube/scad/printed/X_Carriage.scad>
-use <../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
-
-use <../scad/Parameters_Positions.scad>
+use <../scad/config/Parameters_Positions.scad>
 
 
 function  blzX(yCarriageType) = coreXYSeparation().z + yRailSupportThickness() + yCarriageThickness() + carriage_height(yCarriageType);

@@ -10,9 +10,6 @@ include <../scad/vitamins/bolts.scad>
 include <NopSCADlib/vitamins/blowers.scad>
 include <NopSCADlib/vitamins/e3d.scad>
 
-use <../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
-
-use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/X_CarriageEVA.scad>
 use <../scad/printed/Y_CarriageAssemblies.scad>
 
@@ -20,7 +17,7 @@ include <../scad/utils/CoreXYBelts.scad>
 include <../scad/utils/X_Rail.scad>
 
 
-use <../scad/Parameters_Positions.scad>
+use <../scad/config/Parameters_Positions.scad>
 
 //$explode = 1;
 //$pose = 1;

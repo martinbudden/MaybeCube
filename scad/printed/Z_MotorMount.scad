@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 use <NopSCADlib/utils/fillet.scad>
 
@@ -16,7 +16,7 @@ include <../vitamins/cables.scad>
 use <../vitamins/leadscrew.scad>
 include <../vitamins/nuts.scad>
 
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 NEMA17_40L160 = ["NEMA17_40L160", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [160, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
 NEMA17_40L200 = ["NEMA17_40L200", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [200, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];
 NEMA17_40L230 = ["NEMA17_40L230", 42.3,   40,   53.6/2, 25,     11,     2,     8,     [230, 8, 2], 31,    [8,     8], 3,    false, false, 0,       0];

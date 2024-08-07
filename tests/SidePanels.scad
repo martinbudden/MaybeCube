@@ -6,7 +6,7 @@ include <../scad/vitamins/extrusion.scad>
 use <../scad/jigs/PanelJig.scad>
 include <../scad/assemblies/FaceRightExtras.scad>
 
-include <../scad/Parameters_Main.scad>
+include <../scad/config/Parameters_Main.scad>
 
 //$explode = 1;
 module SidePanel_Jig_test() {

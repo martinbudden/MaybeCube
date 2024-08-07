@@ -9,7 +9,7 @@ include <../scad/printed/XY_MotorMountBLDC.scad>
 include <../scad/printed/XY_EncoderMount.scad>
 include <../scad/vitamins/AS5048_PCB.scad>
 
-include <../scad/Parameters_Positions.scad>
+include <../scad/config/Parameters_Positions.scad>
 
 
 //$explode = 1;

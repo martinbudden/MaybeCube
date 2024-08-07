@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 use <NopSCADlib/utils/fillet.scad>
 include <NopSCADlib/vitamins/ball_bearings.scad>
@@ -8,7 +8,7 @@ use <../printed/extrusionChannels.scad>
 include <../vitamins/bolts.scad>
 include <../vitamins/nuts.scad>
 
-include <../Parameters_CoreXY.scad>
+include <../config/Parameters_CoreXY.scad>
 
 
 axisOffset = coreXYPosBL().x - eSize;

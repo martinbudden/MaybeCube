@@ -1,5 +1,5 @@
 //!! This is a copy of the BabyCube file with alterations
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <../vitamins/bolts.scad>
 
@@ -10,25 +10,17 @@ use <NopSCADlib/vitamins/wire.scad>
 include <../utils/PrintheadOffsets.scad>
 include <../utils/X_Rail.scad>
 include <../vitamins/cables.scad>
-use <../vitamins/OrbiterV3.scad>
 
 include <../../../BabyCube/scad/vitamins/pcbs.scad>
 
-use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
-use <../../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
-include <OrbiterV3Fan.scad>
 use <X_CarriageAssemblies.scad>
-use <X_CarriageE3DV6.scad>
-use <X_CarriageOrbiterV3.scad>
 
-include <../Parameters_CoreXY.scad>
-use <../Parameters_Positions.scad>
+use <../config/Parameters_Positions.scad>
 
 
-module printheadBeltSide(rotate=0, explode=0, t=undef) {
+module printheadBeltSide(rotate=0, explode=0, t=undef, halfCarriage=false) {
     xCarriageType = MGN12H_carriage;
-    halfCarriage = (!is_undef(_useHalfCarriage) && _useHalfCarriage==true);
 
     xRailCarriagePosition(carriagePosition(t), rotate) // rotate is for debug, to see belts better
         explode(explode, true) {

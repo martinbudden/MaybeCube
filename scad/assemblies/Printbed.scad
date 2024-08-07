@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <../utils/FrameBolts.scad>
 
@@ -7,14 +7,12 @@ include <NopSCADlib/vitamins/bearing_blocks.scad>
 include <NopSCADlib/vitamins/pcb.scad>
 include <NopSCADlib/vitamins/sk_brackets.scad>
 include <NopSCADlib/printed/drag_chain.scad>
-use <NopSCADlib/utils/fillet.scad>
 use <NopSCADlib/vitamins/o_ring.scad>
 
 use <../printed/Z_Carriage.scad>
 use <../printed/CableChainBracket.scad>
 use <../printed/BaseCover.scad>
 
-use <../vitamins/extrusionBracket.scad>
 use <../vitamins/HeatedBedLevelingKnob.scad>
 include <../vitamins/nuts.scad>
 

@@ -2,7 +2,7 @@ include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/extrusions.scad>
 include <NopSCADlib/vitamins/extrusion_brackets.scad>
 
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 
 module extrusionInnerCornerBracket(grubCount=2, boltLength=10, boltOffset=0) {
     if ($preview)

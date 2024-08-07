@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <../vitamins/bolts.scad>
 
@@ -12,11 +12,11 @@ include <NopSCADlib/vitamins/e3d.scad>
 include <NopSCADlib/vitamins/inserts.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
 
-use <../../../BabyCube/scad/printed/Printhead.scad> // for E3Dv6plusFan
+use <../../../BabyCube/scad/printed/PrintheadE3DV6.scad> // for E3Dv6plusFan
 
 include <../vitamins/nuts.scad>
 
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 
 
 toolChangerAxelOffsetZ = 15 - 8; //15.6 + 5.55/2 + 1.15-5;

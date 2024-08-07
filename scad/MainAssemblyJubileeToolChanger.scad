@@ -10,7 +10,7 @@
 //!
 //!It is not complete, in particular a MaybeCube X_Carriage adaptor is still required.
 //
-include <global_defs.scad>
+include <config/global_defs.scad>
 include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/screws.scad>
 
@@ -20,7 +20,7 @@ include <utils/X_Rail.scad>
 
 use <assemblies/FaceTop.scad>
 
-use <Parameters_Positions.scad>
+use <config/Parameters_Positions.scad>
 include <target.scad>
 
 //$explode = 1;

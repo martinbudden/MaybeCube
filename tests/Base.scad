@@ -8,17 +8,18 @@ include <NopSCADlib/utils/core/core.scad>
 //use <../scad/jigs/PanelJig.scad>
 
 //use <../scad/printed/ControlPanel.scad>
+use <../scad/printed/WiringGuide.scad>
 
 include <../scad/assemblies/BasePlate.scad>
-use <../scad/assemblies/FaceLeft.scad>
-use <../scad/assemblies/FaceRight.scad>
-use <../scad/assemblies/FaceTop.scad>
+//use <../scad/assemblies/FaceLeft.scad>
+//use <../scad/assemblies/FaceRight.scad>
+//use <../scad/assemblies/FaceTop.scad>
 //use <../scad/vitamins/Panels.scad>
-use <../scad/assemblies/Printbed.scad>
+//use <../scad/assemblies/Printbed.scad>
 //include <../scad/assemblies/FaceRightExtras.scad>
 
-include <../scad/Parameters_Main.scad>
-use <../scad/Parameters_Positions.scad>
+include <../scad/config/Parameters_Main.scad>
+use <../scad/config/Parameters_Positions.scad>
 
 
 //$explode = 1;

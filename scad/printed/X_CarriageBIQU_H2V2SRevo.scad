@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <../vitamins/bolts.scad>
 use <../vitamins/OrbiterV3.scad>
@@ -12,11 +12,7 @@ include <../utils/X_Carriage.scad>
 use <../vitamins/BIQU_H2V2SRevo.scad>
 
 
-use <../../../BabyCube/scad/printed/Printhead.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
-
-include <../Parameters_CoreXY.scad>
-include <../Parameters_Main.scad>
 
 function biquH2V2SRevoNozzleOffsetFromMGNCarriageZ() = 61.2; // offset from tip of nozzle to top of MGN carriage
 function biquH2V2SRevoOffsetX() = -6;
@@ -41,7 +37,7 @@ module xCarriageBiquH2V2SRevoHolePositions(xCarriageType) {
 
 module xCarriageBiquH2V2SRevoCableTieOffsets(pcb=false) {
     for (z = pcb ? [70, 80] : [5, 15, 25, 35])
-        translate([strainReliefSizeX/2, 0,z])
+        translate([strainReliefSizeX/2, 0, z])
             children();
 }
 
@@ -74,7 +70,7 @@ module xCarriageBiquH2V2SRevoStrainRelief(carriageSize, xCarriageBackSize, topTh
     }
 }
 
-module xCarriageBiquH2V2SRevoBack(carriageSize, size, extraX=0, holeSeparationTop, holeSeparationBottom, countersunk=0, topHoleOffset=0) {
+module xCarriageBiquH2V2SRevoBack(carriageSize, size, extraX=0, holeSeparationTop, holeSeparationBottom, topHoleOffset=0) {
     topThickness = xCarriageTopThickness();
     baseThickness = xCarriageBaseThickness();
 
@@ -104,7 +100,7 @@ module xCarriageBiquH2V2SRevoStrainReliefPCB(carriageSize, xCarriageBackSize, to
                     rounded_cube_xz(cutoutSize, 0.5);
     }
 }
-module xCarriageBiquH2V2SRevoBackPCB(carriageSize, size, extraX=0, holeSeparationTop, holeSeparationBottom, countersunk=0, topHoleOffset=0) {
+module xCarriageBiquH2V2SRevoBackPCB(carriageSize, size, extraX=0, holeSeparationTop, holeSeparationBottom, topHoleOffset=0) {
     topThickness = xCarriageTopThickness();
     baseThickness = xCarriageBaseThickness();
     fillet = 1;
@@ -163,9 +159,9 @@ module xCarriageBiquH2V2SRevo(xCarriageType, inserts, pcb) {
         difference() {
             translate([0, railCarriageGap(), 0])
                 if (pcb)
-                    xCarriageBiquH2V2SRevoBackPCB(carriageSize, size, 0, holeSeparationTop, holeSeparationBottom, countersunk=_xCarriageCountersunk ? 4 : 0);
+                    xCarriageBiquH2V2SRevoBackPCB(carriageSize, size, 0, holeSeparationTop, holeSeparationBottom);
                 else
-                    xCarriageBiquH2V2SRevoBack(carriageSize, size, 0, holeSeparationTop, holeSeparationBottom, countersunk=_xCarriageCountersunk ? 4 : 0);
+                    xCarriageBiquH2V2SRevoBack(carriageSize, size, 0, holeSeparationTop, holeSeparationBottom);
 
             xCarriageHotendSideHolePositions(xCarriageType)
                 if (inserts)

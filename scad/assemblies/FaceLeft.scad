@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <../utils/FrameBolts.scad>
 include <../utils/carriageTypes.scad>
@@ -6,7 +6,7 @@ include <../utils/Z_Rods.scad>
 
 use <../printed/IEC_Housing.scad>
 
-use <../Parameters_Positions.scad>
+use <../config/Parameters_Positions.scad>
 
 
 //!1. Attach the SK brackets to the upper extrusion, use the **Z_RodMountGuide** to align the left bracket.

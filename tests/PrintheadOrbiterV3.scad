@@ -7,7 +7,6 @@ use <../scad/printed/PrintheadAssemblyOrbiterV3.scad>
 use <../scad/printed/X_CarriageAssemblies.scad>
 use <../scad/printed/X_CarriageOrbiterV3.scad>
 use <../scad/vitamins/OrbiterV3.scad>
-use <../scad/assemblies/FaceTop.scad>
 
 
 //$explode = 1;

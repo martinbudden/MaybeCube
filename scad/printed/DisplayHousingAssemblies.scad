@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <../vitamins/displays.scad>
 use <NopSCADlib/vitamins/pcb.scad>
@@ -8,7 +8,7 @@ include <../vitamins/nuts.scad>
 
 use <../../../BabyCube/scad/printed/DisplayHousing.scad>
 
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 
 
 displayHousingOffsetZ = 5;

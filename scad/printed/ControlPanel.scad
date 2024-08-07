@@ -1,4 +1,4 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <NopSCADlib/vitamins/displays.scad>
 
@@ -6,7 +6,7 @@ use <DisplayHousingAssemblies.scad>
 
 include <../vitamins/bolts.scad>
 
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 
 
 module controlPanelPosition() {

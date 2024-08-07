@@ -1,6 +1,6 @@
 include <../vitamins/bolts.scad>
 include <../vitamins/extrusion.scad>
-include <../Parameters_Main.scad>
+include <../config/Parameters_Main.scad>
 
 
 module jointBolt() {

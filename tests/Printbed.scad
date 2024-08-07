@@ -5,7 +5,7 @@ include <NopSCADlib/utils/core/core.scad>
 include <../scad/utils/Z_Rods.scad>
 use <../scad/assemblies/Printbed.scad>
 use <../scad/jigs/ExtrusionDrillJig.scad>
-include <../scad/Parameters_main.scad>
+include <../scad/config/Parameters_main.scad>
 
 
 //$explode = 1;

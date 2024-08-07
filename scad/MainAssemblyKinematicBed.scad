@@ -3,7 +3,7 @@
 //!MaybeCube has the ability to use a 3-point kinematic bed.
 
 
-include <global_defs.scad>
+include <config/global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
 
@@ -14,8 +14,8 @@ use <assemblies/FaceLeft.scad>
 use <assemblies/FaceRight.scad>
 use <assemblies/Printbed.scad>
 
-use <../scad/Parameters_Positions.scad>
-include <Parameters_Main.scad>
+use <config/Parameters_Positions.scad>
+include <config/Parameters_Main.scad>
 
 
 module KinematicBed_assembly()

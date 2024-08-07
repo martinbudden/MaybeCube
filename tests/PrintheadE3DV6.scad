@@ -1,7 +1,5 @@
 //! Display the E3DV6 print head
 
-use <../scad/assemblies/FaceTop.scad>
-use <../scad/printed/PrintheadAssemblies.scad>
 use <../scad/printed/PrintheadAssemblyE3DV6.scad>
 
 //$explode = 1;

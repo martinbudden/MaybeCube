@@ -1,17 +1,16 @@
-include <global_defs.scad>
+include <config/global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
 
 use <printed/E20Cover.scad>
 use <printed/JubileeKinematicBed.scad>
-use <printed/PrintheadAssemblies.scad>
 use <printed/PrintheadAssemblyE3DV6.scad>
 use <printed/PrintheadAssemblyOrbiterV3.scad>
+use <printed/ReverseBowdenBracket.scad>
 use <printed/RightSidePanel.scad>
 use <printed/BaseCover.scad>
 
 include <utils/Z_Rods.scad>
-include <utils/CoreXYBelts.scad>
 
 use <vitamins/Panels.scad>
 
@@ -22,8 +21,6 @@ use <assemblies/FaceRight.scad>
 use <assemblies/FaceRightExtras.scad>
 include <assemblies/FaceTop.scad>
 use <assemblies/Printbed.scad>
-
-use <Parameters_Positions.scad>
 
 
 printbedKinematic = !is_undef(_printbedKinematic) && _printbedKinematic == true;

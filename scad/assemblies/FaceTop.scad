@@ -1,30 +1,23 @@
-include <../global_defs.scad>
+include <../config/global_defs.scad>
 
 include <../utils/FrameBolts.scad>
 
-use <NopSCADlib/utils/fillet.scad>
-
 include <../printed/CameraMount.scad>
-use <../printed/extruderBracket.scad>
 use <../printed/Handle.scad>
 use <../printed/PrintheadAssemblies.scad>
-use <../printed/ReverseBowdenBracket.scad>
 use <../printed/TopCornerPiece.scad>
 use <../printed/WiringGuide.scad>
 use <../printed/XY_MotorMount.scad>
 use <../printed/XY_Idler.scad>
 use <../printed/Y_CarriageAssemblies.scad>
 
-include <../utils/bezierTube.scad>
 include <../utils/X_Rail.scad>
 include <../utils/CoreXYBelts.scad>
 include <../utils/RailNutsAndBolts.scad>
-include <../utils/PrintheadOffsets.scad>
 
-use <../Parameters_Positions.scad>
+use <../config/Parameters_Positions.scad>
 
 function use2060ForTop() = !is_undef(_use2060ForTop) && _use2060ForTop;
-useCamera = false;
 
 
 //!1. Bolt the **Wiring_Guide** to the rear extrusion.
@@ -211,14 +204,14 @@ module faceTopBack(height=60, fov_distance=0) {
         }
         if (_variant != "JubileeToolChanger" && (is_undef($hide_extras) || !$hide_extras)) {
             explode([0, -40, 0], true, show_line=false)
-                translate([useCamera ? cameraMountBaseSize.x/2 : 0, 0, 0])
+                translate([useCamera() ? cameraMountBaseSize.x/2 : 0, 0, 0])
                     wiringGuidePosition()
                         vflip() {
                             stl_colour(pp2_colour)
                                 Wiring_Guide_Socket_stl();
                             Wiring_Guide_Socket_hardware();
                         }
-            if (useCamera)
+            if (useCamera())
                 cameraMountPosition() {
                     stl_colour(pp1_colour)
                         Camera_Mount_stl();
@@ -227,56 +220,6 @@ module faceTopBack(height=60, fov_distance=0) {
         }
     }
 }
-
-module printheadWiring(hotendDescriptor="E3DV6", showCable=true) {
-    // don't show the incomplete cable if there are no extrusions to obscure it
-    wireRadius = 2.5;
-    bezierPos = wiringGuidePosition(offsetY=wiringGuideCableOffsetY(), offsetZ=eSize) - [useCamera ? cameraMountBaseSize.x/2 : 0, 0, 0];
-    if (showCable && is_undef($hide_extrusions))
-        color(grey(20)) {
-            bezierTube(bezierPos, [carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(hotendDescriptor), tubeRadius=wireRadius);
-            translate(bezierPos)
-                vflip()
-                    cylinder(h=bezierPos.z - 3*eSize, r=wireRadius, center=false);
-        }
-
-    /*translate([carriagePosition().x, carriagePosition().y, eZ] + printheadWiringOffset(hotendDescriptor))
-        for (z = [11, 21])
-            translate([0, -3.5, z])
-                rotate([0, 90, 90])
-                    cable_tie(cable_r=3, thickness=4.5);*/
-
-    translate([useCamera ? cameraMountBaseSize.x/2 : 0, 0, 0])
-        wiringGuidePosition() {
-            stl_colour(pp1_colour)
-                Wiring_Guide_stl();
-            explode(20, true)
-                translate_z(wiringGuideTabHeight()) {
-                    stl_colour(pp2_colour)
-                        Wiring_Guide_Clamp_stl();
-                    Wiring_Guide_Clamp_hardware();
-                }
-        }
-}
-
-module reverseBowdenTube(hotendDescriptor="OrbiterV3") {
-    color("white")
-        bezierTube(reverseBowdenBracketOffset(),
-            [carriagePosition().x, carriagePosition().y, eZ] + printheadBowdenOffset(hotendDescriptor),
-            tubeRadius=2,
-            bowdenTube=false,
-            length = eX + eY - 100);
-}
-
-module BowdenTube(hotendDescriptor="E3DV6") {
-    color("white")
-        bezierTube(extruderPosition() + Extruder_Bracket_assembly_bowdenOffset(),
-            [carriagePosition().x, carriagePosition().y, eZ] + printheadBowdenOffset(hotendDescriptor),
-            tubeRadius=2,
-            bowdenTube=true,
-            length = eX + eY - 100);
-}
-
 
 //!1. Bolt the MGN linear rail to the extrusion, using the **Rail_Centering_Jig** to align the rail. Fully tighten the
 //!bolts - the left rail is the fixed rail and the right rail will be aligned to it.

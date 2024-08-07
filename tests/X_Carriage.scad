@@ -12,8 +12,8 @@ use <../scad/utils/X_Rail.scad>
 
 //include <../scad/utils/carriageTypes.scad>
 
-include <../scad/Parameters_Main.scad>
-include <../scad/Parameters_Positions.scad>
+include <../scad/config/Parameters_Main.scad>
+include <../scad/config/Parameters_Positions.scad>
 
 //$explode = 1;
 //$pose = 1;
