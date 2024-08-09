@@ -1,6 +1,6 @@
 //! Display the EVA X carriage
 
-include <../scad/global_defs.scad>
+include <../scad/config/global_defs.scad>
 $pp1_colour = grey(25);
 $pp2_colour = "LimeGreen";
 $pp3_colour = grey(25);

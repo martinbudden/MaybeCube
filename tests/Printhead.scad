@@ -5,10 +5,7 @@ use <../scad/printed/PrintheadAssemblyE3DV6.scad>
 use <../scad/printed/PrintheadAssemblyOrbiterV3.scad>
 use <../scad/printed/X_CarriageAssemblies.scad>
 use <../scad/printed/X_CarriageE3DV6.scad>
-use <../scad/printed/X_CarriageEVA.scad>
 use <../scad/printed/X_CarriageOrbiterV3.scad>
-use <../scad/MainAssemblyXChange.scad>
-use <../scad/MainAssemblyVoronAfterburner.scad>
 use <../scad/MainAssemblyVoronMiniAfterburner.scad>
 use <../scad/MainAssemblyVoronDragonBurner.scad>
 use <../scad/MainAssemblyVoronRapidBurner.scad>

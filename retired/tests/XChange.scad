@@ -1,6 +1,6 @@
 //! Display the XChange X carriage
 
-include <../scad/global_defs.scad>
+include <../scad/config/global_defs.scad>
 
 include <../scad/vitamins/bolts.scad>
 
