@@ -1,6 +1,6 @@
 //! Display the left face
 
-include <../scad/global_defs.scad>
+include <../scad/config/global_defs.scad>
 
 //use <../scad/printed/extruderBracket.scad>
 //use <../scad/printed/IEC_Housing.scad>

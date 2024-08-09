@@ -1,6 +1,6 @@
 //! Display the X carriage
 
-include <../scad/global_defs.scad>
+include <../scad/config/global_defs.scad>
 
 //use <../../BabyCube/scad/printed/X_CarriageBeltAttachment.scad>
 

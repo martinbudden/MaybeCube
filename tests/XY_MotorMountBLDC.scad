@@ -1,5 +1,5 @@
 //!Display the left and right motor encoder mounts.
-include <../scad/global_defs.scad>
+include <../scad/config/global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
 include <NopSCADlib/vitamins/bldc_motors.scad>

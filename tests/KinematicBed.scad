@@ -2,7 +2,7 @@
 //!
 //!This is proof of concept showing the MaybeCube with the Jubilee Kinematic Bed.
 //
-include <../scad/global_defs.scad>
+include <../scad/config/global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
 

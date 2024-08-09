@@ -1,6 +1,6 @@
 //! Display the Display housing
 
-include <../scad/global_defs.scad>
+include <../scad/config/global_defs.scad>
 
 include <NopSCADlib/utils/core/core.scad>
 use <NopSCADlib/vitamins/display.scad>
