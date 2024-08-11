@@ -81,8 +81,7 @@ module xCarriageBiquH2V2SRevoBack(carriageSize, size, extraX=0, holeSeparationTo
     }
 }
 
-module xCarriageBiquH2V2SRevoStrainReliefPCB(carriageSize, xCarriageBackSize, topThickness) {
-    fillet = 1;
+module xCarriageBiquH2V2SRevoStrainReliefPCB(carriageSize, xCarriageBackSize, topThickness, fillet) {
     tabSize = [strainReliefSizeX, xCarriageBackSize.y, 85 + 2*fillet];
 
     difference() {
@@ -103,7 +102,7 @@ module xCarriageBiquH2V2SRevoStrainReliefPCB(carriageSize, xCarriageBackSize, to
 module xCarriageBiquH2V2SRevoBackPCB(carriageSize, size, extraX=0, holeSeparationTop, holeSeparationBottom, topHoleOffset=0) {
     topThickness = xCarriageTopThickness();
     baseThickness = xCarriageBaseThickness();
-    fillet = 1;
+    fillet = 1.5;
 
     translate([-size.x/2, carriageSize.y/2, baseThickness]) {
         translate_z(-size.z)
@@ -118,7 +117,7 @@ module xCarriageBiquH2V2SRevoBackPCB(carriageSize, size, extraX=0, holeSeparatio
                     rotate([-90, -90, 0])
                         fillet(2, size.y);
                     translate([-strainReliefSizeX - 4.5, 0, 0]) {
-                        xCarriageBiquH2V2SRevoStrainReliefPCB(carriageSize, size, topThickness);
+                        xCarriageBiquH2V2SRevoStrainReliefPCB(carriageSize, size, topThickness, fillet);
                         translate_z(pcbCubeSize.z - 2*fillet)
                             rotate([-90, 180, 0])
                                 fillet(2, size.y);
