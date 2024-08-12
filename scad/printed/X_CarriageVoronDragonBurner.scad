@@ -53,7 +53,7 @@ module xCarriageVoronDragonBurnerAdapter(inserts=true, rapid=false) {
         difference() {
             union() {
                 translate([-sizeT.x/2, -sizeT.y, 0]) {
-                    rounded_cube_xy(sizeT, 1);
+                    rounded_cube_xy(sizeT, fillet);
                     translate([(sizeT.x - sizeB.x)/2, 0, 0])
                         rotate(180)
                             fillet(fillet, sizeT.z);
