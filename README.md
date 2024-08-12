@@ -221,28 +221,6 @@ More details on using the Voron Mini Afterburner adaptor are [here](https://gith
 
 The STL file is [here](https://github.com/martinbudden/MaybeCube/blob/main/Voron_Mini_Afterburner/stls/X_Carriage_Voron_Mini_Afterburner.stl).
 
-### EVA module printhead system (version 2.4.2)
-
-I've created adaptors so that the [EVA modular printhead system](https://main.eva-3d.page) can be used. The EVA system
-supports a wide variety of hotends and extruders. More details on using the EVA adaptors are [here](https://github.com/martinbudden/MaybeCube/tree/main/EVA_2_4_2).
-
-The STL files are on [thingiverse](https://www.thingiverse.com/thing:4912099).
-
-In the picture below, EVA adaptors are printed in blue, MaybeCube standard parts are printed in red, and EVA standard parts
-are printed in black and green.
-
-![EVA2](pictures/EVA2.jpg)
-
-### Printermods XChange quick change tool head
-
-I've created an adaptor for the
-[Printermods XChange quick change tool head](https://www.kickstarter.com/projects/printermods/xchange-v10-hot-swap-tool-changing-for-every-3d-printer).
-More details on using the XChange adaptor are [here](https://github.com/martinbudden/MaybeCube/tree/main/XChange).
-
-The STL files are on [thingiverse](https://www.thingiverse.com/thing:4924355).
-
-![XChange](pictures/XChange3.jpg)
-
 ### E3D tool changer
 
 Currently there is no adaptor for the  [E3D tool changer](https://e3d-online.com/pages/toolchanger), however I think it
