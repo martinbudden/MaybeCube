@@ -29,7 +29,7 @@ documents/*
 FreeCAD/*.stl
 FreeCad/*.FCBak
 
-scad/target.scad
+//scad/target.scad
 scad/bom.scad
 scad/stlimporttemp
 scad/stlimport/eva
