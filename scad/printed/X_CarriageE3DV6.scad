@@ -13,6 +13,8 @@ include <../utils/X_Carriage.scad>
 
 use <../../../BabyCube/scad/printed/PrintheadE3DV6.scad>
 use <../../../BabyCube/scad/printed/X_Carriage.scad>
+use <../../../BabyCube/scad/printed/X_CarriageFanDuct.scad>
+
 
 function hotendOffset(xCarriageType, hotendDescriptor="E3DV6") = printheadHotendOffset(hotendDescriptor) + [-xCarriageHotendSideSizeM(xCarriageType, 0, 0).x/2, xCarriageHotendOffsetY(xCarriageType), 0];
 function grooveMountSize(blowerType, hotendDescriptor="E3DV6") = [printheadHotendOffset(hotendDescriptor).x, blower_size(blowerType).x + 6.25, 12];
@@ -106,5 +108,6 @@ module Fan_Duct_stl() {
         color(pp2_colour)
             translate([26, 0, 0])
                 mirror([1, 0, 0])
-                    fanDuct(blower_type=BL30x10, printheadHotendOffsetX=printheadHotendOffset().x, jetOffset=-0.5, chimneySizeZ=17);
+                    fanDuct(blower=BL30x10, jetOffset=[1, 24, -10], chimneySizeZ=14);
+                    //fanDuct(blower_type=BL30x10, printheadHotendOffsetX=printheadHotendOffset().x, jetOffset=-0.5, chimneySizeZ=17);
 }
