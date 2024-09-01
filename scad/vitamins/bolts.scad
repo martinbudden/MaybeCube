@@ -85,11 +85,11 @@ module boltHoleM3Countersunk(length, horizontal=false, rotate=0) {
         // cut the countersink
         translate_z(length)
             hflip()
-                boltHoleM3(length, horizontal=true, rotate=rotate, chamfer=3.2, chamfer_both_ends=false);
+                boltHoleM3(length, horizontal=true, rotate=-rotate, chamfer=3.2, chamfer_both_ends=false);
     } else {
         translate_z(-eps)
             vflip()
-                screw_countersink(M3_cs_cap_screw, 2*length + 2*eps);
+                screw_polysink(M3_cs_cap_screw, 2*length + 2*eps);
         boltHoleM3(length, cnc=true);
     }
 }
@@ -106,8 +106,16 @@ module boltHoleM3CounterboreButtonhead(length, boreDepth=undef, boltHeadToleranc
     boltHoleCounterbore(M3_dome_screw, length, boreDepth, boltHeadTolerance, horizontal=horizontal, cnc=cnc, twist=twist);
 }
 
+module boltHoleM3HangingCounterboreButtonhead(length, boreDepth=undef, boltHeadTolerance=0.4) {
+    boltHoleHangingCounterbore(M3_dome_screw, length=length, boreDepth=boreDepth, boltHeadTolerance=boltHeadTolerance);
+}
+
 module boltHoleM3HangingCounterbore(length, boreDepth=undef, boltHeadTolerance=0.4) {
     boltHoleHangingCounterbore(M3_cap_screw, length=length, boreDepth=boreDepth, boltHeadTolerance=boltHeadTolerance);
+}
+
+module boltHoleM3HangingCounterboreWasher(length, boreDepth=undef, boltHeadTolerance=0.4) {
+    boltHoleHangingCounterbore(M3_cap_screw, length=length, boreDepth=boreDepth, boltHeadTolerance=washer_diameter(M3_washer) + boltHeadTolerance - 2*screw_head_radius(M3_cap_screw));
 }
 
 module boltHoleM3HangingCounterboreTap(length, boreDepth=undef, boltHeadTolerance=0.4) {
