@@ -145,11 +145,8 @@ resolution and should be printed with a 0.25mm layer height namely:
 |   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Bolt M4 caphead x 25mm |
 |   2  |   .  |   .  |  20  |   .  |   .  |   8  |   .  |   .  |   30  |  Bolt M4 countersunk x 10mm |
 |   .  |   .  |   .  |   4  |   .  |   4  |   .  |   .  |   .  |    8  |  Bolt M5 buttonhead x 10mm |
-|   .  |   .  |   .  |  14  |   .  |   8  |  10  |   8  |  16  |   56  |  Bolt M5 buttonhead x 12mm |
-|   .  |   .  |   .  |   .  |   .  |   4  |   .  |   .  |   .  |    4  |  Bolt M5 countersunk x 12mm |
+|   .  |   .  |   .  |  14  |   .  |  12  |  10  |   8  |  16  |   60  |  Bolt M5 buttonhead x 12mm |
 |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Bowden connector |
-|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Cable wrap, 100mm |
-|   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Cable wrap, 110mm |
 |   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   1  |    3  |  Cork damper NEMA 17 |
 |   .  |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |    1  |  Drag chain, 390mm |
 |   .  |   .  |   .  |   .  |   .  |   2  |   .  |   .  |   .  |    2  |  Extrusion E2020 x 300mm |
@@ -185,6 +182,8 @@ resolution and should be printed with a 0.25mm layer height namely:
 |   .  |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |    1  |  Silicone Heater with thermistor - 200mm x 200mm |
 |   .  |   .  |   .  |   .  |   3  |   .  |   .  |   .  |   .  |    3  |  Silicone Spacer 18mm x 16mm |
 |   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Smart Orbiter V3.0 |
+|   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Spiral cable wrap, 100mm |
+|   .  |   1  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |    1  |  Spiral cable wrap, 110mm |
 |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   .  |   1  |    1  |  Stepper motor NEMA17 x 40mm, 300mm integrated leadscrew |
 |   .  |   .  |   .  |   2  |   .  |   .  |   .  |   .  |   .  |    2  |  Stepper motor NEMA17 x 47mm |
 |   .  |   .  |   .  |   1  |   .  |   .  |   .  |   .  |   .  |    1  |  Stepper motor cable, 300mm |
@@ -273,7 +272,7 @@ resolution and should be printed with a 0.25mm layer height namely:
 
 ![Reverse_Bowden_Bracket_assembly](assemblies/Reverse_Bowden_Bracket_assembly_tn.png)
 
-1. Screw the Bowden connector into the **Reverse_Bowde_Bracket**. This is easier if you use an M6 bolt to "tap" the hole first.
+1. Screw the Bowden connector into the **Reverse_Bowden_Bracket**. This is easier if you use an M6 bolt to "tap" the hole first.
 2. Add the bolts and hammer nuts, ready for later attachment to the frame.
 
 ![Reverse_Bowden_Bracket_assembled](assemblies/Reverse_Bowden_Bracket_assembled_tn.png)
@@ -295,9 +294,9 @@ resolution and should be printed with a 0.25mm layer height namely:
 |   2 | Bolt M3 countersunk x  6mm |
 |   4 | Bolt M3 countersunk x 10mm |
 |   2 | Bolt M3 countersunk x 20mm |
-|   1 | Cable wrap, 110mm |
 |   4 | Heatfit insert M3 x 5.8mm |
 |   1 | Smart Orbiter V3.0 |
+|   1 | Spiral cable wrap, 110mm |
 |   5 | Ziptie 2.5mm x 100mm min length |
 
 ### 3D Printed parts
@@ -397,7 +396,7 @@ Insert the belts into the **X_Carriage_Belt_Tensioner**s and then bolt the tensi
 
 ![XY_Motor_Mount_Right_assembly](assemblies/XY_Motor_Mount_Right_assembly.png)
 
-1. Bolt the idler pulleys, shims,  and spacers **XY_Motor_Mount_Right** as shown.
+1. Bolt the idler pulleys, shims, and spacer **XY_Motor_Mount_Right** as shown.
 Tighten the shoulder bolts until the pulleys no longer turn freely, and then loosen the bolts by about 1/4 turn until the pulleys
 turn freely again.
 2. Bolt the motor and the cork damper to the motor mount. The cork damper thermally insulates the motor from the mount
@@ -926,7 +925,7 @@ using the **X_Carriage_Belt_Clamp**.
 |----:|:------------|
 |   4 | Bolt M4 buttonhead x 10mm |
 |   4 | Bolt M5 buttonhead x 10mm |
-|   4 | Bolt M5 countersunk x 12mm |
+|   4 | Bolt M5 buttonhead x 12mm |
 |   4 | Nut M4 sliding T |
 |   2 | SCS12LUU bearing block |
 
@@ -1372,7 +1371,7 @@ as a template to drill the holes in the base plate.
 |----:|:------------|
 |   2 | Bolt M3 buttonhead x  8mm |
 |   4 | Bolt M3 buttonhead x 10mm |
-|   1 | Cable wrap, 100mm |
+|   1 | Spiral cable wrap, 100mm |
 
 ### 3D Printed parts
 
