@@ -11,8 +11,8 @@ include <../config/Parameters_Main.scad>
 
 fan_colour = grey(20);
 
-module fanDuct() {
-    //color(grey(90)) import("../../../stlimport/BIQU_B1_Air guide-0519.STL");
+module fanDuct_BIQU_B1_AirGuide() {
+    color(grey(90)) import("../../../stlimport/BIQU_B1_Air guide-0519.STL");
 }
 
 module insetCube(size, baseHeight=1.5, color=grey(30), boltLength=6) {
@@ -198,7 +198,7 @@ probing = false;
         translate_z(-51)
             nozzle();
     }
-    translate([32, -6.5, -58])
+    *translate([32, -6.5, -58])
         rotate([90, 0, -90])
-            fanDuct();
+            fanDuct_BIQU_B1_AirGuide();
 }
