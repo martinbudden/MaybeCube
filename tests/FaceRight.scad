@@ -8,6 +8,8 @@ use <../scad/printed/AccessPanel.scad>
 use <../scad/printed/BaseCover.scad>
 use <../scad/printed/BambuFanBracket.scad>
 use <../scad/printed/extruderBracket.scad>
+use <../scad/printed/PrintheadAssemblies.scad>
+use <../scad/printed/PrintheadAssemblyOrbiterV3.scad>
 use <../scad/utils/XY_MotorMount.scad>
 
 use <../scad/vitamins/Panels.scad>
@@ -27,7 +29,10 @@ module Right_Side_test() {
     //CoreXYBelts(carriagePosition(), show_pulleys=!true);
     Right_Side_assembly();
     //bambuFanBracketAssembly();
-    baseFanMountAssembly();
+    *translate([130, 0, 0])
+        xRailPrintheadPosition(t=2)
+            Printhead_OrbiterV3_assembly();
+    //baseFanMountAssembly();
     //accessPanelAssembly();
     //Left_Side_assembly();
     //Face_Top_assembly();

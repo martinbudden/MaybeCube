@@ -11,7 +11,6 @@ use <../scad/printed/PrintheadAssemblies.scad>
 include <../scad/printed/Y_CarriageAssemblies.scad>
 use <../scad/printed/XY_Idler.scad>
 use <../scad/printed/XY_MotorMount.scad>
-use <../scad/printed/X_CarriageEVA.scad>
 
 include <../scad/utils/printParameters.scad>
 include <../scad/utils/CoreXYBelts.scad>

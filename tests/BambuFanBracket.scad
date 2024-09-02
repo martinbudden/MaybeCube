@@ -1,15 +1,20 @@
 //! Display the Bambu_Fan_Bracket
 
-use <../scad/printed/BambuFanBracket.scad>
+include <../scad/printed/BambuFanBracket.scad>
 
 
 
 //$explode = 1;
 //$pose = 1;
 module BambuFanBracket_test() {
-    //Bambu_Fan_Bracket_155_stl();
-    //Bambu_Fan_Bracket_hardware([165, 155, 3]);
-    bambuFanBracketAssembly();
+    if (eZ == 350)  {
+        Bambu_Fan_Bracket_150_stl();
+        Bambu_Fan_Bracket_hardware(bambuFanBracketSize400);
+    } else {
+        Bambu_Fan_Bracket_200_stl();
+        Bambu_Fan_Bracket_hardware(bambuFanBracketSize450);
+    }
+    *bambuFanBracketAssembly();
 }
 
 if ($preview)
