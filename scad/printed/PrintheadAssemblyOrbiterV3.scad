@@ -72,11 +72,14 @@ assembly("Printhead_OrbiterV3", big=true) {
 
     translate([orbiterV3OffsetX(), 21 + railCarriageGap() - 0.5, -orbiterV3NozzleOffsetFromMGNCarriageZ()])
         printheadOrbiterV3Assembly();
+
     explode([0, -40, 0], true)
         xCarriageOrbiterV3Assembly(inserts=true);
+
     explode([0, -60, 0], true)
         xCarriageOrbiterV3HolePositions(xCarriageType)
             boltM3Countersunk(10);
+
     cable_wrap(110);
     if (!exploded()) {
         xCarriageOrbiterV3CableTiePositions(xCarriageType)
