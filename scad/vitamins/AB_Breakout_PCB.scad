@@ -38,7 +38,7 @@ LDO_TOOLHEAD_BREAKOUT_V1_1 = [
 //Molex Microfit 3.0, 43045
 Microfit3  = ["Microfit3",   3, 11.6, 3.2, 0.66, silver,   grey(30), 7.6, [0,   0,    8.7], 2.4, 0,     0,    0  ];
 
-function ABBreakoutPCBSize() = [39.37, 47.1, 1];
+function ABBreakoutPCBSize() = pcb_size(LDO_TOOLHEAD_BREAKOUT_V1_1);
 
 module breakoutPCBHolePositions(z=0) {
     for (x = [2.3, 37.3], y = [2.4, 44.9])
