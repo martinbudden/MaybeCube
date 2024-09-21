@@ -11,45 +11,53 @@ use <../printed/BaseCover.scad>
 use <../printed/WiringGuide.scad>
 
 
-breakoutPCBBracketSize = [58, 50, 3];
+breakoutPCBBracketSize = [56, 50, 3];
 offsetY = baseCoverBackSupportSizeZ();
 
 module breakoutPCBBracketHolePositions(size, z=0) {
-    for (x = [5, size.x - 5])
-        translate([x - size.x/2, -10, z])
+    for (x = [23.5, -23.5])
+        translate([x, -10, z])
             children();
 }
 
 module breakoutPCBBracket(size=breakoutPCBBracketSize) {
     pcbSize = ABBreakoutPCBSize();
-    pcbOffset = [-pcbSize.x/2,  - pcbSize.y + offsetY - 1, size.z + 2.5];
+    pcbOffset = [-pcbSize.x/2,  - pcbSize.y + offsetY - 2, size.z + 3];
     fillet = 2;
 
     difference() {
         translate([-size.x/2, -size.y + offsetY, 0])
             union() {
-                rounded_cube_xy(size, fillet);
+                offset = [size.x - 43, 10 + fillet];
+                rounded_cube_xy([size.x, size.y - offset.y, size.z], fillet);
+                translate([offset.x/2, 0, 0])
+                    rounded_cube_xy([size.x - offset.x, size.y, size.z], fillet);
+                translate([offset.x/2, size.y - offset.y, 0])
+                    rotate(90)
+                        fillet(fillet, size.z);
+                translate([size.x - offset.x/2, size.y - offset.y, 0])
+                    fillet(fillet, size.z);
                 translate([size.x/2, size.y - pcbSize.y/2, 0])
                     pcb_screw_positions(LDO_TOOLHEAD_BREAKOUT_V1_1)
                         translate([0, $i==0 || $i==1 ? -1.05 : -1.6, 0])
-                            rounded_cube_xy([7, 8, size.z + 2.5], 1, xy_center=true);
+                            rounded_cube_xy([7, 8, pcbOffset.z], 1, xy_center=true);
             }
         breakoutPCBBracketHolePositions(size)
-            boltHoleM4(size.z);
+            boltHoleM3(size.z);
         translate(pcbOffset)
             breakoutPCBHolePositions()
                 vflip()
-                    boltHoleM2p5Tap(size.z + 2.5);
-                    //boltHole(2.7, size.z + 2.5, cnc=true);
+                    boltHoleM2p5Tap(pcbOffset.z);
+                    //boltHole(2.7, pcbOffset.z, cnc=true);
     }
 }
 
 module Breakout_PCB_Bracket_hardware(size=breakoutPCBBracketSize) {
     pcbSize = ABBreakoutPCBSize();
-    pcbOffset = [-pcbSize.x/2,  - pcbSize.y + offsetY - 1, size.z + 2.5];
+    pcbOffset = [-pcbSize.x/2,  - pcbSize.y + offsetY - 2, size.z + 3];
 
     breakoutPCBBracketHolePositions(size, size.z)
-        boltM4ButtonheadHammerNut(8);
+        boltM3CapheadHammerNut(8);
     translate(pcbOffset) {
         ABBreakoutPCB();
         breakoutPCBHolePositions(pcbSize.z)
@@ -64,7 +72,7 @@ module Breakout_PCB_Bracket_stl() {
 }
 
 module breakoutPCBBracketAssembly() {
-    translate([wiringGuidePosition().x, eY + eSize - 2, 3*eSize])
+    translate([wiringGuidePosition().x, eY + eSize, 3*eSize])
         rotate([90, 0, 0]) {
             stl_colour(pp3_colour)
                 Breakout_PCB_Bracket_stl();
