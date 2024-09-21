@@ -139,7 +139,7 @@ module xyMotorMountBaseCutouts(motorType, size, offset, sideSupportSizeY, left, 
             fillet(fillet);
     if (cnc) {
         // dogbone for corner
-        r = 1.5;
+        r = 3.5/2;
         translate([eSize, eY + eSize])
             translate([-r, 0])
                 circle(r=r);
@@ -290,7 +290,7 @@ module xyMotorMountBlock(motorType, size, basePlateThickness, offset=[0, 0], sid
     coreXY_type = coreXY_type();
     bracketHeight = left || useReversedBelts ? bracketHeightLeft : bracketHeightRight;
     tabHeight = bracketHeight - eSize;
-    height = tabHeight + blockHeightExtra;
+    height = tabHeight + blockHeightExtra + eps;
     blockSize = [size.x - eSize, useReversedBelts ? (use2060ForTopRear() ? eSize : eSize - 4) : eSize, use2060ForTopRear() ? height -  eSize : height];
 
     difference() {
