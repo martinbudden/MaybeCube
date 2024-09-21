@@ -1,5 +1,8 @@
 include <NopSCADlib/utils/core/core.scad>
 use <NopSCADlib/vitamins/pcb.scad>
+use <NopSCADlib/utils/fillet.scad>
+
+include <bolts.scad>
 
 BTT_MANTA_8MP_V2_0 = [
     "BTT_MANTA_8MP_V2_0", "BigTreeTech Manta 8MP v2.0",
@@ -18,14 +21,17 @@ BTT_MANTA_8MP_V2_0 = [
     [], // grid
 ];
 
+
+BTT_MANTA_8MP_V2_Base_height = 4.5;
+
 module BTT_MANTA_8MP_V2_Base_stl() {
     pcbType = BTT_MANTA_8MP_V2_0;
     pcbSize = pcb_size(pcbType);
-    size = [pcbSize.x + 2, pcbSize.y + 2, 2];
-    standoffHeight = 5;
+    size = [pcbSize.x + 2, pcbSize.y + 2, 1.5];
+    standoffHeight = BTT_MANTA_8MP_V2_Base_height - size.z;
 
     stl("BTT_MANTA_8MP_V2_Base")
-        translate_z(-size.z)
+        color(pp4_colour)
             difference() {
                 union() {
                     width = size.x;
@@ -48,13 +54,27 @@ module BTT_MANTA_8MP_V2_Base_stl() {
 module BTT_MANTA_8MP_V2_Spacer_stl() {
     pcbType = BTT_MANTA_8MP_V2_0;
     pcbSize = pcb_size(pcbType);
-    size = [20, pcbSize.y + 2, 5];
+    size = [20, pcbSize.y + 2, 10];
 
     stl("BTT_MANTA_8MP_V2_Spacer")
-        difference() {
-            rounded_cube_xy(size, 3, xy_center=true);
-            for (i = [ 0, 3])
-                translate([0, pcb_coord(pcbType, pcb_holes(pcbType)[i]).y, 0])
+        color(pp2_colour)
+            difference() {
+                rounded_cube_xy(size, 3, xy_center=true);
+                cutoutFillet = 1;
+                cutoutSize = [2, 10, 6];
+                translate([-size.x/2, size.y/2 - cutoutSize.y, size.z -  cutoutSize.z + eps]) {
+                    translate([-2*cutoutFillet, 0, 0])
+                        rounded_cube_xy([cutoutSize.x + 2*cutoutFillet, cutoutSize.y + 2*cutoutFillet, cutoutSize.z], cutoutFillet);
+                    rotate(-90)
+                        fillet(cutoutFillet, cutoutSize.z);
+                    translate([cutoutSize.x, cutoutSize.y, 0])
+                        rotate(-90)
+                            fillet(cutoutFillet, cutoutSize.z);
+                }
+                translate([0, pcb_coord(pcbType, pcb_holes(pcbType)[0]).y, size.z])
+                    vflip()
+                        boltHoleM3Counterbore(size.z);
+                translate([0, pcb_coord(pcbType, pcb_holes(pcbType)[3]).y, 0])
                     boltHoleM3(size.z);
-        }
+            }
 }
