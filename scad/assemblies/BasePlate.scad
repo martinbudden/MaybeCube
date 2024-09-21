@@ -29,10 +29,12 @@ psuOnBase = !is_undef(_useElectronicsInBase) && _useElectronicsInBase == true;
 pcbOnBase = !is_undef(_useElectronicsInBase) && _useElectronicsInBase == true;
 basePSUType = NG_CB_500W_24V;
 //basePSUType = S_300_12;
-pcbType = eY <= 250 ? BTT_SKR_MINI_E3_V2_0 : eY <= 300 ? BTT_SKR_V1_4_TURBO : BTT_MANTA_5MP_V1_0;
+pcbType = eY <= 250 ? BTT_SKR_MINI_E3_V2_0 : eY <= 300 ? BTT_MANTA_5MP_V1_0 : BTT_MANTA_8MP_V2_0;
 //pcbType = eY <= 250 ? BTT_SKR_MINI_E3_V2_0 : eY==350 ? BTT_MANTA_8MP_V2_0 : BTT_SKR_V1_4_TURBO;
 rpiType = RPI3APlus;
-basePCBs = eY <= 250 ? [pcbType] : (pcbType[0] == "BTT_MANTA_8MP_V2_0" || pcbType[0] == "BTT_MANTA_5MP_V1_0") ? [pcbType, BTT_RELAY_V1_2] : [pcbType, rpiType, BTT_RELAY_V1_2, XL4015_BUCK_CONVERTER];
+basePCBs = eY <= 250 ? [pcbType] : 
+            (pcbType[0] == "BTT_MANTA_8MP_V2_0" || pcbType[0] == "BTT_MANTA_5MP_V1_0") ? [pcbType, BTT_RELAY_V1_2] :
+            [pcbType, rpiType, BTT_RELAY_V1_2, XL4015_BUCK_CONVERTER];
 
 
 module BaseAL_dxf() {
@@ -92,7 +94,7 @@ module baseplateM6BoltPositions(size) {
 module basePSUPosition() {
     psuSize = psu_size(basePSUType);
 
-    translate([eX + 2*eSize - (pcbType[0] == "BTT_MANTA_8MP_V2_0" ? 185 : 135), eY + 2*eSize - (eY > 250 ? 40 : 25), 0])
+    translate([eX + 2*eSize - (pcbType[0] == "BTT_MANTA_8MP_V2_0" ? 180: 135), eY + 2*eSize - (eY > 250 ? 60 : 25), 0])
         translate([-psuSize.y/2, -psuSize.x/2, 0])
             rotate(90)
                 children();
@@ -120,8 +122,11 @@ module baseCutouts(cncSides=undef, radius=undef) {
             pcbPosition(pcb, pcbOnBase)
                 pcb_screw_positions(pcb)
                     if (pcb[0] == "BTT_MANTA_5MP_V1_0") {
-                        if ($i!=1)
-                            poly_circle(is_undef(radius) ? M4_tap_radius : radius, sides=cncSides);
+                        if ($i != 1)
+                            poly_circle(is_undef(radius) ? M3_clearance_radius : radius, sides=cncSides);
+                    } else if (pcb[0] == "BTT_MANTA_8MP_V2_0") {
+                        if ($i == 0 || $i == 2)
+                            poly_circle(is_undef(radius) ? M3_clearance_radius : radius, sides=cncSides);
                     } else if (pcb!=pcbType || $i==1 || $i==2) {
                         poly_circle(is_undef(radius) ? (pcb==pcbType ? M3_clearance_radius : pcb==XL4015_BUCK_CONVERTER? M2_tap_radius : M3_tap_radius): radius, sides=cncSides);
                     }
@@ -158,7 +163,7 @@ module baseplateM4CornerBoltPositions(size) {
 
 function basePlateHeight() = _basePlateThickness + 12;
 
-module basePlateAssembly(rightExtrusion=false, hammerNut=true) {
+module basePlateAssembly(rightExtrusion=true, hammerNut=true) {
     size = basePlateSize;
     BaseAL();
     //hidden() Base_stl();
@@ -265,7 +270,7 @@ assembly("Base_Plate", big=true, ngb=true) {
     if (pcbOnBase) {
         for (pcb = basePCBs)
             pcbAssembly(pcb, pcbOnBase);
-        //breakoutPCBBracketAssembly();
+        breakoutPCBBracketAssembly();
     }
 
     if (psuOnBase) {
