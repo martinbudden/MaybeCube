@@ -24,7 +24,7 @@ function wiringGuideCableOffsetY() = 10;
 wiringClearance = 0.5;
 function wiringGuideTabHeight() = wiringGuideCableOffsetY() + wiringDiameter - 2 + wiringClearance;
 
-function wiringGuidePosition(offsetX=10, offsetY=0, offsetZ=0) = [eX/2 + eSize + 10 - (wiringGuideSize.x + eSize)/2 - offsetX, eY + eSize - offsetY, eZ - eSize - offsetZ];
+function wiringGuidePosition(offsetX=16, offsetY=0, offsetZ=0) = [eX/2 + eSize + offsetX - (eX==300 ? 10 : 0) - (wiringGuideSize.x + eSize)/2, eY + eSize - offsetY, eZ - eSize - offsetZ];
 function useCamera() = false;
 
 module Wiring_Guide_stl() {
@@ -121,8 +121,8 @@ module Wiring_Guide_Socket_hardware() {
                 boltM3CapheadHammerNut(_frameBoltLength);
 }
 
-module wiringGuidePosition(offsetX=10, offsetY=0) {
-    translate(wiringGuidePosition(offsetX, offsetY))
+module wiringGuidePosition(offsetY=0) {
+    translate(wiringGuidePosition(offsetY=offsetY))
         rotate([90, 0, 0])
             children();
 }
