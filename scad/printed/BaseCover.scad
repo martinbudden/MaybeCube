@@ -20,6 +20,7 @@ include <../config/Parameters_Positions.scad>
 
 supportHeight = 70;
 holeOffset = 20;
+function cableChainBracketOffsetX() = eX > 300 ? 240 : 210;
 chainAnchorOffset = eX + 50 - cableChainBracketOffsetX();
 chainAnchorSizeX = 8;
 baseCoverTopSize = [eX > 300 ? 220 : 210, eY + eSize, 3];
