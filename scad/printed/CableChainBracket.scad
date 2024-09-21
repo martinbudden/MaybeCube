@@ -10,8 +10,8 @@ include <../config/Parameters_Main.scad>
 
 function cableChainBracketOffsetX() = eX > 300 ? 240 : 210;
 //cableChainBracketSize = [25, eY - (_zRodOffsetY + (zRodSeparation() + _printbedArmSeparation)/2) - 5, eSize];
-cableChainBracketSize = [25, 55, eSize];
-cableChainBracketTabSize = [45, 5, eSize];
+cableChainBracketSize = [20, 55, eSize];
+cableChainBracketTabSize = [38, 5, eSize];
 
 /*
 module cableChainBracketHolePositions(size=cableChainBracketSize) {
@@ -21,16 +21,23 @@ module cableChainBracketHolePositions(size=cableChainBracketSize) {
 }
 */
 
-module cableChainBracketHolePositions(size=cableChainBracketSize) {
+module cableChainBracketDragChainHolePositions(size=cableChainBracketSize) {
     for (z = [0, 8])
         translate([-size.x/2, size.y - 10, z + 7])
             children();
 }
 
+module cableChainBracketHolePositions(size=cableChainBracketTabSize, y=0) {
+    for (x = [4.5, size.x - 4.5])
+        translate([x - size.x/2, y, size.z/2])
+            rotate([90, 0, 180])
+                children();
+}
+
 module cableChainBracket(size=cableChainBracketSize) {
     tabSize = cableChainBracketTabSize;
     fillet = 1;
-    cutout = [8, 15 + fillet];
+    cutout = [9, 15 + fillet];
     endStopSizeY = 4;
 
     difference() {
@@ -42,7 +49,7 @@ module cableChainBracket(size=cableChainBracketSize) {
             translate([-size.x/2, 0, 0])
                 rounded_cube_xy([size.x - cutout.x, size.y, size.z], fillet);
         }
-        cableChainBracketHolePositions(size)
+        cableChainBracketDragChainHolePositions(size)
             rotate([90, 0, 90])
                 boltHoleM3Tap(size.x - cutout.x - 2, horizontal=true);
         translate([size.x/2, size.y - cutout.y, size.z])
@@ -50,10 +57,10 @@ module cableChainBracket(size=cableChainBracketSize) {
                 fillet(8, cutout.x);
         // cutouts for cable ties
         for (x = [-4.5, 2], y = [12, 30])
-            translate([x + size.x/4 + 1.5, size.y - cutout.y - y, -eps])
+            translate([x + size.x/4 + 0.5, size.y - cutout.y - y, -eps])
                 rounded_cube_xy([2, 5, size.z + 2*eps], 0.25, xy_center=true);
         for (y = [-3.5, 3.5])
-            translate([-4, y + size.y - 10, -eps])
+            translate([-4.5, y + size.y - 10, -eps])
                 rounded_cube_xy([5, 2, size.z + 2*eps], 0.25, xy_center=true);
         translate([0, size.y - cutout.y/2 - endStopSizeY/2, -eps]) {
             translate([-size.x/2 - eps, 0, 0])
@@ -67,28 +74,22 @@ module cableChainBracket(size=cableChainBracketSize) {
 
     }
     translate([size.x/2, tabSize.y, 0])
-        fillet(1, size.z);
+        fillet(0.5, size.z);
     translate([-size.x/2, tabSize.y, 0])
         rotate(90)
-            fillet(1, size.z);
-    translate([-tabSize.x/2, 0, 0])
-        difference() {
+            fillet(0.5, size.z);
+    difference() {
+        translate([-tabSize.x/2, 0, 0])
             rounded_cube_xy(tabSize, 1);
-            for (x = [5, tabSize.x - 5])
-                translate([x, 0, tabSize.z/2])
-                    rotate([90, 0, 180])
-                        boltHoleM4(tabSize.y, horizontal=true);
-        }
+        cableChainBracketHolePositions(tabSize)
+            boltHoleM4(tabSize.y, horizontal=true);
+    }
 }
 
-module Cable_Chain_Bracket_hardware(size=cableChainBracketSize) {
-    tabSize = cableChainBracketTabSize;
-    cutout = [8, 15];
+module Cable_Chain_Bracket_hardware() {
+    cableChainBracketHolePositions(cableChainBracketTabSize, cableChainBracketTabSize.y)
+        boltM4ButtonheadHammerNut(_frameBoltLength);
 
-    for (x = [5, tabSize.x - 5])
-        translate([x - tabSize.x/2, tabSize.y, tabSize.z/2])
-            rotate([-90, 0, 0])
-                boltM4ButtonheadHammerNut(_frameBoltLength);
 }
 
 module Cable_Chain_Bracket_cable_ties(size=cableChainBracketSize) {
@@ -101,7 +102,7 @@ module Cable_Chain_Bracket_cable_ties(size=cableChainBracketSize) {
         cable_tie(cable_r = 2.75, thickness = 20);
 
     translate([-2, 0, 0])
-        cableChainBracketHolePositions()
+        cableChainBracketDragChainHolePositions()
             rotate([0, -90, 0])
                 explode(110, true)
                     boltM3Countersunk(8);
