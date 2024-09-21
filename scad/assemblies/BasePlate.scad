@@ -19,6 +19,7 @@ include <../utils/FrameBolts.scad>
 include <../vitamins/RPI3APlus.scad>
 include <../vitamins/BTT_MANTA_5MP.scad>
 include <../vitamins/BTT_MANTA_8MP.scad>
+include <../vitamins/BTT_KRAKEN.scad>
 include <../vitamins/psus.scad>
 
 AL3 = ["AL3", "Aluminium sheet", 3, [0.9, 0.9, 0.9, 1], false];
@@ -33,8 +34,9 @@ pcbType = eY <= 250 ? BTT_SKR_MINI_E3_V2_0 : eY <= 300 ? BTT_MANTA_5MP_V1_0 : BT
 //pcbType = eY <= 250 ? BTT_SKR_MINI_E3_V2_0 : eY==350 ? BTT_MANTA_8MP_V2_0 : BTT_SKR_V1_4_TURBO;
 rpiType = RPI3APlus;
 basePCBs = eY <= 250 ? [pcbType] : 
+            pcbType[0] == "BTT_SKR_V1_4_TURBO" ? [pcbType, rpiType, BTT_RELAY_V1_2, XL4015_BUCK_CONVERTER] :
             (pcbType[0] == "BTT_MANTA_8MP_V2_0" || pcbType[0] == "BTT_MANTA_5MP_V1_0") ? [pcbType, BTT_RELAY_V1_2] :
-            [pcbType, rpiType, BTT_RELAY_V1_2, XL4015_BUCK_CONVERTER];
+            [pcbType, rpiType, BTT_RELAY_V1_2];
 
 
 module BaseAL_dxf() {
@@ -94,7 +96,7 @@ module baseplateM6BoltPositions(size) {
 module basePSUPosition() {
     psuSize = psu_size(basePSUType);
 
-    translate([eX + 2*eSize - (pcbType[0] == "BTT_MANTA_8MP_V2_0" ? 180: 135), eY + 2*eSize - (eY > 250 ? 60 : 25), 0])
+    translate([eX + 2*eSize - 180, eY + 2*eSize - (eY > 250 ? 60 : 25), 0])
         translate([-psuSize.y/2, -psuSize.x/2, 0])
             rotate(90)
                 children();

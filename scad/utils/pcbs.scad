@@ -144,6 +144,10 @@ module pcbPosition(pcbType, pcbOnBase=false, z=0) {
             translate([eX + 2*eSize - pcbSize.y/2 - eSize/2 + holeOffset, pcbSize.x/2 + eSize + (eY == 350 ? 60 : 15), z])
                 rotate(-90)
                     children();
+        } else if (pcbType[0] == "BTT_KRAKEN_V1_0") {
+            holeOffset = 4;
+            translate([eX + 2*eSize - pcbSize.x/2 - eSize/2 + holeOffset, pcbSize.y/2 + eSize + (eY >= 300 ? 20 : 15), z])
+                children();
         } else {
             holeOffset = 4;
             translate([eX + 2*eSize - pcbSize.y/2 - eSize/2 + holeOffset, pcbSize.x/2 + eSize + (eY >= 300 ? 20 : 15), z])
