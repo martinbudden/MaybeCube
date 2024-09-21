@@ -22,12 +22,13 @@ supportHeight = 70;
 holeOffset = 20;
 chainAnchorOffset = eX + 50 - cableChainBracketOffsetX();
 chainAnchorSizeX = 8;
-baseCoverTopSize = [eX > 300 ? 240 : 210, eY + eSize, 3];
+baseCoverTopSize = [eX > 300 ? 220 : 210, eY + eSize, 3];
 baseCoverBackSupportSize = [baseCoverTopSize.x, eSize, supportHeight - 3*eSize];
 function baseCoverBackSupportSizeZ() = baseCoverBackSupportSize.z;
 baseCoverLeftSideSupportSize = [8, eY/2, supportHeight];
 baseCoverRightSideSupportSize = [eSize + 10, eY/2, 5];
-baseCoverFrontSupportSize = [baseCoverTopSize.x - baseCoverLeftSideSupportSize.x, 12, 3*eSize/2];
+baseCoverFrontOffsetX = 10;
+baseCoverFrontSupportSize = [baseCoverTopSize.x - 10 - baseCoverFrontOffsetX, 12, 3*eSize/2];
 
 
 module chainAnchorHolePositions(size, offset=chainAnchorOffset) {
@@ -67,7 +68,7 @@ module baseCoverBackSupport(size, offset=chainAnchorOffset) {
         chainAnchorHolePositions(size)
             rotate([90, 0, -90])
                 boltHole(M3_tap_radius*2 + 0.4, chainAnchorSize.x, horizontal=true);
-        for (x = [holeOffset, size.x/2, size.x - holeOffset])
+        for (x = [holeOffset - 5, size.x/2, size.x - holeOffset])
             translate([x, size.y/2, size.z])
                 vflip()
                     boltHoleM3Tap(10);
@@ -100,7 +101,7 @@ module baseDragChain(offset=chainAnchorOffset) {
         rotate([0, -90, 0])
             color(grey(25))
                 not_on_bom()
-                    drag_chain_assembly(drag_chain, pos=(zPos($t) - 85), radius=0);
+                    drag_chain_assembly(drag_chain, pos=(zPos($t) - 85));
     }
 }
 
@@ -110,47 +111,57 @@ module Base_Cover_Back_Support_210_stl() {
             baseCoverBackSupport(baseCoverBackSupportSize);
 }
 
-module Base_Cover_Back_Support_240_stl() {
-    stl("Base_Cover_Back_Support_240")
+module Base_Cover_Back_Support_220_stl() {
+    stl("Base_Cover_Back_Support_220")
         color(pp2_colour) 
             baseCoverBackSupport(baseCoverBackSupportSize);
 }
 
-module baseCoverFrontSupport(size) {
+module baseCoverFrontSupport(size, offsetX) {
     x1 = holeOffset - baseCoverLeftSideSupportSize.x;
     fillet = 1;
-    difference() {
-        rounded_cube_xy([size.x, size.z, 3], fillet);
-        for (x = [x1, baseCoverTopSize.x/2 - 8, size.x - holeOffset])
-            translate([x, 20, 0])
-                boltHoleM3(3);
-    }
-    difference() {
-        rounded_cube_xy([size.x, 5, size.y], fillet);
-        for (x = [x1, baseCoverTopSize.x/2 - 8, size.x - holeOffset])
-            translate([x, 0, 7.5])
-                rotate([-90, 180, 0])
-                    boltHoleM3(5, horizontal=true);
+    translate([-offsetX, 0, 0]) {
+        difference() {
+            union() {
+                sizeZ = 3;
+                rounded_cube_xy([size.x, size.z, sizeZ], fillet);
+                translate([0, 10, 0]) {
+                    rounded_cube_xy([size.x + 10, size.z - 10, sizeZ], fillet);
+                    translate([size.x, 0, 0])
+                        rotate(-90)
+                            fillet(fillet, sizeZ);
+
+                }
+            }
+            for (x = [holeOffset, baseCoverTopSize.x/2, baseCoverTopSize.x - holeOffset])
+                translate([x - offsetX, 20, 0])
+                    boltHoleM3(3);
+        }
+        difference() {
+            rounded_cube_xy([size.x, 5, size.y], fillet);
+            for (x = [holeOffset, baseCoverTopSize.x/2, baseCoverTopSize.x - holeOffset])
+                translate([x - offsetX, 0, 7.5])
+                    rotate([-90, 180, 0])
+                        boltHoleM3(5, horizontal=true);
+        }
     }
 }
 
 module Base_Cover_Front_Support_hardware() {
-    size = baseCoverFrontSupportSize;
-    for (x = [holeOffset - baseCoverLeftSideSupportSize.x, baseCoverTopSize.x/2 - 8, size.x - holeOffset])
-        translate([x, 20, 3])
-            explode(30, true)
-                boltM3ButtonheadHammerNut(8, nutExplode=40);
+    for (x = [holeOffset, baseCoverTopSize.x/2, baseCoverTopSize.x - holeOffset])
+        translate([x - 2*baseCoverFrontOffsetX, 20, 3])
+            boltM3ButtonheadHammerNut(8, nutExplode=40);
 }
 
-module Base_Cover_Front_Support_202_stl() {
-    stl("Base_Cover_Front_Support_202")
+module Base_Cover_Front_Support_190_stl() {
+    stl("Base_Cover_Front_Support_190")
         color(pp1_colour)
-            baseCoverFrontSupport(baseCoverFrontSupportSize);
+            baseCoverFrontSupport(baseCoverFrontSupportSize, baseCoverFrontOffsetX);
 }
-module Base_Cover_Front_Support_232_stl() {
-    stl("Base_Cover_Front_Support_232")
+module Base_Cover_Front_Support_200_stl() {
+    stl("Base_Cover_Front_Support_200")
         color(pp1_colour)
-            baseCoverFrontSupport(baseCoverFrontSupportSize);
+            baseCoverFrontSupport(baseCoverFrontSupportSize, baseCoverFrontOffsetX);
 }
 
 module baseCoverLeftSideSupport(size, tap=false) {
@@ -240,7 +251,7 @@ BaseCover = ["BaseCover", "Sheet perspex", 3, grey(30), false];
 
 module baseCoverRightHolePositions(size) {
     yLeft = baseCoverLeftSideSupportSize.y/4;
-    for (y = [3*yLeft])
+    for (y = [3*yLeft, size.y - 3*yLeft])
         translate([size.x/2 - 4, y - size.y/2, 0])
             children();
 }
@@ -254,11 +265,23 @@ module baseCoverLeftHolePositions(size=baseCoverTopSize) {
                 children();
 }
 
-module baseCoverTopHolePositions(size) {
-    for (x = [holeOffset, size.x/2, size.x - holeOffset], y = [8 -size.y/2, size.y/2 -10]) {
-        translate([x - size.x/2, y, 0])
+module baseCoverFrontHolePositions(size=baseCoverTopSize) {
+    for (x = [holeOffset, size.x/2, size.x - holeOffset])
+        translate([x - size.x/2, 8 - size.y/2, 0])
             children();
-    }
+}
+
+module baseCoverBackHolePositions(size) {
+    for (x = [holeOffset - 5, size.x/2, size.x - holeOffset])
+        translate([x - size.x/2, size.y/2 - 10, 0])
+            children();
+}
+
+module baseCoverAllHolePositions(size) {
+    baseCoverFrontHolePositions(size)
+        children();
+    baseCoverBackHolePositions(size)
+        children();
     translate(-[eX + eSize - size.x/2, eSize + size.y/2, 0])
         baseCoverLeftHolePositions(size)
             children();
@@ -271,17 +294,66 @@ module baseCoverTopAssembly(addBolts=true) {
 
     translate([eX + eSize - size.x/2, eSize + size.y/2, supportHeight + size.z/2]) {
         if (addBolts)
-            baseCoverTopHolePositions(size)
+            baseCoverAllHolePositions(size)
                 translate_z(size.z/2)
                     boltM3Buttonhead(8);
-        render_2D_sheet(BaseCover, w=size.x, d=size.y)
+        *render_2D_sheet(BaseCover, w=size.x, d=size.y)
             if (eX == 300)
                 Base_Cover_210_dxf();
             else
-                Base_Cover_240_dxf();
+                Base_Cover_220_dxf();
+        translate_z(-size.z/2) {
+            vflip()
+                Base_Cover_Front_220_stl();
+            Base_Cover_Back_220_stl();
+        }
     }
 }
 
+module baseCoverCutouts(size, fillet, cnc=true) {
+    cncSides = cnc ? 0 : undef ;
+    baseCoverAllHolePositions(size)
+        poly_circle(M3_clearance_radius, cncSides);
+    chainCutoutSize = [18, 24 + 2* fillet];
+    translate([size.x/2 - chainAnchorOffset - 0.5, size.y/2]) {
+        translate([0, -chainCutoutSize.y + fillet])
+            rounded_square(chainCutoutSize, fillet, center=false);
+        rotate(180)
+            fillet(fillet);
+        translate([chainCutoutSize.x, 0])
+            rotate(-90)
+                fillet(fillet);
+        extraCutoutSize = [8, chainCutoutSize.y + 8];
+        translate([0, -extraCutoutSize.y + fillet])
+            rounded_square(extraCutoutSize, fillet, center=false);
+        translate([extraCutoutSize.x, -chainCutoutSize.y + fillet])
+            rotate(-90)
+                fillet(fillet);
+    }
+    cutoutFillet = 1;
+    cameraWiringCutoutSize = [5, 5];
+    #translate([size.x/2 - cameraWiringCutoutSize.x, -size.y/2]) {
+        translate([0, -2*cutoutFillet])
+            rounded_square([cameraWiringCutoutSize.x + 2*cutoutFillet, cameraWiringCutoutSize.y + 2*cutoutFillet], cutoutFillet, center=false);
+        rotate(90)
+            fillet(cutoutFillet);
+        translate(cameraWiringCutoutSize)
+            rotate(90)
+                fillet(cutoutFillet);
+    }
+    wiringGuidePosition = wiringGuidePosition(offsetY=wiringGuideCableOffsetY(), offsetZ=eSize);
+    //wiringCutoutSize = [8, 26 + 2*fillet];// for just wire
+    wiringCutoutSize = [30, 37 + 2*fillet];
+    translate([size.x/2 - eX - eSize + wiringGuidePosition.x - wiringCutoutSize.x/2 + 0.75*0, size.y/2]) {
+        translate([0, -wiringCutoutSize.y + fillet])
+            rounded_square(wiringCutoutSize, fillet, center=false);
+        rotate(180)
+            fillet(fillet);
+        translate([wiringCutoutSize.x, 0])
+            rotate(-90)
+                fillet(fillet);
+    }
+}
 module baseCoverDxf(size) {
     sheet = BaseCover;
     fillet = 1.5;
@@ -289,30 +361,7 @@ module baseCoverDxf(size) {
     color(sheet_colour(sheet))
         difference() {
             sheet_2D(sheet, size.x, size.y, fillet);
-            baseCoverTopHolePositions(size)
-                circle(r=M3_clearance_radius);
-            chainCutoutSize = [18, 24 + 2* fillet];
-            translate([size.x/2 - chainAnchorOffset-0.5, size.y/2]) {
-                translate([0, -chainCutoutSize.y + fillet])
-                    rounded_square(chainCutoutSize, fillet, center=false);
-                rotate(180)
-                    fillet(fillet);
-                translate([chainCutoutSize.x, 0])
-                    rotate(-90)
-                        fillet(fillet);
-            }
-            wiringGuidePosition = wiringGuidePosition(offsetY=wiringGuideCableOffsetY(), offsetZ=eSize);
-            //wiringCutoutSize = [8, 26 + 2*fillet];// for just wire
-            wiringCutoutSize = [25, 35 + 2*fillet];
-            translate([size.x/2 - eX - eSize + wiringGuidePosition.x - wiringCutoutSize.x/2 + 0.75, size.y/2]) {
-                translate([0, -wiringCutoutSize.y + fillet])
-                    rounded_square(wiringCutoutSize, fillet, center=false);
-                rotate(180)
-                    fillet(fillet);
-                translate([wiringCutoutSize.x, 0])
-                    rotate(-90)
-                        fillet(fillet);
-            }
+            baseCoverCutouts(size, fillet, cnc=true);
         }
 }
 
@@ -321,26 +370,95 @@ module Base_Cover_210_dxf() {
         baseCoverDxf(baseCoverTopSize);
 }
 
-module Base_Cover_240_dxf() {
-    dxf("Base_Cover_240")
+module Base_Cover_220_dxf() {
+    dxf("Base_Cover_220")
         baseCoverDxf(baseCoverTopSize);
 }
 
-module Base_Cover_Top_stl() {
-    stl("Base_Cover_Top")
-        color(pp3_colour)
-            rounded_cube_xy(baseCoverTopSize, 2);
+module baseCoverStl(size) {
+    fillet = 2;
+
+    linear_extrude(size.z)
+        difference() {
+            rounded_square([size.x, size.y], fillet);
+            baseCoverCutouts(size, fillet, cnc=false);
+        }
 }
 
+module baseCoverFrontStl(size) {
+    fillet = 2;
+    overlap = 10;
+
+    linear_extrude(size.z)
+        difference() {
+            translate([-size.x/2, -size.y/2])
+                rounded_square([size.x, size.y/2 - overlap/2], fillet, center=false);
+            baseCoverCutouts(size, fillet, cnc=false);
+        }
+    translate_z(size.z/2)
+        difference() {
+            translate([-size.x/2, -overlap/2 - 2*fillet, 0])
+                rounded_cube_xy([size.x, overlap + 2*fillet, size.z/2], fillet, xy_center=false);
+            for (x = [holeOffset - size.x/2, 0, size.x/2 - holeOffset])
+                translate([x, 0, 0])
+                    boltHoleM3(size.z/2);
+        }
+}
+
+module baseCoverBackStl(size) {
+    fillet = 2;
+    overlap = 10;
+
+    linear_extrude(size.z)
+        difference() {
+            translate([-size.x/2, overlap/2])
+                rounded_square([size.x, size.y/2 - overlap/2], fillet, center=false);
+            baseCoverCutouts(size, fillet, cnc=false);
+        }
+    difference() {
+        translate([-size.x/2, -overlap/2, 0])
+            rounded_cube_xy([size.x, overlap + 2*fillet, size.z/2], fillet, xy_center=false);
+        for (x = [holeOffset - size.x/2, 0, size.x/2 - holeOffset])
+            translate([x, 0, 0])
+                boltHoleM3(size.z/2);
+    }
+}
+
+module Base_Cover_210_stl() {
+    stl("Base_Cover_210")
+        color(grey(30))
+            baseCoverStl(baseCoverTopSize);
+}
+
+module Base_Cover_220_stl() {
+    stl("Base_Cover_220")
+        color(grey(30))
+            baseCoverStl(baseCoverTopSize);
+}
+
+
+module Base_Cover_Front_220_stl() {
+    stl("Base_Cover_Front_220")
+        color(grey(30))
+            vflip()
+                baseCoverFrontStl(baseCoverTopSize);
+}
+
+
+module Base_Cover_Back_220_stl() {
+    stl("Base_Cover_Back_220")
+        //color(grey(40))
+            baseCoverBackStl(baseCoverTopSize);
+}
 
 module baseCoverFrontSupportsAssembly() {
     translate([eX + eSize - baseCoverFrontSupportSize.x, eSize, supportHeight])
         rotate([-90, 0, 0]) {
             color(pp1_colour)
                 if (eX == 300)
-                    Base_Cover_Front_Support_202_stl();
+                    Base_Cover_Front_Support_190_stl();
                 else
-                    Base_Cover_Front_Support_232_stl();
+                    Base_Cover_Front_Support_200_stl();
             Base_Cover_Front_Support_hardware();
         }
 }
@@ -351,7 +469,7 @@ module baseCoverBackSupportsAssembly() {
             if (eX == 300)
                 Base_Cover_Back_Support_210_stl();
             else
-                Base_Cover_Back_Support_240_stl();
+                Base_Cover_Back_Support_220_stl();
         Base_Cover_Back_Support_hardware();
     }
 }
