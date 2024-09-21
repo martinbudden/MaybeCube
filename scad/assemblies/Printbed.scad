@@ -525,7 +525,7 @@ assembly("Heated_Bed", big=true) {
 //!3. Thread the heated be wires through the cable chain and attach the cable chain to the **Cable_Chain_Bracket**.
 //!4. Secure the wires with cable ties.
 //
-module Printbed_assembly()  pose(a=[210, 0, 320])
+module Printbed_assembly(t = undef)  pose(a=[210, 0, 320])
 assembly("Printbed", big=true) {
 
     if (is_undef(_printbedKinematic) || _printbedKinematic == false) {
@@ -552,9 +552,9 @@ assembly("Printbed", big=true) {
                     rotate(90)
                         Cable_Chain_Bracket_cable_ties();
             }
-        translate_z(-bedHeight())
+        translate_z(-bedHeight(t))
             explode([-50, 0, 0])
-                baseDragChain();
+                baseDragChain(t=t);
     }
 }
 

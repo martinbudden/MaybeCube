@@ -92,7 +92,7 @@ module Base_Cover_Back_Support_hardware() {
                 boltM3Countersunk(8);
 }
 
-module baseDragChain(offset=chainAnchorOffset) {
+module baseDragChain(offset=chainAnchorOffset, t=undef) {
     dragChainSize = [15, 10.5, 10];
     travel = 215;
     drag_chain = drag_chain("x", dragChainSize, travel=travel, wall=1.5, bwall=1.5, twall=1.5);
@@ -102,7 +102,7 @@ module baseDragChain(offset=chainAnchorOffset) {
         rotate([0, -90, 0])
             color(grey(25))
                 not_on_bom()
-                    drag_chain_assembly(drag_chain, pos=(zPos($t) - 85));
+                    drag_chain_assembly(drag_chain, pos=(zPos(is_undef(t) ? $t : t) - 85));
     }
 }
 
