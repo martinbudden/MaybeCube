@@ -50,22 +50,24 @@ assembly("Right_Side", big=true) {
             translate([eX + eSize, eSize, spoolHeight()])
                 extrusionOY2040VEndBolts(eY);
     }
+
     if ($target != "DualZRods" && $target != "KinematicBed" && !useBackMounts) {
-        if (useElectronicsInBase) {
-            if (useBowdenExtruder())
+        if (!useElectronicsInBase)
+            explode([50, 75, 0])
+                IEC_Housing_assembly();
+
+        if (useBowdenExtruder()) {
+            explode([50, 75, 0])
+                Extruder_Bracket_assembly();
+            if (useElectronicsInBase) {
                 if (eZ >= 400)
                     explode([50, 75, 0], true)
                         rightSidePanelAssembly();
-        } else {
-            explode([50, 75, 0])
-                IEC_Housing_assembly();
-            if (useBowdenExtruder())
+            } else {
                 explode([75, 75, 0], true)
                     accessPanelAssembly();
+            }
         }
-        if (useBowdenExtruder())
-            explode([50, 75, 0])
-                Extruder_Bracket_assembly();
     }
 }
 
