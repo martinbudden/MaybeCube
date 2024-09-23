@@ -3,6 +3,7 @@ include <../config/global_defs.scad>
 include <../utils/FrameBolts.scad>
 
 use <../printed/AccessPanel.scad>
+use <../printed/BambuFanBracket.scad>
 use <../printed/extruderBracket.scad>
 use <../printed/IEC_Housing.scad>
 use <../printed/RightSidePanel.scad>
@@ -44,8 +45,10 @@ assembly("Right_Side", big=true) {
         translate([eX + eSize, eY + eSize - supportLength, 70])
             extrusionOY2040VEndBolts(supportLength);
     } else {
-        if (eZ >= 400)
+        if (eZ >= 400) {
             faceRightLowerExtrusion(useElectronicsInBase && !_useDualZRods);
+            bambuFanBracketAssembly();
+        }
         if (!useBackMounts)
             translate([eX + eSize, eSize, spoolHeight()])
                 extrusionOY2040VEndBolts(eY);
