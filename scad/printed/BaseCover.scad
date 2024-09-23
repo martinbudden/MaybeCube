@@ -23,7 +23,7 @@ holeOffset = 20;
 function cableChainBracketOffsetX() = eX > 300 ? 240 : 210;
 chainAnchorOffset = eX + 50 - cableChainBracketOffsetX();
 chainAnchorSizeX = 8;
-baseCoverTopSize = [eX > 300 ? 220 : 210, eY + eSize, 3];
+baseCoverTopSize = [eX > 300 ? 220 : 210, eY + eSize, 3.5];
 baseCoverBackSupportSize = [baseCoverTopSize.x, eSize, supportHeight - 3*eSize];
 function baseCoverBackSupportSizeZ() = baseCoverBackSupportSize.z;
 baseCoverLeftSideSupportSize = [8, eY/2, supportHeight];
@@ -305,8 +305,10 @@ module baseCoverTopAssembly(addBolts=true) {
                 Base_Cover_220_dxf();
         translate_z(-size.z/2) {
             vflip()
-                Base_Cover_Front_220_stl();
-            Base_Cover_Back_220_stl();
+                color(grey(30))
+                    Base_Cover_Front_220_stl();
+            color(grey(40))
+                Base_Cover_Back_220_stl();
         }
     }
 }
@@ -333,7 +335,7 @@ module baseCoverCutouts(size, fillet, cnc=true) {
     }
     cutoutFillet = 1;
     cameraWiringCutoutSize = [5, 5];
-    #translate([size.x/2 - cameraWiringCutoutSize.x, -size.y/2]) {
+    translate([size.x/2 - cameraWiringCutoutSize.x, -size.y/2]) {
         translate([0, -2*cutoutFillet])
             rounded_square([cameraWiringCutoutSize.x + 2*cutoutFillet, cameraWiringCutoutSize.y + 2*cutoutFillet], cutoutFillet, center=false);
         rotate(90)
@@ -388,40 +390,40 @@ module baseCoverStl(size) {
 
 module baseCoverFrontStl(size) {
     fillet = 2;
-    overlap = 10;
+    overlapSize = [size.x, 10, 1.5];
 
     linear_extrude(size.z)
         difference() {
             translate([-size.x/2, -size.y/2])
-                rounded_square([size.x, size.y/2 - overlap/2], fillet, center=false);
+                rounded_square([size.x, size.y/2 - overlapSize.y/2], fillet, center=false);
             baseCoverCutouts(size, fillet, cnc=false);
         }
-    translate_z(size.z/2)
+    #translate_z(size.z - overlapSize.z)
         difference() {
-            translate([-size.x/2, -overlap/2 - 2*fillet, 0])
-                rounded_cube_xy([size.x, overlap + 2*fillet, size.z/2], fillet, xy_center=false);
+            translate([-size.x/2, -overlapSize.y/2 - 2*fillet, 0])
+                rounded_cube_xy([size.x, overlapSize.y + 2*fillet, overlapSize.z], fillet, xy_center=false);
             for (x = [holeOffset - size.x/2, 0, size.x/2 - holeOffset])
                 translate([x, 0, 0])
-                    boltHoleM3(size.z/2);
+                    boltHoleM3(overlapSize.z);
         }
 }
 
 module baseCoverBackStl(size) {
     fillet = 2;
-    overlap = 10;
+    overlapSize = [size.x, 10, size.z - 1.5]; // complementary size to baseCoverFront overlap
 
     linear_extrude(size.z)
         difference() {
-            translate([-size.x/2, overlap/2])
-                rounded_square([size.x, size.y/2 - overlap/2], fillet, center=false);
+            translate([-size.x/2, overlapSize.y/2])
+                rounded_square([size.x, size.y/2 - overlapSize.y/2], fillet, center=false);
             baseCoverCutouts(size, fillet, cnc=false);
         }
     difference() {
-        translate([-size.x/2, -overlap/2, 0])
-            rounded_cube_xy([size.x, overlap + 2*fillet, size.z/2], fillet, xy_center=false);
+        translate([-size.x/2, -overlapSize.y/2, 0])
+            rounded_cube_xy([size.x, overlapSize.y + 2*fillet, overlapSize.z], fillet, xy_center=false);
         for (x = [holeOffset - size.x/2, 0, size.x/2 - holeOffset])
             translate([x, 0, 0])
-                boltHoleM3(size.z/2);
+                boltHoleM3Tap(overlapSize.z);
     }
 }
 
@@ -448,7 +450,7 @@ module Base_Cover_Front_220_stl() {
 
 module Base_Cover_Back_220_stl() {
     stl("Base_Cover_Back_220")
-        //color(grey(40))
+        color(grey(40))
             baseCoverBackStl(baseCoverTopSize);
 }
 
