@@ -12,8 +12,8 @@ include <../config/Parameters_Main.scad>
 
 holeOffsetY = 15;
 fanOffsetY = eZ - 450 + 70;
-bambuFanBracketSize = [165, spoolHeight() - 40, 3];
-bambuFanBracketSize400 = [165, 150, 3];
+//bambuFanBracketSize = [165, spoolHeight() - 40, 3.5];
+bambuFanBracketSize400 = [165, 150, 3.5];
 bambuFanBracketSize450 = bambuFanBracketSize400 + [0, 50, 0];
 
 SN120x32=["SN120x32","Snowfan YY12032",      120,  120, 32, 115,   M3_cap_screw, 70, [60,   60  ], 2.4, [[6,6],[112,6],[6,112],[112,112]], 58, 29.5, 1.5, 1.5, 1.1, 1.5, 1.1];
@@ -79,32 +79,33 @@ module bambuFan() {
 
 module bambuFanBracketHolePositions(size, z=0) {
     for (pos = [ [8, holeOffsetY, z], [size.x - 8, holeOffsetY, z], [size.x - 8, size.y - 30, z] ])
-    //[8, size.x - 8], y = [holeOffsetY, size.y - 35])
         translate(pos)
             children();
 }
 
-module bambuFanBracket(size=bambuFanBracketSize) {
+module bambuFanBracket(size) {
     fillet = 4;
     difference() {
+        size2 = [21, size.y - 125];
         union() {
-            size2 = [22, size.y - 125];
             rounded_cube_xy([size.x, size2.y, size.z], fillet);
             size3 = [14, 31];
             rounded_cube_xy([size3.x, size3.y, size.z], fillet);
-            translate([size3.x, size2.y, 0])
-                fillet(2, size.z); 
-            translate([size.x - size2.x, 0, 0]) {
+            translate([size.x - size2.x, 0, 0])
                 rounded_cube_xy([size2.x, size.y, size.z], fillet);
-                translate([0, size2.y, 0])
-                    rotate(90)
-                        fillet(fillet, size.z);
-            }
-            
             *rounded_cube_xy(size, fillet);
             *translate([0, fanOffsetY, 0])
                 bambuFanHolePositions()
                     cylinder(r=4, h=size.z + 1);
+        }
+        translate([size.x - size2.x, size2.y, -eps]) {
+            wireCutoutSize = [3, 3, size.z + 2*eps];
+            wireCutoutFillet = 1;
+            translate([-wireCutoutSize.x, -wireCutoutSize.y, 0])
+                rounded_cube_xy([wireCutoutSize.x, wireCutoutSize.y + 2*wireCutoutFillet, wireCutoutSize.z], wireCutoutFillet);
+            translate([-wireCutoutSize.x, 0, 0])
+                rotate(180)
+                    fillet(wireCutoutFillet, wireCutoutSize.z);
         }
         *if (size.y > 200) {
             cutoutSize1 = [size.x - 50, 40, size.z + 2*eps];
@@ -120,7 +121,7 @@ module bambuFanBracket(size=bambuFanBracketSize) {
         }
         bambuFanBracketHolePositions(size)
             hull() {
-                translate([0, 8+1, 0])
+                translate([0, 8 + 1, 0])
                     boltHoleM4(size.z);
                 translate([0, -8, 0])
                     boltHoleM4(size.z);
@@ -131,7 +132,7 @@ module bambuFanBracket(size=bambuFanBracketSize) {
     }
 }
 
-module Bambu_Fan_Bracket_hardware(size=bambuFanBracketSize) {
+module Bambu_Fan_Bracket_hardware(size) {
     bambuFanBracketHolePositions(size, size.z)
         boltM4ButtonheadHammerNut(_frameBoltLength);
     translate([0, fanOffsetY, 0]) {
