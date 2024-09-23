@@ -23,7 +23,6 @@ _yCarriageDescriptor = "MGN12H";
 _coreXYDescriptor = "GT2_20_25";
 
 _use2060ForTop = true;
-_useBowdenExtruder = false;
 _useDualZRods = true;
 _useDualZMotors = false;
 _useElectronicsInBase = true;

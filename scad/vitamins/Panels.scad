@@ -17,7 +17,7 @@ accessHoleRadius = 2.5;
 
 function sidePanelSize(left, useBowdenExtruder=true, useElectronicsInBase=false) = [eY + 2*eSize - (left ? 0 : (useBowdenExtruder ? iecHousingMountSize().x : 0)), left ? eZ : eZ - (useElectronicsInBase ?  iecHousingMountSize().y : 0), 3];
 function rightLowerSidePanelSize() = [eY + 2*eSize - iecHousingMountSize().x, iecHousingMountSize().y, 3];
-
+function useBowdenExtruder() = eX < 350 ? true : false;
 
 module sidePanelAccessHolePositions(size, left) {
     *for (x = left ? [-size.x/2 + eSize/2, size.x/2 - eSize/2] : [-size.x/2 + eSize/2], y = [-size.y/2 + eSize/2, size.y/2 - eSize/2])
@@ -26,7 +26,7 @@ module sidePanelAccessHolePositions(size, left) {
     for (y = [eSize/2, 3*eSize/2])
         translate([left ? size.x/2 - eSize/2 : -size.x/2 + eSize/2, size.y/2 - y])
             children();
-    if (left || _useBowdenExtruder == false)
+    if (left || useBowdenExtruder() == false)
         for (y = [eSize/2, 3*eSize/2, 5*eSize/2])
             translate([left ? -size.x/2 + eSize/2 : size.x/2 - eSize/2, size.y/2 - y])
                 children();
@@ -41,7 +41,7 @@ module sidePanelBoltHolePositionsX(size, left, spoolHolder) {
         size.x <= 250 + 2*eSize ? [-size.x/2 + eSize + 60, size.x/2 - eSize - 60] :
         size.x <= 350 + 2*eSize ? [-size.x/2 + eSize + 50, 0, size.x/2 - eSize - 50] :
                                   [-size.x/2 + eSize + 20, -(size.x - 2*(eSize + 20))/6, (size.x - 2*(eSize + 20))/6, size.x/2 - eSize - 20];
-    xPositionsRight = _useBowdenExtruder ? [-size.x/2 + 4*eSize/2, eSize/2, size.x/2 - eSize] : [-size.x/2 + 4*eSize/2, eSize/2, size.x/2 - 2*eSize];
+    xPositionsRight = useBowdenExtruder() ? [-size.x/2 + 4*eSize/2, eSize/2, size.x/2 - eSize] : [-size.x/2 + 4*eSize/2, eSize/2, size.x/2 - 2*eSize];
     for (x = left ? xPositionsLeft : xPositionsRight,
          y = concat([(-size.y + eSize)/2, (size.y - eSize)/2], left ? [_upperZRodMountsExtrusionOffsetZ - size.y/2 - eSize/2] : []))
         translate([x, y])
@@ -49,16 +49,16 @@ module sidePanelBoltHolePositionsX(size, left, spoolHolder) {
                 children();
     if (spoolHolder)
         for (x = [0, 40])
-            translate([x + (_useBowdenExtruder ? spoolHolderPosition().y - eY/2 + 7.5 : -20), spoolHeight() - size.y/2 + (_useElectronicsInBase ? -3*eSize : 3*eSize/2)])
+            translate([x + (useBowdenExtruder() ? spoolHolderPosition().y - eY/2 + 7.5 : -20), spoolHeight() - size.y/2 + (_useElectronicsInBase ? -3*eSize : 3*eSize/2)])
                 children();
 }
 
 module sidePanelBoltHolePositions(size, left, spoolHolder=false) {
-    for (x = (left || _useBowdenExtruder== false) ? [-size.x/2 + eSize/2, size.x/2 - eSize/2] : [-size.x/2 + eSize/2], y = [-size.y/2 + eSize, size.y/2 - eSize])
+    for (x = (left || useBowdenExtruder() == false) ? [-size.x/2 + eSize/2, size.x/2 - eSize/2] : [-size.x/2 + eSize/2], y = [-size.y/2 + eSize, size.y/2 - eSize])
         translate([x, y])
             rotate(exploded() ? 0 : 90)
                 children();
-    if (!left && _useBowdenExtruder)
+    if (!left && useBowdenExtruder())
         for (x = [size.x/2 - eSize/2], y = [spoolHeight() +  - size.y/2 + (_useElectronicsInBase ? -3*eSize : 3*eSize/2)])
             translate([x, y])
                 rotate(exploded() ? 0 : 90)
@@ -67,7 +67,7 @@ module sidePanelBoltHolePositions(size, left, spoolHolder=false) {
     sidePanelBoltHolePositionsX(size, left, spoolHolder)
         children();
     //for (x = [-size.x/2 + eSize/2, size.x/2 - eSize/2], y = [(size.y - eSize)/6, -(size.y - eSize)/6])
-    for (x = (left || _useBowdenExtruder== false) ? [-size.x/2 + eSize/2, size.x/2 - eSize/2] : [-size.x/2 + eSize/2], y = [size.y/2 - eSize - (size.y - 2*eSize)/3, -size.y/2 + eSize + (size.y - 2*eSize)/3])
+    for (x = (left || useBowdenExtruder() == false) ? [-size.x/2 + eSize/2, size.x/2 - eSize/2] : [-size.x/2 + eSize/2], y = [size.y/2 - eSize - (size.y - 2*eSize)/3, -size.y/2 + eSize + (size.y - 2*eSize)/3])
         translate([x, y])
             rotate(exploded() ? 0 : 90)
                 children();
@@ -294,7 +294,7 @@ module Back_Panel_Channel_Spacers() {
 
 
 module Right_Side_Panel_dxf() {
-    size = sidePanelSize(left=false, useBowdenExtruder=_useBowdenExtruder, useElectronicsInBase=_useElectronicsInBase);
+    size = sidePanelSize(left=false, useBowdenExtruder=useBowdenExtruder(), useElectronicsInBase=_useElectronicsInBase);
     fillet = 1;
     sheet = PC3;
 
@@ -535,7 +535,7 @@ module Right_Side_Channel_Spacers() {
 }
 
 module rightSidePanelPC(addBolts=true, hammerNut=true) {
-    size = sidePanelSize(left=false, useBowdenExtruder=_useBowdenExtruder, useElectronicsInBase=_useElectronicsInBase);
+    size = sidePanelSize(left=false, useBowdenExtruder=useBowdenExtruder(), useElectronicsInBase=_useElectronicsInBase);
     translate([size.z/2 + eX + 2*eSize, size.x/2, (_useElectronicsInBase ? eZ - size.y/2 : size.y/2)])
         rotate([90, 0, 90]) {
             if (addBolts)
@@ -551,7 +551,7 @@ module rightSidePanelPC(addBolts=true, hammerNut=true) {
             render_2D_sheet(PC3, w=size.x, d=size.y)
                 Right_Side_Panel_dxf();
         }
-    *if (!_useBowdenExtruder) {
+    *if (!useBowdenExtruder()) {
         lowerSize = rightLowerSidePanelSize();
         translate([lowerSize.z/2 + eX + 2*eSize, lowerSize.x/2, lowerSize.y/2])
             rotate([90, 0, 90]) {

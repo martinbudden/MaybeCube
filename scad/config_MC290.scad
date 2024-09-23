@@ -25,7 +25,6 @@ _coreXYDescriptor = "GT2_20_16";
 _hotendDescriptor = "E3DV6";
 
 _useBackMounts = true;
-_useBowdenExtruder = true;
 _useDualZRods = false;
 _useDualZMotors = false;
 _useFrontDisplay = false;

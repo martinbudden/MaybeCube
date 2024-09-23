@@ -159,7 +159,7 @@ staged_assembly("Stage_4", big=true, ngb=true) {
 
     Stage_3_assembly();
     explode(150, true)
-        if (_useBowdenExtruder) {
+        if (useBowdenExtruder()) {
             explode(50, true) {
                 xRailPrintheadPosition()
                     Printhead_E3DV6_assembly();

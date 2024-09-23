@@ -52,18 +52,18 @@ assembly("Right_Side", big=true) {
     }
     if ($target != "DualZRods" && $target != "KinematicBed" && !useBackMounts) {
         if (useElectronicsInBase) {
-            if (_useBowdenExtruder)
+            if (useBowdenExtruder())
                 if (eZ >= 400)
                     explode([50, 75, 0], true)
                         rightSidePanelAssembly();
         } else {
             explode([50, 75, 0])
                 IEC_Housing_assembly();
-            if (_useBowdenExtruder)
+            if (useBowdenExtruder())
                 explode([75, 75, 0], true)
                     accessPanelAssembly();
         }
-        if (_useBowdenExtruder)
+        if (useBowdenExtruder())
             explode([50, 75, 0])
                 Extruder_Bracket_assembly();
     }

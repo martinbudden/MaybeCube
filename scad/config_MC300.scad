@@ -26,7 +26,6 @@ _hotendDescriptor = "E3DV6";
 
 _use2060ForTop = false;
 _use2060ForTopRear = true;
-_useBowdenExtruder = true;
 _useDualZRods = false;
 _useDualZMotors = false;
 _useElectronicsInBase = true;
