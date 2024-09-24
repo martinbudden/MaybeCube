@@ -28,11 +28,12 @@ use <../scad/config/Parameters_Positions.scad>
 module Right_Side_test() {
     //CoreXYBelts(carriagePosition(), show_pulleys=!true);
     Right_Side_assembly();
-    //bambuFanBracketAssembly();
+    bambuFanBracketAssembly();
+    baseCoverTopAssembly(addBolts=false);
     *translate([130, 0, 0])
         xRailPrintheadPosition(t=2)
             Printhead_OrbiterV3_assembly();
-    //baseFanMountAssembly();
+    baseFanMountAssembly();
     //accessPanelAssembly();
     //Left_Side_assembly();
     //Face_Top_assembly();
@@ -54,7 +55,7 @@ module Right_Side_test() {
     //Right_Side_Channel_Nuts();
     // always add the panels last, so they are transparent to other items
     //Right_Side_Channel_Spacers();
-    Right_Side_Panel_assembly();
+    //Right_Side_Panel_assembly();
     //rightSidePanelPC(hammerNut=false);
     //Partition_assembly();
 }
