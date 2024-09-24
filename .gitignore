@@ -21,7 +21,7 @@ scratch/
 
 documents/*.*
 !documents/klipper/*.*
-!documents/MarlinConfiguration.md
+!documents/Marlin/*.*
 !documents/BOM_MC300.ods
 
 //scad/target.scad
