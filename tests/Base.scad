@@ -28,20 +28,14 @@ module Base_test() {
     //basePlateAssembly();
     Base_Plate_assembly();
     //Base_Plate_Stage_1_assembly();
-    //pcbBTT_MANTA_8MP_Assembly();
-    //basePSUPosition() psu(basePSUType);
     //IEC_Housing_assembly();
     //basePlateAssembly(rightExtrusion=false, hammerNut=false);
     //BaseAL();
     //translate([eX + eSize, eSize, 0]) extrusionOY(eY);
-    //pcbAssembly(BTT_SKR_V1_4_TURBO, pcbOnBase=true);
     #baseCoverTopAssembly(addBolts=false);
     //baseCoverLeftSideSupportsAssembly();
-    //baseCoverRightSideSupportAssembly();
     //baseCoverFrontSupportsAssembly();
-    //translate([0,-2,0])
     //baseCoverBackSupportsAssembly();
-    //Base_Cover_Back_Support_240_stl();
     baseDragChain();
     //baseFanMountAssembly();
     breakoutPCBBracketAssembly();
@@ -50,7 +44,6 @@ module Base_test() {
     //Left_Base_Channel_Spacers();
     //translate_z(-3) Panel_Jig_stl();
     //translate([eX + 2*eSize, 0, -3]) rotate(90) Panel_Jig_stl();
-    //Front_Display_Wiring_Cover_stl();
     //Front_Cover_stl();
     //Left_Side_assembly();
     *translate([eSize + _zRodOffsetX, eSize + zRodSeparation()/2 + _zRodOffsetY, bedHeight($t)])
@@ -64,7 +57,9 @@ module Base_test() {
     //bigTreeTechTFT_3_5v3_0();
     //pcb(BTT_B1_Box_V1_0);
     //pcb(BTT_SKR_V1_4_TURBO);
-    //Foot_LShaped_12mm_stl();
+    //pcbBTT_MANTA_8MP_Assembly();
+    //basePSUPosition() psu(basePSUType);
+    //pcbAssembly(BTT_SKR_V1_4_TURBO, pcbOnBase=true);
 }
 
 if ($preview)
