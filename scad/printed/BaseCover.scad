@@ -545,12 +545,12 @@ module baseFanMount(sizeX, offsetX=0, fan=fan40x11, support=false) {
         baseFanMountHolePositions(size)
             boltHoleM4(size.z);
     }
-    supportSize = [40, 5, eSize + 10];
     if (support)
         difference() {
-            translate([size.x - supportSize.x, size.y - eSize - supportSize.y, -supportSize.z])
+            supportSize = [25, 5, eSize + 10];
+            translate([size.x - supportSize.x - 5, size.y - eSize - supportSize.y, -supportSize.z])
                 rounded_cube_xy(supportSize, 1.5);
-            translate([eSize + 3*baseCoverLeftSideSupportSize.y/4, size.y - eSize - supportSize.y, -supportSize.z + 6])
+            translate([eSize + 3*baseCoverLeftSideSupportSize.y/4, size.y - eSize - supportSize.y, - 24])
                 rotate([-90, 0, 0])
                     boltHoleM3Tap(supportSize.y, horizontal=true);
         }
