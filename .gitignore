@@ -1,33 +1,28 @@
 .DS_Store
 .~lock.*
 *.dep
-I*.swp
+*.swp
 *.bak
 *.save
 *.lnk
-__pycache__
 *.pyc
-Thumbs.db
-
-
 *.log
 *.echo
 *.3mf
+*.gco
+*.gcode
+
+__pycache__
+Thumbs.db
 times.txt
 cmd_times.txt
 
-/*.gco
-/*.gcode
-
 scratch/
 
-documents/*
+documents/*.*
 !documents/klipper/*.*
 !documents/MarlinConfiguration.md
 !documents/BOM_MC300.ods
-
-FreeCAD/*.stl
-FreeCad/*.FCBak
 
 //scad/target.scad
 scad/bom.scad
@@ -36,6 +31,15 @@ scad/stlimport/eva
 scad/stlimport/jubilee
 scad/stlimport/voron
 scad/stlimport/voron-0
+
+cadquery/*.*
+!cadquery/*.py
+!cadquery/exports/*.dxf
+!cadquery/exports/*.step
+cadquery/exports/*.stl
+
+FreeCAD/*.stl
+FreeCad/*.FCBak
 
 tests.*
 tests/*.*
