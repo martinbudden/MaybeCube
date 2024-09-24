@@ -367,7 +367,7 @@ module xyMotorMountBlock(motorType, size, basePlateThickness, offset=[0, 0], sid
                     boltHoleM4HangingCounterboreButtonhead(5 + 2*eps, boreDepth=height - 5, boltHeadTolerance=boltHeadTolerance);
         yPositions = sideBoltPositions(size.y, cnc, flat);
         translate([eSize/2, 0, -eps])
-            if (flat || cnc)
+            if (flat || cnc) {
                 vflip() {
                     translate([0, -yPositions[0], 0])
                         boltHoleM3(blockSize.z + eps, cnc=cnc);
@@ -375,12 +375,14 @@ module xyMotorMountBlock(motorType, size, basePlateThickness, offset=[0, 0], sid
                         boltHoleM3(blockSize.z + eps, cnc=cnc);
                     }
                 }
-            else
-                translate([0, yPositions[0], 0])
-                    if (M5)
-                        boltHoleM5HangingCounterboreButtonhead(5 + 2*eps, boreDepth=height + eSize - 5, boltHeadTolerance=boltHeadTolerance);
-                    else
-                        boltHoleM4HangingCounterboreButtonhead(5 + 2*eps, boreDepth=height + eSize - 5, boltHeadTolerance=boltHeadTolerance);
+            } else {
+                if (isNEMAType(motorType))
+                    translate([0, yPositions[0], 0])
+                        if (M5)
+                            boltHoleM5HangingCounterboreButtonhead(5 + 2*eps, boreDepth=height + eSize - 5, boltHeadTolerance=boltHeadTolerance);
+                        else
+                            boltHoleM4HangingCounterboreButtonhead(5 + 2*eps, boreDepth=height + eSize - 5, boltHeadTolerance=boltHeadTolerance);
+            }
     }
 
     // corner fillet
