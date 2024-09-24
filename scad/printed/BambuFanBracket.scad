@@ -32,7 +32,8 @@ module bambuFanHolePositions(z=0) {
 
 module bambuFan() {
     vitamin(str(": Bambu Lab X1 & P1 Auxiliary Part Cooling Fan"));
-
+    // Bambu fan wiring, see https://www.printables.com/model/435312-bambu-lab-p1-x1-dual-aux-fan-725-updated
+    // Black: +24V, DarkGrey: gnd, LightGrey: tachometer, White: PWM
     color(grey(20))
         translate([15, 11, 0]) {
             blower_fan(SN120x32, casing_is_square=true);
