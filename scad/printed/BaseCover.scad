@@ -356,7 +356,20 @@ module baseCoverCutouts(size, fillet, cnc=true) {
             rotate(-90)
                 fillet(fillet);
     }
+    auxiliaryFanWiringCutoutSize = [2, 5];
+    auxiliaryFanWiringCutoutFillet = 0.5;
+    translate([size.x/2 - auxiliaryFanWiringCutoutSize.x, -35]) {
+        rounded_square([auxiliaryFanWiringCutoutSize.x + 2*auxiliaryFanWiringCutoutFillet, auxiliaryFanWiringCutoutSize.y], auxiliaryFanWiringCutoutFillet, center=false);
+        translate([auxiliaryFanWiringCutoutSize.x, 0]) {
+            rotate(180)
+                fillet(auxiliaryFanWiringCutoutFillet);
+            translate([0, auxiliaryFanWiringCutoutSize.y])
+                rotate(90)
+                    fillet(auxiliaryFanWiringCutoutFillet);
+        }
+    }
 }
+
 module baseCoverDxf(size) {
     sheet = BaseCover;
     fillet = 1.5;
