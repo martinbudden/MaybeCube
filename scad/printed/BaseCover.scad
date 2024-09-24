@@ -398,7 +398,7 @@ module baseCoverFrontStl(size) {
                 rounded_square([size.x, size.y/2 - overlapSize.y/2], fillet, center=false);
             baseCoverCutouts(size, fillet, cnc=false);
         }
-    #translate_z(size.z - overlapSize.z)
+    translate_z(size.z - overlapSize.z)
         difference() {
             translate([-size.x/2, -overlapSize.y/2 - 2*fillet, 0])
                 rounded_cube_xy([size.x, overlapSize.y + 2*fillet, overlapSize.z], fillet, xy_center=false);

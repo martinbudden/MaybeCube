@@ -7,14 +7,12 @@ include <../scad/printed/BambuFanBracket.scad>
 //$explode = 1;
 //$pose = 1;
 module BambuFanBracket_test() {
-    if (eZ == 350)  {
+    if (eZ == 400)
         Bambu_Fan_Bracket_150_stl();
-        Bambu_Fan_Bracket_hardware(bambuFanBracketSize400);
-    } else {
+    else
         Bambu_Fan_Bracket_200_stl();
-        Bambu_Fan_Bracket_hardware(bambuFanBracketSize450);
-    }
-    *bambuFanBracketAssembly();
+    Bambu_Fan_Bracket_hardware(eZ == 400 ? bambuFanBracketSize400 : bambuFanBracketSize450);
+    //bambuFanBracketAssembly();
 }
 
 if ($preview)

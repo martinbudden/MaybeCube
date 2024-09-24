@@ -25,14 +25,17 @@ use <../scad/config/Parameters_Positions.scad>
 //$explode = 1;
 //$pose = 1;
 module Base_test() {
+    //basePlateAssembly();
     Base_Plate_assembly();
     //Base_Plate_Stage_1_assembly();
+    //pcbBTT_MANTA_8MP_Assembly();
+    //basePSUPosition() psu(basePSUType);
     //IEC_Housing_assembly();
     //basePlateAssembly(rightExtrusion=false, hammerNut=false);
     //BaseAL();
     //translate([eX + eSize, eSize, 0]) extrusionOY(eY);
     //pcbAssembly(BTT_SKR_V1_4_TURBO, pcbOnBase=true);
-    #baseCoverTopAssembly(!false);
+    #baseCoverTopAssembly(addBolts=false);
     //baseCoverLeftSideSupportsAssembly();
     //baseCoverRightSideSupportAssembly();
     //baseCoverFrontSupportsAssembly();
